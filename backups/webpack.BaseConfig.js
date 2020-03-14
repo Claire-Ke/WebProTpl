@@ -3043,9 +3043,9 @@ let path = require( 'path' ),
         integrity: false,
         entrypoints: false,
         metadata: {
-            version: '2020.02.02',
+            version: '2020.01.01',
             assetsFileName: '../others/ProjectAssets.json',
-            externalAssets: [],
+            externalAssets: require( './configures/CacheResources.js' ).cacheResources,
         },
     };
 

@@ -88,12 +88,7 @@ proN_str = str1 + str2;
  *
  * @type {string[]} 字符串数组
  */
-let cacheResources_arr = [
-        '../pages/HelloWorld.html',
-        '../pages/XMQAQ.html',
-        '../static/ico/compressed/ico_192_192.png',
-        '../static/ico/compressed/ico_512_512.png',
-    ],
+let cacheResources_arr = require( './CacheResources.js' ).cacheResources,
     /**
      * 预加载的苹果启动图片的资源数组，成员是一个个JSON对象，必须
      * 成员JSON对象的格式是

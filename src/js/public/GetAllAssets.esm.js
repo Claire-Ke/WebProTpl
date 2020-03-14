@@ -75,7 +75,7 @@ async function GetAllAssets( url = '../others/ProjectAssets.json', option = {} )
             console.error( error.message );
         } );
 
-    return CTAllAssets;
+    return Array.from( new Set( CTAllAssets ) );
 }
 
 export {

@@ -98,7 +98,7 @@ self.onmessage = async event => {
     let GetAllAssets = eval( `${ event.data.GetAllAssets }GetAllAssets();` );
     let CTAllAssets = await GetAllAssets;
 
-    console.dir( CTAllAssets );
+    console.dir( Array.from( new Set( CTAllAssets ) ) );
 };
 
 self.addEventListener( 'install', ( event ) => {
@@ -108,7 +108,7 @@ self.addEventListener( 'install', ( event ) => {
         caches.open( 'v1' )
               .then( async cache => {
                   let CTAllAssets = await GetAllAssets();
-                  return cache.addAll( CTAllAssets );
+                  return cache.addAll( Array.from( new Set( CTAllAssets ) ) );
               } )
     );
 
