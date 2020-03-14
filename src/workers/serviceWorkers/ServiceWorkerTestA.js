@@ -82,7 +82,7 @@ function GetAllAssets(){
                                    CTAllAssets.push( obj.metadata.assetsFileName );
                                    CTAllAssets.push( ...( obj.metadata.externalAssets ) );
 
-                                   return CTAllAssets;
+                                   return Array.from( new Set( CTAllAssets ) );
                                } )
                                .catch( error => {
                                    console.error( error.message );
@@ -94,11 +94,14 @@ function GetAllAssets(){
         } );
 }
 
-self.onmessage = async event => {
-    let GetAllAssets = eval( `${ event.data.GetAllAssets }GetAllAssets();` );
-    let CTAllAssets = await GetAllAssets;
+self.onmessage = event => {
+    let GetAllAssets = eval( `(${ event.data.GetAllAssets })()` );
 
-    console.dir( Array.from( new Set( CTAllAssets ) ) );
+    GetAllAssets.then( CTAllAssets => {
+        console.log( 'Service Worker onmessage Start' );
+        console.dir( CTAllAssets );
+        console.log( 'Service Worker onmessage End' );
+    } );
 };
 
 self.addEventListener( 'install', ( event ) => {
@@ -108,7 +111,7 @@ self.addEventListener( 'install', ( event ) => {
         caches.open( 'v1' )
               .then( async cache => {
                   let CTAllAssets = await GetAllAssets();
-                  return cache.addAll( Array.from( new Set( CTAllAssets ) ) );
+                  return cache.addAll( CTAllAssets );
               } )
     );
 

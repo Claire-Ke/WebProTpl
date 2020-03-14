@@ -24,11 +24,15 @@
  * @type {string[]} 字符串数组
  */
 let cacheResources = [
+    '../static/ico/compressed/ico_48_48.png',
+    '../static/ico/compressed/ico_72_72.png',
+    '../static/ico/compressed/ico_96_96.png',
+    '../static/ico/compressed/ico_144_144.png',
+    '../static/ico/compressed/ico_192_192.png',
+    '../static/ico/compressed/ico_512_512.png',
     '../others/ProjectAssets.json',
     '../pages/HelloWorld.html',
     '../pages/XMQAQ.html',
-    '../static/ico/compressed/ico_192_192.png',
-    '../static/ico/compressed/ico_512_512.png',
 ];
 
 module.exports = {

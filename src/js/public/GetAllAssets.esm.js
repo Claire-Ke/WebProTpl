@@ -64,7 +64,7 @@ async function GetAllAssets( url = '../others/ProjectAssets.json', option = {} )
                                    CTAllAssets.push( obj.metadata.assetsFileName );
                                    CTAllAssets.push( ...( obj.metadata.externalAssets ) );
 
-                                   return CTAllAssets;
+                                   return Array.from( new Set( CTAllAssets ) );
                                } )
                                .catch( error => {
                                    console.error( error.message );
@@ -75,7 +75,7 @@ async function GetAllAssets( url = '../others/ProjectAssets.json', option = {} )
             console.error( error.message );
         } );
 
-    return Array.from( new Set( CTAllAssets ) );
+    return CTAllAssets;
 }
 
 export {
