@@ -1,0 +1,14 @@
+"**/*.se.js",
+"**/*.se.mjs",
+"**/*.se.cjs",
+"**/*.se.esm.js",
+"**/*.se.esm.mjs",
+"**/*.css",
+"**/*.scss",
+"**/*.less",
+"**/*.sass"
+
+以上“规则的命名”都会被认为是“有副作用”的代码，不会被“tree-shaking”切割！！！
+
+import 'xxx.esm.js'，会被整个切割掉。
+要把文件命名成"xxx.se.esm.js"，import 'xxx.se.esm.js'，才不会被整个切割掉！

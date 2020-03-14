@@ -1,0 +1,100 @@
+/*
+Author：林鹏
+Email：2726893248@qq.com
+CreateDate：20190101 00:00:00 AM
+
+...每位新修改者自己的信息
+
+PS：
+一、
+每位修改者请附上自己的信息，如：
+ModifyAuthor：林沐风
+Email：xxxxxxxxxx@qq.com
+ModifyDate：20190101 00:00:00 AM
+*/
+
+@font-face {
+    font-family: 'Font_Helvetica';
+    src: url(../../../../assets/fonts/Helvetica.otf);
+}
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: portrait) and (device-pixel-ratio: 3) {
+    html.xmQAQ.css-reset {
+        position: absolute;
+        bottom: -44px;
+        height: auto;
+
+        body.css-reset {
+            padding-top: 0;
+        }
+
+        #XMQAQ {
+            > main {
+                padding-top: constant(safe-area-inset-top);
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: constant(safe-area-inset-bottom);
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+    }
+}
+
+html.xmQAQ.css-reset {
+    touch-action: none;
+    background-color: white;
+
+    body, #LocalRoll, #XMQAQ {
+        background-color: white;
+    }
+
+    body, #LocalRoll, #XMQAQ, main {
+        touch-action: none;
+    }
+
+    #XMQAQ {
+        > main {
+            background: #f3a1a2 url(.././../../../assets/img/iPhoneX_1125_2436.png) center center no-repeat;
+            background-size: 100% auto;
+        }
+
+        .homePage {
+            touch-action: pan-y;
+
+            padding-top: 28px;
+            padding-right: 15px;
+            padding-left: 15px;
+            background-color: transparent;
+
+            grid-template-columns: repeat(auto-fit, 83px);
+            grid-auto-rows: 78px;
+            row-gap: 25px;
+            justify-content: space-between;
+        }
+    }
+}
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (device-pixel-ratio: 3) {
+    html.xmQAQ.css-reset {
+        body.css-reset {
+            padding-right: 0;
+            padding-bottom: 0;
+            padding-left: 0;
+        }
+
+        #XMQAQ {
+            > main {
+                padding-right: constant(safe-area-inset-right);
+                padding-right: env(safe-area-inset-right);
+                padding-bottom: constant(safe-area-inset-bottom);
+                padding-bottom: env(safe-area-inset-bottom);
+                padding-left: constant(safe-area-inset-left);
+                padding-left: env(safe-area-inset-left);
+            }
+
+            .homePage {
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+    }
+}

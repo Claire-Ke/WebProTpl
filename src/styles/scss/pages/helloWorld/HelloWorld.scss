@@ -1,0 +1,115 @@
+/*
+Author：林鹏
+Email：2726893248@qq.com
+CreateDate：20190101 00:00:00 AM
+
+...每位新修改者自己的信息
+
+PS：
+一、
+每位修改者请附上自己的信息，如：
+ModifyAuthor：林沐风
+Email：xxxxxxxxxx@qq.com
+ModifyDate：20190101 00:00:00 AM
+*/
+
+@font-face {
+    font-family: 'Font_Helvetica';
+    src: url(../../../../assets/fonts/Helvetica.otf);
+}
+
+html.helloWorld {
+    background-color: #22afe9;
+
+    body, #LocalRoll, #HelloWorld, main {
+        background-color: #22afe9;
+    }
+
+    #HelloWorld {
+        article {
+            width: 100%;
+            padding: 0 20px;
+
+            #HEICImg {
+                background-color: transparent;
+            }
+
+            * {
+                color: white;
+                font-size: 16px;
+                text-align: left;
+                font-family: 'Font_Helvetica';
+            }
+
+            .transitionTest1Box {
+                background-color: #7f4985;
+
+                padding: 30px;
+
+                background-clip: content-box;
+                background-origin: content-box;
+
+                border: 40px solid red;
+                margin: 50px;
+                outline: 20px solid purple;
+            }
+
+            .transitionTest1, .transitionTestBtn1, .addStoreCountA, .subStoreCountA, .workerTestBtn1 {
+                padding: 20px;
+                background-color: #0dad67;
+                border-radius: 5px;
+                line-height: 1;
+            }
+
+            .transitionTestBtn1 {
+                margin-top: 20px;
+            }
+
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+                width: 238px;
+                margin-top: 10px;
+            }
+
+            .cell {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 25px;
+                height: 25px;
+                border: 1px solid white;
+                margin-right: -1px;
+                margin-bottom: -1px;
+                font-size: 14px;
+            }
+
+            .cell:nth-child(3n) {
+                margin-right: 0;
+            }
+
+            .cell:nth-child(27n) {
+                margin-bottom: 0;
+            }
+
+            .cell-move {
+                transition: transform 1000ms linear;
+            }
+
+            .inTest1 {
+                color: black;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (device-pixel-ratio: 3) {
+    html.helloWorld {
+        #HelloWorld {
+            article {
+                padding: 0;
+            }
+        }
+    }
+}
