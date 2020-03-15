@@ -170,6 +170,87 @@ let htmlWebpackPluginA_arr = [
              都在src/tplEJS/basic/metaLink下
              */
             metaLinkName_str: 'HelloWorld',
+            // 配置meta、link的信息
+            metaLinkData: {
+                keywords: 'HTML5,CSS3,JavaScript,ECMAScript6,ESM,webpack4,NodeJS,VueJS,EJS,SSE,Web Socket,FlexLayout,GridLayout,PWA,Web Worker,Shared Worker,Service Worker,WebAssembly,IndexedDB',
+                description: 'This is a WEB project template(2020).',
+                subject: 'This is a WEB project template(2020).',
+                appTitle: 'HelloWorld',
+                appName: 'HelloWorld',
+                color: '#f3a1a2',
+                // 预解析DNS，提高访问速度
+                dnsPrefetch: [
+                    '/',
+                ],
+                icons: [
+                    {
+                        type: 'image/png',
+                        sizes: '48x48',
+                        href: '../static/ico/compressed/ico_48_48.png',
+                    },
+                    {
+                        type: 'image/png',
+                        sizes: '72x72',
+                        href: '../static/ico/compressed/ico_72_72.png',
+                    },
+                    {
+                        type: 'image/png',
+                        sizes: '96x96',
+                        href: '../static/ico/compressed/ico_96_96.png',
+                    },
+                    {
+                        type: 'image/png',
+                        sizes: '144x144',
+                        href: '../static/ico/compressed/ico_144_144.png',
+                    },
+                    {
+                        type: 'image/png',
+                        sizes: '192x192',
+                        href: '../static/ico/compressed/ico_192_192.png',
+                    },
+                    {
+                        type: 'image/png',
+                        sizes: '512x512',
+                        href: '../static/ico/compressed/ico_512_512.png',
+                    },
+                ],
+                url: '/',
+                homeUrl: '/',
+                searchUrl: '/',
+                // 预连接
+                preConnect: [
+                    {
+                        href: '/',
+                        pr: '0.75',
+                    },
+                ],
+                // 规范的
+                canonical: '/',
+                // 候补
+                alternate: {
+                    hreflang: 'zh-CN',
+                    href: '/',
+                    title: 'HelloWorld',
+                },
+                // 这个值目前用的是FaceBook上“YouTube Music”的，以后换成具体项目的应用id就行
+                fbAppId: '87741124305',
+                // 这个值目前用的是App Store上“YouTube Music”的，以后换成具体项目的应用id就行
+                appStoreId: '1017492454',
+                // 这个值目前用的是“YouTube Music”切换到ios原生应用的url，以后换成具体项目的应用url就行
+                alIosUrl: 'vnd.youtube:/?feature=applinks',
+                // 对应的安卓原生应用的包名
+                alAndroidPackageName: 'com.google.android.apps.youtube.music',
+                // 这个值目前用的是“YouTube Music”切换到Android原生应用的url，以后换成具体项目的应用url就行
+                alAndroidUrl: 'vnd.youtube:/?feature=applinks',
+                // 关于twitter的配置信息
+                twitter: {
+                    creator: '2726893248@qq.com',
+                    site: '/',
+                    url: '/',
+                    // 值还可以是如：player一类的，表示这是个什么样类型的应用，比如：player表示播放器应用
+                    card: 'summary',
+                },
+            },
             /*
              必须，字符串，默认“HelloWorld”，manifest文件名，每个模板允许有自己配置的manifest文件，也可以是同一个文件(如：HelloWorld)
              都在pwa4Manifest文件夹下
@@ -283,6 +364,87 @@ let htmlWebpackPluginA_arr = [
              都在src/tplEJS/basic/metaLink下
              */
             metaLinkName_str: 'XMQAQ',
+            // 配置meta、link的信息
+            metaLinkData: {
+                keywords: '可爱的男孩子,轩墨宝宝,国服第一扳手,虎牙,二次元,男主播',
+                description: '可爱的男孩子，轩墨宝宝！！！',
+                subject: '可爱的男孩子，轩墨宝宝！！！',
+                appTitle: '轩墨宝宝QAQ',
+                appName: '轩墨宝宝QAQ',
+                color: '#f3a1a2',
+                // 预解析DNS，提高访问速度
+                dnsPrefetch: [
+                    '/',
+                ],
+                icons: [
+                    {
+                        type: 'image/png',
+                        sizes: '48x48',
+                        href: '../static/ico/compressed/ico_48_48.png',
+                    },
+                    {
+                        type: 'image/png',
+                        sizes: '72x72',
+                        href: '../static/ico/compressed/ico_72_72.png',
+                    },
+                    {
+                        type: 'image/png',
+                        sizes: '96x96',
+                        href: '../static/ico/compressed/ico_96_96.png',
+                    },
+                    {
+                        type: 'image/png',
+                        sizes: '144x144',
+                        href: '../static/ico/compressed/ico_144_144.png',
+                    },
+                    {
+                        type: 'image/png',
+                        sizes: '192x192',
+                        href: '../static/ico/compressed/ico_192_192.png',
+                    },
+                    {
+                        type: 'image/png',
+                        sizes: '512x512',
+                        href: '../static/ico/compressed/ico_512_512.png',
+                    },
+                ],
+                url: '/',
+                homeUrl: '/',
+                searchUrl: '/',
+                // 预连接
+                preConnect: [
+                    {
+                        href: '/',
+                        pr: '0.75',
+                    },
+                ],
+                // 规范的
+                canonical: '/',
+                // 候补
+                alternate: {
+                    hreflang: 'zh-CN',
+                    href: '/',
+                    title: 'HelloWorld',
+                },
+                // 这个值目前用的是FaceBook上“YouTube Music”的，以后换成具体项目的应用id就行
+                fbAppId: '87741124305',
+                // 这个值目前用的是App Store上“YouTube Music”的，以后换成具体项目的应用id就行
+                appStoreId: '1017492454',
+                // 这个值目前用的是“YouTube Music”切换到ios原生应用的url，以后换成具体项目的应用url就行
+                alIosUrl: 'vnd.youtube:/?feature=applinks',
+                // 对应的安卓原生应用的包名
+                alAndroidPackageName: 'com.google.android.apps.youtube.music',
+                // 这个值目前用的是“YouTube Music”切换到Android原生应用的url，以后换成具体项目的应用url就行
+                alAndroidUrl: 'vnd.youtube:/?feature=applinks',
+                // 关于twitter的配置信息
+                twitter: {
+                    creator: '2726893248@qq.com',
+                    site: '/',
+                    url: '/',
+                    // 值还可以是如：player一类的，表示这是个什么样类型的应用，比如：player表示播放器应用
+                    card: 'summary',
+                },
+            },
             /*
              必须，字符串，默认“HelloWorld”，manifest文件名，每个模板允许有自己配置的manifest文件，也可以是同一个文件(如：HelloWorld)
              都在pwa4Manifest文件夹下

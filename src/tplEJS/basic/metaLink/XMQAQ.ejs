@@ -24,19 +24,19 @@ ModifyDate：20190101 00:00:00 AM
 <meta http-equiv = 'Content-Language'
       content = 'zh-CN' />
 <meta name = 'keywords'
-      content = '可爱的男孩子,轩墨宝宝,国服第一扳手,虎牙,二次元,男主播' />
+      content = '<%= keywords %>' />
 <meta name = 'description'
-      content = '可爱的男孩子，轩墨宝宝！！！' />
+      content = '<%= description %>' />
 <meta name = 'subject'
-      content = '可爱的男孩子，轩墨宝宝！！！' />
+      content = '<%= subject %>' />
 <meta name = 'apple-mobile-web-app-title'
-      content = '轩墨宝宝QAQ' />
+      content = '<%= appTitle %>' />
 <meta name = 'application-name'
-      content = '轩墨宝宝QAQ' />
+      content = '<%= appName %>' />
 <meta name = 'theme-color'
-      content = '#f3a1a2' />
+      content = '<%= color %>' />
 <meta name = 'msApplication-TileColor'
-      content = '#f3a1a2' />
+      content = '<%= color %>' />
 <meta http-equiv = 'Content-Security-Policy'
       content = 'require-sri-for script style' />
 <meta http-equiv = 'Access-Control-Allow-Origin'
@@ -110,132 +110,53 @@ ModifyDate：20190101 00:00:00 AM
 <meta name = 'mobile-web-app-status-bar-style'
       content = 'black-translucent' />
 <!--预解析DNS，提高访问速度-->
-<link rel = 'dns-prefetch'
-      href = '/' />
+<% for( const url of
+        dnsPrefetch ){ %>
+    <link rel = 'dns-prefetch'
+          href = '<%= url %>' />
+<% } %>
 <meta itemprop = 'name'
-      content = '轩墨宝宝QAQ' />
+      content = '<%= appName %>' />
 <meta itemprop = 'description'
-      content = '可爱的男孩子，轩墨宝宝！！！' />
-<meta itemprop = 'image'
-      content = '../static/ico/compressed/ico_48_48.png' />
-<meta itemprop = 'image'
-      content = '../static/ico/compressed/ico_72_72.png' />
-<meta itemprop = 'image'
-      content = '../static/ico/compressed/ico_96_96.png' />
-<meta itemprop = 'image'
-      content = '../static/ico/compressed/ico_144_144.png' />
-<meta itemprop = 'image'
-      content = '../static/ico/compressed/ico_192_192.png' />
-<meta itemprop = 'image'
-      content = '../static/ico/compressed/ico_512_512.png' />
-<meta name = 'msApplication-TileImage'
-      content = '../static/ico/compressed/ico_48_48.png' />
-<meta name = 'msApplication-TileImage'
-      content = '../static/ico/compressed/ico_72_72.png' />
-<meta name = 'msApplication-TileImage'
-      content = '../static/ico/compressed/ico_96_96.png' />
-<meta name = 'msApplication-TileImage'
-      content = '../static/ico/compressed/ico_144_144.png' />
-<meta name = 'msApplication-TileImage'
-      content = '../static/ico/compressed/ico_192_192.png' />
-<meta name = 'msApplication-TileImage'
-      content = '../static/ico/compressed/ico_512_512.png' />
-<link rel = 'icon'
-      type = 'image/png'
-      sizes = '48x48'
-      href = '../static/ico/compressed/ico_48_48.png' />
-<link rel = 'icon'
-      type = 'image/png'
-      sizes = '72x72'
-      href = '../static/ico/compressed/ico_72_72.png' />
-<link rel = 'icon'
-      type = 'image/png'
-      sizes = '96x96'
-      href = '../static/ico/compressed/ico_96_96.png' />
-<link rel = 'icon'
-      type = 'image/png'
-      sizes = '144x144'
-      href = '../static/ico/compressed/ico_144_144.png' />
-<link rel = 'icon'
-      type = 'image/png'
-      sizes = '192x192'
-      href = '../static/ico/compressed/ico_192_192.png' />
-<link rel = 'icon'
-      type = 'image/png'
-      sizes = '512x512'
-      href = '../static/ico/compressed/ico_512_512.png' />
-<link rel = 'shortcut icon'
-      type = 'image/png'
-      sizes = '48x48'
-      href = '../static/ico/compressed/ico_48_48.png' />
-<link rel = 'shortcut icon'
-      type = 'image/png'
-      sizes = '72x72'
-      href = '../static/ico/compressed/ico_72_72.png' />
-<link rel = 'shortcut icon'
-      type = 'image/png'
-      sizes = '96x96'
-      href = '../static/ico/compressed/ico_96_96.png' />
-<link rel = 'shortcut icon'
-      type = 'image/png'
-      sizes = '144x144'
-      href = '../static/ico/compressed/ico_144_144.png' />
-<link rel = 'shortcut icon'
-      type = 'image/png'
-      sizes = '192x192'
-      href = '../static/ico/compressed/ico_192_192.png' />
-<link rel = 'shortcut icon'
-      type = 'image/png'
-      sizes = '512x512'
-      href = '../static/ico/compressed/ico_512_512.png' />
-<link rel = 'apple-touch-icon'
-      type = 'image/png'
-      sizes = '48x48'
-      href = '../static/ico/compressed/ico_48_48.png' />
-<link rel = 'apple-touch-icon'
-      type = 'image/png'
-      sizes = '72x72'
-      href = '../static/ico/compressed/ico_72_72.png' />
-<link rel = 'apple-touch-icon'
-      type = 'image/png'
-      sizes = '96x96'
-      href = '../static/ico/compressed/ico_96_96.png' />
-<link rel = 'apple-touch-icon'
-      type = 'image/png'
-      sizes = '144x144'
-      href = '../static/ico/compressed/ico_144_144.png' />
-<link rel = 'apple-touch-icon'
-      type = 'image/png'
-      sizes = '192x192'
-      href = '../static/ico/compressed/ico_192_192.png' />
-<link rel = 'apple-touch-icon'
-      type = 'image/png'
-      sizes = '512x512'
-      href = '../static/ico/compressed/ico_512_512.png' />
-<link rel = 'apple-touch-icon-precomposed'
-      type = 'image/png'
-      sizes = '48x48'
-      href = '../static/ico/compressed/ico_48_48.png' />
-<link rel = 'apple-touch-icon-precomposed'
-      type = 'image/png'
-      sizes = '72x72'
-      href = '../static/ico/compressed/ico_72_72.png' />
-<link rel = 'apple-touch-icon-precomposed'
-      type = 'image/png'
-      sizes = '96x96'
-      href = '../static/ico/compressed/ico_96_96.png' />
-<link rel = 'apple-touch-icon-precomposed'
-      type = 'image/png'
-      sizes = '144x144'
-      href = '../static/ico/compressed/ico_144_144.png' />
-<link rel = 'apple-touch-icon-precomposed'
-      type = 'image/png'
-      sizes = '192x192'
-      href = '../static/ico/compressed/ico_192_192.png' />
-<link rel = 'apple-touch-icon-precomposed'
-      type = 'image/png'
-      sizes = '512x512'
-      href = '../static/ico/compressed/ico_512_512.png' />
+      content = '<%= description %>' />
+<% for( const { href } of
+        icons ){ %>
+    <meta itemprop = 'image'
+          content = '<%= href %>' />
+<% } %>
+<% for( const { href } of
+        icons ){ %>
+    <meta itemprop = 'msApplication-TileImage'
+          content = '<%= href %>' />
+<% } %>
+<% for( const { type, sizes, href } of
+        icons ){ %>
+    <link rel = 'icon'
+          type = '<%= type %>'
+          sizes = '<%= sizes %>'
+          href = '<%= href %>' />
+<% } %>
+<% for( const { type, sizes, href } of
+        icons ){ %>
+    <link rel = 'shortcut icon'
+          type = '<%= type %>'
+          sizes = '<%= sizes %>'
+          href = '<%= href %>' />
+<% } %>
+<% for( const { type, sizes, href } of
+        icons ){ %>
+    <link rel = 'apple-touch-icon'
+          type = '<%= type %>'
+          sizes = '<%= sizes %>'
+          href = '<%= href %>' />
+<% } %>
+<% for( const { type, sizes, href } of
+        icons ){ %>
+    <link rel = 'apple-touch-icon-precomposed'
+          type = '<%= type %>'
+          sizes = '<%= sizes %>'
+          href = '<%= href %>' />
+<% } %>
 <!--
 生效情况：
 1、标注Meta声明这一适配方案仅限适用于百度移动搜索，即只有当用户通过百度移动搜索访问站点时，适配才会生效；通过其他渠道则不生效。
@@ -246,145 +167,134 @@ B. name='mobile-agent'为更新后的meta声明，建议使用。原有meta规�
 <!--
 <meta name = 'mobile-agent'
       http-equiv = 'mobile-agent'
-      content = 'format=xhtml;url=/' />
+      content = 'format=xhtml;url=<%= url %>' />
 <meta name = 'mobile-agent'
       http-equiv = 'mobile-agent'
-      content = 'format=html5;url=/' />
+      content = 'format=html5;url=<%= url %>' />
 <meta name = 'mobile-agent'
-      content = 'format=xhtml;url=/' />
+      content = 'format=xhtml;url=<%= url %>' />
 <meta name = 'mobile-agent'
-      content = 'format=html5;url=/' />
+      content = 'format=html5;url=<%= url %>' />
 -->
 <!--
 <link rel = 'home'
-      href = '/' />
+      href = '<%= homeUrl %>' />
 <link rel = 'search'
       type = 'text/html'
-      href = '/'
-      title = '轩墨宝宝QAQ' />
+      href = '<%= searchUrl %>'
+      title = '<%= appTitle %>' />
 -->
 <!--预连接-->
-<!--
-<link rel = 'preconnect'
-      href = '/'
-      pr = '0.75' />
--->
+<% for( const { href, pr } of
+        preConnect ){ %>
+    <!--
+    <link rel = 'preconnect'
+        href = '<%= href %>'
+        pr = '<%= pr %>' />
+    -->
+<% } %>
 <!--规范的-->
 <!--
 <link rel = 'canonical'
-      href = '/' />
+      href = '<%= canonical %>' />
 -->
 <!--候补-->
 <!--
 <link rel = 'alternate'
-      hreflang = 'zh-CN'
-      href = '/'
-      title = '轩墨宝宝QAQ' />
+      hreflang = '<%= alternate.hreflang %>'
+      href = '<%= alternate.href %>'
+      title = '<%= alternate.title %>' />
 -->
 <!--
 <meta property = 'og:type'
       content = 'website' />
 <meta property = 'og:url'
-      content = '/' />
+      content = '<%= url %>' />
 
 <meta property = 'og:site_name'
-      content = '轩墨宝宝QAQ' />
+      content = '<%= appName %>' />
 <meta property = 'og:title'
-      content = '轩墨宝宝QAQ' />
+      content = '<%= appTitle %>' />
 <meta property = 'og:description'
-      content = '可爱的男孩子，轩墨宝宝！！！' />
+      content = '<%= description %>' />
 
+<% for( const { href } of
+        icons ){ %>
 <meta property = 'og:image'
-      content = '../static/ico/compressed/ico_48_48.png' />
-<meta property = 'og:image'
-      content = '../static/ico/compressed/ico_72_72.png' />
-<meta property = 'og:image'
-      content = '../static/ico/compressed/ico_96_96.png' />
-<meta property = 'og:image'
-      content = '../static/ico/compressed/ico_144_144.png' />
-<meta property = 'og:image'
-      content = '../static/ico/compressed/ico_192_192.png' />
-<meta property = 'og:image'
-      content = '../static/ico/compressed/ico_512_512.png' />
+      content = '<%= href %>' />
+<% } %>
 -->
 <!--
 <meta name = 'apple-itunes-app'
-      content = 'app-id=id1017492454' />
+      content = 'app-id=id<%= appStoreId %>' />
 -->
 <!--
 <meta property = 'fb:app_id'
-      content = '87741124305' />
+      content = '<%= fbAppId %>' />
 -->
 <!--
 <meta property = 'al:ios:app_store_id'
-      content = '1017492454' />
+      content = '<%= appStoreId %>' />
 <meta property = 'al:ios:app_name'
-      content = 'YouTube Music' />
+      content = '<%= appName %>' />
 <meta property = 'al:ios:url'
       class = 'meta-vendor-applink'
-      content = 'vnd.youtube:/?feature=applinks' />
+      content = '<%= alIosUrl %>' />
 -->
 <!--
 <meta property = 'al:android:package'
-      content = 'com.google.android.apps.youtube.music' />
+      content = '<%= alAndroidPackageName %>' />
 <meta property = 'al:android:app_name'
-      content = 'YouTube Music' />
+      content = '<%= appName %>' />
 <meta property = 'al:android:url'
       class = 'meta-url'
-      content = 'vnd.youtube:/?feature=applinks' />
+      content = '<%= alAndroidUrl %>' />
 -->
 <!--
 <meta name = 'twitter:creator'
-      content = '/' />
+      content = '<%= twitter.creator %>' />
 <meta name = 'twitter:site'
-      content = '/' />
+      content = '<%= twitter.site %>' />
 <meta name = 'twitter:url'
-      content = '/' />
+      content = '<%= twitter.url %>' />
 
 <meta name = 'twitter:title'
-      content = '轩墨宝宝QAQ' />
+      content = '<%= appTitle %>' />
 <meta name = 'twitter:description'
-      content = '可爱的男孩子，轩墨宝宝！！！' />
+      content = '<%= description %>' />
 
 <meta name = 'twitter:card'
-      content = 'summary' />
+      content = '<%= twitter.card %>' />
 
+<% for( const { href } of
+        icons ){ %>
 <meta name = 'twitter:image'
-      content = '../static/ico/compressed/ico_48_48.png' />
-<meta name = 'twitter:image'
-      content = '../static/ico/compressed/ico_72_72.png' />
-<meta name = 'twitter:image'
-      content = '../static/ico/compressed/ico_96_96.png' />
-<meta name = 'twitter:image'
-      content = '../static/ico/compressed/ico_144_144.png' />
-<meta name = 'twitter:image'
-      content = '../static/ico/compressed/ico_192_192.png' />
-<meta name = 'twitter:image'
-      content = '../static/ico/compressed/ico_512_512.png' />
+      content = '<%= href %>' />
+<% } %>
 
 <meta name = 'twitter:app:name:iphone'
-      content = 'YouTube Music' />
+      content = '<%= appName %>' />
 <meta name = 'twitter:app:id:iphone'
-      content = '1017492454' />
+      content = '<%= appStoreId %>' />
 
 <meta name = 'twitter:app:name:ipad'
-      content = 'YouTube Music' />
+      content = '<%= appName %>' />
 <meta name = 'twitter:app:id:ipad'
-      content = '1017492454' />
+      content = '<%= appStoreId %>' />
 
 <meta name = 'twitter:app:url:iphone'
       class = 'meta-vendor-applink'
-      content = 'vnd.youtube:/?feature=applinks' />
+      content = '<%= alIosUrl %>' />
 
 <meta name = 'twitter:app:url:ipad'
       class = 'meta-vendor-applink'
-      content = 'vnd.youtube:/?feature=applinks' />
+      content = '<%= alIosUrl %>' />
 
 <meta name = 'twitter:app:name:googleplay'
-      content = 'YouTube Music' />
+      content = '<%= appName %>' />
 <meta name = 'twitter:app:id:googleplay'
-      content = 'com.google.android.apps.youtube.music' />
+      content = '<%= alAndroidPackageName %>' />
 <meta name = 'twitter:app:url:googleplay'
       class = 'meta-url'
-      content = 'vnd.youtube:/?feature=applinks' />
+      content = '<%= alAndroidUrl %>' />
 -->

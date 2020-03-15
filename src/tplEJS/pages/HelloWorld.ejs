@@ -38,7 +38,7 @@ let options_obj = htmlWebpackPlugin.options,
                          ? `manifest='${ publicPath_str + path1_str }'`
                          : `` %> >
 <head>
-    <%= metaLink() %>
+    <%= metaLink( data_obj.metaLinkData ) %>
     <%= isPro && data_obj.preloadTool_obj.open_boo
         ? preloadTool_fun( {
                 isPro_boo: isPro,
