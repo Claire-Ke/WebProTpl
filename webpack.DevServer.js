@@ -22,7 +22,8 @@ let webpackDevServer_obj = require( './configures/GlobalProp.js' ).webpackDevSer
     publicPath_str = '/dist/devServer/',
     openPage_str = publicPath_str + 'pages/' + webpackDevServer_obj.openPage_str;
 
-let path = require( 'path' ),
+let fs = require( 'fs' ),
+    path = require( 'path' ),
     webpack = require( 'webpack' ),
     copyWebpackPlugin = require( 'copy-webpack-plugin' ),
     VueLoaderPlugin = require( 'vue-loader/lib/plugin.js' ),
@@ -39,6 +40,19 @@ let isPro = process.argv[ 3 ] === 'production',
     define_obj = baseConfig.defineObj_fun( isPro );
 
 define_obj[ 'proCat' ] = '"devServer"';
+
+function ResIcon( req, res, url = path.resolve( __dirname, './simServer/staticResources/img/favicon.ico' ) ){
+    console.log( '------devServer before------Start' );
+    console.log( `客户端的请求URL--->${ req.url }` );
+    console.dir( req.headers );
+    console.log( '------devServer before------End' );
+
+    res.setHeader( 'Content-Type', 'image/vnd.microsoft.icon' );
+    fs.createReadStream( url )
+      .pipe( res );
+    res.statusCode = 200;
+    res.statusMessage = 'OK';
+}
 
 module.exports = {
     target: 'web',
@@ -118,13 +132,26 @@ module.exports = {
         open: true,
         openPage: webProName_str + openPage_str,
         writeToDisk: false, // true表示把内存里的文件写到硬盘里，被开发者可见，false反之
-        before( app, server ){
+        before( app, server, compiler ){
             console.log( '------>devServer before<------' );
+
+            app.get( '/favicon.ico', ( req, res ) => {
+                ResIcon( req, res );
+            } );
+
+            app.get( '/apple-touch-icon.png', ( req, res ) => {
+                ResIcon( req, res );
+            } );
+
+            app.get( '/apple-touch-icon-precomposed.png', ( req, res ) => {
+                ResIcon( req, res );
+            } );
         },
-        after( app, server ){
+        after( app, server, compiler ){
             console.log( '------>devServer after<------' );
         },
         // 拦截“GET”请求
+        // 不建议使用该选项，而建议使用devServer.before，并将在v3.0.0中将其删除。
         // setup( app, server ){
         //     app.get( '/WebProTpl/dist/*', ( req, res ) => {
         //         console.log( '------>devServer setup<------Start' );
