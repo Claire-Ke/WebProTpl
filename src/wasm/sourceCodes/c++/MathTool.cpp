@@ -44,17 +44,24 @@ long int Mod( long int x, long int y ){
 
 
 
-/*斐波拉契数列计算 Start*/
+/*函数尾递归调用优化版本的斐波拉契数列(Fibonacci)计算，index别超过1476 Start*/
 
-double Fib( double x ){
-if( x < 3 ){
-return 1;
+double Fib( double index, double initial1, double initial2 ){
+if( index <= 1 ){
+return initial1;
+}
+else if( index == 2 ){
+return initial2;
+}
+else if( index > 1476 ){
+return NAN;
+}
+else{
+return Fib( index - 1, initial2, initial1 + initial2 );
+}
 }
 
-return Fib( x - 1 ) + Fib( x - 2 );
-}
-
-/*斐波拉契数列计算 End*/
+/*函数尾递归调用优化版本的斐波拉契数列(Fibonacci)计算，index别超过1476 End*/
 
 
 

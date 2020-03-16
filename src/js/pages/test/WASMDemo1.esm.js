@@ -228,9 +228,28 @@ MathTool4WASM()
         CT.iInsertA( '.helloWorld article', `<p class = 'css-reset' >------fetch WASM Start------</p><br />` );
 
         const startTime = performance.now();
-        const result_num = 'BigInt' in window
-                           ? BigInt( Fib( FibX ) )
-                           : JSBI.BigInt( Fib( FibX ) );
+        const result_num = do{
+            let num = Fib( FibX, 1, 1 );
+
+            if( 'BigInt' in window ){
+                if( CT.isNaN( num ) ){
+                    console.log( '项数别超过1476！！！' );
+                    Infinity;
+                }
+                else{
+                    BigInt( num );
+                }
+            }
+            else{
+                if( CT.isNaN( num ) ){
+                    console.log( '项数别超过1476！！！' );
+                    Infinity;
+                }
+                else{
+                    JSBI.BigInt( num );
+                }
+            }
+        };
         const endTime = performance.now();
 
         CT.iInsertA( '.helloWorld article', `

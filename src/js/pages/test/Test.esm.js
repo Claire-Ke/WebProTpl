@@ -1945,3 +1945,26 @@ ${ onceFun1( 'q', 'w' ) }
         import('./ServiceWorkerDemo1.esm.js');
     }
 }
+
+// 函数尾递归调用优化版本的斐波拉契数列测试(index别超过6991)
+{
+    if( false ){
+        function Fibonacci( index = 50, initial1 = 1, initial2 = 1 ){
+            if( index <= 1 ){
+                return BigInt( initial1 );
+            }
+            else if( index === 2 ){
+                return BigInt( initial2 );
+            }
+            else if( index > 6991 ){
+                console.log( '项数别超过6991！！！' );
+                return Infinity;
+            }
+            else{
+                return Fibonacci( index - 1, BigInt( initial2 ), BigInt( initial1 ) + BigInt( initial2 ) );
+            }
+        }
+
+        console.log( BigInt( Fibonacci( 6991 ) ) );
+    }
+}
