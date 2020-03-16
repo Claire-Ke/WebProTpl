@@ -1941,7 +1941,7 @@ ${ onceFun1( 'q', 'w' ) }
 
 // Service Worker测试
 {
-    if( true ){
+    if( false ){
         import('./ServiceWorkerDemo1.esm.js');
     }
 }

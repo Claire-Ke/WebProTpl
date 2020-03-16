@@ -17,11 +17,11 @@
 
 import path from 'path';
 
-import TopLevelVar4NodeJS2CommonJS from '../tools/TopLevelVar4NodeJS2CommonJS.CommonJS.js';
+import {
+    Get__dirname,
+} from '../tools/Tools.esm.mjs';
 
-const {
-    __dirname,
-} = TopLevelVar4NodeJS2CommonJS;
+const __dirname = Get__dirname( import.meta.url );
 
 const serverPort9999 = Object.freeze( {
         // localhost   192.168.1.105   192.168.1.4

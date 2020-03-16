@@ -15,12 +15,6 @@
 
 'use strict';
 
-import TopLevelVar4NodeJS2CommonJS from '../../tools/TopLevelVar4NodeJS2CommonJS.CommonJS.js';
-
-const {
-    __dirname,
-} = TopLevelVar4NodeJS2CommonJS;
-
 import { readFileSync, } from 'fs';
 import { resolve, } from 'path';
 import Vue from 'vue';
@@ -29,13 +23,16 @@ import VueServerRenderer from 'vue-server-renderer';
 import {
     RemGZip,
     SetHeaders,
+    Get__dirname,
 } from '../../tools/Tools.esm.mjs';
+
+const __dirname = Get__dirname( import.meta.url );
 
 function VueSSR( server, request, response ){
     let context = {
             title: 'Vue SSR',
         },
-        template = readFileSync( resolve( __dirname, '../controllers/vueSSR/tplHTML/pages/Index.html' ), 'utf8' ),
+        template = readFileSync( resolve( __dirname, './tplHTML/pages/Index.html' ), 'utf8' ),
         vueRenderer = VueServerRenderer.createRenderer( {
             template,
         } ),

@@ -15,13 +15,6 @@
 
 'use strict';
 
-import TopLevelVar4NodeJS2CommonJS from './TopLevelVar4NodeJS2CommonJS.CommonJS.js';
-
-const {
-    __filename,
-    __dirname,
-} = TopLevelVar4NodeJS2CommonJS;
-
 import fs from 'fs';
 import url from 'url';
 import zlib from 'zlib';
@@ -34,6 +27,31 @@ import {
     serverPort9999 as config9999_obj,
     crossResHeader,
 } from '../configures/GlobalProp.esm.mjs';
+
+/**
+ * 如：输入“file:///G:/WebStormWS/WebProTpl/dist/1.mjs”，输出“G:\WebStormWS\WebProTpl\dist\1.mjs”
+ *
+ * @param urlStr
+ *
+ * @returns {string}
+ */
+function Get__filename( urlStr ){
+    return url.fileURLToPath( urlStr );
+}
+
+/**
+ * 如：输入“file:///G:/WebStormWS/WebProTpl/dist/1.mjs”，输出“G:\WebStormWS\WebProTpl\dist”
+ *
+ * @param urlStr
+ *
+ * @returns {string}
+ */
+function Get__dirname( urlStr ){
+    return path.dirname( Get__filename( urlStr ) );
+}
+
+const __filename = Get__filename( import.meta.url ),
+    __dirname = Get__dirname( import.meta.url );
 
 function URLTool( url_str = '' ){
     const url_objC = url.parse( url_str ),
@@ -145,4 +163,6 @@ export {
     GetExt4MIMEType,
     IsImg,
     CreateFormidable,
+    Get__filename,
+    Get__dirname,
 };
