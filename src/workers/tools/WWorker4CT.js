@@ -132,10 +132,9 @@ class WWorker4CT{
      * 例子中：arrBuf = new ArrayBuffer( 8 )，无论在主线程，还是子线程，postMessage之前都是可用的，之后就把使用权转给了接收方，然后发送方就无法使用了。
      */
     postMessage( message = {}, transfer ){
-        let _this = this;
         ( transfer && transfer.length > 0 )
-        ? ( _this._self.postMessage( message, [ ...transfer ] ) )
-        : ( _this._self.postMessage( message ) );
+        ? ( this._self.postMessage( message, [ ...transfer ] ) )
+        : ( this._self.postMessage( message ) );
     }
 
     /**

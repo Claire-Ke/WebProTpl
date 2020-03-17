@@ -131,9 +131,8 @@ class AppInstallEvent{
      * 当onbeforeinstallprompt第一次被触发后，或outcome === 'dismissed'时，这两种情况下，调用该方法会触发添加到主屏幕的提示。
      */
     prompt(){
-        let _this = this,
-            event1 = _this.beforeInstallPrompt_eve,
-            obj1 = _this.userChoiceResult_obj;
+        let event1 = this.beforeInstallPrompt_eve,
+            obj1 = this.userChoiceResult_obj;
         ( ( event1 && obj1 === undefined ) || ( event1 && obj1 !== undefined && obj1[ 'outcome' ] === 'dismissed' ) ) && ( event1.prompt() );
     }
 

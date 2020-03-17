@@ -626,10 +626,9 @@ class SWorker4MT{
      * 可转移对象是如ArrayBuffer，MessagePort或ImageBitmap的实例对象。transferList数组中不可传入null。
      */
     portPostMessage( message = {}, transfer ){
-        let _this = this;
         ( transfer && transfer.length > 0 )
-        ? ( _this.#port.postMessage( message, [ ...transfer ] ) )
-        : ( _this.#port.postMessage( message ) );
+        ? ( this.#port.postMessage( message, [ ...transfer ] ) )
+        : ( this.#port.postMessage( message ) );
     }
 
     /**
@@ -1147,18 +1146,16 @@ class WWorker4MT{
      * 可转移对象是如ArrayBuffer，MessagePort或ImageBitmap的实例对象。transferList数组中不可传入null。
      */
     postMessage( message = {}, transfer ){
-        let _this = this;
         ( transfer && transfer.length > 0 )
-        ? ( _this[ _this.workerInsName_str ].postMessage( message, [ ...transfer ] ) )
-        : ( _this[ _this.workerInsName_str ].postMessage( message ) );
+        ? ( this[ this.workerInsName_str ].postMessage( message, [ ...transfer ] ) )
+        : ( this[ this.workerInsName_str ].postMessage( message ) );
     }
 
     /**
      * 立即停止Worker对象
      */
     terminate(){
-        let _this = this;
-        _this[ _this.workerInsName_str ].terminate();
+        this[ this.workerInsName_str ].terminate();
     }
 }
 

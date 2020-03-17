@@ -325,8 +325,7 @@ function IsHandle2( arg, regStr ){
 }
 
 function IsHandle3( arg1, regStr ){
-    let _this = this;
-    return regStr.test( _this.trim( arg1[ 0 ] ) );
+    return regStr.test( this.trim( arg1[ 0 ] ) );
 }
 
 function IsHandle4( o, f ){
@@ -366,8 +365,7 @@ function IsHandle6( elem, classN, type ){
 }
 
 function IsHandle7( arg1, f, arg2 ){
-    let _this = this,
-        isA = _this.isArray( arg1 );
+    let isA = this.isArray( arg1 );
     if( isA && arg1.length !== 0 ){
         let result = [];
         arg1.forEach( currentValue => void ( result.push( f( currentValue ) ) ) );
@@ -488,8 +486,7 @@ function IsHandle11( elem, lenI, type ){
 }
 
 function IsHandle12( elem, f, type, e = 'input' ){
-    let _this = this;
-    return IsHandle10.call( _this, elem, elemO => {
+    return IsHandle10.call( this, elem, elemO => {
         elemO[ type ]( e, f, false );
         return elemO;
     } );
@@ -944,8 +941,7 @@ class Canvas2Others{
      */
     blobToImg( blobObj, callback = ( ( image, dataURL, event, fileReader ) => {
     } ) ){
-        let _this = this;
-        return _this.fileOrBlobToDataURL( blobObj, ( dataURL, event, fileReader ) => {
+        return this.fileOrBlobToDataURL( blobObj, ( dataURL, event, fileReader ) => {
             let image = new Image();
             image.onload = event => void ( callback( image, dataURL, event, fileReader ) );
             image.src = dataURL;
@@ -964,8 +960,7 @@ class Canvas2Others{
      * @returns {Blob} Blob对象
      */
     canvasToBlob( canvas, format = 'image/png', quality = 1.0 ){
-        let _this = this;
-        return _this.dataURLToBlob( _this.canvasToDataURL( canvas, format, quality ) );
+        return this.dataURLToBlob( this.canvasToDataURL( canvas, format, quality ) );
     }
 
     /**
@@ -1015,7 +1010,6 @@ class Canvas2Others{
      */
     dataURLOrImgSrcToCanvas( dataURL, callback = ( canvas, image, context ) => {
     } ){
-        let _this = this;
         let canvas = document.createElement( 'canvas' ),
             context = canvas.getContext( '2d', { alpha: true } ),
             image = new Image();
@@ -1025,7 +1019,7 @@ class Canvas2Others{
             context.drawImage( image, 0, 0 );
             callback( canvas, image, context );
         };
-        image.src = IsHandle1.call( _this, dataURL, 'HTMLImageElement' )
+        image.src = IsHandle1.call( this, dataURL, 'HTMLImageElement' )
                     ? dataURL.src
                     : dataURL;
         return canvas;
@@ -1039,8 +1033,7 @@ class Canvas2Others{
      * @returns {Blob} Blob对象
      */
     dataURLToBlob( dataURL ){
-        let _this = this,
-            arr = dataURL.split( ',' ),
+        let arr = dataURL.split( ',' ),
             mime = arr[ 0 ].match( /:(.*?);/ )[ 1 ],
             bstr = atob( arr[ 1 ] ),
             n = bstr.length,
@@ -1059,8 +1052,7 @@ class Canvas2Others{
      * @returns {HTMLImageElement} HTMLImageElement，图片对象
      */
     dataURLToImg( dataURL ){
-        let _this = this,
-            image = new Image();
+        let image = new Image();
         image.src = dataURL;
         return image;
     }
@@ -1076,8 +1068,7 @@ class Canvas2Others{
      */
     fileOrBlobToDataURL( obj, callback = ( ( dataURL, event, fileReader ) => {
     } ) ){
-        let _this = this,
-            fileReader = new FileReader(),
+        let fileReader = new FileReader(),
             dataURL = '';
         fileReader.readAsDataURL( obj );
         return fileReader.onload = event => {
@@ -1176,8 +1167,7 @@ class DataFormat{
      * @returns {Boolean} boolean，格式正确的邮箱返回true，否则false
      */
     isEmail( ...email ){
-        let _this = this;
-        return IsHandle3.call( _this, email, /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/ );
+        return IsHandle3.call( this, email, /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/ );
     }
 
     /**
@@ -1188,8 +1178,7 @@ class DataFormat{
      * @returns {Boolean} boolean，格式正确的身份证号码返回true，否则false
      */
     isID( ...id ){
-        let _this = this;
-        return IsHandle3.call( _this, id, /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/ );
+        return IsHandle3.call( this, id, /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/ );
     }
 
     /**
@@ -1200,8 +1189,7 @@ class DataFormat{
      * @returns {Boolean} boolean，密码强度符合要求则返回true，否则false
      */
     isPassS( ...passW ){
-        let _this = this;
-        return IsHandle3.call( _this, passW, /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/ );
+        return IsHandle3.call( this, passW, /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/ );
     }
 
     /**
@@ -1212,8 +1200,7 @@ class DataFormat{
      * @returns {Boolean} boolean，格式正确的车牌号返回true，否则false
      */
     isPlateNum( ...plateNum ){
-        let _this = this;
-        return IsHandle3.call( _this, plateNum, /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/ );
+        return IsHandle3.call( this, plateNum, /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/ );
     }
 
     /**
@@ -1224,8 +1211,7 @@ class DataFormat{
      * @returns {Boolean} boolean，格式正确的邮政编码返回true，否则false
      */
     isPostC( ...postCode ){
-        let _this = this;
-        return IsHandle3.call( _this, postCode, /^[1-9][0-9]{5}$/ );
+        return IsHandle3.call( this, postCode, /^[1-9][0-9]{5}$/ );
     }
 
     /**
@@ -1236,8 +1222,7 @@ class DataFormat{
      * @returns {Boolean} boolean，格式正确的QQ号返回true，否则false
      */
     isQQNum( ...qqNum ){
-        let _this = this;
-        return IsHandle3.call( _this, qqNum, /^[1-9][0-9]{4,10}$/ );
+        return IsHandle3.call( this, qqNum, /^[1-9][0-9]{4,10}$/ );
     }
 
     /**
@@ -1248,8 +1233,7 @@ class DataFormat{
      * @returns {Boolean} boolean，格式正确的手机返回true，否则false
      */
     isTel( ...tel ){
-        let _this = this;
-        return IsHandle3.call( _this, tel, /^1[34578]\d{9}$/ );
+        return IsHandle3.call( this, tel, /^1[34578]\d{9}$/ );
     }
 
     /**
@@ -1260,8 +1244,7 @@ class DataFormat{
      * @returns {Boolean} boolean，格式正确的微信号返回true，否则false
      */
     isWXNum( ...WXNum ){
-        let _this = this;
-        return IsHandle3.call( _this, WXNum, /^[a-zA-Z]([-_a-zA-Z0-9]{5,19})+$/ );
+        return IsHandle3.call( this, WXNum, /^[a-zA-Z]([-_a-zA-Z0-9]{5,19})+$/ );
     }
 
 }
@@ -1443,9 +1426,8 @@ class ES6Handle{
      * @returns {Array} [ { key, value, index } ]
      */
     entries4Obj( obj = {} ){
-        let _this = this,
-            arr4Obj = [];
-        !_this.isObject( obj ) && GetError( '参数的数据类型必须是Object' );
+        let arr4Obj = [];
+        !this.isObject( obj ) && GetError( '参数的数据类型必须是Object' );
         Object.entries( obj )
               .forEach( ( c, i, ) => void ( arr4Obj.push( {
                   key: c[ 0 ],
@@ -1654,8 +1636,7 @@ class FunHandle{
             clearDataObj = {},
             startDataObj = {},
             otherDataObj = {};
-        let _this = this,
-            str1 = 'setInterval函数--->',
+        let str1 = 'setInterval函数--->',
             str2 = '必须是布尔类型或是函数类型的数据！',
             paraObj = Object.assign( {
                 fun: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
@@ -1669,18 +1650,18 @@ class FunHandle{
             },
             howStart = ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
             };
-        if( !( _this.isBoolean( paraObj.howClear ) | _this.isFunction( paraObj.howClear ) ) ){
+        if( !( this.isBoolean( paraObj.howClear ) | this.isFunction( paraObj.howClear ) ) ){
             GetError( str1 + 'howClear' + str2 );
             return;
         }
-        else if( !( _this.isBoolean( paraObj.howStart ) | _this.isFunction( paraObj.howStart ) ) ){
+        else if( !( this.isBoolean( paraObj.howStart ) | this.isFunction( paraObj.howStart ) ) ){
             GetError( str1 + 'howStart' + str2 );
             return;
         }
-        _this.isBoolean( paraObj.howClear ) && ( howClear = () => paraObj.howClear );
-        _this.isBoolean( paraObj.howStart ) && ( howStart = () => paraObj.howStart );
-        _this.isFunction( paraObj.howClear ) && ( howClear = paraObj.howClear );
-        _this.isFunction( paraObj.howStart ) && ( howStart = paraObj.howStart );
+        this.isBoolean( paraObj.howClear ) && ( howClear = () => paraObj.howClear );
+        this.isBoolean( paraObj.howStart ) && ( howStart = () => paraObj.howStart );
+        this.isFunction( paraObj.howClear ) && ( howClear = paraObj.howClear );
+        this.isFunction( paraObj.howStart ) && ( howStart = paraObj.howStart );
         let timer = setInterval( () => {
             if( howClear( funDataObj, clearDataObj, startDataObj, otherDataObj ) ){
                 // 什么时候取消并清除掉定时器
@@ -1741,8 +1722,7 @@ class InputHandle{
      * @returns {Array} [Element]
      */
     enterE( elem, f ){
-        let _this = this;
-        return IsHandle12.call( _this, elem, e => void ( ( e.which === 13 || e.keyCode === 13 ) && f( e ) ), 'addEventListener', 'keydown' );
+        return IsHandle12.call( this, elem, e => void ( ( e.which === 13 || e.keyCode === 13 ) && f( e ) ), 'addEventListener', 'keydown' );
     }
 
     /**
@@ -1756,8 +1736,7 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputCL( elem, lenI ){
-        let _this = this;
-        return IsHandle11.call( _this, elem, lenI, 'onlyCL' );
+        return IsHandle11.call( this, elem, lenI, 'onlyCL' );
     }
 
     /**
@@ -1771,8 +1750,7 @@ class InputHandle{
      * @returns {Array} [Element]
      */
     inputE( elem, f ){
-        let _this = this;
-        return IsHandle12.call( _this, elem, f, 'addEventListener' );
+        return IsHandle12.call( this, elem, f, 'addEventListener' );
     }
 
     /**
@@ -1786,8 +1764,7 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputLL( elem, lenI ){
-        let _this = this;
-        return IsHandle11.call( _this, elem, lenI, 'onlyLL' );
+        return IsHandle11.call( this, elem, lenI, 'onlyLL' );
     }
 
     /**
@@ -1801,8 +1778,7 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputLLCL( elem, lenI ){
-        let _this = this;
-        return IsHandle11.call( _this, elem, lenI, 'onlyLLCL' );
+        return IsHandle11.call( this, elem, lenI, 'onlyLLCL' );
     }
 
     /**
@@ -1816,8 +1792,7 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputN( elem, lenI ){
-        let _this = this;
-        return IsHandle11.call( _this, elem, lenI, 'onlyN' );
+        return IsHandle11.call( this, elem, lenI, 'onlyN' );
     }
 
     /**
@@ -1831,8 +1806,7 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputNCL( elem, lenI ){
-        let _this = this;
-        return IsHandle11.call( _this, elem, lenI, 'onlyNCL' );
+        return IsHandle11.call( this, elem, lenI, 'onlyNCL' );
     }
 
     /**
@@ -1846,8 +1820,7 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputNLL( elem, lenI ){
-        let _this = this;
-        return IsHandle11.call( _this, elem, lenI, 'onlyNLL' );
+        return IsHandle11.call( this, elem, lenI, 'onlyNLL' );
     }
 
     /**
@@ -1861,8 +1834,7 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputNLLCL( elem, lenI ){
-        let _this = this;
-        return IsHandle11.call( _this, elem, lenI, 'onlyNLLCL' );
+        return IsHandle11.call( this, elem, lenI, 'onlyNLLCL' );
     }
 
     /**
@@ -1903,8 +1875,7 @@ class InputHandle{
      * @returns {Array} [Element]
      */
     inputRE( elem, f ){
-        let _this = this;
-        return IsHandle12.call( _this, elem, f, 'removeEventListener' );
+        return IsHandle12.call( this, elem, f, 'removeEventListener' );
     }
 
 }
@@ -1933,8 +1904,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isArguments( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'Arguments' );
+        return IsHandle1.call( this, arg, 'Arguments' );
     }
 
     /**
@@ -1956,8 +1926,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isBoolean( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'Boolean' );
+        return IsHandle1.call( this, arg, 'Boolean' );
     }
 
     /**
@@ -1968,8 +1937,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isDate( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'Date' );
+        return IsHandle1.call( this, arg, 'Date' );
     }
 
     /**
@@ -1980,8 +1948,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isDocument( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'HTMLDocument' );
+        return IsHandle1.call( this, arg, 'HTMLDocument' );
     }
 
     /**
@@ -1992,8 +1959,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isElemList( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'NodeList' ) || IsHandle1.call( _this, arg, 'HTMLCollection' ) || _this.isJQList( arg );
+        return IsHandle1.call( this, arg, 'NodeList' ) || IsHandle1.call( this, arg, 'HTMLCollection' ) || this.isJQList( arg );
     }
 
     /**
@@ -2004,8 +1970,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isElement( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'Element' ) || IsHandle1.call( _this, arg, 'Document' ) || IsHandle1.call( _this, arg, 'Window' );
+        return IsHandle1.call( this, arg, 'Element' ) || IsHandle1.call( this, arg, 'Document' ) || IsHandle1.call( this, arg, 'Window' );
     }
 
     /**
@@ -2016,14 +1981,13 @@ class IsDataType{
      * @returns {Boolean} boolean，如果是字符串('')、数组([])、对象({})、FormData(空的FormData对象)，则为true，否则为false
      */
     isEmpty( arg ){
-        let _this = this;
-        if( _this.isString( arg ) || _this.isArray( arg ) ){
+        if( this.isString( arg ) || this.isArray( arg ) ){
             return arg.length === 0;
         }
-        else if( _this.isObject( arg ) ){
+        else if( this.isObject( arg ) ){
             return Object.keys( arg ).length === 0;
         }
-        else if( _this.isFormData( arg ) ){
+        else if( this.isFormData( arg ) ){
             return Array.from( arg.keys() ).length === 0;
         }
         else{
@@ -2052,8 +2016,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isFormData( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'FormData' );
+        return IsHandle1.call( this, arg, 'FormData' );
     }
 
     /**
@@ -2064,8 +2027,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isFunction( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'Function' );
+        return IsHandle1.call( this, arg, 'Function' );
     }
 
     /**
@@ -2113,8 +2075,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isNull( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'Null' );
+        return IsHandle1.call( this, arg, 'Null' );
     }
 
     /**
@@ -2125,8 +2086,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isNumber( arg ){
-        let _this = this;
-        return ( IsHandle1.call( _this, arg, 'Number' ) ) && ( typeof arg === 'number' );
+        return ( IsHandle1.call( this, arg, 'Number' ) ) && ( typeof arg === 'number' );
     }
 
     /**
@@ -2137,8 +2097,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isObject( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'Object' );
+        return IsHandle1.call( this, arg, 'Object' );
     }
 
     /**
@@ -2149,8 +2108,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isRegExp( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'RegExp' );
+        return IsHandle1.call( this, arg, 'RegExp' );
     }
 
     /**
@@ -2173,8 +2131,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isString( arg ){
-        let _this = this;
-        return ( IsHandle1.call( _this, arg, 'String' ) ) && ( typeof arg === 'string' );
+        return ( IsHandle1.call( this, arg, 'String' ) ) && ( typeof arg === 'string' );
     }
 
     /**
@@ -2185,8 +2142,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isUndefined( ...arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg[ 0 ], 'Undefined' );
+        return IsHandle1.call( this, arg[ 0 ], 'Undefined' );
     }
 
     /**
@@ -2197,8 +2153,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isWindow( arg ){
-        let _this = this;
-        return IsHandle1.call( _this, arg, 'Window' );
+        return IsHandle1.call( this, arg, 'Window' );
     }
 
 }
@@ -2583,8 +2538,7 @@ class JS2Ajax{
      *  1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br />
      */
     fetch( input, arg_obj = {}, opt_obj = {} ){
-        let _this = this,
-            pra1_obj = Object.assign( {
+        let pra1_obj = Object.assign( {
                 resolved: ( response, status_num ) => {
                 },
                 rejected: event => void ( GetError( event.message ) ),
@@ -2606,17 +2560,17 @@ class JS2Ajax{
 
         delete pra2_obj.responseType;
 
-        if( pra2_obj.method === 'GET' && ( ( _this.isObject( pra2_obj.body ) && !_this.isEmpty( pra2_obj.body ) ) || ( _this.isFormData( pra2_obj.body ) && !_this.isEmpty( pra2_obj.body ) ) ) ){
+        if( pra2_obj.method === 'GET' && ( ( this.isObject( pra2_obj.body ) && !this.isEmpty( pra2_obj.body ) ) || ( this.isFormData( pra2_obj.body ) && !this.isEmpty( pra2_obj.body ) ) ) ){
             let searchStr = '',
                 urlSea2Obj = {},
                 body = {};
 
             if( input.includes( '?' ) ){
                 newInput = input.split( '?' )[ 0 ];
-                urlSea2Obj = _this.urlSea2Obj( '?' + input.split( '?' )[ 1 ] );
+                urlSea2Obj = this.urlSea2Obj( '?' + input.split( '?' )[ 1 ] );
             }
 
-            if( _this.isFormData( pra2_obj.body ) ){
+            if( this.isFormData( pra2_obj.body ) ){
                 Array.from( pra2_obj.body.entries() )
                      .forEach( ( [ key, value ] ) => void ( body[ key ] = value ) );
             }
@@ -2801,9 +2755,8 @@ class JS2Ajax{
      *  1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br />
      */
     getAjax( url, paraObj = {} ){
-        let _this = this;
         paraObj[ 'method' ] = 'GET';
-        _this.ajax( url, paraObj );
+        this.ajax( url, paraObj );
     }
 
     /**
@@ -2815,9 +2768,8 @@ class JS2Ajax{
      * @returns {Object} {}，object
      */
     getAllResponseHeaders( xhr ){
-        let _this = this,
-            allRH = xhr.getAllResponseHeaders();
-        if( !_this.isNull( allRH ) || ( _this.isString( allRH ) && allRH.length !== 0 ) ){
+        let allRH = xhr.getAllResponseHeaders();
+        if( !this.isNull( allRH ) || ( this.isString( allRH ) && allRH.length !== 0 ) ){
             let allRHArr = allRH.split( '\r\n' ),
                 allRHO = {},
                 arr;
@@ -2943,10 +2895,9 @@ class JS2Ajax{
      *  1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br />
      */
     getJSONAjax( url, paraObj = {} ){
-        let _this = this;
         paraObj[ 'method' ] = 'GET';
         paraObj[ 'responseType' ] = 'json';
-        _this.ajax( url, paraObj );
+        this.ajax( url, paraObj );
     }
 
     /**
@@ -3065,9 +3016,8 @@ class JS2Ajax{
      *  1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br />
      */
     postAjax( url, paraObj = {} ){
-        let _this = this;
         paraObj[ 'method' ] = 'POST';
-        _this.ajax( url, paraObj );
+        this.ajax( url, paraObj );
     }
 
     /**
@@ -3133,8 +3083,7 @@ class JS2jQuery{
      * @returns {Array} [DOMTokenList]，DOMTokenList.length(数组长度)，DOMTokenList.value(一个类名集合的字符串，如：'a b c d')
      */
     aClassN( elem, classN ){
-        let _this = this;
-        return IsHandle6.call( _this, elem, classN, 'add' );
+        return IsHandle6.call( this, elem, classN, 'add' );
     }
 
     /**
@@ -3488,9 +3437,8 @@ class JS2jQuery{
      * @returns {TextNode|Array} TextNode|[TextNode]
      */
     cTextN( text ){
-        let _this = this,
-            result = [];
-        if( _this.isArray( text ) ){
+        let result = [];
+        if( this.isArray( text ) ){
             text.forEach( currentValue => void ( result.push( document.createTextNode( currentValue ) ) ) );
         }
         else{
@@ -3518,8 +3466,7 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     change( elem, fun, options = false ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             elemO.addEventListener( 'change', fun, options );
             return elemO;
         } );
@@ -3866,8 +3813,7 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     focus( elem, fun, options = false ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             elemO.addEventListener( 'focus', fun, options );
             return elemO;
         } );
@@ -4526,8 +4472,7 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     iInsertA( elem, data, text = false ){
-        let _this = this;
-        return IsHandle16.call( _this, elem, data, 'append', text );
+        return IsHandle16.call( this, elem, data, 'append', text );
     }
 
     /**
@@ -4544,8 +4489,7 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     iInsertB( elem, data, text = false ){
-        let _this = this;
-        return IsHandle16.call( _this, elem, data, 'prepend', text );
+        return IsHandle16.call( this, elem, data, 'prepend', text );
     }
 
     /**
@@ -4694,8 +4638,7 @@ class JS2jQuery{
      * @returns {Boolean} boolean，是返回true，否则false
      */
     isScrollBottom( elem ){
-        let _this = this;
-        return IsHandle13.call( _this, elem, elemO => elemO.scrollHeight - elemO.scrollTop === elemO.clientHeight );
+        return IsHandle13.call( this, elem, elemO => elemO.scrollHeight - elemO.scrollTop === elemO.clientHeight );
     }
 
     /**
@@ -4744,8 +4687,7 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     oInsertA( elem, data, text = false ){
-        let _this = this;
-        return IsHandle16.call( _this, elem, data, 'after', text );
+        return IsHandle16.call( this, elem, data, 'after', text );
     }
 
     /**
@@ -4762,8 +4704,7 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     oInsertB( elem, data, text = false ){
-        let _this = this;
-        return IsHandle16.call( _this, elem, data, 'before', text );
+        return IsHandle16.call( this, elem, data, 'before', text );
     }
 
     /**
@@ -4837,8 +4778,7 @@ class JS2jQuery{
      * @returns {Array} [DOMTokenList]，DOMTokenList.length(数组长度)，DOMTokenList.value(一个类名集合的字符串，如：'a b c d')
      */
     rClassN( elem, classN ){
-        let _this = this;
-        return IsHandle6.call( _this, elem, classN, 'remove' );
+        return IsHandle6.call( this, elem, classN, 'remove' );
     }
 
     /**
@@ -4907,7 +4847,6 @@ class JS2jQuery{
      */
     ready( fn = () => {
     } ){
-        let _this = this;
         if( document.addEventListener ){
             document.addEventListener( 'DOMContentLoaded', function this_Fn1( event ){
                 document.removeEventListener( 'DOMContentLoaded', this_Fn1, false );
@@ -5180,10 +5119,9 @@ class JS2jQuery{
      * @returns {String} 节点的name属性的属性值(被encodeURIComponent处理过了)
      */
     serialize( elem ){
-        let _this = this,
-            result_str = '';
-        _this.serializeArray( elem )
-             .forEach( c => void ( result_str += `${ encodeURIComponent( c.name ) }=${ encodeURIComponent( c.value ) }&` ) );
+        let result_str = '';
+        this.serializeArray( elem )
+            .forEach( c => void ( result_str += `${ encodeURIComponent( c.name ) }=${ encodeURIComponent( c.value ) }&` ) );
         return result_str.slice( 0, -1 );
     }
 
@@ -5512,8 +5450,7 @@ class JS2jQuery{
      * @returns {Array} [DOMTokenList]，DOMTokenList.length(数组长度)，DOMTokenList.value(一个类名集合的字符串，如：'a b c d')
      */
     tClassN( elem, classN ){
-        let _this = this;
-        return IsHandle6.call( _this, elem, classN, 'toggle' );
+        return IsHandle6.call( this, elem, classN, 'toggle' );
     }
 
     /**
@@ -5753,8 +5690,7 @@ class ObjHandle{
      * @returns {Array|String|Number} [string]|[number]|string|number
      */
     dataRemRe( ...arg ){
-        let _this = this,
-            handle = ( arg1, f, arg2 ) => {
+        let handle = ( arg1, f, arg2 ) => {
                 if( arg1.length > 1 ){
                     let [ result, set1 ] = [
                         '',
@@ -5767,9 +5703,9 @@ class ObjHandle{
                     return arg2;
                 }
             },
-            isA = _this.isArray( arg[ 0 ] ) && arg[ 0 ].length !== 0;
-        if( _this.isString( arg[ 0 ] ) && _this.remSpace( arg[ 0 ] ).length !== 0 ){
-            return handle( _this.remSpace( arg[ 0 ] ), a => a, _this.remSpace( arg[ 0 ] ) );
+            isA = this.isArray( arg[ 0 ] ) && arg[ 0 ].length !== 0;
+        if( this.isString( arg[ 0 ] ) && this.remSpace( arg[ 0 ] ).length !== 0 ){
+            return handle( this.remSpace( arg[ 0 ] ), a => a, this.remSpace( arg[ 0 ] ) );
         }
         else if( isA && arg[ 0 ].length >= 1 ){
             let [ result, set1 ] = [
@@ -5779,7 +5715,7 @@ class ObjHandle{
             set1.forEach( value => void ( result.push( value ) ) );
             return result;
         }
-        else if( _this.isNumber( arg[ 0 ] ) && !_this.isNaN( arg[ 0 ] ) && _this.isFinite( arg[ 0 ] ) ){
+        else if( this.isNumber( arg[ 0 ] ) && !this.isNaN( arg[ 0 ] ) && this.isFinite( arg[ 0 ] ) ){
             return handle( String( arg[ 0 ] ), a => Number( a ), arg[ 0 ] );
         }
     }
@@ -5794,7 +5730,6 @@ class ObjHandle{
      * @returns {Object|Array} 对象、数组，{}|[]
      */
     deepCopy( obj ){
-        let _this = this;
         if( obj === null ){
             return null;
         }
@@ -5813,7 +5748,7 @@ class ObjHandle{
             if( obj.hasOwnProperty( key ) ){
                 let val = obj[ key ];
                 newObj[ key ] = ( typeof val === 'object' )
-                                ? _this.deepCopy( val )
+                                ? this.deepCopy( val )
                                 : val;
             }
         }
@@ -5821,7 +5756,7 @@ class ObjHandle{
             Reflect.ownKeys( obj ) ){
             newObj[ tmp ] = ( typeof obj[ tmp ] !== 'object' )
                             ? obj[ tmp ]
-                            : _this.deepCopy( obj[ tmp ] );
+                            : this.deepCopy( obj[ tmp ] );
         }
         return newObj;
     }
@@ -5834,8 +5769,7 @@ class ObjHandle{
      * @returns {Object} Object，如果传入的是一个数组，则返回的也会是一个数组，被深度不可扩展的对象
      */
     deepExten( obj ){
-        let _this = this;
-        return IsHandle5.call( _this, obj, 'preventExtensions', _this.deepExten );
+        return IsHandle5.call( this, obj, 'preventExtensions', this.deepExten );
     }
 
     /**
@@ -5846,8 +5780,7 @@ class ObjHandle{
      * @returns {Object} Object，如果传入的是一个数组，则返回的也会是一个数组，被深度冻结的对象
      */
     deepFreeze( obj ){
-        let _this = this;
-        return IsHandle5.call( _this, obj, 'freeze', _this.deepFreeze );
+        return IsHandle5.call( this, obj, 'freeze', this.deepFreeze );
     }
 
     /**
@@ -5858,8 +5791,7 @@ class ObjHandle{
      * @returns {Object} Object，如果传入的是一个数组，则返回的也会是一个数组，被深度密封的对象，
      */
     deepSeal( obj ){
-        let _this = this;
-        return IsHandle5.call( _this, obj, 'seal', _this.deepSeal );
+        return IsHandle5.call( this, obj, 'seal', this.deepSeal );
     }
 
     /**
@@ -5897,8 +5829,7 @@ class ObjHandle{
      * @returns {Boolean} boolean， 可扩展为true，否则false
      */
     isExten( obj ){
-        let _this = this;
-        return IsHandle4.call( _this, obj, o => Object.isExtensible( o ) );
+        return IsHandle4.call( this, obj, o => Object.isExtensible( o ) );
     }
 
     /**
@@ -5909,8 +5840,7 @@ class ObjHandle{
      * @returns {Boolean} boolean，冻结为true，否则false
      */
     isFro( obj ){
-        let _this = this;
-        return IsHandle4.call( _this, obj, o => Object.isFrozen( o ) );
+        return IsHandle4.call( this, obj, o => Object.isFrozen( o ) );
     }
 
     /**
@@ -5921,8 +5851,7 @@ class ObjHandle{
      * @returns {Boolean} boolean， 被密封为true，否则false
      */
     isSea( obj ){
-        let _this = this;
-        return IsHandle4.call( _this, obj, o => Object.isSealed( o ) );
+        return IsHandle4.call( this, obj, o => Object.isSealed( o ) );
     }
 
     /**
@@ -6104,8 +6033,7 @@ class OthersHandle{
      * @returns {Array} [Element]
      */
     offLineE( elem, f ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             elemO.onoffline = f;
             return elemO;
         } );
@@ -6122,8 +6050,7 @@ class OthersHandle{
      * @returns {Array} [Element]
      */
     onLineE( elem, f ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             elemO.ononline = f;
             return elemO;
         } );
@@ -6337,8 +6264,7 @@ class OthersHandle{
      * @returns {Function} Function 一个已经注册的“touchstart”事件函数，可用于解除这个事件。
      */
     scrollFix( ...elem ){
-        let _this = this;
-        return IsHandle13.call( _this, elem[ 0 ], elemO => {
+        return IsHandle13.call( this, elem[ 0 ], elemO => {
             let startTopScroll = 0,
                 f = event => {
                     startTopScroll = elemO.scrollTop;
@@ -6364,33 +6290,32 @@ class OthersHandle{
      * @returns {Object} {y(年) : number, m(月) : number, d(日): number, h(时) : number, min(分) : number, s(秒) : number, day(周) : string|number}
      */
     timeF( t, m = 1 ){
-        let _this = this,
-            [ wd, tI, obj ] = [
-                ( m === 1 )
-                ? [
-                        7,
-                        1,
-                        2,
-                        3,
-                        4,
-                        5,
-                        6
-                    ]
-                : [
-                        '日',
-                        '一',
-                        '二',
-                        '三',
-                        '四',
-                        '五',
-                        '六'
-                    ],
-                Number( t ),
-                undefined
-            ];
-        if( !_this.isNaN( tI ) ){
+        let [ wd, tI, obj ] = [
+            ( m === 1 )
+            ? [
+                    7,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            : [
+                    '日',
+                    '一',
+                    '二',
+                    '三',
+                    '四',
+                    '五',
+                    '六'
+                ],
+            Number( t ),
+            undefined
+        ];
+        if( !this.isNaN( tI ) ){
             obj = new Date( tI );
-            if( !_this.isNaN( obj.valueOf() ) ){
+            if( !this.isNaN( obj.valueOf() ) ){
                 return {
                     y: obj.getFullYear(),
                     m: obj.getMonth() + 1,
@@ -6446,8 +6371,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     onlyCL( ...arg ){
-        let _this = this;
-        return IsHandle2.call( _this, arg, '[^A-Z]' );
+        return IsHandle2.call( this, arg, '[^A-Z]' );
     }
 
     /**
@@ -6458,8 +6382,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     onlyLL( ...arg ){
-        let _this = this;
-        return IsHandle2.call( _this, arg, '[^a-z]' );
+        return IsHandle2.call( this, arg, '[^a-z]' );
     }
 
     /**
@@ -6470,8 +6393,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     onlyLLCL( ...arg ){
-        let _this = this;
-        return IsHandle2.call( _this, arg, '[^a-zA-Z]' );
+        return IsHandle2.call( this, arg, '[^a-zA-Z]' );
     }
 
     /**
@@ -6482,8 +6404,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     onlyN( ...arg ){
-        let _this = this;
-        return IsHandle2.call( _this, arg, '[^0-9]' );
+        return IsHandle2.call( this, arg, '[^0-9]' );
     }
 
     /**
@@ -6494,8 +6415,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     onlyNCL( ...arg ){
-        let _this = this;
-        return IsHandle2.call( _this, arg, '[^A-Z0-9]' );
+        return IsHandle2.call( this, arg, '[^A-Z0-9]' );
     }
 
     /**
@@ -6506,8 +6426,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     onlyNLL( ...arg ){
-        let _this = this;
-        return IsHandle2.call( _this, arg, '[^a-z0-9]' );
+        return IsHandle2.call( this, arg, '[^a-z0-9]' );
     }
 
     /**
@@ -6518,8 +6437,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     onlyNLLCL( ...arg ){
-        let _this = this;
-        return IsHandle2.call( _this, arg, '[^a-zA-Z0-9]' );
+        return IsHandle2.call( this, arg, '[^a-zA-Z0-9]' );
     }
 
     /**
@@ -6544,8 +6462,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     remSpace( ...arg ){
-        let _this = this;
-        return IsHandle2.call( _this, arg, '[ ]' );
+        return IsHandle2.call( this, arg, '[ ]' );
     }
 
     /**
@@ -6560,8 +6477,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     strRep( data, reg, repStr ){
-        let _this = this;
-        return IsHandle7.call( _this, data, ( a => ( String( a )
+        return IsHandle7.call( this, data, ( a => ( String( a )
             .replace( new RegExp( reg, 'g' ), repStr ) ) ), String( data )
             .replace( new RegExp( reg, 'g' ), repStr ) );
     }
@@ -6574,8 +6490,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     trim( ...arg ){
-        let _this = this;
-        return IsHandle7.call( _this, arg[ 0 ], a => ( String( a )
+        return IsHandle7.call( this, arg[ 0 ], a => ( String( a )
             .trim() ), String( arg[ 0 ] )
             .trim() );
     }
@@ -6758,8 +6673,7 @@ class TouchEvent{
      * @returns {Boolean} boolean
      */
     isTouch(){
-        let _this = this,
-            deviceInfo = _this.deviceInfo();
+        let deviceInfo = this.deviceInfo();
         // Edge可以通过设置，默认打开触屏事件！受用户的浏览器控制
         if( deviceInfo.is_PC && deviceInfo.is_PCWin && deviceInfo.is_Edge ){
             return false;
@@ -6982,15 +6896,14 @@ class UrlHandle{
      */
     cReturn( toDo_fun = ( event => {
     } ) ){
-        let _this = this,
-            pushHistory = () => void ( window.history.pushState( {
+        let pushHistory = () => void ( window.history.pushState( {
                 title: 'title',
                 url: '#'
             }, 'title', '#' ) ),
             bool = false;
         pushHistory();
         setTimeout( () => void ( bool = true ), 1 );
-        _this.on( window, 'popstate', event => void ( bool && toDo_fun( event ), pushHistory() ) );
+        this.on( window, 'popstate', event => void ( bool && toDo_fun( event ), pushHistory() ) );
     }
 
     /**
@@ -7276,40 +7189,39 @@ class WASMTool{
                  callBack = {},
                  importObject = {},
              } = {} ){
-        let _this = this;
-        return _this.fetch( url, callBack, Object.assign( options, { responseType: 'arrayBuffer', } ) )
-                    .then( response => response.clone()
-                                               .arrayBuffer() )
-                    .then( bufferSource => WebAssembly.validate( bufferSource )
-                                           ? WebAssembly.instantiate( bufferSource, Object.assign( {
-                            global: {},
-                            env: {
-                                // 初始大小为100页（64 * 100 = 6400‬KiB、6.25MiB），最大大小为1024页（64 * 1024 = 65536‬‬‬KiB、64MiB）。
-                                memory: new WebAssembly.Memory( {
-                                    // WebAssembly Memory的初始大小，以WebAssembly pages为单位。
-                                    initial: 100,
-                                    // WebAssembly Memory的最大尺寸允许以WebAssembly pages为单位生长。
-                                    // 当存在时，最大参数充当引擎预留存储器的提示。
-                                    // 但是，引擎可能会忽略或限制此预订请求。
-                                    // 一般来说，大多数WebAssembly modules不需要设置最大值。
-                                    // 一个WebAssembly page的大小恒定为65536字节，即64KiB。
-                                    maximum: 1024,
-                                } ),
-                                table: new WebAssembly.Table( {
-                                    // WebAssembly表的初始元素数。
-                                    initial: 0,
-                                    // 表示要存储在表中的值类型的字符串。目前，它只能有一个值“anyfunc”（函数）。
-                                    element: 'anyfunc',
-                                    // 允许WebAssembly Table增长的元素的最大数目。
-                                    // maximum: 102400,
-                                } ),
-                            },
-                        }, importObject ) )
-                                           : undefined )
-                    .then( ( { module, instance, } = throw new Error( '这是一个无效的“wasm”模块！' ) ) => ( {
-                        module,
-                        instance,
-                    } ) );
+        return this.fetch( url, callBack, Object.assign( options, { responseType: 'arrayBuffer', } ) )
+                   .then( response => response.clone()
+                                              .arrayBuffer() )
+                   .then( bufferSource => WebAssembly.validate( bufferSource )
+                                          ? WebAssembly.instantiate( bufferSource, Object.assign( {
+                           global: {},
+                           env: {
+                               // 初始大小为100页（64 * 100 = 6400‬KiB、6.25MiB），最大大小为1024页（64 * 1024 = 65536‬‬‬KiB、64MiB）。
+                               memory: new WebAssembly.Memory( {
+                                   // WebAssembly Memory的初始大小，以WebAssembly pages为单位。
+                                   initial: 100,
+                                   // WebAssembly Memory的最大尺寸允许以WebAssembly pages为单位生长。
+                                   // 当存在时，最大参数充当引擎预留存储器的提示。
+                                   // 但是，引擎可能会忽略或限制此预订请求。
+                                   // 一般来说，大多数WebAssembly modules不需要设置最大值。
+                                   // 一个WebAssembly page的大小恒定为65536字节，即64KiB。
+                                   maximum: 1024,
+                               } ),
+                               table: new WebAssembly.Table( {
+                                   // WebAssembly表的初始元素数。
+                                   initial: 0,
+                                   // 表示要存储在表中的值类型的字符串。目前，它只能有一个值“anyfunc”（函数）。
+                                   element: 'anyfunc',
+                                   // 允许WebAssembly Table增长的元素的最大数目。
+                                   // maximum: 102400,
+                               } ),
+                           },
+                       }, importObject ) )
+                                          : undefined )
+                   .then( ( { module, instance, } = throw new Error( '这是一个无效的“wasm”模块！' ) ) => ( {
+                       module,
+                       instance,
+                   } ) );
     }
 
 }
@@ -7418,8 +7330,6 @@ class CT
     constructor(){
         super();
 
-        let _this = this;
-
         /**
          * 查找所有节点，处理所有节点，有返回值(存放在数组里)
          *
@@ -7430,7 +7340,7 @@ class CT
          *
          * @returns {Array} 数组[*]
          */
-        _this.allElemHan = IsHandle10.bind( _this );
+        this.allElemHan = IsHandle10.bind( this );
 
         /**
          * 停止所有类型的传播(捕获和冒泡)，禁止默认事件
@@ -7439,7 +7349,7 @@ class CT
          *
          * @returns {Element} Element节点
          */
-        _this.allEStop = AllEStop.bind( _this );
+        this.allEStop = AllEStop.bind( this );
 
         /**
          * 查找节点，但只处理第一个节点，有返回值(任何类型数据)
@@ -7451,14 +7361,14 @@ class CT
          *
          * @returns {*} 任何类型数据
          */
-        _this.firstElemHan = IsHandle13.bind( _this );
+        this.firstElemHan = IsHandle13.bind( this );
 
         /**
          * 自定义抛出错误、异常信息
          *
          * @param info_str 字符串，错误、异常信息，默认值'默认错误信息！'，必须！
          */
-        _this.gError = GetError;
+        this.gError = GetError;
 
         /**
          * 操作localStorage的工具<br />
@@ -7466,16 +7376,16 @@ class CT
          * new CT().ls.aD()<br />
          * {aD, dD, uD, qD, cD, isKN, storageCE等7个方法}
          */
-        _this.ls = IsHandle14.call( _this, localStorage );
+        this.ls = IsHandle14.call( this, localStorage );
 
-        _this.name = 'CT';
+        this.name = 'CT';
 
         /**
          * ready加强版
          *
          * @returns {Function} 函数，有一个f参数(所要执行的函数)，必需
          */
-        _this.readyS = ( () => {
+        this.readyS = ( () => {
             let funcs = [],
                 ready = false,
                 handler = e => {
@@ -7519,11 +7429,11 @@ class CT
          * new CT().ss.aD()<br />
          * {aD, dD, uD, qD, cD, isKN, storageCE等7个方法}
          */
-        _this.ss = IsHandle14.call( _this, sessionStorage );
+        this.ss = IsHandle14.call( this, sessionStorage );
 
-        _this.version = '2020.01.01.1';
+        this.version = '2020.01.01.1';
 
-        Init( _this );
+        Init( this );
     }
 
 }
