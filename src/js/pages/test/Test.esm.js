@@ -1968,3 +1968,10 @@ ${ onceFun1( 'q', 'w' ) }
         console.log( BigInt( Fibonacci( 6991 ) ) );
     }
 }
+
+// ES6测试
+{
+    if( true ){
+        import('./ES6Demo1.esm.js');
+    }
+}

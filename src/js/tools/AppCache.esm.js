@@ -76,8 +76,7 @@ class AppCache{
             return null;
         }
 
-        let _this = this,
-            pra_obj = Object.assign( {
+        let pra_obj = Object.assign( {
                 isUpdate: false,
                 onChecking: event => {
                 },
@@ -96,29 +95,29 @@ class AppCache{
                 onError: event => {
                 }
             }, arg_obj );
-        _this.appCache_obj = window.applicationCache;
-        _this.#onChecking_fun = pra_obj.onChecking;
-        _this.#onNoUpdate_fun = pra_obj.onNoUpdate;
-        _this.#onDownLoading_fun = pra_obj.onDownLoading;
-        _this.#onProgress_fun = pra_obj.onProgress;
-        _this.#onCached_fun = pra_obj.onCached;
-        _this.#onUpdateReady_fun = pra_obj.onUpdateReady;
-        _this.#onObsolete_fun = pra_obj.onObsolete;
-        _this.#onError_fun = pra_obj.onError;
-        _this.appCache_obj.onchecking = event => void ( _this.#onChecking_fun( event ) );
-        _this.appCache_obj.onnoupdate = event => void ( _this.#onNoUpdate_fun( event ) );
-        _this.appCache_obj.ondownloading = event => void ( _this.#onDownLoading_fun( event ) );
-        _this.appCache_obj.onprogress = event => void ( _this.#onProgress_fun( event ) );
-        _this.appCache_obj.oncached = event => void ( _this.#onCached_fun( event ) );
-        _this.appCache_obj.onupdateready = event => void ( _this.#onUpdateReady_fun( event ) );
-        _this.appCache_obj.onobsolete = event => void ( _this.#onObsolete_fun( event ) );
-        _this.appCache_obj.onerror = event => void ( _this.#onError_fun( event ) );
-        if( pra_obj.isUpdate && window.navigator.onLine && _this.appCache_obj.status === 1 ){
-            _this.#onUpdateReady_fun = event => {
-                _this.appCache_obj.swapCache();
-                window.location.reload( true );
+        this.appCache_obj = window.applicationCache;
+        this.#onChecking_fun = pra_obj.onChecking;
+        this.#onNoUpdate_fun = pra_obj.onNoUpdate;
+        this.#onDownLoading_fun = pra_obj.onDownLoading;
+        this.#onProgress_fun = pra_obj.onProgress;
+        this.#onCached_fun = pra_obj.onCached;
+        this.#onUpdateReady_fun = pra_obj.onUpdateReady;
+        this.#onObsolete_fun = pra_obj.onObsolete;
+        this.#onError_fun = pra_obj.onError;
+        this.appCache_obj.onchecking = event => void ( this.#onChecking_fun( event ) );
+        this.appCache_obj.onnoupdate = event => void ( this.#onNoUpdate_fun( event ) );
+        this.appCache_obj.ondownloading = event => void ( this.#onDownLoading_fun( event ) );
+        this.appCache_obj.onprogress = event => void ( this.#onProgress_fun( event ) );
+        this.appCache_obj.oncached = event => void ( this.#onCached_fun( event ) );
+        this.appCache_obj.onupdateready = event => void ( this.#onUpdateReady_fun( event ) );
+        this.appCache_obj.onobsolete = event => void ( this.#onObsolete_fun( event ) );
+        this.appCache_obj.onerror = event => void ( this.#onError_fun( event ) );
+        if( pra_obj.isUpdate && window.navigator.onLine && this.appCache_obj.status === 1 ){
+            this.#onUpdateReady_fun = event => {
+                this.appCache_obj.swapCache();
+                window.location.reload();
             };
-            _this.appCache_obj.update();
+            this.appCache_obj.update();
         }
     }
 
@@ -210,13 +209,12 @@ class AppCache{
      */
     goNewCache( arg_fun = () => {
     } ){
-        let _this = this;
-        if( window.navigator.onLine && _this.gStatus() === 1 ){
-            _this.#onUpdateReady_fun = event => {
-                _this.appCache_obj.swapCache();
+        if( window.navigator.onLine && this.gStatus() === 1 ){
+            this.#onUpdateReady_fun = event => {
+                this.appCache_obj.swapCache();
                 arg_fun( event );
             };
-            _this.appCache_obj.update();
+            this.appCache_obj.update();
         }
     }
 

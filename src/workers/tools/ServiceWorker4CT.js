@@ -165,8 +165,7 @@ class ServiceWorker4CT
     constructor( _self, arg_obj = {} ){
         super();
 
-        let _this = this,
-            pea_obj = Object.assign( {
+        let pea_obj = Object.assign( {
                 onMessage: event => {
                     console.log( 'onMessage Start' );
                     console.dir( event );
@@ -175,9 +174,9 @@ class ServiceWorker4CT
             }, arg_obj );
 
         this._self = _self;
-        _this.onMessageFun = pea_obj.onMessage;
+        this.onMessageFun = pea_obj.onMessage;
 
-        _self.onmessage = event => void ( _this.onMessageFun( event ) );
+        _self.onmessage = event => void ( this.onMessageFun( event ) );
     }
 
     /**

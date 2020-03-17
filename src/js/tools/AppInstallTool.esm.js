@@ -74,8 +74,7 @@ class AppInstallEvent{
      *  rejected // onbeforeinstallprompt的event.userChoice的拒绝事件，有一个error参数，可选。
      */
     constructor( arg_obj = {} ){
-        let _this = this,
-            pra_obj = Object.assign( {
+        let pra_obj = Object.assign( {
                 onAppInstalled: event => {
                     console.log( 'window.onappinstalled触发了！' );
                 },
@@ -96,22 +95,22 @@ class AppInstallEvent{
         this.#onAppInstalled = pra_obj.onAppInstalled;
         this.#accepted = pra_obj.accepted;
         this.#dismissed = pra_obj.dismissed;
-        window.onappinstalled = event => void ( _this.#onAppInstalled( event ) );
+        window.onappinstalled = event => void ( this.#onAppInstalled( event ) );
         window.onbeforeinstallprompt = event => {
             pra_obj.isPreventDefault && ( event.preventDefault(), event.stopPropagation(), event.stopImmediatePropagation() );
-            _this.beforeInstallPrompt_eve = event;
+            this.beforeInstallPrompt_eve = event;
             pra_obj.onBeforeInstallPrompt( event );
             event[ 'userChoice' ].then( userChoiceResult => {
-                                     _this.userChoiceResult_obj = userChoiceResult;
+                                     this.userChoiceResult_obj = userChoiceResult;
                                      if( userChoiceResult === undefined || userChoiceResult[ 'outcome' ] === 'dismissed' ){
-                                         _this.#dismissed( userChoiceResult );
-                                         _this.beforeInstallPrompt_eve = event;
-                                         _this.userChoiceResult_obj = userChoiceResult;
+                                         this.#dismissed( userChoiceResult );
+                                         this.beforeInstallPrompt_eve = event;
+                                         this.userChoiceResult_obj = userChoiceResult;
                                      }
                                      else if( userChoiceResult[ 'outcome' ] === 'accepted' ){
-                                         _this.#accepted( userChoiceResult );
-                                         _this.beforeInstallPrompt_eve = undefined;
-                                         _this.userChoiceResult_obj = undefined;
+                                         this.#accepted( userChoiceResult );
+                                         this.beforeInstallPrompt_eve = undefined;
+                                         this.userChoiceResult_obj = undefined;
                                      }
                                  } )
                                  .catch( pra_obj.rejected );

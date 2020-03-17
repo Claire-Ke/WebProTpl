@@ -320,8 +320,7 @@ function IsHandle1( ...arg ){
 }
 
 function IsHandle2( arg, regStr ){
-    let _this = this;
-    return IsHandle7.call( _this, arg[ 0 ], a1 => _this.remOfPat( a1, regStr ), _this.remOfPat( arg[ 0 ], regStr ) );
+    return IsHandle7.call( this, arg[ 0 ], a1 => this.remOfPat( a1, regStr ), this.remOfPat( arg[ 0 ], regStr ) );
 }
 
 function IsHandle3( arg1, regStr ){
@@ -333,31 +332,29 @@ function IsHandle4( o, f ){
 }
 
 function IsHandle5( o, s, f ){
-    let _this = this,
-        result = Object[ s ]( o ),
+    let result = Object[ s ]( o ),
         prop;
     Object.getOwnPropertyNames( o )
           .forEach( currentValue => {
               prop = o[ currentValue ];
-              typeof prop === 'object' && !_this.isNull( prop ) && f( prop );
+              typeof prop === 'object' && !this.isNull( prop ) && f( prop );
           } );
     return result;
 }
 
 function IsHandle6( elem, classN, type ){
-    let _this = this;
-    return IsHandle10.call( _this, elem, elemO => {
-        _this.remSpace( classN )
-             .split( ',' )
-             .forEach( currentValue => {
-                 if( currentValue.length !== 0 && ( _this.isDocument( elemO ) || _this.isWindow( elemO ) ) ){
-                     document[ 'documentElement' ][ 'classList' ][ type ]( currentValue );
-                 }
-                 else if( currentValue.length !== 0 && !( _this.isDocument( elemO ) || _this.isWindow( elemO ) ) ){
-                     elemO.classList[ type ]( currentValue );
-                 }
-             } );
-        if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+    return IsHandle10.call( this, elem, elemO => {
+        this.remSpace( classN )
+            .split( ',' )
+            .forEach( currentValue => {
+                if( currentValue.length !== 0 && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                    document[ 'documentElement' ][ 'classList' ][ type ]( currentValue );
+                }
+                else if( currentValue.length !== 0 && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                    elemO.classList[ type ]( currentValue );
+                }
+            } );
+        if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
             return document.documentElement.classList;
         }
         return elemO.classList;
@@ -377,17 +374,16 @@ function IsHandle7( arg1, f, arg2 ){
 }
 
 function IsHandle8( ar1, f, seN, rootE ){
-    let _this = this,
-        aLen = ar1.length,
+    let aLen = ar1.length,
         handle = f,
         handle1 = ( seN, rootE ) => {
-            if( _this.isString( seN ) && _this.trim( seN ).length !== 0 ){
+            if( this.isString( seN ) && this.trim( seN ).length !== 0 ){
                 return handle( seN, rootE );
             }
-            else if( _this.isArray( seN ) && seN.length !== 0 ){
+            else if( this.isArray( seN ) && seN.length !== 0 ){
                 let result = [];
-                _this.dataRemRe( seN )
-                     .forEach( currentValue => void ( ( _this.isString( currentValue ) && _this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue, rootE ) ) ) );
+                this.dataRemRe( seN )
+                    .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue, rootE ) ) ) );
                 if( result.length !== 0 ){
                     return result;
                 }
@@ -398,31 +394,30 @@ function IsHandle8( ar1, f, seN, rootE ){
     }
     else{
         let rootP = ar1[ 1 ];
-        if( _this.isString( rootP ) && _this.trim( rootP ).length !== 0 ){
-            let [ rootO ] = [ _this.gBySe( _this.trim( rootP ) ) ];
-            if( !_this.isNull( rootO ) ){
+        if( this.isString( rootP ) && this.trim( rootP ).length !== 0 ){
+            let [ rootO ] = [ this.gBySe( this.trim( rootP ) ) ];
+            if( !this.isNull( rootO ) ){
                 return handle1( seN, rootO );
             }
         }
-        else if( _this.isElement( rootP ) ){
+        else if( this.isElement( rootP ) ){
             return handle1( seN, rootP );
         }
-        else if( _this.isElemList( rootP ) && rootP.length !== 0 ){
+        else if( this.isElemList( rootP ) && rootP.length !== 0 ){
             return handle1( seN, rootP[ 0 ] );
         }
     }
 }
 
 function IsHandle9( arg, f ){
-    let _this = this,
-        handle = f;
-    if( _this.isString( arg[ 0 ] ) && _this.trim( arg[ 0 ] ).length !== 0 ){
+    let handle = f;
+    if( this.isString( arg[ 0 ] ) && this.trim( arg[ 0 ] ).length !== 0 ){
         return handle( arg[ 0 ] );
     }
-    else if( _this.isArray( arg[ 0 ] ) && arg[ 0 ].length !== 0 ){
+    else if( this.isArray( arg[ 0 ] ) && arg[ 0 ].length !== 0 ){
         let result = [];
-        _this.dataRemRe( arg[ 0 ] )
-             .forEach( currentValue => void ( ( _this.isString( currentValue ) && _this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue ) ) ) );
+        this.dataRemRe( arg[ 0 ] )
+            .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue ) ) ) );
         if( result.length !== 0 ){
             return result;
         }
@@ -440,8 +435,7 @@ function IsHandle9( arg, f ){
  * @returns {Array} 数组[*]
  */
 function IsHandle10( elem, fun ){
-    let _this = this,
-        handle = fun,
+    let handle = fun,
         handle1 = arg => {
             let result = [];
             Array.from( arg )
@@ -449,23 +443,23 @@ function IsHandle10( elem, fun ){
             return result;
         },
         handle2 = elem => {
-            if( _this.isString( elem ) && _this.trim( elem ).length !== 0 ){
-                return handle1( _this.gBySeAll( _this.trim( elem ) ) );
+            if( this.isString( elem ) && this.trim( elem ).length !== 0 ){
+                return handle1( this.gBySeAll( this.trim( elem ) ) );
             }
-            else if( _this.isElement( elem ) ){
+            else if( this.isElement( elem ) ){
                 return [ handle( elem ) ];
             }
-            else if( _this.isElemList( elem ) && elem.length !== 0 ){
+            else if( this.isElemList( elem ) && elem.length !== 0 ){
                 return handle1( elem );
             }
             else{
                 return [ handle( elem ) ];
             }
         };
-    if( !_this.isArray( elem ) ){
+    if( !this.isArray( elem ) ){
         return handle2( elem );
     }
-    else if( _this.isArray( elem ) && elem.length !== 0 ){
+    else if( this.isArray( elem ) && elem.length !== 0 ){
         let result = [];
         elem.forEach( currentValue => void ( result.push( handle2( currentValue ) ) ) );
         return result;
@@ -473,15 +467,14 @@ function IsHandle10( elem, fun ){
 }
 
 function IsHandle11( elem, lenI, type ){
-    let _this = this,
-        fun = e => {
-            let _elem = e.currentTarget,
-                val = _this[ type ]( _elem.value );
-            _elem.value = _this.isUndefined( lenI )
-                          ? val
-                          : val.slice( 0, lenI );
-        };
-    _this.inputE( elem, fun );
+    let fun = e => {
+        let _elem = e.currentTarget,
+            val = this[ type ]( _elem.value );
+        _elem.value = this.isUndefined( lenI )
+                      ? val
+                      : val.slice( 0, lenI );
+    };
+    this.inputE( elem, fun );
     return fun;
 }
 
@@ -503,14 +496,13 @@ function IsHandle12( elem, f, type, e = 'input' ){
  * @returns {*} 任何类型数据
  */
 function IsHandle13( elem, fun ){
-    let _this = this,
-        handle = fun,
+    let handle = fun,
         handle1 = arg => {
-            const is = _this.isElemList( arg );
-            if( _this.isString( arg ) && _this.trim( arg ).length !== 0 ){
-                return handle( _this.gBySe( _this.trim( arg ) ) );
+            const is = this.isElemList( arg );
+            if( this.isString( arg ) && this.trim( arg ).length !== 0 ){
+                return handle( this.gBySe( this.trim( arg ) ) );
             }
-            else if( _this.isElement( arg ) ){
+            else if( this.isElement( arg ) ){
                 return handle( arg );
             }
             else if( is && arg.length !== 0 ){
@@ -520,7 +512,7 @@ function IsHandle13( elem, fun ){
                 return handle( arg );
             }
         };
-    if( _this.isArray( elem ) && elem.length !== 0 ){
+    if( this.isArray( elem ) && elem.length !== 0 ){
         let result = [];
         elem.forEach( currentValue => void ( result.push( handle1( currentValue ) ) ) );
         return result;
@@ -531,7 +523,6 @@ function IsHandle13( elem, fun ){
 }
 
 function IsHandle14( sT ){
-    let _this = this;
     /**
      * 获取第numI个的键名，不存在，会返回null值
      *
@@ -604,24 +595,24 @@ function IsHandle14( sT ){
          * @param isC 布尔值，true表示强制添加(会覆盖同名的)，false反之，默认为true
          */
         aD: ( jsonO, isC = true ) => {
-            const is = !_this.isEmpty( jsonO );
+            const is = !this.isEmpty( jsonO );
             let n,
                 v;
             if( is && isC ){
                 for( let key in
                     jsonO ){
                     v = jsonO[ key ];
-                    setD( _this.trim( key ), _this.isString( v )
-                                             ? v
-                                             : JSON.stringify( v ) );
+                    setD( this.trim( key ), this.isString( v )
+                                            ? v
+                                            : JSON.stringify( v ) );
                 }
             }
             else if( is && !isC ){
                 for( let key in
                     jsonO ){
-                    n = _this.trim( key );
+                    n = this.trim( key );
                     v = jsonO[ key ];
-                    !isKN( n ) && setD( n, _this.isString( v )
+                    !isKN( n ) && setD( n, this.isString( v )
                                            ? v
                                            : JSON.stringify( v ) );
                 }
@@ -633,8 +624,8 @@ function IsHandle14( sT ){
          * @param kn 键名，String
          */
         dD: kn => {
-            const n = _this.trim( kn );
-            ( _this.isString( kn ) && !_this.isEmpty( n ) ) && remD( n );
+            const n = this.trim( kn );
+            ( this.isString( kn ) && !this.isEmpty( n ) ) && remD( n );
         },
         /**
          * 更新键值对
@@ -644,24 +635,24 @@ function IsHandle14( sT ){
          * @param isC 不存在该键名的时候如何处理，默认true，true添加为新的键值对，反之，本次更新未进行
          */
         uD: ( jsonO, isC = true ) => {
-            const is = !_this.isEmpty( jsonO );
+            const is = !this.isEmpty( jsonO );
             let n,
                 v;
             if( is && isC ){
                 for( let key in
                     jsonO ){
                     v = jsonO[ key ];
-                    setD( _this.trim( key ), _this.isString( v )
-                                             ? v
-                                             : JSON.stringify( v ) );
+                    setD( this.trim( key ), this.isString( v )
+                                            ? v
+                                            : JSON.stringify( v ) );
                 }
             }
             else if( is && !isC ){
                 for( let key in
                     jsonO ){
-                    n = _this.trim( key );
+                    n = this.trim( key );
                     v = jsonO[ key ];
-                    isKN( n ) && setD( n, _this.isString( v )
+                    isKN( n ) && setD( n, this.isString( v )
                                           ? v
                                           : JSON.stringify( v ) );
                 }
@@ -675,13 +666,13 @@ function IsHandle14( sT ){
          * @returns {String} 键值
          */
         qD: kn => {
-            const n = _this.trim( kn ),
+            const n = this.trim( kn ),
                 result = getD( n ),
-                isS = _this.isString( kn ) && !_this.isEmpty( n );
-            if( isS && !_this.isNull( result ) ){
+                isS = this.isString( kn ) && !this.isEmpty( n );
+            if( isS && !this.isNull( result ) ){
                 return result;
             }
-            else if( isS && _this.isNull( result ) ){
+            else if( isS && this.isNull( result ) ){
                 return null;
             }
         },
@@ -731,9 +722,8 @@ function IsHandle15( f ){
 }
 
 function IsHandle16( elem, data, type, text ){
-    let _this = this;
-    return IsHandle10.call( _this, elem, elemO => {
-        if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+    return IsHandle10.call( this, elem, elemO => {
+        if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
             return elemO;
         }
         let where = '';
@@ -752,28 +742,28 @@ function IsHandle16( elem, data, type, text ){
             break;
         }
         let handle = data => {
-            if( _this.isElement( data ) ){
+            if( this.isElement( data ) ){
                 elemO[ type ]( data.cloneNode( true ) );
             }
-            else if( _this.isElemList( data ) ){
+            else if( this.isElemList( data ) ){
                 let elemA = Array.from( data );
                 ( type === 'prepend' || type === 'after' ) && elemA.reverse();
                 elemA.forEach( currentValue => void ( elemO[ type ]( currentValue.cloneNode( true ) ) ) );
             }
-            else if( _this.isString( data ) && text ){
+            else if( this.isString( data ) && text ){
                 elemO.insertAdjacentText( where, data );
             }
-            else if( _this.isString( data ) && !text ){
+            else if( this.isString( data ) && !text ){
                 elemO.insertAdjacentHTML( where, data );
             }
-            else if( _this.isFunction( data ) ){
+            else if( this.isFunction( data ) ){
                 elemO[ type ]( data.toString() );
             }
             else{
                 elemO[ type ]( JSON.stringify( data ) );
             }
         };
-        _this.isArray( data )
+        this.isArray( data )
         ? ( data.forEach( currentValue => void ( handle( currentValue ) ) ) )
         : ( handle( data ) );
         return elemO;
@@ -926,8 +916,7 @@ class Canvas2Others{
      */
     blobToCanvas( blob, callback = ( ( canvas, image, context ) => {
     } ) ){
-        let _this = this;
-        return _this.fileOrBlobToDataURL( blob, ( ( dataURL, event, fileReader ) => void ( _this.dataURLOrImgSrcToCanvas( dataURL, callback ) ) ) );
+        return this.fileOrBlobToDataURL( blob, ( dataURL, event, fileReader ) => void ( this.dataURLOrImgSrcToCanvas( dataURL, callback ) ) );
     }
 
     /**
@@ -1093,8 +1082,7 @@ class Canvas2Others{
      */
     imgSrcToBlob( imgSrc, format = 'image/png', quality = 1.0, callback = ( ( BlobObj, canvas ) => {
     } ) ){
-        let _this = this;
-        return _this.dataURLOrImgSrcToCanvas( imgSrc, ( canvas, image, context ) => void ( callback( _this.dataURLToBlob( _this.canvasToDataURL( canvas, format, quality ) ), canvas ) ) );
+        return this.dataURLOrImgSrcToCanvas( imgSrc, ( canvas, image, context ) => void ( callback( this.dataURLToBlob( this.canvasToDataURL( canvas, format, quality ) ), canvas ) ) );
     }
 
     /**
@@ -1112,8 +1100,7 @@ class Canvas2Others{
      */
     imgToDataURL( imgSrc, format = 'image/png', quality = 1.0, callback = ( ( dataURL, canvas, image ) => {
     } ) ){
-        let _this = this;
-        return _this.dataURLOrImgSrcToCanvas( imgSrc, ( canvas, image, context ) => void ( callback( _this.canvasToDataURL( canvas, format, quality ), canvas, image ) ) );
+        return this.dataURLOrImgSrcToCanvas( imgSrc, ( canvas, image, context ) => void ( callback( this.canvasToDataURL( canvas, format, quality ), canvas, image ) ) );
     }
 
 }
@@ -1269,14 +1256,13 @@ class ElemQuery{
      * @returns {HTMLCollection|Array} HTMLCollection|[HTMLCollection]
      */
     gByClass( classN, rootE = document ){
-        let _this = this;
-        return IsHandle8.call( _this, arguments, ( classS, rootO ) => {
+        return IsHandle8.call( this, arguments, ( classS, rootO ) => {
             let [ selector, elemList ] = [
-                _this.trim( classS ),
+                this.trim( classS ),
                 undefined
             ];
             if( /^\.[a-zA-Z_]{1,}[\w-]{0,}(\.[a-zA-Z_]{1,}[\w-]{0,}){0,}[\w-]{0,}$/gi.test( selector ) ){
-                elemList = rootO.getElementsByClassName( _this.strRep( selector.slice( 1 ), '[\.]', '\\s' ) );
+                elemList = rootO.getElementsByClassName( this.strRep( selector.slice( 1 ), '[\.]', '\\s' ) );
                 if( elemList.length !== 0 ){
                     return elemList;
                 }
@@ -1294,15 +1280,14 @@ class ElemQuery{
      * @returns {Element|Array} Element|[Element]
      */
     gById( ...arg ){
-        let _this = this;
-        return IsHandle9.call( _this, arg, str => {
+        return IsHandle9.call( this, arg, str => {
             let [ selector, elem ] = [
-                _this.trim( str ),
+                this.trim( str ),
                 undefined
             ];
             if( /^#[a-zA-Z_]{1,}[\w-]{0,}$/gi.test( selector ) ){
                 elem = document.getElementById( selector.slice( 1 ) );
-                if( !_this.isNull( elem ) ){
+                if( !this.isNull( elem ) ){
                     return elem;
                 }
             }
@@ -1321,9 +1306,8 @@ class ElemQuery{
      * @returns {NodeList|HTMLCollection|Array} 单个NodeList或单个HTMLCollection或者数组(里头是NodeList或HTMLCollection)
      */
     gByName( ...arg ){
-        let _this = this;
-        return IsHandle9.call( _this, arg, str => {
-            const elemList = document.getElementsByName( _this.trim( str ) );
+        return IsHandle9.call( this, arg, str => {
+            const elemList = document.getElementsByName( this.trim( str ) );
             if( elemList.length !== 0 ){
                 return elemList;
             }
@@ -1343,10 +1327,9 @@ class ElemQuery{
      * @returns {Element|Array} Element|[Element]
      */
     gBySe( seN, rootE = document ){
-        let _this = this;
-        return IsHandle8.call( _this, arguments, ( seS, rootO ) => {
-            const elemList = rootO.querySelector( _this.trim( seS ) );
-            if( !_this.isNull( elemList ) ){
+        return IsHandle8.call( this, arguments, ( seS, rootO ) => {
+            const elemList = rootO.querySelector( this.trim( seS ) );
+            if( !this.isNull( elemList ) ){
                 return elemList;
             }
         }, seN, rootE );
@@ -1365,9 +1348,8 @@ class ElemQuery{
      * @returns {NodeList|Array} NodeList|[NodeList]
      */
     gBySeAll( seN, rootE = document ){
-        let _this = this;
-        return IsHandle8.call( _this, arguments, ( seS, rootO ) => {
-            const elemList = rootO.querySelectorAll( _this.trim( seS ) );
+        return IsHandle8.call( this, arguments, ( seS, rootO ) => {
+            const elemList = rootO.querySelectorAll( this.trim( seS ) );
             if( elemList.length !== 0 ){
                 return elemList;
             }
@@ -1388,10 +1370,9 @@ class ElemQuery{
      * @returns {HTMLCollection|Array} HTMLCollection|[HTMLCollection]
      */
     gByTag( tagN, rootE = document ){
-        let _this = this;
-        return IsHandle8.call( _this, arguments, ( tagS, rootO ) => {
+        return IsHandle8.call( this, arguments, ( tagS, rootO ) => {
             let [ selector, elemList ] = [
-                _this.trim( tagS ),
+                this.trim( tagS ),
                 undefined
             ];
             if( /^([a-zA-Z])[a-zA-Z0-9]{0,}$/gi.test( selector ) || selector === '*' ){
@@ -1495,10 +1476,9 @@ class FunHandle{
     }, wait = 250, immediate = false ){
         let clearTime;
         return function( ...rest ){
-            let _this = this;
             ( clearTime !== null && clearTime !== undefined ) && ( clearTimeout( clearTime ) );
-            ( immediate && !clearTime ) && ( fun.apply( _this, rest ) );
-            !immediate && ( clearTime = setTimeout( () => void ( clearTime = null, !immediate && ( fun.apply( _this, rest ) ) ), wait ) );
+            ( immediate && !clearTime ) && ( fun.apply( this, rest ) );
+            !immediate && ( clearTime = setTimeout( () => void ( clearTime = null, !immediate && ( fun.apply( this, rest ) ) ), wait ) );
         };
     }
 
@@ -1694,13 +1674,12 @@ class FunHandle{
         let preTime = 0,
             clearTime;
         return function( ...rest ){
-            let _this = this,
-                nowTime = Date.now(),
+            let nowTime = Date.now(),
                 timeOut = nowTime - preTime > wait;
             preTime = nowTime;
             ( clearTime !== null && clearTime !== undefined ) && ( clearTimeout( clearTime ) );
-            ( immediate && timeOut ) && ( fun.apply( _this, rest ) );
-            ( !immediate && timeOut ) && ( clearTime = setTimeout( () => void ( fun.apply( _this, rest ) ), wait ) );
+            ( immediate && timeOut ) && ( fun.apply( this, rest ) );
+            ( !immediate && timeOut ) && ( clearTime = setTimeout( () => void ( fun.apply( this, rest ) ), wait ) );
         };
     }
 
@@ -1850,16 +1829,15 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputOfPat( elem, patS, lenI ){
-        let _this = this,
-            fun = e => {
-                let _elem = e.currentTarget,
-                    val = _this.remOfPat( _elem.value, patS );
-                _elem.value = _this.isUndefined( lenI )
-                              ? val
-                              : val.slice( 0, lenI );
-            };
+        let fun = e => {
+            let _elem = e.currentTarget,
+                val = this.remOfPat( _elem.value, patS );
+            _elem.value = this.isUndefined( lenI )
+                          ? val
+                          : val.slice( 0, lenI );
+        };
 
-        _this.inputE( elem, fun );
+        this.inputE( elem, fun );
 
         return fun;
     }
@@ -2294,8 +2272,7 @@ class JS2Ajax{
      *  1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br />
      */
     ajax( url, paraObj = {} ){
-        let _this = this,
-            opt_obj = Object.assign( {
+        let opt_obj = Object.assign( {
                 sendData: null,
                 method: 'GET',
                 async: true,
@@ -2347,7 +2324,7 @@ class JS2Ajax{
         XHR.ontimeout = event => void ( opt_obj.timeout( event, event.currentTarget ) );
         XHR.onload = event => {
             if( event.currentTarget[ 'status' ] >= 200 && event.currentTarget[ 'status' ] < 400 ){
-                let deviceInfo = _this.deviceInfo(),
+                let deviceInfo = this.deviceInfo(),
                     res = event.currentTarget[ 'response' ],
                     isJSON = opt_obj.responseType === 'json';
                 ( deviceInfo.is_PC && deviceInfo.is_PCWin && deviceInfo.is_IE && isJSON ) && ( res = JSON.parse( event.currentTarget[ 'response' ] ) );
@@ -2366,7 +2343,7 @@ class JS2Ajax{
         XHR.upload.onabort = event => void ( opt_obj.uploadEvent.abort( event, event.currentTarget ) );
         XHR.upload.onloadend = event => void ( opt_obj.uploadEvent.loadEnd( event, event.currentTarget ) );
 
-        if( opt_obj.method === 'GET' && ( ( _this.isObject( opt_obj.sendData ) && !_this.isEmpty( opt_obj.sendData ) ) || ( _this.isFormData( opt_obj.sendData ) && !_this.isEmpty( opt_obj.sendData ) ) ) ){
+        if( opt_obj.method === 'GET' && ( ( this.isObject( opt_obj.sendData ) && !this.isEmpty( opt_obj.sendData ) ) || ( this.isFormData( opt_obj.sendData ) && !this.isEmpty( opt_obj.sendData ) ) ) ){
             let searchStr = '',
                 newUrl = url,
                 urlSea2Obj = {},
@@ -2374,10 +2351,10 @@ class JS2Ajax{
 
             if( url.includes( '?' ) ){
                 newUrl = url.split( '?' )[ 0 ];
-                urlSea2Obj = _this.urlSea2Obj( '?' + url.split( '?' )[ 1 ] );
+                urlSea2Obj = this.urlSea2Obj( '?' + url.split( '?' )[ 1 ] );
             }
 
-            if( _this.isFormData( opt_obj.sendData ) ){
+            if( this.isFormData( opt_obj.sendData ) ){
                 Array.from( opt_obj.sendData.entries() )
                      .forEach( ( [ key, value ] ) => void ( sendData[ key ] = value ) );
             }
@@ -3059,10 +3036,9 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     aCE( elem, f, options = false ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            _this.isTouch()
-            ? ( _this.tap( elemO, f, options ) )
+        return IsHandle10.call( this, elem, elemO => {
+            this.isTouch()
+            ? ( this.tap( elemO, f, options ) )
             : ( elemO.addEventListener( 'click', f, options ) );
             return elemO;
         } );
@@ -3297,9 +3273,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     animateCancel( elem, fun, options = false ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            _this.on( elemO, 'animationcancel', fun, options );
+        return IsHandle10.call( this, elem, elemO => {
+            this.on( elemO, 'animationcancel', fun, options );
             return elemO;
         } );
     }
@@ -3324,9 +3299,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     animateEnd( elem, fun, options = false ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            _this.on( elemO, 'animationend', fun, options );
+        return IsHandle10.call( this, elem, elemO => {
+            this.on( elemO, 'animationend', fun, options );
             return elemO;
         } );
     }
@@ -3351,9 +3325,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     animateIteration( elem, fun, options = false ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            _this.on( elemO, 'animationiteration', fun, options );
+        return IsHandle10.call( this, elem, elemO => {
+            this.on( elemO, 'animationiteration', fun, options );
             return elemO;
         } );
     }
@@ -3378,9 +3351,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     animateStart( elem, fun, options = false ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            _this.on( elemO, 'animationstart', fun, options );
+        return IsHandle10.call( this, elem, elemO => {
+            this.on( elemO, 'animationstart', fun, options );
             return elemO;
         } );
     }
@@ -3402,8 +3374,7 @@ class JS2jQuery{
      * @returns {Element|Array} Element(非文本节点)|[Element(非文本节点)]
      */
     cElem( arg_obj = {} ){
-        let _this = this,
-            pra_obj = Object.assign( {
+        let pra_obj = Object.assign( {
                 data: '',
                 fun: elemO => {
                 },
@@ -3412,16 +3383,16 @@ class JS2jQuery{
             handle = ( tagName, data = '', f = ( elemO => {
             } ), text = false ) => {
                 let result = [];
-                if( _this.isArray( tagName ) ){
+                if( this.isArray( tagName ) ){
                     let e;
                     tagName.forEach( currentValue => {
-                        e = _this.iInsertB( document.createElement( currentValue ), data, text )[ 0 ];
+                        e = this.iInsertB( document.createElement( currentValue ), data, text )[ 0 ];
                         f( e );
                         result.push( e );
                     } );
                 }
                 else{
-                    result = _this.iInsertB( document.createElement( tagName ), data, text )[ 0 ];
+                    result = this.iInsertB( document.createElement( tagName ), data, text )[ 0 ];
                     f( result );
                 }
                 return result;
@@ -3487,29 +3458,28 @@ class JS2jQuery{
      * @returns {Array} [get时是各种数据|set时是执行操作的Element]
      */
     data( elem, dataO ){
-        let _this = this;
-        if( _this.isString( dataO ) ){
-            return IsHandle10.call( _this, elem, elemO => {
+        if( this.isString( dataO ) ){
+            return IsHandle10.call( this, elem, elemO => {
                 let storage = elemO.ctoElemDataStorage;
                 if( !( 'ctoElemDataStorage' in elemO ) ){
                     console.warn( 'data函数--->ctoElemDataStoragew未定义' );
                     return undefined;
                 }
-                else if( _this.remSpace( dataO ) in storage ){
-                    return storage[ _this.remSpace( dataO ) ];
+                else if( this.remSpace( dataO ) in storage ){
+                    return storage[ this.remSpace( dataO ) ];
                 }
-                else if( !( _this.remSpace( dataO ) in storage ) ){
-                    console.warn( 'data函数--->' + _this.remSpace( dataO ) + '不在ctoElemDataStoragew中定义！' );
+                else if( !( this.remSpace( dataO ) in storage ) ){
+                    console.warn( 'data函数--->' + this.remSpace( dataO ) + '不在ctoElemDataStoragew中定义！' );
                     return null;
                 }
             } );
         }
-        else if( _this.isObject( dataO ) ){
-            return IsHandle10.call( _this, elem, elemO => {
+        else if( this.isObject( dataO ) ){
+            return IsHandle10.call( this, elem, elemO => {
                 !( 'ctoElemDataStorage' in elemO ) && ( elemO[ 'ctoElemDataStorage' ] = {} );
                 for( let key in
                     dataO ){
-                    elemO[ 'ctoElemDataStorage' ][ _this.remSpace( key ) ] = dataO[ key ];
+                    elemO[ 'ctoElemDataStorage' ][ this.remSpace( key ) ] = dataO[ key ];
                 }
                 return elemO;
             } );
@@ -3527,9 +3497,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     empty( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 document.documentElement.innerHTML = '';
                 return elemO;
             }
@@ -3553,29 +3522,28 @@ class JS2jQuery{
      *   fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选
      */
     fadeHide( elem, para = {} ){
-        let _this = this,
-            argObj = Object.assign( {
-                opacity: 0,
-                time: 300,
-                easing: 'linear',
-                fun: element => {
-                }
-            }, para );
-        ( _this.isDocument( elem ) || _this.isWindow( elem ) ) && ( elem = document.documentElement );
-        IsHandle10.call( _this, elem, elemO => {
-            if( _this.gStyle( elemO, 'display' ) !== 'none' ){
-                IsHandle19( _this, elemO );
-                _this.animate( elemO, {
+        let argObj = Object.assign( {
+            opacity: 0,
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            }
+        }, para );
+        ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
+        IsHandle10.call( this, elem, elemO => {
+            if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                IsHandle19( this, elemO );
+                this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
                     duration: argObj.time,
                     easing: argObj.easing,
                     complete: elementArr => {
-                        _this.sAttr( elementArr[ 0 ], {
+                        this.sAttr( elementArr[ 0 ], {
                             style: 'display:none;',
                             fadeHide: 'fadeHide',
                         } );
-                        _this.rAttr( elementArr[ 0 ], [
+                        this.rAttr( elementArr[ 0 ], [
                             'fadeShow',
                             'fadeTo',
                             'fadeToggle',
@@ -3608,31 +3576,30 @@ class JS2jQuery{
      *   fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选
      */
     fadeShow( elem, para = {} ){
-        let _this = this,
-            argObj = Object.assign( {
-                opacity: 1,
-                time: 300,
-                easing: 'linear',
-                fun: element => {
-                },
-            }, para );
-        ( _this.isDocument( elem ) || _this.isWindow( elem ) ) && ( elem = document.documentElement );
-        IsHandle10.call( _this, elem, elemO => {
-            if( _this.gStyle( elemO, 'display' ) === 'none' ){
-                _this.sAttr( elemO, {
+        let argObj = Object.assign( {
+            opacity: 1,
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
+        ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
+        IsHandle10.call( this, elem, elemO => {
+            if( this.gStyle( elemO, 'display' ) === 'none' ){
+                this.sAttr( elemO, {
                     style: 'opacity:0;',
                 } );
-                _this.animate( elemO, {
+                this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
                     duration: argObj.time,
                     easing: argObj.easing,
                     complete: elementArr => {
-                        _this.sAttr( elemO, {
+                        this.sAttr( elemO, {
                             style: '',
                             fadeShow: 'fadeShow',
                         } );
-                        _this.rAttr( elementArr[ 0 ], [
+                        this.rAttr( elementArr[ 0 ], [
                             'fadeHide',
                             'fadeTo',
                             'fadeToggle',
@@ -3647,18 +3614,18 @@ class JS2jQuery{
                     },
                 } );
             }
-            else if( _this.gStyle( elemO, 'display' ) !== 'none' && _this.gAttr( elemO, 'fadeTo' )[ 0 ] === 'fadeTo' && _this.pFloat( _this.gAttr( elemO, 'data-opacity' )[ 0 ] ) !== 1 ){
-                _this.animate( elemO, {
+            else if( this.gStyle( elemO, 'display' ) !== 'none' && this.gAttr( elemO, 'fadeTo' )[ 0 ] === 'fadeTo' && this.pFloat( this.gAttr( elemO, 'data-opacity' )[ 0 ] ) !== 1 ){
+                this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
                     duration: argObj.time,
                     easing: argObj.easing,
                     complete: elementArr => {
-                        _this.sAttr( elemO, {
+                        this.sAttr( elemO, {
                             style: '',
                             fadeShow: 'fadeShow',
                         } );
-                        _this.rAttr( elementArr[ 0 ], [
+                        this.rAttr( elementArr[ 0 ], [
                             'fadeHide',
                             'fadeTo',
                             'fadeToggle',
@@ -3693,30 +3660,29 @@ class JS2jQuery{
      *   fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选
      */
     fadeTo( elem, para = {} ){
-        let _this = this,
-            argObj = Object.assign( {
-                opacity: 0.5,
-                time: 300,
-                easing: 'linear',
-                fun: element => {
-                },
-            }, para );
-        ( _this.isDocument( elem ) || _this.isWindow( elem ) ) && ( elem = document.documentElement );
-        IsHandle10.call( _this, elem, elemO => {
-            if( _this.gStyle( elemO, 'display' ) === 'none' ){
-                _this.sAttr( elemO, {
+        let argObj = Object.assign( {
+            opacity: 0.5,
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
+        ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
+        IsHandle10.call( this, elem, elemO => {
+            if( this.gStyle( elemO, 'display' ) === 'none' ){
+                this.sAttr( elemO, {
                     style: 'opacity:0;',
                 } );
-                _this.animate( elemO, {
+                this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
                     duration: argObj.time,
                     easing: argObj.easing,
                     complete: elementArr => {
-                        _this.sAttr( elemO, {
+                        this.sAttr( elemO, {
                             fadeTo: 'fadeTo',
                         } );
-                        _this.rAttr( elementArr[ 0 ], [
+                        this.rAttr( elementArr[ 0 ], [
                             'fadeHide',
                             'fadeShow',
                             'fadeToggle',
@@ -3731,19 +3697,19 @@ class JS2jQuery{
                     },
                 } );
             }
-            else if( _this.gStyle( elemO, 'display' ) !== 'none' ){
-                IsHandle19( _this, elemO );
-                _this.animate( elemO, {
+            else if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                IsHandle19( this, elemO );
+                this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
                     duration: argObj.time,
                     easing: argObj.easing,
                     complete: elementArr => {
-                        _this.sAttr( elemO, {
+                        this.sAttr( elemO, {
                             'data-opacity': argObj.opacity,
                             fadeTo: 'fadeTo',
                         } );
-                        _this.rAttr( elementArr[ 0 ], [
+                        this.rAttr( elementArr[ 0 ], [
                             'fadeHide',
                             'fadeShow',
                             'fadeToggle',
@@ -3776,20 +3742,19 @@ class JS2jQuery{
      *   fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选
      */
     fadeToggle( elem, para = {} ){
-        let _this = this,
-            argObj = Object.assign( {
-                time: 300,
-                easing: 'linear',
-                fun: element => {
-                },
-            }, para );
-        ( _this.isDocument( elem ) || _this.isWindow( elem ) ) && ( elem = document.documentElement );
-        IsHandle10.call( _this, elem, elemO => {
-            if( _this.gStyle( elemO, 'display' ) === 'none' ){
-                _this.fadeShow( elemO, argObj );
+        let argObj = Object.assign( {
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
+        ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
+        IsHandle10.call( this, elem, elemO => {
+            if( this.gStyle( elemO, 'display' ) === 'none' ){
+                this.fadeShow( elemO, argObj );
             }
-            else if( _this.gStyle( elemO, 'display' ) !== 'none' ){
-                _this.fadeHide( elemO, argObj );
+            else if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                this.fadeHide( elemO, argObj );
             }
         } );
     }
@@ -3830,12 +3795,11 @@ class JS2jQuery{
      * @returns {Array} [属性值]
      */
     gAttr( elem, attrN ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
-                return document.documentElement.getAttribute( _this.remSpace( attrN ) );
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                return document.documentElement.getAttribute( this.remSpace( attrN ) );
             }
-            return elemO.getAttribute( _this.remSpace( attrN ) );
+            return elemO.getAttribute( this.remSpace( attrN ) );
         } );
     }
 
@@ -3848,11 +3812,10 @@ class JS2jQuery{
      * @returns {Array} [JSON Object({})]
      */
     gAttrAll( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             let attrs = {},
                 result = {};
-            ( _this.isDocument( elemO ) || _this.isWindow( elemO ) )
+            ( this.isDocument( elemO ) || this.isWindow( elemO ) )
             ? ( attrs = document.documentElement.attributes )
             : ( attrs = elemO.attributes );
             result[ 'length' ] = attrs.length;
@@ -3875,18 +3838,17 @@ class JS2jQuery{
      * @returns {Array} [HTMLCollection(实时的节点集合)]
      */
     gChildren( elem, selector ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isWindow( elemO ) && _this.isUndefined( selector ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isWindow( elemO ) && this.isUndefined( selector ) ){
                 return document.children;
             }
-            else if( _this.isWindow( elemO ) && !_this.isUndefined( selector ) ){
-                return IsHandle17.call( _this, Array.from( document.children ), document.querySelectorAll( selector ) );
+            else if( this.isWindow( elemO ) && !this.isUndefined( selector ) ){
+                return IsHandle17.call( this, Array.from( document.children ), document.querySelectorAll( selector ) );
             }
-            if( _this.isUndefined( selector ) ){
+            if( this.isUndefined( selector ) ){
                 return elemO.children;
             }
-            return IsHandle17.call( _this, Array.from( elemO.children ), elemO.querySelectorAll( selector ) );
+            return IsHandle17.call( this, Array.from( elemO.children ), elemO.querySelectorAll( selector ) );
         } );
     }
 
@@ -3903,18 +3865,17 @@ class JS2jQuery{
      * @returns {Array} [HTMLCollection(实时的节点集合)]
      */
     gChildrenAll( elem, selector ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isWindow( elemO ) && _this.isUndefined( selector ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isWindow( elemO ) && this.isUndefined( selector ) ){
                 return document.getElementsByTagName( '*' );
             }
-            else if( _this.isWindow( elemO ) && !_this.isUndefined( selector ) ){
-                return IsHandle17.call( _this, Array.from( document.getElementsByTagName( '*' ) ), document.querySelectorAll( selector ) );
+            else if( this.isWindow( elemO ) && !this.isUndefined( selector ) ){
+                return IsHandle17.call( this, Array.from( document.getElementsByTagName( '*' ) ), document.querySelectorAll( selector ) );
             }
-            if( _this.isUndefined( selector ) ){
+            if( this.isUndefined( selector ) ){
                 return elemO.getElementsByTagName( '*' );
             }
-            return IsHandle17.call( _this, Array.from( elemO.getElementsByTagName( '*' ) ), elemO.querySelectorAll( selector ) );
+            return IsHandle17.call( this, Array.from( elemO.getElementsByTagName( '*' ) ), elemO.querySelectorAll( selector ) );
         } );
     }
 
@@ -3927,9 +3888,8 @@ class JS2jQuery{
      * @returns {Array} [number]
      */
     gChildrenL( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isWindow( elemO ) ){
                 return document.childElementCount;
             }
             return elemO.childElementCount;
@@ -3949,9 +3909,8 @@ class JS2jQuery{
      * @returns {Array} [DOMTokenList]，DOMTokenList.length(数组长度)，DOMTokenList.value(一个类名集合的字符串，如：'a b c d')
      */
     gClassN( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return document.documentElement.classList;
             }
             return elemO.classList;
@@ -3972,20 +3931,19 @@ class JS2jQuery{
      * @returns {Array} [ { value: '', priority: '' } ]，如：[ { value: '10px', priority: 'important' } ]
      */
     gCSSPro( elem, attrN ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return {
-                    value: document.documentElement.style.getPropertyValue( _this.remSpace( attrN ) )
+                    value: document.documentElement.style.getPropertyValue( this.remSpace( attrN ) )
                                    .trim(),
-                    priority: document.documentElement.style.getPropertyPriority( _this.remSpace( attrN ) )
+                    priority: document.documentElement.style.getPropertyPriority( this.remSpace( attrN ) )
                                       .trim(),
                 };
             }
             return {
-                value: elemO.style.getPropertyValue( _this.remSpace( attrN ) )
+                value: elemO.style.getPropertyValue( this.remSpace( attrN ) )
                             .trim(),
-                priority: elemO.style.getPropertyPriority( _this.remSpace( attrN ) )
+                priority: elemO.style.getPropertyPriority( this.remSpace( attrN ) )
                                .trim(),
             };
         } );
@@ -4000,9 +3958,8 @@ class JS2jQuery{
      * @returns {Array} [Element]，如果没有会返回[null]，也就是数组里头会有null的子元素存在
      */
     gFEChild( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isWindow( elemO ) ){
                 return document.firstElementChild;
             }
             return elemO.firstElementChild;
@@ -4018,9 +3975,8 @@ class JS2jQuery{
      * @returns {Array} [Element]，如果没有会返回[null]，也就是数组里头会有null的子元素存在
      */
     gLEChild( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isWindow( elemO ) ){
                 return document.lastElementChild;
             }
             return elemO.lastElementChild;
@@ -4040,15 +3996,14 @@ class JS2jQuery{
      * @returns {Array} [[Element]]|[null]，一个二维数组，第一维的数据类型是数组，第二维的数据类型是Element
      */
     gNextAll( elem, selector ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
             }
             let handle = elemO => elemO.nextElementSibling,
                 arr = [],
                 start = handle( elemO );
-            if( _this.isNull( start ) ){
+            if( this.isNull( start ) ){
                 return null;
             }
             do{
@@ -4056,10 +4011,10 @@ class JS2jQuery{
                 start = handle( start );
             }
             while( start );
-            if( _this.isUndefined( selector ) ){
+            if( this.isUndefined( selector ) ){
                 return arr;
             }
-            return IsHandle17.call( _this, arr, _this.gPElem( elemO )[ 0 ].querySelectorAll( selector ) );
+            return IsHandle17.call( this, arr, this.gPElem( elemO )[ 0 ].querySelectorAll( selector ) );
         } );
     }
 
@@ -4074,9 +4029,8 @@ class JS2jQuery{
      * @returns {Array} [Element]|[null]
      */
     gNextOne( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
             }
             return elemO.nextElementSibling;
@@ -4094,9 +4048,8 @@ class JS2jQuery{
      * @returns {Array} [Element]|[null]
      */
     gPElem( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
             }
             return elemO.parentNode;
@@ -4116,9 +4069,8 @@ class JS2jQuery{
      * @returns {Array} [[Element]]|[null]，一个二维数组，第一维的数据类型是数组，第二维的数据类型是Element
      */
     gPElemAll( elem, selector ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
             }
             let handle = elemO => elemO.parentNode,
@@ -4132,10 +4084,10 @@ class JS2jQuery{
                 start = handle( start );
             }
             while( start.nodeName !== '#document' );
-            if( _this.isUndefined( selector ) ){
+            if( this.isUndefined( selector ) ){
                 return arr;
             }
-            return IsHandle17.call( _this, arr, document.querySelectorAll( selector ) );
+            return IsHandle17.call( this, arr, document.querySelectorAll( selector ) );
         } );
     }
 
@@ -4152,15 +4104,14 @@ class JS2jQuery{
      * @returns {Array} [[Element]]|[null]，一个二维数组，第一维的数据类型是数组，第二维的数据类型是Element
      */
     gPrevAll( elem, selector ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
             }
             let handle = elemO => elemO.previousElementSibling,
                 arr = [],
                 start = handle( elemO );
-            if( _this.isNull( start ) ){
+            if( this.isNull( start ) ){
                 return null;
             }
             do{
@@ -4168,10 +4119,10 @@ class JS2jQuery{
                 start = handle( start );
             }
             while( start );
-            if( _this.isUndefined( selector ) ){
+            if( this.isUndefined( selector ) ){
                 return arr;
             }
-            return IsHandle17.call( _this, arr, _this.gPElem( elemO )[ 0 ].querySelectorAll( selector ) );
+            return IsHandle17.call( this, arr, this.gPElem( elemO )[ 0 ].querySelectorAll( selector ) );
         } );
     }
 
@@ -4186,9 +4137,8 @@ class JS2jQuery{
      * @returns {Array} [Element]|[null]
      */
     gPrevOne( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
             }
             return elemO.previousElementSibling;
@@ -4208,15 +4158,14 @@ class JS2jQuery{
      * @returns {Array} [[Element]]|[null]，一个二维数组，第一维的数据类型是数组，第二维的数据类型是Element
      */
     gSibElem( elem, selector ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) || IsHandle1.call( _this, elemO, 'HTMLHtmlElement' ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) || IsHandle1.call( this, elemO, 'HTMLHtmlElement' ) ){
                 return null;
             }
-            if( _this.isUndefined( selector ) ){
+            if( this.isUndefined( selector ) ){
                 return Array.prototype.filter.call( elemO.parentNode.children, child => child !== elemO );
             }
-            return IsHandle17.call( _this, Array.prototype.filter.call( elemO.parentNode.children, child => child !== elemO ), _this.gPElem( elemO )[ 0 ].querySelectorAll( selector ) );
+            return IsHandle17.call( this, Array.prototype.filter.call( elemO.parentNode.children, child => child !== elemO ), this.gPElem( elemO )[ 0 ].querySelectorAll( selector ) );
         } );
     }
 
@@ -4235,23 +4184,22 @@ class JS2jQuery{
      * @returns {String|Array} string|[string]
      */
     gStyle( elem, styleN, pseudoElt = null ){
-        let _this = this;
-        if( _this.isArray( styleN ) && styleN.length !== 0 ){
+        if( this.isArray( styleN ) && styleN.length !== 0 ){
             let result = [];
-            styleN.forEach( currentValue => void ( result.push( IsHandle13.call( _this, elem, elemO => {
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
-                    return document.defaultView.getComputedStyle( document.documentElement, pseudoElt )[ _this.trim( currentValue ) ];
+            styleN.forEach( currentValue => void ( result.push( IsHandle13.call( this, elem, elemO => {
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                    return document.defaultView.getComputedStyle( document.documentElement, pseudoElt )[ this.trim( currentValue ) ];
                 }
-                return document.defaultView.getComputedStyle( elemO, pseudoElt )[ _this.trim( currentValue ) ];
+                return document.defaultView.getComputedStyle( elemO, pseudoElt )[ this.trim( currentValue ) ];
             } ) ) ) );
             return result;
         }
-        else if( _this.isString( styleN ) && _this.trim( styleN ).length !== 0 ){
-            return IsHandle13.call( _this, elem, elemO => {
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
-                    return document.defaultView.getComputedStyle( document.documentElement, pseudoElt )[ _this.trim( styleN ) ];
+        else if( this.isString( styleN ) && this.trim( styleN ).length !== 0 ){
+            return IsHandle13.call( this, elem, elemO => {
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                    return document.defaultView.getComputedStyle( document.documentElement, pseudoElt )[ this.trim( styleN ) ];
                 }
-                return document.defaultView.getComputedStyle( elemO, pseudoElt )[ _this.trim( styleN ) ];
+                return document.defaultView.getComputedStyle( elemO, pseudoElt )[ this.trim( styleN ) ];
             } );
         }
     }
@@ -4267,12 +4215,11 @@ class JS2jQuery{
      * @returns {Array} [布尔值]
      */
     hasAttr( elem, attrN ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
-                return document.documentElement.hasAttribute( _this.remSpace( attrN ) );
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                return document.documentElement.hasAttribute( this.remSpace( attrN ) );
             }
-            return elemO.hasAttribute( _this.remSpace( attrN ) );
+            return elemO.hasAttribute( this.remSpace( attrN ) );
         } );
     }
 
@@ -4289,12 +4236,11 @@ class JS2jQuery{
      * @returns {Array} [boolean]
      */
     hasClass( elem, classN ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
-                return document.documentElement.classList.contains( _this.remSpace( classN ) );
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                return document.documentElement.classList.contains( this.remSpace( classN ) );
             }
-            return elemO.classList.contains( _this.remSpace( classN ) );
+            return elemO.classList.contains( this.remSpace( classN ) );
         } );
     }
 
@@ -4311,17 +4257,16 @@ class JS2jQuery{
      * @returns {Array} [boolean]，存在true，不存在false
      */
     hasData( elem, dataName ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             let storage = elemO.ctoElemDataStorage;
             if( !( 'ctoElemDataStorage' in elemO ) ){
                 console.warn( 'hasData函数--->ctoElemDataStoragew未定义！' );
                 return undefined;
             }
-            else if( _this.remSpace( dataName ) in storage ){
+            else if( this.remSpace( dataName ) in storage ){
                 return true;
             }
-            else if( !( _this.remSpace( dataName ) in storage ) ){
+            else if( !( this.remSpace( dataName ) in storage ) ){
                 return false;
             }
         } );
@@ -4338,24 +4283,23 @@ class JS2jQuery{
      * @returns {Array} [Float|String]
      */
     height( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isWindow( elemO ) ){
                 return elemO.innerHeight;
             }
-            else if( _this.isDocument( elemO ) ){
-                let result1 = _this.gStyle( elemO.documentElement, 'height' ),
+            else if( this.isDocument( elemO ) ){
+                let result1 = this.gStyle( elemO.documentElement, 'height' ),
                     result2 = parseFloat( result1 );
 
-                return _this.isNaN( result2 )
+                return this.isNaN( result2 )
                        ? result1
                        : result2;
             }
-            else if( _this.isElement( elemO ) ){
-                let result1 = _this.gStyle( elemO, 'height' ),
+            else if( this.isElement( elemO ) ){
+                let result1 = this.gStyle( elemO, 'height' ),
                     result2 = parseFloat( result1 );
 
-                return _this.isNaN( result2 )
+                return this.isNaN( result2 )
                        ? result1
                        : result2;
             }
@@ -4377,21 +4321,20 @@ class JS2jQuery{
      *   fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选
      */
     hide( elem, para = {} ){
-        let _this = this,
-            argObj = Object.assign( {
-                time: 0,
-                easing: 'linear',
-                fun: element => {
-                },
-            }, para );
-        ( _this.isDocument( elem ) || _this.isWindow( elem ) ) && ( elem = document.documentElement );
-        IsHandle10.call( _this, elem, elemO => {
-            if( _this.gStyle( elemO, 'display' ) !== 'none' ){
-                IsHandle19( _this, elemO );
-                _this.sStyle( elemO, {
+        let argObj = Object.assign( {
+            time: 0,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
+        ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
+        IsHandle10.call( this, elem, elemO => {
+            if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                IsHandle19( this, elemO );
+                this.sStyle( elemO, {
                     overflow: 'hidden',
                 } );
-                _this.animate( elemO, {
+                this.animate( elemO, {
                     opacity: 0,
                     // 'font-size': 0,
                     width: 0,
@@ -4404,11 +4347,11 @@ class JS2jQuery{
                     duration: argObj.time,
                     easing: argObj.easing,
                     complete: elementArr => {
-                        _this.sAttr( elementArr[ 0 ], {
+                        this.sAttr( elementArr[ 0 ], {
                             style: 'display:none;',
                             hide: 'hide',
                         } );
-                        _this.rAttr( elementArr[ 0 ], [
+                        this.rAttr( elementArr[ 0 ], [
                             'fadeHide',
                             'fadeShow',
                             'fadeTo',
@@ -4439,16 +4382,15 @@ class JS2jQuery{
      * @returns {Array} [Element|HTML片段]
      */
     html( elem, htmlS ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isUndefined( htmlS ) ){
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isUndefined( htmlS ) ){
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                     return document.documentElement.innerHTML;
                 }
                 return elemO.innerHTML;
             }
             else{
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                     document.documentElement.innerHTML = htmlS;
                     return elemO;
                 }
@@ -4515,7 +4457,6 @@ class JS2jQuery{
      *  isR：数据类型是布尔值，是否替换已有的同名的样式规则，默认是false不替换<br /><br />
      */
     insertRule( cssRuleO, para = {} ){
-        let _this = this;
         for( let keyName in
             cssRuleO ){
             let ruleN = keyName,
@@ -4526,10 +4467,10 @@ class JS2jQuery{
                     isR: false,
                 }, para ),
                 len = document.styleSheets.length,
-                is1 = _this.isNull( paraInitInit.cssStyleSheet ) || _this.isUndefined( paraInitInit.cssStyleSheet ),
+                is1 = this.isNull( paraInitInit.cssStyleSheet ) || this.isUndefined( paraInitInit.cssStyleSheet ),
                 handle = cssStyleSheet => {
                     let len = cssStyleSheet.cssRules.length,
-                        in1 = !_this.isNull( paraInitInit.index )
+                        in1 = !this.isNull( paraInitInit.index )
                               ? paraInitInit.index
                               : len;
                     if( paraInitInit.isR && len === 0 ){
@@ -4539,8 +4480,8 @@ class JS2jQuery{
                         Array.from( cssStyleSheet.cssRules )
                              .forEach( ( v, i, ) => {
                                  if( name in v
-                                     ? v.name === _this.trim( ruleN )
-                                     : v.selectorText === _this.trim( ruleN ) ){
+                                     ? v.name === this.trim( ruleN )
+                                     : v.selectorText === this.trim( ruleN ) ){
                                      cssStyleSheet.deleteRule( i );
                                  }
                              } );
@@ -4551,7 +4492,7 @@ class JS2jQuery{
                     }
                 };
             if( is1 && len === 0 ){
-                _this.iInsertA( document.head, _this.cElem( {
+                this.iInsertA( document.head, this.cElem( {
                     tagName: 'style',
                     data: dataStr,
                     isText: true,
@@ -4579,10 +4520,9 @@ class JS2jQuery{
      * @returns {Array} [boolean]，包含true，否则false
      */
     isContains( elem, childE ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            let cE = IsHandle13.call( _this, childE, elemO => elemO );
-            if( _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            let cE = IsHandle13.call( this, childE, elemO => elemO );
+            if( this.isWindow( elemO ) ){
                 return document !== cE && document.contains( cE );
             }
             return elemO !== cE && elemO.contains( cE );
@@ -4600,9 +4540,8 @@ class JS2jQuery{
      * @returns {Array} [boolean]，没有子元素(文本、空格也算子元素)返回true，有子节点返回false
      */
     isNoChild( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isWindow( elemO ) ){
                 return !document.hasChildNodes();
             }
             return !elemO.hasChildNodes();
@@ -4620,9 +4559,8 @@ class JS2jQuery{
      * @returns {Array} [boolean]，没有子节点(文本、空格不算子节点)返回true，有子节点返回false
      */
     isNoEChild( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isWindow( elemO ) ){
                 return document.firstElementChild === null;
             }
             return elemO.firstElementChild === null;
@@ -4654,16 +4592,15 @@ class JS2jQuery{
      * @returns {Array} [Element|HTML片段]
      */
     oHTML( elem, htmlS ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isUndefined( htmlS ) ){
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isUndefined( htmlS ) ){
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                     return document.documentElement.outerHTML;
                 }
                 return elemO.outerHTML;
             }
             else{
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                     document.documentElement.outerHTML = htmlS;
                     return elemO;
                 }
@@ -4718,23 +4655,22 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     rAttr( elem, attrN ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isArray( attrN ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isArray( attrN ) ){
                 attrN.forEach( currentValue => {
-                    if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
-                        document.documentElement.removeAttribute( _this.remSpace( currentValue ) );
+                    if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                        document.documentElement.removeAttribute( this.remSpace( currentValue ) );
                     }
                     else{
-                        elemO.removeAttribute( _this.remSpace( currentValue ) );
+                        elemO.removeAttribute( this.remSpace( currentValue ) );
                     }
                 } );
             }
-            else if( !_this.isArray( attrN ) && ( _this.isDocument( elemO ) || _this.isWindow( elemO ) ) ){
-                document.documentElement.removeAttribute( _this.remSpace( attrN ) );
+            else if( !this.isArray( attrN ) && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                document.documentElement.removeAttribute( this.remSpace( attrN ) );
             }
-            else if( !_this.isArray( attrN ) && !( _this.isDocument( elemO ) || _this.isWindow( elemO ) ) ){
-                elemO.removeAttribute( _this.remSpace( attrN ) );
+            else if( !this.isArray( attrN ) && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                elemO.removeAttribute( this.remSpace( attrN ) );
             }
             return elemO;
         } );
@@ -4754,9 +4690,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     rCE( elem, f, options = false ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            _this.isTouch()
+        return IsHandle10.call( this, elem, elemO => {
+            this.isTouch()
             ? ( elemO.removeEventListener( 'tap', f, options ) )
             : ( elemO.removeEventListener( 'click', f, options ) );
             return elemO;
@@ -4795,23 +4730,22 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     rCSSPro( elem, attrN ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isArray( attrN ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isArray( attrN ) ){
                 attrN.forEach( currentValue => {
-                    if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
-                        document.documentElement.style.removeProperty( _this.remSpace( currentValue ) );
+                    if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                        document.documentElement.style.removeProperty( this.remSpace( currentValue ) );
                     }
                     else{
-                        elemO.style.removeProperty( _this.remSpace( currentValue ) );
+                        elemO.style.removeProperty( this.remSpace( currentValue ) );
                     }
                 } );
             }
-            else if( !_this.isArray( attrN ) && ( _this.isDocument( elemO ) || _this.isWindow( elemO ) ) ){
-                document.documentElement.style.removeProperty( _this.remSpace( attrN ) );
+            else if( !this.isArray( attrN ) && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                document.documentElement.style.removeProperty( this.remSpace( attrN ) );
             }
-            else if( !_this.isArray( attrN ) && !( _this.isDocument( elemO ) || _this.isWindow( elemO ) ) ){
-                elemO.style.removeProperty( _this.remSpace( attrN ) );
+            else if( !this.isArray( attrN ) && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                elemO.style.removeProperty( this.remSpace( attrN ) );
             }
             return elemO;
         } );
@@ -4828,9 +4762,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     rElem( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 document.documentElement.remove();
                 return elemO;
             }
@@ -4873,18 +4806,17 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     removeData( elem, dataName ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             let storage = elemO.ctoElemDataStorage;
             if( !( 'ctoElemDataStorage' in elemO ) ){
                 console.warn( 'removeData函数--->ctoElemDataStoragew未定义！' );
                 return undefined;
             }
-            else if( _this.remSpace( dataName ) in storage ){
-                delete storage[ _this.remSpace( dataName ) ];
+            else if( this.remSpace( dataName ) in storage ){
+                delete storage[ this.remSpace( dataName ) ];
                 return elemO;
             }
-            else if( !( _this.remSpace( dataName ) in storage ) ){
+            else if( !( this.remSpace( dataName ) in storage ) ){
                 return elemO;
             }
         } );
@@ -4903,9 +4835,8 @@ class JS2jQuery{
      * @returns {Array} [Element(被替换掉的节点)]
      */
     replaceWith( elem, data ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 document.documentElement.replaceWith( data );
                 return elemO;
             }
@@ -4925,15 +4856,14 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     sAttr( elem, attrO ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             for( let key in
                 attrO ){
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
-                    document.documentElement.setAttribute( _this.remSpace( key ), attrO[ key ] );
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                    document.documentElement.setAttribute( this.remSpace( key ), attrO[ key ] );
                 }
                 else{
-                    elemO.setAttribute( _this.remSpace( key ), attrO[ key ] );
+                    elemO.setAttribute( this.remSpace( key ), attrO[ key ] );
                 }
             }
             return elemO;
@@ -4963,19 +4893,18 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     sCSSPro( elem, attrO ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             for( let key in
                 attrO ){
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
-                    document.documentElement.style.setProperty( _this.remSpace( key ), attrO[ key ].value, 'priority' in attrO[ key ]
-                                                                                                           ? attrO[ key ].priority
-                                                                                                           : '' );
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                    document.documentElement.style.setProperty( this.remSpace( key ), attrO[ key ].value, 'priority' in attrO[ key ]
+                                                                                                          ? attrO[ key ].priority
+                                                                                                          : '' );
                 }
                 else{
-                    elemO.style.setProperty( _this.remSpace( key ), attrO[ key ].value, 'priority' in attrO[ key ]
-                                                                                        ? attrO[ key ].priority
-                                                                                        : '' );
+                    elemO.style.setProperty( this.remSpace( key ), attrO[ key ].value, 'priority' in attrO[ key ]
+                                                                                       ? attrO[ key ].priority
+                                                                                       : '' );
                 }
             }
             return elemO;
@@ -4995,15 +4924,14 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     sStyle( elem, StyleO ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             for( let key in
                 StyleO ){
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
-                    document.documentElement.style[ _this.remSpace( key ) ] = StyleO[ key ];
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                    document.documentElement.style[ this.remSpace( key ) ] = StyleO[ key ];
                 }
                 else{
-                    elemO.style[ _this.remSpace( key ) ] = StyleO[ key ];
+                    elemO.style[ this.remSpace( key ) ] = StyleO[ key ];
                 }
             }
             return elemO;
@@ -5026,17 +4954,16 @@ class JS2jQuery{
      */
     scrollE( elem, f, num, h = ( event, elemO ) => {
     } ){
-        let _this = this;
-        return IsHandle13.call( _this, elem, elemO => {
+        return IsHandle13.call( this, elem, elemO => {
             let fun = e => {
-                IsHandle15.call( _this, () => {
-                    _this.isUndefined( num )
+                IsHandle15.call( this, () => {
+                    this.isUndefined( num )
                     ? ( f( e, elemO ) )
                     : ( elemO.scrollTop >= num
                         ? ( f( e, elemO ) )
                         : ( h( e, elemO ) ) );
                 } );
-                AllEStop.call( _this, e );
+                AllEStop.call( this, e );
             };
 
             elemO.addEventListener( 'scroll', fun, false );
@@ -5059,9 +4986,8 @@ class JS2jQuery{
      */
     scrollTop( elem, fun = elemO => {
     } ){
-        let _this = this;
-        return IsHandle13.call( _this, elem, elemO => {
-            IsHandle15.call( _this, () => {
+        return IsHandle13.call( this, elem, elemO => {
+            IsHandle15.call( this, () => {
                 let d = ( elemO.scrollTop ) / 100,
                     timer = setInterval( () => void ( elemO.scrollTop > 0
                                                       ? ( elemO.scrollTop -= d )
@@ -5173,10 +5099,9 @@ class JS2jQuery{
      * @returns {Array} [ { name: '节点的name属性的属性值', value: '节点的value属性的属性值' } ]
      */
     serializeArray( elem ){
-        let _this = this,
-            result_arr = [],
-            fun1 = ( elemTag, tagType_str ) => elemTag.tagName.toLocaleLowerCase() === tagType_str && _this.trim( elemTag.name ).length !== 0;
-        IsHandle13.call( _this, elem, elem_obj => {
+        let result_arr = [],
+            fun1 = ( elemTag, tagType_str ) => elemTag.tagName.toLocaleLowerCase() === tagType_str && this.trim( elemTag.name ).length !== 0;
+        IsHandle13.call( this, elem, elem_obj => {
             if( elem_obj.tagName.toLocaleLowerCase() === 'form' ){
                 // elem_arrC的数据类型是HTMLFormControlsCollection，类数组
                 const elem_arrC = elem_obj.elements;
@@ -5186,33 +5111,33 @@ class JS2jQuery{
                              Array.from( c.selectedOptions )
                                   .forEach( c1 => {
                                       result_arr.push( {
-                                          name: _this.trim( c.name ),
+                                          name: this.trim( c.name ),
                                           value: c1.value || c1.text
                                       } );
                                   } );
                          }
                          else if( fun1( c, 'textarea' ) ){
                              result_arr.push( {
-                                 name: _this.trim( c.name ),
+                                 name: this.trim( c.name ),
                                  value: c.value.replace( /\r?\n/g, '\r\n' )
                              } );
                          }
                          else if( fun1( c, 'input' ) && !c.disabled && c.type !== 'file' && c.type !== 'submit' && c.type !== 'button' && c.type !== 'image' && c.type !== 'reset' ){
                              if( c.type === 'radio' && c.checked ){
                                  result_arr.push( {
-                                     name: _this.trim( c.name ),
+                                     name: this.trim( c.name ),
                                      value: c.value
                                  } );
                              }
                              if( c.type === 'checkbox' && c.checked ){
                                  result_arr.push( {
-                                     name: _this.trim( c.name ),
+                                     name: this.trim( c.name ),
                                      value: c.value
                                  } );
                              }
                              if( c.type !== 'radio' && c.type !== 'checkbox' ){
                                  result_arr.push( {
-                                     name: _this.trim( c.name ),
+                                     name: this.trim( c.name ),
                                      value: c.value
                                  } );
                              }
@@ -5238,30 +5163,29 @@ class JS2jQuery{
      *   fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选
      */
     show( elem, para = {} ){
-        let _this = this,
-            argObj = Object.assign( {
-                time: 0,
-                easing: 'linear',
-                fun: element => {
-                },
-            }, para );
-        ( _this.isDocument( elem ) || _this.isWindow( elem ) ) && ( elem = document.documentElement );
-        IsHandle10.call( _this, elem, elemO => {
-            let styleObj = _this.data( elemO, 'style3Obj' )[ 0 ];
-            if( _this.gStyle( elemO, 'display' ) === 'none' && styleObj !== undefined && styleObj !== null ){
-                _this.sAttr( elemO, {
+        let argObj = Object.assign( {
+            time: 0,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
+        ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
+        IsHandle10.call( this, elem, elemO => {
+            let styleObj = this.data( elemO, 'style3Obj' )[ 0 ];
+            if( this.gStyle( elemO, 'display' ) === 'none' && styleObj !== undefined && styleObj !== null ){
+                this.sAttr( elemO, {
                     // font-size:0;
                     style: 'overflow:hidden;opacity:0;width:0;height:0;padding:0;border-width:0;margin:0;outline-width:0;',
                 } );
-                _this.animate( elemO, styleObj, {
+                this.animate( elemO, styleObj, {
                     duration: argObj.time,
                     easing: argObj.easing,
                     complete: elementArr => {
-                        _this.sAttr( elemO, {
+                        this.sAttr( elemO, {
                             style: '',
                             show: 'show',
                         } );
-                        _this.rAttr( elementArr[ 0 ], [
+                        this.rAttr( elementArr[ 0 ], [
                             'fadeHide',
                             'fadeShow',
                             'fadeTo',
@@ -5294,21 +5218,20 @@ class JS2jQuery{
      *   fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选
      */
     slideHide( elem, para = {} ){
-        let _this = this,
-            argObj = Object.assign( {
-                time: 300,
-                easing: 'linear',
-                fun: element => {
-                },
-            }, para );
-        ( _this.isDocument( elem ) || _this.isWindow( elem ) ) && ( elem = document.documentElement );
-        IsHandle10.call( _this, elem, elemO => {
-            if( _this.gStyle( elemO, 'display' ) !== 'none' ){
-                IsHandle19( _this, elemO );
-                _this.sStyle( elemO, {
+        let argObj = Object.assign( {
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
+        ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
+        IsHandle10.call( this, elem, elemO => {
+            if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                IsHandle19( this, elemO );
+                this.sStyle( elemO, {
                     overflow: 'hidden',
                 } );
-                _this.animate( elemO, {
+                this.animate( elemO, {
                     height: 0,
                     'padding-top': 0,
                     'padding-bottom': 0,
@@ -5318,11 +5241,11 @@ class JS2jQuery{
                     duration: argObj.time,
                     easing: argObj.easing,
                     complete: elementArr => {
-                        _this.sAttr( elementArr[ 0 ], {
+                        this.sAttr( elementArr[ 0 ], {
                             style: 'display:none;',
                             slideHide: 'slideHide',
                         } );
-                        _this.rAttr( elementArr[ 0 ], [
+                        this.rAttr( elementArr[ 0 ], [
                             'fadeHide',
                             'fadeShow',
                             'fadeTo',
@@ -5355,17 +5278,16 @@ class JS2jQuery{
      *   fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选
      */
     slideShow( elem, para = {} ){
-        let _this = this,
-            argObj = Object.assign( {
-                time: 300,
-                easing: 'linear',
-                fun: element => {
-                },
-            }, para );
-        ( _this.isDocument( elem ) || _this.isWindow( elem ) ) && ( elem = document.documentElement );
-        IsHandle10.call( _this, elem, elemO => {
-            let styleObj = _this.data( elemO, 'style3Obj' )[ 0 ];
-            if( _this.gStyle( elemO, 'display' ) === 'none' && styleObj !== undefined && styleObj !== null ){
+        let argObj = Object.assign( {
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
+        ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
+        IsHandle10.call( this, elem, elemO => {
+            let styleObj = this.data( elemO, 'style3Obj' )[ 0 ];
+            if( this.gStyle( elemO, 'display' ) === 'none' && styleObj !== undefined && styleObj !== null ){
                 let styleBObj = {
                     height: styleObj[ 'height' ],
                     'padding-top': styleObj[ 'padding-top' ],
@@ -5373,18 +5295,18 @@ class JS2jQuery{
                     'margin-top': styleObj[ 'margin-top' ],
                     'margin-bottom': styleObj[ 'margin-bottom' ],
                 };
-                _this.sAttr( elemO, {
+                this.sAttr( elemO, {
                     style: 'overflow:hidden;height:0;padding-top:0;padding-bottom:0;margin-top:0;margin-bottom:0;',
                 } );
-                _this.animate( elemO, styleBObj, {
+                this.animate( elemO, styleBObj, {
                     duration: argObj.time,
                     easing: argObj.easing,
                     complete: elementArr => {
-                        _this.sAttr( elemO, {
+                        this.sAttr( elemO, {
                             style: '',
                             slideShow: 'slideShow',
                         } );
-                        _this.rAttr( elementArr[ 0 ], [
+                        this.rAttr( elementArr[ 0 ], [
                             'fadeHide',
                             'fadeShow',
                             'fadeTo',
@@ -5417,20 +5339,19 @@ class JS2jQuery{
      *   fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选
      */
     slideToggle( elem, para = {} ){
-        let _this = this,
-            argObj = Object.assign( {
-                time: 300,
-                easing: 'linear',
-                fun: element => {
-                },
-            }, para );
-        ( _this.isDocument( elem ) || _this.isWindow( elem ) ) && ( elem = document.documentElement );
-        IsHandle10.call( _this, elem, elemO => {
-            if( _this.gStyle( elemO, 'display' ) !== 'none' ){
-                _this.slideHide( elemO, argObj );
+        let argObj = Object.assign( {
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
+        ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
+        IsHandle10.call( this, elem, elemO => {
+            if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                this.slideHide( elemO, argObj );
             }
-            else if( _this.gStyle( elemO, 'display' ) === 'none' ){
-                _this.slideShow( elemO, argObj );
+            else if( this.gStyle( elemO, 'display' ) === 'none' ){
+                this.slideShow( elemO, argObj );
             }
         } );
     }
@@ -5466,16 +5387,15 @@ class JS2jQuery{
      * @returns {Array} [Element|文本字符串]
      */
     text( elem, textC ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isUndefined( textC ) ){
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isUndefined( textC ) ){
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                     return document.documentElement.textContent;
                 }
                 return elemO.textContent;
             }
             else{
-                if( _this.isDocument( elemO ) || _this.isWindow( elemO ) ){
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                     document.documentElement.textContent = textC;
                     return elemO;
                 }
@@ -5500,20 +5420,19 @@ class JS2jQuery{
      *   fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选
      */
     toggle( elem, para = {} ){
-        let _this = this,
-            argObj = Object.assign( {
-                time: 0,
-                easing: 'linear',
-                fun: element => {
-                },
-            }, para );
-        ( _this.isDocument( elem ) || _this.isWindow( elem ) ) && ( elem = document.documentElement );
-        IsHandle10.call( _this, elem, elemO => {
-            if( _this.gStyle( elemO, 'display' ) !== 'none' ){
-                _this.hide( elemO, argObj );
+        let argObj = Object.assign( {
+            time: 0,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
+        ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
+        IsHandle10.call( this, elem, elemO => {
+            if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                this.hide( elemO, argObj );
             }
-            else if( _this.gStyle( elemO, 'display' ) === 'none' ){
-                _this.show( elemO, argObj );
+            else if( this.gStyle( elemO, 'display' ) === 'none' ){
+                this.show( elemO, argObj );
             }
         } );
     }
@@ -5529,14 +5448,13 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     triggerE( elem, eventName ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
+        return IsHandle10.call( this, elem, elemO => {
             let handle = ( elemO, eventName ) => {
                 let event = document.createEvent( 'HTMLEvents' );
-                event.initEvent( _this.remSpace( eventName ), true, false );
+                event.initEvent( this.remSpace( eventName ), true, false );
                 elemO.dispatchEvent( event );
             };
-            if( _this.isArray( eventName ) ){
+            if( this.isArray( eventName ) ){
                 eventName.forEach( currentValue => void ( handle( elemO, currentValue ) ) );
             }
             else{
@@ -5557,24 +5475,23 @@ class JS2jQuery{
      * @returns {Array} [Float|String]
      */
     width( elem ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            if( _this.isWindow( elemO ) ){
+        return IsHandle10.call( this, elem, elemO => {
+            if( this.isWindow( elemO ) ){
                 return elemO.innerWidth;
             }
-            else if( _this.isDocument( elemO ) ){
-                let result1 = _this.gStyle( elemO.documentElement, 'width' ),
+            else if( this.isDocument( elemO ) ){
+                let result1 = this.gStyle( elemO.documentElement, 'width' ),
                     result2 = parseFloat( result1 );
 
-                return _this.isNaN( result2 )
+                return this.isNaN( result2 )
                        ? result1
                        : result2;
             }
-            else if( _this.isElement( elemO ) ){
-                let result1 = _this.gStyle( elemO, 'width' ),
+            else if( this.isElement( elemO ) ){
+                let result1 = this.gStyle( elemO, 'width' ),
                     result2 = parseFloat( result1 );
 
-                return _this.isNaN( result2 )
+                return this.isNaN( result2 )
                        ? result1
                        : result2;
             }
@@ -5602,11 +5519,10 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     on( elem, eType, f, options = false ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            _this.trim( eType )
-                 .split( /\s/g )
-                 .forEach( currentValue => void ( elemO.addEventListener( currentValue, f, options ) ) );
+        return IsHandle10.call( this, elem, elemO => {
+            this.trim( eType )
+                .split( /\s/g )
+                .forEach( currentValue => void ( elemO.addEventListener( currentValue, f, options ) ) );
             return elemO;
         } );
     }
@@ -5627,11 +5543,10 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     off( elem, eType, f, options = false ){
-        let _this = this;
-        return IsHandle10.call( _this, elem, elemO => {
-            _this.trim( eType )
-                 .split( /\s/g )
-                 .forEach( currentValue => void ( elemO.removeEventListener( currentValue, f, options ) ) );
+        return IsHandle10.call( this, elem, elemO => {
+            this.trim( eType )
+                .split( /\s/g )
+                .forEach( currentValue => void ( elemO.removeEventListener( currentValue, f, options ) ) );
             return elemO;
         } );
     }
@@ -5806,13 +5721,12 @@ class ObjHandle{
      * @returns {Array} [任何数据类型]，一维数组，里头的数据类型保持原样
      */
     deepTraArr1( initA = [], ...arg ){
-        let _this = this;
         arg.forEach( currentValue => {
-            if( _this.isArray( currentValue ) && currentValue.length !== 0 ){
-                _this.deepTraArr1( initA, ...currentValue );
+            if( this.isArray( currentValue ) && currentValue.length !== 0 ){
+                this.deepTraArr1( initA, ...currentValue );
             }
-            else if( _this.isElemList( currentValue ) && currentValue.length !== 0 ){
-                _this.deepTraArr1( initA, ...Array.from( currentValue ) );
+            else if( this.isElemList( currentValue ) && currentValue.length !== 0 ){
+                this.deepTraArr1( initA, ...Array.from( currentValue ) );
             }
             else{
                 initA.push( currentValue );
@@ -6072,8 +5986,7 @@ class OthersHandle{
     oriChange( sFun = ( event => {
     } ), hFun = ( event => {
     } ) ){
-        let _this = this,
-            wOri = 'orientation' in window
+        let wOri = 'orientation' in window
                    ? Math.abs( window[ 'orientation' ] )
                    : undefined,
             sOri = 'orientation' in screen
@@ -6107,7 +6020,7 @@ class OthersHandle{
             };
         if( isWOriUn && isSOriUn ){
             let f = event => {
-                _this.width( window )[ 0 ] <= _this.height( window )[ 0 ]
+                this.width( window )[ 0 ] <= this.height( window )[ 0 ]
                 ? ( sFun( event ) )
                 : ( hFun( event ) );
             };
@@ -6450,8 +6363,7 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     remOfPat( arg, patS ){
-        let _this = this;
-        return IsHandle7.call( _this, arg, a => _this.strRep( a, patS, '' ), _this.strRep( arg, patS, '' ) );
+        return IsHandle7.call( this, arg, a => this.strRep( a, patS, '' ), this.strRep( arg, patS, '' ) );
     }
 
     /**
@@ -6585,8 +6497,7 @@ class StringHandle{
      * @returns {String|Array} string|[string]
      */
     strToUCode( ...arg ){
-        let _this = this,
-            handle = str => {
+        let handle = str => {
                 let [ result, index1, index2 ] = [
                     '',
                     0,
@@ -6605,17 +6516,17 @@ class StringHandle{
                 return result;
             },
             s = String( arg[ 0 ] ),
-            isA = _this.isArray( arg[ 0 ] );
+            isA = this.isArray( arg[ 0 ] );
         if( isA && arg[ 0 ].length !== 0 ){
             let result = [];
             arg[ 0 ].forEach( currentValue => {
-                if( _this.isString( currentValue ) && currentValue.length !== 0 ){
+                if( this.isString( currentValue ) && currentValue.length !== 0 ){
                     result.push( handle( currentValue ) );
                 }
-                else if( _this.isArray( currentValue ) || _this.isObject( currentValue ) ){
+                else if( this.isArray( currentValue ) || this.isObject( currentValue ) ){
                     result.push( handle( JSON.stringify( currentValue ) ) );
                 }
-                else if( _this.isNumber( currentValue ) || _this.isBoolean( currentValue ) || _this.isNull( currentValue ) || _this.isUndefined( currentValue ) ){
+                else if( this.isNumber( currentValue ) || this.isBoolean( currentValue ) || this.isNull( currentValue ) || this.isUndefined( currentValue ) ){
                     result.push( handle( String( currentValue ) ) );
                 }
             } );
@@ -6636,25 +6547,24 @@ class StringHandle{
      * @returns {String|Array} string|[string]
      */
     uCodeToStr( ...arg ){
-        let _this = this,
-            handle = str => {
-                const isS = _this.isString( str );
-                if( isS && _this.trim( str ).length !== 0 ){
-                    let [ arr, arr1 ] = [
-                        _this.trim( str )
-                             .split( '8' ),
-                        []
-                    ];
-                    arr.forEach( currentValue => void ( arr1.push( parseInt( '0' + currentValue, 8 ) - 520 ) ) );
-                    return String.fromCodePoint( ...arr1 );
-                }
-            };
-        if( _this.isArray( arg[ 0 ] ) && arg[ 0 ].length !== 0 ){
+        let handle = str => {
+            const isS = this.isString( str );
+            if( isS && this.trim( str ).length !== 0 ){
+                let [ arr, arr1 ] = [
+                    this.trim( str )
+                        .split( '8' ),
+                    []
+                ];
+                arr.forEach( currentValue => void ( arr1.push( parseInt( '0' + currentValue, 8 ) - 520 ) ) );
+                return String.fromCodePoint( ...arr1 );
+            }
+        };
+        if( this.isArray( arg[ 0 ] ) && arg[ 0 ].length !== 0 ){
             let result = [];
             arg[ 0 ].forEach( currentValue => void ( result.push( handle( currentValue ) ) ) );
             return result;
         }
-        else if( _this.isString( arg[ 0 ] ) ){
+        else if( this.isString( arg[ 0 ] ) ){
             return handle( arg[ 0 ] );
         }
     }
@@ -6687,21 +6597,20 @@ class TouchEvent{
      * 因为内部做了判断，所以，不管调用tapSim()多少次，都只会执行一次触摸事件初始化！避免了重复注册触摸事件！
      */
     tapSim(){
-        let _this = this;
         if( window[ 'isOpenTouch4CT' ] !== true ){
             document.addEventListener( 'touchstart', event => {
-                !_this.hasData( event.target, 'disable' )[ 0 ] && _this.data( event.target, {
+                !this.hasData( event.target, 'disable' )[ 0 ] && this.data( event.target, {
                     isMoved: 0
                 } );
             }, { passive: false } );
             document.addEventListener( 'touchmove', event => {
-                !_this.hasData( event.target, 'disable' )[ 0 ] && _this.data( event.target, {
+                !this.hasData( event.target, 'disable' )[ 0 ] && this.data( event.target, {
                     isMoved: 1
                 } );
             }, { passive: false } );
             document.addEventListener( 'touchend', event => {
-                if( !_this.hasData( event.target, 'disable' )[ 0 ] && _this.data( event.target, 'isMoved' )[ 0 ] === 0 ){
-                    _this.triggerE( event.target, 'tap' );
+                if( !this.hasData( event.target, 'disable' )[ 0 ] && this.data( event.target, 'isMoved' )[ 0 ] === 0 ){
+                    this.triggerE( event.target, 'tap' );
                 }
             }, { passive: false } );
             window[ 'isOpenTouch4CT' ] = true;
@@ -6723,7 +6632,6 @@ class TouchEvent{
      * 因为内部做了判断，所以，不管调用touch()多少次，都只会执行一次触摸事件初始化！避免了重复注册触摸事件！
      */
     touch(){
-        let _this = this;
         if( window[ 'isOpenTouch4CT' ] !== true ){
             let touch = {},
                 touchTimeout,
@@ -6740,7 +6648,7 @@ class TouchEvent{
                                                        : ( y1 - y2 > 0
                                                            ? 'Up'
                                                            : 'Down' ),
-                longTap = () => void ( longTapTimeout = null, touch.last && ( touch.el && _this.triggerE( touch.el, 'longTap' ), touch = {} ) ),
+                longTap = () => void ( longTapTimeout = null, touch.last && ( touch.el && this.triggerE( touch.el, 'longTap' ), touch = {} ) ),
                 cancelLongTap = () => void ( longTapTimeout && clearTimeout( longTapTimeout ), longTapTimeout = null ),
                 cancelAll = () => {
                     touchTimeout && clearTimeout( touchTimeout );
@@ -6752,7 +6660,7 @@ class TouchEvent{
                 },
                 isPrimaryTouch = event => ( ( event.pointerType === 'touch' || event.pointerType === event.MSPOINTER_TYPE_TOUCH ) && event.isPrimary ),
                 isPointerEventType = ( e, type ) => ( e.type === 'pointer' + type || e.type.toLowerCase() === 'mspointer' + type );
-            _this.ready( () => {
+            this.ready( () => {
                 let now,
                     delta,
                     deltaX = 0,
@@ -6760,7 +6668,7 @@ class TouchEvent{
                     firstTouch,
                     _isPointerType;
                 'MSGesture' in window && ( gesture = new MSGesture(), gesture.target = document.body );
-                let doc = _this.on( document, 'MSGestureEnd', e => {
+                let doc = this.on( document, 'MSGestureEnd', e => {
                         let swipeDirectionFromVelocity = e.velocityX > 1
                                                          ? 'Right'
                                                          : e.velocityX < -1
@@ -6771,11 +6679,11 @@ class TouchEvent{
                                                                ? 'Up'
                                                                : null;
                         if( swipeDirectionFromVelocity ){
-                            touch.el && _this.triggerE( touch.el, 'swipe' );
-                            touch.el && _this.triggerE( touch.el, 'swipe' + swipeDirectionFromVelocity );
+                            touch.el && this.triggerE( touch.el, 'swipe' );
+                            touch.el && this.triggerE( touch.el, 'swipe' + swipeDirectionFromVelocity );
                         }
                     } )[ 0 ],
-                    onEle1 = _this.on( doc, 'touchstart MSPointerDown pointerdown', e => {
+                    onEle1 = this.on( doc, 'touchstart MSPointerDown pointerdown', e => {
                         if( ( _isPointerType = isPointerEventType( e, 'down' ) ) && !isPrimaryTouch( e ) ){
                             return;
                         }
@@ -6796,7 +6704,7 @@ class TouchEvent{
                         longTapTimeout = setTimeout( longTap, longTapDelay );
                         ( gesture && _isPointerType ) && gesture.addPointer( e.pointerId );
                     }, { passive: false } )[ 0 ],
-                    onEle2 = _this.on( onEle1, 'touchmove MSPointerMove pointermove', e => {
+                    onEle2 = this.on( onEle1, 'touchmove MSPointerMove pointermove', e => {
                         if( ( _isPointerType = isPointerEventType( e, 'move' ) ) && !isPrimaryTouch( e ) ){
                             return;
                         }
@@ -6811,15 +6719,15 @@ class TouchEvent{
                         // 修复Android上swipe事件(向上滑、向下滑、向左滑、向右滑)无效的情况，还要添加{ passive: false }
                         ( navigator.userAgent.includes( 'Android' ) && touch.x2 && Math.abs( touch.x1 - touch.x2 ) > 10 ) && e.preventDefault();
                     }, { passive: false } )[ 0 ],
-                    onEle3 = _this.on( onEle2, 'touchend MSPointerUp', e => {
+                    onEle3 = this.on( onEle2, 'touchend MSPointerUp', e => {
                         if( ( _isPointerType = isPointerEventType( e, 'up' ) ) && !isPrimaryTouch( e ) ){
                             return;
                         }
                         cancelLongTap();
                         if( ( touch.x2 && Math.abs( touch.x1 - touch.x2 ) > 30 ) || ( touch.y2 && Math.abs( touch.y1 - touch.y2 ) > 30 ) ){
                             swipeTimeout = setTimeout( () => {
-                                touch.el && _this.triggerE( touch.el, 'swipe' );
-                                touch.el && _this.triggerE( touch.el, 'swipe' + ( swipeDirection( touch.x1, touch.x2, touch.y1, touch.y2 ) ) );
+                                touch.el && this.triggerE( touch.el, 'swipe' );
+                                touch.el && this.triggerE( touch.el, 'swipe' + ( swipeDirection( touch.x1, touch.x2, touch.y1, touch.y2 ) ) );
                                 touch = {};
                             }, 0 );
                         }
@@ -6830,13 +6738,13 @@ class TouchEvent{
                                 event.cancelTouch = cancelAll;
                                 touch.el && touch.el.dispatchEvent( event );
                                 if( touch.isDoubleTap ){
-                                    touch.el && _this.triggerE( touch.el, 'doubleTap' );
+                                    touch.el && this.triggerE( touch.el, 'doubleTap' );
                                     touch = {};
                                 }
                                 else{
                                     touchTimeout = setTimeout( () => {
                                         touchTimeout = null;
-                                        touch.el && _this.triggerE( touch.el, 'singleTap' );
+                                        touch.el && this.triggerE( touch.el, 'singleTap' );
                                         touch = {};
                                     }, 250 );
                                 }
@@ -6847,8 +6755,8 @@ class TouchEvent{
                         }
                         deltaX = deltaY = 0;
                     }, { passive: false } )[ 0 ],
-                    onEle4 = _this.on( onEle3, 'touchcancel MSPointerCancel pointercancel', cancelAll, { passive: false } )[ 0 ];
-                _this.scrollE( window, cancelAll );
+                    onEle4 = this.on( onEle3, 'touchcancel MSPointerCancel pointercancel', cancelAll, { passive: false } )[ 0 ];
+                this.scrollE( window, cancelAll );
             } );
             window[ 'isOpenTouch4CT' ] = true;
         }
@@ -6862,7 +6770,7 @@ class TouchEvent{
             'doubleTap',
             'singleTap',
             'tap'
-        ].forEach( eventName => void ( _this[ eventName ] = ( elem, f, options = false ) => void ( _this.on( elem, eventName, f, options ) ) ) );
+        ].forEach( eventName => void ( this[ eventName ] = ( elem, f, options = false ) => void ( this.on( elem, eventName, f, options ) ) ) );
     }
 
 }
@@ -6955,11 +6863,10 @@ class UrlHandle{
      * @returns {string} 将JSON对象转换成字符串形式的URL查询参数
      */
     obj2URLSea( searchObj = {} ){
-        let _this = this,
-            searchStr = '';
+        let searchStr = '';
 
         Object.entries( searchObj )
-              .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ _this.strToUCode( keyValue ) }&` ) );
+              .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ this.strToUCode( keyValue ) }&` ) );
 
         return searchStr.slice( 0, -1 );
     }

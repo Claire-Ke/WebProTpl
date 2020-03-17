@@ -82,19 +82,18 @@ class WWorker4CT{
      * onMessageError：函数，会有一个event参数，可选。
      */
     constructor( _self, arg_obj ){
-        let _this = this,
-            pra_obj = Object.assign( {
+        let pra_obj = Object.assign( {
                 onMessage: event => {
                 },
                 onMessageError: event => void ( console.error( event.message ) ),
             }, arg_obj );
 
-        _this._self = _self;
-        _this.onMessageFun = pra_obj.onMessage;
-        _this.onMessageErrorFun = pra_obj.onMessageError;
+        this._self = _self;
+        this.onMessageFun = pra_obj.onMessage;
+        this.onMessageErrorFun = pra_obj.onMessageError;
 
-        _this._self.onmessage = event => void ( _this.onMessageFun( event ) );
-        _this._self.onmessageerror = event => void ( _this.onMessageErrorFun( event ) );
+        this._self.onmessage = event => void ( this.onMessageFun( event ) );
+        this._self.onmessageerror = event => void ( this.onMessageErrorFun( event ) );
     }
 
     /**

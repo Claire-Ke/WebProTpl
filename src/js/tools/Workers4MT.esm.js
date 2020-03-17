@@ -125,55 +125,54 @@ class ServiceWorker4MT{
             return null;
         }
 
-        let _this = this,
-            pra_obj = Object.assign( {
-                onError: event => void ( GetError( event.message ) ),
-                onMessage: event => {
-                },
-                onStateChange: stateChangeEvent => {
-                },
-                rejected: error => void ( GetError( error.message ) ),
-                resolved: swReg => {
-                },
-                scope: '/',
-            }, opt_obj );
+        let pra_obj = Object.assign( {
+            onError: event => void ( GetError( event.message ) ),
+            onMessage: event => {
+            },
+            onStateChange: stateChangeEvent => {
+            },
+            rejected: error => void ( GetError( error.message ) ),
+            resolved: swReg => {
+            },
+            scope: '/',
+        }, opt_obj );
 
-        _this.swContainer_ins = new SWContainer();
+        this.swContainer_ins = new SWContainer();
 
-        _this.#onError = pra_obj.onError;
-        _this.#onMessage = pra_obj.onMessage;
-        _this.#onStateChange = pra_obj.onStateChange;
+        this.#onError = pra_obj.onError;
+        this.#onMessage = pra_obj.onMessage;
+        this.#onStateChange = pra_obj.onStateChange;
 
-        this.swRegPromise = _this.swContainer_ins.register( url_str, {
-                                     resolved_fun: pra_obj.resolved,
-                                     rejected_fun: pra_obj.rejected,
-                                     scope_str: pra_obj.scope,
-                                 } )
-                                 .then( swReg => {
-                                     let sw = null;
+        this.swRegPromise = this.swContainer_ins.register( url_str, {
+                                    resolved_fun: pra_obj.resolved,
+                                    rejected_fun: pra_obj.rejected,
+                                    scope_str: pra_obj.scope,
+                                } )
+                                .then( swReg => {
+                                    let sw = null;
 
-                                     if( swReg.installing ){
-                                         sw = swReg.installing;
-                                     }
-                                     if( swReg.waiting ){
-                                         sw = swReg.waiting;
-                                     }
-                                     if( swReg.active ){
-                                         sw = swReg.active;
-                                     }
+                                    if( swReg.installing ){
+                                        sw = swReg.installing;
+                                    }
+                                    if( swReg.waiting ){
+                                        sw = swReg.waiting;
+                                    }
+                                    if( swReg.active ){
+                                        sw = swReg.active;
+                                    }
 
-                                     sw.onerror = _this.#onError;
-                                     sw.onmessage = _this.#onMessage;
-                                     sw.onstatechange = _this.#onStateChange;
+                                    sw.onerror = this.#onError;
+                                    sw.onmessage = this.#onMessage;
+                                    sw.onstatechange = this.#onStateChange;
 
-                                     _this.scriptURL = sw[ 'scriptURL' ];
-                                     _this.state = sw[ 'state' ];
+                                    this.scriptURL = sw[ 'scriptURL' ];
+                                    this.state = sw[ 'state' ];
 
-                                     return {
-                                         sw,
-                                         swRegIns: new SWRegistration( swReg ),
-                                     };
-                                 } );
+                                    return {
+                                        sw,
+                                        swRegIns: new SWRegistration( swReg ),
+                                    };
+                                } );
     }
 
     /**
@@ -275,24 +274,23 @@ class SWContainer{
      *  onError: event => {} // 函数，会有一个event参数，可选
      */
     constructor( onEvent = {} ){
-        let _this = this,
-            pra_obj = Object.assign( {
-                onControllerChange: event => {
-                },
-                onError: event => void ( GetError( event.message ) ),
-                onMessage: event => {
-                },
-            }, onEvent );
+        let pra_obj = Object.assign( {
+            onControllerChange: event => {
+            },
+            onError: event => void ( GetError( event.message ) ),
+            onMessage: event => {
+            },
+        }, onEvent );
 
-        _this.controller = _this.swContainer_ins.controller;
+        this.controller = this.swContainer_ins.controller;
 
-        _this.#onControllerChange = pra_obj.onControllerChange;
-        _this.#onError = pra_obj.onError;
-        _this.#onMessage = pra_obj.onMessage;
+        this.#onControllerChange = pra_obj.onControllerChange;
+        this.#onError = pra_obj.onError;
+        this.#onMessage = pra_obj.onMessage;
 
-        _this.swContainer_ins.oncontrollerchange = event => void ( _this.#onControllerChange( event ) );
-        _this.swContainer_ins.onerror = event => void ( _this.#onError( event ) );
-        _this.swContainer_ins.onmessage = event => void ( _this.#onMessage( event ) );
+        this.swContainer_ins.oncontrollerchange = event => void ( this.#onControllerChange( event ) );
+        this.swContainer_ins.onerror = event => void ( this.#onError( event ) );
+        this.swContainer_ins.onmessage = event => void ( this.#onMessage( event ) );
     }
 
     /**
@@ -538,32 +536,31 @@ class SWorker4MT{
             return null;
         }
 
-        let _this = this,
-            pra_obj = Object.assign( {
-                url: '',
-                workerInsName: '',
-                onError: event => void ( GetError( event.message ) ),
-                portOnMessage: event => {
-                },
-                portOnMessageError: event => void ( GetError( event.message ) ),
-            }, arg_obj );
+        let pra_obj = Object.assign( {
+            url: '',
+            workerInsName: '',
+            onError: event => void ( GetError( event.message ) ),
+            portOnMessage: event => {
+            },
+            portOnMessageError: event => void ( GetError( event.message ) ),
+        }, arg_obj );
 
-        _this.workerInsName_str = pra_obj.workerInsName;
-        _this.#onError_fun = pra_obj.onError;
-        _this.#portOnMessage_fun = pra_obj.portOnMessage;
-        _this.#portOnMessageError_fun = pra_obj.portOnMessageError;
+        this.workerInsName_str = pra_obj.workerInsName;
+        this.#onError_fun = pra_obj.onError;
+        this.#portOnMessage_fun = pra_obj.portOnMessage;
+        this.#portOnMessageError_fun = pra_obj.portOnMessageError;
 
-        _this[ _this.workerInsName_str ] = new SharedWorker( pra_obj.url, Object.assign( {
+        this[ this.workerInsName_str ] = new SharedWorker( pra_obj.url, Object.assign( {
             type: 'classic',
             credentials: 'omit',
             name: 'SharedWorker_' + Date.now(),
         }, opt_obj ).name );
-        _this.#port = _this[ _this.workerInsName_str ].port;
-        _this.#port.start();
+        this.#port = this[ this.workerInsName_str ].port;
+        this.#port.start();
 
-        _this[ _this.workerInsName_str ].onerror = event => void ( _this.#onError_fun( event ) );
-        _this.#port.onmessage = event => void ( _this.#portOnMessage_fun( event ) );
-        _this.#port.onmessageerror = event => void ( _this.#portOnMessageError_fun( event ) );
+        this[ this.workerInsName_str ].onerror = event => void ( this.#onError_fun( event ) );
+        this.#port.onmessage = event => void ( this.#portOnMessage_fun( event ) );
+        this.#port.onmessageerror = event => void ( this.#portOnMessageError_fun( event ) );
     }
 
     /**
@@ -770,23 +767,21 @@ class SWRegistration{
      */
     constructor( swReg, updateFound = event => {
     } ){
-        let _this = this;
+        this.active = swReg.active;
+        this.installing = swReg.installing;
+        this.navigationPreload = swReg.navigationPreload;
+        this.paymentManager = swReg.paymentManager;
+        this.periodicSync = swReg.periodicSync;
+        this.pushManager = swReg.pushManager;
+        this.scope = swReg.scope;
+        this.swReg = swReg;
+        this.sync = swReg.sync;
+        this.updateViaCache = swReg.updateViaCache;
+        this.waiting = swReg.waiting;
 
-        _this.active = swReg.active;
-        _this.installing = swReg.installing;
-        _this.navigationPreload = swReg.navigationPreload;
-        _this.paymentManager = swReg.paymentManager;
-        _this.periodicSync = swReg.periodicSync;
-        _this.pushManager = swReg.pushManager;
-        _this.scope = swReg.scope;
-        _this.swReg = swReg;
-        _this.sync = swReg.sync;
-        _this.updateViaCache = swReg.updateViaCache;
-        _this.waiting = swReg.waiting;
+        this.#updateFound = updateFound;
 
-        _this.#updateFound = updateFound;
-
-        _this.swReg.onupdatefound = event => void ( _this.#updateFound( event ) );
+        this.swReg.onupdatefound = event => void ( this.#updateFound( event ) );
     }
 
     /**
@@ -892,33 +887,32 @@ class SWRegistration{
      * @returns {Promise} A Promise that resolves to a NotificationEvent.
      */
     showNotification( title = '', options = {}, arg = {} ){
-        let _this = this,
-            permission_str = Notification.permission,
+        let permission_str = Notification.permission,
             pra_obj = Object.assign( {
                 resolved: notificationEvent => {
                 },
                 rejected: error => void ( GetError( error.message ) ),
             }, arg ),
-            fun1 = () => _this.swReg.showNotification( title, Object.assign( {
-                                  vibrate: [
-                                      200,
-                                      100,
-                                      200,
-                                      100,
-                                      200,
-                                      100,
-                                      200,
-                                  ],
-                                  lang: 'zh-CN',
-                                  dir: 'ltr',
-                                  renotify: 'false',
-                                  requireInteraction: 'true',
-                              }, options ) )
-                              .then( notificationEvent => {
-                                  pra_obj.resolved( notificationEvent );
-                                  return notificationEvent;
-                              } )
-                              .catch( pra_obj.rejected );
+            fun1 = () => this.swReg.showNotification( title, Object.assign( {
+                                 vibrate: [
+                                     200,
+                                     100,
+                                     200,
+                                     100,
+                                     200,
+                                     100,
+                                     200,
+                                 ],
+                                 lang: 'zh-CN',
+                                 dir: 'ltr',
+                                 renotify: 'false',
+                                 requireInteraction: 'true',
+                             }, options ) )
+                             .then( notificationEvent => {
+                                 pra_obj.resolved( notificationEvent );
+                                 return notificationEvent;
+                             } )
+                             .catch( pra_obj.rejected );
         if( permission_str === 'granted' ){
             return fun1();
         }
@@ -1070,7 +1064,6 @@ class WWorker4MT{
             return null;
         }
 
-        let _this = this;
         let pra_obj = Object.assign( {
             url: '',
             workerInsName: '',
@@ -1080,20 +1073,20 @@ class WWorker4MT{
             onMessageError: event => void ( GetError( event.message ) ),
         }, arg_obj );
 
-        _this.workerInsName_str = pra_obj.workerInsName;
-        _this.#onError_fun = pra_obj.onError;
-        _this.#onMessage_fun = pra_obj.onMessage;
-        _this.#onMessageError_fun = pra_obj.onMessageError;
+        this.workerInsName_str = pra_obj.workerInsName;
+        this.#onError_fun = pra_obj.onError;
+        this.#onMessage_fun = pra_obj.onMessage;
+        this.#onMessageError_fun = pra_obj.onMessageError;
 
-        _this[ _this.workerInsName_str ] = new Worker( pra_obj.url, Object.assign( {
+        this[ this.workerInsName_str ] = new Worker( pra_obj.url, Object.assign( {
             type: 'classic',
             credentials: 'omit',
             name: 'WebWorker_' + Date.now(),
         }, opt_obj ) );
 
-        _this[ _this.workerInsName_str ].onerror = event => void ( _this.#onError_fun( event ) );
-        _this[ _this.workerInsName_str ].onmessage = event => void ( _this.#onMessage_fun( event ) );
-        _this[ _this.workerInsName_str ].onmessageerror = event => void ( _this.#onMessageError_fun( event ) );
+        this[ this.workerInsName_str ].onerror = event => void ( this.#onError_fun( event ) );
+        this[ this.workerInsName_str ].onmessage = event => void ( this.#onMessage_fun( event ) );
+        this[ this.workerInsName_str ].onmessageerror = event => void ( this.#onMessageError_fun( event ) );
     }
 
     /**

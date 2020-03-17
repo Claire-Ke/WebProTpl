@@ -132,22 +132,20 @@ class SWorker4CT
 
         super( _self, pra_obj );
 
-        let _this = this;
+        this._self = _self;
+        this.onConnectFun = pra_obj.onConnect;
+        this.portOnMessageFun = pra_obj.portOnMessage;
+        this.portOnMessageErrorFun = pra_obj.portOnMessageError;
 
-        _this._self = _self;
-        _this.onConnectFun = pra_obj.onConnect;
-        _this.portOnMessageFun = pra_obj.portOnMessage;
-        _this.portOnMessageErrorFun = pra_obj.portOnMessageError;
+        this._self.onconnect = onConnectEvent => {
+            this.port = onConnectEvent.ports[ 0 ];
 
-        _this._self.onconnect = onConnectEvent => {
-            _this.port = onConnectEvent.ports[ 0 ];
+            this.port.onmessage = event => void ( this.portOnMessageFun( event, this.port, onConnectEvent ) );
+            this.port.onmessageerror = event => void ( this.portOnMessageErrorFun( event, this.port, onConnectEvent ) );
 
-            _this.port.onmessage = event => void ( _this.portOnMessageFun( event, _this.port, onConnectEvent ) );
-            _this.port.onmessageerror = event => void ( _this.portOnMessageErrorFun( event, _this.port, onConnectEvent ) );
+            this.portStart( this.port );
 
-            _this.portStart( _this.port );
-
-            _this.onConnectFun( _this.port, onConnectEvent );
+            this.onConnectFun( this.port, onConnectEvent );
         };
     }
 
