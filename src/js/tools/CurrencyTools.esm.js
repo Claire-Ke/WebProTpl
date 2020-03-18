@@ -6176,6 +6176,33 @@ class OthersHandle{
     }
 
     /**
+     * 以“Blob”的形式下载文件<br />
+     * PS：<br />
+     * Blob构造函数的第一个参数得是数组，里头成员的数据类型可以是：<br />
+     * ArrayBuffer，ArrayBufferView，Blob，USVString(编码为UTF-8)。<br />
+     * 第二个参数是一个对象(可选的)：<br />
+     * {<br />
+     * type: 将存储到Blob中的数据的MIME类型。默认值为空字符串（“”）。<br />
+     * endings: 如果数据是文本，如何解释内容中的换行符（“\n”）。默认值“transparent”将换行符复制到blob中，而不更改它们。要将换行符转换为主机系统的本机约定，请指定“endings”。
+     *
+     * @param blob Blob实例(new Blob( [ ArrayBuffer ], { type: 'application/msword',  ))，必须
+     *
+     * @param fileName 字符串，文件名(最好包括文件的后缀名)，默认值是："这是一个默认文件名(允许修改文件名和后缀)"，可选
+     */
+    download4Blob( blob, fileName = '这是一个默认文件名(允许修改文件名和后缀)' ){
+        let blobURL = window.URL.createObjectURL( blob ),
+            eleLink = document.createElement( 'a' );
+
+        eleLink.download = fileName;
+        eleLink.style.display = 'none';
+        eleLink.href = blobURL;
+        document.body.appendChild( eleLink );
+        eleLink.click();
+        document.body.removeChild( eleLink );
+        window.URL.revokeObjectURL( blobURL );
+    }
+
+    /**
      * 动态计算rem，建议尽量早的执行该代码，最好是在html标签加载完之后以及head标签加载之前就执行<br />
      * iPhone 5S/SE DPR为2 (css像素320*568) 4英寸 (设备实际像素640*1136)<br />
      * iPhone 6/6S/7/8 DPR为2 (css像素375*667) 4.7英寸 (设备实际像素750*1334)<br />
