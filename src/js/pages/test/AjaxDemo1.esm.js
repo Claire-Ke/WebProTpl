@@ -64,11 +64,9 @@ let CT = new CTESM.CT();
             success( data4ResponseType, response ){
                 console.dir( data4ResponseType );
 
-                let imgBlob = new Blob( [ data4ResponseType ], {
+                CT.fileOrBlobToDataURL( new Blob( [ data4ResponseType ], {
                     type: 'image/vnd.microsoft.icon',
-                } );
-
-                CT.fileOrBlobToDataURL( imgBlob, ( dataURL, event, fileReader ) => {
+                } ), ( dataURL, event, fileReader ) => {
                     let img = CT.dataURLToImg( dataURL );
                     img.style = 'width: 100%; height: auto;';
 
@@ -92,22 +90,9 @@ let CT = new CTESM.CT();
             success( data4ResponseType, response ){
                 console.dir( data4ResponseType );
 
-                let imgBlob = new Blob( [ data4ResponseType ], {
+                CT.download4Blob( new Blob( [ data4ResponseType ], {
                     type: 'application/x-7z-compressed',
-                } );
-
-                {
-                    let imgBlobURL = window.URL.createObjectURL( imgBlob ),
-                        eleLink = document.createElement( 'a' );
-                    eleLink.download = '1.7z';
-                    eleLink.style.display = 'none';
-                    eleLink.href = imgBlobURL;
-                    document.body.appendChild( eleLink );
-                    eleLink.click();
-                    document.body.removeChild( eleLink );
-                    window.URL.revokeObjectURL( imgBlobURL );
-                }
-
+                } ), '1.7z' );
             },
         }, {
             // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
@@ -126,22 +111,9 @@ let CT = new CTESM.CT();
             success( data4ResponseType, response ){
                 console.dir( data4ResponseType );
 
-                let imgBlob = new Blob( [ data4ResponseType ], {
+                CT.download4Blob( new Blob( [ data4ResponseType ], {
                     type: 'application/octet-stream',
-                } );
-
-                {
-                    let imgBlobURL = window.URL.createObjectURL( imgBlob ),
-                        eleLink = document.createElement( 'a' );
-                    eleLink.download = '1.exe';
-                    eleLink.style.display = 'none';
-                    eleLink.href = imgBlobURL;
-                    document.body.appendChild( eleLink );
-                    eleLink.click();
-                    document.body.removeChild( eleLink );
-                    window.URL.revokeObjectURL( imgBlobURL );
-                }
-
+                } ), '1.exe' );
             },
         }, {
             // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
@@ -160,22 +132,9 @@ let CT = new CTESM.CT();
             success( data4ResponseType, response ){
                 console.dir( data4ResponseType );
 
-                let imgBlob = new Blob( [ data4ResponseType ], {
+                CT.download4Blob( new Blob( [ data4ResponseType ], {
                     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                } );
-
-                {
-                    let imgBlobURL = window.URL.createObjectURL( imgBlob ),
-                        eleLink = document.createElement( 'a' );
-                    eleLink.download = '1.xlsx';
-                    eleLink.style.display = 'none';
-                    eleLink.href = imgBlobURL;
-                    document.body.appendChild( eleLink );
-                    eleLink.click();
-                    document.body.removeChild( eleLink );
-                    window.URL.revokeObjectURL( imgBlobURL );
-                }
-
+                } ), '1.xlsx' );
             },
         }, {
             // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
@@ -194,22 +153,9 @@ let CT = new CTESM.CT();
             success( data4ResponseType, response ){
                 console.dir( data4ResponseType );
 
-                let imgBlob = new Blob( [ data4ResponseType ], {
+                CT.download4Blob( new Blob( [ data4ResponseType ], {
                     type: 'application/msword',
-                } );
-
-                {
-                    let imgBlobURL = window.URL.createObjectURL( imgBlob ),
-                        eleLink = document.createElement( 'a' );
-                    eleLink.download = '1.doc';
-                    eleLink.style.display = 'none';
-                    eleLink.href = imgBlobURL;
-                    document.body.appendChild( eleLink );
-                    eleLink.click();
-                    document.body.removeChild( eleLink );
-                    window.URL.revokeObjectURL( imgBlobURL );
-                }
-
+                } ), '1.doc' );
             },
         }, {
             // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
