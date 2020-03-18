@@ -33,6 +33,7 @@ const routers4Get_objC = ( ( obj => {
 
     return Object.assign( obj, resultObj );
 } )( {
+    [ `/${ config9999_obj.serverName }/GETFile` ]: '../controllers/GETFile.esm.mjs',
     [ `/${ config9999_obj.serverName }/GET` ]: '../controllers/GET.esm.mjs',
     [ `/${ config9999_obj.serverName }/GetGenymotionDevicesList` ]: '../controllers/GetGenymotionDevicesList.esm.mjs',
     [ `/${ config9999_obj.serverName }/VueSSR/Index.html` ]: '../controllers/vueSSR/VueSSR.esm.mjs',

@@ -26,7 +26,7 @@ let CT = new CTESM.CT();
 
 // 测试“Node服务器”
 {
-    if( false ){
+    if( true ){
         import('./AjaxDemo1.esm.js');
     }
 }

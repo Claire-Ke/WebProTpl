@@ -171,6 +171,8 @@ class ResSRFile{
     file4Path( filePath_str = '', contentType_str = GetMIMEType( filePath_str ) ){
         let _this = this;
 
+        console.log( `response的Content-Type--->${ contentType_str }` );
+
         if( IsImg( filePath_str ) ){
             _this.img4Path( filePath_str, contentType_str );
         }

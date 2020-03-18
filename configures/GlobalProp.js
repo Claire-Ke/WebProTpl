@@ -36,7 +36,7 @@ const proName_str = 'WebProTpl',
     // 如果是：dist/devServer/pages/testPages/HelloWorld.html就填“testPages/HelloWorld.html”，建议不要再有二级目录了，没必要
     openPage_str = 'HelloWorld.html',
     // 本地开发使用的IP地址   localhost   192.168.1.105   192.168.1.2
-    localHost_str = 'localhost',
+    localHost_str = '192.168.1.2',
     // WebStorm服务器的端口
     webStormPort_num = 8081,
     // devServer(webpack.DevServer.js)的端口

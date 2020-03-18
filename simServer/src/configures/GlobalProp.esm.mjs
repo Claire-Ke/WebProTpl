@@ -24,8 +24,8 @@ import {
 const __dirname = Get__dirname( import.meta.url );
 
 const serverPort9999 = Object.freeze( {
-        // localhost   192.168.1.105   192.168.1.4
-        host: 'localhost',
+        // localhost   192.168.1.105   192.168.1.2
+        host: '192.168.1.2',
         port: 9999,
         // 整数，等待队列中客户端的最大连接数，超过后将拒绝新客户端的连接
         // 默认：2020
