@@ -2040,6 +2040,9 @@ let path = require( 'path' ),
                  */
 
                 /*语法转换插件 End*/
+
+                // 没啥效果
+                // [ '@babel/plugin-transform-strict-mode' ],
             ];
         noTest_boo && miniJS_arr.unshift( [ 'transform-remove-console' ], [ 'transform-remove-debugger' ] );
         isESM_boo

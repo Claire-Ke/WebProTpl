@@ -23,11 +23,16 @@ const fs = require( 'fs' ),
     path = require( 'path' ),
     crypto = require( 'crypto' ),
     buffer = require( 'buffer' ),
-    bufferSize_numC = buffer.constants.MAX_LENGTH - 7,
+    // 1 * 1024 * 1024 * 1024 = 1GB
+    // buffer.constants.MAX_LENGTH = 2GB
+    // 要是设置了buffer.constants.MAX_LENGTH，不报错、也不执行，直接结束了，奇怪！！！
+    bufferSize_numC = 1 * 1024 * 1024 * 1024,
     dirPath_str = path.join( __dirname, 'dir' ),
     fileName_arr = fs.readdirSync( dirPath_str )
                      .filter( c => fs.statSync( `${ dirPath_str }/${ c }` )
                          .size !== 0 );
+
+console.log( `buffer.constants.MAX_LENGTH--->${ buffer.constants.MAX_LENGTH }` );
 
 function GetPromiseIns( fileSrc_str = '', hash2Digest1_obj = { sha512: { hex: '', }, } ){
     let readStream_obj = null,

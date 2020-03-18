@@ -13,6 +13,41 @@
  * ModifyDate：20190101 00:00:00 AM
  */
 
+/**
+ * 该工具经过了如下优化(以后的代码添加、修改都应该尽量遵循如下的优化标准)：
+ * PS：
+ * 只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错。
+ *
+ * 1、函数尾调用优化；
+ * 2、算法时间复杂度优化；
+ * 3、算法空间复杂度优化；
+ */
+
+/*
+ // 严格模式注意事项
+ 1、
+ 'use strict'严格模式不会在函数内部自动深度的传递严格模式的效果。
+ PS：
+ function Fun1( x ){
+ 'use strict';
+ function Fun2( y = 1 ){
+ console.log( y );
+ }
+ Fun2();
+ }
+ 说明：
+ Fun1里的'use strict'严格模式的效果不会传递到Fun2内部！！！
+
+ 2、
+ 只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错。
+
+ 3、
+ webpack编译后的JS代码会去掉多余的'use strict'，只保留编译前每个文件的顶级'use strict'。
+
+ 4、
+ class内部的方法中存在的'use strict'，在webpack编译后会被删除。
+ */
+
 'use strict';
 
 function AllEStop( event ){
@@ -23,6 +58,8 @@ function AllEStop( event ){
 }
 
 function CAnimationFFun( id_num ){
+    'use strict';
+
     if( window.cancelAnimationFrame ){
         return window.cancelAnimationFrame( id_num );
     }
@@ -314,20 +351,28 @@ function Init( _this ){
 /**
  * @return {boolean}
  */
-function IsHandle1( ...arg ){
-    return this.dataT( arg[ 0 ] )
-               .includes( arg[ 1 ] );
+function IsHandle1( arg1, arg2 ){
+    'use strict';
+
+    return this.dataT( arg1 )
+               .includes( arg2 );
 }
 
 function IsHandle2( arg, regStr ){
-    return IsHandle7.call( this, arg[ 0 ], a1 => this.remOfPat( a1, regStr ), this.remOfPat( arg[ 0 ], regStr ) );
+    'use strict';
+
+    return IsHandle7.call( this, arg, a1 => this.remOfPat( a1, regStr ), this.remOfPat( arg, regStr ) );
 }
 
 function IsHandle3( arg1, regStr ){
-    return regStr.test( this.trim( arg1[ 0 ] ) );
+    'use strict';
+
+    return regStr.test( this.trim( arg1 ) );
 }
 
 function IsHandle4( o, f ){
+    'use strict';
+
     return f( o );
 }
 
@@ -343,6 +388,8 @@ function IsHandle5( o, s, f ){
 }
 
 function IsHandle6( elem, classN, type ){
+    'use strict';
+
     return IsHandle10.call( this, elem, elemO => {
         this.remSpace( classN )
             .split( ',' )
@@ -411,12 +458,12 @@ function IsHandle8( ar1, f, seN, rootE ){
 
 function IsHandle9( arg, f ){
     let handle = f;
-    if( this.isString( arg[ 0 ] ) && this.trim( arg[ 0 ] ).length !== 0 ){
-        return handle( arg[ 0 ] );
+    if( this.isString( arg ) && this.trim( arg ).length !== 0 ){
+        return handle( arg );
     }
-    else if( this.isArray( arg[ 0 ] ) && arg[ 0 ].length !== 0 ){
+    else if( this.isArray( arg ) && arg.length !== 0 ){
         let result = [];
-        this.dataRemRe( arg[ 0 ] )
+        this.dataRemRe( arg )
             .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue ) ) ) );
         if( result.length !== 0 ){
             return result;
@@ -478,7 +525,9 @@ function IsHandle11( elem, lenI, type ){
     return fun;
 }
 
-function IsHandle12( elem, f, type, e = 'input' ){
+function IsHandle12( elem, f, type, e ){
+    'use strict';
+
     return IsHandle10.call( this, elem, elemO => {
         elemO[ type ]( e, f, false );
         return elemO;
@@ -722,6 +771,8 @@ function IsHandle15( f ){
 }
 
 function IsHandle16( elem, data, type, text ){
+    'use strict';
+
     return IsHandle10.call( this, elem, elemO => {
         if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
             return elemO;
@@ -891,6 +942,8 @@ function Prompt( info ){
  * @return {number}
  */
 function RAnimationFFun( callback_fun ){
+    'use strict';
+
     if( window.requestAnimationFrame ){
         return window.requestAnimationFrame( callback_fun );
     }
@@ -910,13 +963,10 @@ class Canvas2Others{
      *
      * @param blob Blob对象，必须
      *
-     * @param callback 回调函数，会有3个参数canvas节点对象(HTMLCanvasElement)、image节点对象(HTMLImageElement)、context，可选
-     *
-     * @returns {String} string(dataURL)
+     * @param callback 回调函数，会有3个参数canvas节点对象(HTMLCanvasElement)、image节点对象(HTMLImageElement)、context，必须
      */
-    blobToCanvas( blob, callback = ( ( canvas, image, context ) => {
-    } ) ){
-        return this.fileOrBlobToDataURL( blob, ( dataURL, event, fileReader ) => void ( this.dataURLOrImgSrcToCanvas( dataURL, callback ) ) );
+    blobToCanvas( blob, callback ){
+        this.fileOrBlobToDataURL( blob, ( dataURL, event, fileReader ) => void ( this.dataURLOrImgSrcToCanvas( dataURL, callback ) ) );
     }
 
     /**
@@ -924,15 +974,12 @@ class Canvas2Others{
      *
      * @param blobObj Blob对象，必须
      *
-     * @param callback 回调函数，有4个参数，image, dataURL(image.src), event(Image的onload的事件函数), fileReader，可选
-     *
-     * @returns {String} string(dataURL)、Image.src的值
+     * @param callback 回调函数，有4个参数，image, dataURL(image.src), event(Image的onload的事件函数), fileReader，必须
      */
-    blobToImg( blobObj, callback = ( ( image, dataURL, event, fileReader ) => {
-    } ) ){
-        return this.fileOrBlobToDataURL( blobObj, ( dataURL, event, fileReader ) => {
+    blobToImg( blobObj, callback ){
+        this.fileOrBlobToDataURL( blobObj, ( dataURL, event, fileReader ) => {
             let image = new Image();
-            image.onload = event => void ( callback( image, dataURL, event, fileReader ) );
+            image.onload = event => void ( callback && callback( image, dataURL, event, fileReader ) );
             image.src = dataURL;
         } );
     }
@@ -942,13 +989,15 @@ class Canvas2Others{
      *
      * @param canvas canvas对象，必须
      *
-     * @param format 字符串，目标图片格式，默认，image/png，可选
+     * @param format 字符串，目标图片格式(image/png)，必须
      *
-     * @param quality number，图像品质，0.0(低)到1.0(高)，默认1.0，可选
+     * @param quality number，图像品质，0.0(低)到1.0(高)，必须
      *
      * @returns {Blob} Blob对象
      */
-    canvasToBlob( canvas, format = 'image/png', quality = 1.0 ){
+    canvasToBlob( canvas, format, quality ){
+        'use strict';
+
         return this.dataURLToBlob( this.canvasToDataURL( canvas, format, quality ) );
     }
 
@@ -957,18 +1006,22 @@ class Canvas2Others{
      *
      * @param canvas canvas节点对象(HTMLCanvasElement)，必须
      *
-     * @param format 字符串，目标图片格式，默认，image/png，可选
+     * @param format 字符串，目标图片格式(image/png)，必须
      *
-     * @param quality number，图像品质，0.0(低)到1.0(高)，默认1.0，可选
+     * @param quality number，图像品质，0.0(低)到1.0(高)，默认1.0，必须
      *
      * @returns {String} string(dataURL)
      */
-    canvasToDataURL( canvas, format = 'image/png', quality = 1.0 ){
+    canvasToDataURL( canvas, format, quality ){
+        'use strict';
+
         return canvas.toDataURL( format, quality );
     }
 
     /**
-     * canvas对象转image对象
+     * canvas对象转image对象<br />
+     * PS：<br />
+     * 返回值会传给callback回调函数的第二个参数
      *
      * @param canvas canvas节点对象(HTMLCanvasElement)，必须
      *
@@ -976,26 +1029,23 @@ class Canvas2Others{
      *
      * @param quality number，图像品质，0.0(低)到1.0(高)，默认1.0，必须
      *
-     * @param callback 回调函数，会有两个参数canvas节点对象(HTMLCanvasElement)、image节点对象(HTMLImageElement)，可选
-     *
-     * @returns {HTMLImageElement} HTMLImageElement
+     * @param callback 回调函数，会有两个参数canvas节点对象(HTMLCanvasElement)、image节点对象(HTMLImageElement)，必须
      */
     canvasToImg( canvas, format = 'image/png', quality = 1.0, callback = ( canvas, image ) => {
     } ){
         let image = new Image();
         image.onload = event => void ( callback( canvas, image ) );
         image.src = canvas.toDataURL( format, quality );
-        return image;
     }
 
     /**
-     * dataURL转canvas、imageSrc(图片地址)转canvas
+     * dataURL转canvas、imageSrc(图片地址)转canvas<br />
+     * PS：<br />
+     * HTMLCanvasElement，canvas节点对象会传给callback回调函数的第一个参数
      *
      * @param dataURL 字符串，dataURL、imageSrc(图片地址)，或者一个HTMLImageElement也行，必须
      *
-     * @param callback 回调函数，会有3个参数canvas节点对象(HTMLCanvasElement)、image节点对象(HTMLImageElement)、context对象，可选
-     *
-     * @returns {HTMLCanvasElement} HTMLCanvasElement，canvas节点对象
+     * @param callback 回调函数，会有3个参数canvas节点对象(HTMLCanvasElement)、image节点对象(HTMLImageElement)、context对象，必须
      */
     dataURLOrImgSrcToCanvas( dataURL, callback = ( canvas, image, context ) => {
     } ){
@@ -1011,7 +1061,6 @@ class Canvas2Others{
         image.src = IsHandle1.call( this, dataURL, 'HTMLImageElement' )
                     ? dataURL.src
                     : dataURL;
-        return canvas;
     }
 
     /**
@@ -1047,24 +1096,19 @@ class Canvas2Others{
     }
 
     /**
-     * File、Blob对象转dataURL
+     * File、Blob对象转dataURL<br />
+     * PS：<br />
+     * dataURL会传给callback回调函数的第一个参数
      *
      * @param obj File、Blob对象，必须
      *
-     * @param callback 回调函数，会有3个参数dataURL, event(Image的onload的事件函数), fileReader，可选
-     *
-     * @returns {String} string(dataURL)
+     * @param callback 回调函数，会有3个参数dataURL, event(Image的onload的事件函数), fileReader，必须
      */
-    fileOrBlobToDataURL( obj, callback = ( ( dataURL, event, fileReader ) => {
-    } ) ){
-        let fileReader = new FileReader(),
-            dataURL = '';
+    fileOrBlobToDataURL( obj, callback = ( dataURL, event, fileReader ) => {
+    } ){
+        let fileReader = new FileReader();
         fileReader.readAsDataURL( obj );
-        return fileReader.onload = event => {
-            dataURL = event.target[ 'result' ];
-            callback( dataURL, event, fileReader );
-            return dataURL;
-        };
+        fileReader.onload = event => void ( callback( event.target[ 'result' ], event, fileReader ) );
     }
 
     /**
@@ -1072,17 +1116,16 @@ class Canvas2Others{
      *
      * @param imgSrc imageSrc(字符串)或者图片节点(HTMLImageElement)，必须
      *
-     * @param format 字符串，目标图片格式，默认，image/png，必须
+     * @param format 字符串，目标图片格式(image/png)，必须
      *
-     * @param quality number，图像品质，0.0(低)到1.0(高)，默认1.0，必须
+     * @param quality number，图像品质，0.0(低)到1.0(高)，必须
      *
-     * @param callback 回调函数，有两个参数BlobObj、canvas，可选
-     *
-     * @returns {HTMLCanvasElement} HTMLCanvasElement，canvas节点对象
+     * @param callback 回调函数，有两个参数BlobObj、canvas，必须
      */
-    imgSrcToBlob( imgSrc, format = 'image/png', quality = 1.0, callback = ( ( BlobObj, canvas ) => {
-    } ) ){
-        return this.dataURLOrImgSrcToCanvas( imgSrc, ( canvas, image, context ) => void ( callback( this.dataURLToBlob( this.canvasToDataURL( canvas, format, quality ) ), canvas ) ) );
+    imgSrcToBlob( imgSrc, format, quality, callback ){
+        'use strict';
+
+        this.dataURLOrImgSrcToCanvas( imgSrc, ( canvas, image, context ) => void ( callback( this.dataURLToBlob( this.canvasToDataURL( canvas, format, quality ) ), canvas ) ) );
     }
 
     /**
@@ -1090,17 +1133,16 @@ class Canvas2Others{
      *
      * @param imgSrc imageSrc(字符串)或者图片节点(HTMLImageElement)，必须
      *
-     * @param format 字符串，目标图片格式，默认，image/png，必须
+     * @param format 字符串，目标图片格式(image/png)，必须
      *
-     * @param quality number，图像品质，0.0(低)到1.0(高)，默认1.0，必须
+     * @param quality number，图像品质，0.0(低)到1.0(高)，必须
      *
-     * @param callback 回调函数，有3个参数dataURL, canvas, image，可选
-     *
-     * @returns {HTMLCanvasElement} HTMLCanvasElement，canvas节点对象
+     * @param callback 回调函数，有3个参数dataURL, canvas, image，必须
      */
-    imgToDataURL( imgSrc, format = 'image/png', quality = 1.0, callback = ( ( dataURL, canvas, image ) => {
-    } ) ){
-        return this.dataURLOrImgSrcToCanvas( imgSrc, ( canvas, image, context ) => void ( callback( this.canvasToDataURL( canvas, format, quality ), canvas, image ) ) );
+    imgToDataURL( imgSrc, format, quality, callback ){
+        'use strict';
+
+        this.dataURLOrImgSrcToCanvas( imgSrc, ( canvas, image, context ) => void ( callback( this.canvasToDataURL( canvas, format, quality ), canvas, image ) ) );
     }
 
 }
@@ -1153,7 +1195,9 @@ class DataFormat{
      *
      * @returns {Boolean} boolean，格式正确的邮箱返回true，否则false
      */
-    isEmail( ...email ){
+    isEmail( email ){
+        'use strict';
+
         return IsHandle3.call( this, email, /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/ );
     }
 
@@ -1164,7 +1208,9 @@ class DataFormat{
      *
      * @returns {Boolean} boolean，格式正确的身份证号码返回true，否则false
      */
-    isID( ...id ){
+    isID( id ){
+        'use strict';
+
         return IsHandle3.call( this, id, /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/ );
     }
 
@@ -1175,7 +1221,9 @@ class DataFormat{
      *
      * @returns {Boolean} boolean，密码强度符合要求则返回true，否则false
      */
-    isPassS( ...passW ){
+    isPassS( passW ){
+        'use strict';
+
         return IsHandle3.call( this, passW, /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/ );
     }
 
@@ -1186,7 +1234,9 @@ class DataFormat{
      *
      * @returns {Boolean} boolean，格式正确的车牌号返回true，否则false
      */
-    isPlateNum( ...plateNum ){
+    isPlateNum( plateNum ){
+        'use strict';
+
         return IsHandle3.call( this, plateNum, /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/ );
     }
 
@@ -1197,7 +1247,9 @@ class DataFormat{
      *
      * @returns {Boolean} boolean，格式正确的邮政编码返回true，否则false
      */
-    isPostC( ...postCode ){
+    isPostC( postCode ){
+        'use strict';
+
         return IsHandle3.call( this, postCode, /^[1-9][0-9]{5}$/ );
     }
 
@@ -1208,7 +1260,9 @@ class DataFormat{
      *
      * @returns {Boolean} boolean，格式正确的QQ号返回true，否则false
      */
-    isQQNum( ...qqNum ){
+    isQQNum( qqNum ){
+        'use strict';
+
         return IsHandle3.call( this, qqNum, /^[1-9][0-9]{4,10}$/ );
     }
 
@@ -1219,7 +1273,9 @@ class DataFormat{
      *
      * @returns {Boolean} boolean，格式正确的手机返回true，否则false
      */
-    isTel( ...tel ){
+    isTel( tel ){
+        'use strict';
+
         return IsHandle3.call( this, tel, /^1[34578]\d{9}$/ );
     }
 
@@ -1230,7 +1286,9 @@ class DataFormat{
      *
      * @returns {Boolean} boolean，格式正确的微信号返回true，否则false
      */
-    isWXNum( ...WXNum ){
+    isWXNum( WXNum ){
+        'use strict';
+
         return IsHandle3.call( this, WXNum, /^[a-zA-Z]([-_a-zA-Z0-9]{5,19})+$/ );
     }
 
@@ -1255,8 +1313,13 @@ class ElemQuery{
      *
      * @returns {HTMLCollection|Array} HTMLCollection|[HTMLCollection]
      */
-    gByClass( classN, rootE = document ){
-        return IsHandle8.call( this, arguments, ( classS, rootO ) => {
+    gByClass( classN, rootE ){
+        'use strict';
+
+        return IsHandle8.call( this, [
+            classN,
+            rootE || document,
+        ], ( classS, rootO ) => {
             let [ selector, elemList ] = [
                 this.trim( classS ),
                 undefined
@@ -1267,7 +1330,7 @@ class ElemQuery{
                     return elemList;
                 }
             }
-        }, classN, rootE );
+        }, classN, rootE || document );
     }
 
     /**
@@ -1279,7 +1342,9 @@ class ElemQuery{
      *
      * @returns {Element|Array} Element|[Element]
      */
-    gById( ...arg ){
+    gById( arg ){
+        'use strict';
+
         return IsHandle9.call( this, arg, str => {
             let [ selector, elem ] = [
                 this.trim( str ),
@@ -1305,7 +1370,9 @@ class ElemQuery{
      *
      * @returns {NodeList|HTMLCollection|Array} 单个NodeList或单个HTMLCollection或者数组(里头是NodeList或HTMLCollection)
      */
-    gByName( ...arg ){
+    gByName( arg ){
+        'use strict';
+
         return IsHandle9.call( this, arg, str => {
             const elemList = document.getElementsByName( this.trim( str ) );
             if( elemList.length !== 0 ){
@@ -1326,13 +1393,18 @@ class ElemQuery{
      *
      * @returns {Element|Array} Element|[Element]
      */
-    gBySe( seN, rootE = document ){
-        return IsHandle8.call( this, arguments, ( seS, rootO ) => {
+    gBySe( seN, rootE ){
+        'use strict';
+
+        return IsHandle8.call( this, [
+            seN,
+            rootE || document,
+        ], ( seS, rootO ) => {
             const elemList = rootO.querySelector( this.trim( seS ) );
             if( !this.isNull( elemList ) ){
                 return elemList;
             }
-        }, seN, rootE );
+        }, seN, rootE || document );
     }
 
     /**
@@ -1347,13 +1419,18 @@ class ElemQuery{
      *
      * @returns {NodeList|Array} NodeList|[NodeList]
      */
-    gBySeAll( seN, rootE = document ){
-        return IsHandle8.call( this, arguments, ( seS, rootO ) => {
+    gBySeAll( seN, rootE ){
+        'use strict';
+
+        return IsHandle8.call( this, [
+            seN,
+            rootE || document,
+        ], ( seS, rootO ) => {
             const elemList = rootO.querySelectorAll( this.trim( seS ) );
             if( elemList.length !== 0 ){
                 return elemList;
             }
-        }, seN, rootE );
+        }, seN, rootE || document );
     }
 
     /**
@@ -1369,8 +1446,13 @@ class ElemQuery{
      *
      * @returns {HTMLCollection|Array} HTMLCollection|[HTMLCollection]
      */
-    gByTag( tagN, rootE = document ){
-        return IsHandle8.call( this, arguments, ( tagS, rootO ) => {
+    gByTag( tagN, rootE ){
+        'use strict';
+
+        return IsHandle8.call( this, [
+            tagN,
+            rootE || document,
+        ], ( tagS, rootO ) => {
             let [ selector, elemList ] = [
                 this.trim( tagS ),
                 undefined
@@ -1381,7 +1463,7 @@ class ElemQuery{
                     return elemList;
                 }
             }
-        }, tagN, rootE );
+        }, tagN, rootE || document );
     }
 
 }
@@ -1422,14 +1504,16 @@ class ES6Handle{
      * mixin指的是多个对象合成一个新的对象，新对象具有各个组成成员的接口。<br />
      * 将多个类的接口“混入”（mix in）另一个类。<br />
      * 使用的时候，只要继承这个类即可。<br />
-     * 使用如：class DistributedEdit extends mixin( Loggable, Serializable, ... ) {}
+     * 使用如：class DistributedEdit extends mixin( [ Loggable, Serializable, ... ] ) {}
      *
-     * @param mixin_classArr rest参数，每一个参数都是class类
+     * @param mixin_classArr 数组，每一个参数都是class类
      *
      * @returns {class} 返回class
      */
-    mixin( ...mixin_classArr ){
-        return MixinHandle( mixin_classArr );
+    mixin( mixin_classArr ){
+        'use strict';
+
+        return MixinHandle( ...mixin_classArr );
     }
 
     /**
@@ -1701,6 +1785,8 @@ class InputHandle{
      * @returns {Array} [Element]
      */
     enterE( elem, f ){
+        'use strict';
+
         return IsHandle12.call( this, elem, e => void ( ( e.which === 13 || e.keyCode === 13 ) && f( e ) ), 'addEventListener', 'keydown' );
     }
 
@@ -1715,6 +1801,8 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputCL( elem, lenI ){
+        'use strict';
+
         return IsHandle11.call( this, elem, lenI, 'onlyCL' );
     }
 
@@ -1729,7 +1817,9 @@ class InputHandle{
      * @returns {Array} [Element]
      */
     inputE( elem, f ){
-        return IsHandle12.call( this, elem, f, 'addEventListener' );
+        'use strict';
+
+        return IsHandle12.call( this, elem, f, 'addEventListener', 'input' );
     }
 
     /**
@@ -1743,6 +1833,8 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputLL( elem, lenI ){
+        'use strict';
+
         return IsHandle11.call( this, elem, lenI, 'onlyLL' );
     }
 
@@ -1757,6 +1849,8 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputLLCL( elem, lenI ){
+        'use strict';
+
         return IsHandle11.call( this, elem, lenI, 'onlyLLCL' );
     }
 
@@ -1771,6 +1865,8 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputN( elem, lenI ){
+        'use strict';
+
         return IsHandle11.call( this, elem, lenI, 'onlyN' );
     }
 
@@ -1785,6 +1881,8 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputNCL( elem, lenI ){
+        'use strict';
+
         return IsHandle11.call( this, elem, lenI, 'onlyNCL' );
     }
 
@@ -1799,6 +1897,8 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputNLL( elem, lenI ){
+        'use strict';
+
         return IsHandle11.call( this, elem, lenI, 'onlyNLL' );
     }
 
@@ -1813,6 +1913,8 @@ class InputHandle{
      * @returns {Array} [function] 它里头存着解除“input”事件的函数，而且它的配置选项是false
      */
     inputNLLCL( elem, lenI ){
+        'use strict';
+
         return IsHandle11.call( this, elem, lenI, 'onlyNLLCL' );
     }
 
@@ -1853,7 +1955,9 @@ class InputHandle{
      * @returns {Array} [Element]
      */
     inputRE( elem, f ){
-        return IsHandle12.call( this, elem, f, 'removeEventListener' );
+        'use strict';
+
+        return IsHandle12.call( this, elem, f, 'removeEventListener', 'input' );
     }
 
 }
@@ -1870,8 +1974,10 @@ class IsDataType{
      *
      * @returns {String} string，数据类型的字符串，如'[object HTMLDocument]'
      */
-    dataT( ...arg ){
-        return Object.prototype.toString.call( arg[ 0 ] );
+    dataT( arg ){
+        'use strict';
+
+        return Object.prototype.toString.call( arg );
     }
 
     /**
@@ -1882,6 +1988,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isArguments( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'Arguments' );
     }
 
@@ -1893,6 +2001,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isArray( arg ){
+        'use strict';
+
         return Array.isArray( arg );
     }
 
@@ -1904,6 +2014,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isBoolean( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'Boolean' );
     }
 
@@ -1915,6 +2027,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isDate( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'Date' );
     }
 
@@ -1926,6 +2040,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isDocument( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'HTMLDocument' );
     }
 
@@ -1937,6 +2053,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isElemList( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'NodeList' ) || IsHandle1.call( this, arg, 'HTMLCollection' ) || this.isJQList( arg );
     }
 
@@ -1948,6 +2066,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isElement( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'Element' ) || IsHandle1.call( this, arg, 'Document' ) || IsHandle1.call( this, arg, 'Window' );
     }
 
@@ -1983,6 +2103,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isFinite( arg ){
+        'use strict';
+
         return Number.isFinite( arg );
     }
 
@@ -1994,6 +2116,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isFormData( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'FormData' );
     }
 
@@ -2005,6 +2129,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isFunction( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'Function' );
     }
 
@@ -2019,6 +2145,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isInteger( arg ){
+        'use strict';
+
         return Number.isInteger( arg );
     }
 
@@ -2042,6 +2170,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isNaN( arg ){
+        'use strict';
+
         return Number.isNaN( arg );
     }
 
@@ -2053,6 +2183,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isNull( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'Null' );
     }
 
@@ -2075,6 +2207,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isObject( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'Object' );
     }
 
@@ -2086,6 +2220,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isRegExp( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'RegExp' );
     }
 
@@ -2098,6 +2234,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isSafeInteger( arg ){
+        'use strict';
+
         return Number.isSafeInteger( arg );
     }
 
@@ -2119,8 +2257,10 @@ class IsDataType{
      *
      * @returns {Boolean} boolean，是true，否false
      */
-    isUndefined( ...arg ){
-        return IsHandle1.call( this, arg[ 0 ], 'Undefined' );
+    isUndefined( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Undefined' );
     }
 
     /**
@@ -2131,6 +2271,8 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isWindow( arg ){
+        'use strict';
+
         return IsHandle1.call( this, arg, 'Window' );
     }
 
@@ -2398,6 +2540,8 @@ class JS2Ajax{
      * @returns {String} string
      */
     domToStr( domObj ){
+        'use strict';
+
         return new XMLSerializer().serializeToString( domObj );
     }
 
@@ -3006,7 +3150,9 @@ class JS2Ajax{
      *
      * @returns {Document} XML对象、HTML对象、SVG对象
      */
-    strToDOM( data, type = 'application/xml' ){
+    strToDOM( data, type ){
+        'use strict';
+
         return new DOMParser().parseFromString( data, type );
     }
 
@@ -3035,11 +3181,13 @@ class JS2jQuery{
      *
      * @returns {Array} [Element]
      */
-    aCE( elem, f, options = false ){
+    aCE( elem, f, options ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             this.isTouch()
-            ? ( this.tap( elemO, f, options ) )
-            : ( elemO.addEventListener( 'click', f, options ) );
+            ? ( this.tap( elemO, f, options || false ) )
+            : ( elemO.addEventListener( 'click', f, options || false ) );
             return elemO;
         } );
     }
@@ -3059,6 +3207,8 @@ class JS2jQuery{
      * @returns {Array} [DOMTokenList]，DOMTokenList.length(数组长度)，DOMTokenList.value(一个类名集合的字符串，如：'a b c d')
      */
     aClassN( elem, classN ){
+        'use strict';
+
         return IsHandle6.call( this, elem, classN, 'add' );
     }
 
@@ -3272,9 +3422,11 @@ class JS2jQuery{
      *
      * @returns {Array} [Element]
      */
-    animateCancel( elem, fun, options = false ){
+    animateCancel( elem, fun, options ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
-            this.on( elemO, 'animationcancel', fun, options );
+            this.on( elemO, 'animationcancel', fun, options || false );
             return elemO;
         } );
     }
@@ -3298,9 +3450,11 @@ class JS2jQuery{
      *
      * @returns {Array} [Element]
      */
-    animateEnd( elem, fun, options = false ){
+    animateEnd( elem, fun, options ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
-            this.on( elemO, 'animationend', fun, options );
+            this.on( elemO, 'animationend', fun, options || false );
             return elemO;
         } );
     }
@@ -3324,9 +3478,11 @@ class JS2jQuery{
      *
      * @returns {Array} [Element]
      */
-    animateIteration( elem, fun, options = false ){
+    animateIteration( elem, fun, options ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
-            this.on( elemO, 'animationiteration', fun, options );
+            this.on( elemO, 'animationiteration', fun, options || false );
             return elemO;
         } );
     }
@@ -3350,9 +3506,11 @@ class JS2jQuery{
      *
      * @returns {Array} [Element]
      */
-    animateStart( elem, fun, options = false ){
+    animateStart( elem, fun, options ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
-            this.on( elemO, 'animationstart', fun, options );
+            this.on( elemO, 'animationstart', fun, options || false );
             return elemO;
         } );
     }
@@ -3375,29 +3533,28 @@ class JS2jQuery{
      */
     cElem( arg_obj = {} ){
         let pra_obj = Object.assign( {
-                data: '',
-                fun: elemO => {
-                },
-                isText: false
-            }, arg_obj ),
-            handle = ( tagName, data = '', f = ( elemO => {
-            } ), text = false ) => {
-                let result = [];
-                if( this.isArray( tagName ) ){
-                    let e;
-                    tagName.forEach( currentValue => {
-                        e = this.iInsertB( document.createElement( currentValue ), data, text )[ 0 ];
-                        f( e );
-                        result.push( e );
-                    } );
-                }
-                else{
-                    result = this.iInsertB( document.createElement( tagName ), data, text )[ 0 ];
-                    f( result );
-                }
-                return result;
-            };
-        return handle( pra_obj.tagName, pra_obj.data, pra_obj.fun, pra_obj.isText );
+            data: '',
+            fun: elemO => {
+            },
+            isText: false
+        }, arg_obj );
+        return ( ( tagName, data = '', f = ( elemO => {
+        } ), text = false ) => {
+            let result = [];
+            if( this.isArray( tagName ) ){
+                let e;
+                tagName.forEach( currentValue => {
+                    e = this.iInsertB( document.createElement( currentValue ), data, text )[ 0 ];
+                    f( e );
+                    result.push( e );
+                } );
+            }
+            else{
+                result = this.iInsertB( document.createElement( tagName ), data, text )[ 0 ];
+                f( result );
+            }
+            return result;
+        } )( pra_obj.tagName, pra_obj.data, pra_obj.fun, pra_obj.isText );
     }
 
     /**
@@ -3436,9 +3593,11 @@ class JS2jQuery{
      *
      * @returns {Array} [Element]
      */
-    change( elem, fun, options = false ){
+    change( elem, fun, options ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
-            elemO.addEventListener( 'change', fun, options );
+            elemO.addEventListener( 'change', fun, options || false );
             return elemO;
         } );
     }
@@ -3458,6 +3617,8 @@ class JS2jQuery{
      * @returns {Array} [get时是各种数据|set时是执行操作的Element]
      */
     data( elem, dataO ){
+        'use strict';
+
         if( this.isString( dataO ) ){
             return IsHandle10.call( this, elem, elemO => {
                 let storage = elemO.ctoElemDataStorage;
@@ -3497,6 +3658,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     empty( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 document.documentElement.innerHTML = '';
@@ -3777,9 +3940,11 @@ class JS2jQuery{
      *
      * @returns {Array} [Element]
      */
-    focus( elem, fun, options = false ){
+    focus( elem, fun, options ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
-            elemO.addEventListener( 'focus', fun, options );
+            elemO.addEventListener( 'focus', fun, options || false );
             return elemO;
         } );
     }
@@ -3795,6 +3960,8 @@ class JS2jQuery{
      * @returns {Array} [属性值]
      */
     gAttr( elem, attrN ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return document.documentElement.getAttribute( this.remSpace( attrN ) );
@@ -3812,6 +3979,8 @@ class JS2jQuery{
      * @returns {Array} [JSON Object({})]
      */
     gAttrAll( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             let attrs = {},
                 result = {};
@@ -3838,6 +4007,8 @@ class JS2jQuery{
      * @returns {Array} [HTMLCollection(实时的节点集合)]
      */
     gChildren( elem, selector ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isWindow( elemO ) && this.isUndefined( selector ) ){
                 return document.children;
@@ -3865,6 +4036,8 @@ class JS2jQuery{
      * @returns {Array} [HTMLCollection(实时的节点集合)]
      */
     gChildrenAll( elem, selector ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isWindow( elemO ) && this.isUndefined( selector ) ){
                 return document.getElementsByTagName( '*' );
@@ -3888,6 +4061,8 @@ class JS2jQuery{
      * @returns {Array} [number]
      */
     gChildrenL( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isWindow( elemO ) ){
                 return document.childElementCount;
@@ -3909,6 +4084,8 @@ class JS2jQuery{
      * @returns {Array} [DOMTokenList]，DOMTokenList.length(数组长度)，DOMTokenList.value(一个类名集合的字符串，如：'a b c d')
      */
     gClassN( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return document.documentElement.classList;
@@ -3931,6 +4108,8 @@ class JS2jQuery{
      * @returns {Array} [ { value: '', priority: '' } ]，如：[ { value: '10px', priority: 'important' } ]
      */
     gCSSPro( elem, attrN ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return {
@@ -3958,6 +4137,8 @@ class JS2jQuery{
      * @returns {Array} [Element]，如果没有会返回[null]，也就是数组里头会有null的子元素存在
      */
     gFEChild( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isWindow( elemO ) ){
                 return document.firstElementChild;
@@ -3975,6 +4156,8 @@ class JS2jQuery{
      * @returns {Array} [Element]，如果没有会返回[null]，也就是数组里头会有null的子元素存在
      */
     gLEChild( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isWindow( elemO ) ){
                 return document.lastElementChild;
@@ -3996,6 +4179,8 @@ class JS2jQuery{
      * @returns {Array} [[Element]]|[null]，一个二维数组，第一维的数据类型是数组，第二维的数据类型是Element
      */
     gNextAll( elem, selector ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
@@ -4029,6 +4214,8 @@ class JS2jQuery{
      * @returns {Array} [Element]|[null]
      */
     gNextOne( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
@@ -4048,6 +4235,8 @@ class JS2jQuery{
      * @returns {Array} [Element]|[null]
      */
     gPElem( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
@@ -4069,6 +4258,8 @@ class JS2jQuery{
      * @returns {Array} [[Element]]|[null]，一个二维数组，第一维的数据类型是数组，第二维的数据类型是Element
      */
     gPElemAll( elem, selector ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
@@ -4104,6 +4295,8 @@ class JS2jQuery{
      * @returns {Array} [[Element]]|[null]，一个二维数组，第一维的数据类型是数组，第二维的数据类型是Element
      */
     gPrevAll( elem, selector ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
@@ -4137,6 +4330,8 @@ class JS2jQuery{
      * @returns {Array} [Element]|[null]
      */
     gPrevOne( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return null;
@@ -4158,6 +4353,8 @@ class JS2jQuery{
      * @returns {Array} [[Element]]|[null]，一个二维数组，第一维的数据类型是数组，第二维的数据类型是Element
      */
     gSibElem( elem, selector ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) || IsHandle1.call( this, elemO, 'HTMLHtmlElement' ) ){
                 return null;
@@ -4215,6 +4412,8 @@ class JS2jQuery{
      * @returns {Array} [布尔值]
      */
     hasAttr( elem, attrN ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return document.documentElement.hasAttribute( this.remSpace( attrN ) );
@@ -4236,6 +4435,8 @@ class JS2jQuery{
      * @returns {Array} [boolean]
      */
     hasClass( elem, classN ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return document.documentElement.classList.contains( this.remSpace( classN ) );
@@ -4257,6 +4458,8 @@ class JS2jQuery{
      * @returns {Array} [boolean]，存在true，不存在false
      */
     hasData( elem, dataName ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             let storage = elemO.ctoElemDataStorage;
             if( !( 'ctoElemDataStorage' in elemO ) ){
@@ -4283,6 +4486,8 @@ class JS2jQuery{
      * @returns {Array} [Float|String]
      */
     height( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isWindow( elemO ) ){
                 return elemO.innerHeight;
@@ -4382,6 +4587,8 @@ class JS2jQuery{
      * @returns {Array} [Element|HTML片段]
      */
     html( elem, htmlS ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isUndefined( htmlS ) ){
                 if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
@@ -4408,13 +4615,15 @@ class JS2jQuery{
      *
      * @param data 单个节点、单个节点List、单个数组(节点、节点List、文本字符串)、单个文本字符串，必需
      *
-     * @param text 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
+     * @param isText 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
      * 默认false，可选
      *
      * @returns {Array} [Element]
      */
-    iInsertA( elem, data, text = false ){
-        return IsHandle16.call( this, elem, data, 'append', text );
+    iInsertA( elem, data, isText ){
+        'use strict';
+
+        return IsHandle16.call( this, elem, data, 'append', isText || false );
     }
 
     /**
@@ -4425,13 +4634,15 @@ class JS2jQuery{
      *
      * @param data 单个节点、单个节点List、单个数组(节点、节点List、文本字符串)、单个文本字符串，必需
      *
-     * @param text 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
+     * @param isText 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
      * 默认false，可选
      *
      * @returns {Array} [Element]
      */
-    iInsertB( elem, data, text = false ){
-        return IsHandle16.call( this, elem, data, 'prepend', text );
+    iInsertB( elem, data, isText ){
+        'use strict';
+
+        return IsHandle16.call( this, elem, data, 'prepend', isText || false );
     }
 
     /**
@@ -4520,6 +4731,8 @@ class JS2jQuery{
      * @returns {Array} [boolean]，包含true，否则false
      */
     isContains( elem, childE ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             let cE = IsHandle13.call( this, childE, elemO => elemO );
             if( this.isWindow( elemO ) ){
@@ -4540,6 +4753,8 @@ class JS2jQuery{
      * @returns {Array} [boolean]，没有子元素(文本、空格也算子元素)返回true，有子节点返回false
      */
     isNoChild( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isWindow( elemO ) ){
                 return !document.hasChildNodes();
@@ -4559,6 +4774,8 @@ class JS2jQuery{
      * @returns {Array} [boolean]，没有子节点(文本、空格不算子节点)返回true，有子节点返回false
      */
     isNoEChild( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isWindow( elemO ) ){
                 return document.firstElementChild === null;
@@ -4576,6 +4793,8 @@ class JS2jQuery{
      * @returns {Boolean} boolean，是返回true，否则false
      */
     isScrollBottom( elem ){
+        'use strict';
+
         return IsHandle13.call( this, elem, elemO => elemO.scrollHeight - elemO.scrollTop === elemO.clientHeight );
     }
 
@@ -4592,6 +4811,8 @@ class JS2jQuery{
      * @returns {Array} [Element|HTML片段]
      */
     oHTML( elem, htmlS ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isUndefined( htmlS ) ){
                 if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
@@ -4618,13 +4839,15 @@ class JS2jQuery{
      *
      * @param data 单个节点、单个节点List、单个数组(节点、节点List、文本字符串)、单个文本字符串，必需
      *
-     * @param text 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
+     * @param isText 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
      * 默认false，可选
      *
      * @returns {Array} [Element]
      */
-    oInsertA( elem, data, text = false ){
-        return IsHandle16.call( this, elem, data, 'after', text );
+    oInsertA( elem, data, isText ){
+        'use strict';
+
+        return IsHandle16.call( this, elem, data, 'after', isText || false );
     }
 
     /**
@@ -4635,13 +4858,15 @@ class JS2jQuery{
      *
      * @param data 单个节点、单个节点List、单个数组(节点、节点List、文本字符串)、单个文本字符串，必需
      *
-     * @param text 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
+     * @param isText 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
      * 默认false，可选
      *
      * @returns {Array} [Element]
      */
-    oInsertB( elem, data, text = false ){
-        return IsHandle16.call( this, elem, data, 'before', text );
+    oInsertB( elem, data, isText ){
+        'use strict';
+
+        return IsHandle16.call( this, elem, data, 'before', isText || false );
     }
 
     /**
@@ -4655,6 +4880,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     rAttr( elem, attrN ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isArray( attrN ) ){
                 attrN.forEach( currentValue => {
@@ -4689,11 +4916,13 @@ class JS2jQuery{
      *
      * @returns {Array} [Element]
      */
-    rCE( elem, f, options = false ){
+    rCE( elem, f, options ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             this.isTouch()
-            ? ( elemO.removeEventListener( 'tap', f, options ) )
-            : ( elemO.removeEventListener( 'click', f, options ) );
+            ? ( elemO.removeEventListener( 'tap', f, options || false ) )
+            : ( elemO.removeEventListener( 'click', f, options || false ) );
             return elemO;
         } );
     }
@@ -4713,6 +4942,8 @@ class JS2jQuery{
      * @returns {Array} [DOMTokenList]，DOMTokenList.length(数组长度)，DOMTokenList.value(一个类名集合的字符串，如：'a b c d')
      */
     rClassN( elem, classN ){
+        'use strict';
+
         return IsHandle6.call( this, elem, classN, 'remove' );
     }
 
@@ -4730,6 +4961,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     rCSSPro( elem, attrN ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isArray( attrN ) ){
                 attrN.forEach( currentValue => {
@@ -4762,6 +4995,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     rElem( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 document.documentElement.remove();
@@ -4806,6 +5041,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     removeData( elem, dataName ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             let storage = elemO.ctoElemDataStorage;
             if( !( 'ctoElemDataStorage' in elemO ) ){
@@ -4835,6 +5072,8 @@ class JS2jQuery{
      * @returns {Array} [Element(被替换掉的节点)]
      */
     replaceWith( elem, data ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 document.documentElement.replaceWith( data );
@@ -4856,6 +5095,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     sAttr( elem, attrO ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             for( let key in
                 attrO ){
@@ -4893,6 +5134,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     sCSSPro( elem, attrO ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             for( let key in
                 attrO ){
@@ -4924,6 +5167,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     sStyle( elem, StyleO ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             for( let key in
                 StyleO ){
@@ -4952,8 +5197,9 @@ class JS2jQuery{
      *
      * @returns {function} function 它是解除"scroll"事件的函数，而且它的配置选项默认是false
      */
-    scrollE( elem, f, num, h = ( event, elemO ) => {
-    } ){
+    scrollE( elem, f, num, h ){
+        'use strict';
+
         return IsHandle13.call( this, elem, elemO => {
             let fun = e => {
                 IsHandle15.call( this, () => {
@@ -4961,7 +5207,7 @@ class JS2jQuery{
                     ? ( f( e, elemO ) )
                     : ( elemO.scrollTop >= num
                         ? ( f( e, elemO ) )
-                        : ( h( e, elemO ) ) );
+                        : ( h && h( e, elemO ) ) );
                 } );
                 AllEStop.call( this, e );
             };
@@ -4984,14 +5230,15 @@ class JS2jQuery{
      *
      * @returns {Element} Element
      */
-    scrollTop( elem, fun = elemO => {
-    } ){
+    scrollTop( elem, fun ){
+        'use strict';
+
         return IsHandle13.call( this, elem, elemO => {
             IsHandle15.call( this, () => {
                 let d = ( elemO.scrollTop ) / 100,
                     timer = setInterval( () => void ( elemO.scrollTop > 0
                                                       ? ( elemO.scrollTop -= d )
-                                                      : ( clearInterval( timer ), fun( elemO ) ) ), 1 );
+                                                      : ( clearInterval( timer ), fun && fun( elemO ) ) ), 1 );
             } );
             return elemO;
         } );
@@ -5371,6 +5618,8 @@ class JS2jQuery{
      * @returns {Array} [DOMTokenList]，DOMTokenList.length(数组长度)，DOMTokenList.value(一个类名集合的字符串，如：'a b c d')
      */
     tClassN( elem, classN ){
+        'use strict';
+
         return IsHandle6.call( this, elem, classN, 'toggle' );
     }
 
@@ -5387,6 +5636,8 @@ class JS2jQuery{
      * @returns {Array} [Element|文本字符串]
      */
     text( elem, textC ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isUndefined( textC ) ){
                 if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
@@ -5448,6 +5699,8 @@ class JS2jQuery{
      * @returns {Array} [Element]
      */
     triggerE( elem, eventName ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             let handle = ( elemO, eventName ) => {
                 let event = document.createEvent( 'HTMLEvents' );
@@ -5475,6 +5728,8 @@ class JS2jQuery{
      * @returns {Array} [Float|String]
      */
     width( elem ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             if( this.isWindow( elemO ) ){
                 return elemO.innerWidth;
@@ -5518,11 +5773,13 @@ class JS2jQuery{
      *
      * @returns {Array} [Element]
      */
-    on( elem, eType, f, options = false ){
+    on( elem, eType, f, options ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             this.trim( eType )
                 .split( /\s/g )
-                .forEach( currentValue => void ( elemO.addEventListener( currentValue, f, options ) ) );
+                .forEach( currentValue => void ( elemO.addEventListener( currentValue, f, options || false ) ) );
             return elemO;
         } );
     }
@@ -5542,11 +5799,13 @@ class JS2jQuery{
      *
      * @returns {Array} [Element]
      */
-    off( elem, eType, f, options = false ){
+    off( elem, eType, f, options ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             this.trim( eType )
                 .split( /\s/g )
-                .forEach( currentValue => void ( elemO.removeEventListener( currentValue, f, options ) ) );
+                .forEach( currentValue => void ( elemO.removeEventListener( currentValue, f, options || false ) ) );
             return elemO;
         } );
     }
@@ -5684,6 +5943,8 @@ class ObjHandle{
      * @returns {Object} Object，如果传入的是一个数组，则返回的也会是一个数组，被深度不可扩展的对象
      */
     deepExten( obj ){
+        'use strict';
+
         return IsHandle5.call( this, obj, 'preventExtensions', this.deepExten );
     }
 
@@ -5695,6 +5956,8 @@ class ObjHandle{
      * @returns {Object} Object，如果传入的是一个数组，则返回的也会是一个数组，被深度冻结的对象
      */
     deepFreeze( obj ){
+        'use strict';
+
         return IsHandle5.call( this, obj, 'freeze', this.deepFreeze );
     }
 
@@ -5706,6 +5969,8 @@ class ObjHandle{
      * @returns {Object} Object，如果传入的是一个数组，则返回的也会是一个数组，被深度密封的对象，
      */
     deepSeal( obj ){
+        'use strict';
+
         return IsHandle5.call( this, obj, 'seal', this.deepSeal );
     }
 
@@ -5743,6 +6008,8 @@ class ObjHandle{
      * @returns {Boolean} boolean， 可扩展为true，否则false
      */
     isExten( obj ){
+        'use strict';
+
         return IsHandle4.call( this, obj, o => Object.isExtensible( o ) );
     }
 
@@ -5754,6 +6021,8 @@ class ObjHandle{
      * @returns {Boolean} boolean，冻结为true，否则false
      */
     isFro( obj ){
+        'use strict';
+
         return IsHandle4.call( this, obj, o => Object.isFrozen( o ) );
     }
 
@@ -5765,6 +6034,8 @@ class ObjHandle{
      * @returns {Boolean} boolean， 被密封为true，否则false
      */
     isSea( obj ){
+        'use strict';
+
         return IsHandle4.call( this, obj, o => Object.isSealed( o ) );
     }
 
@@ -5947,6 +6218,8 @@ class OthersHandle{
      * @returns {Array} [Element]
      */
     offLineE( elem, f ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             elemO.onoffline = f;
             return elemO;
@@ -5964,6 +6237,8 @@ class OthersHandle{
      * @returns {Array} [Element]
      */
     onLineE( elem, f ){
+        'use strict';
+
         return IsHandle10.call( this, elem, elemO => {
             elemO.ononline = f;
             return elemO;
@@ -6176,8 +6451,10 @@ class OthersHandle{
      *
      * @returns {Function} Function 一个已经注册的“touchstart”事件函数，可用于解除这个事件。
      */
-    scrollFix( ...elem ){
-        return IsHandle13.call( this, elem[ 0 ], elemO => {
+    scrollFix( elem ){
+        'use strict';
+
+        return IsHandle13.call( this, elem, elemO => {
             let startTopScroll = 0,
                 f = event => {
                     startTopScroll = elemO.scrollTop;
@@ -6283,7 +6560,9 @@ class RegExpHandle{
      *
      * @returns {String|Array} string或[string]
      */
-    onlyCL( ...arg ){
+    onlyCL( arg ){
+        'use strict';
+
         return IsHandle2.call( this, arg, '[^A-Z]' );
     }
 
@@ -6294,7 +6573,9 @@ class RegExpHandle{
      *
      * @returns {String|Array} string或[string]
      */
-    onlyLL( ...arg ){
+    onlyLL( arg ){
+        'use strict';
+
         return IsHandle2.call( this, arg, '[^a-z]' );
     }
 
@@ -6305,7 +6586,9 @@ class RegExpHandle{
      *
      * @returns {String|Array} string或[string]
      */
-    onlyLLCL( ...arg ){
+    onlyLLCL( arg ){
+        'use strict';
+
         return IsHandle2.call( this, arg, '[^a-zA-Z]' );
     }
 
@@ -6316,7 +6599,9 @@ class RegExpHandle{
      *
      * @returns {String|Array} string或[string]
      */
-    onlyN( ...arg ){
+    onlyN( arg ){
+        'use strict';
+
         return IsHandle2.call( this, arg, '[^0-9]' );
     }
 
@@ -6327,7 +6612,9 @@ class RegExpHandle{
      *
      * @returns {String|Array} string或[string]
      */
-    onlyNCL( ...arg ){
+    onlyNCL( arg ){
+        'use strict';
+
         return IsHandle2.call( this, arg, '[^A-Z0-9]' );
     }
 
@@ -6338,7 +6625,9 @@ class RegExpHandle{
      *
      * @returns {String|Array} string或[string]
      */
-    onlyNLL( ...arg ){
+    onlyNLL( arg ){
+        'use strict';
+
         return IsHandle2.call( this, arg, '[^a-z0-9]' );
     }
 
@@ -6349,7 +6638,9 @@ class RegExpHandle{
      *
      * @returns {String|Array} string或[string]
      */
-    onlyNLLCL( ...arg ){
+    onlyNLLCL( arg ){
+        'use strict';
+
         return IsHandle2.call( this, arg, '[^a-zA-Z0-9]' );
     }
 
@@ -6363,6 +6654,8 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     remOfPat( arg, patS ){
+        'use strict';
+
         return IsHandle7.call( this, arg, a => this.strRep( a, patS, '' ), this.strRep( arg, patS, '' ) );
     }
 
@@ -6373,7 +6666,9 @@ class RegExpHandle{
      *
      * @returns {String|Array} string或[string]
      */
-    remSpace( ...arg ){
+    remSpace( arg ){
+        'use strict';
+
         return IsHandle2.call( this, arg, '[ ]' );
     }
 
@@ -6389,8 +6684,10 @@ class RegExpHandle{
      * @returns {String|Array} string或[string]
      */
     strRep( data, reg, repStr ){
-        return IsHandle7.call( this, data, ( a => ( String( a )
-            .replace( new RegExp( reg, 'g' ), repStr ) ) ), String( data )
+        'use strict';
+
+        return IsHandle7.call( this, data, a => String( a )
+            .replace( new RegExp( reg, 'g' ), repStr ), String( data )
             .replace( new RegExp( reg, 'g' ), repStr ) );
     }
 
@@ -6401,9 +6698,11 @@ class RegExpHandle{
      *
      * @returns {String|Array} string或[string]
      */
-    trim( ...arg ){
-        return IsHandle7.call( this, arg[ 0 ], a => ( String( a )
-            .trim() ), String( arg[ 0 ] )
+    trim( arg ){
+        'use strict';
+
+        return IsHandle7.call( this, arg, a => ( String( a )
+            .trim() ), String( arg )
             .trim() );
     }
 
@@ -6419,36 +6718,42 @@ class StringHandle{
      * 注：<br />
      * 配合着“strToBase64”方法（编码）使用
      *
-     * @param str_base64 Base64编码转字符串，默认值为''，必须。
+     * @param str_base64 Base64编码转字符串，必须。
      *
      * @returns {string} 字符串
      */
-    base64ToStr( str_base64 = '' ){
+    base64ToStr( str_base64 ){
+        'use strict';
+
         return decodeURIComponent( atob( str_base64 ) );
     }
 
     /**
      * 将一个字符串类型的数值转换为number类型的Float数值
      *
-     * @param str string，一个字符串类型的数值，默认值是字符串0.0，必须
+     * @param str string，一个字符串类型的数值，必须
      *
      * @returns {number} number，Float数值(十进制)
      */
-    pFloat( str = '0.0' ){
+    pFloat( str ){
+        'use strict';
+
         return Number.parseFloat( str );
     }
 
     /**
      * 将一个字符串类型的数值转换为number类型的整数数值(十进制)
      *
-     * @param str string，一个字符串类型的数值(2进制到36进制)，默认值是字符串0(十进制)，必须
+     * @param str string，一个字符串类型的数值(2进制到36进制)，必须
      *
      * @param radix number，说明第一个参数str的进制类型，默认是十进制10，可选
      *
      * @returns {number} number，整数数值(十进制)
      */
-    pInt( str = '0', radix = 10 ){
-        return Number.parseInt( str, radix );
+    pInt( str, radix ){
+        'use strict';
+
+        return Number.parseInt( str, radix || 10 );
     }
 
     /**
@@ -6458,7 +6763,9 @@ class StringHandle{
      *
      * @returns {string} 字符串，返回全新的一个字符串，不是原来的！
      */
-    strFL( str = '' ){
+    strFL( str ){
+        'use strict';
+
         return str.slice( 0, 1 )
                   .toLocaleLowerCase() + str.slice( 1 );
     }
@@ -6470,7 +6777,9 @@ class StringHandle{
      *
      * @returns {string} 字符串，返回全新的一个字符串，不是原来的！
      */
-    strFU( str = '' ){
+    strFU( str ){
+        'use strict';
+
         return str.slice( 0, 1 )
                   .toLocaleUpperCase() + str.slice( 1 );
     }
@@ -6480,11 +6789,13 @@ class StringHandle{
      * 注：<br />
      * 配合着“base64ToStr”方法（解码）使用
      *
-     * @param str 字符串，默认值为''，必须。
+     * @param str 字符串，必须。
      *
      * @returns {string} Base64编码的字符串
      */
-    strToBase64( str = '' ){
+    strToBase64( str ){
+        'use strict';
+
         return btoa( encodeURIComponent( str ) );
     }
 
@@ -7091,7 +7402,7 @@ class WASMTool{
      * @returns {Promise<{instance: *, module: *}>} Promise<{instance: *, module: *}>
      */
     getWASM( {
-                 url = '',
+                 url,
                  options = {},
                  callBack = {},
                  importObject = {},

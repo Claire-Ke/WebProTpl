@@ -41,8 +41,12 @@ class ResSRFile{
      PS：
      highWaterMark设置为：buffer.constants.MAX_LENGTH - 7
      会导致内存、CPU狂增！！！10G左右！！！
+
+     1 * 1024 * 1024 * 1024 = 1GB
+     buffer.constants.MAX_LENGTH = 2GB
+     要是设置了buffer.constants.MAX_LENGTH，不报错、也不执行，直接结束了，奇怪！！！
      */
-    #bufferSize_num = buffer.constants.MAX_LENGTH - 7;
+    #bufferSize_num = 1 * 1024 * 1024 * 1024;
 
     url = null;
 
@@ -109,6 +113,10 @@ class ResSRFile{
             /*
              highWaterMark设置为：buffer.constants.MAX_LENGTH - 7
              会导致内存、CPU狂增！！！10G左右！！！
+
+             1 * 1024 * 1024 * 1024 = 1GB
+             buffer.constants.MAX_LENGTH = 2GB
+             要是设置了buffer.constants.MAX_LENGTH，不报错、也不执行，直接结束了，奇怪！！！
              */
             stream = fs.createReadStream( htmlPath_str, {
                 // highWaterMark: _this.#bufferSize_num,
@@ -146,6 +154,10 @@ class ResSRFile{
         /*
          highWaterMark设置为：buffer.constants.MAX_LENGTH - 7
          会导致内存、CPU狂增！！！10G左右！！！
+
+         1 * 1024 * 1024 * 1024 = 1GB
+         buffer.constants.MAX_LENGTH = 2GB
+         要是设置了buffer.constants.MAX_LENGTH，不报错、也不执行，直接结束了，奇怪！！！
          */
         fs.createReadStream( img4Path_str, {
               // highWaterMark: _this.#bufferSize_num,
