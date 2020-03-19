@@ -2505,7 +2505,28 @@ let path = require( 'path' ),
             {
                 test: /\.vue$/i,
                 use: [
-                    { loader: 'vue-loader' },
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            transformAssetUrls: {
+                                video: [
+                                    'src',
+                                    'poster',
+                                ],
+                                source: 'src',
+                                img: 'src',
+                                audio: 'src',
+                                image: [
+                                    'xlink:href',
+                                    'href',
+                                ],
+                                use: [
+                                    'xlink:href',
+                                    'href',
+                                ],
+                            },
+                        },
+                    },
                 ],
                 include: [
                     path.resolve( __dirname, './src/vue/' ),
