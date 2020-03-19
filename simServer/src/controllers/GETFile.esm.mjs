@@ -83,6 +83,9 @@ function GETFileContr( server, request, response ){
     case 'docx':
         new ResSRFile( server, request, response ).file4Path( path.resolve( __dirname, '../../staticResources/docx/1.doc' ) );
         break;
+    case 'others':
+        new ResSRFile( server, request, response ).file4Path( path.resolve( __dirname, '../../staticResources/others/1.iso' ) );
+        break;
     default:
         resContent = JSON.stringify( {
             'type': String( type ),

@@ -5818,12 +5818,14 @@ class JS2jQuery{
 class ObjHandle{
 
     /**
-     * 复制完整对象的描述符<br />
+     * 完整复制对象所有自身属性(非继承属性)的描述对象，然后合并到目标对象<br />
      * 例子：<br />
      * // let obj = { foo: 1, get bar(){ return 2; } };<br />
      * // let copy = completeAssign( {}, obj );<br />
      * // console.dir( copy );<br />
-     * // { foo: 1, get bar() { return 2; } }
+     * // { foo: 1, get bar() { return 2; } }<br />
+     * PS：<br />
+     * this.isObject( target )为true才会执行操作！！！
      *
      * @param target 对象，默认空对象，必须
      *
@@ -5832,26 +5834,14 @@ class ObjHandle{
      * @returns {object} target对象
      */
     completeAssign( target = {}, ...sources ){
-        let descriptors,
-            descriptor;
-        sources.forEach( source => {
-            descriptors = Object.keys( source )
-                                .reduce( ( descriptors, key ) => {
-                                    descriptors[ key ] = Object.getOwnPropertyDescriptor( source, key );
-                                    return descriptors;
-                                }, {} );
-
-            // by default, Object.assign copies enumerable Symbols too.默认情况下，object.assign副本也可枚举符号
-            Object.getOwnPropertySymbols( source )
-                  .forEach( sym => {
-                      descriptor = Object.getOwnPropertyDescriptor( source, sym );
-                      descriptor.enumerable && ( descriptors[ sym ] = descriptor );
-                  } );
-
-            Object.defineProperties( target, descriptors );
-        } );
-
-        return target;
+        if( this.isObject( target ) ){
+            sources.forEach( source => void ( Object.defineProperties( target, Reflect.ownKeys( source )
+                                                                                      .reduce( ( descriptors, key ) => {
+                                                                                          descriptors[ key ] = Object.getOwnPropertyDescriptor( source, key );
+                                                                                          return descriptors;
+                                                                                      }, {} ) ) ) );
+            return target;
+        }
     }
 
     /**
@@ -5895,9 +5885,10 @@ class ObjHandle{
     }
 
     /**
-     * 对象、数组深度拷贝(包括Symbol、不包括复制完整对象的描述符)<br />
+     * 完整的对象、数组深度拷贝(包括Symbol、get、set、原型)<br />
      * PS: <br />
-     * 1、处理被Vue处理过的对象、数组时，会报错！！！
+     * 1、处理被Vue处理过的对象、数组时，会报错！！！<br />
+     * 2、this.isObject( obj ) || this.isArray( obj )为true才会执行！！！其他都会被原样返回！！！
      *
      * @param obj 对象、数组，必需
      *
@@ -5907,32 +5898,41 @@ class ObjHandle{
         if( obj === null ){
             return null;
         }
-        if( typeof obj !== 'object' ){
+        else if( typeof obj !== 'object' ){
             return obj;
         }
-        if( obj.constructor === Date ){
+        else if( obj.constructor === Date ){
             return new Date( obj );
         }
-        if( obj.constructor === RegExp ){
+        else if( obj.constructor === RegExp ){
             return new RegExp( obj );
         }
-        let newObj = new obj.constructor();
-        for( let key in
-            obj ){
-            if( obj.hasOwnProperty( key ) ){
-                let val = obj[ key ];
-                newObj[ key ] = ( typeof val === 'object' )
-                                ? this.deepCopy( val )
-                                : val;
+        else if( this.isUndefined( obj.constructor ) ){
+            return obj;
+        }
+        else if( this.isObject( obj ) || this.isArray( obj ) ){
+            let val,
+                newObj = new obj.constructor();
+
+            for( let tmp of
+                Reflect.ownKeys( obj ) ){
+                val = obj[ tmp ];
+
+                if( typeof val !== 'object' ){
+                    Object.defineProperty( newObj, tmp, Object.getOwnPropertyDescriptor( obj, tmp ) );
+                }
+                else{
+                    newObj[ tmp ] = this.deepCopy( val );
+                }
             }
+
+            Object.setPrototypeOf( newObj, Object.getPrototypeOf( obj ) );
+
+            return newObj;
         }
-        for( let tmp of
-            Reflect.ownKeys( obj ) ){
-            newObj[ tmp ] = ( typeof obj[ tmp ] !== 'object' )
-                            ? obj[ tmp ]
-                            : this.deepCopy( obj[ tmp ] );
+        else{
+            return obj;
         }
-        return newObj;
     }
 
     /**
