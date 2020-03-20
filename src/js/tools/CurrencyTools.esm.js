@@ -7518,7 +7518,9 @@ class WebService4Proxy{
      * 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，必须
      */
     baseUrl;
-    // 一个CT类的实例(new CT())，必须的
+    /**
+     * 一个CT类的实例(new CT())，必须的
+     */
     ctIns;
 
     /**
@@ -7662,6 +7664,9 @@ class CT
      * {aD, dD, uD, qD, cD, isKN, storageCE等7个方法}
      */
     ss;
+    /**
+     * 本类的版本号，如：2020.01.01.1
+     */
     version = '';
 
     // 类实例属性 End
