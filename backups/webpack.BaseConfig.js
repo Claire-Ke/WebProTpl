@@ -1657,19 +1657,18 @@ let path = require( 'path' ),
                 // 暂时不用
                 // [ 'minify-simplify' ],
 
-                // 2020年3月20日更新npm包后，该插件报错，可能是因为“babel-loader”
-                /*
-                 [
-                 'minify-mangle-names',
-                 {
-                 // exclude: { TestClassA: true },
-                 keepFnName: true,
-                 eval: true,
-                 topLevel: true,
-                 keepClassName: true,
-                 }
-                 ],
-                 */
+                // 当函数的默认参数设置为常量或私有变量时，该插件会报错。
+                // Cannot read property 'add' of undefined
+                [
+                    'minify-mangle-names',
+                    {
+                        // exclude: { TestClassA: true },
+                        keepFnName: true,
+                        eval: true,
+                        topLevel: true,
+                        keepClassName: true,
+                    }
+                ],
 
                 [ 'transform-inline-consecutive-adds' ],
                 [ '@babel/plugin-transform-member-expression-literals' ],
