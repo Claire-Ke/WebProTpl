@@ -55,10 +55,12 @@ function GETFileContr( server, request, response ){
         response.end( resContent, 'utf8' );
         break;
     case 'json5':
-        resContent = JSON5.stringify( {
+        resContent = JSON.stringify( Object.assign( {
             type: 'json5',
             info: '路漫漫其修远兮，吾将上下而求索。',
-        } );
+        }, {
+            __proto__: null,
+        } ) );
 
         SetHeaders( response, {
             'Content-Type': 'application/json',

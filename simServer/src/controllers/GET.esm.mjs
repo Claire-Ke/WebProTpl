@@ -40,10 +40,12 @@ function GETContr( server, request, response ){
         } );
         break;
     case 'json5':
-        resContent = JSON5.stringify( {
+        resContent = JSON.stringify( Object.assign( {
             type: 'json5',
             info: '路漫漫其修远兮，吾将上下而求索。',
-        } );
+        }, {
+            __proto__: null,
+        } ) );
         break;
     default:
         resContent = JSON.stringify( {

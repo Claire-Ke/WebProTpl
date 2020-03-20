@@ -7509,6 +7509,57 @@ class WASMTool{
 
 }
 
+/**
+ * 基于“Proxy”编写的“Web服务器客户端”
+ */
+class WebService4Proxy{
+
+    /**
+     * 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，必须
+     */
+    #baseUrl;
+    // 一个CT类的实例(new CT())，必须的
+    ctIns;
+
+    /**
+     * 本类的构造函数
+     *
+     * @param ctIns 一个CT类的实例(new CT())，必须的
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，必须
+     */
+    constructor( ctIns, baseUrl ){
+        this.ctIns = ctIns;
+        this.#baseUrl = baseUrl;
+    }
+
+    /**
+     * 创建具体请求并使用具体请求
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    create( baseUrl = this.#baseUrl ){
+        let _this = this;
+
+        return new Proxy( {}, {
+            get( target, propKey, receiver ){
+                return ( {
+                             // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
+                             url = '',
+                             events,
+                             options
+                         } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, options );
+            },
+        } );
+    }
+
+}
+
 // mixin_classArrC数组是一个将多个类的接口“混入”（mix in）CT类的数组(成员是class)
 // 为了方便管理，以后只要是给CT类增加功能的，只要把功能写成一个类，然后把这个类添加到mixin_classArrC数组中就行！
 const mixin_classArrC = [
@@ -7530,6 +7581,14 @@ const mixin_classArrC = [
     UrlHandle,
     WASMTool,
 ];
+
+// 为了方便管理，以后只要是给CT类增加的工具类，只要把这个类添加到toolsClass_objC中就行！
+// 这个对象的每一个键名是具体的工具类名，键值是具体的工具类！
+// new CT().getClass()返回的就是toolsClass_objC！
+const toolsClass_objC = {
+    // WebService4Proxy类
+    WebService4Proxy,
+};
 
 /**
  * JS工具，其中的代码都是无关任何项目的代码(ES6，ESM模块写法)。<br />
@@ -7717,6 +7776,15 @@ class CT
         this.version = '2020.01.01.1';
 
         Init( this );
+    }
+
+    /**
+     * 获取各个工具类
+     *
+     * @returns {Object} 对象(里头是各个工具类)，这个对象的每一个键名是具体的工具类名，键值是具体的工具类。
+     */
+    getClass(){
+        return toolsClass_objC;
     }
 
 }

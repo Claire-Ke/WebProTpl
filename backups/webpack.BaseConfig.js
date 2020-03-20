@@ -1656,16 +1656,21 @@ let path = require( 'path' ),
                 // JS压缩插件 Start
                 // 暂时不用
                 // [ 'minify-simplify' ],
-                [
-                    'minify-mangle-names',
-                    {
-                        // exclude: { TestClassA: true },
-                        keepFnName: true,
-                        eval: true,
-                        topLevel: true,
-                        keepClassName: true,
-                    }
-                ],
+
+                // 2020年3月20日更新npm包后，该插件报错，可能是因为“babel-loader”
+                /*
+                 [
+                 'minify-mangle-names',
+                 {
+                 // exclude: { TestClassA: true },
+                 keepFnName: true,
+                 eval: true,
+                 topLevel: true,
+                 keepClassName: true,
+                 }
+                 ],
+                 */
+
                 [ 'transform-inline-consecutive-adds' ],
                 [ '@babel/plugin-transform-member-expression-literals' ],
                 [ 'transform-merge-sibling-variables' ],
