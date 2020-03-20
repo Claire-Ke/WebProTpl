@@ -7552,7 +7552,7 @@ class WebService4Proxy{
                              // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
                              url = '',
                              events,
-                             options
+                             options,
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, options );
             },
         } );
