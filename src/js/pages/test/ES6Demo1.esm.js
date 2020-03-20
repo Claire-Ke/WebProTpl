@@ -158,7 +158,7 @@ let CT = new CTESM.CT();
                 get attr6(){
                 },
                 [ Symbol( 'Symbol2' ) ]: 'SymbolValue2',
-                // obj3,
+                obj3,
             },
             obj1 = {
                 attr1: 2021,
@@ -173,7 +173,7 @@ let CT = new CTESM.CT();
         // obj2.__proto__ = obj3;
         // obj1.__proto__ = obj2;
         Object.setPrototypeOf( obj2, obj3 );
-        // Object.setPrototypeOf( obj1, obj2 );
+        Object.setPrototypeOf( obj1, obj2 );
 
         // console.dir( obj1 );
         console.dir( CT.deepCopy( obj1 ) );

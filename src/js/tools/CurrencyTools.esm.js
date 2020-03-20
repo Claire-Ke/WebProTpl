@@ -5926,12 +5926,50 @@ class ObjHandle{
                 }
             }
 
-            Object.setPrototypeOf( newObj, Object.getPrototypeOf( obj ) );
+            let objPrototype = this.deppCopyPrototype( obj );
+
+            !this.isNull( objPrototype ) && ( Object.setPrototypeOf( newObj, objPrototype ) );
 
             return newObj;
         }
         else{
             return obj;
+        }
+    }
+
+    /**
+     * 深度拷贝一个对象的原型(包括原型的原型...N...)，返回的是一个对象(已经深度拷贝的原型链)<br />
+     * PS：<br />
+     * 拿到这个方法的返回值后，直接使用Object.setPrototypeOf设置到目标对象就行！
+     *
+     * @param source 对象(具有原型的对象)，必须
+     *
+     * @returns {null|Object} null|Objec
+     */
+    deppCopyPrototype( source ){
+        let arr1 = [],
+            sourcePrototype = Object.getPrototypeOf( source );
+
+        while( sourcePrototype !== null ){
+            arr1.push( this.deepCopy( sourcePrototype ) );
+            sourcePrototype = Object.getPrototypeOf( sourcePrototype );
+        }
+
+        arr1.reverse();
+
+        if( arr1.length === 0 ){
+            return null;
+        }
+        else{
+            for(
+                let i = 0;
+                i < arr1.length - 1;
+                ++i
+            ){
+                Object.setPrototypeOf( arr1[ i + 1 ], arr1[ i ] );
+            }
+
+            return arr1[ arr1.length - 1 ];
         }
     }
 
