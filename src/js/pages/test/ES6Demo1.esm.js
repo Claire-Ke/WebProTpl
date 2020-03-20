@@ -187,14 +187,12 @@ let CT = new CTESM.CT();
 
         let ws4Proxy_ins = new WebService4Proxy( CT, 'http://192.168.1.2:9999/SimServer/' );
 
-        ws4Proxy_ins.create( /*这里的参数可传可不传！！！传的话会取代上面调用类的构造参数*/ )
+        ws4Proxy_ins.get( { type: 'json', } )
                     .GETFile( {
-                        // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：上面调用类的构造参数 + 具体方法名(也就是GETFile) + url
-                        // url: '/?type=json',
                         options: {
-                            method: 'GET',
+                            // method: 'GET',
                             // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                            responseType: 'json',
+                            // responseType: 'json',
                             mode: 'cors',
                             credentials: 'omit',
                             body: {
@@ -202,24 +200,16 @@ let CT = new CTESM.CT();
                             },
                         },
                     } )
-                    .then( response => {
-                        response.clone()
-                                .json()
-                                .then( result => {
-                                    console.dir( result );
-                                } );
-
-                        return response.clone();
+                    .then( json => {
+                        console.dir( json );
                     } );
 
-        ws4Proxy_ins.create( /*这里的参数可传可不传！！！传的话会取代上面调用类的构造参数*/ )
+        ws4Proxy_ins.create( { type: 'json', } )
                     .GET( {
-                        // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：上面调用类的构造参数 + 具体方法名(也就是GET) + url
-                        // url: '/?type=json',
                         options: {
                             method: 'GET',
                             // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                            responseType: 'json',
+                            // responseType: 'json',
                             mode: 'cors',
                             credentials: 'omit',
                             body: {
@@ -227,14 +217,25 @@ let CT = new CTESM.CT();
                             },
                         },
                     } )
-                    .then( response => {
-                        response.clone()
-                                .json()
-                                .then( result => {
-                                    console.dir( result );
-                                } );
+                    .then( json => {
+                        console.dir( json );
+                    } );
 
-                        return response.clone();
+        ws4Proxy_ins.json()
+                    .GET( {
+                        options: {
+                            method: 'GET',
+                            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                            // responseType: 'json',
+                            mode: 'cors',
+                            credentials: 'omit',
+                            body: {
+                                type: 'json5',
+                            },
+                        },
+                    } )
+                    .then( json => {
+                        console.dir( json );
                     } );
     }
 }

@@ -7543,9 +7543,17 @@ class WebService4Proxy{
      * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
      * 2、传的话会取代上面调用类的构造参数。<br />
      *
+     * @param type 字符串，响应回来的数据的预处理类型('arrayBuffer'、'blob'、'formData'、'json'、'text')，可选<br />
+     * PS：<br />
+     * 1、不传的话，响应回来的数据将是原样的！<br />
+     * 2、如果传的话，也只能传上面提到的5种！<br />
+     *
      * @returns {Proxy} Proxy实例
      */
-    create( baseUrl = this.baseUrl ){
+    create( {
+                baseUrl = this.baseUrl,
+                type,
+            } = {} ){
         let _this = this;
 
         return new Proxy( {}, {
@@ -7555,7 +7563,186 @@ class WebService4Proxy{
                              url = '',
                              events,
                              options,
-                         } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, options );
+                         } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, options )
+                                          .then( response => {
+                                              if( type ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
+            },
+        } );
+    }
+
+    /**
+     * 创建具体请求并使用具体请求(响应到客户端的数据会被预先处理成“arrayBuffer”类型的数据)
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    arrayBuffer( baseUrl ){
+        return this.create( {
+            baseUrl,
+            type: 'arrayBuffer',
+        } );
+    }
+
+    /**
+     * 创建具体请求并使用具体请求(响应到客户端的数据会被预先处理成“blob”类型的数据)
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    blob( baseUrl ){
+        return this.create( {
+            baseUrl,
+            type: 'blob',
+        } );
+    }
+
+    /**
+     * 创建具体请求并使用具体请求(响应到客户端的数据会被预先处理成“formData”类型的数据)
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    formData( baseUrl ){
+        return this.create( {
+            baseUrl,
+            type: 'formData',
+        } );
+    }
+
+    /**
+     * 创建具体请求并使用具体请求(响应到客户端的数据会被预先处理成“json”类型的数据)
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    json( baseUrl ){
+        return this.create( {
+            baseUrl,
+            type: 'json',
+        } );
+    }
+
+    /**
+     * 创建具体请求并使用具体请求(响应到客户端的数据会被预先处理成“text”类型的数据)
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    text( baseUrl ){
+        return this.create( {
+            baseUrl,
+            type: 'text',
+        } );
+    }
+
+    /**
+     * 创建"get"类型的具体请求并使用具体请求
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @param type 字符串，响应回来的数据的预处理类型('arrayBuffer'、'blob'、'formData'、'json'、'text')，可选<br />
+     * PS：<br />
+     * 1、不传的话，响应回来的数据将是原样的！<br />
+     * 2、如果传的话，也只能传上面提到的5种！<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    get( {
+             baseUrl = this.baseUrl,
+             type,
+         } = {} ){
+        let _this = this;
+
+        return new Proxy( {}, {
+            get( target, propKey, receiver ){
+                return ( {
+                             // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
+                             url = '',
+                             events = {},
+                             options = {},
+                         } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
+                                              method: 'GET',
+                                          } ) )
+                                          .then( response => {
+                                              if( type ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
+            },
+        } );
+    }
+
+    /**
+     * 创建"post"类型的具体请求并使用具体请求
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @param type 字符串，响应回来的数据的预处理类型('arrayBuffer'、'blob'、'formData'、'json'、'text')，可选<br />
+     * PS：<br />
+     * 1、不传的话，响应回来的数据将是原样的！<br />
+     * 2、如果传的话，也只能传上面提到的5种！<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    post( {
+              baseUrl = this.baseUrl,
+              type,
+          } = {} ){
+        let _this = this;
+
+        return new Proxy( {}, {
+            get( target, propKey, receiver ){
+                return ( {
+                             // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
+                             url = '',
+                             events = {},
+                             options = {},
+                         } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
+                                              method: 'POST',
+                                          } ) )
+                                          .then( response => {
+                                              if( type ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
             },
         } );
     }
