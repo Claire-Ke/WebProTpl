@@ -379,11 +379,11 @@ function IsHandle4( o, f ){
 function IsHandle5( o, s, f ){
     let result = Object[ s ]( o ),
         prop;
-    Object.getOwnPropertyNames( o )
-          .forEach( currentValue => {
-              prop = o[ currentValue ];
-              typeof prop === 'object' && !this.isNull( prop ) && f( prop );
-          } );
+    Reflect.ownKeys( o )
+           .forEach( currentValue => {
+               prop = o[ currentValue ];
+               ( this.isArray( prop ) || this.isObject( prop ) ) && f( prop );
+           } );
     return result;
 }
 
@@ -6013,7 +6013,7 @@ class ObjHandle{
     }
 
     /**
-     * 深度遍历数组1，把所有数据(多层嵌套数组)提取出来放到一个一维数组里，里头的数据类型保持原样<br />
+     * 深度遍历数组，把所有数据(多层嵌套数组)提取出来放到一个一维数组里，里头的数据类型保持原样<br />
      * 注：ES2019有新的类似的数组方法可以达到同样的效果<br />
      * [ 1, [ 2, [ 3 ] ] ].flat( 2 )返回[ 1, 2, 3 ]，2表示需要被处理的数组是有两成嵌套的，但是需要知道数组的内部嵌套数
      *
@@ -6023,13 +6023,13 @@ class ObjHandle{
      *
      * @returns {Array} [任何数据类型]，一维数组，里头的数据类型保持原样
      */
-    deepTraArr1( initA = [], ...arg ){
+    deepTraArr( initA = [], ...arg ){
         arg.forEach( currentValue => {
             if( this.isArray( currentValue ) && currentValue.length !== 0 ){
-                this.deepTraArr1( initA, ...currentValue );
+                this.deepTraArr( initA, ...currentValue );
             }
             else if( this.isElemList( currentValue ) && currentValue.length !== 0 ){
-                this.deepTraArr1( initA, ...Array.from( currentValue ) );
+                this.deepTraArr( initA, ...Array.from( currentValue ) );
             }
             else{
                 initA.push( currentValue );
