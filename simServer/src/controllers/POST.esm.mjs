@@ -22,35 +22,46 @@ import {
     CreateFormidable,
 } from '../tools/Tools.esm.mjs';
 
-function POSTContr( server, request, response ){
+async function POSTContr( server, request, response ){
     const {
         pathNameStr,
     } = URLTool( request.url );
 
-    CreateFormidable()
-        .parse( request, ( err, fields, files ) => {
-            if( err ){
-                console.log( '------>formidable POSTContr err Start<------' );
-                console.error( err );
-                console.log( '------>formidable POSTContr err End<------' );
+    let resultContent = {
+            'info': '这是一个POST请求的响应！！！',
+        },
+        fields = await new Promise( ( resolve = () => {
+        }, reject = () => {
+        } ) => {
+            CreateFormidable()
+                .parse( request, ( err, fields, files ) => {
+                    if( err ){
+                        console.log( '------>formidable POSTContr err Start<------' );
+                        console.error( err );
+                        console.log( '------>formidable POSTContr err End<------' );
 
-                return;
-            }
+                        return;
+                    }
 
-            // fields 对象数据，所有字段
-            if( fields ){
-                console.log( '--->fields<---Start' );
-                console.dir( fields );
-                console.log( '--->fields<---End' );
-            }
+                    // fields 对象数据，所有字段
+                    if( fields ){
+                        console.log( '--->fields<---Start' );
+                        console.dir( fields );
+                        console.log( '--->fields<---End' );
 
-            // files 对象数据，所有文件
-            if( files ){
-                console.log( '--->files<---Start' );
-                console.dir( files );
-                console.log( '--->files<---End' );
-            }
+                        resolve( fields );
+                    }
+
+                    // files 对象数据，所有文件
+                    if( files ){
+                        console.log( '--->files<---Start' );
+                        console.dir( files );
+                        console.log( '--->files<---End' );
+                    }
+                } );
         } );
+
+    Object.assign( resultContent, fields );
 
     SetHeaders( response, {
         'Content-Type': 'application/json',
@@ -58,9 +69,7 @@ function POSTContr( server, request, response ){
     RemGZip( response );
     response.statusCode = 200;
     response.statusMessage = 'OK';
-    response.end( JSON.stringify( {
-        'info': '这是一个POST请求的响应！！！'
-    } ), 'utf8' );
+    response.end( JSON.stringify( resultContent ), 'utf8' );
 }
 
 export {

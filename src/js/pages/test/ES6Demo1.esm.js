@@ -182,56 +182,76 @@ let CT = new CTESM.CT();
 
 // WebService4Proxy测试
 {
-    if( true ){
+    if( false ){
         let { WebService4Proxy, } = CT.getClass();
 
         let ws4Proxy_ins = new WebService4Proxy( CT, 'http://192.168.1.2:9999/SimServer/' );
 
-        ws4Proxy_ins.get( { type: 'json', } )
-                    .GETFile( {
+        /*
+         ws4Proxy_ins.create( { type: 'json', } )
+         .GET( {
+         options: {
+         method: 'GET',
+         // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+         // responseType: 'json',
+         mode: 'cors',
+         credentials: 'omit',
+         body: {
+         type: 'json5',
+         },
+         },
+         } )
+         .then( json => {
+         console.dir( json );
+         } );
+
+         ws4Proxy_ins.json()
+         .GET( {
+         options: {
+         method: 'GET',
+         // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+         // responseType: 'json',
+         mode: 'cors',
+         credentials: 'omit',
+         body: {
+         type: 'json5',
+         },
+         },
+         } )
+         .then( json => {
+         console.dir( json );
+         } );
+
+         ws4Proxy_ins.get( { type: 'json', } )
+         .GETFile( {
+         options: {
+         // method: 'GET',
+         // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+         // responseType: 'json',
+         mode: 'cors',
+         credentials: 'omit',
+         body: {
+         type: 'json',
+         },
+         },
+         } )
+         .then( json => {
+         console.dir( json );
+         } );
+         */
+
+        ws4Proxy_ins.post( { type: 'json', } )
+                    .POST( {
                         options: {
                             // method: 'GET',
                             // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
                             // responseType: 'json',
+                            headers: new Headers( { 'Content-Type': 'application/json', } ),
                             mode: 'cors',
                             credentials: 'omit',
-                            body: {
+                            body: JSON.stringify( {
                                 type: 'json',
-                            },
-                        },
-                    } )
-                    .then( json => {
-                        console.dir( json );
-                    } );
-
-        ws4Proxy_ins.create( { type: 'json', } )
-                    .GET( {
-                        options: {
-                            method: 'GET',
-                            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                            // responseType: 'json',
-                            mode: 'cors',
-                            credentials: 'omit',
-                            body: {
-                                type: 'json5',
-                            },
-                        },
-                    } )
-                    .then( json => {
-                        console.dir( json );
-                    } );
-
-        ws4Proxy_ins.json()
-                    .GET( {
-                        options: {
-                            method: 'GET',
-                            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                            // responseType: 'json',
-                            mode: 'cors',
-                            credentials: 'omit',
-                            body: {
-                                type: 'json5',
-                            },
+                            } ),
                         },
                     } )
                     .then( json => {

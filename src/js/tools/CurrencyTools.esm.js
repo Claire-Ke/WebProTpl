@@ -7522,6 +7522,16 @@ class WebService4Proxy{
      * 一个CT类的实例(new CT())，必须的
      */
     ctIns;
+    /**
+     * 处理数据的类型
+     */
+    type4ResponseData = [
+        'arrayBuffer',
+        'blob',
+        'formData',
+        'json',
+        'text',
+    ];
 
     /**
      * 本类的构造函数
@@ -7546,7 +7556,7 @@ class WebService4Proxy{
      * @param type 字符串，响应回来的数据的预处理类型('arrayBuffer'、'blob'、'formData'、'json'、'text')，可选<br />
      * PS：<br />
      * 1、不传的话，响应回来的数据将是原样的！<br />
-     * 2、如果传的话，也只能传上面提到的5种！<br />
+     * 2、如果传的话，也只能传上面提到的5种！否则，响应回来的数据将是原样的！<br />
      *
      * @returns {Proxy} Proxy实例
      */
@@ -7565,7 +7575,7 @@ class WebService4Proxy{
                              options,
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, options )
                                           .then( response => {
-                                              if( type ){
+                                              if( _this.type4ResponseData.includes( type ) ){
                                                   return response.clone()[ type ]();
                                               }
                                               else{
@@ -7672,7 +7682,7 @@ class WebService4Proxy{
      * @param type 字符串，响应回来的数据的预处理类型('arrayBuffer'、'blob'、'formData'、'json'、'text')，可选<br />
      * PS：<br />
      * 1、不传的话，响应回来的数据将是原样的！<br />
-     * 2、如果传的话，也只能传上面提到的5种！<br />
+     * 2、如果传的话，也只能传上面提到的5种！否则，响应回来的数据将是原样的！<br />
      *
      * @returns {Proxy} Proxy实例
      */
@@ -7693,7 +7703,7 @@ class WebService4Proxy{
                                               method: 'GET',
                                           } ) )
                                           .then( response => {
-                                              if( type ){
+                                              if( _this.type4ResponseData.includes( type ) ){
                                                   return response.clone()[ type ]();
                                               }
                                               else{
@@ -7715,7 +7725,7 @@ class WebService4Proxy{
      * @param type 字符串，响应回来的数据的预处理类型('arrayBuffer'、'blob'、'formData'、'json'、'text')，可选<br />
      * PS：<br />
      * 1、不传的话，响应回来的数据将是原样的！<br />
-     * 2、如果传的话，也只能传上面提到的5种！<br />
+     * 2、如果传的话，也只能传上面提到的5种！否则，响应回来的数据将是原样的！<br />
      *
      * @returns {Proxy} Proxy实例
      */
@@ -7736,7 +7746,7 @@ class WebService4Proxy{
                                               method: 'POST',
                                           } ) )
                                           .then( response => {
-                                              if( type ){
+                                              if( _this.type4ResponseData.includes( type ) ){
                                                   return response.clone()[ type ]();
                                               }
                                               else{
