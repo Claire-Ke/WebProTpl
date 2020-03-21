@@ -7597,6 +7597,8 @@ class WebService4Proxy{
      * @returns {Proxy} Proxy实例
      */
     arrayBuffer( baseUrl ){
+        'use strict';
+
         return this.create( {
             baseUrl,
             type: 'arrayBuffer',
@@ -7614,6 +7616,8 @@ class WebService4Proxy{
      * @returns {Proxy} Proxy实例
      */
     blob( baseUrl ){
+        'use strict';
+
         return this.create( {
             baseUrl,
             type: 'blob',
@@ -7631,6 +7635,8 @@ class WebService4Proxy{
      * @returns {Proxy} Proxy实例
      */
     formData( baseUrl ){
+        'use strict';
+
         return this.create( {
             baseUrl,
             type: 'formData',
@@ -7648,6 +7654,8 @@ class WebService4Proxy{
      * @returns {Proxy} Proxy实例
      */
     json( baseUrl ){
+        'use strict';
+
         return this.create( {
             baseUrl,
             type: 'json',
@@ -7665,6 +7673,8 @@ class WebService4Proxy{
      * @returns {Proxy} Proxy实例
      */
     text( baseUrl ){
+        'use strict';
+
         return this.create( {
             baseUrl,
             type: 'text',
