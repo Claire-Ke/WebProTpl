@@ -259,3 +259,49 @@ let CT = new CTESM.CT();
                     } );
     }
 }
+
+// Reflect、Proxy的观察者模式的Demo测试
+{
+    if( true ){
+        let observeTarget1 = {
+                q: 'qqq',
+                w: {
+                    e: 'eee',
+                    r: {
+                        t: 'ttt',
+                    },
+                },
+            },
+            observeTarget2 = [
+                1,
+                [
+                    2,
+                    [
+                        3,
+                        [ 4, ],
+                    ],
+                ],
+            ];
+
+        let observeTarget4Proxy1 = CT.observe2Obj( observeTarget1, {
+                isDeep: true,
+                handle: ( keyName, newValue, oldValue ) => {
+                    console.log( `set old ${ keyName }: ${ oldValue }` );
+                    console.log( `set new ${ keyName }: ${ newValue }` );
+                },
+            } ),
+            observeTarget4Proxy2 = CT.observe2Obj( observeTarget2, {
+                isDeep: true,
+                handle: ( keyName, newValue, oldValue ) => {
+                    console.log( `set old ${ keyName }: ${ oldValue }` );
+                    console.log( `set new ${ keyName }: ${ newValue }` );
+                },
+            } );
+
+        observeTarget4Proxy1.w.r.t = 2020;
+        observeTarget4Proxy2[ 1 ][ 1 ][ 1 ][ 0 ] = 2021;
+
+        console.dir( observeTarget4Proxy1 );
+        console.dir( observeTarget4Proxy2 );
+    }
+}
