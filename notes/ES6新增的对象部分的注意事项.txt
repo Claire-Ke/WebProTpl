@@ -114,3 +114,20 @@ a?.b = c
 
 
 6、
+Proxy-实例的方法：ownKeys()
+ownKeys方法用来拦截对象自身属性的读取操作。具体来说，拦截以下操作：
+Object.getOwnPropertyNames()
+Object.getOwnPropertySymbols()
+Object.keys()
+for...in循环
+
+PS：
+使用Object.getOwnPropertySymbols()、Object.keys()、for...in循环等三个方法时，有三类属性会被ownKeys方法自动过滤，不会返回。
+目标对象上不存在的属性
+属性名为 Symbol 值
+不可遍历（enumerable）的属性
+但是，Object.getOwnPropertyNames()不会过滤！！！
+
+
+
+7、
