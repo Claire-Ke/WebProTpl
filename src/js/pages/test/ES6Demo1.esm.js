@@ -262,7 +262,7 @@ let CT = new CTESM.CT();
 
 // Reflect、Proxy的观察者模式的Demo测试
 {
-    if( true ){
+    if( false ){
         let observeTarget1 = {
                 q: 'qqq',
                 w: {
@@ -303,5 +303,72 @@ let CT = new CTESM.CT();
 
         console.dir( observeTarget4Proxy1 );
         console.dir( observeTarget4Proxy2 );
+    }
+}
+
+// Promise.any测试
+{
+    if( false ){
+        let resolve1 = Promise.resolve( 'resolve1' ),
+            resolve2 = Promise.resolve( 'resolve2' ),
+            reject1 = Promise.reject( 'reject1' ),
+            reject2 = Promise.reject( 'reject2' );
+
+        /*
+         Promise.any( [
+         resolve1,
+         resolve2,
+         reject1,
+         reject2,
+         ] )
+         .then( result => {
+         // resolve1
+         console.log( result );
+         } );
+         */
+
+        Promise.any( [
+                   reject1,
+                   reject2,
+               ] )
+               .then( result => {
+                   console.dir( result );
+               } )
+               .catch( ( result/*{ errors, stack, message }*/ ) => {
+                   console.dir( result );
+
+                   // [ 'reject1', 'reject2' ]
+                   // console.dir( errors );
+
+                   // AggregateError: No one promise resolved
+                   //     at new AggregateError (webpack:///./node_modules/core-js/modules/esnext.aggregate-error.js?:20:27)
+                   //     at eval (webpack:///./node_modules/core-js/modules/esnext.promise.any.js?:38:33)
+                   // console.log( `stack--->${ stack }<---stack` );
+
+                   // No one promise resolved
+                   // console.log( `message--->${ message }` );
+               } );
+    }
+}
+
+// Promise.try测试
+{
+    if( false ){
+        console.log( '1' );
+
+        Promise.try( () => new Promise( ( resolve = () => {
+               }, reject = () => {
+               } ) => {
+                   resolve( '5' );
+               } ) )
+               .then( arg => {
+                   console.log( arg );
+                   console.log( '4' );
+               } )
+               .catch( error => {
+                   console.error( error.message );
+               } );
+
+        console.log( '2' );
     }
 }
