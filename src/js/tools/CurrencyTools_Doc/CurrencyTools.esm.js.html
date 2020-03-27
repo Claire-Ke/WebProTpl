@@ -1176,7 +1176,7 @@ class Canvas2Others{
 }
 
 /**
- * 复制、剪切等操作的API方法
+ * 复制、剪切等操作的API方法，加入了“Clipboard API”
  */
 class CopyAPI{
 
@@ -1207,6 +1207,246 @@ class CopyAPI{
         document.body.removeChild( inputElem );
 
         return result_boo;
+    }
+
+    /**
+     * 使用“Clipboard API”的readText方法读取系统剪切板上第一个文本类型的内容&lt;br />
+     * PS：&lt;br />
+     * 如果剪贴板为空、不包含文本或在表示剪贴板内容的数据传输对象中不包含文本表示，则返回空字符串。
+     *
+     * @param fun 函数，有一个参数(text)，可选&lt;br />
+     * PS：&lt;br />
+     * 如果剪贴板为空、不包含文本或在表示剪贴板内容的数据传输对象中不包含文本表示，则返回空字符串。
+     *
+     * @param events JSON对象，里头都是各个事件，可选&lt;br />
+     * {&lt;br />
+     * denied: 函数，当权限状态为“拒绝授权”时执行，可选&lt;br />&lt;br />
+     *
+     * stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选&lt;br />&lt;br />
+     *
+     * error: 函数，报错时执行的函数，会有一个参数(error)，可选&lt;br />
+     */
+    readText4Clip( fun = text => {
+    }, events = {} ){
+        const clip_objC = navigator.clipboard;
+
+        if( this.isUndefined( clip_objC ) ){
+            GetError( '不支持“navigator.clipboard”！' );
+        }
+        else if( this.isUndefined( clip_objC.readText ) ){
+            GetError( '不支持“navigator.clipboard.readText”！' );
+        }
+        else{
+            const readText = () => clip_objC.readText()
+                                            .then( text => void ( fun( text ) ) );
+
+            this.permissionsQuery( {
+                name: 'clipboard-read',
+            }, Object.assign( {}, {
+                denied(){
+                    GetError( '拒绝授权' );
+                },
+                stateChange( _this ){
+                },
+                error( e ){
+                    GetError( e.message );
+                },
+            }, events, {
+                prompt(){
+                    readText();
+                },
+                granted(){
+                    readText();
+                },
+            } ) );
+        }
+    }
+
+    /**
+     * 使用“Clipboard API”的read方法读取系统剪切板上第一个内容&lt;br />
+     * PS：&lt;br />
+     * 1、&lt;br />
+     * 当系统剪切板无值或为空时，会报错误：DOMException: No valid data on clipboard.&lt;br />
+     *
+     * @param fun 函数，有两个参数( data4Blob, type(如：image/png、text/plain一类的字符串) )，可选&lt;br />
+     * PS：&lt;br />
+     * 1、允许从系统剪切板读取的数据类型如下：&lt;br />
+     * text/plain、text/uri-list、text/csv、text/css、text/html、application/xhtml+xml、image/png、image/jpg、image/jpeg、&lt;br />
+     * image/gif、image/svg+xml、application/xml、text/xml、application/javascript、application/json、&lt;br />
+     * application/octet-stream&lt;br />
+     * 2、data4Blob使用说明(Blob有以下4个方法)：&lt;br />
+     * Blob slice( start: Number, end: Number, contentType: String )&lt;br />
+     * Readable stream()&lt;br />
+     * Promise&lt;String> text()&lt;br />
+     * Promise&lt;ArrayBuffer> arrayBuffer()&lt;br />
+     *
+     * @param events JSON对象，里头都是各个事件，可选&lt;br />
+     * {&lt;br />
+     * denied: 函数，当权限状态为“拒绝授权”时执行，可选&lt;br />&lt;br />
+     *
+     * stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选&lt;br />&lt;br />
+     *
+     * error: 函数，报错时执行的函数，会有一个参数(error)，可选&lt;br />
+     */
+    read4Clip( fun = ( data4Blob, type ) => {
+    }, events = {} ){
+        const clip_objC = navigator.clipboard;
+
+        if( this.isUndefined( clip_objC ) ){
+            GetError( '不支持“navigator.clipboard”！' );
+        }
+        else if( this.isUndefined( clip_objC.read ) ){
+            GetError( '不支持“navigator.clipboard.read”！' );
+        }
+        else{
+            const events_objC = Object.assign( {}, {
+                    denied(){
+                        GetError( '拒绝授权' );
+                    },
+                    stateChange( _this ){
+                    },
+                    error( e ){
+                        GetError( e.message );
+                    },
+                }, events, {
+                    prompt(){
+                        read();
+                    },
+                    granted(){
+                        read();
+                    },
+                } ),
+                read = () => clip_objC.read()
+                                      .then( data => void ( data.forEach( c => void ( c.getType( c.types[ 0 ] )
+                                                                                       .then( data4Blob => void ( fun( data4Blob, c.types[ 0 ] ) ) )
+                                                                                       .catch( events_objC.error ) ) ) ) )
+                                      .catch( events_objC.error );
+
+            this.permissionsQuery( {
+                name: 'clipboard-read',
+            }, events_objC );
+        }
+    }
+
+    /**
+     * 使用“Clipboard API”的writeText方法将一个字符串写入系统剪切板
+     *
+     * @param str 字符串，写入系统剪切板的一个字符串内容，默认值空字符串，可选
+     *
+     * @param events JSON对象，里头都是各个事件，可选&lt;br />
+     * {&lt;br />
+     * success: 函数，将一个字符串成功写入系统剪切板时执行，可选&lt;br />&lt;br />
+     *
+     * fail: 函数，将一个字符串写入系统剪切板失败时执行，可选&lt;br />&lt;br />
+     *
+     * denied: 函数，当权限状态为“拒绝授权”时执行，可选&lt;br />&lt;br />
+     *
+     * stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选&lt;br />&lt;br />
+     *
+     * error: 函数，报错时执行的函数，会有一个参数(error)，可选&lt;br />
+     */
+    writeText4Clip( str = '', events = {} ){
+        const clip_objC = navigator.clipboard;
+
+        if( this.isUndefined( clip_objC ) ){
+            GetError( '不支持“navigator.clipboard”！' );
+        }
+        else if( this.isUndefined( clip_objC.writeText ) ){
+            GetError( '不支持“navigator.clipboard.writeText”！' );
+        }
+        else{
+            const events_objC = Object.assign( {}, {
+                    success(){
+                    },
+                    fail(){
+                        GetError( '写入失败' );
+                    },
+                    denied(){
+                        GetError( '拒绝授权' );
+                    },
+                    stateChange( _this ){
+                    },
+                    error( e ){
+                        GetError( e.message );
+                    },
+                }, events, {
+                    prompt(){
+                        writeText();
+                    },
+                    granted(){
+                        writeText();
+                    },
+                } ),
+                writeText = () => clip_objC.writeText( str )
+                                           .then( events_objC.success, events_objC.fail );
+
+            this.permissionsQuery( {
+                name: 'clipboard-write',
+            }, events_objC );
+        }
+    }
+
+    /**
+     * 使用“Clipboard API”的write方法将一个内容写入系统剪切板
+     *
+     * @param data Blob、DataTransfer，一个写入系统剪切板的数据，必须&lt;br />
+     * PS：&lt;br />
+     * 1、允许写入系统剪切板的数据类型如下：&lt;br />
+     * text/plain、text/uri-list、text/csv、text/html、image/svg+xml、application/xml、text/xml、application/json&lt;br />
+     * 2、警告！为了安全起见，不受信任的脚本允许写入剪贴板的数据类型受到限制。&lt;br />
+     * 不受信任的脚本可以尝试利用本地软件中的安全漏洞，方法是将已知触发这些漏洞的数据放在剪贴板上。&lt;br />
+     *
+     * @param events JSON对象，里头都是各个事件，可选&lt;br />
+     * {&lt;br />
+     * success: 函数，将一个内容成功写入系统剪切板时执行，可选&lt;br />&lt;br />
+     *
+     * fail: 函数，将一个内容写入系统剪切板失败时执行，可选&lt;br />&lt;br />
+     *
+     * denied: 函数，当权限状态为“拒绝授权”时执行，可选&lt;br />&lt;br />
+     *
+     * stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选&lt;br />&lt;br />
+     *
+     * error: 函数，报错时执行的函数，会有一个参数(error)，可选&lt;br />
+     */
+    write4Clip( data, events = {} ){
+        const clip_objC = navigator.clipboard;
+
+        if( this.isUndefined( clip_objC ) ){
+            GetError( '不支持“navigator.clipboard”！' );
+        }
+        else if( this.isUndefined( clip_objC.write ) ){
+            GetError( '不支持“navigator.clipboard.write”！' );
+        }
+        else{
+            const events_objC = Object.assign( {}, {
+                    success(){
+                    },
+                    fail(){
+                        GetError( '写入失败' );
+                    },
+                    denied(){
+                        GetError( '拒绝授权' );
+                    },
+                    stateChange( _this ){
+                    },
+                    error( e ){
+                        GetError( e.message );
+                    },
+                }, events, {
+                    prompt(){
+                        write();
+                    },
+                    granted(){
+                        write();
+                    },
+                } ),
+                write = () => clip_objC.write( data )
+                                       .then( events_objC.success, events_objC.fail );
+
+            this.permissionsQuery( {
+                name: 'clipboard-write',
+            }, events_objC );
+        }
     }
 
 }
@@ -6715,8 +6955,10 @@ class PermissionsAPI{
      * bluetooth、persistent-storage、ambient-light-sensor、accelerometer、gyroscope、magnetometer、clipboard、&lt;br />
      * display-capture、nfc。&lt;br />
      * 最新谷歌浏览器(80.0.3987.149)测试的各个权限名称的情况(不同于上头提到的"PermissionName权限名称列表“)：&lt;br />
-     * accelerometer、accessibility events permisson(报错，识别不到)、ambient-light-sensor(GenericSensorExtraClasses的标识要打开，否则会报错，识别不到)、&lt;br />
-     * camera、clipboard-read、clipboard-write、geolocation、background-sync、magnetometer、microphone、midi、notifications、&lt;br />
+     * accelerometer、accessibility events permisson(报错，识别不到)、&lt;br />
+     * ambient-light-sensor(GenericSensorExtraClasses的标识要打开，否则会报错，识别不到)、&lt;br />
+     * camera、clipboard-read、clipboard-write、geolocation、&lt;br />
+     * background-sync(如果用户主动设置了浏览器禁止后台同步，那么授权状态就是拒绝的)、magnetometer、microphone、midi、notifications、&lt;br />
      * payment-handler、persistent-storage、push(必须userVisibleOnly: true，否则会报错，识别不到)&lt;br />&lt;br />
      *
      * userVisibleOnly: boolean，仅限push推送，指示您是要为每条消息显示通知还是能够发送静默推送通知。默认值为false。&lt;br />
@@ -6733,50 +6975,66 @@ class PermissionsAPI{
      *
      * denied: 函数，当权限状态为“拒绝授权”时执行，可选&lt;br />&lt;br />
      *
-     * stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选&lt;br />
+     * stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选&lt;br />&lt;br />
+     *
+     * error: 函数，报错时执行的函数，会有一个参数(error)，可选&lt;br />
      *
      * @returns {Promise&lt;permissionStatus>} Promise&lt;permissionStatus>
      */
     permissionsQuery( options = {}, events = {} ){
         const permissions_objC = navigator.permissions;
 
-        if( !this.isUndefined( permissions_objC ) ){
-            return permissions_objC.query( options )
-                                   .then( permissionStatus => {
-                                       const state_strC = permissionStatus.state,
-                                           events_objC = Object.assign( {
-                                               prompt(){
-                                               },
-                                               granted(){
-                                               },
-                                               denied(){
-                                               },
-                                               stateChange( _this ){
-                                               },
-                                           }, events );
-
-                                       // 提示授权
-                                       if( state_strC === 'prompt' ){
-                                           events_objC.prompt();
-                                       }
-                                       // 已经授予
-                                       else if( state_strC === 'granted' ){
-                                           events_objC.granted();
-                                       }
-                                       // 拒绝授权
-                                       else if( state_strC === 'denied' ){
-                                           events_objC.denied();
-                                       }
-
-                                       permissionStatus.onchange = function(){
-                                           events_objC.stateChange( this );
-                                       };
-
-                                       return permissionStatus;
-                                   } );
+        if( this.isUndefined( permissions_objC ) ){
+            GetError( '不支持“navigator.permissions”！' );
+        }
+        else if( this.isUndefined( permissions_objC.query ) ){
+            GetError( '不支持“navigator.permissions.query”！' );
         }
         else{
-            GetError( '不支持“navigator.permissions”！' );
+            const events_objC = Object.assign( {
+                prompt(){
+                },
+                granted(){
+                },
+                denied(){
+                    GetError( '拒绝授权' );
+                },
+                stateChange( _this ){
+                },
+                error( e ){
+                    GetError( e.message );
+                },
+            }, events );
+
+            try{
+                return permissions_objC.query( options )
+                                       .then( permissionStatus => {
+                                           const state_strC = permissionStatus.state;
+
+                                           // 提示授权
+                                           if( state_strC === 'prompt' ){
+                                               events_objC.prompt();
+                                           }
+                                           // 已经授予
+                                           else if( state_strC === 'granted' ){
+                                               events_objC.granted();
+                                           }
+                                           // 拒绝授权
+                                           else if( state_strC === 'denied' ){
+                                               events_objC.denied();
+                                           }
+
+                                           permissionStatus.onchange = function(){
+                                               events_objC.stateChange( this );
+                                           };
+
+                                           return permissionStatus;
+                                       } )
+                                       .catch( events_objC.error );
+            }
+            catch( e ){
+                events_objC.error( e );
+            }
         }
     }
 
@@ -8191,7 +8449,7 @@ export default CT;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Mar 27 2020 18:44:50 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Mar 28 2020 00:09:26 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>
