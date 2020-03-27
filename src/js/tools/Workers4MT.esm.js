@@ -529,7 +529,7 @@ class SWorker4MT{
      *   name: 'SharedWorker_' + Date.now() // 字符串，指定要创建的Worker的名字，其后在Shared Worker线程内“self.name”就能得到，默认值'SharedWorker_' + Date.now()，主要用于调试。
      */
     constructor( arg_obj = {}, opt_obj = {} ){
-        if( !( 'SharedWorker' in window ) ){
+        if( !( 'SharedWorker' in globalThis ) ){
             const error_strC = '该浏览器不支持“Shared Worker”！';
             Prompt( error_strC );
             GetError( error_strC );
@@ -1057,7 +1057,7 @@ class WWorker4MT{
      *   name: 'WebWorker_' + Date.now() // 字符串，指定要创建的Worker的名字，其后在Web Workers线程内“self.name”就能得到，默认值'WebWorker_' + Date.now()，主要用于调试。
      */
     constructor( arg_obj = {}, opt_obj = {} ){
-        if( !( 'Worker' in window ) ){
+        if( !( 'Worker' in globalThis ) ){
             const error_strC = '该浏览器不支持“Web Worker”！';
             Prompt( error_strC );
             GetError( error_strC );

@@ -15,7 +15,7 @@
 
 'use strict';
 
-self.importScripts( './tools/WWorker4CT.compiler.js' );
+globalThis.importScripts( './tools/WWorker4CT.compiler.js' );
 
 // extendableEvent.waitUntil(promise)
 //
@@ -200,4 +200,4 @@ class ServiceWorker4CT
     }
 }
 
-self.ServiceWorker4CT = ServiceWorker4CT;
+globalThis.ServiceWorker4CT = ServiceWorker4CT;

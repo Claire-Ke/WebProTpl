@@ -15,7 +15,7 @@
 
 'use strict';
 
-self.importScripts( './tools/WWorker4CT.compiler.js' );
+globalThis.importScripts( './tools/WWorker4CT.compiler.js' );
 
 /**
  * 子线程(“Shared Worker”线程)<br />
@@ -239,4 +239,4 @@ class SWorker4CT
     }
 }
 
-self.SWorker4CT = SWorker4CT;
+globalThis.SWorker4CT = SWorker4CT;

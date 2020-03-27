@@ -15,7 +15,7 @@
 
 'use strict';
 
-let _self = self;
+let _self = globalThis;
 
 // self.importScripts( './tools/ServiceWorker4CT.compiler.js' );
 
@@ -94,7 +94,7 @@ function GetAllAssets(){
         } );
 }
 
-self.onmessage = event => {
+globalThis.onmessage = event => {
     let GetAllAssets = eval( `(${ event.data.GetAllAssets })()` );
 
     GetAllAssets.then( CTAllAssets => {
@@ -104,7 +104,7 @@ self.onmessage = event => {
     } );
 };
 
-self.addEventListener( 'install', ( event ) => {
+globalThis.addEventListener( 'install', ( event ) => {
     // console.log( 'install------>Start' );
 
     event.waitUntil(
@@ -118,12 +118,12 @@ self.addEventListener( 'install', ( event ) => {
     // console.log( 'install------>End' );
 } );
 
-self.addEventListener( 'activate', event => {
+globalThis.addEventListener( 'activate', event => {
     // console.log( 'activate------>Start' );
     // console.log( 'activate------>End' );
 } );
 
-self.addEventListener( 'fetch', event => {
+globalThis.addEventListener( 'fetch', event => {
     if( !event.request.url.includes( '/sockjs-node/' ) && !event.request.url.includes( 'chrome-extension://' ) ){
         event.respondWith( caches.match( event.request )
                                  .then( response => {

@@ -153,4 +153,4 @@ class WWorker4CT{
     }
 }
 
-self.WWorker4CT = WWorker4CT;
+globalThis.WWorker4CT = WWorker4CT;

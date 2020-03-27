@@ -60,13 +60,13 @@ function AllEStop( event ){
 function CAnimationFFun( id_num ){
     'use strict';
 
-    if( window.cancelAnimationFrame ){
-        return window.cancelAnimationFrame( id_num );
+    if( globalThis.cancelAnimationFrame ){
+        return globalThis.cancelAnimationFrame( id_num );
     }
-    else if( window.webkitCancelAnimationFrame ){
-        return window.webkitCancelAnimationFrame( id_num );
+    else if( globalThis.webkitCancelAnimationFrame ){
+        return globalThis.webkitCancelAnimationFrame( id_num );
     }
-    return window.clearTimeout( id_num );
+    return globalThis.clearTimeout( id_num );
 }
 
 function CopyProperties( target, source ){
@@ -91,8 +91,8 @@ function GetError( info_str ){
 }
 
 function Init( _this ){
-    window.requestAnimationFrame = window[ 'requestAnimationFrame' ] || window[ 'webkitRequestAnimationFrame' ] || window[ 'mozRequestAnimationFrame' ] || window[ 'msRequestAnimationFrame' ] || window[ 'oRequestAnimationFrame' ] || window[ 'khtmlRequestAnimationFrame' ];
-    window.cancelAnimationFrame = window[ 'cancelAnimationFrame' ] || window[ 'webkitCancelAnimationFrame' ] || window[ 'mozCancelAnimationFrame' ] || window[ 'msCancelAnimationFrame' ] || window[ 'oCancelAnimationFrame' ] || window[ 'khtmlCancelAnimationFrame' ];
+    globalThis.requestAnimationFrame = globalThis[ 'requestAnimationFrame' ] || globalThis[ 'webkitRequestAnimationFrame' ] || globalThis[ 'mozRequestAnimationFrame' ] || globalThis[ 'msRequestAnimationFrame' ] || globalThis[ 'oRequestAnimationFrame' ] || globalThis[ 'khtmlRequestAnimationFrame' ];
+    globalThis.cancelAnimationFrame = globalThis[ 'cancelAnimationFrame' ] || globalThis[ 'webkitCancelAnimationFrame' ] || globalThis[ 'mozCancelAnimationFrame' ] || globalThis[ 'msCancelAnimationFrame' ] || globalThis[ 'oCancelAnimationFrame' ] || globalThis[ 'khtmlCancelAnimationFrame' ];
 
     // 触摸事件初始化，因为在touch()内部做了判断，所以，不管new CT多少次或调用touch()多少次，都只会执行一次触摸事件初始化！！！避免了重复注册触摸事件！！！
     _this.isTouch() && _this.touch();
@@ -756,7 +756,7 @@ function IsHandle14( sT ){
          * @returns {function} function，返回一个函数，用于解除给“window”绑定的“storage”事件，如：window.removeEventListener( 'storage', f, false )
          */
         storageCE: f => {
-            window.addEventListener( 'storage', f, false );
+            globalThis.addEventListener( 'storage', f, false );
             return f;
         },
     };
@@ -765,7 +765,7 @@ function IsHandle14( sT ){
 function IsHandle15( f ){
     let ticking = false,
         id = undefined;
-    !ticking && ( id = window.requestAnimationFrame( () => void ( f(), ticking = false ) ) );
+    !ticking && ( id = globalThis.requestAnimationFrame( () => void ( f(), ticking = false ) ) );
     ticking = true;
     return id;
 }
@@ -846,7 +846,7 @@ function IsHandle18( newURLStr, searchObj, stateData, type ){
         str1 = '?';
         arr1.forEach( ( c, i, a ) => void ( str1 += c + '=' + searchObj[ c ], i !== ( a.length - 1 ) && ( str1 += str2 ) ) );
     }
-    window.history[ type ]( stateData, '', newURLStr + str1 );
+    globalThis.history[ type ]( stateData, '', newURLStr + str1 );
     return newURLStr + str1;
 }
 
@@ -944,13 +944,13 @@ function Prompt( info ){
 function RAnimationFFun( callback_fun ){
     'use strict';
 
-    if( window.requestAnimationFrame ){
-        return window.requestAnimationFrame( callback_fun );
+    if( globalThis.requestAnimationFrame ){
+        return globalThis.requestAnimationFrame( callback_fun );
     }
-    else if( window.webkitRequestAnimationFrame ){
-        return window.webkitRequestAnimationFrame( callback_fun );
+    else if( globalThis.webkitRequestAnimationFrame ){
+        return globalThis.webkitRequestAnimationFrame( callback_fun );
     }
-    return window.setTimeout( callback_fun, 1000 / 60 );
+    return globalThis.setTimeout( callback_fun, 1000 / 60 );
 }
 
 /**
@@ -1165,7 +1165,7 @@ class CopyAPI{
      *
      * @returns {boolean} boolean，true表示复制成功！反之，失败！
      */
-    copyTxt( txt_str = window.location.href ){
+    copyTxt( txt_str = globalThis.location.href ){
         let inputElem = document.createElement( 'input' ),
             result_boo = false;
 
@@ -1586,7 +1586,7 @@ class FunHandle{
      */
     minTask( callback = () => {
     } ){
-        if( typeof window.queueMicrotask !== 'function' ){
+        if( typeof globalThis.queueMicrotask !== 'function' ){
             Promise.resolve()
                    .then( callback )
                    .catch( e => void ( setTimeout( () => void ( throw new Error( e ) ) ) ) );
@@ -3308,9 +3308,9 @@ class JS2jQuery{
                         };
                         Object.keys( props )
                               .forEach( prop => {
-                                  initialFullValue = window.getComputedStyle( el, null )
-                                                           .getPropertyValue( prop )
-                                                           .replace( ',', '.' );
+                                  initialFullValue = globalThis.getComputedStyle( el, null )
+                                                               .getPropertyValue( prop )
+                                                               .replace( ',', '.' );
                                   initialValue = parseFloat( initialFullValue );
                                   unit = initialFullValue.replace( initialValue, '' );
                                   finalValue = parseFloat( props[ prop ] );
@@ -6178,7 +6178,7 @@ class OthersHandle{
     deviceInfo(){
         let pf_str = navigator.platform,
             ua_str = navigator.userAgent,
-            dpr_num = window.devicePixelRatio,
+            dpr_num = globalThis.devicePixelRatio,
             is_PCMac = pf_str.includes( 'MacIntel' ) || ua_str.includes( 'Macintosh' ) || ua_str.includes( 'Intel Mac OS' ),
             is_PCWin = pf_str.includes( 'Win32' ) || pf_str.includes( 'Win64' ) || ua_str.includes( 'Windows NT' ) || ua_str.includes( 'WOW64' ),
             is_iPad = pf_str.includes( 'iPad' ) || ua_str.includes( 'iPad' ),
@@ -6283,7 +6283,7 @@ class OthersHandle{
      * @param fileName 字符串，文件名(最好包括文件的后缀名)，默认值是："这是一个默认文件名(允许修改文件名和后缀)"，可选
      */
     download4Blob( blob, fileName = '这是一个默认文件名(允许修改文件名和后缀)' ){
-        let blobURL = window.URL.createObjectURL( blob ),
+        let blobURL = globalThis.URL.createObjectURL( blob ),
             eleLink = document.createElement( 'a' );
 
         eleLink.download = fileName;
@@ -6292,7 +6292,7 @@ class OthersHandle{
         document.body.appendChild( eleLink );
         eleLink.click();
         document.body.removeChild( eleLink );
-        window.URL.revokeObjectURL( blobURL );
+        globalThis.URL.revokeObjectURL( blobURL );
     }
 
     /**
@@ -6308,7 +6308,7 @@ class OthersHandle{
         let doc_elem = document.documentElement,
             rend_fun = event => void ( doc_elem.style.fontSize = 16 * ( doc_elem.clientWidth / size_num ) + 'px' );
         document.addEventListener( 'DOMContentLoaded', rend_fun, false );
-        window.addEventListener( 'resize', rend_fun, false );
+        globalThis.addEventListener( 'resize', rend_fun, false );
     }
 
     /**
@@ -6324,7 +6324,7 @@ class OthersHandle{
      * @returns {Boolean} true(是从设备的桌面主屏幕打开的)、false(不是从设备的桌面主屏幕打开的)
      */
     isStandalone(){
-        return window[ 'navigator' ][ 'standalone' ];
+        return globalThis[ 'navigator' ][ 'standalone' ];
     }
 
     /**
@@ -6381,8 +6381,8 @@ class OthersHandle{
     oriChange( sFun = ( event => {
     } ), hFun = ( event => {
     } ) ){
-        let wOri = 'orientation' in window
-                   ? Math.abs( window[ 'orientation' ] )
+        let wOri = 'orientation' in globalThis
+                   ? Math.abs( globalThis[ 'orientation' ] )
                    : undefined,
             sOri = 'orientation' in screen
                    ? ( 'angle' in screen.orientation
@@ -6392,8 +6392,8 @@ class OthersHandle{
             isWOriUn = wOri === undefined,
             isSOriUn = sOri === undefined,
             handle = event => {
-                let wOri = 'orientation' in window
-                           ? Math.abs( window[ 'orientation' ] )
+                let wOri = 'orientation' in globalThis
+                           ? Math.abs( globalThis[ 'orientation' ] )
                            : undefined,
                     sOri = 'orientation' in screen
                            ? ( 'angle' in screen.orientation
@@ -6415,16 +6415,16 @@ class OthersHandle{
             };
         if( isWOriUn && isSOriUn ){
             let f = event => {
-                this.width( window )[ 0 ] <= this.height( window )[ 0 ]
+                this.width( globalThis )[ 0 ] <= this.height( globalThis )[ 0 ]
                 ? ( sFun( event ) )
                 : ( hFun( event ) );
             };
-            window.onresize = f;
+            globalThis.onresize = f;
             return f;
         }
         else{
             // window.onorientationchange = handle;
-            window.addEventListener( 'orientationchange', handle, false );
+            globalThis.addEventListener( 'orientationchange', handle, false );
             return handle;
         }
     }
@@ -6655,14 +6655,100 @@ class OthersHandle{
     } ), fun2 = ( () => {
     } ) ){
         try{
-            window.navigator.vibrate = window.navigator[ 'vibrate' ] || window.navigator[ 'webkitVibrate' ] || window.navigator[ 'mozVibrate' ] || window.navigator[ 'msVibrate' ] || window.navigator[ 'oVibrate' ] || window.navigator[ 'khtmlVibrate' ];
-            window.navigator.vibrate( option );
+            globalThis.navigator.vibrate = globalThis.navigator[ 'vibrate' ] || globalThis.navigator[ 'webkitVibrate' ] || globalThis.navigator[ 'mozVibrate' ] || globalThis.navigator[ 'msVibrate' ] || globalThis.navigator[ 'oVibrate' ] || globalThis.navigator[ 'khtmlVibrate' ];
+            globalThis.navigator.vibrate( option );
         }
         catch( e ){
             fun1( e );
         }
         finally{
             fun2();
+        }
+    }
+
+}
+
+/**
+ * Permissions API
+ */
+class PermissionsAPI{
+
+    /**
+     * Permissions接口的Permissions.query()方法返回全局范围内用户权限的状态。
+     *
+     * @param options JSON对象，必须，用于设置查询操作的选项：<br />
+     * {<br />
+     * name: 字符串，要查询其权限的API的名称，必须。<br />
+     * 例如，<br />
+     * Firefox目前支持“geolocation地理定位”、“notifications通知”、“push推送”和“persistent-storage持久存储”<br />
+     * 在规范中的“PermissionName enum”下可以找到最新的权限名称列表，但请记住，浏览器支持的实际权限目前远小于此值。<br />
+     * PermissionName权限名称列表(并非所有的API权限状态都可以使用Permissions API查询，随着时间的推移，更多的API将获得Permissions API支持。)：<br />
+     * geolocation、notifications、push、midi、camera、microphone、speaker、device-info、background-fetch、background-sync、<br />
+     * bluetooth、persistent-storage、ambient-light-sensor、accelerometer、gyroscope、magnetometer、clipboard、<br />
+     * display-capture、nfc。<br />
+     * 最新谷歌浏览器(80.0.3987.149)测试的各个权限名称的情况(不同于上头提到的"PermissionName权限名称列表“)：<br />
+     * accelerometer、accessibility events permisson(报错，识别不到)、ambient-light-sensor(GenericSensorExtraClasses的标识要打开，否则会报错，识别不到)、<br />
+     * camera、clipboard-read、clipboard-write、geolocation、background-sync、magnetometer、microphone、midi、notifications、<br />
+     * payment-handler、persistent-storage、push(必须userVisibleOnly: true，否则会报错，识别不到)<br /><br />
+     *
+     * userVisibleOnly: boolean，仅限push推送，指示您是要为每条消息显示通知还是能够发送静默推送通知。默认值为false。<br />
+     * PS：<br />
+     * 最新谷歌浏览器测试中发现，其值必须为true，否则会报错，且“push”权限会识别不到。<br /><br />
+     *
+     * sysex: boolean，（“仅限Midi”）指示您是否需要或接收系统独占消息。默认值为false。<br /><br />
+     *
+     * @param events JSON对象，里头都是各个事件，可选<br />
+     * {<br />
+     * prompt: 函数，当权限状态为“提示授权”时执行，可选<br /><br />
+     *
+     * granted: 函数，当权限状态为“已经授予”时执行，可选<br /><br />
+     *
+     * denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />
+     *
+     * stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br />
+     *
+     * @returns {Promise<permissionStatus>} Promise<permissionStatus>
+     */
+    permissionsQuery( options = {}, events = {} ){
+        const permissions_objC = navigator.permissions;
+
+        if( !this.isUndefined( permissions_objC ) ){
+            return permissions_objC.query( options )
+                                   .then( permissionStatus => {
+                                       const state_strC = permissionStatus.state,
+                                           events_objC = Object.assign( {
+                                               prompt(){
+                                               },
+                                               granted(){
+                                               },
+                                               denied(){
+                                               },
+                                               stateChange( _this ){
+                                               },
+                                           }, events );
+
+                                       // 提示授权
+                                       if( state_strC === 'prompt' ){
+                                           events_objC.prompt();
+                                       }
+                                       // 已经授予
+                                       else if( state_strC === 'granted' ){
+                                           events_objC.granted();
+                                       }
+                                       // 拒绝授权
+                                       else if( state_strC === 'denied' ){
+                                           events_objC.denied();
+                                       }
+
+                                       permissionStatus.onchange = function(){
+                                           events_objC.stateChange( this );
+                                       };
+
+                                       return permissionStatus;
+                                   } );
+        }
+        else{
+            GetError( '不支持“navigator.permissions”！' );
         }
     }
 
@@ -7028,7 +7114,7 @@ class TouchEvent{
      * 因为内部做了判断，所以，不管调用tapSim()多少次，都只会执行一次触摸事件初始化！避免了重复注册触摸事件！
      */
     tapSim(){
-        if( window[ 'isOpenTouch4CT' ] !== true ){
+        if( globalThis[ 'isOpenTouch4CT' ] !== true ){
             document.addEventListener( 'touchstart', event => {
                 !this.hasData( event.target, 'disable' )[ 0 ] && this.data( event.target, {
                     isMoved: 0
@@ -7044,7 +7130,7 @@ class TouchEvent{
                     this.triggerE( event.target, 'tap' );
                 }
             }, { passive: false } );
-            window[ 'isOpenTouch4CT' ] = true;
+            globalThis[ 'isOpenTouch4CT' ] = true;
         }
     }
 
@@ -7063,7 +7149,7 @@ class TouchEvent{
      * 因为内部做了判断，所以，不管调用touch()多少次，都只会执行一次触摸事件初始化！避免了重复注册触摸事件！
      */
     touch(){
-        if( window[ 'isOpenTouch4CT' ] !== true ){
+        if( globalThis[ 'isOpenTouch4CT' ] !== true ){
             let touch = {},
                 touchTimeout,
                 tapTimeout,
@@ -7098,7 +7184,7 @@ class TouchEvent{
                     deltaY = 0,
                     firstTouch,
                     _isPointerType;
-                'MSGesture' in window && ( gesture = new MSGesture(), gesture.target = document.body );
+                'MSGesture' in globalThis && ( gesture = new MSGesture(), gesture.target = document.body );
                 let doc = this.on( document, 'MSGestureEnd', e => {
                         let swipeDirectionFromVelocity = e.velocityX > 1
                                                          ? 'Right'
@@ -7187,9 +7273,9 @@ class TouchEvent{
                         deltaX = deltaY = 0;
                     }, { passive: false } )[ 0 ],
                     onEle4 = this.on( onEle3, 'touchcancel MSPointerCancel pointercancel', cancelAll, { passive: false } )[ 0 ];
-                this.scrollE( window, cancelAll );
+                this.scrollE( globalThis, cancelAll );
             } );
-            window[ 'isOpenTouch4CT' ] = true;
+            globalThis[ 'isOpenTouch4CT' ] = true;
         }
         [
             'swipe',
@@ -7235,14 +7321,14 @@ class UrlHandle{
      */
     cReturn( toDo_fun = ( event => {
     } ) ){
-        let pushHistory = () => void ( window.history.pushState( {
+        let pushHistory = () => void ( globalThis.history.pushState( {
                 title: 'title',
                 url: '#'
             }, 'title', '#' ) ),
             bool = false;
         pushHistory();
         setTimeout( () => void ( bool = true ), 1 );
-        this.on( window, 'popstate', event => void ( bool && toDo_fun( event ), pushHistory() ) );
+        this.on( globalThis, 'popstate', event => void ( bool && toDo_fun( event ), pushHistory() ) );
     }
 
     /**
@@ -7281,7 +7367,7 @@ class UrlHandle{
      */
     hashChange( fun = ( ( event, historyState, newURL, oldURL ) => {
     } ) ){
-        window.onhashchange = event => void ( fun( event, window.history.state, event.newURL, event.oldURL ) );
+        globalThis.onhashchange = event => void ( fun( event, globalThis.history.state, event.newURL, event.oldURL ) );
     }
 
     /**
@@ -7313,7 +7399,7 @@ class UrlHandle{
      */
     popStateChange( fun = ( ( event, historyState ) => {
     } ) ){
-        window.onpopstate = event => void ( fun( event, event.state ) );
+        globalThis.onpopstate = event => void ( fun( event, event.state ) );
     }
 
     /**
@@ -7325,7 +7411,7 @@ class UrlHandle{
      * @param delta number，默认值是-1，可选
      */
     urlBack( delta = -1 ){
-        window.history.go( delta );
+        globalThis.history.go( delta );
     }
 
     /**
@@ -7337,7 +7423,7 @@ class UrlHandle{
      * @param delta number，默认值是1，可选
      */
     urlForward( delta = 1 ){
-        window.history.go( delta );
+        globalThis.history.go( delta );
     }
 
     /**
@@ -7365,7 +7451,7 @@ class UrlHandle{
      */
     urlPush( arg_obj = {} ){
         let pra_obj = Object.assign( {
-            newURLStr: window.location.origin + window.location.pathname,
+            newURLStr: globalThis.location.origin + globalThis.location.pathname,
             searchObj: {},
             stateData: null
         }, arg_obj );
@@ -7397,7 +7483,7 @@ class UrlHandle{
      */
     urlReplace( arg_obj = {} ){
         let pra_obj = Object.assign( {
-            newURLStr: window.location.origin + window.location.pathname,
+            newURLStr: globalThis.location.origin + globalThis.location.pathname,
             searchObj: {},
             stateData: null
         }, arg_obj );
@@ -7411,7 +7497,7 @@ class UrlHandle{
      *
      * @returns {{}} JSON对象形式的URL查询参数
      */
-    urlSea2Obj( searchStr = window.location.search ){
+    urlSea2Obj( searchStr = globalThis.location.search ){
         let searchObj = {},
             arr1;
         ( searchStr.length !== 0 && searchStr[ 0 ] === '?' ) && ( searchStr = searchStr.slice( 1, searchStr.length ) );
@@ -7839,6 +7925,7 @@ const mixin_classArrC = [
     JS2jQuery,
     ObjHandle,
     OthersHandle,
+    PermissionsAPI,
     RegExpHandle,
     StringHandle,
     TouchEvent,
@@ -8014,17 +8101,17 @@ class CT
                     ready = true;
                     funcs = null;
                 };
-            if( window[ 'isOpenReadyS' ] !== true ){
+            if( globalThis[ 'isOpenReadyS' ] !== true ){
                 if( document.addEventListener ){
                     document.addEventListener( 'DOMContentLoaded', handler, false );
                     document.addEventListener( 'readystatechange', handler, false );
-                    window.addEventListener( 'load', handler, false );
+                    globalThis.addEventListener( 'load', handler, false );
                 }
                 else if( document.attachEvent ){
                     document.attachEvent( 'onreadystatechange', handler );
-                    window.attachEvent( 'onload', handler );
+                    globalThis.attachEvent( 'onload', handler );
                 }
-                window[ 'isOpenReadyS' ] = true;
+                globalThis[ 'isOpenReadyS' ] = true;
             }
             return ( f = ( () => {
             } ) ) => void ( ready

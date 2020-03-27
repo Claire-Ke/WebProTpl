@@ -15,10 +15,10 @@
 
 'use strict';
 
-self.importScripts( './tools/WWorker4CT.compiler.js' );
+globalThis.importScripts( './tools/WWorker4CT.compiler.js' );
 
-let wWorker4CT_ins = new WWorker4CT( self ),
-    wWorker4CT2Name_str = self.name;
+let wWorker4CT_ins = new WWorker4CT( globalThis ),
+    wWorker4CT2Name_str = globalThis.name;
 
 wWorker4CT_ins.onMessage( event => {
     console.log( `${ wWorker4CT2Name_str }--->Start` );

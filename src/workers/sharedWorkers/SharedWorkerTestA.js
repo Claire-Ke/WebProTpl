@@ -15,10 +15,10 @@
 
 'use strict';
 
-self.importScripts( './tools/SWorker4CT.compiler.js' );
+globalThis.importScripts( './tools/SWorker4CT.compiler.js' );
 
-let sWorker4CT_ins = new SWorker4CT( self ),
-    sWorker4CT2Name_str = self.name,
+let sWorker4CT_ins = new SWorker4CT( globalThis ),
+    sWorker4CT2Name_str = globalThis.name,
     numA = 2020;
 
 sWorker4CT_ins.onConnect( ( port, onConnectEvent ) => {

@@ -1975,3 +1975,10 @@ ${ onceFun1( 'q', 'w' ) }
         import('./ES6Demo1.esm.js');
     }
 }
+
+// Clipboard API测试
+{
+    if( true ){
+        import('./ClipboardAPIDemo1.esm.js');
+    }
+}
