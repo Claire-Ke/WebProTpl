@@ -21,8 +21,8 @@ isPro
 :
 ( console.log( '------------------This is development mode------------------' ) );
 
-import 'cssBDir/Colors.css';
 import 'compDir/Components.css';
+import 'cssBDir/Colors.css';
 
 import 'scssPDir/helloWorld/HelloWorld.scss';
 

@@ -1969,16 +1969,16 @@ ${ onceFun1( 'q', 'w' ) }
     }
 }
 
+// Clipboard API测试
+{
+    if( false ){
+        import('./ClipboardAPIDemo1.esm.js');
+    }
+}
+
 // ES6测试
 {
     if( true ){
         import('./ES6Demo1.esm.js');
-    }
-}
-
-// Clipboard API测试
-{
-    if( true ){
-        import('./ClipboardAPIDemo1.esm.js');
     }
 }

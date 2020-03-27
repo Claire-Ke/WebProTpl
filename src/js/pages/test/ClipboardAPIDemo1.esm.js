@@ -17,8 +17,6 @@
 
 let CT = new CTESM.CT();
 
-let obj1 = {};
-
 if( false ){
     CT.aCE( '.permissionsAPITestBtn1', event => {
         CT.readText4Clip( text => {
@@ -31,7 +29,7 @@ if( false ){
     }, false );
 }
 
-if( true ){
+if( false ){
     CT.aCE( '.permissionsAPITestBtn1', event => {
         CT.writeText4Clip( '这是写入系统剪切板的字符串内容！！！', {
             success(){
@@ -53,16 +51,18 @@ if( false ){
     }, false );
 }
 
-if( false ){
+if( true ){
     CT.aCE( '.permissionsAPITestBtn1', event => {
-        /*let data = new Blob( '这是写入系统剪切板的字符串内容！！！', {
+        /*
+         let data = new Blob( '这是写入系统剪切板的字符串内容！！！', {
          // native transparent
          // endings: 'transparent',
-         // type: 'text/plain',
-         } );*/
+         type: 'text/plain',
+         } );
+         */
 
         let data = new DataTransfer();
-        data.items.add( '这是写入系统剪切板的字符串内容！！！', 'text/plain' );
+        data.items.add( '1这是写入系统剪切板的字符串内容！！！', 'text/plain' );
 
         CT.write4Clip( data, {
             success(){

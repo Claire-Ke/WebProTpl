@@ -1301,7 +1301,9 @@ class CopyAPI{
     }
 
     /**
-     * 使用“Clipboard API”的writeText方法将一个字符串写入系统剪切板
+     * 使用“Clipboard API”的writeText方法将一个字符串写入系统剪切板<br />
+     * PS：<br />
+     * 1、奇怪！！！浏览器竟然对写入系统剪切板的权限没有提示！！！不管其权限是何种状态！！！而且能成功！！！<br />
      *
      * @param str 字符串，写入系统剪切板的一个字符串内容，默认值空字符串，可选
      *
@@ -1359,7 +1361,9 @@ class CopyAPI{
     }
 
     /**
-     * 使用“Clipboard API”的write方法将一个内容写入系统剪切板
+     * 使用“Clipboard API”的write方法将一个内容写入系统剪切板<br />
+     * PS：<br />
+     * 1、奇怪！！！浏览器竟然对写入系统剪切板的权限没有提示！！！不管其权限是何种状态！！！而且不能成功写入！！！<br />
      *
      * @param data Blob、DataTransfer，一个写入系统剪切板的数据，必须<br />
      * PS：<br />
