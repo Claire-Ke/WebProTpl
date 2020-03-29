@@ -372,3 +372,28 @@ let CT = new CTESM.CT();
         console.log( '2' );
     }
 }
+
+// Generator的function.sent测试
+{
+    if( true ){
+        function* dataConsumer(){
+            // console.log( `0. `, function.sent );
+
+            console.log( `1. ${ yield }` );
+
+            console.log( `2. ${ yield }` );
+
+            console.log( `3. ${ yield }` );
+
+            return 'result';
+        }
+
+        let genObj = dataConsumer();
+        console.dir( genObj.next( 0 ) );
+        console.dir( genObj.next( 1 ) );
+        console.dir( genObj.next( 2 ) );
+        console.dir( genObj.next( 3 ) );
+        console.dir( genObj.next( 4 ) );
+        console.dir( genObj.next( 5 ) );
+    }
+}
