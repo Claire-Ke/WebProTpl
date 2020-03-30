@@ -375,25 +375,77 @@ let CT = new CTESM.CT();
 
 // Generator的function.sent测试
 {
-    if( true ){
+    if( false ){
         function* dataConsumer(){
             // console.log( `0. `, function.sent );
 
-            console.log( `1. ${ yield }` );
+            console.log( `1. ${ yield 11 }` );
 
-            console.log( `2. ${ yield }` );
+            console.log( `2. ${ yield 22 }` );
 
-            console.log( `3. ${ yield }` );
+            console.log( `3. ${ yield 33 }` );
 
             return 'result';
         }
 
         let genObj = dataConsumer();
+
         console.dir( genObj.next( 0 ) );
         console.dir( genObj.next( 1 ) );
         console.dir( genObj.next( 2 ) );
         console.dir( genObj.next( 3 ) );
-        console.dir( genObj.next( 4 ) );
-        console.dir( genObj.next( 5 ) );
+    }
+}
+
+// 异步遍历器测试
+{
+    if( false ){
+        function PromiseA(){
+            return new Promise( ( resolve = () => {
+            }, reject = () => {
+            } ) => void ( setTimeout( resolve, 5000, 222 ) ) );
+        }
+
+        async function* Fun1(){
+            yield 1;
+            yield 2;
+            yield await PromiseA();
+            yield 3;
+            yield 4;
+        }
+
+        ( async () => {
+            for await( let value of
+                Fun1() ){
+                console.log( value );
+            }
+        } )();
+    }
+}
+
+// Symbol.asyncIterator测试
+{
+    if( false ){
+        function PromiseA(){
+            return new Promise( ( resolve = () => {
+            }, reject = () => {
+            } ) => void ( setTimeout( resolve, 5000, 222 ) ) );
+        }
+
+        let obj1 = {
+            async * [ Symbol.asyncIterator ](){
+                yield 1;
+                yield 2;
+                yield await PromiseA();
+                yield 3;
+            },
+        };
+
+        ( async () => {
+            for await( let value of
+                obj1 ){
+                console.log( value );
+            }
+        } )();
     }
 }
