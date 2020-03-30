@@ -735,6 +735,7 @@
         "copy-concurrently": "^1.0.5",
         "copy-descriptor": "^0.1.1",
         "copy-webpack-plugin": "^5.1.1",
+        "core-decorators": "^0.20.0",
         "core-js": "^3.6.4",
         "core-js-compat": "^3.6.4",
         "core-js-pure": "^3.6.4",

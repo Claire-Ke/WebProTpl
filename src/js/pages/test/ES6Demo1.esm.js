@@ -449,3 +449,169 @@ let CT = new CTESM.CT();
         } )();
     }
 }
+
+// Decorator测试
+{
+    if( true ){
+
+        let {
+            AutoBind,
+            NoConfigurable,
+            NoEnumerable,
+            Override,
+            ReadOnly,
+        } = DecESM;
+
+        class ClassC{
+
+            constructor(){
+            }
+
+            method3( arg1, arg2 ){
+                console.log( 'ClassC method3' );
+            }
+
+            static method4( arg1, arg2, arg3 ){
+                console.log( 'ClassC static method4' );
+            }
+
+        }
+
+        class ClassB
+            extends ClassC{
+
+            #Getter1 = 'ClassB #Getter1';
+            static #Getter2 = 'ClassB static #Getter2';
+
+            constructor(){
+                super();
+            }
+
+            get Getter1(){
+                return this.#Getter1;
+            }
+
+            set Getter1( newValue ){
+                this.#Getter1 = newValue;
+            }
+
+            static get Getter2(){
+                return this.#Getter2;
+            }
+
+            static set Getter2( newValue ){
+                this.#Getter2 = newValue;
+            }
+
+            method3( arg1 ){
+                console.log( 'ClassB method3' );
+            }
+
+            static method4( arg1, arg2 ){
+                console.log( 'ClassB static method4' );
+            }
+
+        }
+
+        class ClassA
+            extends ClassB{
+
+            @NoConfigurable
+            @ReadOnly
+            @NoEnumerable
+            property1 = 'ClassA 实例属性1';
+
+            @NoConfigurable
+            @ReadOnly
+            @NoEnumerable
+            static property2 = 'ClassA 静态属性1';
+
+            #Getter1 = 'ClassA #Getter1';
+            static #Getter2 = 'ClassA static #Getter2';
+
+            constructor(){
+                super();
+            }
+
+            @NoConfigurable
+            @ReadOnly
+            method1(){
+            }
+
+            @NoConfigurable
+            @ReadOnly
+            static method2(){
+            }
+
+            @NoConfigurable
+            @NoEnumerable
+            @Override
+            get Getter1(){
+                return this.#Getter1;
+            }
+
+            @NoConfigurable
+            @NoEnumerable
+            @Override
+            set Getter1( newValue ){
+                this.#Getter1 = newValue;
+            }
+
+            @NoConfigurable
+            @NoEnumerable
+            @Override
+            static get Getter2(){
+                return this.#Getter2;
+            }
+
+            @NoConfigurable
+            @NoEnumerable
+            @Override
+            static set Getter2( newValue ){
+                this.#Getter2 = newValue;
+            }
+
+            @Override
+            method3( arg1 ){
+                super.method3();
+                // console.log( 'ClassA method3' );
+            }
+
+            @Override
+            static method4( arg1, arg2 ){
+                super.method4();
+                // console.log( 'ClassA static method4' );
+            }
+
+        }
+
+        try{
+            let classA_ins = new ClassA();
+
+            // ClassA.method4();
+            // classA_ins.method3();
+
+            // true
+            // console.log( ClassA === ClassA.prototype.constructor );
+            // true
+            // console.log( classA_ins.constructor === ClassA );
+            // true
+            // console.log( classA_ins.constructor === ClassA.prototype.constructor );
+
+            // true
+            // console.log( Object.getPrototypeOf( classA_ins ) === ClassA.prototype );
+            // true
+            // console.log( classA_ins.__proto__ === ClassA.prototype );
+
+            // false
+            // console.log( Object.getPrototypeOf( ClassA ) === ClassA.prototype );
+            // true
+            // console.log( Object.getPrototypeOf( ClassA ) === ClassA.__proto__ );
+
+        }
+        catch( error ){
+            console.error( error.message );
+        }
+
+    }
+}

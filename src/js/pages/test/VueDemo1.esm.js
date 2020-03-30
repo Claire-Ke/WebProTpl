@@ -732,7 +732,7 @@ let vue4Win = new Vue( {
     },
     watch: {
         obj1: {
-            deep: true,
+            deep: false,
             handler( newVal, oldVal ){
                 console.log( '<----obj1----->' );
 
@@ -748,7 +748,7 @@ let vue4Win = new Vue( {
             },
         },
         attr3: {
-            deep: true,
+            deep: false,
             handler( newVal, oldVal ){
                 console.log( '<----attr3----->' );
 

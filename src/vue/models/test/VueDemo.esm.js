@@ -38,7 +38,51 @@ let data1_obj = {
             text: '整个牛项目',
             obj1: {
                 a: 'a3',
+                arr: [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    [
+                        3,
+                        4,
+                        5,
+                        [
+                            3,
+                            4,
+                            5,
+                            [
+                                3,
+                                4,
+                                5,
+                            ],
+                        ],
+                    ],
+                ],
             },
+            arr: [
+                1,
+                2,
+                3,
+                4,
+                5,
+                [
+                    3,
+                    4,
+                    5,
+                    [
+                        3,
+                        4,
+                        5,
+                        [
+                            3,
+                            4,
+                            5,
+                        ],
+                    ],
+                ],
+            ],
         },
     ],
     arr1: [
@@ -47,6 +91,25 @@ let data1_obj = {
         3,
         4,
         5,
+    ],
+    arr2: [
+        1,
+        2,
+        [
+            3,
+            4,
+            5,
+            [
+                3,
+                4,
+                5,
+                [
+                    3,
+                    4,
+                    5,
+                ],
+            ],
+        ],
     ],
     vText1: '<span class = "css-reset" style = "color: white;">vText1</span>',
     vHtml1: '<span class = "css-reset" style = "color: white;">vHtml1</span>',
