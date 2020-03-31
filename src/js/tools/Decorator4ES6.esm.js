@@ -63,16 +63,38 @@ function IsArray( arg ){
     return Array.isArray( arg );
 }
 
+function IsArrayBuffer( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'ArrayBuffer' );
+}
+
+function IsAsyncFun( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'AsyncFunction' );
+}
+
 function IsBigInt( arg ){
     'use strict';
 
     return IsDataT( arg, 'BigInt' );
 }
 
-function IsBoolean( arg ){
+function IsBigInt64Array( arg ){
     'use strict';
 
-    return IsDataT( arg, 'Boolean' );
+    return IsDataT( arg, 'BigInt64Array' );
+}
+
+function IsBigUint64Array( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'BigUint64Array' );
+}
+
+function IsBoolean( arg ){
+    return IsDataT( arg, 'Boolean' ) && ( typeof arg === 'boolean' );
 }
 
 function IsDataT( data, type ){
@@ -82,16 +104,64 @@ function IsDataT( data, type ){
         .includes( type );
 }
 
+function IsDataView( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'DataView' );
+}
+
 function IsDate( arg ){
     'use strict';
 
     return IsDataT( arg, 'Date' );
 }
 
+function IsEmpty( arg ){
+    if( IsString( arg ) || IsArray( arg ) ){
+        return arg.length === 0;
+    }
+    else if( IsObject( arg ) ){
+        return Object.keys( arg ).length === 0;
+    }
+    else if( IsFormData( arg ) ){
+        return Array.from( arg.keys() ).length === 0;
+    }
+    else{
+        return false;
+    }
+}
+
+function IsEmptyObject( arg ){
+    if( IsObject( arg ) && IsNull( Object.getPrototypeOf( arg ) ) ){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function IsError( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Error' );
+}
+
 function IsFinite( arg ){
     'use strict';
 
     return Number.isFinite( arg );
+}
+
+function IsFloat32Array( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Float32Array' );
+}
+
+function IsFloat64Array( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Float64Array' );
 }
 
 function IsFormData( arg ){
@@ -106,10 +176,46 @@ function IsFunction( arg ){
     return IsDataT( arg, 'Function' );
 }
 
+function IsGenerator( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Generator' );
+}
+
+function IsGeneratorFun( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'GeneratorFunction' );
+}
+
+function IsInt8Array( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Int8Array' );
+}
+
+function IsInt16Array( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Int16Array' );
+}
+
+function IsInt32Array( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Int32Array' );
+}
+
 function IsInteger( arg ){
     'use strict';
 
     return Number.isInteger( arg );
+}
+
+function IsMap( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Map' );
 }
 
 function IsNaN( arg ){
@@ -134,6 +240,12 @@ function IsObject( arg ){
     return IsDataT( arg, 'Object' );
 }
 
+function IsPromise( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Promise' );
+}
+
 function IsRegExp( arg ){
     'use strict';
 
@@ -146,6 +258,24 @@ function IsSafeInteger( arg ){
     return Number.isSafeInteger( arg );
 }
 
+function IsSet( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Set' );
+}
+
+function IsSharedArrayBuffer( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'SharedArrayBuffer' );
+}
+
+function IsSharedWorker( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'SharedWorker' );
+}
+
 function IsString( arg ){
     return IsDataT( arg, 'String' ) && ( typeof arg === 'string' );
 }
@@ -156,10 +286,52 @@ function IsSymbol( arg ){
     return IsDataT( arg, 'Symbol' );
 }
 
+function IsUint8Array( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Uint8Array' );
+}
+
+function IsUint8ClampedArray( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Uint8ClampedArray' );
+}
+
+function IsUint16Array( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Uint16Array' );
+}
+
+function IsUint32Array( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Uint32Array' );
+}
+
 function IsUndefined( arg ){
     'use strict';
 
     return IsDataT( arg, 'Undefined' );
+}
+
+function IsWeakMap( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'WeakMap' );
+}
+
+function IsWeakSet( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'WeakSet' );
+}
+
+function IsWorker( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Worker' );
 }
 
 /**
@@ -187,6 +359,60 @@ function ArrayType( target, name, descriptor ){
     'use strict';
 
     return Handle2( name, descriptor, 'Array', IsArray );
+}
+
+/**
+ * 该装饰器(ArrayBuffer类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function ArrayBufferType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'ArrayBuffer', IsArrayBuffer );
+}
+
+/**
+ * 该装饰器(Async Function类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function AsyncFunType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Async Function', IsAsyncFun );
 }
 
 /**
@@ -224,7 +450,61 @@ function BigIntType( target, name, descriptor ){
 }
 
 /**
- * 该装饰器(Boolean类型的数据)用于修饰类的实例属性、静态属性<br />
+ * 该装饰器(BigInt64Array类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function BigInt64ArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'BigInt64Array', IsBigInt64Array );
+}
+
+/**
+ * 该装饰器(BigUint64Array类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function BigUint64ArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'BigUint64Array', IsBigUint64Array );
+}
+
+/**
+ * 该装饰器(Boolean类型的数据(不包括布尔对象、实例))用于修饰类的实例属性、静态属性<br />
  * PS：<br />
  * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
  * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
@@ -247,7 +527,34 @@ function BigIntType( target, name, descriptor ){
 function BooleanType( target, name, descriptor ){
     'use strict';
 
-    return Handle2( name, descriptor, 'Boolean', IsBoolean );
+    return Handle2( name, descriptor, 'Boolean(不包括布尔对象、实例)', IsBoolean );
+}
+
+/**
+ * 该装饰器(DataView类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function DataViewType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'DataView', IsDataView );
 }
 
 /**
@@ -275,6 +582,141 @@ function DateType( target, name, descriptor ){
     'use strict';
 
     return Handle2( name, descriptor, 'Date', IsDate );
+}
+
+/**
+ * 该装饰器(Empty Data类型的数据，空的字符串('')、空的数组([])、空的对象({})、空的FormData)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function EmptyDataType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, `Empty Data(空的字符串('')、空的数组([])、空的对象({})、空的FormData)`, IsEmpty );
+}
+
+/**
+ * 该装饰器(全空的真空对象(Object.create( null )、{ __proto__: null, }、Object.setPrototypeOf( {}, null ))类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function EmptyObjectType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Empty Object(Object.create( null )、{ __proto__: null, }、Object.setPrototypeOf( {}, null ))', IsEmptyObject );
+}
+
+/**
+ * 该装饰器(Error类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function ErrorType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Error', IsError );
+}
+
+/**
+ * 该装饰器(Float32Array类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function Float32ArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Float32Array', IsFloat32Array );
+}
+
+/**
+ * 该装饰器(Float64Array类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function Float64ArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Float64Array', IsFloat64Array );
 }
 
 /**
@@ -329,6 +771,168 @@ function FunctionType( target, name, descriptor ){
     'use strict';
 
     return Handle2( name, descriptor, 'Function', IsFunction );
+}
+
+/**
+ * 该装饰器(Generator函数执行后生成的Generator遍历器类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function GeneratorType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Generator函数执行后生成的Generator遍历器', IsGenerator );
+}
+
+/**
+ * 该装饰器(Generator函数类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function GeneratorFunType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Generator函数', IsGeneratorFun );
+}
+
+/**
+ * 该装饰器(Int8Array类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function Int8ArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Int8Array', IsInt8Array );
+}
+
+/**
+ * 该装饰器(Int16Array类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function Int16ArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Int16Array', IsInt16Array );
+}
+
+/**
+ * 该装饰器(Int32Array类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function Int32ArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Int32Array', IsInt32Array );
+}
+
+/**
+ * 该装饰器(Map类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function MapType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Map', IsMap );
 }
 
 /**
@@ -440,7 +1044,7 @@ function NullType( target, name, descriptor ){
 }
 
 /**
- * 该装饰器(Number类型的数据)用于修饰类的实例属性、静态属性<br />
+ * 该装饰器(Number类型的数据(包括NaN值，但是不包括Number对象、实例))用于修饰类的实例属性、静态属性<br />
  * PS：<br />
  * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
  * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
@@ -463,7 +1067,7 @@ function NullType( target, name, descriptor ){
 function NumberType( target, name, descriptor ){
     'use strict';
 
-    return Handle2( name, descriptor, 'Number', IsNumber );
+    return Handle2( name, descriptor, 'Number(包括NaN值，但是不包括Number对象、实例)', IsNumber );
 }
 
 /**
@@ -572,6 +1176,33 @@ function ObjectType( target, name, descriptor ){
     'use strict';
 
     return Handle2( name, descriptor, 'Object', IsObject );
+}
+
+/**
+ * 该装饰器(Promise类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function PromiseType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Promise', IsPromise );
 }
 
 /**
@@ -684,7 +1315,88 @@ function RegExpType( target, name, descriptor ){
 }
 
 /**
- * 该装饰器(String类型的数据)用于修饰类的实例属性、静态属性<br />
+ * 该装饰器(Set类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function SetType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Set', IsSet );
+}
+
+/**
+ * 该装饰器(SharedArrayBuffer类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function SharedArrayBufferType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'SharedArrayBuffer', IsSharedArrayBuffer );
+}
+
+/**
+ * 该装饰器(SharedWorker类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function SharedWorkerType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'SharedWorker', IsSharedWorker );
+}
+
+/**
+ * 该装饰器(String类型的数据(不包括String对象、实例))用于修饰类的实例属性、静态属性<br />
  * PS：<br />
  * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
  * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
@@ -707,7 +1419,7 @@ function RegExpType( target, name, descriptor ){
 function StringType( target, name, descriptor ){
     'use strict';
 
-    return Handle2( name, descriptor, 'String', IsString );
+    return Handle2( name, descriptor, 'String(不包括String对象、实例)', IsString );
 }
 
 /**
@@ -738,6 +1450,114 @@ function SymbolType( target, name, descriptor ){
 }
 
 /**
+ * 该装饰器(Uint8Array类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function Uint8ArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Uint8Array', IsUint8Array );
+}
+
+/**
+ * 该装饰器(Uint8ClampedArray类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function Uint8ClampedArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Uint8ClampedArray', IsUint8ClampedArray );
+}
+
+/**
+ * 该装饰器(Uint16Array类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function Uint16ArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Uint16Array', IsUint16Array );
+}
+
+/**
+ * 该装饰器(Uint32Array类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function Uint32ArrayType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Uint32Array', IsUint32Array );
+}
+
+/**
  * 该装饰器(Undefined类型的数据)用于修饰类的实例属性、静态属性<br />
  * PS：<br />
  * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
@@ -764,14 +1584,111 @@ function UndefinedType( target, name, descriptor ){
     return Handle2( name, descriptor, 'Undefined', IsUndefined );
 }
 
+/**
+ * 该装饰器(WeakMap类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function WeakMapType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'WeakMap', IsWeakMap );
+}
+
+/**
+ * 该装饰器(WeakSet类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function WeakSetType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'WeakSet', IsWeakSet );
+}
+
+/**
+ * 该装饰器(Worker类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function WorkerType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Worker', IsWorker );
+}
+
 const decorators_objC = {
     ArrayType,
+    ArrayBufferType,
+    AsyncFunType,
     AutoBind,
     BigIntType,
+    BigInt64ArrayType,
+    BigUint64ArrayType,
     BooleanType,
+    DataViewType,
     DateType,
+    EmptyDataType,
+    EmptyObjectType,
+    ErrorType,
+    Float32ArrayType,
+    Float64ArrayType,
     FormDataType,
     FunctionType,
+    GeneratorType,
+    GeneratorFunType,
+    Int8ArrayType,
+    Int16ArrayType,
+    Int32ArrayType,
+    MapType,
     NaNType,
     NoConfigurable,
     NoEnumerable,
@@ -781,22 +1698,49 @@ const decorators_objC = {
     NumberIntegerType,
     NumberSafeIntegerType,
     ObjectType,
+    PromiseType,
     Override,
     ReadOnly,
     RegExpType,
+    SetType,
+    SharedArrayBufferType,
+    SharedWorkerType,
     StringType,
     SymbolType,
+    Uint8ArrayType,
+    Uint8ClampedArrayType,
+    Uint16ArrayType,
+    Uint32ArrayType,
     UndefinedType,
+    WeakMapType,
+    WeakSetType,
+    WorkerType,
 };
 
 export {
     ArrayType,
+    ArrayBufferType,
+    AsyncFunType,
     AutoBind,
     BigIntType,
+    BigInt64ArrayType,
+    BigUint64ArrayType,
     BooleanType,
+    DataViewType,
     DateType,
+    EmptyDataType,
+    EmptyObjectType,
+    ErrorType,
+    Float32ArrayType,
+    Float64ArrayType,
     FormDataType,
     FunctionType,
+    GeneratorType,
+    GeneratorFunType,
+    Int8ArrayType,
+    Int16ArrayType,
+    Int32ArrayType,
+    MapType,
     NaNType,
     NoConfigurable,
     NoEnumerable,
@@ -806,12 +1750,23 @@ export {
     NumberIntegerType,
     NumberSafeIntegerType,
     ObjectType,
+    PromiseType,
     Override,
     ReadOnly,
     RegExpType,
+    SetType,
+    SharedArrayBufferType,
+    SharedWorkerType,
     StringType,
     SymbolType,
+    Uint8ArrayType,
+    Uint8ClampedArrayType,
+    Uint16ArrayType,
+    Uint32ArrayType,
     UndefinedType,
+    WeakMapType,
+    WeakSetType,
+    WorkerType,
 };
 
 export default decorators_objC;

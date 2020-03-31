@@ -1404,6 +1404,14 @@ let path = require( 'path' ),
                         enforce: true,
                         reuseExistingChunk: true
                     },
+                    Dec_JS: {
+                        test: /src[\\/]js[\\/]tools[\\/]Decorator4ES6.esm.js/,
+                        name: 'Dec_JS',
+                        // 数值越高越先添加加载
+                        // priority: 1000,
+                        enforce: true,
+                        reuseExistingChunk: true
+                    },
                     CT_JS: {
                         test: /src[\\/]js[\\/]tools[\\/]CurrencyTools.esm.js/,
                         name: 'CT_JS',
@@ -1421,7 +1429,7 @@ let path = require( 'path' ),
                         reuseExistingChunk: true
                     },
                     ToolsJS_dir: {
-                        test: /src[\\/]js[\\/]tools[\\/](?!CurrencyTools.esm.js|Workers4MT.esm.js|HTML2Canvas.esm.js).*\.js$/,
+                        test: /src[\\/]js[\\/]tools[\\/](?!CurrencyTools.esm.js|Workers4MT.esm.js|HTML2Canvas.esm.js|Decorator4ES6.esm.js).*\.js$/,
                         name: 'ToolsJS_dir',
                         // 数值越高越先添加加载
                         // priority: 1000,

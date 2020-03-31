@@ -452,16 +452,32 @@ let CT = new CTESM.CT();
 
 // Decorator测试
 {
-    if( false ){
+    if( true ){
 
         let {
             ArrayType,
+            ArrayBufferType,
+            AsyncFunType,
             AutoBind,
             BigIntType,
+            BigInt64ArrayType,
+            BigUint64ArrayType,
             BooleanType,
+            DataViewType,
             DateType,
+            EmptyDataType,
+            EmptyObjectType,
+            ErrorType,
+            Float32ArrayType,
+            Float64ArrayType,
             FormDataType,
             FunctionType,
+            GeneratorType,
+            GeneratorFunType,
+            Int8ArrayType,
+            Int16ArrayType,
+            Int32ArrayType,
+            MapType,
             NaNType,
             NoConfigurable,
             NoEnumerable,
@@ -471,12 +487,23 @@ let CT = new CTESM.CT();
             NumberIntegerType,
             NumberSafeIntegerType,
             ObjectType,
+            PromiseType,
             Override,
             ReadOnly,
             RegExpType,
+            SetType,
+            SharedArrayBufferType,
+            SharedWorkerType,
             StringType,
             SymbolType,
+            Uint8ArrayType,
+            Uint8ClampedArrayType,
+            Uint16ArrayType,
+            Uint32ArrayType,
             UndefinedType,
+            WeakMapType,
+            WeakSetType,
+            WorkerType,
         } = DecESM;
 
         class ClassC{
@@ -594,6 +621,130 @@ let CT = new CTESM.CT();
 
             @NumberSafeIntegerType
             static property19 = -( 2 ** 53 - 1 );
+
+            @ArrayBufferType
+            property20 = new ArrayBuffer( 1024 );
+
+            @AsyncFunType
+            property21 = async () => {
+            };
+
+            @BigInt64ArrayType
+            property22 = new BigInt64Array( new ArrayBuffer( 1024 ) );
+
+            @BigUint64ArrayType
+            property23 = new BigUint64Array( new ArrayBuffer( 1024 ) );
+
+            @DataViewType
+            property24 = new DataView( new ArrayBuffer( 1024 ) );
+
+            @EmptyDataType
+            property25_1 = '';
+
+            @EmptyDataType
+            property25_2 = [];
+
+            @EmptyDataType
+            property25_3 = {};
+
+            @EmptyDataType
+            property25_4 = new FormData();
+
+            @EmptyObjectType
+            property26 = Object.create( null );
+
+            @Float32ArrayType
+            property27 = new Float32Array( new ArrayBuffer( 1024 ) );
+
+            @Float64ArrayType
+            property28 = new Float64Array( new ArrayBuffer( 1024 ) );
+
+            @GeneratorType
+            property29 = ( function* (){
+            } )();
+
+            @GeneratorFunType
+            property30 = function* (){
+            };
+
+            @Int8ArrayType
+            property31 = new Int8Array( new ArrayBuffer( 1024 ) );
+
+            @Int16ArrayType
+            property32 = new Int16Array( new ArrayBuffer( 1024 ) );
+
+            @Int32ArrayType
+            property33 = new Int32Array( new ArrayBuffer( 1024 ) );
+
+            @MapType
+            property34 = new Map( [
+                [
+                    1,
+                    2
+                ],
+                [
+                    3,
+                    4
+                ],
+            ] );
+
+            @PromiseType
+            property35 = new Promise( () => {
+            } );
+
+            @SetType
+            property36 = new Set( [
+                1,
+                2,
+            ] );
+
+            @SharedArrayBufferType
+            property37 = new SharedArrayBuffer( 1024 );
+
+            @Uint8ArrayType
+            property38 = new Uint8Array( new ArrayBuffer( 1024 ) );
+
+            @Uint8ClampedArrayType
+            property39 = new Uint8ClampedArray( new ArrayBuffer( 1024 ) );
+
+            @Uint16ArrayType
+            property40 = new Uint16Array( new ArrayBuffer( 1024 ) );
+
+            @Uint32ArrayType
+            property41 = new Uint32Array( new ArrayBuffer( 1024 ) );
+
+            @WeakMapType
+            property42 = new WeakMap( [
+                [
+                    [ 1 ],
+                    2
+                ],
+                [
+                    [ 3 ],
+                    4
+                ],
+            ] );
+
+            @WeakSetType
+            property43 = new WeakSet( [
+                [
+                    1,
+                    2
+                ],
+                [
+                    3,
+                    4
+                ],
+            ] );
+
+            @ErrorType
+            property44 = new Error( 'Error' );
+
+            // @SharedWorkerType
+            // property45 = new SharedWorker( '' );
+
+            // @WorkerType
+            // property46 = new Worker( '' );
 
             #Getter1 = 'ClassA #Getter1';
             static #Getter2 = 'ClassA static #Getter2';

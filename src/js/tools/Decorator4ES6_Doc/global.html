@@ -104,6 +104,196 @@
     
 
     
+    <h4 class="name" id="ArrayBufferType"><span class="type-signature"></span>ArrayBufferType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(ArrayBuffer类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line385">line 385</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="ArrayType"><span class="type-signature"></span>ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
@@ -236,7 +426,197 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line186">line 186</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line358">line 358</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="AsyncFunType"><span class="type-signature"></span>AsyncFunType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Async Function类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line412">line 412</a>
     </li></ul></dd>
     
 
@@ -346,7 +726,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line195">line 195</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line421">line 421</a>
     </li></ul></dd>
     
 
@@ -371,6 +751,196 @@
 
 
 
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="BigInt64ArrayType"><span class="type-signature"></span>BigInt64ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(BigInt64Array类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line473">line 473</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -514,7 +1084,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line220">line 220</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line446">line 446</a>
     </li></ul></dd>
     
 
@@ -572,7 +1142,7 @@
     
 
     
-    <h4 class="name" id="BooleanType"><span class="type-signature"></span>BooleanType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="BigUint64ArrayType"><span class="type-signature"></span>BigUint64ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
     
@@ -580,7 +1150,7 @@
 
 
 <div class="description">
-    该装饰器(Boolean类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+    该装饰器(BigUint64Array类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
 </div>
 
 
@@ -704,7 +1274,387 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line247">line 247</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line500">line 500</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="BooleanType"><span class="type-signature"></span>BooleanType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Boolean类型的数据(不包括布尔对象、实例))用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line527">line 527</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="DataViewType"><span class="type-signature"></span>DataViewType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(DataView类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line554">line 554</a>
     </li></ul></dd>
     
 
@@ -894,7 +1844,957 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line274">line 274</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line581">line 581</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="EmptyDataType"><span class="type-signature"></span>EmptyDataType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Empty Data类型的数据，空的字符串('')、空的数组([])、空的对象({})、空的FormData)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line608">line 608</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="EmptyObjectType"><span class="type-signature"></span>EmptyObjectType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(全空的真空对象(Object.create( null )、{ __proto__: null, }、Object.setPrototypeOf( {}, null ))类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line635">line 635</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="ErrorType"><span class="type-signature"></span>ErrorType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Error类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line662">line 662</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Float32ArrayType"><span class="type-signature"></span>Float32ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Float32Array类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line689">line 689</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Float64ArrayType"><span class="type-signature"></span>Float64ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Float64Array类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line716">line 716</a>
     </li></ul></dd>
     
 
@@ -1084,7 +2984,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line301">line 301</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line743">line 743</a>
     </li></ul></dd>
     
 
@@ -1274,7 +3174,1147 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line328">line 328</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line770">line 770</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="GeneratorFunType"><span class="type-signature"></span>GeneratorFunType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Generator函数类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line824">line 824</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="GeneratorType"><span class="type-signature"></span>GeneratorType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Generator函数执行后生成的Generator遍历器类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line797">line 797</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Int8ArrayType"><span class="type-signature"></span>Int8ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Int8Array类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line851">line 851</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Int16ArrayType"><span class="type-signature"></span>Int16ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Int16Array类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line878">line 878</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Int32ArrayType"><span class="type-signature"></span>Int32ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Int32Array类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line905">line 905</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="MapType"><span class="type-signature"></span>MapType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Map类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line932">line 932</a>
     </li></ul></dd>
     
 
@@ -1464,7 +4504,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line355">line 355</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line959">line 959</a>
     </li></ul></dd>
     
 
@@ -1654,7 +4694,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line382">line 382</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line986">line 986</a>
     </li></ul></dd>
     
 
@@ -1844,7 +4884,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line409">line 409</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1013">line 1013</a>
     </li></ul></dd>
     
 
@@ -2034,7 +5074,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line436">line 436</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1040">line 1040</a>
     </li></ul></dd>
     
 
@@ -2224,7 +5264,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line490">line 490</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1094">line 1094</a>
     </li></ul></dd>
     
 
@@ -2414,7 +5454,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line517">line 517</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1121">line 1121</a>
     </li></ul></dd>
     
 
@@ -2604,7 +5644,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line544">line 544</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1148">line 1148</a>
     </li></ul></dd>
     
 
@@ -2670,7 +5710,7 @@
 
 
 <div class="description">
-    该装饰器(Number类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+    该装饰器(Number类型的数据(包括NaN值，但是不包括Number对象、实例))用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
 </div>
 
 
@@ -2794,7 +5834,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line463">line 463</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1067">line 1067</a>
     </li></ul></dd>
     
 
@@ -2984,7 +6024,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line571">line 571</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1175">line 1175</a>
     </li></ul></dd>
     
 
@@ -3174,7 +6214,197 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line598">line 598</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1229">line 1229</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="PromiseType"><span class="type-signature"></span>PromiseType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Promise类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1202">line 1202</a>
     </li></ul></dd>
     
 
@@ -3364,7 +6594,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line653">line 653</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1284">line 1284</a>
     </li></ul></dd>
     
 
@@ -3554,7 +6784,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line680">line 680</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1311">line 1311</a>
     </li></ul></dd>
     
 
@@ -3612,7 +6842,7 @@
     
 
     
-    <h4 class="name" id="StringType"><span class="type-signature"></span>StringType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="SetType"><span class="type-signature"></span>SetType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
     
@@ -3620,7 +6850,7 @@
 
 
 <div class="description">
-    该装饰器(String类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+    该装饰器(Set类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
 </div>
 
 
@@ -3744,7 +6974,577 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line707">line 707</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1338">line 1338</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="SharedArrayBufferType"><span class="type-signature"></span>SharedArrayBufferType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(SharedArrayBuffer类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1365">line 1365</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="SharedWorkerType"><span class="type-signature"></span>SharedWorkerType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(SharedWorker类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1392">line 1392</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="StringType"><span class="type-signature"></span>StringType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(String类型的数据(不包括String对象、实例))用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1419">line 1419</a>
     </li></ul></dd>
     
 
@@ -3934,7 +7734,767 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line734">line 734</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1446">line 1446</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Uint8ArrayType"><span class="type-signature"></span>Uint8ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Uint8Array类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1473">line 1473</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Uint8ClampedArrayType"><span class="type-signature"></span>Uint8ClampedArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Uint8ClampedArray类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1500">line 1500</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Uint16ArrayType"><span class="type-signature"></span>Uint16ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Uint16Array类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1527">line 1527</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Uint32ArrayType"><span class="type-signature"></span>Uint32ArrayType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Uint32Array类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1554">line 1554</a>
     </li></ul></dd>
     
 
@@ -4124,7 +8684,577 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line761">line 761</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1581">line 1581</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="WeakMapType"><span class="type-signature"></span>WeakMapType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(WeakMap类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1608">line 1608</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="WeakSetType"><span class="type-signature"></span>WeakSetType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(WeakSet类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1635">line 1635</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="WorkerType"><span class="type-signature"></span>WorkerType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Worker类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1662">line 1662</a>
     </li></ul></dd>
     
 
@@ -4192,13 +9322,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ArrayType">ArrayType</a></li><li><a href="global.html#AutoBind">AutoBind</a></li><li><a href="global.html#BigIntType">BigIntType</a></li><li><a href="global.html#BooleanType">BooleanType</a></li><li><a href="global.html#DateType">DateType</a></li><li><a href="global.html#FormDataType">FormDataType</a></li><li><a href="global.html#FunctionType">FunctionType</a></li><li><a href="global.html#NaNType">NaNType</a></li><li><a href="global.html#NoConfigurable">NoConfigurable</a></li><li><a href="global.html#NoEnumerable">NoEnumerable</a></li><li><a href="global.html#NullType">NullType</a></li><li><a href="global.html#NumberFiniteType">NumberFiniteType</a></li><li><a href="global.html#NumberIntegerType">NumberIntegerType</a></li><li><a href="global.html#NumberSafeIntegerType">NumberSafeIntegerType</a></li><li><a href="global.html#NumberType">NumberType</a></li><li><a href="global.html#ObjectType">ObjectType</a></li><li><a href="global.html#Override">Override</a></li><li><a href="global.html#ReadOnly">ReadOnly</a></li><li><a href="global.html#RegExpType">RegExpType</a></li><li><a href="global.html#StringType">StringType</a></li><li><a href="global.html#SymbolType">SymbolType</a></li><li><a href="global.html#UndefinedType">UndefinedType</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ArrayBufferType">ArrayBufferType</a></li><li><a href="global.html#ArrayType">ArrayType</a></li><li><a href="global.html#AsyncFunType">AsyncFunType</a></li><li><a href="global.html#AutoBind">AutoBind</a></li><li><a href="global.html#BigInt64ArrayType">BigInt64ArrayType</a></li><li><a href="global.html#BigIntType">BigIntType</a></li><li><a href="global.html#BigUint64ArrayType">BigUint64ArrayType</a></li><li><a href="global.html#BooleanType">BooleanType</a></li><li><a href="global.html#DataViewType">DataViewType</a></li><li><a href="global.html#DateType">DateType</a></li><li><a href="global.html#EmptyDataType">EmptyDataType</a></li><li><a href="global.html#EmptyObjectType">EmptyObjectType</a></li><li><a href="global.html#ErrorType">ErrorType</a></li><li><a href="global.html#Float32ArrayType">Float32ArrayType</a></li><li><a href="global.html#Float64ArrayType">Float64ArrayType</a></li><li><a href="global.html#FormDataType">FormDataType</a></li><li><a href="global.html#FunctionType">FunctionType</a></li><li><a href="global.html#GeneratorFunType">GeneratorFunType</a></li><li><a href="global.html#GeneratorType">GeneratorType</a></li><li><a href="global.html#Int8ArrayType">Int8ArrayType</a></li><li><a href="global.html#Int16ArrayType">Int16ArrayType</a></li><li><a href="global.html#Int32ArrayType">Int32ArrayType</a></li><li><a href="global.html#MapType">MapType</a></li><li><a href="global.html#NaNType">NaNType</a></li><li><a href="global.html#NoConfigurable">NoConfigurable</a></li><li><a href="global.html#NoEnumerable">NoEnumerable</a></li><li><a href="global.html#NullType">NullType</a></li><li><a href="global.html#NumberFiniteType">NumberFiniteType</a></li><li><a href="global.html#NumberIntegerType">NumberIntegerType</a></li><li><a href="global.html#NumberSafeIntegerType">NumberSafeIntegerType</a></li><li><a href="global.html#NumberType">NumberType</a></li><li><a href="global.html#ObjectType">ObjectType</a></li><li><a href="global.html#Override">Override</a></li><li><a href="global.html#PromiseType">PromiseType</a></li><li><a href="global.html#ReadOnly">ReadOnly</a></li><li><a href="global.html#RegExpType">RegExpType</a></li><li><a href="global.html#SetType">SetType</a></li><li><a href="global.html#SharedArrayBufferType">SharedArrayBufferType</a></li><li><a href="global.html#SharedWorkerType">SharedWorkerType</a></li><li><a href="global.html#StringType">StringType</a></li><li><a href="global.html#SymbolType">SymbolType</a></li><li><a href="global.html#Uint8ArrayType">Uint8ArrayType</a></li><li><a href="global.html#Uint8ClampedArrayType">Uint8ClampedArrayType</a></li><li><a href="global.html#Uint16ArrayType">Uint16ArrayType</a></li><li><a href="global.html#Uint32ArrayType">Uint32ArrayType</a></li><li><a href="global.html#UndefinedType">UndefinedType</a></li><li><a href="global.html#WeakMapType">WeakMapType</a></li><li><a href="global.html#WeakSetType">WeakSetType</a></li><li><a href="global.html#WorkerType">WorkerType</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Tue Mar 31 2020 08:37:33 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Tue Mar 31 2020 18:44:18 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

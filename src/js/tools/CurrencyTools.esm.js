@@ -2251,6 +2251,32 @@ class IsDataType{
     }
 
     /**
+     * 判断数据是否为ArrayBuffer类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isArrayBuffer( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'ArrayBuffer' );
+    }
+
+    /**
+     * 判断数据是否为async...await的异步函数类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isAsyncFun( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'AsyncFunction' );
+    }
+
+    /**
      * 判断数据是否为BigInt类型
      *
      * @param arg 数据，参数个数为1，必需
@@ -2264,16 +2290,53 @@ class IsDataType{
     }
 
     /**
-     * 判断数据是否为Boolean类型(布尔对象、实例也会返回false)
+     * 判断数据是否为BigInt64Array类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isBigInt64Array( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'BigInt64Array' );
+    }
+
+    /**
+     * 判断数据是否为BigUint64Array类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isBigUint64Array( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'BigUint64Array' );
+    }
+
+    /**
+     * 判断数据是否为Boolean类型(布尔对象、实例会返回false)
      *
      * @param arg 数据，参数个数为1，必需
      *
      * @returns {Boolean} boolean，是true，否false
      */
     isBoolean( arg ){
+        return IsHandle1.call( this, arg, 'Boolean' ) && typeof arg === 'boolean';
+    }
+
+    /**
+     * 判断数据是否为DataView类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isDataView( arg ){
         'use strict';
 
-        return IsHandle1.call( this, arg, 'Boolean' );
+        return IsHandle1.call( this, arg, 'DataView' );
     }
 
     /**
@@ -2329,11 +2392,11 @@ class IsDataType{
     }
 
     /**
-     * 判断原数据是否为空数据，如果是字符串('')、数组([])、对象({})、FormData(空的FormData对象)，则为true，否则为false
+     * 判断原数据是否为空数据，如果是空的字符串('')、空的数组([])、空的对象({})、空的FormData，则为true，否则为false
      *
      * @param arg 数据，参数个数为1，必需
      *
-     * @returns {Boolean} boolean，如果是字符串('')、数组([])、对象({})、FormData(空的FormData对象)，则为true，否则为false
+     * @returns {Boolean} boolean，如果是空的字符串('')、空的数组([])、空的对象({})、空的FormData，则为true，否则为false
      */
     isEmpty( arg ){
         if( this.isString( arg ) || this.isArray( arg ) ){
@@ -2351,6 +2414,35 @@ class IsDataType{
     }
 
     /**
+     * 判断原数据是否为全空的真空对象(Object.create( null )、{ __proto__: null, }、Object.setPrototypeOf( {}, null ))，是则为true，否则为false
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，如果是全空的真空对象(Object.create( null )、{ __proto__: null, }、Object.setPrototypeOf( {}, null ))，是则为true，否则为false
+     */
+    isEmptyObject( arg ){
+        if( this.isObject( arg ) && this.isNull( Object.getPrototypeOf( arg ) ) ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
+     * 判断数据是否为Error类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isError( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Error' );
+    }
+
+    /**
      * 判断数据是否为一个有穷数，不转换参数，new Number(Infinity)为false，new Number(Infinity).valueOf()为false，<br />
      * new Number(1)为false，new Number(1).valueOf()为true<br />
      * 注意：如果参数类型不是数值，Number.isFinite一律返回false。
@@ -2363,6 +2455,32 @@ class IsDataType{
         'use strict';
 
         return Number.isFinite( arg );
+    }
+
+    /**
+     * 判断数据是否为Float32Array类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isFloat32Array( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Float32Array' );
+    }
+
+    /**
+     * 判断数据是否为Float64Array类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isFloat64Array( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Float64Array' );
     }
 
     /**
@@ -2389,6 +2507,71 @@ class IsDataType{
         'use strict';
 
         return IsHandle1.call( this, arg, 'Function' );
+    }
+
+    /**
+     * 判断数据是否为Generator函数执行后生成的Generator遍历器类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isGenerator( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Generator' );
+    }
+
+    /**
+     * 判断数据是否为Generator Function类型，也就是Generator函数
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isGeneratorFun( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'GeneratorFunction' );
+    }
+
+    /**
+     * 判断数据是否为Int8Array类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isInt8Array( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Int8Array' );
+    }
+
+    /**
+     * 判断数据是否为Int16Array类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isInt16Array( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Int16Array' );
+    }
+
+    /**
+     * 判断数据是否为Int32Array类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isInt32Array( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Int32Array' );
     }
 
     /**
@@ -2419,6 +2602,19 @@ class IsDataType{
     }
 
     /**
+     * 判断数据是否为Map类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isMap( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Map' );
+    }
+
+    /**
      * 判断数据是否为NaN值，不转换参数。new Number(NaN)为false，new Number(NaN).valueOf()为true<br />
      * 注意：如果参数类型不是NaN，Number.isNaN一律返回false。
      *
@@ -2446,7 +2642,7 @@ class IsDataType{
     }
 
     /**
-     * 判断数据是否为Number类型，包括NaN(Number对象、实例也会返回false)
+     * 判断数据是否为Number类型，包括NaN值(但是Number对象、实例会返回false)
      *
      * @param arg 数据，参数个数为1，必需
      *
@@ -2467,6 +2663,19 @@ class IsDataType{
         'use strict';
 
         return IsHandle1.call( this, arg, 'Object' );
+    }
+
+    /**
+     * 判断数据是否为Promise类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isPromise( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Promise' );
     }
 
     /**
@@ -2497,7 +2706,46 @@ class IsDataType{
     }
 
     /**
-     * 判断数据是否为String类型(String对象、实例也会返回false)
+     * 判断数据是否为Set类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isSet( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Set' );
+    }
+
+    /**
+     * 判断数据是否为SharedArrayBuffer类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isSharedArrayBuffer( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'SharedArrayBuffer' );
+    }
+
+    /**
+     * 判断数据是否为SharedWorker类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isSharedWorker( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'SharedWorker' );
+    }
+
+    /**
+     * 判断数据是否为String类型(String对象、实例会返回false)
      *
      * @param arg 数据，参数个数为1，必需
      *
@@ -2521,6 +2769,58 @@ class IsDataType{
     }
 
     /**
+     * 判断数据是否为Uint8Array类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isUint8Array( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Uint8Array' );
+    }
+
+    /**
+     * 判断数据是否为Uint8ClampedArray类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isUint8ClampedArray( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Uint8ClampedArray' );
+    }
+
+    /**
+     * 判断数据是否为Uint16Array类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isUint16Array( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Uint16Array' );
+    }
+
+    /**
+     * 判断数据是否为Uint32Array类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isUint32Array( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Uint32Array' );
+    }
+
+    /**
      * 判断数据是否为undefined值
      *
      * @param arg 数据，参数个数为1，必需
@@ -2534,6 +2834,32 @@ class IsDataType{
     }
 
     /**
+     * 判断数据是否是WeakMap类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isWeakMap( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'WeakMap' );
+    }
+
+    /**
+     * 判断数据是否是WeakSet类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isWeakSet( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'WeakSet' );
+    }
+
+    /**
      * 判断数据是否是Window对象
      *
      * @param arg 数据，参数个数为1，必需
@@ -2544,6 +2870,19 @@ class IsDataType{
         'use strict';
 
         return IsHandle1.call( this, arg, 'Window' );
+    }
+
+    /**
+     * 判断数据是否是Worker类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isWorker( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Worker' );
     }
 
 }
