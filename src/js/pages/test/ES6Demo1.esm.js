@@ -452,14 +452,31 @@ let CT = new CTESM.CT();
 
 // Decorator测试
 {
-    if( true ){
+    if( false ){
 
         let {
+            ArrayType,
             AutoBind,
+            BigIntType,
+            BooleanType,
+            DateType,
+            FormDataType,
+            FunctionType,
+            NaNType,
             NoConfigurable,
             NoEnumerable,
+            NullType,
+            NumberType,
+            NumberFiniteType,
+            NumberIntegerType,
+            NumberSafeIntegerType,
+            ObjectType,
             Override,
             ReadOnly,
+            RegExpType,
+            StringType,
+            SymbolType,
+            UndefinedType,
         } = DecESM;
 
         class ClassC{
@@ -525,6 +542,58 @@ let CT = new CTESM.CT();
             @ReadOnly
             @NoEnumerable
             static property2 = 'ClassA 静态属性1';
+
+            @ArrayType
+            property3 = [ 1, ];
+
+            @BigIntType
+            static property4 = 1n;
+
+            @BooleanType
+            static property5 = true;
+
+            @DateType
+            static property6 = new Date();
+
+            @FormDataType
+            static property7 = new FormData();
+
+            @FunctionType
+            static property8 = () => {
+            };
+
+            @NaNType
+            static property9 = NaN;
+
+            @NullType
+            static property10 = null;
+
+            @NumberType
+            static property11 = 2020;
+
+            @ObjectType
+            static property12 = {};
+
+            @RegExpType
+            static property13 = new RegExp();
+
+            @StringType
+            static property14 = 'String';
+
+            @SymbolType
+            static property15 = Symbol( 'SymbolA' );
+
+            @UndefinedType
+            static property16 = undefined;
+
+            @NumberFiniteType
+            static property17 = 1;
+
+            @NumberIntegerType
+            static property18 = 1.0;
+
+            @NumberSafeIntegerType
+            static property19 = -( 2 ** 53 - 1 );
 
             #Getter1 = 'ClassA #Getter1';
             static #Getter2 = 'ClassA static #Getter2';

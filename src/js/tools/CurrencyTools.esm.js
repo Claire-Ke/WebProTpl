@@ -2251,6 +2251,19 @@ class IsDataType{
     }
 
     /**
+     * 判断数据是否为BigInt类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isBigInt( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'BigInt' );
+    }
+
+    /**
      * 判断数据是否为Boolean类型(布尔对象、实例也会返回false)
      *
      * @param arg 数据，参数个数为1，必需
@@ -2492,6 +2505,19 @@ class IsDataType{
      */
     isString( arg ){
         return ( IsHandle1.call( this, arg, 'String' ) ) && ( typeof arg === 'string' );
+    }
+
+    /**
+     * 判断数据是否为Symbol类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isSymbol( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Symbol' );
     }
 
     /**
