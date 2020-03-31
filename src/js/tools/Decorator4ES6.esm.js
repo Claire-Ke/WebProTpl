@@ -936,6 +936,38 @@ function MapType( target, name, descriptor ){
 }
 
 /**
+ * 该Mixin装饰器用于修饰类本身，用于增加类的实例属性、实例方法
+ *
+ * @param list_obj rest参数，成员都是一个个Object，必须<br />
+ * PS：<br />
+ * 1、成员格式：<br />
+ * { mixinA4Property1: '混入的第一个实例属性', mixinA4Method1(){ console.log( '混入的第一个实例方法' ); , <br />
+ *
+ * @returns {function} 装饰器函数
+ */
+function Mixin2Class4Proto( ...list_obj ){
+    return function( target ){
+        Object.assign( target.prototype, ...list_obj );
+    };
+}
+
+/**
+ * 该Mixin装饰器用于修饰类本身，用于增加类的静态属性、静态方法
+ *
+ * @param list_obj rest参数，成员都是一个个Object，必须<br />
+ * PS：<br />
+ * 1、成员格式：<br />
+ * { mixinA4StaticProperty1: '混入的第一个静态属性', mixinA4StaticMethod1(){ console.log( '混入的第一个静态方法' ); , <br />
+ *
+ * @returns {function} 装饰器函数
+ */
+function Mixin2Class4Static( ...list_obj ){
+    return function( target ){
+        Object.assign( target, ...list_obj );
+    };
+}
+
+/**
  * 该装饰器(NaN类型的数据)用于修饰类的实例属性、静态属性<br />
  * PS：<br />
  * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
@@ -1689,6 +1721,8 @@ const decorators_objC = {
     Int16ArrayType,
     Int32ArrayType,
     MapType,
+    Mixin2Class4Proto,
+    Mixin2Class4Static,
     NaNType,
     NoConfigurable,
     NoEnumerable,
@@ -1741,6 +1775,8 @@ export {
     Int16ArrayType,
     Int32ArrayType,
     MapType,
+    Mixin2Class4Proto,
+    Mixin2Class4Static,
     NaNType,
     NoConfigurable,
     NoEnumerable,

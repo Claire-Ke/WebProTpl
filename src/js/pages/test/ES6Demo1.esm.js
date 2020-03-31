@@ -450,9 +450,9 @@ let CT = new CTESM.CT();
     }
 }
 
-// Decorator测试
+// Decorator测试1
 {
-    if( true ){
+    if( false ){
 
         let {
             ArrayType,
@@ -805,33 +805,75 @@ let CT = new CTESM.CT();
 
         }
 
-        try{
-            let classA_ins = new ClassA();
+    }
+}
 
-            // ClassA.method4();
-            // classA_ins.method3();
+// Decorator测试2
+{
+    if( false ){
 
-            // true
-            // console.log( ClassA === ClassA.prototype.constructor );
-            // true
-            // console.log( classA_ins.constructor === ClassA );
-            // true
-            // console.log( classA_ins.constructor === ClassA.prototype.constructor );
+        let {
+            AutoBind,
+            Mixin2Class4Proto,
+            Mixin2Class4Static,
+        } = DecESM;
 
-            // true
-            // console.log( Object.getPrototypeOf( classA_ins ) === ClassA.prototype );
-            // true
-            // console.log( classA_ins.__proto__ === ClassA.prototype );
+        @Mixin2Class4Proto( {
+            mixinA4Property1: '混入的第一个实例属性',
+            mixinA4Method1(){
+                console.log( '混入的第一个实例方法' );
+            },
+        }, {
+            mixinB4Property1: '混入的第二个实例属性',
+            mixinB4Method1(){
+                console.log( '混入的第二个实例方法' );
+            },
+        }, )
+        @Mixin2Class4Static( {
+            mixinA4StaticProperty1: '混入的第一个静态属性',
+            mixinA4StaticMethod1(){
+                console.log( '混入的第一个静态方法' );
+            },
+        }, {
+            mixinB4StaticProperty1: '混入的第二个静态属性',
+            mixinB4StaticMethod1(){
+                console.log( '混入的第二个静态方法' );
+            },
+        }, )
+        class TestClassA{
 
-            // false
-            // console.log( Object.getPrototypeOf( ClassA ) === ClassA.prototype );
-            // true
-            // console.log( Object.getPrototypeOf( ClassA ) === ClassA.__proto__ );
+            property1 = '实例属性1';
+
+            static property2 = '静态属性1';
+
+            constructor(){
+            }
+
+            method1(){
+                console.log( '实例方法1' );
+            }
+
+            static method2(){
+                console.log( '静态方法1' );
+            }
 
         }
-        catch( error ){
-            console.error( error.message );
-        }
+
+        let testClassA_ins = new TestClassA();
+
+        console.log( testClassA_ins.property1 );
+        console.log( testClassA_ins.mixinA4Property1 );
+        console.log( testClassA_ins.mixinB4Property1 );
+        testClassA_ins.method1();
+        testClassA_ins.mixinA4Method1();
+        testClassA_ins.mixinB4Method1();
+
+        console.log( TestClassA.property2 );
+        console.log( TestClassA.mixinA4StaticProperty1 );
+        console.log( TestClassA.mixinB4StaticProperty1 );
+        TestClassA.method2();
+        TestClassA.mixinA4StaticMethod1();
+        TestClassA.mixinB4StaticMethod1();
 
     }
 }
