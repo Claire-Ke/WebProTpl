@@ -877,3 +877,49 @@ let CT = new CTESM.CT();
 
     }
 }
+
+// |>管道运行算符测试
+{
+    if( false ){
+        function Fun1( arg ){
+            console.log( arg );
+
+            return arg + '---1>>>';
+        }
+
+        function Fun2( arg ){
+            console.log( arg );
+
+            return arg + '---2>>>';
+        }
+
+        function Fun3( arg ){
+            console.log( arg );
+
+            return arg + '---3>>>';
+        }
+
+        console.log( 'qweqweqwe' |> Fun1|> Fun2|> Fun3 );
+    }
+}
+
+// 函数参数占位符测试
+{
+    if( false ){
+        function Fun0( arg1 = 1, arg2 = 1, arg3 = 1 ){
+            return Math.sqrt( arg1 ** 2 + arg2 ** 2 + arg3 ** 2 );
+        }
+
+        let x = 2,
+            y = 2,
+            z = 2;
+
+        /*let fun1 = Fun0( x,
+         ?,
+         ? ),
+         result1 = z |> fun1( y,
+         ? );
+
+         console.log( result1 );*/
+    }
+}

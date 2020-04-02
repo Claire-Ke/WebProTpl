@@ -1982,3 +1982,10 @@ ${ onceFun1( 'q', 'w' ) }
         import('./ES6Demo1.esm.js');
     }
 }
+
+// 算法测试
+{
+    if( true ){
+        import('./Algorithm.esm.js');
+    }
+}
