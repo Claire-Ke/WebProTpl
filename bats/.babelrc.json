@@ -11,7 +11,6 @@
                     "browsers": [
                         "iOS >= 13",
                         "Safari >= 13",
-                        "Edge >= 18",
                         "Opera >= 67",
                         "OperaMobile >= 67",
                         "Chrome >= 80",
@@ -36,9 +35,6 @@
             {
                 "loose": true
             }
-        ],
-        [
-            "@babel/plugin-proposal-async-generator-functions"
         ],
         [
             "@babel/plugin-proposal-do-expressions"
@@ -74,16 +70,6 @@
             "@babel/plugin-transform-literals"
         ],
         [
-            "@babel/plugin-proposal-object-rest-spread",
-            {
-                "loose": true,
-                "useBuiltIns": false
-            }
-        ],
-        [
-            "@babel/plugin-proposal-optional-catch-binding"
-        ],
-        [
             "@babel/plugin-proposal-optional-chaining",
             {
                 "loose": false
@@ -97,12 +83,6 @@
         ],
         [
             "@babel/plugin-proposal-throw-expressions"
-        ],
-        [
-            "@babel/plugin-proposal-unicode-property-regex",
-            {
-                "useUnicodeFlag": true
-            }
         ],
         [
             "@babel/plugin-proposal-private-methods",
@@ -124,9 +104,6 @@
             {
                 "loose": true
             }
-        ],
-        [
-            "@babel/plugin-syntax-async-generators"
         ],
         [
             "@babel/plugin-syntax-bigint"
@@ -175,16 +152,6 @@
         ],
         [
             "@babel/plugin-syntax-numeric-separator"
-        ],
-        [
-            "@babel/plugin-syntax-object-rest-spread",
-            {
-                "loose": true,
-                "useBuiltIns": false
-            }
-        ],
-        [
-            "@babel/plugin-syntax-optional-catch-binding"
         ],
         [
             "@babel/plugin-syntax-optional-chaining",
