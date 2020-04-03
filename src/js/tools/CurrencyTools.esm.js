@@ -6795,19 +6795,21 @@ class ObjHandle{
      * @returns {Array} 数组[]
      */
     shuffleArr( arr = [] ){
-        let len = arr.length - 1,
-            index,
-            temp;
+        if( arr.length >= 2 ){
+            let len = arr.length - 1,
+                index,
+                temp;
 
-        for(
-            let i = 0;
-            i < len;
-            ++i
-        ){
-            index = parseInt( String( Math.random() * len ) ),
-                temp = arr[ index ];
-            arr.splice( index, 1, arr[ len - i ] );
-            arr.splice( len - i, 1, temp );
+            for(
+                let i = 0;
+                i < len;
+                ++i
+            ){
+                index = parseInt( String( Math.random() * len ) ),
+                    temp = arr[ index ];
+                arr.splice( index, 1, arr[ len - i ] );
+                arr.splice( len - i, 1, temp );
+            }
         }
 
         return arr;
