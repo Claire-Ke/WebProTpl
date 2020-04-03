@@ -19,6 +19,19 @@ let CT = new CTESM.CT();
 
 {
     if( true ){
+        async function* AsyncGeneratorFun(){
+            yield 1;
+            yield 2;
+            yield await new Promise( ( resolve = () => {
+            }, reject = () => {
+            } ) => void ( setTimeout( resolve, 400, 3 ) ) );
+            yield 4;
+            yield 5;
 
+            return 6;
+        }
+
+        CT.isAsyncGeneratorFun( AsyncGeneratorFun );
+        CT.isAsyncGenerator( AsyncGeneratorFun() );
     }
 }

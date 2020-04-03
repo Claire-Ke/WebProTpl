@@ -47,13 +47,15 @@ let path = require( 'path' ),
     // TerserPlugin = require( 'terser-webpack-plugin' ),
     browsers_arr = [
         /*
-         // '> 1%',
-         // 'last 3 major versions',
-         // 'last 3 versions',
-         // 'not ie < 9',
-         // 'not ie_mob < 9',
-         // 'not dead',
+         '> 1%',
+         'last 3 major versions',
+         'last 3 versions',
+         'not ie < 9',
+         'not ie_mob < 9',
+         'not dead',
+         */
 
+        /*
          'since 2015-01-01',
 
          // Safari 10是首先完全支持ES6的浏览器(2016年7月)
@@ -92,25 +94,23 @@ let path = require( 'path' ),
          */
 
         // 以下只是用于自己设备上的浏览器
-        /*
-         'iOS >= 13',
-         'Safari >= 13',
+        'iOS >= 13',
+        'Safari >= 13',
 
-         'Edge >= 18',
+        // 'Edge >= 18',
 
-         'Opera >= 67',
-         'OperaMobile >= 67',
+        'Opera >= 67',
+        'OperaMobile >= 67',
 
-         'Chrome >= 80',
-         'Android >= 80',
-         'ChromeAndroid >= 80',
-
-         'Firefox >= 74',
-         'FirefoxAndroid >= 74',
-         */
-
-        // 专门测试最新版本的稳定版本的谷歌浏览器
         'Chrome >= 80',
+        'Android >= 80',
+        'ChromeAndroid >= 80',
+
+        'Firefox >= 74',
+        'FirefoxAndroid >= 74',
+
+        // 专门在最新稳定版本的谷歌浏览器上测试用
+        // 'Chrome >= 80',
     ],
     postCSSLoader_fun = isPro => {
         let obj = {
