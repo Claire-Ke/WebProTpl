@@ -69,10 +69,28 @@ function IsArrayBuffer( arg ){
     return IsDataT( arg, 'ArrayBuffer' );
 }
 
+function IsArrayIterator( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Array Iterator' );
+}
+
 function IsAsyncFun( arg ){
     'use strict';
 
-    return IsDataT( arg, 'AsyncFunction' );
+    return IsDataT( arg, 'AsyncFunction' ) || IsDataT( arg, 'AsyncGeneratorFunction' );
+}
+
+function IsAsyncGenerator( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'AsyncGenerator' );
+}
+
+function IsAsyncGeneratorFun( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'AsyncGeneratorFunction' );
 }
 
 function IsBigInt( arg ){
@@ -389,7 +407,38 @@ function ArrayBufferType( target, name, descriptor ){
 }
 
 /**
- * 该装饰器(Async Function类型的数据)用于修饰类的实例属性、静态属性<br />
+ * 该装饰器(Array Iterator类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：如下都是这个数据类型<br />
+ * 1、[ "a", "b", "c", ].keys()<br />
+ * 2、[ "a", "b", "c", ].values()<br />
+ * 3、[ "a", "b", "c", ].entries()<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function ArrayIteratorType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Array Iterator', IsArrayIterator );
+}
+
+/**
+ * 该装饰器(Async Function类型的数据，包括异步的Generator函数)用于修饰类的实例属性、静态属性<br />
  * PS：<br />
  * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
  * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
@@ -412,7 +461,61 @@ function ArrayBufferType( target, name, descriptor ){
 function AsyncFunType( target, name, descriptor ){
     'use strict';
 
-    return Handle2( name, descriptor, 'Async Function', IsAsyncFun );
+    return Handle2( name, descriptor, 'Async Function|Async Generator Function', IsAsyncFun );
+}
+
+/**
+ * 该装饰器(Async Generator类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function AsyncGeneratorType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Async Generator', IsAsyncGenerator );
+}
+
+/**
+ * 该装饰器(Async Generator Function类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function AsyncGeneratorFunType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Async Generator Function', IsAsyncGeneratorFun );
 }
 
 /**
@@ -1700,7 +1803,10 @@ function WorkerType( target, name, descriptor ){
 const decorators_objC = {
     ArrayType,
     ArrayBufferType,
+    ArrayIteratorType,
     AsyncFunType,
+    AsyncGeneratorType,
+    AsyncGeneratorFunType,
     AutoBind,
     BigIntType,
     BigInt64ArrayType,
@@ -1754,7 +1860,10 @@ const decorators_objC = {
 export {
     ArrayType,
     ArrayBufferType,
+    ArrayIteratorType,
     AsyncFunType,
+    AsyncGeneratorType,
+    AsyncGeneratorFunType,
     AutoBind,
     BigIntType,
     BigInt64ArrayType,

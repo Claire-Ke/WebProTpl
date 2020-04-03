@@ -2264,7 +2264,24 @@ class IsDataType{
     }
 
     /**
-     * 判断数据是否为async...await的异步函数类型
+     * 判断数据是否为Array Iterator类型<br />
+     * PS：如下都是这个数据类型<br />
+     * 1、[ "a", "b", "c", ].keys()<br />
+     * 2、[ "a", "b", "c", ].values()<br />
+     * 3、[ "a", "b", "c", ].entries()<br />
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isArrayIterator( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Array Iterator' );
+    }
+
+    /**
+     * 判断数据是否为async...await的异步函数类型(包括异步的Generator函数)
      *
      * @param arg 数据，参数个数为1，必需
      *
@@ -2273,7 +2290,33 @@ class IsDataType{
     isAsyncFun( arg ){
         'use strict';
 
-        return IsHandle1.call( this, arg, 'AsyncFunction' );
+        return IsHandle1.call( this, arg, 'AsyncFunction' ) || IsHandle1.call( this, arg, 'AsyncGeneratorFunction' );
+    }
+
+    /**
+     * 判断数据是否为async...await的Generator函数执行后生成的Generator遍历器类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isAsyncGenerator( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'AsyncGenerator' );
+    }
+
+    /**
+     * 判断数据是否为async...await的Generator Function类型，也就是Generator函数
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isAsyncGeneratorFun( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'AsyncGeneratorFunction' );
     }
 
     /**
@@ -6918,6 +6961,31 @@ class OthersHandle{
             rend_fun = event => void ( doc_elem.style.fontSize = 16 * ( doc_elem.clientWidth / size_num ) + 'px' );
         document.addEventListener( 'DOMContentLoaded', rend_fun, false );
         globalThis.addEventListener( 'resize', rend_fun, false );
+    }
+
+    /**
+     * 部署“三种相等算法”中的第三种(-0全等+0，NaN全等NaN)<br />
+     * PS：<br />
+     * 1、第一种：===<br />
+     * -0全等+0，NaN不全等NaN<br />
+     * 2、第二种：Object.is<br />
+     * -0不全等+0，NaN全等NaN<br />
+     * 3、第三种：目前未部署具体API<br />
+     * -0全等+0，NaN全等NaN<br />
+     *
+     * @param x any data，必须
+     *
+     * @param y any data，必须
+     *
+     * @returns {boolean} boolean，x、y如果全等则为true，否则为false，-0全等+0，NaN全等NaN。
+     */
+    equal( x, y ){
+        if( Math.abs( x ) === 0 && Math.abs( y ) === 0 ){
+            return true;
+        }
+        else{
+            return Object.is( x, y );
+        }
     }
 
     /**

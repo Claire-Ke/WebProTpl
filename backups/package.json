@@ -80,16 +80,7 @@
         "weinre": "weinre --boundHost localhost --httpPort 8888 --verbose false --debug true"
     },
     "browserslist": [
-        "iOS >= 13",
-        "Safari >= 13",
-        "Edge >= 18",
-        "Opera >= 67",
-        "OperaMobile >= 67",
-        "Chrome >= 80",
-        "Android >= 80",
-        "ChromeAndroid >= 80",
-        "Firefox >= 74",
-        "FirefoxAndroid >= 74"
+        "Chrome >= 80"
     ],
     "devDependencies": {
         "@akryum/winattr": "^3.0.0",

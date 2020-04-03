@@ -92,20 +92,25 @@ let path = require( 'path' ),
          */
 
         // 以下只是用于自己设备上的浏览器
-        'iOS >= 13',
-        'Safari >= 13',
+        /*
+         'iOS >= 13',
+         'Safari >= 13',
 
-        'Edge >= 18',
+         'Edge >= 18',
 
-        'Opera >= 67',
-        'OperaMobile >= 67',
+         'Opera >= 67',
+         'OperaMobile >= 67',
 
+         'Chrome >= 80',
+         'Android >= 80',
+         'ChromeAndroid >= 80',
+
+         'Firefox >= 74',
+         'FirefoxAndroid >= 74',
+         */
+
+        // 专门测试最新版本的稳定版本的谷歌浏览器
         'Chrome >= 80',
-        'Android >= 80',
-        'ChromeAndroid >= 80',
-
-        'Firefox >= 74',
-        'FirefoxAndroid >= 74',
     ],
     postCSSLoader_fun = isPro => {
         let obj = {
@@ -1789,7 +1794,8 @@ let path = require( 'path' ),
                         loose: true,
                     }
                 ],
-                [ '@babel/plugin-proposal-async-generator-functions' ],
+                // ES2018
+                // [ '@babel/plugin-proposal-async-generator-functions' ],
                 [ '@babel/plugin-proposal-do-expressions' ],
                 [ '@babel/plugin-proposal-export-default-from' ],
                 [ '@babel/plugin-proposal-export-namespace-from' ],
@@ -1805,14 +1811,18 @@ let path = require( 'path' ),
                 ],
                 [ '@babel/plugin-proposal-numeric-separator' ],
                 [ '@babel/plugin-transform-literals' ],
-                [
-                    '@babel/plugin-proposal-object-rest-spread',
-                    {
-                        loose: true,
-                        useBuiltIns: true,
-                    }
-                ],
-                [ '@babel/plugin-proposal-optional-catch-binding' ],
+                // ES2018
+                /*
+                 [
+                 '@babel/plugin-proposal-object-rest-spread',
+                 {
+                 loose: true,
+                 useBuiltIns: true,
+                 }
+                 ],
+                 */
+                // ES2018
+                // [ '@babel/plugin-proposal-optional-catch-binding' ],
                 [
                     '@babel/plugin-proposal-optional-chaining',
                     {
@@ -1826,12 +1836,15 @@ let path = require( 'path' ),
                     }
                 ],
                 [ '@babel/plugin-proposal-throw-expressions' ],
-                [
-                    '@babel/plugin-proposal-unicode-property-regex',
-                    {
-                        useUnicodeFlag: true,
-                    }
-                ],
+                // ES2018
+                /*
+                 [
+                 '@babel/plugin-proposal-unicode-property-regex',
+                 {
+                 useUnicodeFlag: true,
+                 }
+                 ],
+                 */
                 [
                     '@babel/plugin-proposal-private-methods',
                     {
@@ -1868,7 +1881,8 @@ let path = require( 'path' ),
                         loose: true,
                     }
                 ],
-                [ '@babel/plugin-syntax-async-generators' ],
+                // ES2018
+                // [ '@babel/plugin-syntax-async-generators' ],
                 [ '@babel/plugin-syntax-bigint' ],
                 [ '@babel/plugin-syntax-do-expressions' ],
                 [ '@babel/plugin-syntax-dynamic-import' ],
@@ -1889,14 +1903,18 @@ let path = require( 'path' ),
                     }
                 ],
                 [ '@babel/plugin-syntax-numeric-separator' ],
-                [
-                    '@babel/plugin-syntax-object-rest-spread',
-                    {
-                        loose: true,
-                        useBuiltIns: true,
-                    }
-                ],
-                [ '@babel/plugin-syntax-optional-catch-binding' ],
+                // ES2018
+                /*
+                 [
+                 '@babel/plugin-syntax-object-rest-spread',
+                 {
+                 loose: true,
+                 useBuiltIns: true,
+                 }
+                 ],
+                 */
+                // ES2018
+                // [ '@babel/plugin-syntax-optional-catch-binding' ],
                 [
                     '@babel/plugin-syntax-optional-chaining',
                     {

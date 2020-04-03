@@ -236,7 +236,197 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line385">line 385</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line403">line 403</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="ArrayIteratorType"><span class="type-signature"></span>ArrayIteratorType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Array Iterator类型的数据)用于修饰类的实例属性、静态属性<br />PS：如下都是这个数据类型<br />1、[ "a", "b", "c", ].keys()<br />2、[ "a", "b", "c", ].values()<br />3、[ "a", "b", "c", ].entries()<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line434">line 434</a>
     </li></ul></dd>
     
 
@@ -426,7 +616,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line358">line 358</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line376">line 376</a>
     </li></ul></dd>
     
 
@@ -492,7 +682,7 @@
 
 
 <div class="description">
-    该装饰器(Async Function类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+    该装饰器(Async Function类型的数据，包括异步的Generator函数)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
 </div>
 
 
@@ -616,7 +806,387 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line412">line 412</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line461">line 461</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="AsyncGeneratorFunType"><span class="type-signature"></span>AsyncGeneratorFunType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Async Generator Function类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line515">line 515</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    该属性的描述对象
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="AsyncGeneratorType"><span class="type-signature"></span>AsyncGeneratorType<span class="signature">(target, name, descriptor)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    该装饰器(Async Generator类型的数据)用于修饰类的实例属性、静态属性<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>target</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object|Function 修饰的目标<br />PS：<br />1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br /></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String 所要装饰的属性名</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptor</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object 该属性的描述对象</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line488">line 488</a>
     </li></ul></dd>
     
 
@@ -726,7 +1296,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line421">line 421</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line524">line 524</a>
     </li></ul></dd>
     
 
@@ -894,7 +1464,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line473">line 473</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line576">line 576</a>
     </li></ul></dd>
     
 
@@ -1084,7 +1654,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line446">line 446</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line549">line 549</a>
     </li></ul></dd>
     
 
@@ -1274,7 +1844,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line500">line 500</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line603">line 603</a>
     </li></ul></dd>
     
 
@@ -1464,7 +2034,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line527">line 527</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line630">line 630</a>
     </li></ul></dd>
     
 
@@ -1654,7 +2224,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line554">line 554</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line657">line 657</a>
     </li></ul></dd>
     
 
@@ -1844,7 +2414,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line581">line 581</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line684">line 684</a>
     </li></ul></dd>
     
 
@@ -2034,7 +2604,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line608">line 608</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line711">line 711</a>
     </li></ul></dd>
     
 
@@ -2224,7 +2794,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line635">line 635</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line738">line 738</a>
     </li></ul></dd>
     
 
@@ -2414,7 +2984,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line662">line 662</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line765">line 765</a>
     </li></ul></dd>
     
 
@@ -2604,7 +3174,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line689">line 689</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line792">line 792</a>
     </li></ul></dd>
     
 
@@ -2794,7 +3364,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line716">line 716</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line819">line 819</a>
     </li></ul></dd>
     
 
@@ -2984,7 +3554,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line743">line 743</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line846">line 846</a>
     </li></ul></dd>
     
 
@@ -3174,7 +3744,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line770">line 770</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line873">line 873</a>
     </li></ul></dd>
     
 
@@ -3364,7 +3934,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line824">line 824</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line927">line 927</a>
     </li></ul></dd>
     
 
@@ -3554,7 +4124,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line797">line 797</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line900">line 900</a>
     </li></ul></dd>
     
 
@@ -3744,7 +4314,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line851">line 851</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line954">line 954</a>
     </li></ul></dd>
     
 
@@ -3934,7 +4504,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line878">line 878</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line981">line 981</a>
     </li></ul></dd>
     
 
@@ -4124,7 +4694,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line905">line 905</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1008">line 1008</a>
     </li></ul></dd>
     
 
@@ -4314,7 +4884,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line932">line 932</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1035">line 1035</a>
     </li></ul></dd>
     
 
@@ -4480,7 +5050,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line948">line 948</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1051">line 1051</a>
     </li></ul></dd>
     
 
@@ -4646,7 +5216,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line964">line 964</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1067">line 1067</a>
     </li></ul></dd>
     
 
@@ -4836,7 +5406,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line991">line 991</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1094">line 1094</a>
     </li></ul></dd>
     
 
@@ -5026,7 +5596,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1018">line 1018</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1121">line 1121</a>
     </li></ul></dd>
     
 
@@ -5216,7 +5786,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1045">line 1045</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1148">line 1148</a>
     </li></ul></dd>
     
 
@@ -5406,7 +5976,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1072">line 1072</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1175">line 1175</a>
     </li></ul></dd>
     
 
@@ -5596,7 +6166,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1126">line 1126</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1229">line 1229</a>
     </li></ul></dd>
     
 
@@ -5786,7 +6356,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1153">line 1153</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1256">line 1256</a>
     </li></ul></dd>
     
 
@@ -5976,7 +6546,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1180">line 1180</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1283">line 1283</a>
     </li></ul></dd>
     
 
@@ -6166,7 +6736,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1099">line 1099</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1202">line 1202</a>
     </li></ul></dd>
     
 
@@ -6356,7 +6926,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1207">line 1207</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1310">line 1310</a>
     </li></ul></dd>
     
 
@@ -6546,7 +7116,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1261">line 1261</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1364">line 1364</a>
     </li></ul></dd>
     
 
@@ -6736,7 +7306,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1234">line 1234</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1337">line 1337</a>
     </li></ul></dd>
     
 
@@ -6926,7 +7496,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1316">line 1316</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1419">line 1419</a>
     </li></ul></dd>
     
 
@@ -7116,7 +7686,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1343">line 1343</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1446">line 1446</a>
     </li></ul></dd>
     
 
@@ -7306,7 +7876,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1370">line 1370</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1473">line 1473</a>
     </li></ul></dd>
     
 
@@ -7496,7 +8066,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1397">line 1397</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1500">line 1500</a>
     </li></ul></dd>
     
 
@@ -7686,7 +8256,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1424">line 1424</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1527">line 1527</a>
     </li></ul></dd>
     
 
@@ -7876,7 +8446,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1451">line 1451</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1554">line 1554</a>
     </li></ul></dd>
     
 
@@ -8066,7 +8636,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1478">line 1478</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1581">line 1581</a>
     </li></ul></dd>
     
 
@@ -8256,7 +8826,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1505">line 1505</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1608">line 1608</a>
     </li></ul></dd>
     
 
@@ -8446,7 +9016,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1532">line 1532</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1635">line 1635</a>
     </li></ul></dd>
     
 
@@ -8636,7 +9206,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1559">line 1559</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1662">line 1662</a>
     </li></ul></dd>
     
 
@@ -8826,7 +9396,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1586">line 1586</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1689">line 1689</a>
     </li></ul></dd>
     
 
@@ -9016,7 +9586,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1613">line 1613</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1716">line 1716</a>
     </li></ul></dd>
     
 
@@ -9206,7 +9776,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1640">line 1640</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1743">line 1743</a>
     </li></ul></dd>
     
 
@@ -9396,7 +9966,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1667">line 1667</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1770">line 1770</a>
     </li></ul></dd>
     
 
@@ -9586,7 +10156,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1694">line 1694</a>
+        <a href="Decorator4ES6.esm.js.html">Decorator4ES6.esm.js</a>, <a href="Decorator4ES6.esm.js.html#line1797">line 1797</a>
     </li></ul></dd>
     
 
@@ -9654,13 +10224,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ArrayBufferType">ArrayBufferType</a></li><li><a href="global.html#ArrayType">ArrayType</a></li><li><a href="global.html#AsyncFunType">AsyncFunType</a></li><li><a href="global.html#AutoBind">AutoBind</a></li><li><a href="global.html#BigInt64ArrayType">BigInt64ArrayType</a></li><li><a href="global.html#BigIntType">BigIntType</a></li><li><a href="global.html#BigUint64ArrayType">BigUint64ArrayType</a></li><li><a href="global.html#BooleanType">BooleanType</a></li><li><a href="global.html#DataViewType">DataViewType</a></li><li><a href="global.html#DateType">DateType</a></li><li><a href="global.html#EmptyDataType">EmptyDataType</a></li><li><a href="global.html#EmptyObjectType">EmptyObjectType</a></li><li><a href="global.html#ErrorType">ErrorType</a></li><li><a href="global.html#Float32ArrayType">Float32ArrayType</a></li><li><a href="global.html#Float64ArrayType">Float64ArrayType</a></li><li><a href="global.html#FormDataType">FormDataType</a></li><li><a href="global.html#FunctionType">FunctionType</a></li><li><a href="global.html#GeneratorFunType">GeneratorFunType</a></li><li><a href="global.html#GeneratorType">GeneratorType</a></li><li><a href="global.html#Int8ArrayType">Int8ArrayType</a></li><li><a href="global.html#Int16ArrayType">Int16ArrayType</a></li><li><a href="global.html#Int32ArrayType">Int32ArrayType</a></li><li><a href="global.html#MapType">MapType</a></li><li><a href="global.html#Mixin2Class4Proto">Mixin2Class4Proto</a></li><li><a href="global.html#Mixin2Class4Static">Mixin2Class4Static</a></li><li><a href="global.html#NaNType">NaNType</a></li><li><a href="global.html#NoConfigurable">NoConfigurable</a></li><li><a href="global.html#NoEnumerable">NoEnumerable</a></li><li><a href="global.html#NullType">NullType</a></li><li><a href="global.html#NumberFiniteType">NumberFiniteType</a></li><li><a href="global.html#NumberIntegerType">NumberIntegerType</a></li><li><a href="global.html#NumberSafeIntegerType">NumberSafeIntegerType</a></li><li><a href="global.html#NumberType">NumberType</a></li><li><a href="global.html#ObjectType">ObjectType</a></li><li><a href="global.html#Override">Override</a></li><li><a href="global.html#PromiseType">PromiseType</a></li><li><a href="global.html#ReadOnly">ReadOnly</a></li><li><a href="global.html#RegExpType">RegExpType</a></li><li><a href="global.html#SetType">SetType</a></li><li><a href="global.html#SharedArrayBufferType">SharedArrayBufferType</a></li><li><a href="global.html#SharedWorkerType">SharedWorkerType</a></li><li><a href="global.html#StringType">StringType</a></li><li><a href="global.html#SymbolType">SymbolType</a></li><li><a href="global.html#Uint8ArrayType">Uint8ArrayType</a></li><li><a href="global.html#Uint8ClampedArrayType">Uint8ClampedArrayType</a></li><li><a href="global.html#Uint16ArrayType">Uint16ArrayType</a></li><li><a href="global.html#Uint32ArrayType">Uint32ArrayType</a></li><li><a href="global.html#UndefinedType">UndefinedType</a></li><li><a href="global.html#WeakMapType">WeakMapType</a></li><li><a href="global.html#WeakSetType">WeakSetType</a></li><li><a href="global.html#WorkerType">WorkerType</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ArrayBufferType">ArrayBufferType</a></li><li><a href="global.html#ArrayIteratorType">ArrayIteratorType</a></li><li><a href="global.html#ArrayType">ArrayType</a></li><li><a href="global.html#AsyncFunType">AsyncFunType</a></li><li><a href="global.html#AsyncGeneratorFunType">AsyncGeneratorFunType</a></li><li><a href="global.html#AsyncGeneratorType">AsyncGeneratorType</a></li><li><a href="global.html#AutoBind">AutoBind</a></li><li><a href="global.html#BigInt64ArrayType">BigInt64ArrayType</a></li><li><a href="global.html#BigIntType">BigIntType</a></li><li><a href="global.html#BigUint64ArrayType">BigUint64ArrayType</a></li><li><a href="global.html#BooleanType">BooleanType</a></li><li><a href="global.html#DataViewType">DataViewType</a></li><li><a href="global.html#DateType">DateType</a></li><li><a href="global.html#EmptyDataType">EmptyDataType</a></li><li><a href="global.html#EmptyObjectType">EmptyObjectType</a></li><li><a href="global.html#ErrorType">ErrorType</a></li><li><a href="global.html#Float32ArrayType">Float32ArrayType</a></li><li><a href="global.html#Float64ArrayType">Float64ArrayType</a></li><li><a href="global.html#FormDataType">FormDataType</a></li><li><a href="global.html#FunctionType">FunctionType</a></li><li><a href="global.html#GeneratorFunType">GeneratorFunType</a></li><li><a href="global.html#GeneratorType">GeneratorType</a></li><li><a href="global.html#Int8ArrayType">Int8ArrayType</a></li><li><a href="global.html#Int16ArrayType">Int16ArrayType</a></li><li><a href="global.html#Int32ArrayType">Int32ArrayType</a></li><li><a href="global.html#MapType">MapType</a></li><li><a href="global.html#Mixin2Class4Proto">Mixin2Class4Proto</a></li><li><a href="global.html#Mixin2Class4Static">Mixin2Class4Static</a></li><li><a href="global.html#NaNType">NaNType</a></li><li><a href="global.html#NoConfigurable">NoConfigurable</a></li><li><a href="global.html#NoEnumerable">NoEnumerable</a></li><li><a href="global.html#NullType">NullType</a></li><li><a href="global.html#NumberFiniteType">NumberFiniteType</a></li><li><a href="global.html#NumberIntegerType">NumberIntegerType</a></li><li><a href="global.html#NumberSafeIntegerType">NumberSafeIntegerType</a></li><li><a href="global.html#NumberType">NumberType</a></li><li><a href="global.html#ObjectType">ObjectType</a></li><li><a href="global.html#Override">Override</a></li><li><a href="global.html#PromiseType">PromiseType</a></li><li><a href="global.html#ReadOnly">ReadOnly</a></li><li><a href="global.html#RegExpType">RegExpType</a></li><li><a href="global.html#SetType">SetType</a></li><li><a href="global.html#SharedArrayBufferType">SharedArrayBufferType</a></li><li><a href="global.html#SharedWorkerType">SharedWorkerType</a></li><li><a href="global.html#StringType">StringType</a></li><li><a href="global.html#SymbolType">SymbolType</a></li><li><a href="global.html#Uint8ArrayType">Uint8ArrayType</a></li><li><a href="global.html#Uint8ClampedArrayType">Uint8ClampedArrayType</a></li><li><a href="global.html#Uint16ArrayType">Uint16ArrayType</a></li><li><a href="global.html#Uint32ArrayType">Uint32ArrayType</a></li><li><a href="global.html#UndefinedType">UndefinedType</a></li><li><a href="global.html#WeakMapType">WeakMapType</a></li><li><a href="global.html#WeakSetType">WeakSetType</a></li><li><a href="global.html#WorkerType">WorkerType</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Tue Mar 31 2020 19:48:02 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Apr 03 2020 19:58:08 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>
