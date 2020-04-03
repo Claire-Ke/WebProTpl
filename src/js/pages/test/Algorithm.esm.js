@@ -17,6 +17,11 @@
 
 {
     if( true ){
-
+        console.log( `Math.signbit( 0 )--->${ Math.signbit( 0 ) }` );
+        console.log( `Math.signbit( -0 )--->${ Math.signbit( -0 ) }` );
+        console.log( `Math.signbit( +0 )--->${ Math.signbit( +0 ) }` );
+        console.log( `Math.signbit( 1 )--->${ Math.signbit( 1 ) }` );
+        console.log( `Math.signbit( -1 )--->${ Math.signbit( -1 ) }` );
+        console.log( `Math.signbit( +1 )--->${ Math.signbit( +1 ) }` );
     }
 }

@@ -84,7 +84,7 @@ const serverPort9999 = Object.freeze( {
      */
     crossResHeader = {
         'Service-Worker-Allowed': '/',
-        'Content-Security-Policy': 'require-sri-for script style',
+        // 'Content-Security-Policy': 'require-sri-for script style',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Max-Age': 600,
         'Access-Control-Allow-Credentials': true,

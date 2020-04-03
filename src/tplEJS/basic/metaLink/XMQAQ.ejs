@@ -37,8 +37,11 @@ ModifyDate：20190101 00:00:00 AM
       content = '<%= color %>' />
 <meta name = 'msApplication-TileColor'
       content = '<%= color %>' />
-<meta http-equiv = 'Content-Security-Policy'
-      content = 'require-sri-for script style' />
+<% if( isPro ){ %>
+    <!--require-sri-for script style-->
+    <meta http-equiv = 'Content-Security-Policy'
+          content = 'require-sri-for script' />
+<% } %>
 <meta http-equiv = 'Access-Control-Allow-Origin'
       content = '*' />
 <!--禁止浏览器从本地计算机的缓存中访问页面内容。-->
