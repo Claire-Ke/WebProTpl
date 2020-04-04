@@ -13,6 +13,25 @@ Email：xxxxxxxxxx@qq.com
 ModifyDate：20190101 00:00:00 AM
 */
 
+/*
+一招让网站灰色
+PS：
+1、以下写法，在IE10和IE11中不起作用，但是在IE9以及IE9以下是可以的。
+2、如果不是svg的图片格式，filter在ie浏览器上都不支持。
+3、如果是svg的话，filter也只是在ie10和11上支持。
+*/
+.grayscale {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1) !important;
+    -webkit-filter: grayscale(100%) !important;
+    -khtml-filter: grayscale(100%) !important;
+    -moz-filter: grayscale(100%) !important;
+    -ms-filter: grayscale(100%) !important;
+    -o-filter: grayscale(100%) !important;
+    filter: grayscale(100%) !important;
+    /*这种写法专门用于IE9以及IE9以下*/
+    filter: gray !important;
+}
+
 .pcMin {
     position: relative;
     top: 0;
