@@ -107,15 +107,14 @@ let options_obj = htmlWebpackPlugin.options,
                 <br />
                 <h1 class = 'css-reset'>Hello World</h1>
                 <br />
-                <br />
-                <br />
-                <button type = 'button'
-                        class = 'css-reset permissionsAPITestBtn1'>Clipboard API测试
-                </button>
-                <br />
-                <br />
-                <br />
-                <div class = 'css-reset'>
+                <div class = 'css-reset'
+                     style = 'display: none;'>
+                    <br />
+                    <br />
+                    <br />
+                    <button type = 'button'
+                            class = 'css-reset permissionsAPITestBtn1'>Clipboard API测试
+                    </button>
                     <br />
                     <br />
                     <br />
@@ -266,6 +265,25 @@ let options_obj = htmlWebpackPlugin.options,
                         </template>
                     </div>
                     <br />
+                </div>
+                <div id = 'VueRouterDemo1'
+                     class = 'css-reset'>
+                    <p class = 'css-reset'>
+                        <router-link class = 'css-reset'
+                                     to = '/router1'>Go to Router1
+                        </router-link>
+                        <router-link class = 'css-reset'
+                                     to = '/router2'>Go to Router2
+                        </router-link>
+                        <router-link class = 'css-reset'
+                                     :to = '"/user/" + userID'
+                                     name = 'User'>Go to User
+                        </router-link>
+                    </p>
+                    <router-view></router-view>
+                    <button class = 'css-reset'
+                            @click = 'btnClick1'>btnClick1
+                    </button>
                 </div>
             </article>
         </main>

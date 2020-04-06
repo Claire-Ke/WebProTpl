@@ -1985,7 +1985,7 @@ ${ onceFun1( 'q', 'w' ) }
 
 // 算法测试
 {
-    if( true ){
+    if( false ){
         import('./Algorithm.esm.js');
     }
 }
