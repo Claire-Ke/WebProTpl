@@ -76,8 +76,6 @@ function IsArrayIterator( arg ){
 }
 
 function IsAsyncFun( arg ){
-    'use strict';
-
     return IsDataT( arg, 'AsyncFunction' ) || IsDataT( arg, 'AsyncGeneratorFunction' );
 }
 
@@ -122,10 +120,15 @@ function IsBoolean( arg ){
 }
 
 function IsDataT( data, type ){
-    'use strict';
+    if( 'Element' === type ){
+        return DataT( data )
+            .includes( type );
+    }
 
-    return DataT( data )
-        .includes( type );
+    let str1 = DataT( data )
+        .split( ' ' )[ 1 ];
+
+    return str1.slice( 0, str1.length - 1 ) === type;
 }
 
 function IsDataView( arg ){
