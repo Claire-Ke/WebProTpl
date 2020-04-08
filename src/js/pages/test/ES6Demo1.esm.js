@@ -462,12 +462,15 @@ let CT = new CTESM.CT();
             BigIntType,
             BigInt64ArrayType,
             BigUint64ArrayType,
+            BlobType,
             BooleanType,
             DataViewType,
             DateType,
             EmptyDataType,
             EmptyObjectType,
             ErrorType,
+            FileType,
+            FileReaderType,
             Float32ArrayType,
             Float64ArrayType,
             FormDataType,
@@ -739,6 +742,15 @@ let CT = new CTESM.CT();
 
             @ErrorType
             property44 = new Error( 'Error' );
+
+            @BlobType
+            property45 = new Blob();
+
+            @FileType
+            property46 = new File( [ 'foo' ], 'foo.txt', { type: 'text/plain', } );
+
+            @FileReaderType
+            property47 = new FileReader();
 
             // @SharedWorkerType
             // property45 = new SharedWorker( '' );

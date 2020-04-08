@@ -139,6 +139,12 @@ function IsBigUint64Array( arg ){
     return IsDataT( arg, 'BigUint64Array' );
 }
 
+function IsBlob( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Blob' );
+}
+
 function IsBoolean( arg ){
     return IsDataT( arg, 'Boolean' ) &amp;&amp; ( typeof arg === 'boolean' );
 }
@@ -190,6 +196,18 @@ function IsError( arg ){
     'use strict';
 
     return IsDataT( arg, 'Error' );
+}
+
+function IsFile( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'File' );
+}
+
+function IsFileReader( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'FileReader' );
 }
 
 function IsFinite( arg ){
@@ -635,6 +653,33 @@ function BigUint64ArrayType( target, name, descriptor ){
 }
 
 /**
+ * 该装饰器(Blob类型的数据)用于修饰类的实例属性、静态属性&lt;br />
+ * PS：&lt;br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object&lt;br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function&lt;br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。&lt;br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。&lt;br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。&lt;br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。&lt;br />
+ *
+ * @param target Object|Function 修饰的目标&lt;br />
+ * PS：&lt;br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象&lt;br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身&lt;br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function BlobType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Blob', IsBlob );
+}
+
+/**
  * 该装饰器(Boolean类型的数据(不包括布尔对象、实例))用于修饰类的实例属性、静态属性&lt;br />
  * PS：&lt;br />
  * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object&lt;br />
@@ -794,6 +839,60 @@ function ErrorType( target, name, descriptor ){
     'use strict';
 
     return Handle2( name, descriptor, 'Error', IsError );
+}
+
+/**
+ * 该装饰器(File类型的数据)用于修饰类的实例属性、静态属性&lt;br />
+ * PS：&lt;br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object&lt;br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function&lt;br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。&lt;br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。&lt;br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。&lt;br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。&lt;br />
+ *
+ * @param target Object|Function 修饰的目标&lt;br />
+ * PS：&lt;br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象&lt;br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身&lt;br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function FileType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'File', IsFile );
+}
+
+/**
+ * 该装饰器(FileReader类型的数据)用于修饰类的实例属性、静态属性&lt;br />
+ * PS：&lt;br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object&lt;br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function&lt;br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。&lt;br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。&lt;br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。&lt;br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。&lt;br />
+ *
+ * @param target Object|Function 修饰的目标&lt;br />
+ * PS：&lt;br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象&lt;br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身&lt;br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function FileReaderType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'FileReader', IsFileReader );
 }
 
 /**
@@ -1839,12 +1938,15 @@ const decorators_objC = {
     BigIntType,
     BigInt64ArrayType,
     BigUint64ArrayType,
+    BlobType,
     BooleanType,
     DataViewType,
     DateType,
     EmptyDataType,
     EmptyObjectType,
     ErrorType,
+    FileType,
+    FileReaderType,
     Float32ArrayType,
     Float64ArrayType,
     FormDataType,
@@ -1896,12 +1998,15 @@ export {
     BigIntType,
     BigInt64ArrayType,
     BigUint64ArrayType,
+    BlobType,
     BooleanType,
     DataViewType,
     DateType,
     EmptyDataType,
     EmptyObjectType,
     ErrorType,
+    FileType,
+    FileReaderType,
     Float32ArrayType,
     Float64ArrayType,
     FormDataType,
@@ -1953,13 +2058,13 @@ export default decorators_objC;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ArrayBufferType">ArrayBufferType</a></li><li><a href="global.html#ArrayIteratorType">ArrayIteratorType</a></li><li><a href="global.html#ArrayType">ArrayType</a></li><li><a href="global.html#AsyncFunType">AsyncFunType</a></li><li><a href="global.html#AsyncGeneratorFunType">AsyncGeneratorFunType</a></li><li><a href="global.html#AsyncGeneratorType">AsyncGeneratorType</a></li><li><a href="global.html#AutoBind">AutoBind</a></li><li><a href="global.html#BigInt64ArrayType">BigInt64ArrayType</a></li><li><a href="global.html#BigIntType">BigIntType</a></li><li><a href="global.html#BigUint64ArrayType">BigUint64ArrayType</a></li><li><a href="global.html#BooleanType">BooleanType</a></li><li><a href="global.html#DataViewType">DataViewType</a></li><li><a href="global.html#DateType">DateType</a></li><li><a href="global.html#EmptyDataType">EmptyDataType</a></li><li><a href="global.html#EmptyObjectType">EmptyObjectType</a></li><li><a href="global.html#ErrorType">ErrorType</a></li><li><a href="global.html#Float32ArrayType">Float32ArrayType</a></li><li><a href="global.html#Float64ArrayType">Float64ArrayType</a></li><li><a href="global.html#FormDataType">FormDataType</a></li><li><a href="global.html#FunctionType">FunctionType</a></li><li><a href="global.html#GeneratorFunType">GeneratorFunType</a></li><li><a href="global.html#GeneratorType">GeneratorType</a></li><li><a href="global.html#Int8ArrayType">Int8ArrayType</a></li><li><a href="global.html#Int16ArrayType">Int16ArrayType</a></li><li><a href="global.html#Int32ArrayType">Int32ArrayType</a></li><li><a href="global.html#MapType">MapType</a></li><li><a href="global.html#Mixin2Class4Proto">Mixin2Class4Proto</a></li><li><a href="global.html#Mixin2Class4Static">Mixin2Class4Static</a></li><li><a href="global.html#NaNType">NaNType</a></li><li><a href="global.html#NoConfigurable">NoConfigurable</a></li><li><a href="global.html#NoEnumerable">NoEnumerable</a></li><li><a href="global.html#NullType">NullType</a></li><li><a href="global.html#NumberFiniteType">NumberFiniteType</a></li><li><a href="global.html#NumberIntegerType">NumberIntegerType</a></li><li><a href="global.html#NumberSafeIntegerType">NumberSafeIntegerType</a></li><li><a href="global.html#NumberType">NumberType</a></li><li><a href="global.html#ObjectType">ObjectType</a></li><li><a href="global.html#Override">Override</a></li><li><a href="global.html#PromiseType">PromiseType</a></li><li><a href="global.html#ReadOnly">ReadOnly</a></li><li><a href="global.html#RegExpType">RegExpType</a></li><li><a href="global.html#SetType">SetType</a></li><li><a href="global.html#SharedArrayBufferType">SharedArrayBufferType</a></li><li><a href="global.html#SharedWorkerType">SharedWorkerType</a></li><li><a href="global.html#StringType">StringType</a></li><li><a href="global.html#SymbolType">SymbolType</a></li><li><a href="global.html#Uint8ArrayType">Uint8ArrayType</a></li><li><a href="global.html#Uint8ClampedArrayType">Uint8ClampedArrayType</a></li><li><a href="global.html#Uint16ArrayType">Uint16ArrayType</a></li><li><a href="global.html#Uint32ArrayType">Uint32ArrayType</a></li><li><a href="global.html#UndefinedType">UndefinedType</a></li><li><a href="global.html#WeakMapType">WeakMapType</a></li><li><a href="global.html#WeakSetType">WeakSetType</a></li><li><a href="global.html#WorkerType">WorkerType</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ArrayBufferType">ArrayBufferType</a></li><li><a href="global.html#ArrayIteratorType">ArrayIteratorType</a></li><li><a href="global.html#ArrayType">ArrayType</a></li><li><a href="global.html#AsyncFunType">AsyncFunType</a></li><li><a href="global.html#AsyncGeneratorFunType">AsyncGeneratorFunType</a></li><li><a href="global.html#AsyncGeneratorType">AsyncGeneratorType</a></li><li><a href="global.html#AutoBind">AutoBind</a></li><li><a href="global.html#BigInt64ArrayType">BigInt64ArrayType</a></li><li><a href="global.html#BigIntType">BigIntType</a></li><li><a href="global.html#BigUint64ArrayType">BigUint64ArrayType</a></li><li><a href="global.html#BlobType">BlobType</a></li><li><a href="global.html#BooleanType">BooleanType</a></li><li><a href="global.html#DataViewType">DataViewType</a></li><li><a href="global.html#DateType">DateType</a></li><li><a href="global.html#EmptyDataType">EmptyDataType</a></li><li><a href="global.html#EmptyObjectType">EmptyObjectType</a></li><li><a href="global.html#ErrorType">ErrorType</a></li><li><a href="global.html#FileReaderType">FileReaderType</a></li><li><a href="global.html#FileType">FileType</a></li><li><a href="global.html#Float32ArrayType">Float32ArrayType</a></li><li><a href="global.html#Float64ArrayType">Float64ArrayType</a></li><li><a href="global.html#FormDataType">FormDataType</a></li><li><a href="global.html#FunctionType">FunctionType</a></li><li><a href="global.html#GeneratorFunType">GeneratorFunType</a></li><li><a href="global.html#GeneratorType">GeneratorType</a></li><li><a href="global.html#Int8ArrayType">Int8ArrayType</a></li><li><a href="global.html#Int16ArrayType">Int16ArrayType</a></li><li><a href="global.html#Int32ArrayType">Int32ArrayType</a></li><li><a href="global.html#MapType">MapType</a></li><li><a href="global.html#Mixin2Class4Proto">Mixin2Class4Proto</a></li><li><a href="global.html#Mixin2Class4Static">Mixin2Class4Static</a></li><li><a href="global.html#NaNType">NaNType</a></li><li><a href="global.html#NoConfigurable">NoConfigurable</a></li><li><a href="global.html#NoEnumerable">NoEnumerable</a></li><li><a href="global.html#NullType">NullType</a></li><li><a href="global.html#NumberFiniteType">NumberFiniteType</a></li><li><a href="global.html#NumberIntegerType">NumberIntegerType</a></li><li><a href="global.html#NumberSafeIntegerType">NumberSafeIntegerType</a></li><li><a href="global.html#NumberType">NumberType</a></li><li><a href="global.html#ObjectType">ObjectType</a></li><li><a href="global.html#Override">Override</a></li><li><a href="global.html#PromiseType">PromiseType</a></li><li><a href="global.html#ReadOnly">ReadOnly</a></li><li><a href="global.html#RegExpType">RegExpType</a></li><li><a href="global.html#SetType">SetType</a></li><li><a href="global.html#SharedArrayBufferType">SharedArrayBufferType</a></li><li><a href="global.html#SharedWorkerType">SharedWorkerType</a></li><li><a href="global.html#StringType">StringType</a></li><li><a href="global.html#SymbolType">SymbolType</a></li><li><a href="global.html#Uint8ArrayType">Uint8ArrayType</a></li><li><a href="global.html#Uint8ClampedArrayType">Uint8ClampedArrayType</a></li><li><a href="global.html#Uint16ArrayType">Uint16ArrayType</a></li><li><a href="global.html#Uint32ArrayType">Uint32ArrayType</a></li><li><a href="global.html#UndefinedType">UndefinedType</a></li><li><a href="global.html#WeakMapType">WeakMapType</a></li><li><a href="global.html#WeakSetType">WeakSetType</a></li><li><a href="global.html#WorkerType">WorkerType</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Apr 04 2020 02:43:20 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Apr 09 2020 07:43:42 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

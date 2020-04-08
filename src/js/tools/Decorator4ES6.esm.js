@@ -111,6 +111,12 @@ function IsBigUint64Array( arg ){
     return IsDataT( arg, 'BigUint64Array' );
 }
 
+function IsBlob( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'Blob' );
+}
+
 function IsBoolean( arg ){
     return IsDataT( arg, 'Boolean' ) && ( typeof arg === 'boolean' );
 }
@@ -162,6 +168,18 @@ function IsError( arg ){
     'use strict';
 
     return IsDataT( arg, 'Error' );
+}
+
+function IsFile( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'File' );
+}
+
+function IsFileReader( arg ){
+    'use strict';
+
+    return IsDataT( arg, 'FileReader' );
 }
 
 function IsFinite( arg ){
@@ -607,6 +625,33 @@ function BigUint64ArrayType( target, name, descriptor ){
 }
 
 /**
+ * 该装饰器(Blob类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function BlobType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Blob', IsBlob );
+}
+
+/**
  * 该装饰器(Boolean类型的数据(不包括布尔对象、实例))用于修饰类的实例属性、静态属性<br />
  * PS：<br />
  * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
@@ -766,6 +811,60 @@ function ErrorType( target, name, descriptor ){
     'use strict';
 
     return Handle2( name, descriptor, 'Error', IsError );
+}
+
+/**
+ * 该装饰器(File类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function FileType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'File', IsFile );
+}
+
+/**
+ * 该装饰器(FileReader类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function FileReaderType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'FileReader', IsFileReader );
 }
 
 /**
@@ -1811,12 +1910,15 @@ const decorators_objC = {
     BigIntType,
     BigInt64ArrayType,
     BigUint64ArrayType,
+    BlobType,
     BooleanType,
     DataViewType,
     DateType,
     EmptyDataType,
     EmptyObjectType,
     ErrorType,
+    FileType,
+    FileReaderType,
     Float32ArrayType,
     Float64ArrayType,
     FormDataType,
@@ -1868,12 +1970,15 @@ export {
     BigIntType,
     BigInt64ArrayType,
     BigUint64ArrayType,
+    BlobType,
     BooleanType,
     DataViewType,
     DateType,
     EmptyDataType,
     EmptyObjectType,
     ErrorType,
+    FileType,
+    FileReaderType,
     Float32ArrayType,
     Float64ArrayType,
     FormDataType,
