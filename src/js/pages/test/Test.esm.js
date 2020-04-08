@@ -1989,3 +1989,10 @@ ${ onceFun1( 'q', 'w' ) }
         import('./Algorithm.esm.js');
     }
 }
+
+// 加密算法(crypto)测试
+{
+    if( false ){
+        import('./CryptoDemo1.esm.js');
+    }
+}

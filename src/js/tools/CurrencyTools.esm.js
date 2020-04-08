@@ -1428,6 +1428,74 @@ class CopyAPI{
 }
 
 /**
+ * 加密算法Crypto API
+ */
+class CryptoAPI{
+
+    /**
+     * 使用指定的哈希算法计算字符串的Hex(base16)编码的哈希值
+     *
+     * @param dataStr String，需要计算的字符串数据，必须
+     *
+     * @param algorithm String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />
+     * PS：<br />
+     * 1、'SHA-1'已经跟'MD5'一样，不在安全了，强烈建议不用！<br />
+     *
+     * @returns {Promise<String>} Promise<String>
+     */
+    async getDigest2Hex4String( dataStr = '', algorithm = 'SHA-512' ){
+        // encode dataStr as (utf-8) Uint8Array
+        const str4UTF82Uint8Array = new TextEncoder().encode( String( dataStr ) ),
+            // hash the str4UTF82Uint8Array for ArrayBuffer
+            hashArrayBuffer = await globalThis.crypto.subtle.digest( algorithm, str4UTF82Uint8Array ),
+            // convert hashArrayBuffer to byte array
+            hashArray = Array.from( new Uint8Array( hashArrayBuffer ) ),
+            // convert hashArray to hex string
+            hashHex = hashArray.map( b => b.toString( 16 )
+                                           .padStart( 2, '0' ) )
+                               .join( '' );
+
+        return hashHex;
+    }
+
+    /**
+     * 使用指定的哈希算法计算Uint8Array类型数据的Hex(base16)编码的哈希值<br />
+     * PS：<br />
+     * 1、ArrayBufferView：<br />
+     * Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Uint16Array、<br />
+     * Int32Array、Uint32Array、Float32Array、Float64Array、BigInt64Array、<br />
+     * BigUint64Array、DataView。<br />
+     * 2、只要是能成功的转换成有效(有效：转换过程中没出现精度取舍、丢失等一类的操作)的Uint8Array类型的数据，都可以作为参数使用，<br />
+     * 但是需要先自行转换成Uint8Array类型。<br />
+     *
+     * @param dataUint8Array Uint8Array，需要计算的Uint8Array类型数据，必须
+     *
+     * @param algorithm String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />
+     * PS：<br />
+     * 1、'SHA-1'已经跟'MD5'一样，不在安全了，强烈建议不用！<br />
+     *
+     * @returns {Promise<String>} Promise<String>
+     */
+    async getDigest2Hex4Uint8Array( dataUint8Array, algorithm = 'SHA-512' ){
+        if( !this.isUint8Array( dataUint8Array ) ){
+            GetError( 'dataUint8Array的数据类型必须是Uint8Array类型！' );
+        }
+
+        // hash the dataUint8Array for ArrayBuffer
+        const hashArrayBuffer = await globalThis.crypto.subtle.digest( algorithm, dataUint8Array ),
+            // convert hashArrayBuffer to byte array
+            hashArray = Array.from( new Uint8Array( hashArrayBuffer ) ),
+            // convert hashArray to hex string
+            hashHex = hashArray.map( b => b.toString( 16 )
+                                           .padStart( 2, '0' ) )
+                               .join( '' );
+
+        return hashHex;
+    }
+
+}
+
+/**
  * 判断常用信息的格式
  */
 class DataFormat{
@@ -8612,6 +8680,7 @@ class WebService4Proxy{
 const mixin_classArrC = [
     Canvas2Others,
     CopyAPI,
+    CryptoAPI,
     DataFormat,
     ElemQuery,
     ES6Handle,

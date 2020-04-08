@@ -1456,6 +1456,74 @@ class CopyAPI{
 }
 
 /**
+ * 加密算法Crypto API
+ */
+class CryptoAPI{
+
+    /**
+     * 使用指定的哈希算法计算字符串的Hex(base16)编码的哈希值
+     *
+     * @param dataStr String，需要计算的字符串数据，必须
+     *
+     * @param algorithm String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选&lt;br />
+     * PS：&lt;br />
+     * 1、'SHA-1'已经跟'MD5'一样，不在安全了，强烈建议不用！&lt;br />
+     *
+     * @returns {Promise&lt;String>} Promise&lt;String>
+     */
+    async getDigest2Hex4String( dataStr = '', algorithm = 'SHA-512' ){
+        // encode dataStr as (utf-8) Uint8Array
+        const str4UTF82Uint8Array = new TextEncoder().encode( String( dataStr ) ),
+            // hash the str4UTF82Uint8Array for ArrayBuffer
+            hashArrayBuffer = await globalThis.crypto.subtle.digest( algorithm, str4UTF82Uint8Array ),
+            // convert hashArrayBuffer to byte array
+            hashArray = Array.from( new Uint8Array( hashArrayBuffer ) ),
+            // convert hashArray to hex string
+            hashHex = hashArray.map( b => b.toString( 16 )
+                                           .padStart( 2, '0' ) )
+                               .join( '' );
+
+        return hashHex;
+    }
+
+    /**
+     * 使用指定的哈希算法计算Uint8Array类型数据的Hex(base16)编码的哈希值&lt;br />
+     * PS：&lt;br />
+     * 1、ArrayBufferView：&lt;br />
+     * Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Uint16Array、&lt;br />
+     * Int32Array、Uint32Array、Float32Array、Float64Array、BigInt64Array、&lt;br />
+     * BigUint64Array、DataView。&lt;br />
+     * 2、只要是能成功的转换成有效(有效：转换过程中没出现精度取舍、丢失等一类的操作)的Uint8Array类型的数据，都可以作为参数使用，&lt;br />
+     * 但是需要先自行转换成Uint8Array类型。&lt;br />
+     *
+     * @param dataUint8Array Uint8Array，需要计算的Uint8Array类型数据，必须
+     *
+     * @param algorithm String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选&lt;br />
+     * PS：&lt;br />
+     * 1、'SHA-1'已经跟'MD5'一样，不在安全了，强烈建议不用！&lt;br />
+     *
+     * @returns {Promise&lt;String>} Promise&lt;String>
+     */
+    async getDigest2Hex4Uint8Array( dataUint8Array, algorithm = 'SHA-512' ){
+        if( !this.isUint8Array( dataUint8Array ) ){
+            GetError( 'dataUint8Array的数据类型必须是Uint8Array类型！' );
+        }
+
+        // hash the dataUint8Array for ArrayBuffer
+        const hashArrayBuffer = await globalThis.crypto.subtle.digest( algorithm, dataUint8Array ),
+            // convert hashArrayBuffer to byte array
+            hashArray = Array.from( new Uint8Array( hashArrayBuffer ) ),
+            // convert hashArray to hex string
+            hashHex = hashArray.map( b => b.toString( 16 )
+                                           .padStart( 2, '0' ) )
+                               .join( '' );
+
+        return hashHex;
+    }
+
+}
+
+/**
  * 判断常用信息的格式
  */
 class DataFormat{
@@ -8640,6 +8708,7 @@ class WebService4Proxy{
 const mixin_classArrC = [
     Canvas2Others,
     CopyAPI,
+    CryptoAPI,
     DataFormat,
     ElemQuery,
     ES6Handle,
@@ -8882,13 +8951,13 @@ export default CT;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Apr 04 2020 03:28:40 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Apr 09 2020 04:10:37 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>
