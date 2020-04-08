@@ -13,11 +13,11 @@
                         "Safari >= 13",
                         "Opera >= 67",
                         "OperaMobile >= 67",
-                        "Chrome >= 80",
-                        "Android >= 80",
-                        "ChromeAndroid >= 80",
-                        "Firefox >= 74",
-                        "FirefoxAndroid >= 74"
+                        "Chrome >= 81",
+                        "Android >= 81",
+                        "ChromeAndroid >= 81",
+                        "Firefox >= 75",
+                        "FirefoxAndroid >= 75"
                     ]
                 }
             }

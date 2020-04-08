@@ -102,15 +102,15 @@ let path = require( 'path' ),
         'Opera >= 67',
         'OperaMobile >= 67',
 
-        'Chrome >= 80',
-        'Android >= 80',
-        'ChromeAndroid >= 80',
+        'Chrome >= 81',
+        'Android >= 81',
+        'ChromeAndroid >= 81',
 
-        'Firefox >= 74',
-        'FirefoxAndroid >= 74',
+        'Firefox >= 75',
+        'FirefoxAndroid >= 75',
 
         // 专门在最新稳定版本的谷歌浏览器上测试用
-        // 'Chrome >= 80',
+        // 'Chrome >= 81',
     ],
     postCSSLoader_fun = isPro => {
         let obj = {
