@@ -15,16 +15,29 @@
 
 'use strict';
 
+import 'cssBDir/Colors.css';
+import 'compDir/Components.css';
+
+import { FileBtn, } from 'CompESM';
+
 let CT = new CTESM.CT();
 
-( async () => {
+FileBtn.call( CT, {
+    id: '#CryptoDemo1',
+    accept: '*',
+    multiple: true,
+    onChange: {
+        event( event, filesArr ){
+            if( filesArr.length > 0 ){
+                Array.from( filesArr )
+                     .forEach( async ( c, i, a ) => {
 
-    const str1 = `An obscure body in the S-K System, your majesty. The inhabitants refer to it as the planet Earth.`,
-        digestHex1 = await CT.getDigest2Hex4String( str1, 'SHA-512' );
+                         let result = await CT.getDigest2Hex4File( c );
 
-    const arr1 = new Uint8Array( new TextEncoder().encode( String( str1 ) ) ),
-        digestHex2 = await CT.getDigest2Hex4Uint8Array( arr1, 'SHA-512' );
+                         console.log( result );
 
-    console.log( digestHex1 );
-    console.log( digestHex2 );
-} )();
+                     } );
+            }
+        },
+    },
+} );

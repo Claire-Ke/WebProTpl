@@ -93,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line1433">line 1433</a>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line1434">line 1434</a>
     </li></ul></dd>
     
 
@@ -142,6 +142,374 @@
 
     
         <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getDigest2Hex4Blob"><span class="type-signature">(async) </span>getDigest2Hex4Blob<span class="signature">(dataBlob, algorithm)</span><span class="type-signature"> &rarr; {Promise.&lt;String>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    使用指定的哈希算法计算Blob类型数据的Hex(base16)编码的哈希值
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dataBlob</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Blob，需要计算的Blob数据，必须</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>algorithm</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    SHA-512
+                
+                </td>
+            
+
+            <td class="description last">String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />PS：<br />1、'SHA-1'已经跟'MD5'一样，不再安全了，强烈建议不用！<br /></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line1447">line 1447</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Promise<String>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;String></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getDigest2Hex4File"><span class="type-signature">(async) </span>getDigest2Hex4File<span class="signature">(dataFile, algorithm)</span><span class="type-signature"> &rarr; {Promise.&lt;String>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    使用指定的哈希算法计算File类型数据的Hex(base16)编码的哈希值
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dataFile</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">File，需要计算的File数据，必须</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>algorithm</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    SHA-512
+                
+                </td>
+            
+
+            <td class="description last">String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />PS：<br />1、'SHA-1'已经跟'MD5'一样，不再安全了，强烈建议不用！<br /></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line1486">line 1486</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Promise<String>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;String></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
 
         
             
@@ -234,7 +602,7 @@
                 </td>
             
 
-            <td class="description last">String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />PS：<br />1、'SHA-1'已经跟'MD5'一样，不在安全了，强烈建议不用！<br /></td>
+            <td class="description last">String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />PS：<br />1、'SHA-1'已经跟'MD5'一样，不再安全了，强烈建议不用！<br /></td>
         </tr>
 
     
@@ -275,7 +643,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line1446">line 1446</a>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line1525">line 1525</a>
     </li></ul></dd>
     
 
@@ -418,7 +786,7 @@
                 </td>
             
 
-            <td class="description last">String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />PS：<br />1、'SHA-1'已经跟'MD5'一样，不在安全了，强烈建议不用！<br /></td>
+            <td class="description last">String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />PS：<br />1、'SHA-1'已经跟'MD5'一样，不再安全了，强烈建议不用！<br /></td>
         </tr>
 
     
@@ -459,7 +827,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line1479">line 1479</a>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line1549">line 1549</a>
     </li></ul></dd>
     
 
@@ -533,7 +901,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Apr 09 2020 04:10:37 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Apr 09 2020 07:10:43 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

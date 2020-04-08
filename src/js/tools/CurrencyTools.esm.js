@@ -352,10 +352,15 @@ function Init( _this ){
  * @return {boolean}
  */
 function IsHandle1( arg1, arg2 ){
-    'use strict';
+    if( 'Element' === arg2 ){
+        return this.dataT( arg1 )
+                   .includes( arg2 );
+    }
 
-    return this.dataT( arg1 )
-               .includes( arg2 );
+    let str1 = this.dataT( arg1 )
+                   .split( ' ' )[ 1 ];
+
+    return str1.slice( 0, str1.length - 1 ) === arg2;
 }
 
 function IsHandle2( arg, regStr ){
@@ -1123,8 +1128,6 @@ class Canvas2Others{
      * @param callback 回调函数，有两个参数BlobObj、canvas，必须
      */
     imgSrcToBlob( imgSrc, format, quality, callback ){
-        'use strict';
-
         this.dataURLOrImgSrcToCanvas( imgSrc, ( canvas, image, context ) => void ( callback( this.dataURLToBlob( this.canvasToDataURL( canvas, format, quality ) ), canvas ) ) );
     }
 
@@ -1140,8 +1143,6 @@ class Canvas2Others{
      * @param callback 回调函数，有3个参数dataURL, canvas, image，必须
      */
     imgToDataURL( imgSrc, format, quality, callback ){
-        'use strict';
-
         this.dataURLOrImgSrcToCanvas( imgSrc, ( canvas, image, context ) => void ( callback( this.canvasToDataURL( canvas, format, quality ), canvas, image ) ) );
     }
 
@@ -1433,27 +1434,96 @@ class CopyAPI{
 class CryptoAPI{
 
     /**
+     * 使用指定的哈希算法计算Blob类型数据的Hex(base16)编码的哈希值
+     *
+     * @param dataBlob Blob，需要计算的Blob数据，必须
+     *
+     * @param algorithm String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />
+     * PS：<br />
+     * 1、'SHA-1'已经跟'MD5'一样，不再安全了，强烈建议不用！<br />
+     *
+     * @returns {Promise<String>} Promise<String>
+     */
+    async getDigest2Hex4Blob( dataBlob, algorithm = 'SHA-512' ){
+        if( !this.isBlob( dataBlob ) ){
+            GetError( 'dataBlob的数据类型必须是Blob类型！' );
+        }
+
+        let hashHex;
+
+        if( 'arrayBuffer' in new Blob() ){
+            let arr_AB = await dataBlob.arrayBuffer();
+            hashHex = await this.getDigest2Hex4Uint8Array( new Uint8Array( arr_AB ), algorithm );
+
+            return hashHex;
+        }
+        else{
+            hashHex = await new Promise( resolve => {
+                let reader = new FileReader();
+                reader.onload = async event => {
+                    let result = await this.getDigest2Hex4Uint8Array( new Uint8Array( event.target.result ), algorithm );
+
+                    resolve( result );
+                };
+                reader.readAsArrayBuffer( dataBlob );
+            } );
+
+            return hashHex;
+        }
+    }
+
+    /**
+     * 使用指定的哈希算法计算File类型数据的Hex(base16)编码的哈希值
+     *
+     * @param dataFile File，需要计算的File数据，必须
+     *
+     * @param algorithm String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />
+     * PS：<br />
+     * 1、'SHA-1'已经跟'MD5'一样，不再安全了，强烈建议不用！<br />
+     *
+     * @returns {Promise<String>} Promise<String>
+     */
+    async getDigest2Hex4File( dataFile, algorithm = 'SHA-512' ){
+        if( !this.isFile( dataFile ) ){
+            GetError( 'dataFile的数据类型必须是File类型！' );
+        }
+
+        let hashHex;
+
+        if( 'arrayBuffer' in new Blob() ){
+            let arr_AB = await dataFile.arrayBuffer();
+            hashHex = await this.getDigest2Hex4Uint8Array( new Uint8Array( arr_AB ), algorithm );
+
+            return hashHex;
+        }
+        else{
+            hashHex = await new Promise( resolve => {
+                let reader = new FileReader();
+                reader.onload = async event => {
+                    let result = await this.getDigest2Hex4Uint8Array( new Uint8Array( event.target.result ), algorithm );
+
+                    resolve( result );
+                };
+                reader.readAsArrayBuffer( dataFile );
+            } );
+
+            return hashHex;
+        }
+    }
+
+    /**
      * 使用指定的哈希算法计算字符串的Hex(base16)编码的哈希值
      *
      * @param dataStr String，需要计算的字符串数据，必须
      *
      * @param algorithm String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />
      * PS：<br />
-     * 1、'SHA-1'已经跟'MD5'一样，不在安全了，强烈建议不用！<br />
+     * 1、'SHA-1'已经跟'MD5'一样，不再安全了，强烈建议不用！<br />
      *
      * @returns {Promise<String>} Promise<String>
      */
     async getDigest2Hex4String( dataStr = '', algorithm = 'SHA-512' ){
-        // encode dataStr as (utf-8) Uint8Array
-        const str4UTF82Uint8Array = new TextEncoder().encode( String( dataStr ) ),
-            // hash the str4UTF82Uint8Array for ArrayBuffer
-            hashArrayBuffer = await globalThis.crypto.subtle.digest( algorithm, str4UTF82Uint8Array ),
-            // convert hashArrayBuffer to byte array
-            hashArray = Array.from( new Uint8Array( hashArrayBuffer ) ),
-            // convert hashArray to hex string
-            hashHex = hashArray.map( b => b.toString( 16 )
-                                           .padStart( 2, '0' ) )
-                               .join( '' );
+        const hashHex = await this.getDigest2Hex4Uint8Array( new TextEncoder().encode( String( dataStr ) ), algorithm );
 
         return hashHex;
     }
@@ -1472,7 +1542,7 @@ class CryptoAPI{
      *
      * @param algorithm String，可选值有：'SHA-1'、'SHA-256'、'SHA-384'、'SHA-512'，默认值：‘SHA-512'，可选<br />
      * PS：<br />
-     * 1、'SHA-1'已经跟'MD5'一样，不在安全了，强烈建议不用！<br />
+     * 1、'SHA-1'已经跟'MD5'一样，不再安全了，强烈建议不用！<br />
      *
      * @returns {Promise<String>} Promise<String>
      */
@@ -2356,8 +2426,6 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isAsyncFun( arg ){
-        'use strict';
-
         return IsHandle1.call( this, arg, 'AsyncFunction' ) || IsHandle1.call( this, arg, 'AsyncGeneratorFunction' );
     }
 
@@ -2427,6 +2495,19 @@ class IsDataType{
     }
 
     /**
+     * 判断数据是否为Blob类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isBlob( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'Blob' );
+    }
+
+    /**
      * 判断数据是否为Boolean类型(布尔对象、实例会返回false)
      *
      * @param arg 数据，参数个数为1，必需
@@ -2484,8 +2565,6 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isElemList( arg ){
-        'use strict';
-
         return IsHandle1.call( this, arg, 'NodeList' ) || IsHandle1.call( this, arg, 'HTMLCollection' ) || this.isJQList( arg );
     }
 
@@ -2497,9 +2576,7 @@ class IsDataType{
      * @returns {Boolean} boolean，是true，否false
      */
     isElement( arg ){
-        'use strict';
-
-        return IsHandle1.call( this, arg, 'Element' ) || IsHandle1.call( this, arg, 'Document' ) || IsHandle1.call( this, arg, 'Window' );
+        return IsHandle1.call( this, arg, 'Element' ) || this.isDocument( arg ) || this.isWindow( arg );
     }
 
     /**
@@ -2551,6 +2628,32 @@ class IsDataType{
         'use strict';
 
         return IsHandle1.call( this, arg, 'Error' );
+    }
+
+    /**
+     * 判断数据是否为File类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isFile( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'File' );
+    }
+
+    /**
+     * 判断数据是否为FileReader类型
+     *
+     * @param arg 数据，参数个数为1，必需
+     *
+     * @returns {Boolean} boolean，是true，否false
+     */
+    isFileReader( arg ){
+        'use strict';
+
+        return IsHandle1.call( this, arg, 'FileReader' );
     }
 
     /**
@@ -7735,8 +7838,6 @@ class StringHandle{
      * @returns {string} 字符串，返回全新的一个字符串，不是原来的！
      */
     strFL( str ){
-        'use strict';
-
         return str.slice( 0, 1 )
                   .toLocaleLowerCase() + str.slice( 1 );
     }
@@ -7749,8 +7850,6 @@ class StringHandle{
      * @returns {string} 字符串，返回全新的一个字符串，不是原来的！
      */
     strFU( str ){
-        'use strict';
-
         return str.slice( 0, 1 )
                   .toLocaleUpperCase() + str.slice( 1 );
     }
