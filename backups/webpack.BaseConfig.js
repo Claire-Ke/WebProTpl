@@ -97,7 +97,7 @@ let path = require( 'path' ),
         'iOS >= 13',
         'Safari >= 13',
 
-        // 'Edge >= 18',
+        'Edge >= 80',
 
         'Opera >= 67',
         'OperaMobile >= 67',
