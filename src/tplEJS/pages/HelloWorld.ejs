@@ -285,6 +285,47 @@ let options_obj = htmlWebpackPlugin.options,
                             @click = 'btnClick1'>btnClick1
                     </button>
                 </div>
+                <div class = 'css-reset'>
+                    <popup-info data-img = '${ require( "imgDir/XM_512_512.png" ) }'
+                                data-text = 'Your card validation code (CVC) is an extra security feature — it is the last 3 or 4 numbers on the back of your card.'></popup-info>
+                    <ul is = 'expanding-list'>
+                        <li>UK
+                            <ul>
+                                <li>Yorkshire
+                                    <ul>
+                                        <li>Leeds
+                                            <ul>
+                                                <li>Train station</li>
+                                                <li>Town hall</li>
+                                                <li>Headrow</li>
+                                            </ul>
+                                        </li>
+                                        <li>Bradford</li>
+                                        <li>Hull</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>USA
+                            <ul>
+                                <li>California
+                                    <ul>
+                                        <li>Los Angeles</li>
+                                        <li>San Francisco</li>
+                                        <li>Berkeley</li>
+                                    </ul>
+                                </li>
+                                <li>Nevada</li>
+                                <li>Oregon</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div>
+                        <button class = "add">Add custom-square to DOM</button>
+                        <button class = "update">Update attributes</button>
+                        <button class = "remove">Remove custom-square from DOM</button>
+                    </div>
+                </div>
             </article>
         </main>
     </div>

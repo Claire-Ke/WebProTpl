@@ -158,6 +158,7 @@ let htmlWebpackPluginA_arr = [
                        ? []
                        : excludeChunks_fun( 'HelloWorld' ),
         inject: 'body',
+        scriptLoading: 'defer',
         cache: false,
         minify: minify_obj,
         chunksSortMode: 'auto',
@@ -391,6 +392,7 @@ let htmlWebpackPluginA_arr = [
                        ? []
                        : excludeChunks_fun( 'XMQAQ' ),
         inject: 'body',
+        scriptLoading: 'defer',
         cache: false,
         minify: minify_obj,
         chunksSortMode: 'auto',

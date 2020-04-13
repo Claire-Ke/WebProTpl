@@ -102,6 +102,42 @@ html.helloWorld {
             }
         }
     }
+
+    ul {
+        list-style-type: none;
+    }
+
+    li::before {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        margin-right: 0.25rem;
+        content: '';
+    }
+
+    .open::before, .closed::before {
+        background-size: 1rem 1rem;
+        position: relative;
+        top: 0.25rem;
+        opacity: 0.3;
+    }
+
+    .open::before {
+        background-image: url(../../../../assets/img/XM_512_512.png);
+    }
+
+    .closed::before {
+        background-image: url(../../../../assets/img/XM_512_512.png);
+    }
+
+    .closed .closed::before, .closed .open::before {
+        display: none;
+    }
+
+    custom-square {
+        margin: 20px;
+        color: black;
+    }
 }
 
 @media only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (device-pixel-ratio: 3) {

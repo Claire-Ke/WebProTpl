@@ -1996,3 +1996,10 @@ ${ onceFun1( 'q', 'w' ) }
         import('./CryptoDemo1.esm.js');
     }
 }
+
+// Web Components测试
+{
+    if( true ){
+        import('./WebComponentsDemo1.esm.js');
+    }
+}
