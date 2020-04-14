@@ -11,7 +11,7 @@
                     "browsers": [
                         "iOS >= 13",
                         "Safari >= 13",
-                        "Edge >= 80",
+                        "Edge >= 81",
                         "Opera >= 67",
                         "OperaMobile >= 67",
                         "Chrome >= 81",

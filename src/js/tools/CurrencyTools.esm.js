@@ -8036,7 +8036,7 @@ class TouchEvent{
                     touch = {};
                 },
                 isPrimaryTouch = event => ( ( event.pointerType === 'touch' || event.pointerType === event.MSPOINTER_TYPE_TOUCH ) && event.isPrimary ),
-                isPointerEventType = ( e, type ) => ( e.type === 'pointer' + type || e.type.toLowerCase() === 'mspointer' + type );
+                isPointerEventType = ( e, type ) => ( e.type === 'pointer' + type || e.type.toLocaleLowerCase() === 'mspointer' + type );
             this.ready( () => {
                 let now,
                     delta,
