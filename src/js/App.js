@@ -23,7 +23,7 @@
  *
  * @type {boolean} boolean
  */
-const isSPA_booC = true,
+const isSPA_booC = false,
     /**
      * 页面路由管理对象，配置对象
      * 如：

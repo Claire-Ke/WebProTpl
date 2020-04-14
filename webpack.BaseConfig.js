@@ -590,434 +590,385 @@ let fs = require( 'fs' ),
         name: true,
         cacheGroups: require( './src/js/App.js' ).isSPA_booC
                      ? ( ( ( start_num = 100000000 ) => {
-                let obj = {
-                    VendorsDir_CSS: {
-                        test: /node_modules[\\/].*\.css$/,
-                        name: 'VendorsDir_CSS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `Basic_Colors_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](Basic.${ c }|Colors.${ c })$` ),
-                                name: `Basic_Colors_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
+                let styleType_arr = [
                         'less',
                         'css',
                         'scss',
                         'sass',
-                    ] ),
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `BasicDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](?!Basic.${ c }|Colors.${ c }).*\\.${ c }$` ),
-                                name: `BasicDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `ComponentsDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.${ c }$` ),
-                                name: `ComponentsDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `Components_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
-                                name: `Components_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `WebComponentsDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]webComponents[\\\\/].*\\.${ c }$` ),
-                                name: `WebComponentsDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `PublicDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]public[\\\\/].*\\.${ c }$` ),
-                                name: `PublicDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `ModulesDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]modules[\\\\/].*\\.${ c }$` ),
-                                name: `ModulesDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `VueComponentsDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.${ c }$` ),
-                                name: `VueComponentsDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `VueComponents_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
-                                name: `VueComponents_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `VueStylesDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]vue[\\\\/]styles[\\\\/].*\\.${ c }$` ),
-                                name: `VueStylesDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `PagesDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]pages[\\\\/].*\\.${ c }$` ),
-                                name: `PagesDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    VendorsDir_JS: ( arr => {
-                        return {
-                            test: new RegExp( `node_modules[\\\\/](?!${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
-                                                                           .join( '|' ) }).*\\.js$` ),
-                            name: 'VendorsDir_JS',
+                    ],
+                    obj = {
+                        VendorsDir_CSS: {
+                            test: /node_modules[\\/].*\.css$/,
+                            name: 'VendorsDir_CSS',
                             // 数值越高越先添加加载
                             // priority: 1000,
                             enforce: true,
                             reuseExistingChunk: true
-                        };
-                    } )( [
-                        'vue',
-                        'vuex',
-                        'vue-router',
-                        'jquery',
-                        'echarts',
-                        'swiper',
-                    ] ),
-                    VendorsToolsDir_JS: ( arr => {
-                        return {
-                            test: new RegExp( `node_modules[\\\\/](${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
-                                                                         .join( '|' ) }).*\\.js$` ),
-                            name: 'VendorsToolsDir_JS',
+                        },
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `Basic_Colors_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](Basic.${ c }|Colors.${ c })$` ),
+                                    name: `Basic_Colors_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `BasicDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](?!Basic.${ c }|Colors.${ c }).*\\.${ c }$` ),
+                                    name: `BasicDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `ComponentsDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.${ c }$` ),
+                                    name: `ComponentsDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `Components_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
+                                    name: `Components_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `WebComponentsDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]webComponents[\\\\/].*\\.${ c }$` ),
+                                    name: `WebComponentsDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `PublicDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]public[\\\\/].*\\.${ c }$` ),
+                                    name: `PublicDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `ModulesDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]modules[\\\\/].*\\.${ c }$` ),
+                                    name: `ModulesDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `VueComponentsDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.${ c }$` ),
+                                    name: `VueComponentsDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `VueComponents_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
+                                    name: `VueComponents_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `VueStylesDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]vue[\\\\/]styles[\\\\/].*\\.${ c }$` ),
+                                    name: `VueStylesDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `PagesDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]pages[\\\\/].*\\.${ c }$` ),
+                                    name: `PagesDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        VendorsDir_JS: ( arr => {
+                            return {
+                                test: new RegExp( `node_modules[\\\\/](?!${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
+                                                                               .join( '|' ) }).*\\.js$` ),
+                                name: 'VendorsDir_JS',
+                                // 数值越高越先添加加载
+                                // priority: 1000,
+                                enforce: true,
+                                reuseExistingChunk: true
+                            };
+                        } )( [
+                            'vue',
+                            'vuex',
+                            'vue-router',
+                            'jquery',
+                            'echarts',
+                            'swiper',
+                        ] ),
+                        VendorsToolsDir_JS: ( arr => {
+                            return {
+                                test: new RegExp( `node_modules[\\\\/](${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
+                                                                             .join( '|' ) }).*\\.js$` ),
+                                name: 'VendorsToolsDir_JS',
+                                // 数值越高越先添加加载
+                                // priority: 1000,
+                                enforce: true,
+                                reuseExistingChunk: true
+                            };
+                        } )( [
+                            'vue',
+                            'vuex',
+                            'vue-router',
+                            'jquery',
+                            'echarts',
+                            'swiper',
+                        ] ),
+                        ToolsDir_JS: {
+                            test: /src[\\/]js[\\/]tools[\\/].*\.js$/,
+                            name: 'ToolsDir_JS',
                             // 数值越高越先添加加载
                             // priority: 1000,
                             enforce: true,
                             reuseExistingChunk: true
-                        };
-                    } )( [
-                        'vue',
-                        'vuex',
-                        'vue-router',
-                        'jquery',
-                        'echarts',
-                        'swiper',
-                    ] ),
-                    ToolsDir_JS: {
-                        test: /src[\\/]js[\\/]tools[\\/].*\.js$/,
-                        name: 'ToolsDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
+                        },
 
-                    WASMBasicDir: {
-                        test: /src[\\/]wasm[\\/]basic[\\/]/,
-                        name: 'WASMBasicDir',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    WASMPublicDir: {
-                        test: /src[\\/]wasm[\\/]public[\\/]/,
-                        name: 'WASMPublicDir',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    WASMModulesDir: {
-                        test: /src[\\/]wasm[\\/]modules[\\/]/,
-                        name: 'WASMModulesDir',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    WASMPagesDir: {
-                        test: /src[\\/]wasm[\\/]pages[\\/]/,
-                        name: 'WASMPagesDir',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
+                        WASMBasicDir: {
+                            test: /src[\\/]wasm[\\/]basic[\\/]/,
+                            name: 'WASMBasicDir',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        WASMPublicDir: {
+                            test: /src[\\/]wasm[\\/]public[\\/]/,
+                            name: 'WASMPublicDir',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        WASMModulesDir: {
+                            test: /src[\\/]wasm[\\/]modules[\\/]/,
+                            name: 'WASMModulesDir',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        WASMPagesDir: {
+                            test: /src[\\/]wasm[\\/]pages[\\/]/,
+                            name: 'WASMPagesDir',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
 
-                    ComponentsDir_JS: {
-                        test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.js$` ),
-                        name: 'ComponentsDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    Components_JS: {
-                        test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
-                        name: 'Components_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    WebComponentsDir_JS: {
-                        test: /src[\\/]webComponents[\\/].*\.js$/,
-                        name: 'WebComponentsDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    PublicDir_JS: {
-                        test: /src[\\/]js[\\/]public[\\/].*\.js$/,
-                        name: 'PublicDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    ModulesDir_JS: {
-                        test: /src[\\/]js[\\/]modules[\\/].*\.js$/,
-                        name: 'ModulesDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
+                        ComponentsDir_JS: {
+                            test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.js$` ),
+                            name: 'ComponentsDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        Components_JS: {
+                            test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
+                            name: 'Components_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        WebComponentsDir_JS: {
+                            test: /src[\\/]webComponents[\\/].*\.js$/,
+                            name: 'WebComponentsDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        PublicDir_JS: {
+                            test: /src[\\/]js[\\/]public[\\/].*\.js$/,
+                            name: 'PublicDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        ModulesDir_JS: {
+                            test: /src[\\/]js[\\/]modules[\\/].*\.js$/,
+                            name: 'ModulesDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
 
-                    VueRoutersDir_JS: {
-                        test: /src[\\/]vue[\\/]routers[\\/].*\.js$/,
-                        name: 'VueRoutersDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    VueStoresDir_JS: {
-                        test: /src[\\/]vue[\\/]stores[\\/].*\.js$/,
-                        name: 'VueStoresDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    VueComponentsDir_JS: {
-                        test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.js$` ),
-                        name: 'VueComponentsDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    VueComponents_JS: {
-                        test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
-                        name: 'VueComponents_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    VueModelsDir_JS: {
-                        test: /src[\\/]vue[\\/]models[\\/].*\.js$/,
-                        name: 'VueModelsDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
+                        VueRoutersDir_JS: {
+                            test: /src[\\/]vue[\\/]routers[\\/].*\.js$/,
+                            name: 'VueRoutersDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        VueStoresDir_JS: {
+                            test: /src[\\/]vue[\\/]stores[\\/].*\.js$/,
+                            name: 'VueStoresDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        VueComponentsDir_JS: {
+                            test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.js$` ),
+                            name: 'VueComponentsDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        VueComponents_JS: {
+                            test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
+                            name: 'VueComponents_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        VueModelsDir_JS: {
+                            test: /src[\\/]vue[\\/]models[\\/].*\.js$/,
+                            name: 'VueModelsDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
 
-                    PagesDir_JS: {
-                        test: /src[\\/]js[\\/]pages[\\/].*\.js$/,
-                        name: 'PagesDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
+                        PagesDir_JS: {
+                            test: /src[\\/]js[\\/]pages[\\/].*\.js$/,
+                            name: 'PagesDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
 
-                    /*
-                     default: {
-                     minChunks: 2,
-                     // 数值越高越先添加加载
-                     // priority: -10,
-                     reuseExistingChunk: true,
-                     },
-                     */
-                };
+                        /*
+                         default: {
+                         minChunks: 2,
+                         // 数值越高越先添加加载
+                         // priority: -10,
+                         reuseExistingChunk: true,
+                         },
+                         */
+                    };
 
                 Object.entries( obj )
                       .forEach( ( c, i, ) => {
@@ -1027,662 +978,639 @@ let fs = require( 'fs' ),
                 return obj;
             } )( 100000000 ) )
                      : ( ( ( start_num = 100000000 ) => {
-                let obj = {
-                    VendorsDir_CSS: {
-                        test: /node_modules[\\/].*\.css$/,
-                        name: 'VendorsDir_CSS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
+                let fun = c => {
+                        let arr1 = [ ...c ];
+
+                        return `${ arr1.shift()
+                                       .toLocaleUpperCase() }${ arr1.join( '' ) }`.replace( new RegExp( '[^a-zA-Z0-9_@]', 'g' ), '' );
                     },
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `Basic_Colors_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](Basic.${ c }|Colors.${ c })$` ),
-                                name: `Basic_Colors_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
+                    styleType_arr = [
                         'less',
                         'css',
                         'scss',
                         'sass',
-                    ] ),
+                    ],
+                    obj = {
+                        VendorsDir_CSS: {
+                            test: /node_modules[\\/].*\.css$/,
+                            name: 'VendorsDir_CSS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
 
-                    ...( arr => {
-                        let result_obj = {};
+                        ...( arr => {
+                            let result_obj = {};
 
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `BasicDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](?!Basic.${ c }|Colors.${ c }).*\\.${ c }$` ),
-                                name: `BasicDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `Basic_Colors_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](Basic.${ c }|Colors.${ c })$` ),
+                                    name: `Basic_Colors_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
 
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
+                            return result_obj;
+                        } )( styleType_arr ),
 
-                    // ./src/components/xxx/
-                    ...( arr => {
-                        let result_obj = {};
+                        ...( arr => {
+                            let result_obj = {};
 
-                        fs.readdirSync( path.join( __dirname, './src/components' ) )
-                          .filter( ( c, i, a ) => {
-                              return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
-                                       .isDirectory();
-                          } )
-                          .filter( ( c, i, a ) => true )
-                          .forEach( ( c, i, a ) => {
-                              arr.forEach( ( c1, i1, a1 ) => {
-                                  result_obj[ `Components${ c }_${ c1.toLocaleUpperCase() }` ] = {
-                                      test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                      name: `Components${ c }_${ c1.toLocaleUpperCase() }`,
-                                      // 数值越高越先添加加载
-                                      // priority: 1000,
-                                      enforce: true,
-                                      reuseExistingChunk: true
-                                  };
-                              } );
-                          } );
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `BasicDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](?!Basic.${ c }|Colors.${ c }).*\\.${ c }$` ),
+                                    name: `BasicDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
 
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-                    ...( arr => {
-                        let result_obj = {};
+                            return result_obj;
+                        } )( styleType_arr ),
 
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `Components_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
-                                name: `Components_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
+                        // ./src/components/xxx/
+                        ...( arr => {
+                            let result_obj = {},
+                                str1;
 
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    // ./src/webComponents/xxx/
-                    ...( arr => {
-                        let result_obj = {};
-
-                        fs.readdirSync( path.join( __dirname, './src/webComponents' ) )
-                          .filter( ( c, i, a ) => {
-                              return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
-                                       .isDirectory();
-                          } )
-                          .filter( ( c, i, a ) => true )
-                          .forEach( ( c, i, a ) => {
-                              arr.forEach( ( c1, i1, a1 ) => {
-                                  result_obj[ `WebComponents${ c }_${ c1.toLocaleUpperCase() }` ] = {
-                                      test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                      name: `WebComponents${ c }_${ c1.toLocaleUpperCase() }`,
-                                      // 数值越高越先添加加载
-                                      // priority: 1000,
-                                      enforce: true,
-                                      reuseExistingChunk: true
-                                  };
-                              } );
-                          } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `PublicDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]public[\\\\/].*\\.${ c }$` ),
-                                name: `PublicDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `ModulesDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]modules[\\\\/].*\\.${ c }$` ),
-                                name: `ModulesDir_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    // ./src/vue/components/xxx/
-                    ...( arr => {
-                        let result_obj = {};
-
-                        fs.readdirSync( path.join( __dirname, './src/vue/components' ) )
-                          .filter( ( c, i, a ) => {
-                              return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
-                                       .isDirectory();
-                          } )
-                          .filter( ( c, i, a ) => true )
-                          .forEach( ( c, i, a ) => {
-                              arr.forEach( ( c1, i1, a1 ) => {
-                                  result_obj[ `VueComponents${ c }_${ c1.toLocaleUpperCase() }` ] = {
-                                      test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                      name: `VueComponents${ c }_${ c1.toLocaleUpperCase() }`,
-                                      // 数值越高越先添加加载
-                                      // priority: 1000,
-                                      enforce: true,
-                                      reuseExistingChunk: true
-                                  };
-                              } );
-                          } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `VueComponents_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
-                                name: `VueComponents_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    // ./src/vue/styles/xxx/
-                    ...( arr => {
-                        let result_obj = {};
-
-                        fs.readdirSync( path.join( __dirname, './src/vue/styles' ) )
-                          .filter( ( c, i, a ) => {
-                              return fs.statSync( path.join( __dirname, `./src/vue/styles/${ c }` ) )
-                                       .isDirectory();
-                          } )
-                          .filter( ( c, i, a ) => true )
-                          .forEach( ( c, i, a ) => {
-                              arr.forEach( ( c1, i1, a1 ) => {
-                                  result_obj[ `VueStyles${ c }_${ c1.toLocaleUpperCase() }` ] = {
-                                      test: new RegExp( `src[\\\\/]vue[\\\\/]styles[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                      name: `VueStyles${ c }_${ c1.toLocaleUpperCase() }`,
-                                      // 数值越高越先添加加载
-                                      // priority: 1000,
-                                      enforce: true,
-                                      reuseExistingChunk: true
-                                  };
-                              } );
-                          } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `VueStyles_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]vue[\\\\/]styles[\\\\/][^(/)]+\\.${ c }$` ),
-                                name: `VueStyles_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    // ./src/styles
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c1, i1, a1 ) => {
-                            fs.readdirSync( path.join( __dirname, `./src/styles/${ c1 }/pages` ) )
+                            fs.readdirSync( path.join( __dirname, './src/components' ) )
                               .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/styles/${ c1 }/pages/${ c }` ) )
+                                  return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
                                            .isDirectory();
                               } )
                               .filter( ( c, i, a ) => true )
                               .forEach( ( c, i, a ) => {
-                                  result_obj[ `Pages${ c }_${ c1.toLocaleUpperCase() }` ] = {
-                                      test: new RegExp( `src[\\\\/]styles[\\\\/]${ c1 }[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                      name: `Pages${ c }_${ c1.toLocaleUpperCase() }`,
+                                  arr.forEach( ( c1, i1, a1 ) => {
+                                      str1 = fun( c );
+
+                                      result_obj[ `Components_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                          test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                          name: `Components_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                          // 数值越高越先添加加载
+                                          // priority: 1000,
+                                          enforce: true,
+                                          reuseExistingChunk: true
+                                      };
+                                  } );
+                              } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `Components_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
+                                    name: `Components_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        // ./src/webComponents/xxx/
+                        ...( arr => {
+                            let result_obj = {},
+                                str1;
+
+                            fs.readdirSync( path.join( __dirname, './src/webComponents' ) )
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  arr.forEach( ( c1, i1, a1 ) => {
+                                      str1 = fun( c );
+
+                                      result_obj[ `WebComponents_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                          test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                          name: `WebComponents_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                          // 数值越高越先添加加载
+                                          // priority: 1000,
+                                          enforce: true,
+                                          reuseExistingChunk: true
+                                      };
+                                  } );
+                              } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `PublicDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]public[\\\\/].*\\.${ c }$` ),
+                                    name: `PublicDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `ModulesDir_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]modules[\\\\/].*\\.${ c }$` ),
+                                    name: `ModulesDir_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        // ./src/vue/components/xxx/
+                        ...( arr => {
+                            let result_obj = {},
+                                str1;
+
+                            fs.readdirSync( path.join( __dirname, './src/vue/components' ) )
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  arr.forEach( ( c1, i1, a1 ) => {
+                                      str1 = fun( c );
+
+                                      result_obj[ `VueComponents_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                          test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                          name: `VueComponents_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                          // 数值越高越先添加加载
+                                          // priority: 1000,
+                                          enforce: true,
+                                          reuseExistingChunk: true
+                                      };
+                                  } );
+                              } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `VueComponents_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
+                                    name: `VueComponents_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        // ./src/vue/styles/xxx/
+                        ...( arr => {
+                            let result_obj = {},
+                                str1;
+
+                            fs.readdirSync( path.join( __dirname, './src/vue/styles' ) )
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/vue/styles/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  arr.forEach( ( c1, i1, a1 ) => {
+                                      str1 = fun( c );
+
+                                      result_obj[ `VueStyles_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                          test: new RegExp( `src[\\\\/]vue[\\\\/]styles[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                          name: `VueStyles_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                          // 数值越高越先添加加载
+                                          // priority: 1000,
+                                          enforce: true,
+                                          reuseExistingChunk: true
+                                      };
+                                  } );
+                              } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `VueStyles_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]vue[\\\\/]styles[\\\\/][^(/)]+\\.${ c }$` ),
+                                    name: `VueStyles_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        // ./src/styles
+                        ...( arr => {
+                            let result_obj = {},
+                                str1;
+
+                            arr.forEach( ( c1, i1, a1 ) => {
+                                fs.readdirSync( path.join( __dirname, `./src/styles/${ c1 }/pages` ) )
+                                  .filter( ( c, i, a ) => {
+                                      return fs.statSync( path.join( __dirname, `./src/styles/${ c1 }/pages/${ c }` ) )
+                                               .isDirectory();
+                                  } )
+                                  .filter( ( c, i, a ) => true )
+                                  .forEach( ( c, i, a ) => {
+                                      str1 = fun( c );
+
+                                      result_obj[ `Pages_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                          test: new RegExp( `src[\\\\/]styles[\\\\/]${ c1 }[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                          name: `Pages_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                          // 数值越高越先添加加载
+                                          // priority: 1000,
+                                          enforce: true,
+                                          reuseExistingChunk: true
+                                      };
+                                  } );
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+                        ...( arr => {
+                            let result_obj = {};
+
+                            arr.forEach( ( c, i, a ) => {
+                                result_obj[ `Pages_${ c.toLocaleUpperCase() }` ] = {
+                                    test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]pages[\\\\/][^(/)]+\\.${ c }$` ),
+                                    name: `Pages_${ c.toLocaleUpperCase() }`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
+
+                            return result_obj;
+                        } )( styleType_arr ),
+
+                        VendorsDir_JS: ( arr => {
+                            return {
+                                test: new RegExp( `node_modules[\\\\/](?!${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
+                                                                               .join( '|' ) }).*\\.js$` ),
+                                name: 'VendorsDir_JS',
+                                // 数值越高越先添加加载
+                                // priority: 1000,
+                                enforce: true,
+                                reuseExistingChunk: true
+                            };
+                        } )( [
+                            'vue',
+                            'vuex',
+                            'vue-router',
+                            'jquery',
+                            'echarts',
+                            'swiper',
+                        ] ),
+                        VueFamily_JS: {
+                            test: /node_modules[\\/](vue[\\/]|vuex[\\/]|vue-router[\\/]).*\.js$/,
+                            name: 'VueFamily_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        jQuery_JS: {
+                            test: /node_modules[\\/]jquery[\\/].*\.js$/,
+                            name: 'jQuery_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        Echarts_JS: {
+                            test: /node_modules[\\/]echarts[\\/].*\.js$/,
+                            name: 'Echarts_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        Swiper_JS: {
+                            test: /node_modules[\\/]swiper[\\/].*\.js$/,
+                            name: 'Swiper_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        HTML2Canvas_JS: {
+                            test: /src[\\/]js[\\/]tools[\\/]HTML2Canvas.esm.js$/,
+                            name: 'HTML2Canvas_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        Decorator_JS: {
+                            test: /src[\\/]js[\\/]tools[\\/]Decorator4ES6.esm.js$/,
+                            name: 'Decorator_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        CT_JS: {
+                            test: /src[\\/]js[\\/]tools[\\/]CurrencyTools.esm.js$/,
+                            name: 'CT_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        Workers4MT_JS: {
+                            test: /src[\\/]js[\\/]tools[\\/]Workers4MT.esm.js$/,
+                            name: 'Workers4MT_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        ToolsDir_JS: ( arr => {
+                            return {
+                                test: new RegExp( `src[\\\\/]js[\\\\/]tools[\\\\/](?!${ arr.join( '|' ) }).*\\.js$` ),
+                                name: 'ToolsDir_JS',
+                                // 数值越高越先添加加载
+                                // priority: 1000,
+                                enforce: true,
+                                reuseExistingChunk: true
+                            };
+                        } )( [
+                            'CurrencyTools.esm.js',
+                            'Decorator4ES6.esm.js',
+                            'HTML2Canvas.esm.js',
+                            'Workers4MT.esm.js',
+                        ] ),
+
+                        WASMBasicDir: {
+                            test: /src[\\/]wasm[\\/]basic[\\/]/,
+                            name: 'WASMBasicDir',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        WASMPublicDir: {
+                            test: /src[\\/]wasm[\\/]public[\\/]/,
+                            name: 'WASMPublicDir',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        WASMModulesDir: {
+                            test: /src[\\/]wasm[\\/]modules[\\/]/,
+                            name: 'WASMModulesDir',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        WASMPagesDir: {
+                            test: /src[\\/]wasm[\\/]pages[\\/]/,
+                            name: 'WASMPagesDir',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+
+                        // ./src/components/xxx/
+                        ...( () => {
+                            let result_obj = {},
+                                str1;
+
+                            fs.readdirSync( path.join( __dirname, './src/components' ) )
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
+
+                                  result_obj[ `Components_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                      name: `Components_${ str1 }_JS`,
                                       // 数值越高越先添加加载
                                       // priority: 1000,
                                       enforce: true,
                                       reuseExistingChunk: true
                                   };
                               } );
-                        } );
 
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-                    ...( arr => {
-                        let result_obj = {};
-
-                        arr.forEach( ( c, i, a ) => {
-                            result_obj[ `Pages_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]pages[\\\\/][^(/)]+\\.${ c }$` ),
-                                name: `Pages_${ c.toLocaleUpperCase() }`,
-                                // 数值越高越先添加加载
-                                // priority: 1000,
-                                enforce: true,
-                                reuseExistingChunk: true
-                            };
-                        } );
-
-                        return result_obj;
-                    } )( [
-                        'less',
-                        'css',
-                        'scss',
-                        'sass',
-                    ] ),
-
-                    VendorsDir_JS: ( arr => {
-                        return {
-                            test: new RegExp( `node_modules[\\\\/](?!${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
-                                                                           .join( '|' ) }).*\\.js$` ),
-                            name: 'VendorsDir_JS',
+                            return result_obj;
+                        } )(),
+                        Components_JS: {
+                            test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
+                            name: 'Components_JS',
                             // 数值越高越先添加加载
                             // priority: 1000,
                             enforce: true,
                             reuseExistingChunk: true
-                        };
-                    } )( [
-                        'vue',
-                        'vuex',
-                        'vue-router',
-                        'jquery',
-                        'echarts',
-                        'swiper',
-                    ] ),
-                    VueFamily_JS: {
-                        test: /node_modules[\\/](vue[\\/]|vuex[\\/]|vue-router[\\/]).*\.js$/,
-                        name: 'VueFamily_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    jQuery_JS: {
-                        test: /node_modules[\\/]jquery[\\/].*\.js$/,
-                        name: 'jQuery_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    Echarts_JS: {
-                        test: /node_modules[\\/]echarts[\\/].*\.js$/,
-                        name: 'Echarts_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    Swiper_JS: {
-                        test: /node_modules[\\/]swiper[\\/].*\.js$/,
-                        name: 'Swiper_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    HTML2Canvas_JS: {
-                        test: /src[\\/]js[\\/]tools[\\/]HTML2Canvas.esm.js$/,
-                        name: 'HTML2Canvas_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    Decorator_JS: {
-                        test: /src[\\/]js[\\/]tools[\\/]Decorator4ES6.esm.js$/,
-                        name: 'Decorator_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    CT_JS: {
-                        test: /src[\\/]js[\\/]tools[\\/]CurrencyTools.esm.js$/,
-                        name: 'CT_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    Workers4MT_JS: {
-                        test: /src[\\/]js[\\/]tools[\\/]Workers4MT.esm.js$/,
-                        name: 'Workers4MT_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    ToolsDir_JS: ( arr => {
-                        return {
-                            test: new RegExp( `src[\\\\/]js[\\\\/]tools[\\\\/](?!${ arr.join( '|' ) }).*\\.js$` ),
-                            name: 'ToolsDir_JS',
+                        },
+                        // ./src/webComponents/xxx/
+                        ...( () => {
+                            let result_obj = {},
+                                str1;
+
+                            fs.readdirSync( path.join( __dirname, './src/webComponents' ) )
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
+
+                                  result_obj[ `WebComponents_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                      name: `WebComponents_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
+
+                            return result_obj;
+                        } )(),
+                        PublicDir_JS: {
+                            test: /src[\\/]js[\\/]public[\\/].*\.js$/,
+                            name: 'PublicDir_JS',
                             // 数值越高越先添加加载
                             // priority: 1000,
                             enforce: true,
                             reuseExistingChunk: true
-                        };
-                    } )( [
-                        'CurrencyTools.esm.js',
-                        'Decorator4ES6.esm.js',
-                        'HTML2Canvas.esm.js',
-                        'Workers4MT.esm.js',
-                    ] ),
+                        },
+                        ModulesDir_JS: {
+                            test: /src[\\/]js[\\/]modules[\\/].*\.js$/,
+                            name: 'ModulesDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
 
-                    WASMBasicDir: {
-                        test: /src[\\/]wasm[\\/]basic[\\/]/,
-                        name: 'WASMBasicDir',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    WASMPublicDir: {
-                        test: /src[\\/]wasm[\\/]public[\\/]/,
-                        name: 'WASMPublicDir',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    WASMModulesDir: {
-                        test: /src[\\/]wasm[\\/]modules[\\/]/,
-                        name: 'WASMModulesDir',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    WASMPagesDir: {
-                        test: /src[\\/]wasm[\\/]pages[\\/]/,
-                        name: 'WASMPagesDir',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
+                        VueRoutersDir_JS: {
+                            test: /src[\\/]vue[\\/]routers[\\/].*\.js$/,
+                            name: 'VueRoutersDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        VueStoresDir_JS: {
+                            test: /src[\\/]vue[\\/]stores[\\/].*\.js$/,
+                            name: 'VueStoresDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        ...( () => {
+                            let result_obj = {},
+                                str1;
 
-                    // ./src/components/xxx/
-                    ...( () => {
-                        let result_obj = {};
+                            fs.readdirSync( path.join( __dirname, './src/vue/components' ) )
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
 
-                        fs.readdirSync( path.join( __dirname, './src/components' ) )
-                          .filter( ( c, i, a ) => {
-                              return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
-                                       .isDirectory();
-                          } )
-                          .filter( ( c, i, a ) => true )
-                          .forEach( ( c, i, a ) => {
-                              result_obj[ `Components${ c }_JS` ] = {
-                                  test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                  name: `Components${ c }_JS`,
-                                  // 数值越高越先添加加载
-                                  // priority: 1000,
-                                  enforce: true,
-                                  reuseExistingChunk: true
-                              };
-                          } );
+                                  result_obj[ `VueComponents_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                      name: `VueComponents_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
 
-                        return result_obj;
-                    } )(),
-                    Components_JS: {
-                        test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
-                        name: 'Components_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    // ./src/webComponents/xxx/
-                    ...( () => {
-                        let result_obj = {};
+                            return result_obj;
+                        } )(),
+                        VueComponents_JS: {
+                            test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
+                            name: 'VueComponents_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        ...( () => {
+                            let result_obj = {},
+                                str1;
 
-                        fs.readdirSync( path.join( __dirname, './src/webComponents' ) )
-                          .filter( ( c, i, a ) => {
-                              return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
-                                       .isDirectory();
-                          } )
-                          .filter( ( c, i, a ) => true )
-                          .forEach( ( c, i, a ) => {
-                              result_obj[ `WebComponents${ c }_JS` ] = {
-                                  test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                  name: `WebComponents${ c }_JS`,
-                                  // 数值越高越先添加加载
-                                  // priority: 1000,
-                                  enforce: true,
-                                  reuseExistingChunk: true
-                              };
-                          } );
+                            fs.readdirSync( path.join( __dirname, './src/vue/models' ) )
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/vue/models/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
 
-                        return result_obj;
-                    } )(),
-                    PublicDir_JS: {
-                        test: /src[\\/]js[\\/]public[\\/].*\.js$/,
-                        name: 'PublicDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    ModulesDir_JS: {
-                        test: /src[\\/]js[\\/]modules[\\/].*\.js$/,
-                        name: 'ModulesDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
+                                  result_obj[ `VueModels_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]vue[\\\\/]models[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                      name: `VueModels_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
 
-                    VueRoutersDir_JS: {
-                        test: /src[\\/]vue[\\/]routers[\\/].*\.js$/,
-                        name: 'VueRoutersDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    VueStoresDir_JS: {
-                        test: /src[\\/]vue[\\/]stores[\\/].*\.js$/,
-                        name: 'VueStoresDir_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    ...( () => {
-                        let result_obj = {};
+                            return result_obj;
+                        } )(),
+                        VueModels_JS: {
+                            test: new RegExp( `src[\\\\/]vue[\\\\/]models[\\\\/][^(/)]+\\.js$` ),
+                            name: 'VueModels_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
 
-                        fs.readdirSync( path.join( __dirname, './src/vue/components' ) )
-                          .filter( ( c, i, a ) => {
-                              return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
-                                       .isDirectory();
-                          } )
-                          .filter( ( c, i, a ) => true )
-                          .forEach( ( c, i, a ) => {
-                              result_obj[ `VueComponents${ c }_JS` ] = {
-                                  test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                  name: `VueComponents${ c }_JS`,
-                                  // 数值越高越先添加加载
-                                  // priority: 1000,
-                                  enforce: true,
-                                  reuseExistingChunk: true
-                              };
-                          } );
+                        ...( () => {
+                            let result_obj = {},
+                                str1;
 
-                        return result_obj;
-                    } )(),
-                    VueComponents_JS: {
-                        test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
-                        name: 'VueComponents_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-                    ...( () => {
-                        let result_obj = {};
+                            fs.readdirSync( path.join( __dirname, './src/js/pages' ) )
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/js/pages/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
 
-                        fs.readdirSync( path.join( __dirname, './src/vue/models' ) )
-                          .filter( ( c, i, a ) => {
-                              return fs.statSync( path.join( __dirname, `./src/vue/models/${ c }` ) )
-                                       .isDirectory();
-                          } )
-                          .filter( ( c, i, a ) => true )
-                          .forEach( ( c, i, a ) => {
-                              result_obj[ `VueModels${ c }_JS` ] = {
-                                  test: new RegExp( `src[\\\\/]vue[\\\\/]models[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                  name: `VueModels${ c }_JS`,
-                                  // 数值越高越先添加加载
-                                  // priority: 1000,
-                                  enforce: true,
-                                  reuseExistingChunk: true
-                              };
-                          } );
+                                  result_obj[ `Pages_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]js[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                      name: `Pages_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
 
-                        return result_obj;
-                    } )(),
-                    VueModels_JS: {
-                        test: new RegExp( `src[\\\\/]vue[\\\\/]models[\\\\/][^(/)]+\\.js$` ),
-                        name: 'VueModels_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
+                            return result_obj;
+                        } )(),
+                        Pages_JS: {
+                            test: new RegExp( `src[\\\\/]js[\\\\/]pages[\\\\/][^(/)]+\\.js$` ),
+                            name: 'Pages_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
 
-                    ...( () => {
-                        let result_obj = {};
-
-                        fs.readdirSync( path.join( __dirname, './src/js/pages' ) )
-                          .filter( ( c, i, a ) => {
-                              return fs.statSync( path.join( __dirname, `./src/js/pages/${ c }` ) )
-                                       .isDirectory();
-                          } )
-                          .filter( ( c, i, a ) => true )
-                          .forEach( ( c, i, a ) => {
-                              result_obj[ `Pages${ c }_JS` ] = {
-                                  test: new RegExp( `src[\\\\/]js[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                  name: `Pages${ c }_JS`,
-                                  // 数值越高越先添加加载
-                                  // priority: 1000,
-                                  enforce: true,
-                                  reuseExistingChunk: true
-                              };
-                          } );
-
-                        return result_obj;
-                    } )(),
-                    Pages_JS: {
-                        test: new RegExp( `src[\\\\/]js[\\\\/]pages[\\\\/][^(/)]+\\.js$` ),
-                        name: 'Pages_JS',
-                        // 数值越高越先添加加载
-                        // priority: 1000,
-                        enforce: true,
-                        reuseExistingChunk: true
-                    },
-
-                    /*
-                     default: {
-                     minChunks: 2,
-                     // 数值越高越先添加加载
-                     // priority: -10,
-                     reuseExistingChunk: true,
-                     },
-                     */
-                };
+                        /*
+                         default: {
+                         minChunks: 2,
+                         // 数值越高越先添加加载
+                         // priority: -10,
+                         reuseExistingChunk: true,
+                         },
+                         */
+                    };
 
                 Object.entries( obj )
                       .forEach( ( c, i, ) => {
