@@ -8,6 +8,8 @@
 
 'use strict';
 
+import './Components.css';
+
 /**
  * 上传文件按钮（默认选择单个任何类型的文件）<br />
  * 注：<br />

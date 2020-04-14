@@ -14,9 +14,9 @@ isPro
 :
 ( console.log( '------------------This is development mode------------------' ) );
 
-import 'scssPDir/xmQAQ/XMQAQ.scss';
-
 import AppBtnIcoSrc from 'imgDir/XM_512_512.png';
+
+import 'scssPDir/xmQAQ/XMQAQ.scss';
 
 import AppBtn from 'vueVDir/xmQAQ/AppBtn.vue';
 import ImgShowTool from 'vueVDir/xmQAQ/ImgShowTool.vue';

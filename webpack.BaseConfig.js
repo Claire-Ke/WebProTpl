@@ -1044,7 +1044,7 @@ let fs = require( 'fs' ),
 
                         arr.forEach( ( c, i, a ) => {
                             result_obj[ `Basic_Colors_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](Basic.${ c }|Colors.${ c })` ),
+                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](Basic.${ c }|Colors.${ c })$` ),
                                 name: `Basic_Colors_${ c.toLocaleUpperCase() }`,
                                 // 数值越高越先添加加载
                                 // priority: 1000,
@@ -1083,7 +1083,7 @@ let fs = require( 'fs' ),
                         'sass',
                     ] ),
 
-                    // ./src/components
+                    // ./src/components/xxx/
                     ...( arr => {
                         let result_obj = {};
 
@@ -1135,7 +1135,7 @@ let fs = require( 'fs' ),
                         'sass',
                     ] ),
 
-                    // ./src/webComponents
+                    // ./src/webComponents/xxx/
                     ...( arr => {
                         let result_obj = {};
 
@@ -1210,7 +1210,7 @@ let fs = require( 'fs' ),
                         'sass',
                     ] ),
 
-                    // ./src/vue/components
+                    // ./src/vue/components/xxx/
                     ...( arr => {
                         let result_obj = {};
 
@@ -1262,7 +1262,7 @@ let fs = require( 'fs' ),
                         'sass',
                     ] ),
 
-                    // ./src/vue/styles
+                    // ./src/vue/styles/xxx/
                     ...( arr => {
                         let result_obj = {};
 
@@ -1417,7 +1417,7 @@ let fs = require( 'fs' ),
                         reuseExistingChunk: true
                     },
                     HTML2Canvas_JS: {
-                        test: /src[\\/]js[\\/]tools[\\/]HTML2Canvas.esm.js/,
+                        test: /src[\\/]js[\\/]tools[\\/]HTML2Canvas.esm.js$/,
                         name: 'HTML2Canvas_JS',
                         // 数值越高越先添加加载
                         // priority: 1000,
@@ -1425,7 +1425,7 @@ let fs = require( 'fs' ),
                         reuseExistingChunk: true
                     },
                     Decorator_JS: {
-                        test: /src[\\/]js[\\/]tools[\\/]Decorator4ES6.esm.js/,
+                        test: /src[\\/]js[\\/]tools[\\/]Decorator4ES6.esm.js$/,
                         name: 'Decorator_JS',
                         // 数值越高越先添加加载
                         // priority: 1000,
@@ -1433,7 +1433,7 @@ let fs = require( 'fs' ),
                         reuseExistingChunk: true
                     },
                     CT_JS: {
-                        test: /src[\\/]js[\\/]tools[\\/]CurrencyTools.esm.js/,
+                        test: /src[\\/]js[\\/]tools[\\/]CurrencyTools.esm.js$/,
                         name: 'CT_JS',
                         // 数值越高越先添加加载
                         // priority: 1000,
@@ -1441,7 +1441,7 @@ let fs = require( 'fs' ),
                         reuseExistingChunk: true
                     },
                     Workers4MT_JS: {
-                        test: /src[\\/]js[\\/]tools[\\/]Workers4MT.esm.js/,
+                        test: /src[\\/]js[\\/]tools[\\/]Workers4MT.esm.js$/,
                         name: 'Workers4MT_JS',
                         // 数值越高越先添加加载
                         // priority: 1000,
@@ -1497,7 +1497,7 @@ let fs = require( 'fs' ),
                         reuseExistingChunk: true
                     },
 
-                    // ./src/components
+                    // ./src/components/xxx/
                     ...( () => {
                         let result_obj = {};
 
@@ -1528,7 +1528,7 @@ let fs = require( 'fs' ),
                         enforce: true,
                         reuseExistingChunk: true
                     },
-                    // ./src/webComponents
+                    // ./src/webComponents/xxx/
                     ...( () => {
                         let result_obj = {};
 

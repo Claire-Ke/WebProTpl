@@ -9,7 +9,7 @@
 'use strict';
 
 {
-    if( false ){
+    if( true ){
         class PopUpInfo
             extends HTMLElement{
 
@@ -86,7 +86,7 @@
 }
 
 {
-    if( false ){
+    if( true ){
         class ExpandingList
             extends HTMLUListElement{
 

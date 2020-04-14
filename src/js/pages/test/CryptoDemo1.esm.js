@@ -8,10 +8,9 @@
 
 'use strict';
 
-import 'cssBDir/Colors.css';
-import 'compDir/Components.css';
-
-import { FileBtn, } from 'CompESM';
+import {
+    FileBtn,
+} from 'CompESM';
 
 let CT = new CTESM.CT();
 
