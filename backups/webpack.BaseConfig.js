@@ -605,7 +605,7 @@ let fs = require( 'fs' ),
 
                         arr.forEach( ( c, i, a ) => {
                             result_obj[ `Basic_Colors_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](Basic.${ c }|Colors.${ c })` ),
+                                test: new RegExp( `src[\\\\/]styles[\\\\/]${ c }[\\\\/]basic[\\\\/](Basic.${ c }|Colors.${ c })$` ),
                                 name: `Basic_Colors_${ c.toLocaleUpperCase() }`,
                                 // 数值越高越先添加加载
                                 // priority: 1000,
@@ -648,9 +648,9 @@ let fs = require( 'fs' ),
                         let result_obj = {};
 
                         arr.forEach( ( c, i, a ) => {
-                            result_obj[ `Components_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
-                                name: `Components_${ c.toLocaleUpperCase() }`,
+                            result_obj[ `ComponentsDir_${ c.toLocaleUpperCase() }` ] = {
+                                test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.${ c }$` ),
+                                name: `ComponentsDir_${ c.toLocaleUpperCase() }`,
                                 // 数值越高越先添加加载
                                 // priority: 1000,
                                 enforce: true,
@@ -665,14 +665,13 @@ let fs = require( 'fs' ),
                         'scss',
                         'sass',
                     ] ),
-
                     ...( arr => {
                         let result_obj = {};
 
                         arr.forEach( ( c, i, a ) => {
-                            result_obj[ `ComponentsDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.${ c }$` ),
-                                name: `ComponentsDir_${ c.toLocaleUpperCase() }`,
+                            result_obj[ `Components_${ c.toLocaleUpperCase() }` ] = {
+                                test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
+                                name: `Components_${ c.toLocaleUpperCase() }`,
                                 // 数值越高越先添加加载
                                 // priority: 1000,
                                 enforce: true,
@@ -758,9 +757,9 @@ let fs = require( 'fs' ),
                         let result_obj = {};
 
                         arr.forEach( ( c, i, a ) => {
-                            result_obj[ `VueComponents_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
-                                name: `VueComponents_${ c.toLocaleUpperCase() }`,
+                            result_obj[ `VueComponentsDir_${ c.toLocaleUpperCase() }` ] = {
+                                test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.${ c }$` ),
+                                name: `VueComponentsDir_${ c.toLocaleUpperCase() }`,
                                 // 数值越高越先添加加载
                                 // priority: 1000,
                                 enforce: true,
@@ -775,14 +774,13 @@ let fs = require( 'fs' ),
                         'scss',
                         'sass',
                     ] ),
-
                     ...( arr => {
                         let result_obj = {};
 
                         arr.forEach( ( c, i, a ) => {
-                            result_obj[ `VueComponentsDir_${ c.toLocaleUpperCase() }` ] = {
-                                test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.${ c }$` ),
-                                name: `VueComponentsDir_${ c.toLocaleUpperCase() }`,
+                            result_obj[ `VueComponents_${ c.toLocaleUpperCase() }` ] = {
+                                test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.${ c }$` ),
+                                name: `VueComponents_${ c.toLocaleUpperCase() }`,
                                 // 数值越高越先添加加载
                                 // priority: 1000,
                                 enforce: true,
@@ -920,17 +918,17 @@ let fs = require( 'fs' ),
                         reuseExistingChunk: true
                     },
 
-                    Components_JS: {
-                        test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
-                        name: 'Components_JS',
+                    ComponentsDir_JS: {
+                        test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.js$` ),
+                        name: 'ComponentsDir_JS',
                         // 数值越高越先添加加载
                         // priority: 1000,
                         enforce: true,
                         reuseExistingChunk: true
                     },
-                    ComponentsDir_JS: {
-                        test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.js$` ),
-                        name: 'ComponentsDir_JS',
+                    Components_JS: {
+                        test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
+                        name: 'Components_JS',
                         // 数值越高越先添加加载
                         // priority: 1000,
                         enforce: true,
@@ -977,17 +975,17 @@ let fs = require( 'fs' ),
                         enforce: true,
                         reuseExistingChunk: true
                     },
-                    VueComponents_JS: {
-                        test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
-                        name: 'VueComponents_JS',
+                    VueComponentsDir_JS: {
+                        test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.js$` ),
+                        name: 'VueComponentsDir_JS',
                         // 数值越高越先添加加载
                         // priority: 1000,
                         enforce: true,
                         reuseExistingChunk: true
                     },
-                    VueComponentsDir_JS: {
-                        test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.js$` ),
-                        name: 'VueComponentsDir_JS',
+                    VueComponents_JS: {
+                        test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/][^(/)]+\\.js$` ),
+                        name: 'VueComponents_JS',
                         // 数值越高越先添加加载
                         // priority: 1000,
                         enforce: true,

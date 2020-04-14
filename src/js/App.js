@@ -23,39 +23,8 @@
  *
  * @type {boolean} boolean
  */
-const isSPA_booC = false;
-
-/**
- * 页面路由管理对象，配置对象
- * 如：
- * { '编译完成后这个页面的文件名': [ '这个页面所拥有的.js文件路径' ] }
- *
- * 注：
- * 1、'编译完成后这个页面的文件名'：
- * 也就是configures/HTMLConfig.js中new htmlWebpackPlugin中filename属性对应的属性值'./pages/HelloWorld.html'字符串中的'HelloWorld'
- * 切记，这个文件名必须是唯一的！
- *
- * 2、'这个页面所拥有的.js文件路径'：
- * .js文件路径一般都是在WebProTpl文件夹下的src文件夹里的js文件夹下，所以是以'./src/js/'开头的。
- * 也由于使用这个App.js的webpack.BaseConfig.js在WebProTpl文件夹下，和src文件夹是同一级。
- */
-let pageRoutingManagement_obj = isSPA_booC
-                                ? {
-        /*{
-         import: './src/js/pages/helloWorld/HelloWorld.js',
-         // chunkhash hash contenthash
-         filename: 'js/HelloWorld_[name]_[contenthash:6].js',
-         // dependOn: '',
-         library: {
-         type: 'module',
-         // export: 'module',
-         },
-         }*/
-        HelloWorld: [
-            './src/js/pages/helloWorld/HelloWorld.js',
-        ],
-    }
-                                : {
+const isSPA_booC = true,
+    pageEntry_objC = {
         /*{
          import: './src/js/pages/helloWorld/HelloWorld.js',
          // chunkhash hash contenthash
@@ -83,6 +52,30 @@ let pageRoutingManagement_obj = isSPA_booC
             './src/js/pages/xmQAQ/XMQAQ.js',
         ],
     };
+
+/**
+ * 页面路由管理对象，配置对象
+ * 如：
+ * { '编译完成后这个页面的文件名': [ '这个页面所拥有的.js文件路径' ] }
+ *
+ * 注：
+ * 1、'编译完成后这个页面的文件名'：
+ * 也就是configures/HTMLConfig.js中new htmlWebpackPlugin中filename属性对应的属性值'./pages/HelloWorld.html'字符串中的'HelloWorld'
+ * 切记，这个文件名必须是唯一的！
+ *
+ * 2、'这个页面所拥有的.js文件路径'：
+ * .js文件路径一般都是在WebProTpl文件夹下的src文件夹里的js文件夹下，所以是以'./src/js/'开头的。
+ * 也由于使用这个App.js的webpack.BaseConfig.js在WebProTpl文件夹下，和src文件夹是同一级。
+ */
+let pageRoutingManagement_obj = isSPA_booC
+                                ? ( () => {
+        let first_arr = Object.entries( pageEntry_objC )[ 0 ];
+
+        return {
+            [ first_arr[ 0 ] ]: first_arr[ 1 ],
+        };
+    } )()
+                                : pageEntry_objC;
 
 module.exports = {
     isSPA_booC,
