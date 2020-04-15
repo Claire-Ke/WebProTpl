@@ -8,8 +8,10 @@
 
 'use strict';
 
+let WebComponents = WebCESM.WebC;
+
 {
-    if( true ){
+    if( false ){
         class PopUpInfo
             extends HTMLElement{
 
@@ -82,6 +84,103 @@
         }
 
         customElements.define( 'popup-info', PopUpInfo );
+    }
+
+    if( true ){
+
+        let popupInfo = new WebComponents( {
+            attach: {
+                delegatesFocus: null,
+                mode: 'open',
+            },
+            define: {
+                name: 'popup-info',
+                extends: null,
+            },
+            events: {
+                init: ( cusHTMLClassIns, shadowRoot ) => {
+                    const wrapper = document.createElement( 'span' );
+                    wrapper.setAttribute( 'class', 'wrapper' );
+
+                    const icon = document.createElement( 'span' );
+                    icon.setAttribute( 'class', 'icon' );
+                    icon.setAttribute( 'tabindex', 0 );
+
+                    const info = document.createElement( 'span' );
+                    info.setAttribute( 'class', 'info' );
+
+                    const text = cusHTMLClassIns.getAttribute( 'data-text' );
+                    info.textContent = text;
+
+                    let imgUrl;
+                    if( cusHTMLClassIns.hasAttribute( 'data-img' ) ){
+                        imgUrl = cusHTMLClassIns.getAttribute( 'data-img' );
+                    }
+                    else{
+                        imgUrl = 'img/default.png';
+                    }
+
+                    const img = document.createElement( 'img' );
+                    img.src = imgUrl;
+                    icon.appendChild( img );
+
+                    const style = document.createElement( 'style' );
+
+                    style.textContent = `
+      .wrapper {
+        position: relative;
+      }
+      .info {
+        font-size: 0.8rem;
+        width: 200px;
+        display: inline-block;
+        border: 1px solid black;
+        padding: 10px;
+        background: red;
+        border-radius: 10px;
+        opacity: 0;
+        transition: 0.6s all;
+        position: absolute;
+        bottom: 20px;
+        left: 10px;
+        z-index: 3;
+      }
+      img {
+        width: 1.2rem;
+      }
+      .icon:hover + .info, .icon:focus + .info {
+        opacity: 1;
+      }
+    `;
+
+                    shadowRoot.appendChild( style );
+                    shadowRoot.appendChild( wrapper );
+
+                    wrapper.appendChild( icon );
+                    wrapper.appendChild( info );
+                },
+                connectedCallback: () => {
+                },
+                disconnectedCallback: () => {
+                },
+                adoptedCallback: () => {
+                },
+                attributeChangedCallback: () => {
+                },
+            },
+            extends: HTMLElement,
+            isInit: true,
+            obsAttrs: [],
+        } );
+
+        /*
+         setTimeout( () => {
+         popupInfo.startInit();
+         }, 3000 );
+         */
+
+        // customElements.define( 'popup-info', popupInfo.getHTMLClass() );
+
     }
 }
 

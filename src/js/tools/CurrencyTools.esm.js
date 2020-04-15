@@ -1835,7 +1835,7 @@ class ElemQuery{
                 this.trim( tagS ),
                 undefined
             ];
-            if( /^([a-zA-Z])[a-zA-Z0-9]{0,}$/gi.test( selector ) || selector === '*' ){
+            if( /^([a-zA-Z])[\w-]{0,}$/gi.test( selector ) || selector === '*' ){
                 elemList = rootO.getElementsByTagName( selector );
                 if( elemList.length !== 0 ){
                     return elemList;

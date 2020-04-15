@@ -171,25 +171,32 @@ let fs = require( 'fs' ),
     } ),
     resolve_fun = ( path, __dirname, isPro_boo ) => ( {
         alias: {
+            echartsESM: isPro_boo
+                        ? 'echarts/dist/echarts.min.js'
+                        : 'echarts/dist/echarts.js',
+            jQueryESM: isPro_boo
+                       ? 'jquery/dist/jquery.min.js'
+                       : 'jquery/dist/jquery.js',
+            swiperESM: isPro_boo
+                       ? 'swiper/js/swiper.min.js'
+                       : 'swiper/js/swiper.js',
             vueESM: isPro_boo
                     ? 'vue/dist/vue.min.js'
                     : 'vue/dist/vue.js',
-            vuexESM: isPro_boo
-                     ? 'vuex/dist/vuex.min.js'
-                     : 'vuex/dist/vuex.js',
             vueRouterESM: isPro_boo
                           ? 'vue-router/dist/vue-router.min.js'
                           : 'vue-router/dist/vue-router.js',
+            vuexESM: isPro_boo
+                     ? 'vuex/dist/vuex.min.js'
+                     : 'vuex/dist/vuex.js',
 
-            jQueryMin: 'jquery/dist/jquery.min.js',
-            echartsMin: 'echarts/dist/echarts.min.js',
-            swiperMin: 'swiper/js/swiper.min.js',
-            HTML2C4ESM: 'src/js/tools/HTML2Canvas.esm.js',
-
-            DecESM: path.resolve( __dirname, './src/js/tools/Decorator4ES6.esm.js' ),
-            CTESM: path.resolve( __dirname, './src/js/tools/CurrencyTools.esm.js' ),
-            WorkersESM: path.resolve( __dirname, './src/js/tools/Workers4MT.esm.js' ),
             CompESM: path.resolve( __dirname, './src/components/Components.esm.js' ),
+
+            CTESM: path.resolve( __dirname, './src/js/tools/CurrencyTools.esm.js' ),
+            DecESM: path.resolve( __dirname, './src/js/tools/Decorator4ES6.esm.js' ),
+            HTML2C4ESM: path.resolve( __dirname, './src/js/tools/HTML2Canvas.esm.js' ),
+            WebCESM: path.resolve( __dirname, './src/js/tools/WebComponents.esm.js' ),
+            WorkersESM: path.resolve( __dirname, './src/js/tools/Workers4MT.esm.js' ),
 
             configDir: path.resolve( __dirname, './configures/' ),
 
@@ -276,11 +283,13 @@ let fs = require( 'fs' ),
         symlinks: false,
     } ),
     externals_obj = {
-        win_Vue: 'window.Vue',
-        win_Vuex: 'window.Vuex',
-        win_VueRouter: 'window.VueRouter',
-        win_Swiper: 'window.Swiper',
         win_echarts: 'window.echarts',
+        win_$: 'window.$',
+        win_jQuery: 'window.jQuery',
+        win_Swiper: 'window.Swiper',
+        win_Vue: 'window.Vue',
+        win_VueRouter: 'window.VueRouter',
+        win_Vuex: 'window.Vuex',
     },
     node_obj = {
         fs: 'empty',
@@ -591,10 +600,10 @@ let fs = require( 'fs' ),
         cacheGroups: require( './src/js/App.js' ).isSPA_booC
                      ? ( ( ( start_num = 100000000 ) => {
                 let styleType_arr = [
-                        'less',
                         'css',
-                        'scss',
+                        'less',
                         'sass',
+                        'scss',
                     ],
                     obj = {
                         VendorsDir_CSS: {
@@ -802,12 +811,12 @@ let fs = require( 'fs' ),
                                 reuseExistingChunk: true
                             };
                         } )( [
-                            'vue',
-                            'vuex',
-                            'vue-router',
-                            'jquery',
                             'echarts',
+                            'jquery',
                             'swiper',
+                            'vue',
+                            'vue-router',
+                            'vuex',
                         ] ),
                         VendorsToolsDir_JS: ( arr => {
                             return {
@@ -820,12 +829,12 @@ let fs = require( 'fs' ),
                                 reuseExistingChunk: true
                             };
                         } )( [
-                            'vue',
-                            'vuex',
-                            'vue-router',
-                            'jquery',
                             'echarts',
+                            'jquery',
                             'swiper',
+                            'vue',
+                            'vue-router',
+                            'vuex',
                         ] ),
                         ToolsDir_JS: {
                             test: /src[\\/]js[\\/]tools[\\/].*\.js$/,
@@ -985,10 +994,10 @@ let fs = require( 'fs' ),
                                        .toLocaleUpperCase() }${ arr1.join( '' ) }`.replace( new RegExp( '[^a-zA-Z0-9_@]', 'g' ), '' );
                     },
                     styleType_arr = [
-                        'less',
                         'css',
-                        'scss',
+                        'less',
                         'sass',
+                        'scss',
                     ],
                     obj = {
                         VendorsDir_CSS: {
@@ -1288,24 +1297,16 @@ let fs = require( 'fs' ),
                                 reuseExistingChunk: true
                             };
                         } )( [
-                            'vue',
-                            'vuex',
-                            'vue-router',
-                            'jquery',
                             'echarts',
+                            'jquery',
                             'swiper',
+                            'vue',
+                            'vue-router',
+                            'vuex',
                         ] ),
                         VueFamily_JS: {
-                            test: /node_modules[\\/](vue[\\/]|vuex[\\/]|vue-router[\\/]).*\.js$/,
+                            test: /node_modules[\\/](vue[\\/]|vue-router[\\/]|vuex[\\/]).*\.js$/,
                             name: 'VueFamily_JS',
-                            // 数值越高越先添加加载
-                            // priority: 1000,
-                            enforce: true,
-                            reuseExistingChunk: true
-                        },
-                        jQuery_JS: {
-                            test: /node_modules[\\/]jquery[\\/].*\.js$/,
-                            name: 'jQuery_JS',
                             // 数值越高越先添加加载
                             // priority: 1000,
                             enforce: true,
@@ -1319,6 +1320,14 @@ let fs = require( 'fs' ),
                             enforce: true,
                             reuseExistingChunk: true
                         },
+                        jQuery_JS: {
+                            test: /node_modules[\\/]jquery[\\/].*\.js$/,
+                            name: 'jQuery_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
                         Swiper_JS: {
                             test: /node_modules[\\/]swiper[\\/].*\.js$/,
                             name: 'Swiper_JS',
@@ -1327,9 +1336,10 @@ let fs = require( 'fs' ),
                             enforce: true,
                             reuseExistingChunk: true
                         },
-                        HTML2Canvas_JS: {
-                            test: /src[\\/]js[\\/]tools[\\/]HTML2Canvas.esm.js$/,
-                            name: 'HTML2Canvas_JS',
+
+                        CT_JS: {
+                            test: /src[\\/]js[\\/]tools[\\/]CurrencyTools.esm.js$/,
+                            name: 'CT_JS',
                             // 数值越高越先添加加载
                             // priority: 1000,
                             enforce: true,
@@ -1343,9 +1353,17 @@ let fs = require( 'fs' ),
                             enforce: true,
                             reuseExistingChunk: true
                         },
-                        CT_JS: {
-                            test: /src[\\/]js[\\/]tools[\\/]CurrencyTools.esm.js$/,
-                            name: 'CT_JS',
+                        HTML2Canvas_JS: {
+                            test: /src[\\/]js[\\/]tools[\\/]HTML2Canvas.esm.js$/,
+                            name: 'HTML2Canvas_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+                        WebC_JS: {
+                            test: /src[\\/]js[\\/]tools[\\/]WebComponents.esm.js$/,
+                            name: 'WebC_JS',
                             // 数值越高越先添加加载
                             // priority: 1000,
                             enforce: true,
@@ -1359,6 +1377,7 @@ let fs = require( 'fs' ),
                             enforce: true,
                             reuseExistingChunk: true
                         },
+
                         ToolsDir_JS: ( arr => {
                             return {
                                 test: new RegExp( `src[\\\\/]js[\\\\/]tools[\\\\/](?!${ arr.join( '|' ) }).*\\.js$` ),
@@ -1372,6 +1391,7 @@ let fs = require( 'fs' ),
                             'CurrencyTools.esm.js',
                             'Decorator4ES6.esm.js',
                             'HTML2Canvas.esm.js',
+                            'WebComponents.esm.js',
                             'Workers4MT.esm.js',
                         ] ),
 
@@ -1621,20 +1641,26 @@ let fs = require( 'fs' ),
             } )( 100000000 ) )
     },
     provide_obj = {
-        $: 'jQueryMin',
-        jQuery: 'jQueryMin',
-        'window.$': 'jQueryMin',
-        'window.jQuery': 'jQueryMin',
-        echarts: 'echartsMin',
-        Swiper: 'swiperMin',
+        echarts: 'echartsESM',
+
+        $: 'jQueryESM',
+        jQuery: 'jQueryESM',
+        'window.$': 'jQueryESM',
+        'window.jQuery': 'jQueryESM',
+
+        Swiper: 'swiperESM',
+
         Vue: 'vueESM',
-        Vuex: 'vuexESM',
         VueRouter: 'vueRouterESM',
-        DecESM: 'DecESM',
-        CTESM: 'CTESM',
+        Vuex: 'vuexESM',
+
         CompESM: 'CompESM',
-        WorkersESM: 'WorkersESM',
+
+        CTESM: 'CTESM',
+        DecESM: 'DecESM',
         HTML2C4ESM: 'HTML2C4ESM',
+        WebCESM: 'WebCESM',
+        WorkersESM: 'WorkersESM',
     },
     hashedModuleIds_obj = {
         // hex base64
