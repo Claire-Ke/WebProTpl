@@ -22,6 +22,7 @@
  */
 
 // 在自定义元素的类中，'shadowRoot'这个名字不能使用，是系统保留字段！要是用了会报错！
+// WebC类的私有实例属性、私有实例方法、私有静态属性、私有静态方法不能在自定义元素类内部使用！要是用了会报错！
 
 'use strict';
 
@@ -64,21 +65,21 @@ class WebC{
      *
      * @type {Function}
      */
-    #cusHTMLClassIns = null;
+    cusHTMLClassIns = null;
 
     /**
      * 配置选项
      *
      * @type {Object}
      */
-    #option = null;
+    optionObj = null;
 
     /**
      * shadowRoot对象
      *
      * @type {Object}
      */
-    #shadowRootObj = null;
+    shadowRootObj = null;
 
     /**
      * Web Components工厂类的构造函数<br />
@@ -87,6 +88,7 @@ class WebC{
      * 如果要创建的是定制的内置元素(Customized Built-in Element)(就是需要继承自内置HTML元素，但是不包括已经为文档注册了的自定义元素)，<br />
      * 那么最快、最方便的配置方法就是直接设置define.extends值以及把extends的值设置成'auto'就好了，免得去查询HTMLParagraphElement之类的内置HTML类。<br />
      * 2、在自定义元素的类中，'shadowRoot'这个名字不能使用，是系统保留字段！要是用了会报错！<br />
+     * 3、WebC类的私有实例属性、私有实例方法、私有静态属性、私有静态方法不能在自定义元素类内部使用！要是用了会报错！<br />
      *
      * @param initOption Object(配置对象)，必须。<br />
      * {<br />
@@ -160,7 +162,7 @@ class WebC{
     constructor( initOption = {} ){
         let _this = this;
 
-        _this.#option = Object.assign( {
+        _this.optionObj = Object.assign( {
             attach: {
                 delegatesFocus: null,
                 mode: 'open',
@@ -191,31 +193,31 @@ class WebC{
             obsAttrs: [],
         }, initOption );
 
-        if( !( /^([a-z])[a-z0-9-_]{0,}$/g.test( _this.#option.define.extends ) ) ){
+        if( !( /^([a-z])[a-z0-9-_]{0,}$/g.test( _this.optionObj.define.extends ) ) ){
             GetError( 'define.extends的命名格式只能是以小写字母跟数字、"-"、“_”组成的，并且只能是以小写字母开头！' );
 
             return null;
         }
 
-        if( !( /^([a-z])[a-z0-9-_]{0,}$/g.test( _this.#option.define.name ) ) ){
+        if( !( /^([a-z])[a-z0-9-_]{0,}$/g.test( _this.optionObj.define.name ) ) ){
             GetError( 'define.name的命名格式只能是以小写字母跟数字、"-"、“_”组成的，并且只能是以小写字母开头！' );
 
             return null;
         }
 
-        _this.#option.attach.delegatesFocus === null && ( delete _this.#option.attach.delegatesFocus );
+        _this.optionObj.attach.delegatesFocus === null && ( delete _this.optionObj.attach.delegatesFocus );
 
-        _this.#option.extends === 'auto' && ( _this.#option.extends = document.createElement( _this.#option.define.extends ).constructor );
+        _this.optionObj.extends === 'auto' && ( _this.optionObj.extends = document.createElement( _this.optionObj.define.extends ).constructor );
 
         _this.#cusHTMLClass = class
-            extends _this.#option.extends{
+            extends _this.optionObj.extends{
 
             /**
              * 静态私有属性，监听哪些属性的更改，里面的成员都是属性名
              *
              * @type {Array<String>}
              */
-            static #obsAttrs = _this.#option.obsAttrs;
+            static #obsAttrs = _this.optionObj.obsAttrs;
 
             /**
              * shadowRoot对象
@@ -236,12 +238,12 @@ class WebC{
             constructor(){
                 super();
 
-                this.#shadowRootObj = this.attachShadow( _this.#option.attach );
+                this.#shadowRootObj = this.attachShadow( _this.optionObj.attach );
 
-                _this.#option.events.init( this, this.#shadowRootObj );
+                _this.optionObj.events.init( this, this.#shadowRootObj );
 
-                _this.#cusHTMLClassIns = this;
-                _this.#shadowRootObj = this.#shadowRootObj;
+                _this.cusHTMLClassIns = this;
+                _this.shadowRootObj = this.#shadowRootObj;
             }
 
             /**
@@ -250,21 +252,21 @@ class WebC{
              * 1、一旦元素不再连接，就可以调用“connectedCallback”，请使用“Node.isConnected”确保。<br />
              */
             connectedCallback(){
-                _this.#option.events.connectedCallback( this, this.#shadowRootObj );
+                _this.optionObj.events.connectedCallback( this, this.#shadowRootObj );
             }
 
             /**
              * 每次自定义元素与文档DOM断开连接时调用。
              */
             disconnectedCallback(){
-                _this.#option.events.disconnectedCallback( this, this.#shadowRootObj );
+                _this.optionObj.events.disconnectedCallback( this, this.#shadowRootObj );
             }
 
             /**
              * 每次将自定义元素移至新文档时调用。
              */
             adoptedCallback(){
-                _this.#option.events.adoptedCallback( this, this.#shadowRootObj );
+                _this.optionObj.events.adoptedCallback( this, this.#shadowRootObj );
             }
 
             /**
@@ -281,7 +283,7 @@ class WebC{
              * @param arg4 null，这个参数所表示的未知，一直都是null的值。
              */
             attributeChangedCallback( name, oldValue, newValue, arg4 ){
-                _this.#option.events.attributeChangedCallback( this, this.#shadowRootObj, [
+                _this.optionObj.events.attributeChangedCallback( this, this.#shadowRootObj, [
                     name,
                     oldValue,
                     newValue,
@@ -291,9 +293,9 @@ class WebC{
 
         };
 
-        _this.#option.isInit && ( _this.#option.extends === HTMLElement
-                                  ? customElements.define( _this.#option.define.name, _this.#cusHTMLClass, )
-                                  : customElements.define( _this.#option.define.name, _this.#cusHTMLClass, { extends: _this.#option.define.extends, } ) );
+        _this.optionObj.isInit && ( _this.optionObj.extends === HTMLElement
+                                    ? customElements.define( _this.optionObj.define.name, _this.#cusHTMLClass, )
+                                    : customElements.define( _this.optionObj.define.name, _this.#cusHTMLClass, { extends: _this.optionObj.define.extends, } ) );
     }
 
     /**
@@ -311,7 +313,7 @@ class WebC{
      * @returns {Function} 自定义的元素类的实例
      */
     getHTMLClassIns(){
-        return this.#cusHTMLClassIns;
+        return this.cusHTMLClassIns;
     }
 
     /**
@@ -320,7 +322,7 @@ class WebC{
      * @returns {Object} shadowRoot对象
      */
     getShadowRoot(){
-        return this.#shadowRootObj;
+        return this.shadowRootObj;
     }
 
     /**
@@ -331,9 +333,9 @@ class WebC{
     startInit(){
         let _this = this;
 
-        !_this.#option.isInit && ( _this.#option.extends === HTMLElement
-                                   ? customElements.define( _this.#option.define.name, _this.#cusHTMLClass, )
-                                   : customElements.define( _this.#option.define.name, _this.#cusHTMLClass, { extends: _this.#option.define.extends, } ) );
+        !_this.optionObj.isInit && ( _this.optionObj.extends === HTMLElement
+                                     ? customElements.define( _this.optionObj.define.name, _this.#cusHTMLClass, )
+                                     : customElements.define( _this.optionObj.define.name, _this.#cusHTMLClass, { extends: _this.optionObj.define.extends, } ) );
     }
 
 }
