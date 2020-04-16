@@ -77,8 +77,9 @@
  http://www.w3school.com.cn/media/media_mimeref.asp
  */
 let startAppleTSI_arr = [
+    // 640 x 1136: iPhone 5S、iPhone SE(第一代)
     {
-        href: '../static/ico/startup/iPhone5S_SE_640_1136.png',
+        href: '../static/ico/startup/iPhone_640_1136.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
@@ -90,8 +91,9 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 320px) and (device-height: 568px) and (orientation: portrait) and (device-pixel-ratio: 2)'
         }
     },
+    // 1136 x 640: iPhone 5S、iPhone SE(第一代)
     {
-        href: '../static/ico/startup/iPhone5S_SE_1136_640.png',
+        href: '../static/ico/startup/iPhone_1136_640.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
@@ -103,8 +105,10 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 320px) and (device-height: 568px) and (orientation: landscape) and (device-pixel-ratio: 2)'
         }
     },
+
+    // 750 x 1334: iPhone 6、iPhone 6S、iPhone 7、iPhone 8、iPhone SE(第二代)
     {
-        href: '../static/ico/startup/iPhone6_6S_7_8_750_1334.png',
+        href: '../static/ico/startup/iPhone_750_1334.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
@@ -116,8 +120,9 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 375px) and (device-height: 667px) and (orientation: portrait) and (device-pixel-ratio: 2)'
         }
     },
+    // 1334 x 750: iPhone 6、iPhone 6S、iPhone 7、iPhone 8、iPhone SE(第二代)
     {
-        href: '../static/ico/startup/iPhone6_6S_7_8_1334_750.png',
+        href: '../static/ico/startup/iPhone_1334_750.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
@@ -129,34 +134,39 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 375px) and (device-height: 667px) and (orientation: landscape) and (device-pixel-ratio: 2)'
         }
     },
+
+    // 1080 x 1920: iPhone 6 Plus、iPhone 6S Plus、iPhone 7 Plus、iPhone 8 Plus
     {
-        href: '../static/ico/startup/iPhone6_6S_7_8_Plus_1242_2208.png',
+        href: '../static/ico/startup/iPhone_1080_1920.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
         /*isExecute: false,*/
         attrs: {
-            sizes: '1242x2208',
+            sizes: '1080x1920',
             media: 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), ' +
                 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), ' +
                 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (device-pixel-ratio: 3)'
         }
     },
+    // 1920 x 1080: iPhone 6 Plus、iPhone 6S Plus、iPhone 7 Plus、iPhone 8 Plus
     {
-        href: '../static/ico/startup/iPhone6_6S_7_8_Plus_2208_1242.png',
+        href: '../static/ico/startup/iPhone_1920_1080.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
         /*isExecute: false,*/
         attrs: {
-            sizes: '2208x1242',
+            sizes: '1920x1080',
             media: 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), ' +
                 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), ' +
                 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (device-pixel-ratio: 3)'
         }
     },
+
+    // 828 x 1792: iPhone XR、iPhone 11
     {
-        href: '../static/ico/startup/iPhoneXR_828_1792.png',
+        href: '../static/ico/startup/iPhone_828_1792.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
@@ -168,8 +178,9 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 414px) and (device-height: 896px) and (orientation: portrait) and (device-pixel-ratio: 2)'
         }
     },
+    // 1792 x 828: iPhone XR、iPhone 11
     {
-        href: '../static/ico/startup/iPhoneXR_1792_828.png',
+        href: '../static/ico/startup/iPhone_1792_828.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
@@ -181,8 +192,10 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 414px) and (device-height: 896px) and (orientation: landscape) and (device-pixel-ratio: 2)'
         }
     },
+
+    // 1125 x 2436: iPhone X、iPhone XS、iPhone 11 Pro
     {
-        href: '../static/ico/startup/iPhoneX_1125_2436.png',
+        href: '../static/ico/startup/iPhone_1125_2436.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
@@ -194,8 +207,9 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 375px) and (device-height: 812px) and (orientation: portrait) and (device-pixel-ratio: 3)'
         }
     },
+    // 2436 x 1125: iPhone X、iPhone XS、iPhone 11 Pro
     {
-        href: '../static/ico/startup/iPhoneX_2436_1125.png',
+        href: '../static/ico/startup/iPhone_2436_1125.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
@@ -207,8 +221,10 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (device-pixel-ratio: 3)'
         }
     },
+
+    // 1242 x 2688: iPhone XS Max、iPhone 11 Pro Max
     {
-        href: '../static/ico/startup/iPhoneXSMax_1242_2688.png',
+        href: '../static/ico/startup/iPhone_1242_2688.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
@@ -220,8 +236,9 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 414px) and (device-height: 896px) and (orientation: portrait) and (device-pixel-ratio: 3)'
         }
     },
+    // 2688 x 1242: iPhone XS Max、iPhone 11 Pro Max
     {
-        href: '../static/ico/startup/iPhoneXSMax_2688_1242.png',
+        href: '../static/ico/startup/iPhone_2688_1242.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
@@ -233,6 +250,8 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 414px) and (device-height: 896px) and (orientation: landscape) and (device-pixel-ratio: 3)'
         }
     },
+
+    // 1536 x 2048: iPad mini 2、iPad mini 3、iPad mini 4、iPad(第五代)、iPad(第六代)、iPad Air(第一代)、iPad Air 2、9.7英寸iPad Pro、iPad mini(第五代)
     {
         href: '../static/ico/startup/iPad_1536_2048.png',
         type: 'image/png',
@@ -246,6 +265,7 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (device-pixel-ratio: 2)'
         }
     },
+    // 2048 x 1536: iPad mini 2、iPad mini 3、iPad mini 4、iPad(第五代)、iPad(第六代)、iPad Air(第一代)、iPad Air 2、9.7英寸iPad Pro、iPad mini(第五代)
     {
         href: '../static/ico/startup/iPad_2048_1536.png',
         type: 'image/png',
@@ -259,6 +279,8 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (device-pixel-ratio: 2)'
         }
     },
+
+    // 2048 x 2732: 12.9英寸iPad Pro(第一代)、12.9英寸iPad Pro(第二代)、12.9英寸iPad Pro(第三代)、12.9英寸iPad Pro(第四代)
     {
         href: '../static/ico/startup/iPad_2048_2732.png',
         type: 'image/png',
@@ -272,6 +294,7 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 1024px) and (device-height: 1366px) and (orientation: portrait) and (device-pixel-ratio: 2)'
         }
     },
+    // 2732 x 2048: 12.9英寸iPad Pro(第一代)、12.9英寸iPad Pro(第二代)、12.9英寸iPad Pro(第三代)、12.9英寸iPad Pro(第四代)
     {
         href: '../static/ico/startup/iPad_2732_2048.png',
         type: 'image/png',
@@ -285,6 +308,8 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 1024px) and (device-height: 1366px) and (orientation: landscape) and (device-pixel-ratio: 2)'
         }
     },
+
+    // 1620 x 2160: iPad(第七代)
     {
         href: '../static/ico/startup/iPad_1620_2160.png',
         type: 'image/png',
@@ -298,6 +323,7 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 810px) and (device-height: 1080px) and (orientation: portrait) and (device-pixel-ratio: 2)'
         }
     },
+    // 2160 x 1620: iPad(第七代)
     {
         href: '../static/ico/startup/iPad_2160_1620.png',
         type: 'image/png',
@@ -311,6 +337,8 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 810px) and (device-height: 1080px) and (orientation: landscape) and (device-pixel-ratio: 2)'
         }
     },
+
+    // 1668 x 2224: 10.5英寸iPad Pro、iPad Air(第三代)
     {
         href: '../static/ico/startup/iPad_1668_2224.png',
         type: 'image/png',
@@ -324,6 +352,7 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 834px) and (device-height: 1112px) and (orientation: portrait) and (device-pixel-ratio: 2)'
         }
     },
+    // 2224 x 1668: 10.5英寸iPad Pro、iPad Air(第三代)
     {
         href: '../static/ico/startup/iPad_2224_1668.png',
         type: 'image/png',
@@ -337,6 +366,8 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 834px) and (device-height: 1112px) and (orientation: landscape) and (device-pixel-ratio: 2)'
         }
     },
+
+    // 1668 x 2388: 11英寸iPad Pro(第一代)、11英寸iPad Pro(第二代)
     {
         href: '../static/ico/startup/iPad_1668_2388.png',
         type: 'image/png',
@@ -350,6 +381,7 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 834px) and (device-height: 1194px) and (orientation: portrait) and (device-pixel-ratio: 2)'
         }
     },
+    // 2388 x 1668: 11英寸iPad Pro(第一代)、11英寸iPad Pro(第二代)
     {
         href: '../static/ico/startup/iPad_2388_1668.png',
         type: 'image/png',
@@ -362,7 +394,7 @@ let startAppleTSI_arr = [
                 'only screen and (device-width: 834px) and (device-height: 1194px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2), ' +
                 'only screen and (device-width: 834px) and (device-height: 1194px) and (orientation: landscape) and (device-pixel-ratio: 2)'
         }
-    }
+    },
 ];
 
 module.exports = {

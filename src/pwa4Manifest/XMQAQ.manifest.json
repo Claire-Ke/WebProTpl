@@ -120,62 +120,62 @@
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhone5S_SE_640_1136.png",
+            "src": "../static/ico/startup/iPhone_640_1136.png",
             "sizes": "640x1136",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhone5S_SE_1136_640.png",
+            "src": "../static/ico/startup/iPhone_1136_640.png",
             "sizes": "1136x640",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhone6_6S_7_8_750_1334.png",
+            "src": "../static/ico/startup/iPhone_750_1334.png",
             "sizes": "750x1334",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhone6_6S_7_8_1334_750.png",
+            "src": "../static/ico/startup/iPhone_1334_750.png",
             "sizes": "1334x750",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhone6_6S_7_8_Plus_1242_2208.png",
-            "sizes": "1242x2208",
+            "src": "../static/ico/startup/iPhone_1080_1920.png",
+            "sizes": "1080x1920",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhone6_6S_7_8_Plus_2208_1242.png",
-            "sizes": "2208x1242",
+            "src": "../static/ico/startup/iPhone_1920_1080.png",
+            "sizes": "1920x1080",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhoneX_1125_2436.png",
+            "src": "../static/ico/startup/iPhone_1125_2436.png",
             "sizes": "1125x2436",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhoneX_2436_1125.png",
+            "src": "../static/ico/startup/iPhone_2436_1125.png",
             "sizes": "2436x1125",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhoneXR_828_1792.png",
+            "src": "../static/ico/startup/iPhone_828_1792.png",
             "sizes": "828x1792",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhoneXR_1792_828.png",
+            "src": "../static/ico/startup/iPhone_1792_828.png",
             "sizes": "1792x828",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhoneXSMax_1242_2688.png",
+            "src": "../static/ico/startup/iPhone_1242_2688.png",
             "sizes": "1242x2688",
             "type": "image/png"
         },
         {
-            "src": "../static/ico/startup/iPhoneXSMax_2688_1242.png",
+            "src": "../static/ico/startup/iPhone_2688_1242.png",
             "sizes": "2688x1242",
             "type": "image/png"
         }

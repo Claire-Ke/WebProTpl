@@ -32,6 +32,42 @@ function DataT( arg ){
     return Object.prototype.toString.call( arg );
 }
 
+/**
+ * 验证是否可以有效的使用Element.attachShadow()。<br />
+ * PS: 满足以下两个条件就为true了。<br />
+ * 1、任何具有有效名称的自主定制元素(Autonomous Custom Element)。<br />
+ * 2、元素名是这些中的一个：article、aside、blockquote、body、div、footer、h1、<br />
+ * h2、h3、h4、h5、h6、header、main、nav、p、section、span。<br />
+ *
+ * @param extends4ClassName Class，元素类
+ *
+ * @param extends4ElemName String，元素名
+ *
+ * @returns {boolean} true可以有效的使用Element.attachShadow()，反之，不可以。
+ */
+function Effectiv4AddShadow( extends4ClassName, extends4ElemName ){
+    return HTMLElement === extends4ClassName || [
+        'article',
+        'aside',
+        'blockquote',
+        'body',
+        'div',
+        'footer',
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'header',
+        'main',
+        'nav',
+        'p',
+        'section',
+        'span',
+    ].includes( extends4ElemName );
+}
+
 function GetError( info_str ){
     throw new Error( info_str );
 }
@@ -61,7 +97,7 @@ class WebC{
      */
     #cusHTMLClass = null;
     /**
-     * 自定义的元素类的实例
+     * 自定义的元素类的实例，在初始化自定义元素前(即调用customElements.define()前)，其值是null。
      *
      * @type {Function}
      */
@@ -75,7 +111,7 @@ class WebC{
     optionObj = null;
 
     /**
-     * shadowRoot对象
+     * shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)、Effectiv4AddShadow()返回false时，其值是null。
      *
      * @type {Object}
      */
@@ -118,28 +154,28 @@ class WebC{
      * PS：<br />
      * 1、有两个函数参数：<br />
      * 第一个参数：自定义元素类的实例；<br />
-     * 第二个参数：自定义元素类的shadowRoot对象。<br />
+     * 第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />
      * connectedCallback: 函数，每次将自定义元素附加到文档连接的元素中时调用。这将在每次移动节点时发生，并且可能发生在元素的内容完全解析之前，可选。<br />
      * PS：<br />
      * 1、有两个函数参数：<br />
      * 第一个参数：自定义元素类的实例；<br />
-     * 第二个参数：自定义元素类的shadowRoot对象。<br />
+     * 第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />
      * 2、一旦元素不再连接，就可以调用“connectedCallback”，请使用“Node.isConnected”确保。<br />
      * disconnectedCallback: 函数，每次自定义元素与文档DOM断开连接时调用，可选。<br />
      * PS：<br />
      * 1、有两个函数参数：<br />
      * 第一个参数：自定义元素类的实例；<br />
-     * 第二个参数：自定义元素类的shadowRoot对象。<br />
+     * 第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />
      * adoptedCallback: 函数，每次将自定义元素移至新文档时调用，可选。<br />
      * PS：<br />
      * 1、有两个函数参数：<br />
      * 第一个参数：自定义元素类的实例；<br />
-     * 第二个参数：自定义元素类的shadowRoot对象。<br />
+     * 第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />
      * attributeChangedCallback: 函数，每次添加、删除或更改自定义元素的属性之一时调用，可选。<br />
      * PS：<br />
      * 1、有三个函数参数：<br />
      * 第一个参数：自定义元素类的实例；<br />
-     * 第二个参数：自定义元素类的shadowRoot对象；<br />
+     * 第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null；<br />
      * 第三个参数：数组<br />
      * [<br />
      * name(字符串，发生变化的属性的属性名),<br />
@@ -220,7 +256,7 @@ class WebC{
             static #obsAttrs = _this.optionObj.obsAttrs;
 
             /**
-             * shadowRoot对象
+             * shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)、Effectiv4AddShadow()返回false时，其值是null。
              *
              * @type {Object}
              */
@@ -238,7 +274,7 @@ class WebC{
             constructor(){
                 super();
 
-                this.#shadowRootObj = this.attachShadow( _this.optionObj.attach );
+                Effectiv4AddShadow( _this.optionObj.extends, _this.optionObj.define.extends ) && ( this.#shadowRootObj = this.attachShadow( _this.optionObj.attach ) );
 
                 _this.optionObj.events.init( this, this.#shadowRootObj );
 
@@ -308,7 +344,7 @@ class WebC{
     }
 
     /**
-     * 获取自定义的元素类的实例
+     * 获取自定义的元素类的实例，在初始化自定义元素前(即调用customElements.define()前)，其值是null。
      *
      * @returns {Function} 自定义的元素类的实例
      */
@@ -317,7 +353,7 @@ class WebC{
     }
 
     /**
-     * 获取shadowRoot对象
+     * 获取shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)、Effectiv4AddShadow()返回false时，其值是null。
      *
      * @returns {Object} shadowRoot对象
      */
