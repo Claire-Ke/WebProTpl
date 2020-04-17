@@ -47,7 +47,7 @@ function DataT( arg ){
 }
 
 /**
- * 验证是否可以有效的使用Element.attachShadow()。(还未考虑再次扩展一个自定义元素的情况)<br />
+ * 验证是否可以有效的使用Element.attachShadow()。<br />
  * PS:<br />
  * 1、有效使用Element.attachShadow()的三个条件:<br />
  * 一、任何具有有效名称的自主定制元素(Autonomous Custom Element)的自定义元素名。<br />
@@ -119,7 +119,7 @@ class WebC{
      *
      * @type {Class}
      */
-    #cusHTMLClass = null;
+    cusHTMLClass = null;
     /**
      * 自定义的元素类的实例，在初始化自定义元素前(即调用customElements.define()前)，其值是null。
      *
@@ -135,7 +135,7 @@ class WebC{
     optionObj = null;
 
     /**
-     * shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时，其值是null。
+     * shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时或再一次扩展于自定义元素类时，其值是null。
      *
      * @type {Object}
      */
@@ -234,6 +234,7 @@ class WebC{
                 extends: null,
                 name: null,
             },
+            enableExtends: true,
             events: {
                 init: ( cusHTMLClassIns, shadowRoot ) => {
                 },
@@ -257,6 +258,10 @@ class WebC{
             obsAttrs: [],
         }, initOption );
 
+        _this.optionObj.enableExtends
+        ? ( _this.optionObj.attach.mode = 'open' )
+        : ( _this.optionObj.attach.mode = 'closed' );
+
         _this.optionObj.extends === 'auto' && _this.optionObj.isExtendsCusHTML && ( GetError( 'extends为“auto”时，isExtendsCusHTML不能为true。' ) );
 
         if( !_this.optionObj.define.name.includes( '-' ) ){
@@ -275,7 +280,7 @@ class WebC{
 
         _this.optionObj.extends === 'auto' && !_this.optionObj.isExtendsCusHTML && /^([a-z])[a-z0-9]{0,}$/g.test( _this.optionObj.define.extends ) && ( _this.optionObj.extends = document.createElement( _this.optionObj.define.extends ).constructor );
 
-        _this.#cusHTMLClass = class
+        _this.cusHTMLClass = class
             extends _this.optionObj.extends{
 
             /**
@@ -286,7 +291,7 @@ class WebC{
             static #obsAttrs = _this.optionObj.obsAttrs;
 
             /**
-             * shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时，其值是null。
+             * shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时或再一次扩展于自定义元素类时，其值是null。
              *
              * @type {Object}
              */
@@ -302,9 +307,15 @@ class WebC{
             }
 
             constructor(){
+                if( !_this.optionObj.enableExtends && new.target !== _this.cusHTMLClass ){
+                    GetError( '该自定义元素类不能再次被扩展！' );
+
+                    return null;
+                }
+
                 super();
 
-                Effectiv4AddShadow( this ) && ( this.#shadowRootObj = this.attachShadow( _this.optionObj.attach ) );
+                Effectiv4AddShadow( this ) && !_this.optionObj.isExtendsCusHTML && ( this.#shadowRootObj = this.attachShadow( _this.optionObj.attach ) );
 
                 _this.optionObj.events.init( this, this.#shadowRootObj );
 
@@ -360,8 +371,8 @@ class WebC{
         };
 
         _this.optionObj.isInit && ( _this.optionObj.extends === HTMLElement || _this.optionObj.isExtendsCusHTML
-                                    ? customElements.define( _this.optionObj.define.name, _this.#cusHTMLClass, )
-                                    : customElements.define( _this.optionObj.define.name, _this.#cusHTMLClass, { extends: _this.optionObj.define.extends, } ) );
+                                    ? customElements.define( _this.optionObj.define.name, _this.cusHTMLClass, )
+                                    : customElements.define( _this.optionObj.define.name, _this.cusHTMLClass, { extends: _this.optionObj.define.extends, } ) );
     }
 
     /**
@@ -370,7 +381,7 @@ class WebC{
      * @returns {Class} 自定义的元素类
      */
     getHTMLClass(){
-        return this.#cusHTMLClass;
+        return this.cusHTMLClass;
     }
 
     /**
@@ -383,7 +394,7 @@ class WebC{
     }
 
     /**
-     * 获取shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时，其值是null。
+     * 获取shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时或再一次扩展于自定义元素类时，其值是null。
      *
      * @returns {Object} shadowRoot对象
      */
@@ -400,8 +411,8 @@ class WebC{
         let _this = this;
 
         !_this.optionObj.isInit && ( _this.optionObj.extends === HTMLElement || _this.optionObj.isExtendsCusHTML
-                                     ? customElements.define( _this.optionObj.define.name, _this.#cusHTMLClass, )
-                                     : customElements.define( _this.optionObj.define.name, _this.#cusHTMLClass, { extends: _this.optionObj.define.extends, } ) );
+                                     ? customElements.define( _this.optionObj.define.name, _this.cusHTMLClass, )
+                                     : customElements.define( _this.optionObj.define.name, _this.cusHTMLClass, { extends: _this.optionObj.define.extends, } ) );
     }
 
     /**

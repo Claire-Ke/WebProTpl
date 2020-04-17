@@ -21,8 +21,11 @@ let WebComponents = WebCESM.WebC;
                 name: 'popup-info',
                 extends: null,
             },
+            enableExtends: true,
             events: {
                 init: ( cusHTMLClassIns, shadowRoot ) => {
+                    // console.dir( shadowRoot );
+
                     const wrapper = document.createElement( 'span' );
                     wrapper.setAttribute( 'class', 'wrapper' );
 
@@ -111,8 +114,11 @@ let WebComponents = WebCESM.WebC;
                 name: 'expanding-list',
                 extends: 'ul',
             },
+            enableExtends: true,
             events: {
                 init: ( cusHTMLClassIns, shadowRoot ) => {
+                    // console.dir( shadowRoot );
+
                     function ShowUL( event ){
                         const nextul = event.target.nextElementSibling;
 
@@ -176,8 +182,11 @@ let WebComponents = WebCESM.WebC;
                 name: 'custom-square',
                 extends: null,
             },
+            enableExtends: true,
             events: {
                 init: ( cusHTMLClassIns, shadowRoot ) => {
+                    // console.dir( shadowRoot );
+
                     const div = document.createElement( 'div' ),
                         style = document.createElement( 'style' );
 
@@ -275,13 +284,23 @@ let WebComponents = WebCESM.WebC;
                     name: 'cus-div',
                     extends: null,
                 },
+                enableExtends: true,
                 events: {
                     init: ( cusHTMLClassIns, shadowRoot ) => {
+                        // console.log( '父类初始化开始！1' );
+                        // console.dir( cusHTMLClassIns.shadowRoot );
+                        // console.dir( shadowRoot );
+                        // console.log( '父类初始化开始！2' );
+
                         const pElem = document.createElement( 'p' ),
                             spanElem = document.createElement( 'span' );
 
                         pElem.textContent = '这是一个p元素！！！';
                         spanElem.textContent = '这是一个span元素！！！';
+
+                        spanElem.onclick = event => {
+                            console.log( '父类span' );
+                        };
 
                         shadowRoot.appendChild( pElem );
                         shadowRoot.appendChild( spanElem );
@@ -312,13 +331,28 @@ let WebComponents = WebCESM.WebC;
                     name: 'cus-div-red',
                     extends: null,
                 },
+                enableExtends: true,
                 events: {
                     init: ( cusHTMLClassIns, shadowRoot ) => {
+                        // console.log( '子类初始化开始！1' );
+                        // console.dir( cusHTMLClassIns.shadowRoot );
+                        // console.dir( shadowRoot );
+                        // console.log( '子类初始化开始！2' );
+
                         const h1Elem = document.createElement( 'h1' );
 
                         h1Elem.textContent = '这是一个h1元素！';
 
                         cusHTMLClassIns.shadowRoot.appendChild( h1Elem );
+
+                        cusHTMLClassIns.shadowRoot.querySelector( 'p' ).textContent = '111这是一个p元素！！！';
+
+                        cusHTMLClassIns.shadowRoot.querySelector( 'p' ).onclick = event => {
+                            console.dir( event.currentTarget );
+                        };
+                        cusHTMLClassIns.shadowRoot.querySelector( 'span' ).onclick = event => {
+                            console.dir( '子类span' );
+                        };
 
                         cusHTMLClassIns.style = 'background-color: red;display: block;';
                     },

@@ -768,6 +768,10 @@ input.css-reset-moz-number {
     -moz-appearance: textfield;
 }
 
+.css-reset:not(:defined) {
+    display: none;
+}
+
 /*CSS Reset End*/
 
 /*Common Start*/

@@ -765,3 +765,7 @@ input.css-reset::-webkit-calendar-picker-indicator {
 input.css-reset-moz-number {
     -moz-appearance: textfield;
 }
+
+.css-reset:not(:defined) {
+    display: none;
+}
