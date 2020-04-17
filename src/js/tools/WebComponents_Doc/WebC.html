@@ -96,7 +96,7 @@
 
             
 
-            <td class="description last">Object(配置对象)，必须。<br />{<br />attach: Object(配置对象)，给Element.attachShadow()做参数用的，可选。<br />{<br />delegatesFocus: 可选，默认值是：null，值只能是：null、true、false这三种。当值是null时，表示不传这个参数。<br />当设置为true时，它指定减轻围绕焦点可用性的自定义元素问题的行为，<br />当单击shadow DOM的一个不可聚焦部分时，第一个可聚焦部分被赋予焦点，而shadow主机被赋予任何可用的“:focus”样式。<br />mode: 可选，默认值是'open'，值只能是字符串: 'open'、'closed'这两个，<br />当值是'open'时，影子根的元素可以从根之外的JavaScript访问，例如使用“Element.shadowRoot”。<br />当值是'closed'时，拒绝从其外部JavaScript访问封闭的影子根节点。<br /><br />define: Object(配置对象)，给customElements.define()做参数用的，必须。<br />{<br />extends: 字符串(命名格式只能是以小写字母跟数字、'-'、“_”组成的，并且只能是以小写字母开头)，默认值是null，如果要创建的是自主定制元素(Autonomous Custom Element)，那么不用设置；<br />但如果创建的是定制的内置元素(Customized Built-in Element)，那么就必须传HTML标签名(如：'div'等HTML标签名)。<br />还有就是，如果下面的配置参数选项'extends'的值是字符串'auto'，那么表示创建的是定制的内置元素(Customized Built-in Element)，<br />那么就必须传HTML标签名(如：'div'等HTML标签名)。<br />特别的，如果传的是已经为文档注册成功了的自定义元素名(如：'cus-html')，那么下面的配置参数选项extends就必须传这个自定义元素类。<br />name: 字符串，默认值是null，自定义元素名(格式如: 'cus-html'，命名格式只能是以小写字母跟数字、'-'、“_”组成的，并且只能是以小写字母开头)，必须。<br />ps：<br />1、define.extends这个选项跟下面的extends选项息息相关的，需要注意。<br /><br />events: Object(配置对象)，自定义元素的生命周期事件函数，可选。<br />{<br />init: 函数，会在自定义元素的构造函数中调用，可选。<br />PS：<br />1、有两个函数参数：<br />第一个参数：自定义元素类的实例；<br />第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />connectedCallback: 函数，每次将自定义元素附加到文档连接的元素中时调用。这将在每次移动节点时发生，并且可能发生在元素的内容完全解析之前，可选。<br />PS：<br />1、有两个函数参数：<br />第一个参数：自定义元素类的实例；<br />第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />2、一旦元素不再连接，就可以调用“connectedCallback”，请使用“Node.isConnected”确保。<br />disconnectedCallback: 函数，每次自定义元素与文档DOM断开连接时调用，可选。<br />PS：<br />1、有两个函数参数：<br />第一个参数：自定义元素类的实例；<br />第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />adoptedCallback: 函数，每次将自定义元素移至新文档时调用，可选。<br />PS：<br />1、有两个函数参数：<br />第一个参数：自定义元素类的实例；<br />第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />attributeChangedCallback: 函数，每次添加、删除或更改自定义元素的属性之一时调用，可选。<br />PS：<br />1、有三个函数参数：<br />第一个参数：自定义元素类的实例；<br />第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null；<br />第三个参数：数组<br />[<br />name(字符串，发生变化的属性的属性名),<br />oldValue(字符串，旧的属性值，没有的话会是null),<br />newValue(字符串，新的属性值，没有的话会是null),<br />arg4(这个参数所表示的未知，一直都是null的值)<br />]。<br /><br />extends: String|Class，默认值是HTMLElement，值只能是：'auto'、HTMLElement、HTMLElement的内置子类(如：HTMLParagraphElement等等内置HTML类)、自定义元素类，必须。<br />当值是'auto'时，上面的配置参数选项define.extends的值必须传(HTML标签名(如：'div'等HTML标签名))，代码会自动根据define.extends的值生成define.extends的值所代表的元素类。<br />当值是HTMLElement时，表示要创建的是自主定制元素(Autonomous Custom Element)，上面的配置参数选项define.extends的值可以不用设置。<br />当值是HTMLElement的内置子类(如：HTMLParagraphElement等等内置HTML类)时，表示要创建的是定制的内置元素(Customized Built-in Element)，上面的配置参数选项define.extends的值必须传(HTML标签名(如：'div'等HTML标签名))。<br />当值是自定义元素类时，表示要再一次扩展一个已经为文档注册成功了的自定义元素类，上面的配置参数选项define.extends的值必须是它(自定义元素类)对应的已经为文档注册成功了的自定义元素名(如：'cus-html')。<br />extends这个选项跟上面的define.extends选项息息相关的，需要注意。<br /><br />isInit: Boolean，默认值是true，true表示自动初始化自定义元素，false表示稍后手动初始化自定义元素(调用startInit()就行)，可选。<br /><br />obsAttrs: Array<String>，默认值是空数组[]，监听哪些属性的更改，里面的成员都是属性名，可选。<br /></td>
+            <td class="description last">Object(配置对象)，必须。<br />{<br />attach: Object(配置对象)，给Element.attachShadow()做参数用的，可选。<br />{<br />delegatesFocus: 可选，默认值是：null，值只能是：null、true、false这三种。当值是null时，表示不传这个参数。<br />当设置为true时，它指定减轻围绕焦点可用性的自定义元素问题的行为，<br />当单击shadow DOM的一个不可聚焦部分时，第一个可聚焦部分被赋予焦点，而shadow主机被赋予任何可用的“:focus”样式。<br />mode: 可选，默认值是'open'，值只能是字符串: 'open'、'closed'这两个，<br />当值是'open'时，影子根的元素可以从根之外的JavaScript访问，例如使用“Element.shadowRoot”。<br />当值是'closed'时，拒绝从其外部JavaScript访问封闭的影子根节点。<br /><br />define: Object(配置对象)，给customElements.define()做参数用的，必须。<br />{<br />extends: 字符串(命名格式只能是以小写字母跟数字、'-'、“_”组成的，并且只能是以小写字母开头)，默认值是null，如果要创建的是自主定制元素(Autonomous Custom Element)，那么不用设置；<br />但如果创建的是定制的内置元素(Customized Built-in Element)，那么就必须传HTML标签名(如：'div'等HTML标签名)。<br />还有就是，如果下面的配置参数选项'extends'的值是字符串'auto'，那么表示创建的是定制的内置元素(Customized Built-in Element)，<br />那么就必须传HTML标签名(如：'div'等HTML标签名)。<br />特别的，如果传的是已经为文档注册成功了的自定义元素名(如：'cus-html')，那么下面的配置参数选项extends就必须传这个自定义元素类。<br />更新说明：只能是内置元素的名称！！！<br />name: 字符串，默认值是null，自定义元素名(格式如: 'cus-html'，命名格式只能是以小写字母跟数字、'-'、“_”组成的，并且只能是以小写字母开头，必须包含连字符)，必须。<br />ps：<br />1、define.extends这个选项跟下面的extends选项息息相关的，需要注意。<br /><br />events: Object(配置对象)，自定义元素的生命周期事件函数，可选。<br />{<br />init: 函数，会在自定义元素的构造函数中调用，可选。<br />PS：<br />1、有两个函数参数：<br />第一个参数：自定义元素类的实例；<br />第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />connectedCallback: 函数，每次将自定义元素附加到文档连接的元素中时调用。这将在每次移动节点时发生，并且可能发生在元素的内容完全解析之前，可选。<br />PS：<br />1、有两个函数参数：<br />第一个参数：自定义元素类的实例；<br />第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />2、一旦元素不再连接，就可以调用“connectedCallback”，请使用“Node.isConnected”确保。<br />disconnectedCallback: 函数，每次自定义元素与文档DOM断开连接时调用，可选。<br />PS：<br />1、有两个函数参数：<br />第一个参数：自定义元素类的实例；<br />第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />adoptedCallback: 函数，每次将自定义元素移至新文档时调用，可选。<br />PS：<br />1、有两个函数参数：<br />第一个参数：自定义元素类的实例；<br />第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />attributeChangedCallback: 函数，每次添加、删除或更改自定义元素的属性之一时调用，可选。<br />PS：<br />1、有三个函数参数：<br />第一个参数：自定义元素类的实例；<br />第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null；<br />第三个参数：数组<br />[<br />name(字符串，发生变化的属性的属性名),<br />oldValue(字符串，旧的属性值，没有的话会是null),<br />newValue(字符串，新的属性值，没有的话会是null),<br />arg4(这个参数所表示的未知，一直都是null的值)<br />]。<br /><br />extends: String|Class，默认值是HTMLElement，值只能是：'auto'、HTMLElement、HTMLElement的内置子类(如：HTMLParagraphElement等等内置HTML类)、自定义元素类，必须。<br />当值是'auto'时，上面的配置参数选项define.extends的值必须传(HTML标签名(如：'div'等HTML标签名))，代码会自动根据define.extends的值生成define.extends的值所代表的元素类。<br />当值是HTMLElement时，表示要创建的是自主定制元素(Autonomous Custom Element)，上面的配置参数选项define.extends的值可以不用设置。<br />当值是HTMLElement的内置子类(如：HTMLParagraphElement等等内置HTML类)时，表示要创建的是定制的内置元素(Customized Built-in Element)，上面的配置参数选项define.extends的值必须传(HTML标签名(如：'div'等HTML标签名))。<br />当值是自定义元素类时，表示要再一次扩展一个已经为文档注册成功了的自定义元素类，上面的配置参数选项define.extends的值必须是它(自定义元素类)对应的已经为文档注册成功了的自定义元素名(如：'cus-html')。<br />extends这个选项跟上面的define.extends选项息息相关的，需要注意。<br /><br />isExtendsCusHTML: Boolean，默认值是false，true表示本次自定义元素是再次扩展已经成功为文档定义了的自定义元素(自主定制元素(Autonomous Custom Element))，false表示不是，可选。<br /><br />isInit: Boolean，默认值是true，true表示自动初始化自定义元素，false表示稍后手动初始化自定义元素(调用startInit()就行)，可选。<br /><br />obsAttrs: Array<String>，默认值是空数组[]，监听哪些属性的更改，里面的成员都是属性名，可选。<br /></td>
         </tr>
 
     
@@ -137,7 +137,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line198">line 198</a>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line225">line 225</a>
     </li></ul></dd>
     
 
@@ -241,7 +241,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line104">line 104</a>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line128">line 128</a>
     </li></ul></dd>
     
 
@@ -313,7 +313,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line111">line 111</a>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -337,7 +337,7 @@
 
 
 <div class="description">
-    shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)、Effectiv4AddShadow()返回false时，其值是null。
+    shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时，其值是null。
 </div>
 
 
@@ -385,7 +385,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line118">line 118</a>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line142">line 142</a>
     </li></ul></dd>
     
 
@@ -406,6 +406,441 @@
 
     
         <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".GetCusHTMLClass"><span class="type-signature">(static) </span>GetCusHTMLClass<span class="signature">(cusHTMLName)</span><span class="type-signature"> &rarr; {function|Undefined}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    获取先前定义的自定义元素的构造函数<br />PS:<br />1、命名自定义元素的构造函数，如果没有使用该名称的自定义元素定义，则为undefined。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cusHTMLName</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String，自定义元素名(有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成)，必须。</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line416">line 416</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+|
+
+<span class="param-type">Undefined</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".Upgrade"><span class="type-signature">(static) </span>Upgrade<span class="signature">(elemObj)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    升级“Node”子树中包含自定义元素的所有阴影，甚至在它们连接到主文档之前。
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elemObj</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Element，元素节点对象，必须<br />PS:<br />1、包含要升级的子代元素的阴影的“Node”实例。如果没有可升级的子元素，则不会引发错误。<br /><br />例子：<br />const el = document.createElement( 'spider-man' );<br /><br />class SpiderMan extends HTMLElement <br />customElements.define( 'spider-man', SpiderMan );<br /><br />// not yet upgraded<br />console.assert( !( el instanceof SpiderMan ) );<br /><br />customElements.upgrade( el );<br />// upgraded!<br />console.assert( el instanceof SpiderMan );<br /><br /></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line445">line 445</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".WhenDefined"><span class="type-signature">(static) </span>WhenDefined<span class="signature">(cusHTMLName)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    customElements.whenDefined方法返回一个Promise，该Promise在定义命名元素时进行解析。<br />PS:<br />1、在定义自定义元素时解析为undefined的Promise。如果已定义自定义元素，则立即解析承诺。<br />2、使用指南：<br />比如，<br />在调用customElements.define()初始化自定义元素前，可以展示正在加载的动画效果，完成初始化自定义元素后(就是调用customElements.define()后)，<br />可以删除正在加载的动画效果，可以把这个删除正在加载的动画效果的代码写在“await customElements.whenDefined( cusHTMLName )”之后。<br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cusHTMLName</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String，自定义元素名(有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成)，必须。</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line462">line 462</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
 
         
             
@@ -465,7 +900,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line342">line 342</a>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line372">line 372</a>
     </li></ul></dd>
     
 
@@ -575,7 +1010,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line351">line 351</a>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line381">line 381</a>
     </li></ul></dd>
     
 
@@ -641,7 +1076,7 @@
 
 
 <div class="description">
-    获取shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)、Effectiv4AddShadow()返回false时，其值是null。
+    获取shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时，其值是null。
 </div>
 
 
@@ -685,7 +1120,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line360">line 360</a>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line390">line 390</a>
     </li></ul></dd>
     
 
@@ -795,7 +1230,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line369">line 369</a>
+        <a href="WebComponents.esm.js.html">WebComponents.esm.js</a>, <a href="WebComponents.esm.js.html#line399">line 399</a>
     </li></ul></dd>
     
 
@@ -847,7 +1282,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Apr 16 2020 18:19:48 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri Apr 17 2020 12:25:20 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

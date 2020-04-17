@@ -93,6 +93,7 @@ let WebComponents = WebCESM.WebC;
                 },
             },
             extends: HTMLElement,
+            isExtendsCusHTML: false,
             isInit: true,
             obsAttrs: [],
         } );
@@ -157,6 +158,7 @@ let WebComponents = WebCESM.WebC;
                 },
             },
             extends: 'auto',
+            isExtendsCusHTML: false,
             isInit: true,
             obsAttrs: [],
         } );
@@ -213,6 +215,7 @@ let WebComponents = WebCESM.WebC;
                 },
             },
             extends: HTMLElement,
+            isExtendsCusHTML: false,
             isInit: true,
             obsAttrs: [
                 'c',
@@ -258,5 +261,81 @@ let WebComponents = WebCESM.WebC;
             remove.disabled = true;
             add.disabled = false;
         };
+    }
+}
+
+{
+    if( true ){
+        let cusDiv = new WebComponents( {
+                attach: {
+                    delegatesFocus: null,
+                    mode: 'open',
+                },
+                define: {
+                    name: 'cus-div',
+                    extends: null,
+                },
+                events: {
+                    init: ( cusHTMLClassIns, shadowRoot ) => {
+                        const pElem = document.createElement( 'p' ),
+                            spanElem = document.createElement( 'span' );
+
+                        pElem.textContent = '这是一个p元素！！！';
+                        spanElem.textContent = '这是一个span元素！！！';
+
+                        shadowRoot.appendChild( pElem );
+                        shadowRoot.appendChild( spanElem );
+
+                        cusHTMLClassIns.style = 'background-color: blue;display: block;';
+                    },
+                    connectedCallback: () => {
+                    },
+                    disconnectedCallback: () => {
+                    },
+                    adoptedCallback: () => {
+                    },
+                    attributeChangedCallback: () => {
+                    },
+                },
+                extends: HTMLElement,
+                isInit: true,
+                obsAttrs: [],
+            } ),
+            cusDivClass = cusDiv.getHTMLClass();
+
+        let cusDivRed = new WebComponents( {
+                attach: {
+                    delegatesFocus: null,
+                    mode: 'open',
+                },
+                define: {
+                    name: 'cus-div-red',
+                    extends: null,
+                },
+                events: {
+                    init: ( cusHTMLClassIns, shadowRoot ) => {
+                        const h1Elem = document.createElement( 'h1' );
+
+                        h1Elem.textContent = '这是一个h1元素！';
+
+                        cusHTMLClassIns.shadowRoot.appendChild( h1Elem );
+
+                        cusHTMLClassIns.style = 'background-color: red;display: block;';
+                    },
+                    connectedCallback: () => {
+                    },
+                    disconnectedCallback: () => {
+                    },
+                    adoptedCallback: () => {
+                    },
+                    attributeChangedCallback: () => {
+                    },
+                },
+                extends: cusDivClass,
+                isExtendsCusHTML: true,
+                isInit: true,
+                obsAttrs: [],
+            } ),
+            cusDivRedClass = cusDivRed.getHTMLClass();
     }
 }

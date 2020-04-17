@@ -1673,6 +1673,51 @@ class DataFormat{
 }
 
 /**
+ * 操作内置元素的对应class、自定义元素的对应class
+ */
+class ElemClass{
+
+    /**
+     * 根据内置元素名、自定义元素名(有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成)获取内置元素的对应class、自定义元素的对应class。<br />
+     * PS:<br />
+     * 1、内置元素返回内置元素的对应类、自定义元素返回其对应类。<br />
+     * 2、如：内置元素'div'，对应的class是HTMLDivElement。<br />
+     * 3、如果参数不是内置元素名或自定义元素名的格式不符合规定，那总是返回HTMLUnknownElement。<br />
+     * 4、如果，一个自定义元素还未被成功的注册到文档中，那么返回的是HTMLElement。<br />
+     * 5、如果，一个自定义元素被成功的注册到文档中，那么返回的是其对应类。<br />
+     * 6、如果，TagName是内置元素名，is是一个还未被成功的注册到文档中的自定义元素名，那么返回的会是TagName这个内置元素名的对应类。<br />
+     * 7、如果，TagName是内置元素名，is是一个被成功的注册到文档中的自定义元素名，那么返回的会是这个自定义元素的对应类。<br />
+     *
+     * @param TagName String，内置元素名、自定义元素名(有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成)，如：'div'、'cue-div'，必须。
+     *
+     * @param is String，使用customElements.define()定义的自定义元素的标签名称(有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成)，默认值是null(表示不传)，可选。
+     *
+     * @returns {HTMLElement} 内置元素返回内置元素的对应class、自定义元素返回其对应类。
+     */
+    getClass4Tag( TagName = '', is = null ){
+        return this.isNull( is )
+               ? ( document.createElement( TagName ).constructor )
+               : ( document.createElement( TagName, { is } ).constructor );
+    }
+
+    /**
+     * 根据内置元素对象、自定义元素对象获取内置元素对象的对应class、自定义元素对象的对应class。<br />
+     * PS:<br />
+     * 1、内置元素对象返回内置元素对象的对应class、自定义元素对象返回其对应的类。<br />
+     * 2、如：内置元素对象document.querySelector( 'div' )，对应的class是HTMLDivElement。<br />
+     * 3、如果，返回的是HTMLElement，那说明这是一个还未被成功注册到文档的自定义元素对象。<br />
+     *
+     * @param elemObj Element，具体的元素对象，必须。
+     *
+     * @returns {HTMLElement} 内置元素对象返回内置元素对象的对应class、自定义元素对象返回其对应的类。
+     */
+    getClass4Elem( elemObj ){
+        return elemObj.constructor;
+    }
+
+}
+
+/**
  * 查找节点
  */
 class ElemQuery{
@@ -4346,7 +4391,9 @@ class JS2jQuery{
      * fun: 处理节点的函数，会把新建的节点作为参数传入，用于节点的各种操作，可选<br /><br />
      *
      * isText: 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
-     * 默认false，可选
+     * 默认false，可选<br /><br />
+     *
+     * is: 字符串，使用customElements.define()定义的自定义元素的标签名称(有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成)，默认值是null(表示不传)，可选<br /><br />
      *
      * @returns {Element|Array} Element(非文本节点)|[Element(非文本节点)]
      */
@@ -4355,21 +4402,29 @@ class JS2jQuery{
             data: '',
             fun: elemO => {
             },
-            isText: false
+            isText: false,
+            is: null,
         }, arg_obj );
+
+        const isNull_booC = this.isNull( pra_obj.is );
+
         return ( ( tagName, data = '', f = ( elemO => {
         } ), text = false ) => {
             let result = [];
             if( this.isArray( tagName ) ){
                 let e;
                 tagName.forEach( currentValue => {
-                    e = this.iInsertB( document.createElement( currentValue ), data, text )[ 0 ];
+                    isNull_booC
+                    ? ( e = this.iInsertB( document.createElement( currentValue ), data, text )[ 0 ] )
+                    : ( e = this.iInsertB( document.createElement( currentValue, { is: pra_obj.is } ), data, text )[ 0 ] );
                     f( e );
                     result.push( e );
                 } );
             }
             else{
-                result = this.iInsertB( document.createElement( tagName ), data, text )[ 0 ];
+                isNull_booC
+                ? ( result = this.iInsertB( document.createElement( tagName ), data, text )[ 0 ] )
+                : ( result = this.iInsertB( document.createElement( tagName, { is: pra_obj.is } ), data, text )[ 0 ] );
                 f( result );
             }
             return result;
@@ -8777,6 +8832,7 @@ const mixin_classArrC = [
     CopyAPI,
     CryptoAPI,
     DataFormat,
+    ElemClass,
     ElemQuery,
     ES6Handle,
     FunHandle,
