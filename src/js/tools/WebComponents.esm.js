@@ -144,11 +144,47 @@ class WebC{
     /**
      * Web Components工厂类的构造函数<br />
      * PS：<br />
-     * 1、<br />
+     * 1、自主定制元素(Autonomous Custom Element): 独立元素；它们不继承自内置HTML元素。<br /><br />
+     *
+     * 2、定制的内置元素(Customized Built-in Element): 这些元素从内置HTML元素继承并扩展。<br /><br />
+     *
+     * 3、Firefox、Chrome和Edge(76)默认支持定制的内置元素(Customized Built-in Element)。到目前为止，Opera和Safari仅支持自主定制元素(Autonomous Custom Element)。<br /><br />
+     *
+     * 4、Element.attachShadow()<br />
+     * “Element.attachShadow()”方法将阴影DOM树附加到指定元素，并返回对其“ShadowRoot”的引用。可以附加阴影的元素：<br />
+     * 任何具有有效名称的自主定制元素(Autonomous Custom Element)、<br />
+     * article、aside、blockquote、body、div、footer、h1、h2、h3、h4、h5、h6、header、main、nav、p、section、span。<br /><br />
+     *
+     * 5、有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成。<br /><br />
+     *
+     * 6、在自定义元素的类中，'shadowRoot'这个名字不能使用，是系统保留字段！要是用了会报错！<br /><br />
+     *
+     * 7、在自定义元素的类中，Element对象及其所继承的层层父级对象所拥有的所有属性(比如：'shadowRoot'这个名字)、方法都不应该被重写！也不建议重写！<br /><br />
+     *
+     * 8、WebC类的私有实例属性、私有实例方法、私有静态属性、私有静态方法不能在自定义元素类内部使用！要是用了会报错！<br /><br />
+     *
+     * 9、customElements.define()<br />
+     * 通常会抛出“NotSupportedErrors”，看起来“define()”失败了，但它很可能是“Element.attachShadow()”的问题。<br />
+     * NotSupportedError:<br />
+     * “CustomElementRegistry”已包含具有相同名称或相同构造函数（或已定义）的条目，或者指定了“extends”且它是有效的自定义元素名称，或者指定了“extends”，但它试图扩展的元素是未知元素。<br />
+     * SyntaxError:<br />
+     * 提供的名称不是有效的自定义元素名称。<br />
+     * TypeError:<br />
+     * 引用的构造函数不是构造函数。<br /><br />
+     *
+     * 10、<br />
      * 如果要创建的是定制的内置元素(Customized Built-in Element)(就是需要继承自内置HTML元素，但是不包括已经为文档注册了的自定义元素)，<br />
-     * 那么最快、最方便的配置方法就是直接设置define.extends值以及把extends的值设置成'auto'就好了，免得去查询HTMLParagraphElement之类的内置HTML类。<br />
-     * 2、在自定义元素的类中，'shadowRoot'这个名字不能使用，是系统保留字段！要是用了会报错！<br />
-     * 3、WebC类的私有实例属性、私有实例方法、私有静态属性、私有静态方法不能在自定义元素类内部使用！要是用了会报错！<br />
+     * 那么最快、最方便的配置方法就是直接设置define.extends值以及把extends的值设置成'auto'就好了，免得去查询HTMLParagraphElement之类的内置HTML类。<br /><br />
+     *
+     * 11、<br />
+     * customElements.define( name, class, { extends )的name的值必须是满足：有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成。<br />
+     * extends的值必须是也只能是一个内置元素名<br /><br />
+     *
+     * 12、<br />
+     * shadowRoot对象无法被克隆！<br /><br />
+     *
+     * 13、<br />
+     * let _this = Element.attachShadow( { mode, )中的mode值如果是字符串'closed'，那么Element.shadowRoot一定会返回null，但是_this却还是会保留shadowRoot对象。<br /><br />
      *
      * @param initOption Object(配置对象)，必须。<br />
      * {<br />
@@ -163,44 +199,54 @@ class WebC{
      *
      * define: Object(配置对象)，给customElements.define()做参数用的，必须。<br />
      * {<br />
-     * extends: 字符串(命名格式只能是以小写字母跟数字、'-'、“_”组成的，并且只能是以小写字母开头)，默认值是null，如果要创建的是自主定制元素(Autonomous Custom Element)，那么不用设置；<br />
+     * extends: 字符串(只能是内置元素的名称)，默认值是null，如果要创建的是自主定制元素(Autonomous Custom Element)，那么不用设置；<br />
      * 但如果创建的是定制的内置元素(Customized Built-in Element)，那么就必须传HTML标签名(如：'div'等HTML标签名)。<br />
      * 还有就是，如果下面的配置参数选项'extends'的值是字符串'auto'，那么表示创建的是定制的内置元素(Customized Built-in Element)，<br />
      * 那么就必须传HTML标签名(如：'div'等HTML标签名)。<br />
-     * 特别的，如果传的是已经为文档注册成功了的自定义元素名(如：'cus-html')，那么下面的配置参数选项extends就必须传这个自定义元素类。<br />
-     * 更新说明：只能是内置元素的名称！！！<br />
      * name: 字符串，默认值是null，自定义元素名(格式如: 'cus-html'，命名格式只能是以小写字母跟数字、'-'、“_”组成的，并且只能是以小写字母开头，必须包含连字符)，必须。<br />
      * ps：<br />
      * 1、define.extends这个选项跟下面的extends选项息息相关的，需要注意。<br /><br />
      *
+     * enableExtends: Boolean，生成的自定义元素类是否可以被再次继承使用，默认值是true，表示可以，反之，不可以(要是还是被强制继承，那么会报错)，可选。<br />
+     * PS:<br />
+     * 1、当值为true时，上面的参数attach.mode的值会被强制设置为字符串'open'。<br />
+     * 2、当值为false时，上面的参数attach.mode的值会被强制设置为字符串'closed'。<br />
+     * 3、当值为true时，下面的events参数中的各个生命周期函数中的第二个参数总是为null。<br />
+     * 4、当值为true时，通过使用下面events参数中各个生命周期函数中的第一个参数的shadowRoot只读属性进行的种种操作不会影响到已经成功注册到文档中的父类自定义元素。<br />
+     * 5、当值为true时，通过使用下面events参数中各个生命周期函数中的第一个参数的shadowRoot只读属性进行的各种事件绑定，最好用'Element.onclick'这种形式进行绑定，这样可以在"子的自定义元素"中覆盖"父的自定义元素"中已经绑定的事件。<br /><br />
+     *
      * events: Object(配置对象)，自定义元素的生命周期事件函数，可选。<br />
      * {<br />
-     * init: 函数，会在自定义元素的构造函数中调用，可选。<br />
+     * 一、init: 函数，会在自定义元素的构造函数中调用，可选。<br />
      * PS：<br />
      * 1、有两个函数参数：<br />
      * 第一个参数：自定义元素类的实例；<br />
-     * 第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />
-     * connectedCallback: 函数，每次将自定义元素附加到文档连接的元素中时调用。这将在每次移动节点时发生，并且可能发生在元素的内容完全解析之前，可选。<br />
+     * 第二个参数：自定义元素类的shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时或再一次扩展于自定义元素类时，其值是null。<br /><br />
+     *
+     * 二、connectedCallback: 函数，每次将自定义元素附加到文档连接的元素中时调用。这将在每次移动节点时发生，并且可能发生在元素的内容完全解析之前，可选。<br />
      * PS：<br />
      * 1、有两个函数参数：<br />
      * 第一个参数：自定义元素类的实例；<br />
-     * 第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />
-     * 2、一旦元素不再连接，就可以调用“connectedCallback”，请使用“Node.isConnected”确保。<br />
-     * disconnectedCallback: 函数，每次自定义元素与文档DOM断开连接时调用，可选。<br />
+     * 第二个参数：自定义元素类的shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时或再一次扩展于自定义元素类时，其值是null。<br />
+     * 2、一旦元素不再连接，就可以调用“connectedCallback”，请使用“Node.isConnected”确保。<br /><br />
+     *
+     * 三、disconnectedCallback: 函数，每次自定义元素与文档DOM断开连接时调用，可选。<br />
      * PS：<br />
      * 1、有两个函数参数：<br />
      * 第一个参数：自定义元素类的实例；<br />
-     * 第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />
-     * adoptedCallback: 函数，每次将自定义元素移至新文档时调用，可选。<br />
+     * 第二个参数：自定义元素类的shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时或再一次扩展于自定义元素类时，其值是null。<br /><br />
+     *
+     * 四、adoptedCallback: 函数，每次将自定义元素移至新文档时调用，可选。<br />
      * PS：<br />
      * 1、有两个函数参数：<br />
      * 第一个参数：自定义元素类的实例；<br />
-     * 第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null。<br />
-     * attributeChangedCallback: 函数，每次添加、删除或更改自定义元素的属性之一时调用，可选。<br />
+     * 第二个参数：自定义元素类的shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时或再一次扩展于自定义元素类时，其值是null。<br /><br />
+     *
+     * 五、attributeChangedCallback: 函数，每次添加、删除或更改自定义元素的属性之一时调用，可选。<br />
      * PS：<br />
      * 1、有三个函数参数：<br />
      * 第一个参数：自定义元素类的实例；<br />
-     * 第二个参数：自定义元素类的shadowRoot对象，Effectiv4AddShadow()返回false时，其值为null；<br />
+     * 第二个参数：自定义元素类的shadowRoot对象，在初始化自定义元素前(即调用customElements.define()前)或没有调用Element.attachShadow()时或再一次扩展于自定义元素类时，其值是null。<br />
      * 第三个参数：数组<br />
      * [<br />
      * name(字符串，发生变化的属性的属性名),<br />
@@ -213,10 +259,13 @@ class WebC{
      * 当值是'auto'时，上面的配置参数选项define.extends的值必须传(HTML标签名(如：'div'等HTML标签名))，代码会自动根据define.extends的值生成define.extends的值所代表的元素类。<br />
      * 当值是HTMLElement时，表示要创建的是自主定制元素(Autonomous Custom Element)，上面的配置参数选项define.extends的值可以不用设置。<br />
      * 当值是HTMLElement的内置子类(如：HTMLParagraphElement等等内置HTML类)时，表示要创建的是定制的内置元素(Customized Built-in Element)，上面的配置参数选项define.extends的值必须传(HTML标签名(如：'div'等HTML标签名))。<br />
-     * 当值是自定义元素类时，表示要再一次扩展一个已经为文档注册成功了的自定义元素类，上面的配置参数选项define.extends的值必须是它(自定义元素类)对应的已经为文档注册成功了的自定义元素名(如：'cus-html')。<br />
-     * extends这个选项跟上面的define.extends选项息息相关的，需要注意。<br /><br />
+     * 当值是自定义元素类时，表示要再一次扩展一个已经为文档注册成功了的自定义元素类(前提是，如果它允许被再次继承使用)。<br />
+     * PS:<br />
+     * 1、extends这个选项跟上面的define.extends选项息息相关的，需要注意。<br /><br />
      *
-     * isExtendsCusHTML: Boolean，默认值是false，true表示本次自定义元素是再次扩展已经成功为文档定义了的自定义元素(自主定制元素(Autonomous Custom Element))，false表示不是，可选。<br /><br />
+     * isExtendsCusHTML: Boolean，默认值是false，true表示本次自定义元素是再次扩展于一个已经成功为文档定义了的自定义元素(自主定制元素(Autonomous Custom Element))，false表示不是，可选。<br />
+     * PS:<br />
+     * 1、如果上面的extends参数是自定义元素类时，这个值必须设置为true。<br /><br />
      *
      * isInit: Boolean，默认值是true，true表示自动初始化自定义元素，false表示稍后手动初始化自定义元素(调用startInit()就行)，可选。<br /><br />
      *

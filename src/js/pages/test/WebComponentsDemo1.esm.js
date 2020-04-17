@@ -298,6 +298,9 @@ let WebComponents = WebCESM.WebC;
                         pElem.textContent = '这是一个p元素！！！';
                         spanElem.textContent = '这是一个span元素！！！';
 
+                        pElem.onclick = event => {
+                            console.log( '父类p' );
+                        };
                         spanElem.onclick = event => {
                             console.log( '父类span' );
                         };
@@ -347,9 +350,6 @@ let WebComponents = WebCESM.WebC;
 
                         cusHTMLClassIns.shadowRoot.querySelector( 'p' ).textContent = '111这是一个p元素！！！';
 
-                        cusHTMLClassIns.shadowRoot.querySelector( 'p' ).onclick = event => {
-                            console.dir( event.currentTarget );
-                        };
                         cusHTMLClassIns.shadowRoot.querySelector( 'span' ).onclick = event => {
                             console.dir( '子类span' );
                         };
