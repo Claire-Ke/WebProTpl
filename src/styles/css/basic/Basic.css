@@ -772,6 +772,10 @@ input.css-reset-moz-number {
     display: none;
 }
 
+.css-reset:defined {
+    display: block;
+}
+
 /*CSS Reset End*/
 
 /*Common Start*/

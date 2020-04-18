@@ -769,3 +769,7 @@ input.css-reset-moz-number {
 .css-reset:not(:defined) {
     display: none;
 }
+
+.css-reset:defined {
+    display: block;
+}

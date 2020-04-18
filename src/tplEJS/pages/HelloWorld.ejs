@@ -322,6 +322,31 @@ let options_obj = htmlWebpackPlugin.options,
                     </div>
                     <cus-div class = 'css-reset'></cus-div>
                     <cus-div-red class = 'css-reset'></cus-div-red>
+                    <template id = 'MyTemplate1'>
+                        <style type = 'text/css'>
+                            * {
+                                background-color: #0dad67;
+                                color: white;
+                                font-size: 20px;
+                            }
+
+                            :host {
+                                display: block;
+                                background-color: palevioletred;
+                            }
+                        </style>
+                        <h1 class = 'css-reset'>模板1---h1</h1>
+                        <p class = 'css-reset'>模板1---p</p>
+                        <div class = 'css-reset'>模板1---div</div>
+                        <slot name = 'slot-a'>
+                            <p class = 'css-reset'>这个slot标签的name值是“slotA”。</p>
+                        </slot>
+                    </template>
+                    <my-template class = 'css-reset'>
+                        <div slot = 'slot-a'>
+                            <p class = 'css-reset'>11111111111</p>
+                        </div>
+                    </my-template>
                 </div>
             </article>
         </main>

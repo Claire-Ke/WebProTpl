@@ -5215,6 +5215,28 @@ class JS2jQuery{
     }
 
     /**
+     * 返回上下文对象的根，该根对象可选地包括"shadow root"(如果有的话)。<br />
+     * PS:<br />
+     * 1、在标准网页内的某个元素上调用它会返回一个HTMLDocument代表整个页面的对象。<br />
+     * 2、在影子DOM内的元素上调用它会返回关联的ShadowRoot对象。<br />
+     *
+     * @param elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
+     * 支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只处理第一个节点。
+     *
+     * @param composed Boolean，默认值是false，可选。<br />
+     * PS:<br />
+     * 1、true：卷影根以外的根节点(HTMLDocument代表整个页面的对象)。<br />
+     * 1、false：返回卷影根(关联的ShadowRoot对象)。<br />
+     *
+     * @returns {*|Node} 返回上下文对象的根，该根对象可选地包括"shadow root"(如果有的话)。
+     */
+    gRootN( elem, composed ){
+        'use strict';
+
+        return IsHandle13.call( this, elem, element => element.getRootNode( { composed: composed ?? false, } ) );
+    }
+
+    /**
      * 获取节点的所有同胞节点(不包括文本节点)<br />
      * 注：<br />
      * 1、当elem是“document”、“window”、“HTML”、所有结果节点都不满足“selector”的会直接返回null

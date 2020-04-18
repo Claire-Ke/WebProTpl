@@ -8,7 +8,8 @@
 
 'use strict';
 
-let WebComponents = WebCESM.WebC;
+let CT = new CTESM.CT(),
+    WebComponents = WebCESM.WebC;
 
 {
     if( true ){
@@ -105,69 +106,74 @@ let WebComponents = WebCESM.WebC;
 
 {
     if( true ){
-        new WebComponents( {
-            attach: {
-                delegatesFocus: null,
-                mode: 'open',
-            },
-            define: {
-                name: 'expanding-list',
-                extends: 'ul',
-            },
-            enableExtends: true,
-            events: {
-                init: ( cusHTMLClassIns, shadowRoot ) => {
-                    // console.dir( shadowRoot );
+        let expandingList = new WebComponents( {
+                attach: {
+                    delegatesFocus: null,
+                    mode: 'open',
+                },
+                define: {
+                    name: 'expanding-list',
+                    extends: 'ul',
+                },
+                enableExtends: true,
+                events: {
+                    init: ( cusHTMLClassIns, shadowRoot ) => {
+                        // console.dir( shadowRoot );
 
-                    function ShowUL( event ){
-                        const nextul = event.target.nextElementSibling;
+                        function ShowUL( event ){
+                            const nextul = event.target.nextElementSibling;
 
-                        if( nextul.style.display == 'block' ){
-                            nextul.style.display = 'none';
-                            nextul.parentNode.setAttribute( 'class', 'closed' );
+                            if( nextul.style.display == 'block' ){
+                                nextul.style.display = 'none';
+                                nextul.parentNode.setAttribute( 'class', 'closed' );
+                            }
+                            else{
+                                nextul.style.display = 'block';
+                                nextul.parentNode.setAttribute( 'class', 'open' );
+                            }
                         }
-                        else{
-                            nextul.style.display = 'block';
-                            nextul.parentNode.setAttribute( 'class', 'open' );
-                        }
-                    }
 
-                    const uls = Array.from( cusHTMLClassIns.querySelectorAll( 'ul' ) ),
-                        lis = Array.from( cusHTMLClassIns.querySelectorAll( 'li' ) );
+                        const uls = Array.from( cusHTMLClassIns.querySelectorAll( 'ul' ) ),
+                            lis = Array.from( cusHTMLClassIns.querySelectorAll( 'li' ) );
 
-                    uls.forEach( ul => void ( ul.style.display = 'none' ) );
+                        uls.forEach( ul => void ( ul.style.display = 'none' ) );
 
-                    lis.forEach( li => {
-                        if( li.querySelectorAll( 'ul' ).length > 0 ){
-                            li.setAttribute( 'class', 'closed' );
+                        lis.forEach( li => {
+                            if( li.querySelectorAll( 'ul' ).length > 0 ){
+                                li.setAttribute( 'class', 'closed' );
 
-                            const childText = li.childNodes[ 0 ];
-                            const newSpan = document.createElement( 'span' );
+                                const childText = li.childNodes[ 0 ];
+                                const newSpan = document.createElement( 'span' );
 
-                            newSpan.textContent = childText.textContent;
-                            newSpan.style.cursor = 'pointer';
+                                newSpan.textContent = childText.textContent;
+                                newSpan.style.cursor = 'pointer';
 
-                            newSpan.onclick = ShowUL;
+                                newSpan.onclick = ShowUL;
 
-                            childText.parentNode.insertBefore( newSpan, childText );
-                            childText.parentNode.removeChild( childText );
-                        }
-                    } );
+                                childText.parentNode.insertBefore( newSpan, childText );
+                                childText.parentNode.removeChild( childText );
+                            }
+                        } );
+                    },
+                    connectedCallback: () => {
+                    },
+                    disconnectedCallback: () => {
+                    },
+                    adoptedCallback: () => {
+                    },
+                    attributeChangedCallback: () => {
+                    },
                 },
-                connectedCallback: () => {
-                },
-                disconnectedCallback: () => {
-                },
-                adoptedCallback: () => {
-                },
-                attributeChangedCallback: () => {
-                },
-            },
-            extends: 'auto',
-            isExtendsCusHTML: false,
-            isInit: true,
-            obsAttrs: [],
-        } );
+                extends: 'auto',
+                isExtendsCusHTML: false,
+                isInit: true,
+                obsAttrs: [],
+            } ),
+            expandingListClass = expandingList.getHTMLClass(),
+            expandingListClassIns = expandingList.getHTMLClassIns();
+
+        console.dir( CT.getClass4Tag( 'ul', 'expanding-list' ) === expandingListClass );
+        console.dir( CT.getClass4Elem( expandingListClassIns ) === expandingListClass );
     }
 }
 
@@ -371,5 +377,42 @@ let WebComponents = WebCESM.WebC;
                 obsAttrs: [],
             } ),
             cusDivRedClass = cusDivRed.getHTMLClass();
+    }
+}
+
+{
+    if( true ){
+        new WebComponents( {
+            attach: {
+                delegatesFocus: null,
+                mode: 'open',
+            },
+            define: {
+                name: 'my-template',
+                extends: null,
+            },
+            enableExtends: true,
+            events: {
+                init: ( cusHTMLClassIns, shadowRoot ) => {
+                    shadowRoot.appendChild( document.getElementById( 'MyTemplate1' )
+                                                    .content
+                                                    .cloneNode( true ) );
+
+                    console.dir( WebComponents.GRootN( shadowRoot ) );
+                    console.dir( CT.gRootN( shadowRoot ) );
+                },
+                connectedCallback: () => {
+                },
+                disconnectedCallback: () => {
+                },
+                adoptedCallback: () => {
+                },
+                attributeChangedCallback: () => {
+                },
+            },
+            extends: HTMLElement,
+            isInit: true,
+            obsAttrs: [],
+        } );
     }
 }

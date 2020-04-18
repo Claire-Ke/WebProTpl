@@ -483,6 +483,27 @@ class WebC{
     }
 
     /**
+     * 返回上下文对象的根，该根对象可选地包括"shadow root"(如果有的话)。<br />
+     * PS:<br />
+     * 1、在标准网页内的某个元素上调用它会返回一个HTMLDocument代表整个页面的对象。<br />
+     * 2、在影子DOM内的元素上调用它会返回关联的ShadowRoot对象。<br />
+     *
+     * @param element Element，元素节点对象，必须。
+     *
+     * @param composed Boolean，默认值是false，可选。<br />
+     * PS:<br />
+     * 1、true：卷影根以外的根节点(HTMLDocument代表整个页面的对象)。<br />
+     * 1、false：返回卷影根(关联的ShadowRoot对象)。<br />
+     *
+     * @returns {*|Node} 返回上下文对象的根，该根对象可选地包括"shadow root"(如果有的话)。
+     */
+    static GRootN( element, composed ){
+        'use strict';
+
+        return element.getRootNode( { composed: composed ?? false } );
+    }
+
+    /**
      * 升级“Node”子树中包含自定义元素的所有阴影，甚至在它们连接到主文档之前。
      *
      * @param elemObj Element，元素节点对象，必须<br />
@@ -503,6 +524,8 @@ class WebC{
      * console.assert( el instanceof SpiderMan );<br /><br />
      */
     static Upgrade( elemObj ){
+        'use strict';
+
         customElements.upgrade( elemObj );
     }
 
