@@ -1992,7 +1992,7 @@ ${ onceFun1( 'q', 'w' ) }
 
 // Web Components测试
 {
-    if( true ){
+    if( false ){
         import('./WebComponentsDemo1.esm.js');
     }
 }

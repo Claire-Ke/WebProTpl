@@ -2391,7 +2391,9 @@ class InputHandle{
 class IsDataType{
 
     /**
-     * 获取数据类型
+     * 获取数据类型<br />
+     * PS:<br />
+     * 1、如果传入的是被Proxy代理过的对象，会报错！！！
      *
      * @param arg 任何类型的数据，参数个数为1，必需
      *
@@ -2908,16 +2910,16 @@ class IsDataType{
     }
 
     /**
-     * 判断数据是否为Object类型
+     * 判断数据是否为Object类型<br />
+     * PS:<br />
+     * 1、包括'[object Module]'。
      *
      * @param arg 数据，参数个数为1，必需
      *
      * @returns {Boolean} boolean，是true，否false
      */
     isObject( arg ){
-        'use strict';
-
-        return IsHandle1.call( this, arg, 'Object' );
+        return IsHandle1.call( this, arg, 'Object' ) || IsHandle1.call( this, arg, 'Module' );
     }
 
     /**
@@ -6791,24 +6793,20 @@ class ObjHandle{
      * @returns {Object|Array} 对象、数组，{}|[]
      */
     deepCopy( obj ){
-        if( obj === null ){
-            return null;
+        if( this.isArray( obj ) ){
+            let newArr = [];
+
+            obj.forEach( c => void ( newArr.push( typeof c !== 'object'
+                                                  ? c
+                                                  : this.deepCopy( c ) ) ) );
+
+            return newArr;
         }
-        else if( typeof obj !== 'object' ){
-            return obj;
-        }
-        else if( obj.constructor === Date ){
-            return new Date( obj );
-        }
-        else if( obj.constructor === RegExp ){
-            return new RegExp( obj );
-        }
-        else if( this.isUndefined( obj.constructor ) ){
-            return obj;
-        }
-        else if( this.isObject( obj ) || this.isArray( obj ) ){
+        else if( this.isObject( obj ) ){
             let val,
-                newObj = new obj.constructor();
+                newObj = 'constructor' in obj
+                         ? new obj.constructor()
+                         : {};
 
             for( let tmp of
                 Reflect.ownKeys( obj ) ){
@@ -6974,58 +6972,69 @@ class ObjHandle{
     }
 
     /**
-     * 基于“Reflect”、“Proxy”实现的观察者模式(观察目标的数据类型为对象Object)
+     * 基于“Reflect”、“Proxy”实现的观察者模式<br />
+     * PS:<br />
+     * 1、第一个参数之后是一个对象参数，里头有三个属性(isDeep、handle4Get、handle4Set)。
      *
-     * @param observeTarget 对象Object，观察目标，必须。<br />
-     * PS：<br />
-     * 1、数据类型只能是：对象Object。<br />
-     * 2、数据类型不是“对象Object”，会原样返回observeTarget。<br />
+     * @param observeTarget 观察目标，必须。<br />
      *
      * @param isDeep Boolean，是否深度观察，默认值：false，可选
      *
-     * @param handle 函数，有三个参数：keyName, newValue, oldValue，可选
+     * @param handle4Get 函数，有一个对象参数，其中有四个属性：target, key, value, receiver，可选<br />
+     * PS:<br />
+     * 1、如果返回值不是null、undefined，那么返回值会被作为get函数的返回值。
      *
-     * @returns {any|Proxy} any|Proxy实例<br />
-     * PS：<br />
-     * 1、当“observeTarget”的数据类型是：对象Object时，就会返回它的Proxy实例。<br />
-     * 2、当“observeTarget”的数据类型不是：对象Object时，会原样返回observeTarget。<br />
+     * @param handle4Set 函数，有一个对象参数，其中有五个属性：target, key, newValue, oldValue, receiver，可选<br />
+     * PS:<br />
+     * 1、如果返回值不是null、undefined，那么返回值会被作为set函数的返回值。<br />
+     * 2、严格模式下，set代理如果没有返回true，就会报错。返回false或者undefined，都会报错。
+     *
+     * @returns {Proxy} Proxy
      */
     observe2Obj( observeTarget, {
         isDeep = false,
-        handle = () => {
+        handle4Get = () => {
+        },
+        handle4Set = () => {
         },
     } = {
         isDeep: false,
-        handle: () => {
+        handle4Get: () => {
+        },
+        handle4Set: () => {
         },
     } ){
         let _this = this;
 
-        if( _this.isObject( observeTarget ) ){
-            isDeep && Reflect.ownKeys( observeTarget )
-                             .forEach( c => {
-                                 let value = observeTarget[ c ];
-                                 _this.isObject( value ) && ( observeTarget[ c ] = _this.observe2Obj( value, {
-                                     isDeep,
-                                     handle,
-                                 } ) );
-                             } );
+        const handle_fun = obj => new Proxy( obj, {
+            get( target, propKey, receiver ){
+                let result = Reflect.get( target, propKey, receiver );
 
-            return new Proxy( observeTarget, {
-                set( target, keyName, keyValue, receiver ){
-                    let oldValue = Reflect.get( target, keyName, receiver ),
-                        setResult = Reflect.set( target, keyName, keyValue, receiver );
-                    handle( keyName, keyValue, oldValue );
-                    return setResult;
-                },
-                get( target, keyName, receiver ){
-                    return Reflect.get( target, keyName, receiver );
-                },
-            } );
-        }
-        else{
-            return observeTarget;
-        }
+                isDeep && ( _this.isObject( result ) || _this.isArray( result ) ) && ( result = handle_fun( result ) );
+
+                return ( handle4Get( {
+                    target,
+                    key: propKey,
+                    value: result,
+                    receiver,
+                } ) ?? result );
+            },
+
+            set( target, propKey, value, receiver ){
+                let oldValue = Reflect.get( target, propKey, receiver ),
+                    setResult = Reflect.set( target, propKey, value, receiver );
+
+                return ( handle4Set( {
+                    target,
+                    key: propKey,
+                    newValue: value,
+                    oldValue,
+                    receiver,
+                } ) ?? setResult );
+            },
+        } );
+
+        return handle_fun( observeTarget );
     }
 
     /**

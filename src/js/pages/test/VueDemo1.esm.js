@@ -18,7 +18,7 @@ let CT = new CTESM.CT();
 
 let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, } = Vuex;
 
-{
+if( true ){
     // 全局异步加载一个组件(包含处理加载状态)，标准写法！可以更改组件的相关配置属性！
     // 记得先深度拷贝再修改组件的属性，不然多次如下使用后会出现最后一个组件的修改会覆盖之前组件的修改
     // 不要复制完整对象的描述符(也就是不要执行CT.completeAssign)，不然会出现覆盖的情况！
@@ -83,14 +83,14 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
                     Object.assign( arg1.VueComponDemo, {
                         data(){
                             return {
-                                textA: '3：期待2020年Vue 3的正式发布！！！',
+                                textA: '333：期待2020年Vue 3的正式发布！！！',
                             };
                         },
                     } );
                     Object.assign( arg1.default, {
                         data(){
                             return {
-                                textA: '3：期待2020年Vue 3的正式发布！！！',
+                                textA: '333：期待2020年Vue 3的正式发布！！！',
                             };
                         },
                     } );
@@ -114,6 +114,7 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
                 timeout: 10000,
             };
         } ),
+
         // 全局异步加载一个组件，例子1，标准写法！可以更改组件的相关配置属性！
         // 记得先深度拷贝再修改组件的属性，不然多次如下使用后会出现最后一个组件的修改会覆盖之前组件的修改
         // 不要复制完整对象的描述符(也就是不要执行CT.completeAssign)，不然会出现覆盖的情况！
@@ -133,12 +134,21 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
                             textA: '2：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
                         };
                     },
+                    destroyed(){
+                        console.log( 'destroyed1' );
+                        console.log( 'destroyed1' + this.textA );
+
+                    },
                 } );
                 Object.assign( arg1.default, {
                     data(){
                         return {
                             textA: '2：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
                         };
+                    },
+                    destroyed(){
+                        console.log( 'destroyed2' );
+                        console.log( 'destroyed1' + this.textA );
                     },
                 } );
 
@@ -217,14 +227,14 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
                 Object.assign( arg1.ExampleA, {
                     data(){
                         return {
-                            textA: '3_1：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
+                            textA: '3_111：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
                         };
                     },
                 } );
                 Object.assign( arg1.default, {
                     data(){
                         return {
-                            textA: '3_1：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
+                            textA: '3_111：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
                         };
                     },
                 } );
@@ -249,14 +259,14 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
                     Object.assign( arg1.ExampleA, {
                         data(){
                             return {
-                                textA: '4：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
+                                textA: '444：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
                             };
                         },
                     } );
                     Object.assign( arg1.default, {
                         data(){
                             return {
-                                textA: '4：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
+                                textA: '444：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
                             };
                         },
                     } );
@@ -279,14 +289,14 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
                     Object.assign( arg1.ExampleA, {
                         data(){
                             return {
-                                textA: '4_1：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
+                                textA: '4_111：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
                             };
                         },
                     } );
                     Object.assign( arg1.default, {
                         data(){
                             return {
-                                textA: '4_1：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
+                                textA: '4_111：“三权”分离的vue文件写法，以免单个vue文件很长很长！！！',
                             };
                         },
                     } );
@@ -299,6 +309,7 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
                 resolve( ExampleA );
             }, 3000 );
         } ),
+
         // 全局注册一个组件，标准写法！
         Global4VueComponentA = Vue.component( 'Global4VueComponentA', {
             data(){
@@ -346,6 +357,10 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
                     <br />
                     titleAttrKeyValue: {{ titleAttrKeyValue }}
                 </p>`,
+            beforeCreate(){
+            },
+            created(){
+            }
         } ),
         Global4VueComponentA1 = Vue.component( 'Global4VueComponentA1', {
             data(){
@@ -487,7 +502,10 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
                             @click = 'subStoreCountA'>-StoreCountA
                     </button>
                 </div>`,
+            beforeCreate(){
+            }
         } ),
+
         // 全局异步加载一个来自服务器的组件，标准写法！
         Global4VueComponentB = Vue.component( 'Global4VueComponentB', function( resolve = () => {
         }, reject = () => {
@@ -519,7 +537,7 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
         } );
 }
 
-{
+if( false ){
     /*new Global4VueComponDemo( function resolve( arg ){
      // VueComponDemo的第二个参数(函数)
      console.log( arg );
@@ -577,10 +595,16 @@ let { mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers, }
      */
 }
 
-let vue4Win = new Vue( {
+let o1 = {
+
     el: '#HelloWorld',
     store: Store,
     data: {
+        asd: {
+            z: 111111111111111111,
+            a: 2222222222222222,
+        },
+        qwe: true,
         title_attr_key_name: 'title',
         titleAttrKeyValue: 'Hello World',
         obj1: {
@@ -951,5 +975,48 @@ let vue4Win = new Vue( {
     destroyed(){
         let _this = this;
     },
+};
+let vue4Win = new Vue( {
+    /*el: '#HelloWorld',
+     data: {
+     obj1: {
+     name: 'obj1',
+     value: {
+     age: 12,
+     },
+     },
+     arr1: [
+     [[[{
+     name: 'name0',
+     value: {
+     age: 20,
+     },
+     }]]],
+     [[[{
+     name: 'name1',
+     value: {
+     age: 21,
+     },
+     }]]],
+     [[[{
+     name: 'name2',
+     value: {
+     age: 22,
+     },
+     }]]],
+     ],
+     arr2: [
+     1,
+     [
+     2,
+     [
+     3,
+     [ 4, ],
+     ],
+     ],
+     ],
+     },*/
+    ...o1,
 } );
+
 window.vue4Win = vue4Win;

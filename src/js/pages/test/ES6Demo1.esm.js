@@ -257,13 +257,25 @@ let CT = new CTESM.CT();
 {
     if( false ){
         let observeTarget1 = {
-                q: 'qqq',
-                w: {
-                    e: 'eee',
-                    r: {
-                        t: 'ttt',
+                a: {
+                    b: {
+                        c: {
+                            d: 2020,
+                            e: [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                            ],
+                        },
                     },
                 },
+                a1: [
+                    'q',
+                    'w',
+                    'e',
+                ],
             },
             observeTarget2 = [
                 1,
@@ -278,24 +290,29 @@ let CT = new CTESM.CT();
 
         let observeTarget4Proxy1 = CT.observe2Obj( observeTarget1, {
                 isDeep: true,
-                handle: ( keyName, newValue, oldValue ) => {
-                    console.log( `set old ${ keyName }: ${ oldValue }` );
-                    console.log( `set new ${ keyName }: ${ newValue }` );
+                handle4Get: ( { target, key, value, receiver } ) => {
+                    console.log( `observeTarget4Proxy1 get 属性：${ key }` );
+
+                    if( key === 'd' ){
+                        // return '你在读取我ddd';
+                    }
+                },
+                handle4Set: ( { target, key, newValue, oldValue, receiver } ) => {
+                    console.log( `observeTarget4Proxy1 set 属性：${ key }` );
                 },
             } ),
             observeTarget4Proxy2 = CT.observe2Obj( observeTarget2, {
                 isDeep: true,
-                handle: ( keyName, newValue, oldValue ) => {
-                    console.log( `set old ${ keyName }: ${ oldValue }` );
-                    console.log( `set new ${ keyName }: ${ newValue }` );
+                handle4Get: ( { target, key, value, receiver } ) => {
+                    console.log( `observeTarget4Proxy2 get 属性：${ key }` );
+                },
+                handle4Set: ( { target, key, newValue, oldValue, receiver } ) => {
+                    console.log( `observeTarget4Proxy2 set 属性：${ key }` );
                 },
             } );
 
-        observeTarget4Proxy1.w.r.t = 2020;
-        observeTarget4Proxy2[ 1 ][ 1 ][ 1 ][ 0 ] = 2021;
-
-        console.dir( observeTarget4Proxy1 );
-        console.dir( observeTarget4Proxy2 );
+        window.observeTarget4Proxy1 = observeTarget4Proxy1;
+        window.observeTarget4Proxy2 = observeTarget4Proxy2;
     }
 }
 

@@ -267,9 +267,7 @@ function IsNumber( arg ){
 }
 
 function IsObject( arg ){
-    'use strict';
-
-    return IsDataT( arg, 'Object' );
+    return IsDataT( arg, 'Object' ) || IsDataT( arg, 'Module' );
 }
 
 function IsPromise( arg ){
@@ -1382,7 +1380,7 @@ function NumberSafeIntegerType( target, name, descriptor ){
 }
 
 /**
- * 该装饰器(Object类型的数据)用于修饰类的实例属性、静态属性<br />
+ * 该装饰器(Object、Module类型的数据)用于修饰类的实例属性、静态属性<br />
  * PS：<br />
  * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
  * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
@@ -1405,34 +1403,7 @@ function NumberSafeIntegerType( target, name, descriptor ){
 function ObjectType( target, name, descriptor ){
     'use strict';
 
-    return Handle2( name, descriptor, 'Object', IsObject );
-}
-
-/**
- * 该装饰器(Promise类型的数据)用于修饰类的实例属性、静态属性<br />
- * PS：<br />
- * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
- * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
- * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
- * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
- * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
- * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
- *
- * @param target Object|Function 修饰的目标<br />
- * PS：<br />
- * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
- * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
- *
- * @param name String 所要装饰的属性名
- *
- * @param descriptor Object 该属性的描述对象
- *
- * @returns {Object} 该属性的描述对象
- */
-function PromiseType( target, name, descriptor ){
-    'use strict';
-
-    return Handle2( name, descriptor, 'Promise', IsPromise );
+    return Handle2( name, descriptor, 'Object、Module', IsObject );
 }
 
 /**
@@ -1488,6 +1459,33 @@ function Override( target, name, descriptor ){
     }
 
     return descriptor;
+}
+
+/**
+ * 该装饰器(Promise类型的数据)用于修饰类的实例属性、静态属性<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function<br />
+ * 3、作用于类的实例属性的装饰器会有三个参数：类的原型对象、所要装饰的属性名、该属性的描述对象。<br />
+ * 4、作用于类的静态属性的装饰器会有三个参数：类本身、所要装饰的属性名、该属性的描述对象。<br />
+ * 5、目前装饰器还不能作用于类的私有实例属性、类的私有实例方法、类的私有静态属性、类的私有静态方法。<br />
+ * 6、使用时，直接修饰于目标上头，不能以函数的形式执行。<br />
+ *
+ * @param target Object|Function 修饰的目标<br />
+ * PS：<br />
+ * 1、修饰类的实例属性时的第一个参数target的数据类型是object Object，类的原型对象<br />
+ * 2、修饰类的静态属性时的第一个参数target的数据类型是object Function，类本身<br />
+ *
+ * @param name String 所要装饰的属性名
+ *
+ * @param descriptor Object 该属性的描述对象
+ *
+ * @returns {Object} 该属性的描述对象
+ */
+function PromiseType( target, name, descriptor ){
+    'use strict';
+
+    return Handle2( name, descriptor, 'Promise', IsPromise );
 }
 
 /**

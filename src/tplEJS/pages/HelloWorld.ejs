@@ -100,10 +100,27 @@ let options_obj = htmlWebpackPlugin.options,
                 <br />
                 <h1 class = 'css-reset'>Hello World</h1>
                 <br />
-                <div style = 'display: none;'
-                     class = 'css-reset'>
+                <!--<template>
+                    <p class = 'css-reset'>obj1.name-&ndash;&gt;{{ obj1.name }}</p>
+                    <p class = 'css-reset'>obj1.value.age-&ndash;&gt;{{ obj1.value.age }}</p>
+                    <p class = 'css-reset'>obj1.sex-&ndash;&gt;{{ obj1.sex ?? '无' }}</p>
+                    <br />
+                    <div class = 'css-reset'
+                         v-for = '( [ [ [ { name, value: { age } } ] ] ], index ) in arr1'>
+                        <p class = 'css-reset'>name-&#45;&#45;{{ name }}</p>
+                        <p class = 'css-reset'>age-&#45;&#45;{{ age }}</p>
+                    </div>
+                    <br />
+                    <p class = 'css-reset'>arr2-&ndash;&gt;{{ arr2 }}</p>
+                    <br />
+                </template>-->
+                <div
+                        class = 'css-reset'>
                     <br />
                     <br />
+                    <!--<div v-for = 'v in asd'>
+                        {{ v }}
+                    </div>-->
                     <br />
                     <button type = 'button'
                             class = 'css-reset permissionsAPITestBtn1'>Clipboard API测试
@@ -135,23 +152,23 @@ let options_obj = htmlWebpackPlugin.options,
                     </button>
                     <br />
                     <template>
-                        <p class = 'css-reset'>rootState1--->{{ rootState1 }}</p>
+                        <p class = 'css-reset'>rootState1-&ndash;&gt;{{ rootState1 }}</p>
                         <br />
-                        <p class = 'css-reset'>moduleA--->{{ moduleA }}</p>
+                        <p class = 'css-reset'>moduleA-&ndash;&gt;{{ moduleA }}</p>
                         <br />
-                        <p class = 'css-reset'>moduleB--->{{ moduleB }}</p>
+                        <p class = 'css-reset'>moduleB-&ndash;&gt;{{ moduleB }}</p>
                         <br />
-                        <p class = 'css-reset'>moduleB_1--->{{ moduleB_1 }}</p>
+                        <p class = 'css-reset'>moduleB_1-&ndash;&gt;{{ moduleB_1 }}</p>
                         <br />
-                        <p class = 'css-reset'>moduleB_1_1--->{{ moduleB_1_1 }}</p>
+                        <p class = 'css-reset'>moduleB_1_1-&ndash;&gt;{{ moduleB_1_1 }}</p>
                         <br />
-                        <p class = 'css-reset'>rootGetters1Computed--->{{ rootGetters1Computed }}</p>
+                        <p class = 'css-reset'>rootGetters1Computed-&ndash;&gt;{{ rootGetters1Computed }}</p>
                         <br />
-                        <p class = 'css-reset'>moduleAGetters1Computed--->{{ moduleAGetters1Computed }}</p>
+                        <p class = 'css-reset'>moduleAGetters1Computed-&ndash;&gt;{{ moduleAGetters1Computed }}</p>
                         <br />
-                        <p class = 'css-reset'>moduleBGetters1Computed--->{{ moduleBGetters1Computed }}</p>
+                        <p class = 'css-reset'>moduleBGetters1Computed-&ndash;&gt;{{ moduleBGetters1Computed }}</p>
                         <br />
-                        <p class = 'css-reset'>moduleB_1Getters1Computed--->{{ moduleB_1Getters1Computed }}</p>
+                        <p class = 'css-reset'>moduleB_1Getters1Computed-&ndash;&gt;{{ moduleB_1Getters1Computed }}</p>
                         <br />
                         <p class = 'css-reset'>moduleB_1_1Getters1Computed--->{{ moduleB_1_1Getters1Computed }}</p>
                         <br />
@@ -198,7 +215,7 @@ let options_obj = htmlWebpackPlugin.options,
                                         <component is = 'VueComponDemo'
                                                    class = 'css-reset'></component>
                                         <br />
-                                        <component :is = '"VueComponDemo"'
+                                        <component :is = '"VueComponDemoA"'
                                                    class = 'css-reset'></component>
                                         <br />
                                         <vue-compon-demo ref = 'VueComponDemo'
@@ -207,7 +224,8 @@ let options_obj = htmlWebpackPlugin.options,
                                         <vue-compon-demo-a ref = 'VueComponDemoA'
                                                            class = 'css-reset'></vue-compon-demo-a>
                                         <br />
-                                        <example-a ref = 'ExampleA'
+                                        <example-a v-if = 'qwe'
+                                                   ref = 'ExampleA'
                                                    class = 'css-reset'></example-a>
                                         <br />
                                         <example-a1 ref = 'ExampleA1'
@@ -259,7 +277,7 @@ let options_obj = htmlWebpackPlugin.options,
                     </div>
                     <br />
                 </div>
-                <div id = 'VueRouterDemo1'
+                <!--<div id = 'VueRouterDemo1'
                      class = 'css-reset'>
                     <p class = 'css-reset'>
                         <router-link class = 'css-reset'
@@ -277,8 +295,8 @@ let options_obj = htmlWebpackPlugin.options,
                     <button class = 'css-reset'
                             @click = 'btnClick1'>btnClick1
                     </button>
-                </div>
-                <div class = 'css-reset'>
+                </div>-->
+                <!--<div class = 'css-reset'>
                     <popup-info class = 'css-reset'
                                 data-img = '${ require( "imgDir/XM_512_512.png" ) }'
                                 data-text = 'Your card validation code (CVC) is an extra security feature — it is the last 3 or 4 numbers on the back of your card.'></popup-info>
@@ -335,9 +353,9 @@ let options_obj = htmlWebpackPlugin.options,
                                 background-color: palevioletred;
                             }
                         </style>
-                        <h1 class = 'css-reset'>模板1---h1</h1>
-                        <p class = 'css-reset'>模板1---p</p>
-                        <div class = 'css-reset'>模板1---div</div>
+                        <h1 class = 'css-reset'>模板1-&#45;&#45;h1</h1>
+                        <p class = 'css-reset'>模板1-&#45;&#45;p</p>
+                        <div class = 'css-reset'>模板1-&#45;&#45;div</div>
                         <slot name = 'slot-a'>
                             <p class = 'css-reset'>这个slot标签的name值是“slotA”。</p>
                         </slot>
@@ -347,7 +365,7 @@ let options_obj = htmlWebpackPlugin.options,
                             <p class = 'css-reset'>11111111111</p>
                         </div>
                     </my-template>
-                </div>
+                </div>-->
             </article>
         </main>
     </div>
