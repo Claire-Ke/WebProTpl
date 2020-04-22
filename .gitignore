@@ -1,21 +1,15 @@
 # Project exclude paths
 .idea/
 node_modules/
-src/js/pages/helloWorld/
-src/js/pages/test/
-src/js/pages/xmQAQ/
 
-src/tplEJS/pages/HelloWorld.ejs
-src/tplEJS/pages/XMQAQ.ejs
+src/js/pages/
 
-src/vue/models/test/
-src/vue/models/xmQAQ/
+src/tplEJS/pages/
 
-src/vue/styles/test/
-src/vue/styles/xmQAQ/
+src/vue/models/
 
-src/vue/views/test/
-src/vue/views/xmQAQ/
+src/vue/styles/
 
-src/styles/scss/pages/helloWorld/
-src/styles/scss/pages/xmQAQ/
+src/vue/views/
+
+src/styles/scss/pages/
