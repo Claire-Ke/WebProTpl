@@ -33,6 +33,7 @@ let cacheResources = [
     '../others/ProjectAssets.json',
     '../pages/HelloWorld.html',
     '../pages/XMQAQ.html',
+    '../pages/DaMeng.html',
 ];
 
 module.exports = {

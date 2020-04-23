@@ -23,11 +23,9 @@ import 'scssPDir/helloWorld/HelloWorld.scss';
 let CT = new CTESM.CT();
 
 ( async () => {
-    await import('../test/VueDemo1.esm.js');
+    // await import('../test/VueDemo1.esm.js');
     // await import('../test/VueRouterDemo1.esm.js');
     await import('../test/Test.esm.js');
-
-    CT.scrollFix( '.helloWorld main' );
 
     RefreshBtn.call( CT, {
         id: '#RefreshBtnTest',

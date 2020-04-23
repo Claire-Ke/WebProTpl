@@ -1,1 +1,1 @@
-node --experimental-import-meta-resolve --experimental-json-modules --experimental-repl-await --experimental-report --experimental-vm-modules --experimental-wasm-modules TinifyTool.js&pause
+node --experimental-import-meta-resolve --experimental-json-modules --experimental-repl-await --experimental-wasi-unstable-preview1 --experimental-vm-modules --experimental-wasm-modules TinifyTool.js&pause

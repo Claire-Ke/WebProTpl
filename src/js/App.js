@@ -45,6 +45,9 @@ const isSPA_booC = false,
         XMQAQ: [
             './src/js/pages/xmQAQ/XMQAQ.js',
         ],
+        DaMeng: [
+            './src/js/pages/daMeng/DaMeng.js',
+        ],
     };
 
 module.exports = {

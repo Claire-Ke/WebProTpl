@@ -1,0 +1,265 @@
+/*
+Project: WebProTpl
+Author：12278
+Email：2726893248@qq.com
+CreateDate：2019-01-01 00:00:00
+IDE: WebStorm
+*/
+
+.root {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    .noticeBarBox {
+        position: absolute;
+        top: 20px;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        padding: 0 20px;
+
+        .notice {
+            position: relative;
+            width: 50px;
+            height: 100%;
+            background: url(../../../assets/img/daMeng/Notice1.png) left center no-repeat;
+            background-size: 50% auto;
+
+            > i {
+                position: absolute;
+                top: 17px;
+                left: 14px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: transparent;
+            }
+
+            > i.isNotice {
+                background-color: red;
+            }
+
+        }
+
+        .headPortrait {
+            position: relative;
+            height: 100%;
+            text-align: center;
+            line-height: 50px;
+            color: black;
+            font-size: 16px;
+            font-family: Font_Helvetica;
+            margin-right: 50px;
+        }
+
+        .headPortrait::after {
+            position: absolute;
+            top: 5px;
+            right: -50px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: block;
+            content: '';
+            background: url(../../../assets/img/daMeng/HeadPortrait1.png) center center no-repeat;
+            background-size: 100% auto;
+        }
+
+    }
+
+    .dataIndexGraphBox {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        bottom: 380px;
+        left: 0;
+        width: 100%;
+
+        #DataIndexGraph {
+            width: 100%;
+            height: 100%;
+        }
+
+    }
+
+    /*380px*/
+    .financialIndexBox {
+        position: absolute;
+        right: 0;
+        bottom: 180px;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        padding: 0 20px;
+
+        > div:nth-of-type(1) {
+            width: 100%;
+            height: 40px;
+
+            > span {
+                color: #a7a9b1;
+                font-size: 14px;
+            }
+
+            > span:nth-of-type(2) {
+                position: relative;
+                padding-right: 17px;
+            }
+
+            > span:nth-of-type(2)::after {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 15px;
+                height: 15px;
+                display: block;
+                content: '';
+                background: transparent url(../../../assets/img/daMeng/DownArrow1.png) center center no-repeat;
+                background-size: 100% 100%;
+            }
+
+        }
+
+        > div:nth-of-type(2) {
+            width: 100%;
+            height: 160px;
+
+            > p:nth-of-type(1) {
+                height: 33%;
+
+                > span:nth-of-type(1) {
+                    background: #fdfdfd url(../../../assets/img/daMeng/Ico1.png) center center no-repeat;
+                    background-size: 60% auto;
+                }
+
+            }
+
+            > p:nth-of-type(2) {
+                height: 34%;
+
+                > span:nth-of-type(1) {
+                    background: #fdfdfd url(../../../assets/img/daMeng/Ico2.png) center center no-repeat;
+                    background-size: 60% auto;
+                }
+
+            }
+
+            > p:nth-of-type(3) {
+                height: 33%;
+
+                > span:nth-of-type(1) {
+                    background: #fdfdfd url(../../../assets/img/daMeng/Ico3.png) center center no-repeat;
+                    background-size: 60% auto;
+                }
+
+            }
+
+            > p {
+                position: relative;
+                width: 100%;
+
+                > span:nth-of-type(1) {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 10px;
+                }
+
+                > span:nth-of-type(2) {
+                    color: black;
+                    font-size: 16px;
+                    font-family: Font_Helvetica;
+                    margin-left: 20px;
+                }
+
+                > span:nth-of-type(3) {
+                    display: flex;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    text-align: center;
+                    color: black;
+                    font-size: 14px;
+                    font-family: Font_Helvetica;
+                }
+
+                > span:nth-of-type(3).green {
+                    color: #0e809a;
+                }
+
+                > span:nth-of-type(3).red {
+                    color: red;
+                }
+
+            }
+
+        }
+
+    }
+
+    /*150px*/
+    .moneyButtonBox {
+        position: absolute;
+        right: 0;
+        bottom: 100px;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        padding: 0 20px;
+
+        .moneyBtn {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            padding-left: 20px;
+            color: white;
+            font-size: 14px;
+            font-family: Font_Helvetica;
+            text-align: left;
+            line-height: 40px;
+            border-radius: 20px;
+            background-color: #ff4d56;
+            box-shadow: 0 0 6px 0 #ff4d56;
+        }
+
+        .moneyBtn::after {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            bottom: 0;
+            width: 34px;
+            height: 100%;
+            display: block;
+            content: '';
+            background: transparent url(../../../assets/img/daMeng/RightArrow1.png) center center no-repeat;
+            background-size: 100% auto;
+        }
+
+    }
+
+    /*70px*/
+    .messageButtonBox {
+        position: absolute;
+        right: 0;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        padding-right: 20px;
+
+        .messageBtn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #0e809a url(../../../assets/img/daMeng/Message1.png) center center no-repeat;
+            background-size: 80% auto;
+            box-shadow: 0 0 6px 0 #0e809a;
+        }
+
+    }
+
+}

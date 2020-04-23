@@ -82,6 +82,10 @@ dialog.css-reset {
     display: block;
 }
 
+button.css-reset {
+    background-color: white;
+}
+
 progress.css-reset {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -768,8 +772,4 @@ input.css-reset-moz-number {
 
 .css-reset:not(:defined) {
     display: none;
-}
-
-.css-reset:defined {
-    display: block;
 }
