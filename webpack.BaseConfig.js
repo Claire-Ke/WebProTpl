@@ -30,10 +30,34 @@ let isPro = process.argv[ 3 ] === 'production',
         poolParallelJobs: 50,
         // 池的名称可用于创建其他具有相同选项的不同池
         name: 'jsWorkerPool',
+    },
+    tsWorkerPool = {
+        // 生成的工作进程数，默认为（ os.cpus().length-1 ），fallback to 1 when require('os').cpus() is undefined
+        workers: osLen,
+        // 一个工人并行处理的作业数默认为20
+        workerParallelJobs: 20,
+        // 其他的node.js参数
+        workerNodeArgs: [ '--max-old-space-size=1024' ],
+        // 允许重新生成一个已死亡的工人池，重新生成会减慢整个编译速度，并且应设置为false以进行开发
+        poolRespawn: false,
+        // 空闲默认值为500（ms）时终止工作进程的超时，可以设置为无穷大，以便监视生成以保持工作进程的活动性
+        // Infinity：可用于开发模式
+        // 2000
+        poolTimeout: isPro
+                     ? 2000
+                     : Infinity,
+        // 投票分配给工人的工作岗位数量默认为200个，分配效率较低但更公平
+        poolParallelJobs: 50,
+        // 池的名称可用于创建其他具有相同选项的不同池
+        name: 'tsWorkerPool',
     };
 
 threadLoader.warmup( jsWorkerPool, [
     'babel-loader',
+] );
+threadLoader.warmup( tsWorkerPool, [
+    'babel-loader',
+    'ts-loader',
 ] );
 
 let fs = require( 'fs' ),
@@ -1701,8 +1725,30 @@ let fs = require( 'fs' ),
                     esmodules: false,
                     browsers: browsers_arr,
                 },
-            }
-        ]
+            },
+        ],
+        [
+            '@babel/preset-typescript',
+            {
+                isTSX: false,
+                allExtensions: false,
+                // jsxPragma: 'React',
+                // 默认值就是：false
+                allowNamespaces: true,
+                // 默认值就是：false
+                allowDeclareFields: true,
+                // 默认值就是：false
+                onlyRemoveTypeImports: true,
+            },
+        ],
+        [
+            'const-enum',
+            {
+                allExtensions: false,
+                // removeConst constObject
+                transform: 'constObject',
+            },
+        ],
     ],
     babelPlugins_fun = ( isPro_boo, noTest_boo, isESM_boo ) => {
         let miniJS_arr = [
@@ -1805,7 +1851,29 @@ let fs = require( 'fs' ),
             plug_arr = [
                 [ '@babel/plugin-external-helpers' ],
 
+                [
+                    'const-enum',
+                    {
+                        // removeConst constObject
+                        transform: 'constObject',
+                    }
+                ],
+                [
+                    '@babel/plugin-transform-typescript',
+                    {
+                        isTSX: false,
+                        // jsxPragma: 'React',
+                        // 默认值就是：false
+                        allowNamespaces: true,
+                        // 默认值就是：false
+                        allowDeclareFields: true,
+                        // 默认值就是：false
+                        onlyRemoveTypeImports: true,
+                    }
+                ],
+
                 /*ES6+提案语法转换插件 Start*/
+                [ 'babel-plugin-transform-typescript-metadata' ],
                 [
                     '@babel/plugin-proposal-decorators',
                     {
@@ -2350,8 +2418,10 @@ let fs = require( 'fs' ),
                     {
                         loader: 'less-loader',
                         options: {
-                            strictMath: true,
-                            noIeCompat: true,
+                            lessOptions: {
+                                strictMath: true,
+                                noIeCompat: true,
+                            },
                         },
                     },
                 ],
@@ -2641,6 +2711,104 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/workers/' ),
                 ],
                 // sideEffects: true,
+            },
+
+            {
+                test: /\.ts(x?)$/i,
+                use: [
+                    {
+                        loader: 'thread-loader',
+                        options: tsWorkerPool,
+                    },
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            cacheDirectory: !isPro,
+                            presets: babelPresets_fun( isPro, noTest_boo ),
+                            plugins: babelPlugins_fun( isPro, noTest_boo, isESM_boo ),
+                        },
+                    },
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            // true禁用类型检查器-我们将在"fork-ts-checker-webpack-plugin"插件中使用它
+                            transpileOnly: true,
+                            // 重要！使用happyPackMode模式加快编译速度并减少报告给Webpack的错误
+                            happyPackMode: true,
+                            // 默认值：false
+                            logInfoToStdOut: false,
+                            // 默认值：warn，可选值：info、warn、error
+                            logLevel: 'error',
+                            // 默认值：false，如果为true，则不会发出console.log消息。请注意，大多数错误消息都是通过webpack发出的，不受此标志的影响。
+                            silent: false,
+                            // 默认值：number[]，您可以通过指定要忽略的诊断代码数组来抑制某些TypeScript错误。
+                            // ignoreDiagnostics: [],
+                            // 仅报告与这些全局模式匹配的文件中的错误。当某些类型定义具有对您的应用程序不致命的错误时，这很有用。
+                            reportFiles: [
+                                'src/components/**/*.{ts,tsx}',
+                                'src/js/**/*.{ts,tsx}',
+                                'src/vue/**/*.{ts,tsx}',
+                                'src/vue/**/*.{vue}',
+                                'src/webComponents/**/*.{ts,tsx}',
+                            ],
+                            // 默认值：typescript，允许使用非官方的TypeScript编译器。应该设置为编译器的NPM名称，例如：ntypescript。
+                            compiler: 'typescript',
+                            // 允许您指定在哪里可以找到TypeScript配置文件。
+                            configFile: path.resolve( __dirname, './tsconfig.json' ),
+                            colors: true,
+                            // 默认值：undefined
+                            // errorFormatter: undefined,
+                            // 允许覆盖TypeScript options(编译选项compiler options，TypeScript选项应使用tsconfig.json文件设置)。应该以与“tsconfig.json”中的“compilerOptions”属性相同的格式指定。
+                            // compilerOptions: {},
+                            // 默认值：'TODO'，高级选项，强制文件通过TypeScript编译器的不同实例。可用于强制分离代码的不同部分。
+                            // instance: 'TODO',
+                            // 默认值：RegExp[]，要与文件名匹配的正则表达式列表。如果文件名与正则表达式之一匹配，则将.ts或.tsx后缀附加到该文件名。
+                            appendTsSuffixTo: [
+                                /\.vue$/i,
+                            ],
+                            // 默认值：RegExp[]，要与文件名匹配的正则表达式列表。如果文件名与正则表达式之一匹配，则将.ts或.tsx后缀附加到该文件名。
+                            // appendTsxSuffixTo: [],
+                            // 默认值：false
+                            onlyCompileBundledFiles: true,
+                            // 默认值：false
+                            allowTsInNodeModules: false,
+                            // 默认值：undefined
+                            // context: undefined,
+                            // 默认值：true
+                            experimentalFileCaching: true,
+                            // 默认值：false，
+                            // “ts loader”支持“project references”。启用此配置选项后，“ts loader”将像“tsc--build”那样增量地重建上游项目。
+                            // 否则，引用项目中的源文件将被视为根项目的一部分。
+                            projectReferences: true,
+                        },
+                    },
+                ],
+                include: [
+                    path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/js/' ),
+                    path.resolve( __dirname, './src/vue/' ),
+                    path.resolve( __dirname, './src/webComponents/' ),
+                ],
+                exclude: [
+                    path.resolve( __dirname, './assistTools/' ),
+                    path.resolve( __dirname, './backups/' ),
+                    path.resolve( __dirname, './bats/' ),
+                    path.resolve( __dirname, './configures/' ),
+                    path.resolve( __dirname, './dist/' ),
+                    path.resolve( __dirname, './node_modules/' ),
+                    path.resolve( __dirname, './notes/' ),
+                    path.resolve( __dirname, './simServer/' ),
+                    path.resolve( __dirname, './webpackRecords/' ),
+
+                    path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/pwa4Manifest/' ),
+                    path.resolve( __dirname, './src/static/' ),
+                    path.resolve( __dirname, './src/styles/' ),
+                    path.resolve( __dirname, './src/tplEJS/' ),
+                    path.resolve( __dirname, './src/tplHTML/' ),
+                    path.resolve( __dirname, './src/wasm/' ),
+                    path.resolve( __dirname, './src/workers/' ),
+                ],
             },
 
             {
@@ -3182,6 +3350,11 @@ let fs = require( 'fs' ),
             assetsFileName: '../others/ProjectAssets.json',
             externalAssets: require( './configures/CacheResources.js' ).cacheResources,
         },
+    },
+    stats_obj = {
+        warningsFilter: [
+            /export .* was not found in/,
+        ],
     };
 
 module.exports = {
@@ -3204,4 +3377,5 @@ module.exports = {
     cleanWebpackPluginConfig_fun,
     recordsPath_fun,
     AssetsWebpackPluginOption_obj,
+    stats_obj,
 };
