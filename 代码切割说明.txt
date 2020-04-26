@@ -3,6 +3,8 @@
 "**/*.se.cjs",
 "**/*.se.esm.js",
 "**/*.se.esm.mjs",
+"**/*.se.ts",
+"**/*.se.esm.ts",
 "**/*.css",
 "**/*.scss",
 "**/*.less",
