@@ -11,27 +11,27 @@
         "src/webComponents/**/*.tsx"
     ],
     "exclude": [
-        ".git",
-        ".idea",
-        "assistTools",
-        "backups",
-        "bats",
-        "configures",
-        "dist",
-        "node_modules",
-        "notes",
-        "simServer",
-        "src/assets",
-        "src/pwa4Manifest",
-        "src/static",
-        "src/styles",
-        "src/tplEJS",
-        "src/tplHTML",
-        "src/wasm",
-        "src/workers",
-        "webpackRecords",
-        "bower_components",
-        "jspm_packages"
+        ".git/",
+        ".idea/",
+        "assistTools/",
+        "backups/",
+        "bats/",
+        "configures/",
+        "dist/",
+        "node_modules/",
+        "notes/",
+        "simServer/",
+        "src/assets/",
+        "src/pwa4Manifest/",
+        "src/static/",
+        "src/styles/",
+        "src/tplEJS/",
+        "src/tplHTML/",
+        "src/wasm/",
+        "src/workers/",
+        "webpackRecords/",
+        "bower_components/",
+        "jspm_packages/"
     ],
     "include": [
         "src/components/**/*.ts",
@@ -45,25 +45,17 @@
         "src/webComponents/**/*.tsx"
     ],
     "typeAcquisition": {
-        "enable": true,
-        "include": [
-            "echarts",
-            "jquery",
-            "swiper",
-            "vue",
-            "vue-router",
-            "vuex"
-        ],
-        "exculde": []
+        "enable": true
     },
+    "references": true,
     "compileOnSave": true,
     "compilerOptions": {
         "allowJs": false,
         "checkJs": false,
         "allowSyntheticDefaultImports": true,
         "allowUmdGlobalAccess": true,
-        "allowUnreachableCode": false,
-        "allowUnusedLabels": false,
+        "allowUnreachableCode": true,
+        "allowUnusedLabels": true,
         "alwaysStrict": true,
         "assumeChangesOnlyAffectDirectDependencies": true,
         "baseUrl": "./",
@@ -71,28 +63,29 @@
             "echarts": [
                 "node_modules/echarts/dist/echarts.min.js"
             ],
-            "jquery": [
+            "jQuery": [
                 "node_modules/jquery/dist/jquery.min.js"
             ],
-            "swiper": [
+            "Swiper": [
                 "node_modules/swiper/js/swiper.min.js"
             ],
-            "vue": [
+            "Vue": [
                 "node_modules/vue/dist/vue.min.js"
             ],
-            "vue-router": [
+            "VueRouter": [
                 "node_modules/vue-router/dist/vue-router.min.js"
             ],
-            "vuex": [
+            "Vuex": [
                 "node_modules/vuex/dist/vuex.min.js"
+            ],
+            "tslib": [
+                "node_modules/tslib/tslib.es6.js"
             ]
         },
-        "charset": "utf8",
         "composite": true,
         "declaration": true,
-        "declarationDir": "./declaration",
+        "declarationDir": "./dist/",
         "declarationMap": true,
-        "diagnostics": true,
         "disableSizeLimit": true,
         "downlevelIteration": true,
         "emitBOM": false,
@@ -102,7 +95,7 @@
         "experimentalDecorators": true,
         "extendedDiagnostics": true,
         "forceConsistentCasingInFileNames": true,
-        "generateCpuProfile": "./cpuProfile/profile.cpuprofile",
+        "generateCpuProfile": "./dist/profile.cpuprofile",
         "importHelpers": true,
         "importsNotUsedAsValues": "remove",
         "incremental": true,
@@ -111,7 +104,6 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "jsxFactory": "React.createElement",
-        "keyofStringsOnly": true,
         "useDefineForClassFields": true,
         "lib": [
             "ES5",
@@ -121,10 +113,13 @@
             "ES2016",
             "ES2017",
             "ES2018",
+            "ES2019",
+            "ES2020",
             "ESNext",
             "DOM",
             "DOM.Iterable",
             "WebWorker",
+            "WebWorker.importScripts",
             "ScriptHost",
             "ES2015.Core",
             "ES2015.Collection",
@@ -135,32 +130,49 @@
             "ES2015.Reflect",
             "ES2015.Symbol",
             "ES2015.Symbol.WellKnown",
+            "ES2016.Full",
             "ES2016.Array.Include",
+            "ES2017.Full",
             "ES2017.object",
             "ES2017.Intl",
             "ES2017.SharedMemory",
             "ES2017.String",
             "ES2017.TypedArrays",
+            "ES2018.Full",
+            "ES2018.AsyncGenerator",
+            "ES2018.AsyncIterable",
             "ES2018.Intl",
             "ES2018.Promise",
             "ES2018.RegExp",
+            "ES2019.Full",
+            "ES2019.Array",
+            "ES2019.Object",
+            "ES2019.String",
+            "ES2019.Symbol",
+            "ES2020.Full",
+            "ES2020.BigInt",
+            "ES2020.Promise",
+            "ES2020.String",
+            "ES2020.Symbol.WellKnown",
+            "ESNext.Full",
             "ESNext.AsyncIterable",
             "ESNext.Array",
             "ESNext.Intl",
-            "ESNext.Symbol"
+            "ESNext.Symbol",
+            "ESNext.BigInt",
+            "ESNext.Promise",
+            "ESNext.String"
         ],
         "listEmittedFiles": true,
         "listFiles": true,
         "locale": "zh-CN",
-        "mapRoot": "./mapRoot",
+        "mapRoot": "./dist/",
         "maxNodeModuleJsDepth": 10000,
         "module": "ES2015",
-        "moduleResolution": "Node",
         "newLine": "crlf",
         "noEmit": false,
         "noEmitHelpers": false,
-        "noEmitOnError": false,
-        "noErrorTruncation": true,
+        "noEmitOnError": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
         "noImplicitReturns": true,
@@ -171,33 +183,31 @@
         "noStrictGenericChecks": false,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "preserveConstEnums": false,
+        "preserveConstEnums": true,
         "preserveSymlinks": false,
         "preserveWatchOutput": true,
         "pretty": true,
+        "project": "./tsconfig.json",
         "removeComments": true,
         "resolveJsonModule": true,
         "showConfig": true,
         "skipLibCheck": true,
         "sourceMap": false,
-        "sourceRoot": "./sourceRoot",
+        "sourceRoot": "./dist/",
         "strict": true,
         "strictBindCallApply": true,
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
         "strictNullChecks": true,
-        "suppressExcessPropertyErrors": true,
+        "suppressExcessPropertyErrors": false,
         "suppressImplicitAnyIndexErrors": false,
         "target": "ES5",
         "traceResolution": true,
-        "tsBuildInfoFile": "./tsBuildInfo/TSBuildInfo.tsbuildinfo",
-        "types": [
-            "*"
-        ],
-        "typeRoots": [
-            "./node_modules/@types/"
-        ],
+        "tsBuildInfoFile": "./dist/TSBuildInfo.tsbuildinfo",
         "watch": true,
-        "onlyRemoveTypeImports": true
+        "onlyRemoveTypeImports": true,
+        "stripInternal": true,
+        "disableSourceOfProjectReferenceRedirect": true,
+        "disableSolutionSearching": true
     }
 }
