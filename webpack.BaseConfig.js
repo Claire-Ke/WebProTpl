@@ -167,7 +167,7 @@ let fs = require( 'fs' ),
         // 这些限制可能会导致某些类型脚本功能（如常量枚举和命名空间）出现运行时问题。
         // 设置isolatedModules标志会告诉TypeScript，如果您编写的某些代码无法由单个文件转换过程正确解释，则会发出警告。
         // 它不会更改代码的行为，也不会更改TypeScript检查和发出进程的行为。
-        'isolatedModules': true,
+        'isolatedModules': false,
         // 控制如何在JavaScript文件中发出JSX构造。这仅影响以.tsx文件开头的JS文件的输出。
         // preserve: 在不更改JSX的情况下发出.jsx文件
         // react: 使用JSX发出.js文件已更改为等效的React.createElement调用
@@ -182,64 +182,66 @@ let fs = require( 'fs' ),
         // 即将发布的规范的最新版本与TypeScript的实现具有不同的运行时行为，但语法相同。
         // 此标志将切换到即将到来的ECMA运行时行为。
         'useDefineForClassFields': true,
-        'lib': [
-            'ES5',
-            'ES6',
-            'ES2015',
-            'ES7',
-            'ES2016',
-            'ES2017',
-            'ES2018',
-            'ES2019',
-            'ES2020',
-            'ESNext',
-            'DOM',
-            'DOM.Iterable',
-            'WebWorker',
-            'WebWorker.importScripts',
-            'ScriptHost',
-            'ES2015.Core',
-            'ES2015.Collection',
-            'ES2015.Generator',
-            'ES2015.Iterable',
-            'ES2015.Promise',
-            'ES2015.Proxy',
-            'ES2015.Reflect',
-            'ES2015.Symbol',
-            'ES2015.Symbol.WellKnown',
-            'ES2016.Full',
-            'ES2016.Array.Include',
-            'ES2017.Full',
-            'ES2017.object',
-            'ES2017.Intl',
-            'ES2017.SharedMemory',
-            'ES2017.String',
-            'ES2017.TypedArrays',
-            'ES2018.Full',
-            'ES2018.AsyncGenerator',
-            'ES2018.AsyncIterable',
-            'ES2018.Intl',
-            'ES2018.Promise',
-            'ES2018.RegExp',
-            'ES2019.Full',
-            'ES2019.Array',
-            'ES2019.Object',
-            'ES2019.String',
-            'ES2019.Symbol',
-            'ES2020.Full',
-            'ES2020.BigInt',
-            'ES2020.Promise',
-            'ES2020.String',
-            'ES2020.Symbol.WellKnown',
-            'ESNext.Full',
-            'ESNext.AsyncIterable',
-            'ESNext.Array',
-            'ESNext.Intl',
-            'ESNext.Symbol',
-            'ESNext.BigInt',
-            'ESNext.Promise',
-            'ESNext.String'
-        ],
+        /*
+         'lib': [
+         'ES5',
+         'ES6',
+         'ES2015',
+         'ES7',
+         'ES2016',
+         'ES2017',
+         'ES2018',
+         'ES2019',
+         'ES2020',
+         'ESNext',
+         'DOM',
+         'DOM.Iterable',
+         'WebWorker',
+         'WebWorker.importScripts',
+         'ScriptHost',
+         'ES2015.Core',
+         'ES2015.Collection',
+         'ES2015.Generator',
+         'ES2015.Iterable',
+         'ES2015.Promise',
+         'ES2015.Proxy',
+         'ES2015.Reflect',
+         'ES2015.Symbol',
+         'ES2015.Symbol.WellKnown',
+         'ES2016.Full',
+         'ES2016.Array.Include',
+         'ES2017.Full',
+         'ES2017.object',
+         'ES2017.Intl',
+         'ES2017.SharedMemory',
+         'ES2017.String',
+         'ES2017.TypedArrays',
+         'ES2018.Full',
+         'ES2018.AsyncGenerator',
+         'ES2018.AsyncIterable',
+         'ES2018.Intl',
+         'ES2018.Promise',
+         'ES2018.RegExp',
+         'ES2019.Full',
+         'ES2019.Array',
+         'ES2019.Object',
+         'ES2019.String',
+         'ES2019.Symbol',
+         'ES2020.Full',
+         'ES2020.BigInt',
+         'ES2020.Promise',
+         'ES2020.String',
+         'ES2020.Symbol.WellKnown',
+         'ESNext.Full',
+         'ESNext.AsyncIterable',
+         'ESNext.Array',
+         'ESNext.Intl',
+         'ESNext.Symbol',
+         'ESNext.BigInt',
+         'ESNext.Promise',
+         'ESNext.String'
+         ],
+         */
         // 属于“有助于调试的标志”！！！
         // 将编译的一部分生成文件的名称打印到终端。
         // 该标志在两种情况下很有用：
@@ -306,7 +308,7 @@ let fs = require( 'fs' ),
         // 属于“有助于调试的标志”！！！
         // 允许导入扩展名为“ .json”的模块，这是节点项目中的常见做法。这包括基于静态JSON形状为导入生成类型。
         'resolveJsonModule': true,
-        'showConfig': true,
+        'showConfig': false,
         // 跳过默认库声明文件的类型检查。
         'skipLibCheck': true,
         'sourceMap': false,
@@ -329,7 +331,7 @@ let fs = require( 'fs' ),
         // 使用suppressImplicitAnyIndexErrors是一种非常严格的方法。建议使用'// @ts-ignore'注释代替
         'suppressImplicitAnyIndexErrors': false,
         // ES3、ES5、ES6、ES2015、ES7、ES2016、ES2017(Node 8)、ES2018(Node 10)、ES2019(Node 12)、ES2020、ESNext
-        'target': 'ES5',
+        'target': 'ES2020',
         // 属于“有助于调试的标志”！！！
         // 当您尝试调试未包含模块的原因时。您可以将traceResolutions设置为true，以使TypeScript打印有关每个已处理文件的解析过程的信息。
         'traceResolution': true,
@@ -346,7 +348,12 @@ let fs = require( 'fs' ),
         // 禁用解决方案搜索
         // 使用复合类型脚本项目时，此选项提供了一种方法，用于声明在编辑器中使用“查找所有引用”或“跳转到定义”等功能时不希望包含项目。
         // 这个标志可以用来提高大型复合项目的响应性。
-        'disableSolutionSearching': true
+        'disableSolutionSearching': true,
+        // 空数组将禁用自动引入 @types 包
+        'types': [],
+        'typeRoots': [
+            'node_modules/@types'
+        ]
     },
     // TerserPlugin = require( 'terser-webpack-plugin' ),
     browsers_arr = [
@@ -3045,7 +3052,7 @@ let fs = require( 'fs' ),
                             // 默认值：undefined
                             // errorFormatter: undefined,
                             // 允许覆盖TypeScript options(编译选项compiler options，TypeScript选项应使用tsconfig.json文件设置)。应该以与“tsconfig.json”中的“compilerOptions”属性相同的格式指定。
-                            compilerOptions: compilerOptions_obj,
+                            // compilerOptions: compilerOptions_obj,
                             // 默认值：'TODO'，高级选项，强制文件通过TypeScript编译器的不同实例。可用于强制分离代码的不同部分。
                             // instance: 'TODO',
                             // 默认值：RegExp[]，要与文件名匹配的正则表达式列表。如果文件名与正则表达式之一匹配，则将.ts或.tsx后缀附加到该文件名。
@@ -3645,7 +3652,7 @@ let fs = require( 'fs' ),
     ForkTsCheckerWebpackPlugin_obj = {
         tsconfig: path.resolve( __dirname, './tsconfig.json' ),
         // 允许覆盖TypeScript options(编译选项compiler options，TypeScript选项应使用tsconfig.json文件设置)。应该以与“tsconfig.json”中的“compilerOptions”属性相同的格式指定。
-        compilerOptions: compilerOptions_obj,
+        // compilerOptions: compilerOptions_obj,
         // 可选值：true | undefined
         eslint: false,
         // eslintOptions: {},
@@ -3684,11 +3691,11 @@ let fs = require( 'fs' ),
     },
     ForkTsCheckerNotifierWebpackPlugin_obj = {
         // 通知中显示的标题前缀。
-        title: 'MyWebpackNotice2020',
+        title: 'WebpackNotice2020',
         // 如果设置为true，警告将不会引起通知。
-        excludeWarnings: false,
+        excludeWarnings: true,
         // 每次触发通知。称其为“噪音模式”。
-        alwaysNotify: true,
+        alwaysNotify: false,
         // 不要在第一个版本上通知。这使您可以在后续增量构建上收到通知，而无需在初始构建上得到通知。
         skipFirstNotification: true,
         // 跳过有关成功构建的通知。

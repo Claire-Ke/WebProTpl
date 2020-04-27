@@ -1996,3 +1996,10 @@ ${ onceFun1( 'q', 'w' ) }
         import('./WebComponentsDemo1.esm.js');
     }
 }
+
+// TypeScript测试
+{
+    if( true ){
+        import('./TSDemo1.esm.ts');
+    }
+}
