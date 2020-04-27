@@ -71,7 +71,7 @@ let fs = require( 'fs' ),
         'allowUnusedLabels': false,
         'alwaysStrict': true,
         'assumeChangesOnlyAffectDirectDependencies': true,
-        'baseUrl': '.',
+        'baseUrl': './',
         'paths': {
             'echarts': [
                 'node_modules/echarts/dist/echarts.min.js'
@@ -201,7 +201,7 @@ let fs = require( 'fs' ),
             '*',
         ],
         'typeRoots': [
-            './node_modules/@types',
+            './node_modules/@types/',
         ],
         'watch': true,
         'onlyRemoveTypeImports': true,
@@ -2892,7 +2892,7 @@ let fs = require( 'fs' ),
                                 'src/components/**/*.{ts,tsx}',
                                 'src/js/**/*.{ts,tsx}',
                                 'src/vue/**/*.{ts,tsx}',
-                                'src/vue/**/*.{vue}',
+                                'src/vue/**/*.ts.vue',
                                 'src/webComponents/**/*.{ts,tsx}',
                             ],
                             // 默认值：typescript，允许使用非官方的TypeScript编译器。应该设置为编译器的NPM名称，例如：ntypescript。
@@ -2903,12 +2903,12 @@ let fs = require( 'fs' ),
                             // 默认值：undefined
                             // errorFormatter: undefined,
                             // 允许覆盖TypeScript options(编译选项compiler options，TypeScript选项应使用tsconfig.json文件设置)。应该以与“tsconfig.json”中的“compilerOptions”属性相同的格式指定。
-                            compilerOptions: compilerOptions_obj,
+                            // compilerOptions: compilerOptions_obj,
                             // 默认值：'TODO'，高级选项，强制文件通过TypeScript编译器的不同实例。可用于强制分离代码的不同部分。
                             // instance: 'TODO',
                             // 默认值：RegExp[]，要与文件名匹配的正则表达式列表。如果文件名与正则表达式之一匹配，则将.ts或.tsx后缀附加到该文件名。
                             appendTsSuffixTo: [
-                                /\.vue$/i,
+                                /\.ts\.vue$/i,
                             ],
                             // 默认值：RegExp[]，要与文件名匹配的正则表达式列表。如果文件名与正则表达式之一匹配，则将.ts或.tsx后缀附加到该文件名。
                             // appendTsxSuffixTo: [],
@@ -3503,7 +3503,7 @@ let fs = require( 'fs' ),
     ForkTsCheckerWebpackPlugin_obj = {
         tsconfig: path.resolve( __dirname, './tsconfig.json' ),
         // 允许覆盖TypeScript options(编译选项compiler options，TypeScript选项应使用tsconfig.json文件设置)。应该以与“tsconfig.json”中的“compilerOptions”属性相同的格式指定。
-        compilerOptions: compilerOptions_obj,
+        // compilerOptions: compilerOptions_obj,
         // 可选值：true | undefined
         eslint: false,
         // eslintOptions: {},
@@ -3519,7 +3519,7 @@ let fs = require( 'fs' ),
             'src/components/**/*.{ts,tsx}',
             'src/js/**/*.{ts,tsx}',
             'src/vue/**/*.{ts,tsx}',
-            'src/vue/**/*.{vue}',
+            'src/vue/**/*.ts.vue',
             'src/webComponents/**/*.{ts,tsx}',
         ],
         // 数据类型是object，记录器实例。应该是实现方法的对象：error、warn、info，默认值：console。
@@ -3533,7 +3533,8 @@ let fs = require( 'fs' ),
         // 服务进程的内存限制，以MB为单位
         memoryLimit: 4096,
         vue: true,
-        // 如果为true，插件将使用TypeScript 2.7中引入的增量编译API。使用TypeScript 3+时默认为true，低于3时默认为false。可以通过直接指定值来覆盖默认值。不要将它与启用VueJs一起使用-它还不受支持。
+        // 如果为true，插件将使用TypeScript 2.7中引入的增量编译API。使用TypeScript 3+时默认为true，低于3时默认为false。
+        // 可以通过直接指定值来覆盖默认值。不要将它与启用VueJs一起使用-它还不受支持。
         useTypescriptIncrementalApi: true,
         // 如果为true，则插件将测量编译代码中花费的时间。这可能有助于比较模式，特别是在编译中涉及到其他加载程序/插件的情况下。需要Node.js>=8.5.0
         measureCompilationTime: true,
