@@ -247,10 +247,10 @@ let fs = require( 'fs' ),
         // 该标志在两种情况下很有用：
         // 1、您想将TypeScript转换为终端中构建链的一部分，该终端在下一条命令中处理文件名。
         // 2、您不确定TypeScript是否包含了所需的文件，这是调试文件包含设置的一部分。
-        'listEmittedFiles': true,
+        'listEmittedFiles': false,
         // 属于“有助于调试的标志”！！！
         // 打印文件名称的一部分。当您不确定TypeScript是否包含所需的文件时，此功能很有用。
-        'listFiles': true,
+        'listFiles': false,
         'locale': 'zh-CN',
         'mapRoot': './dist/',
         // 在节点模块下搜索和加载JavaScript文件的最大依赖深度。
@@ -299,7 +299,7 @@ let fs = require( 'fs' ),
         // 启用此选项后，对模块和包的引用（例如imports和/// <reference type="..." />指令）都是相对于符号链接文件的位置解析的，而不是相对于符号链接解析到的路径解析的。
         'preserveSymlinks': false,
         // 是否将过时的控制台输出保持在监视模式下，而不是每次发生更改时都清除屏幕。true，保留
-        'preserveWatchOutput': true,
+        'preserveWatchOutput': false,
         // 使用颜色和上下文对错误和消息进行样式化，默认情况下处于启用状态-使您有机会从编译器中获得较少的简洁单色消息。
         'pretty': true,
         'project': './tsconfig.json',
@@ -334,7 +334,7 @@ let fs = require( 'fs' ),
         'target': 'ES2020',
         // 属于“有助于调试的标志”！！！
         // 当您尝试调试未包含模块的原因时。您可以将traceResolutions设置为true，以使TypeScript打印有关每个已处理文件的解析过程的信息。
-        'traceResolution': true,
+        'traceResolution': false,
         'tsBuildInfoFile': './dist/TSBuildInfo.tsbuildinfo',
         'watch': true,
         'onlyRemoveTypeImports': true,
@@ -3033,7 +3033,7 @@ let fs = require( 'fs' ),
                             // 默认值：warn，可选值：info、warn、error
                             logLevel: 'error',
                             // 默认值：false，如果为true，则不会发出console.log消息。请注意，大多数错误消息都是通过webpack发出的，不受此标志的影响。
-                            silent: false,
+                            silent: true,
                             // 默认值：number[]，您可以通过指定要忽略的诊断代码数组来抑制某些TypeScript错误。
                             // ignoreDiagnostics: [],
                             // 仅报告与这些全局模式匹配的文件中的错误。当某些类型定义具有对您的应用程序不致命的错误时，这很有用。
@@ -3662,7 +3662,7 @@ let fs = require( 'fs' ),
         // 默认值：string[]，eslint规则名称列表，可忽略。
         // ignoreLints: [],
         // 如果为true，将忽略所有棉绒警告。
-        ignoreLintWarnings: false,
+        ignoreLintWarnings: true,
         // 仅报告与这些全局模式匹配的文件中的错误。当某些类型定义具有对您的应用程序不致命的错误时，这很有用。
         reportFiles: [
             'src/components/**/*.{ts,tsx}',
@@ -3677,7 +3677,7 @@ let fs = require( 'fs' ),
         // 数据类型是object，
         // formatterOptions: {},
         // 默认值：false，如果为true，则不会发出console.log消息。请注意，大多数错误消息都是通过webpack发出的，不受此标志的影响。
-        silent: false,
+        silent: true,
         checkSyntacticErrors: true,
         // 服务进程的内存限制，以MB为单位
         memoryLimit: 4096,

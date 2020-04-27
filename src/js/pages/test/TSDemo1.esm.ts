@@ -8,7 +8,7 @@
 
 'use strict';
 
-class TSDemo1{
+class PersonInfo{
 
     get firstName(): string{
         return this._firstName;
@@ -34,16 +34,36 @@ class TSDemo1{
         this._lastName = value;
     }
 
-    fullName: string;
+    get age(): number | undefined{
+        return this._age;
+    }
 
-    private _firstName: string;
-    private _middleInitial: string;
-    private _lastName: string;
+    set age( value: number | undefined ){
+        this._age = value;
+    }
 
-    constructor( firstName: string, middleInitial: string, lastName: string ){
+    get sex(): string{
+        return this._sex;
+    }
+
+    set sex( value: string ){
+        this._sex = value;
+    }
+
+    fullName: string = '';
+
+    private _firstName: string = '';
+    private _middleInitial: string = '';
+    private _lastName: string = '';
+    private _age: number | undefined = 0;
+    private _sex: string = '';
+
+    constructor( firstName: string, middleInitial: string, lastName: string, age: number, sex: string ){
         this._firstName = firstName;
         this._middleInitial = middleInitial;
         this._lastName = lastName;
+        this._age = age;
+        this._sex = sex;
 
         this.fullName = `${ firstName }${ middleInitial }${ lastName }`;
     }
@@ -54,12 +74,12 @@ interface Person{
     fullName: string;
 }
 
-function Greeter( person: Person ){
+function GetUserInfo( person: Person ){
     console.dir( person );
 
-    return `你好，${ person.fullName }！！！欢迎使用TypeScript！！！`;
+    return `${ person.fullName }，你好！欢迎使用TypeScript！！！`;
 }
 
-let user = new TSDemo1( '林', '沐', '风' );
+let userInfo = new PersonInfo( '林', '沐', '风', 26, '男' );
 
-console.dir( Greeter( user ) );
+console.log( GetUserInfo( userInfo ) );
