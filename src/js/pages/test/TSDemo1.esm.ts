@@ -330,7 +330,7 @@
 
         console.dir( Fun2( { name: 'sdf', } ) );
 
-        function Fun3( [ a = 0, b = 1, ] = [
+        function Fun3( [ a = 0, b = 1, ]: [ number, number ] = [
             2,
             3,
         ] ): Array<number>{
@@ -344,5 +344,27 @@
                                111,
                                222,
                            ] ) );
+        console.dir( Fun3() );
+        console.dir( Fun3( [
+                               999,
+                               888,
+                           ] ) );
+    }
+}
+
+{
+    if( false ){
+        function Fun1( n: number ){
+            if( n > 5 ){
+                return n;
+            }
+            else{
+                return 0;
+            }
+
+            return -1;
+        }
+
+        Fun1( 1 );
     }
 }
