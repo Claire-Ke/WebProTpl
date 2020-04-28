@@ -8,78 +8,339 @@
 
 'use strict';
 
-class PersonInfo{
+// 类
+{
+    if( false ){
+        class PersonInfo{
 
-    get firstName(): string{
-        return this._firstName;
+            get firstName(): string{
+                return this._firstName;
+            }
+
+            set firstName( value: string ){
+                this._firstName = value;
+            }
+
+            get middleInitial(): string{
+                return this._middleInitial;
+            }
+
+            set middleInitial( value: string ){
+                this._middleInitial = value;
+            }
+
+            get lastName(): string{
+                return this._lastName;
+            }
+
+            set lastName( value: string ){
+                this._lastName = value;
+            }
+
+            get age(): number | undefined{
+                return this._age;
+            }
+
+            set age( value: number | undefined ){
+                this._age = value;
+            }
+
+            get sex(): string{
+                return this._sex;
+            }
+
+            set sex( value: string ){
+                this._sex = value;
+            }
+
+            fullName: string = '';
+
+            private _firstName: string = '';
+            private _middleInitial: string = '';
+            private _lastName: string = '';
+            private _age: number | undefined = 0;
+            private _sex: string = '';
+
+            constructor( firstName: string, middleInitial: string, lastName: string, age: number, sex: string ){
+                this._firstName = firstName;
+                this._middleInitial = middleInitial;
+                this._lastName = lastName;
+                this._age = age;
+                this._sex = sex;
+
+                this.fullName = `${ firstName }${ middleInitial }${ lastName }`;
+            }
+
+        }
+
+        interface Person{
+            fullName: string;
+        }
+
+        function GetUserInfo( person: Person ){
+            console.dir( person );
+
+            return `${ person.fullName }，你好！欢迎使用TypeScript！！！`;
+        }
+
+        let userInfo = new PersonInfo( '林', '沐', '风', 26, '男' );
+
+        console.log( GetUserInfo( userInfo ) );
     }
-
-    set firstName( value: string ){
-        this._firstName = value;
-    }
-
-    get middleInitial(): string{
-        return this._middleInitial;
-    }
-
-    set middleInitial( value: string ){
-        this._middleInitial = value;
-    }
-
-    get lastName(): string{
-        return this._lastName;
-    }
-
-    set lastName( value: string ){
-        this._lastName = value;
-    }
-
-    get age(): number | undefined{
-        return this._age;
-    }
-
-    set age( value: number | undefined ){
-        this._age = value;
-    }
-
-    get sex(): string{
-        return this._sex;
-    }
-
-    set sex( value: string ){
-        this._sex = value;
-    }
-
-    fullName: string = '';
-
-    private _firstName: string = '';
-    private _middleInitial: string = '';
-    private _lastName: string = '';
-    private _age: number | undefined = 0;
-    private _sex: string = '';
-
-    constructor( firstName: string, middleInitial: string, lastName: string, age: number, sex: string ){
-        this._firstName = firstName;
-        this._middleInitial = middleInitial;
-        this._lastName = lastName;
-        this._age = age;
-        this._sex = sex;
-
-        this.fullName = `${ firstName }${ middleInitial }${ lastName }`;
-    }
-
 }
 
-interface Person{
-    fullName: string;
+// 数组
+{
+    if( false ){
+        let list1: number[] = [
+                1,
+                2,
+                3,
+            ],
+            list2: Array<string> = [
+                '人生自古谁无死',
+                '留取丹青照汗青',
+                '前不见古人',
+            ];
+        console.dir( list1 );
+        console.dir( list2 );
+    }
 }
 
-function GetUserInfo( person: Person ){
-    console.dir( person );
-
-    return `${ person.fullName }，你好！欢迎使用TypeScript！！！`;
+// 元组 Tuple
+{
+    if( false ){
+        let x: [ string, number ] = [
+            'hello',
+            10
+        ];
+        console.dir( x );
+    }
 }
 
-let userInfo = new PersonInfo( '林', '沐', '风', 26, '男' );
+// 枚举
+{
+    if( false ){
+        enum Color{
+            Green = '#00ff00',
+            Blue = '#0000ff',
+            Red = '#ff0000',
+        }
 
-console.log( GetUserInfo( userInfo ) );
+        let green: Color = Color.Green;
+        console.log( green );
+
+        enum Color1{
+            num1 = 5,
+            num2 = 10,
+            num3 = 15,
+            num4 = 20,
+        }
+
+        let color1Name: string = Color1[ 15 ];
+        console.log( color1Name );
+    }
+}
+
+// 任意值 any
+// 但是 Object 类型的变量，只是允许你给它赋任意值 - 但是却不能够在它上面调用任意的方法，即便它真的有这些方法：
+// 应避免使用 Object ，而是使用非原始 object 类型
+{
+    if( false ){
+        let data4Any: any = 2020;
+        console.log( data4Any );
+
+        data4Any = '万里悲秋常作客';
+        console.log( data4Any );
+
+        data4Any = false;
+        console.log( data4Any );
+
+        let number4Any: any = 2021.567899876789876543456778888;
+        console.log( number4Any.toFixed( 5 ) );
+
+        // 但是 Object 类型的变量，只是允许你给它赋任意值 - 但是却不能够在它上面调用任意的方法，即便它真的有这些方法：
+        // 应避免使用 Object ，而是使用非原始 object 类型
+        let obj4Any: object = {
+            name: '林沐风',
+            gName(){
+                return this.name;
+            },
+        };
+        console.log( obj4Any.gName() );
+
+        let list: any[] = [
+            1,
+            false,
+            'free',
+        ];
+        console.log( ...list );
+        list[ 1 ] = 100;
+        console.log( ...list );
+    }
+}
+
+// void空值类型
+{
+    if( false ){
+        let unusable1: void = undefined,
+            unusable2: null = null,
+            unusable3: undefined = undefined,
+            unusable4: undefined = void 0;
+
+        console.log( unusable1 );
+        console.log( unusable2 );
+        console.log( unusable3 );
+        console.log( unusable4 );
+    }
+}
+
+// 联合类型
+{
+    if( false ){
+        let str1: string | null | undefined = '身无彩凤双飞翼';
+        console.log( str1 );
+
+        str1 = null;
+        console.log( str1 );
+
+        str1 = undefined;
+        console.log( str1 );
+    }
+}
+
+// never类型表示的是那些永不存在的值的类型。never 类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型；
+// 变量也可能是 never 类型，当它们被永不为真的类型保护所约束时。never 类型是任何类型的子类型，也可以赋值给任何类型；
+// 然而，没有类型是 never 的子类型或可以赋值给 never 类型（除了 never 本身之外）。 即使 any 也不可以赋值给 never 。
+// 返回never的函数必须存在无法达到的终点
+{
+    if( false ){
+
+        function Fun1( str: string ): never{
+            throw new Error( str );
+        }
+
+        try{
+            Fun1( 'Error!!!Error!!!Error!!!' );
+        }
+        catch( e ){
+            console.error( e.message );
+        }
+
+        function Fail1(){
+            return new Error( 'Something failed' );
+        }
+
+        try{
+            Fail1();
+        }
+        catch( e ){
+            console.error( e.message );
+        }
+
+        // 返回never的函数必须存在无法达到的终点
+        /*
+         function Fun2(): never{
+         while( true ){
+         }
+         }
+         */
+
+    }
+}
+
+// object表示非原始类型，也就是除number，string，boolean，bigint，symbol，null或undefined之外的类型。
+// 使用 object 类型，就可以更好的表示像 Object.create 这样的API。
+{
+    if( false ){
+        // declare function create( o: object | null ): void;
+
+        // console.dir( create( { prop: 0 } ) );
+        // console.dir( create( null ) );
+
+        // Error
+        // create( 42 );
+    }
+}
+
+// 类型断言
+// 通过类型断言这种方式可以告诉编译器，“相信我，我知道自己在干什么”。
+// 类型断言有两种形式。 其一是“尖括号”语法：
+// 另一个为 as 语法：
+{
+    if( false ){
+        let someValue: any = 'this is a string';
+        let strLength1: number = ( <string> someValue ).length;
+        let strLength2: number = ( someValue as string ).length;
+
+        console.log( `strLength1--->${ strLength1 }` );
+        console.log( `strLength2--->${ strLength2 }` );
+    }
+}
+
+// 解构元组，元组可以像数组一样解构；解构后的变量获得对应元组元素的值：
+{
+    if( false ){
+        let tuple: [ number, string, boolean ] = [
+            7,
+            'hello',
+            false,
+        ];
+
+        let [ a, b, c, ] = tuple;
+
+        // 7 "hello" false
+        console.log( a, b, c );
+    }
+}
+
+// 函数参数的解构的默认值
+{
+    if( false ){
+        function Fun1( obj1: { name: string, age: number } = {
+            name: '',
+            age: 0
+        } ): object{
+            return obj1;
+        }
+
+        console.dir( Fun1( {
+                               name: '阿丁',
+                               age: 18,
+                           } ) );
+        console.dir( Fun1() );
+        console.dir( Fun1( {
+                               name: '汤圆',
+                               age: 12,
+                           } ) );
+
+        type type4Fun2 = { name: string, age?: number };
+
+        function Fun2( { name = 'qwe', age = 12 }: type4Fun2 = {
+            name: '',
+            age: 0
+        } ): object{
+            return {
+                name,
+                age
+            };
+        }
+
+        console.dir( Fun2( { name: 'sdf', } ) );
+
+        function Fun3( [ a = 0, b = 1, ] = [
+            2,
+            3,
+        ] ): Array<number>{
+            return [
+                a,
+                b,
+            ];
+        }
+
+        console.dir( Fun3( [
+                               111,
+                               222,
+                           ] ) );
+    }
+}
