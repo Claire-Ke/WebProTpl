@@ -418,60 +418,64 @@ let fs = require( 'fs' ),
          'not dead',
          */
 
-        'since 2015-01-01',
+        /*
+         'since 2015-01-01',
 
-        // Safari 10是首先完全支持ES6的浏览器(2016年7月)
-        'iOS >= 10',
-        'Safari >= 10',
+         // Safari 10是首先完全支持ES6的浏览器(2016年7月)
+         'iOS >= 10',
+         'Safari >= 10',
 
-        // Edge 14是首先完全支持ES6的浏览器(2016年8月)
-        'Edge >= 14',
+         // Edge 14是首先完全支持ES6的浏览器(2016年8月)
+         'Edge >= 14',
 
-        // 开始支持ES6的时间点(2018年8月)
-        'Opera >= 55',
-        'OperaMobile >= 55',
+         // 开始支持ES6的时间点(2018年8月)
+         'Opera >= 55',
+         'OperaMobile >= 55',
 
-        // 开始支持ES6的时间点(2017年1月)
-        'Chrome >= 58',
-        'Android >= 58',
-        'ChromeAndroid >= 58',
+         // 开始支持ES6的时间点(2017年1月)
+         'Chrome >= 58',
+         'Android >= 58',
+         'ChromeAndroid >= 58',
 
-        // 开始支持ES6的时间点(2017年3月)
-        'Firefox >= 54',
-        'FirefoxAndroid >= 54',
-        // 'Firefox ESR',
-        //
-        // 'Node >= 10',
-        //
-        // 'last 2 BlackBerry major versions',
-        // 'last 2 Electron major versions',
-        // 'last 2 OperaMini major versions',
-        // 'last 2 QQAndroid major versions',
-        // 'last 2 Samsung major versions',
-        // 'last 2 UCAndroid major versions',
-        // 'last 2 kaios major versions',
-        //
-        // 'not ie <= 11',
-        // 'not ie_mob <= 11',
+         // 开始支持ES6的时间点(2017年3月)
+         'Firefox >= 54',
+         'FirefoxAndroid >= 54',
+         // 'Firefox ESR',
+         //
+         // 'Node >= 10',
+         //
+         // 'last 2 BlackBerry major versions',
+         // 'last 2 Electron major versions',
+         // 'last 2 OperaMini major versions',
+         // 'last 2 QQAndroid major versions',
+         // 'last 2 Samsung major versions',
+         // 'last 2 UCAndroid major versions',
+         // 'last 2 kaios major versions',
+         //
+         // 'not ie <= 11',
+         // 'not ie_mob <= 11',
+         */
 
         // 以下只是用于自己设备上的浏览器
-        // 'iOS >= 13',
-        // 'Safari >= 13',
-        //
-        // 'Edge >= 81',
-        //
-        // 'Opera >= 68',
-        // 'OperaMobile >= 68',
-        //
-        // 'Chrome >= 81',
-        // 'Android >= 81',
-        // 'ChromeAndroid >= 81',
-        //
-        // 'Firefox >= 75',
-        // 'FirefoxAndroid >= 75',
+        /*
+         'iOS >= 13',
+         'Safari >= 13',
+
+         'Edge >= 81',
+
+         'Opera >= 68',
+         'OperaMobile >= 68',
+
+         'Chrome >= 81',
+         'Android >= 81',
+         'ChromeAndroid >= 81',
+
+         'Firefox >= 75',
+         'FirefoxAndroid >= 75',
+         */
 
         // 专门在最新稳定版本的谷歌浏览器上测试用
-        // 'Chrome >= 81',
+        'Chrome >= 81',
     ],
     postCSSLoader_fun = isPro => {
         let obj = {
