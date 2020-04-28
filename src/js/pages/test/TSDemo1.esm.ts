@@ -164,9 +164,11 @@
         let obj4Any: object = {
             name: '林沐风',
             gName(){
+                // @ts-ignore
                 return this.name;
             },
         };
+        // @ts-ignore
         console.log( obj4Any.gName() );
 
         let list: any[] = [
