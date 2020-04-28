@@ -2207,19 +2207,22 @@ let fs = require( 'fs' ),
                         transform: 'constObject',
                     }
                 ],
-                [
-                    '@babel/plugin-transform-typescript',
-                    {
-                        isTSX: false,
-                        // jsxPragma: 'React',
-                        // 默认值就是：false
-                        allowNamespaces: true,
-                        // 默认值就是：false
-                        allowDeclareFields: true,
-                        // 默认值就是：false
-                        onlyRemoveTypeImports: true,
-                    }
-                ],
+                /*
+                 // 用了它会在生产环境的模式(production)下，报跟vue有关的警告！！！
+                 [
+                 '@babel/plugin-transform-typescript',
+                 {
+                 isTSX: false,
+                 // jsxPragma: 'React',
+                 // 默认值就是：false
+                 allowNamespaces: true,
+                 // 默认值就是：false
+                 allowDeclareFields: true,
+                 // 默认值就是：false
+                 onlyRemoveTypeImports: true,
+                 }
+                 ],
+                 */
 
                 /*ES6+提案语法转换插件 Start*/
                 [ 'babel-plugin-transform-typescript-metadata' ],

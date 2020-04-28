@@ -120,8 +120,8 @@
 
 // 枚举
 {
-    if( false ){
-        enum Color{
+    if( true ){
+        const enum Color{
             Green = '#00ff00',
             Blue = '#0000ff',
             Red = '#ff0000',
