@@ -2542,10 +2542,13 @@ let fs = require( 'fs' ),
         return plug_arr;
     },
     moduleRules_fun = ( { path, __dirname, isPro, MiniCSSExtractPlugin, noTest_boo, isESM_boo, } ) => {
+        // 注意这些个“loader”是否都有"esModule: false"这个配置项！！！有的默认值是false，有的是true！！！
+
         let obj = {
             hmr: !isPro,
             // reloadAll isPro为true时去掉这个选项
             // reloadAll: false,
+            esModule: false,
         };
 
         !isPro && ( obj.reloadAll = true );
@@ -2568,7 +2571,7 @@ let fs = require( 'fs' ),
                                 minifyCSS: isPro,
                                 minifyJS: isPro,
                                 removeAttributeQuotes: false,
-                                removeComments: isPro,
+                                removeComments: true,
                                 removeEmptyAttributes: false,
                                 removeEmptyElements: false,
                                 removeOptionalTags: false,
@@ -2656,6 +2659,7 @@ let fs = require( 'fs' ),
                             url: true,
                             import: true,
                             importLoaders: 1,
+                            esModule: false,
                         },
                     },
                     postCSSLoader_fun( isPro ),
@@ -2706,6 +2710,7 @@ let fs = require( 'fs' ),
                             url: true,
                             import: true,
                             importLoaders: 2,
+                            esModule: false,
                         }
                     },
                     postCSSLoader_fun( isPro ),
@@ -2773,6 +2778,7 @@ let fs = require( 'fs' ),
                             url: true,
                             import: true,
                             importLoaders: 2,
+                            esModule: false,
                         },
                     },
                     postCSSLoader_fun( isPro ),
@@ -2820,13 +2826,19 @@ let fs = require( 'fs' ),
             {
                 test: /\.sass$/i,
                 use: [
-                    { loader: 'style-loader' },
+                    {
+                        loader: 'style-loader',
+                        options: {
+                            esModule: false,
+                        }
+                    },
                     {
                         loader: 'css-loader',
                         options: {
                             url: true,
                             import: true,
                             importLoaders: 2,
+                            esModule: false,
                         }
                     },
                     postCSSLoader_fun( isPro ),
@@ -3221,7 +3233,12 @@ let fs = require( 'fs' ),
                 test: /\.json5$/i,
                 type: 'javascript/auto',
                 use: [
-                    { loader: 'json5-loader' },
+                    {
+                        loader: 'json5-loader',
+                        options: {
+                            esModule: true,
+                        },
+                    },
                 ],
                 include: [
                     path.resolve( __dirname, './src/assets/doc/json5/' ),

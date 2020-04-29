@@ -90,6 +90,7 @@ module.exports = {
             // chunkhash hash contenthash
             filename: 'styles/[name]_[contenthash:6].css',
             chunkFilename: 'styles/[name]_chunk_[contenthash:6].css',
+            esModule: false,
         } ),
         new copyWebpackPlugin( baseConfig.copyWebpackPluginConfig_arr ),
         new AssetsWebpackPlugin( Object.assign( {}, baseConfig.AssetsWebpackPluginOption_obj, {
