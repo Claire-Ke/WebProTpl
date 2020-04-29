@@ -30,34 +30,10 @@ let isPro = process.argv[ 3 ] === 'production',
         poolParallelJobs: 50,
         // 池的名称可用于创建其他具有相同选项的不同池
         name: 'jsWorkerPool',
-    },
-    tsWorkerPool = {
-        // 生成的工作进程数，默认为（ os.cpus().length-1 ），fallback to 1 when require('os').cpus() is undefined
-        workers: osLen,
-        // 一个工人并行处理的作业数默认为20
-        workerParallelJobs: 20,
-        // 其他的node.js参数
-        workerNodeArgs: [ '--max-old-space-size=1024' ],
-        // 允许重新生成一个已死亡的工人池，重新生成会减慢整个编译速度，并且应设置为false以进行开发
-        poolRespawn: false,
-        // 空闲默认值为500（ms）时终止工作进程的超时，可以设置为无穷大，以便监视生成以保持工作进程的活动性
-        // Infinity：可用于开发模式
-        // 2000
-        poolTimeout: isPro
-                     ? 2000
-                     : Infinity,
-        // 投票分配给工人的工作岗位数量默认为200个，分配效率较低但更公平
-        poolParallelJobs: 50,
-        // 池的名称可用于创建其他具有相同选项的不同池
-        name: 'tsWorkerPool',
     };
 
 threadLoader.warmup( jsWorkerPool, [
     'babel-loader',
-] );
-threadLoader.warmup( tsWorkerPool, [
-    'babel-loader',
-    'ts-loader',
 ] );
 
 let fs = require( 'fs' ),
@@ -3303,10 +3279,6 @@ let fs = require( 'fs' ),
                 test: /\.ts(x?)$/i,
                 use: [
                     {
-                        loader: 'thread-loader',
-                        options: tsWorkerPool,
-                    },
-                    {
                         loader: 'babel-loader',
                         options: {
                             cacheDirectory: !isPro,
@@ -3777,7 +3749,7 @@ let fs = require( 'fs' ),
                 // sideEffects: true,
             },
             {
-                test: /\.(wmv|asf|asx|rmvb|mp4|3gp|mov|m4v|avi|dat|mkv|flv|vob|mod|mng|mpg|ts|3gpp|ogg|webm)$/i,
+                test: /\.(wmv|asf|asx|rmvb|mp4|3gp|mov|m4v|avi|dat|mkv|flv|vob|mod|mng|mpg|3gpp|ogg|webm)$/i,
                 use: [
                     {
                         loader: 'file-loader',

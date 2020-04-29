@@ -53,5 +53,8 @@ IDE: WebStorm
 <script type = 'module'>
     'use strict';
 
-    export TopActionBar, { default } from 'vueMDir/daMeng/TopActionBar.esm.js';
+    export {
+        default,
+        default as TopActionBar,
+    } from 'vueMDir/daMeng/TopActionBar.esm.js';
 </script>
