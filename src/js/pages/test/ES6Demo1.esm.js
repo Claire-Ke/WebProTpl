@@ -945,3 +945,16 @@ let CT = new CTESM.CT();
          console.log( result1 );*/
     }
 }
+
+// 在.js文件中加载.ts文件测试
+{
+    if( false ){
+        import('jsPDir/test/JSModulesA.esm.js').then( ( { JSModulesA } ) => {
+            console.log( new JSModulesA().getName() );
+        } );
+
+        import('jsPDir/test/TSModulesA.esm.ts').then( ( { TSModulesA } ) => {
+            console.log( new TSModulesA().getName() );
+        } );
+    }
+}

@@ -2,7 +2,7 @@
  * Project: WebProTpl
  * Author：12278
  * Email：2726893248@qq.com
- * CreateDate：2020-04-27 23:23:27
+ * CreateDate：2019-01-01 00:00:00
  * IDE: WebStorm
  */
 
@@ -318,6 +318,7 @@
 
         type type4Fun2 = { name: string, age?: number };
 
+        // @ts-ignore
         function Fun2( { name = 'qwe', age = 12 }: type4Fun2 = {
             name: '',
             age: 0
@@ -366,5 +367,18 @@
         }
 
         Fun1( 1 );
+    }
+}
+
+// 在.ts文件中加载.js文件测试
+{
+    if( false ){
+        import('jsPDir/test/JSModulesA.esm.js').then( ( { JSModulesA } ) => {
+            console.log( new JSModulesA().getName() );
+        } );
+
+        import('jsPDir/test/TSModulesA.esm.ts').then( ( { TSModulesA } ) => {
+            console.log( new TSModulesA().getName() );
+        } );
     }
 }

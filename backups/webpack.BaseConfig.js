@@ -72,7 +72,7 @@ let fs = require( 'fs' ),
         // ES3、ES5、ES6、ES2015、ES7、ES2016、ES2017(Node 8)、ES2018(Node 10)、ES2019(Node 12)、ES2020、ESNext
         'target': 'ES2020',
         // CommonJS(default if target is ES3 or ES5)、ES6、ES2015、ES2020、None、UMD、AMD、System、ESNext
-        'module': 'ES2015',
+        'module': 'ES2020',
         /*
          'lib': [
          'ES5',
@@ -199,6 +199,9 @@ let fs = require( 'fs' ),
             'jQuery': [
                 'node_modules/jquery/dist/jquery.min.js'
             ],
+            '$': [
+                'node_modules/jquery/dist/jquery.min.js'
+            ],
             'Swiper': [
                 'node_modules/swiper/js/swiper.min.js'
             ],
@@ -213,6 +216,216 @@ let fs = require( 'fs' ),
             ],
             'tslib': [
                 'node_modules/tslib/tslib.es6.js'
+            ],
+            'CompESM': [
+                'src/components/Components.esm.js'
+            ],
+            'CTESM': [
+                'src/js/tools/CurrencyTools.esm.js'
+            ],
+            'DecESM': [
+                'src/js/tools/Decorator4ES6.esm.js'
+            ],
+            'HTML2C4ESM': [
+                'src/js/tools/HTML2Canvas.esm.js'
+            ],
+            'WebCESM': [
+                'src/js/tools/WebComponents.esm.js'
+            ],
+            'WorkersESM': [
+                'src/js/tools/Workers4MT.esm.js'
+            ],
+            'configDir/*': [
+                'configures/*'
+            ],
+            'jsonDir/*': [
+                'src/assets/doc/json/*'
+            ],
+            'json5Dir/*': [
+                'src/assets/doc/json5/*'
+            ],
+            'txtDir/*': [
+                'src/assets/doc/txt/*'
+            ],
+            'xmlDir/*': [
+                'src/assets/doc/xml/*'
+            ],
+            'fontsDir/*': [
+                'src/assets/fonts/*'
+            ],
+            'imgDir/*': [
+                'src/assets/img/*'
+            ],
+            'musicDir/*': [
+                'src/assets/music/*'
+            ],
+            'videosDir/*': [
+                'src/assets/videos/*'
+            ],
+            'compDir/*': [
+                'src/components/*'
+            ],
+            'jsDir/*': [
+                'src/js/*'
+            ],
+            'jsMDir/*': [
+                'src/js/modules/*'
+            ],
+            'jsPDir/*': [
+                'src/js/pages/*'
+            ],
+            'jsPubDir/*': [
+                'src/js/public/*'
+            ],
+            'jsTDir/*': [
+                'src/js/tools/*'
+            ],
+            'manifestDir/*': [
+                'src/pwa4Manifest/*'
+            ],
+            'cssDir/*': [
+                'src/styles/css/*'
+            ],
+            'cssBDir/*': [
+                'src/styles/css/basic/*'
+            ],
+            'cssMDir/*': [
+                'src/styles/css/modules/*'
+            ],
+            'cssPDir/*': [
+                'src/styles/css/pages/*'
+            ],
+            'cssPubDir/*': [
+                'src/styles/css/public/*'
+            ],
+            'lessDir/*': [
+                'src/styles/less/*'
+            ],
+            'lessBDir/*': [
+                'src/styles/less/basic/*'
+            ],
+            'lessMDir/*': [
+                'src/styles/less/modules/*'
+            ],
+            'lessPDir/*': [
+                'src/styles/less/pages/*'
+            ],
+            'lessPubDir/*': [
+                'src/styles/less/public/*'
+            ],
+            'sassDir/*': [
+                'src/styles/sass/*'
+            ],
+            'sassBDir/*': [
+                'src/styles/sass/basic/*'
+            ],
+            'sassMDir/*': [
+                'src/styles/sass/modules/*'
+            ],
+            'sassPDir/*': [
+                'src/styles/sass/pages/*'
+            ],
+            'sassPubDir/*': [
+                'src/styles/sass/public/*'
+            ],
+            'scssDir/*': [
+                'src/styles/scss/*'
+            ],
+            'scssBDir/*': [
+                'src/styles/scss/basic/*'
+            ],
+            'scssMDir/*': [
+                'src/styles/scss/modules/*'
+            ],
+            'scssPDir/*': [
+                'src/styles/scss/pages/*'
+            ],
+            'scssPubDir/*': [
+                'src/styles/scss/public/*'
+            ],
+            'tplEJSDir/*': [
+                'src/tplEJS/*'
+            ],
+            'tplEJSBDir/*': [
+                'src/tplEJS/basic/*'
+            ],
+            'tplEJSMLDir/*': [
+                'src/tplEJS/basic/metaLink/*'
+            ],
+            'tplEJSMDir/*': [
+                'src/tplEJS/modules/*'
+            ],
+            'tplEJSPDir/*': [
+                'src/tplEJS/pages/*'
+            ],
+            'tplEJSPubDir/*': [
+                'src/tplEJS/public/*'
+            ],
+            'tplHTMLDir/*': [
+                'src/tplHTML/*'
+            ],
+            'tplHTMLBDir/*': [
+                'src/tplHTML/basic/*'
+            ],
+            'tplHTMLMDir/*': [
+                'src/tplHTML/modules/*'
+            ],
+            'tplHTMLPDir/*': [
+                'src/tplHTML/pages/*'
+            ],
+            'tplHTMLPubDir/*': [
+                'src/tplHTML/public/*'
+            ],
+            'vueDir/*': [
+                'src/vue/*'
+            ],
+            'vueCompDir/*': [
+                'src/vue/components/*'
+            ],
+            'vueMDir/*': [
+                'src/vue/models/*'
+            ],
+            'vueRDir/*': [
+                'src/vue/routers/*'
+            ],
+            'vueSDir/*': [
+                'src/vue/stores/*'
+            ],
+            'vueStyDir/*': [
+                'src/vue/styles/*'
+            ],
+            'vueVDir/*': [
+                'src/vue/views/*'
+            ],
+            'wasmDir/*': [
+                'src/wasm/*'
+            ],
+            'wasmBDir/*': [
+                'src/wasm/basic/*'
+            ],
+            'wasmMDir/*': [
+                'src/wasm/modules/*'
+            ],
+            'wasmPDir/*': [
+                'src/wasm/pages/*'
+            ],
+            'wasmPubDir/*': [
+                'src/wasm/public/*'
+            ],
+            'webCDir/*': [
+                'src/webComponents/*'
+            ],
+            'serviceWorkersDir/*': [
+                'src/workers/serviceWorkers/*'
+            ],
+            'sWorkersDir/*': [
+                'src/workers/sharedWorkers/*'
+            ],
+            'tWorkersDir/*': [
+                'src/workers/tools/*'
+            ],
+            'wWorkersDir/*': [
+                'src/workers/webWorkers/*'
             ]
         },
         'typeRoots': [
