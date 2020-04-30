@@ -1,4 +1,4 @@
-let obj = {
+const TSConfig_objC = {
     'compileOnSave': true,
     // 指定要包含在程序中的文件的允许列表。如果找不到任何文件，则会发生错误。
     // 当您只有少量文件并且不需要使用glob来引用许多文件时，此功能非常有用。如果需要，请使用include。

@@ -3075,152 +3075,6 @@ let fs = require( 'fs' ),
             },
 
             {
-                test: /\.(js|mjs|cjs)$/i,
-                // 'javascript/auto' | 'javascript/dynamic' | 'javascript/esm' | 'json'
-                // 'webassembly/sync' | 'webassembly/async'(webpack 5) | 'webassembly/experimental'(webpack 4)
-                // 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'
-                type: 'javascript/auto',
-                parser: {
-                    // true启用 false禁用
-                    // 启用 CommonJS
-                    commonjs: true,
-                    // 启用 ES2015 Harmony import/export
-                    harmony: true,
-                    // 禁用 AMD
-                    // amd: false,
-                    // 禁用 SystemJS
-                    // system: false,
-                    // 禁用 require.include
-                    // requireInclude: false,
-                    // 禁用 require.ensure
-                    // requireEnsure: false,
-                    // 禁用 require.context
-                    // requireContext: false,
-                    // 禁用特殊处理的 browserify bundle
-                    // browserify: false,
-                    // 禁用 requirejs.*
-                    // requireJs: false,
-                    // 禁用 __dirname, __filename, module, require.extensions, require.main 等。
-                    // node: false
-                    // 或 node: {} 在模块级别(module level)上重新配置 node 层(layer)
-                },
-                use: [
-                    {
-                        loader: 'thread-loader',
-                        options: jsWorkerPool,
-                    },
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            cacheDirectory: !isPro,
-                            presets: babelPresets_fun( isPro, noTest_boo ),
-                            plugins: babelPlugins_fun( isPro, noTest_boo, isESM_boo ),
-                        },
-                    },
-                ],
-                include: [
-                    path.resolve( __dirname, './src/components/' ),
-                    path.resolve( __dirname, './src/js/' ),
-                    path.resolve( __dirname, './src/vue/' ),
-                    path.resolve( __dirname, './src/webComponents/' ),
-                ],
-                exclude: [
-                    path.resolve( __dirname, './assistTools/' ),
-                    path.resolve( __dirname, './backups/' ),
-                    path.resolve( __dirname, './bats/' ),
-                    path.resolve( __dirname, './configures/' ),
-                    path.resolve( __dirname, './dist/' ),
-                    path.resolve( __dirname, './node_modules/' ),
-                    path.resolve( __dirname, './notes/' ),
-                    path.resolve( __dirname, './simServer/' ),
-                    path.resolve( __dirname, './webpackRecords/' ),
-
-                    path.resolve( __dirname, './src/assets/' ),
-                    path.resolve( __dirname, './src/pwa4Manifest/' ),
-                    path.resolve( __dirname, './src/static/' ),
-                    path.resolve( __dirname, './src/styles/' ),
-                    path.resolve( __dirname, './src/tplEJS/' ),
-                    path.resolve( __dirname, './src/tplHTML/' ),
-                    path.resolve( __dirname, './src/wasm/' ),
-                    path.resolve( __dirname, './src/workers/' ),
-                ],
-                // sideEffects: true,
-            },
-            // src/workers下的.js文件的特殊处理
-            {
-                test: /\.(js)$/i,
-                // 'javascript/auto' | 'javascript/dynamic' | 'javascript/esm' | 'json'
-                // 'webassembly/sync' | 'webassembly/async'(webpack 5) | 'webassembly/experimental'(webpack 4)
-                // 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'
-                type: 'javascript/auto',
-                parser: {
-                    // true启用 false禁用
-                    // 启用 CommonJS
-                    commonjs: true,
-                    // 启用 ES2015 Harmony import/export
-                    harmony: true,
-                    // 禁用 AMD
-                    // amd: false,
-                    // 禁用 SystemJS
-                    // system: false,
-                    // 禁用 require.include
-                    // requireInclude: false,
-                    // 禁用 require.ensure
-                    // requireEnsure: false,
-                    // 禁用 require.context
-                    // requireContext: false,
-                    // 禁用特殊处理的 browserify bundle
-                    // browserify: false,
-                    // 禁用 requirejs.*
-                    // requireJs: false,
-                    // 禁用 __dirname, __filename, module, require.extensions, require.main 等。
-                    // node: false
-                    // 或 node: {} 在模块级别(module level)上重新配置 node 层(layer)
-                },
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            // chunkhash hash contenthash
-                            name: `[name]_[${ isPro
-                                              ? 'contenthash'
-                                              : 'contenthash' }:6].worker.js`,
-                            // publicPath: '../',
-                            outputPath: './workers/',
-                            esModule: false,
-                        },
-                    },
-                ],
-                include: [
-                    path.resolve( __dirname, './src/workers/' ),
-                ],
-                exclude: [
-                    path.resolve( __dirname, './assistTools/' ),
-                    path.resolve( __dirname, './backups/' ),
-                    path.resolve( __dirname, './bats/' ),
-                    path.resolve( __dirname, './configures/' ),
-                    path.resolve( __dirname, './dist/' ),
-                    path.resolve( __dirname, './node_modules/' ),
-                    path.resolve( __dirname, './notes/' ),
-                    path.resolve( __dirname, './simServer/' ),
-                    path.resolve( __dirname, './webpackRecords/' ),
-
-                    path.resolve( __dirname, './src/assets/' ),
-                    path.resolve( __dirname, './src/components/' ),
-                    path.resolve( __dirname, './src/js/' ),
-                    path.resolve( __dirname, './src/pwa4Manifest/' ),
-                    path.resolve( __dirname, './src/static/' ),
-                    path.resolve( __dirname, './src/styles/' ),
-                    path.resolve( __dirname, './src/tplEJS/' ),
-                    path.resolve( __dirname, './src/tplHTML/' ),
-                    path.resolve( __dirname, './src/vue/' ),
-                    path.resolve( __dirname, './src/wasm/' ),
-                    path.resolve( __dirname, './src/webComponents/' ),
-                ],
-                // sideEffects: true,
-            },
-
-            {
                 test: /\.vue$/i,
                 use: [
                     {
@@ -3367,6 +3221,152 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/wasm/' ),
                     path.resolve( __dirname, './src/workers/' ),
                 ],
+            },
+
+            {
+                test: /\.(js|mjs|cjs)$/i,
+                // 'javascript/auto' | 'javascript/dynamic' | 'javascript/esm' | 'json'
+                // 'webassembly/sync' | 'webassembly/async'(webpack 5) | 'webassembly/experimental'(webpack 4)
+                // 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'
+                type: 'javascript/auto',
+                parser: {
+                    // true启用 false禁用
+                    // 启用 CommonJS
+                    commonjs: true,
+                    // 启用 ES2015 Harmony import/export
+                    harmony: true,
+                    // 禁用 AMD
+                    // amd: false,
+                    // 禁用 SystemJS
+                    // system: false,
+                    // 禁用 require.include
+                    // requireInclude: false,
+                    // 禁用 require.ensure
+                    // requireEnsure: false,
+                    // 禁用 require.context
+                    // requireContext: false,
+                    // 禁用特殊处理的 browserify bundle
+                    // browserify: false,
+                    // 禁用 requirejs.*
+                    // requireJs: false,
+                    // 禁用 __dirname, __filename, module, require.extensions, require.main 等。
+                    // node: false
+                    // 或 node: {} 在模块级别(module level)上重新配置 node 层(layer)
+                },
+                use: [
+                    {
+                        loader: 'thread-loader',
+                        options: jsWorkerPool,
+                    },
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            cacheDirectory: !isPro,
+                            presets: babelPresets_fun( isPro, noTest_boo ),
+                            plugins: babelPlugins_fun( isPro, noTest_boo, isESM_boo ),
+                        },
+                    },
+                ],
+                include: [
+                    path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/js/' ),
+                    path.resolve( __dirname, './src/vue/' ),
+                    path.resolve( __dirname, './src/webComponents/' ),
+                ],
+                exclude: [
+                    path.resolve( __dirname, './assistTools/' ),
+                    path.resolve( __dirname, './backups/' ),
+                    path.resolve( __dirname, './bats/' ),
+                    path.resolve( __dirname, './configures/' ),
+                    path.resolve( __dirname, './dist/' ),
+                    path.resolve( __dirname, './node_modules/' ),
+                    path.resolve( __dirname, './notes/' ),
+                    path.resolve( __dirname, './simServer/' ),
+                    path.resolve( __dirname, './webpackRecords/' ),
+
+                    path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/pwa4Manifest/' ),
+                    path.resolve( __dirname, './src/static/' ),
+                    path.resolve( __dirname, './src/styles/' ),
+                    path.resolve( __dirname, './src/tplEJS/' ),
+                    path.resolve( __dirname, './src/tplHTML/' ),
+                    path.resolve( __dirname, './src/wasm/' ),
+                    path.resolve( __dirname, './src/workers/' ),
+                ],
+                // sideEffects: true,
+            },
+            // src/workers下的.js文件的特殊处理
+            {
+                test: /\.(js)$/i,
+                // 'javascript/auto' | 'javascript/dynamic' | 'javascript/esm' | 'json'
+                // 'webassembly/sync' | 'webassembly/async'(webpack 5) | 'webassembly/experimental'(webpack 4)
+                // 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'
+                type: 'javascript/auto',
+                parser: {
+                    // true启用 false禁用
+                    // 启用 CommonJS
+                    commonjs: true,
+                    // 启用 ES2015 Harmony import/export
+                    harmony: true,
+                    // 禁用 AMD
+                    // amd: false,
+                    // 禁用 SystemJS
+                    // system: false,
+                    // 禁用 require.include
+                    // requireInclude: false,
+                    // 禁用 require.ensure
+                    // requireEnsure: false,
+                    // 禁用 require.context
+                    // requireContext: false,
+                    // 禁用特殊处理的 browserify bundle
+                    // browserify: false,
+                    // 禁用 requirejs.*
+                    // requireJs: false,
+                    // 禁用 __dirname, __filename, module, require.extensions, require.main 等。
+                    // node: false
+                    // 或 node: {} 在模块级别(module level)上重新配置 node 层(layer)
+                },
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            // chunkhash hash contenthash
+                            name: `[name]_[${ isPro
+                                              ? 'contenthash'
+                                              : 'contenthash' }:6].worker.js`,
+                            // publicPath: '../',
+                            outputPath: './workers/',
+                            esModule: false,
+                        },
+                    },
+                ],
+                include: [
+                    path.resolve( __dirname, './src/workers/' ),
+                ],
+                exclude: [
+                    path.resolve( __dirname, './assistTools/' ),
+                    path.resolve( __dirname, './backups/' ),
+                    path.resolve( __dirname, './bats/' ),
+                    path.resolve( __dirname, './configures/' ),
+                    path.resolve( __dirname, './dist/' ),
+                    path.resolve( __dirname, './node_modules/' ),
+                    path.resolve( __dirname, './notes/' ),
+                    path.resolve( __dirname, './simServer/' ),
+                    path.resolve( __dirname, './webpackRecords/' ),
+
+                    path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/js/' ),
+                    path.resolve( __dirname, './src/pwa4Manifest/' ),
+                    path.resolve( __dirname, './src/static/' ),
+                    path.resolve( __dirname, './src/styles/' ),
+                    path.resolve( __dirname, './src/tplEJS/' ),
+                    path.resolve( __dirname, './src/tplHTML/' ),
+                    path.resolve( __dirname, './src/vue/' ),
+                    path.resolve( __dirname, './src/wasm/' ),
+                    path.resolve( __dirname, './src/webComponents/' ),
+                ],
+                // sideEffects: true,
             },
 
             {
