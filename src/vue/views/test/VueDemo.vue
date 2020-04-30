@@ -61,5 +61,8 @@ IDE: WebStorm
 <script type = 'module'>
     'use strict';
 
-    export VueDemo, { default } from 'vueMDir/test/VueDemo.esm.js';
+    export {
+        default,
+        default as VueDemo,
+    } from 'vueMDir/test/VueDemo.esm.js';
 </script>

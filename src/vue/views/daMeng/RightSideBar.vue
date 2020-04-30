@@ -81,5 +81,8 @@ IDE: WebStorm
 <script type = 'module'>
     'use strict';
 
-    export RightSideBar, { default } from 'vueMDir/daMeng/RightSideBar.esm.js';
+    export {
+        default,
+        default as RightSideBar,
+    } from 'vueMDir/daMeng/RightSideBar.esm.js';
 </script>

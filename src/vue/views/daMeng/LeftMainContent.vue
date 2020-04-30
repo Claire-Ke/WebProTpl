@@ -34,5 +34,8 @@ IDE: WebStorm
 <script type = 'module'>
     'use strict';
 
-    export LeftMainContent, { default } from 'vueMDir/daMeng/LeftMainContent.esm.js';
+    export {
+        default,
+        default as LeftMainContent,
+    } from 'vueMDir/daMeng/LeftMainContent.esm.js';
 </script>

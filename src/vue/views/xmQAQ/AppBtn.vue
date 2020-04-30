@@ -20,5 +20,8 @@ IDE: WebStorm
 <script type = 'module'>
     'use strict';
 
-    export AppBtn, { default } from 'vueMDir/xmQAQ/AppBtn.esm.js';
+    export {
+        default,
+        default as AppBtn,
+    } from 'vueMDir/xmQAQ/AppBtn.esm.js';
 </script>

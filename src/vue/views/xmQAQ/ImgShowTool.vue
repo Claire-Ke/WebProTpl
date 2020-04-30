@@ -47,5 +47,8 @@ IDE: WebStorm
 <script type = 'module'>
     'use strict';
 
-    export ImgShowTool, { default } from 'vueMDir/xmQAQ/ImgShowTool.esm.js';
+    export {
+        default,
+        default as ImgShowTool,
+    } from 'vueMDir/xmQAQ/ImgShowTool.esm.js';
 </script>
