@@ -109,7 +109,7 @@ module.exports = {
     profile: true,
     performance: baseConfig.performance_obj,
     recordsPath: baseConfig.recordsPath_fun( 'devServer' ),
-    // stats: baseConfig.stats_obj,
+    stats: baseConfig.stats_obj,
     devServer: {
         contentBase: path.join( __dirname, './dist/devServer/' ),
         publicPath: `http://${ webProHost_str }:${ webProPort_num }/${ webProName_str }${ publicPath_str }`,
