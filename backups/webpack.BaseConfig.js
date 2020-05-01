@@ -76,7 +76,7 @@ let fs = require( 'fs' ),
         'lib': [
             // 'ES5',
             // 'ES6',
-            'lib.es2015',
+            'lib.es2015.d.ts',
             // 'ES7',
             // 'ES2016',
             // 'ES2017',
