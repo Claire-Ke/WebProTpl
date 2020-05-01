@@ -10,7 +10,23 @@
 let isPro = process.argv[ 3 ] === 'production',
     os = require( 'os' ),
     osLen = os.cpus().length,
+    // 将此装载机放在其他装载机的前面。以下加载程序在工作池中运行。
+    // 在工作池中运行的装载程序受到限制。例子：
+    // 1、加载程序无法发出文件。
+    // 2、加载程序无法使用自定义加载程序API（即通过插件）。
+    // 3、加载程序无法访问webpack选项。
+    // PS：
+    // 1、只能将此装载机用于昂贵的操作！
+    // 2、每个工作程序都是一个单独的node.js进程，其开销约为600毫秒。进程间通信也有开销。
     threadLoader = require( 'thread-loader' ),
+    // 将此装载机放在其他装载机的前面。以下加载程序在工作池中运行。
+    // 在工作池中运行的装载程序受到限制。例子：
+    // 1、加载程序无法发出文件。
+    // 2、加载程序无法使用自定义加载程序API（即通过插件）。
+    // 3、加载程序无法访问webpack选项。
+    // PS：
+    // 1、只能将此装载机用于昂贵的操作！
+    // 2、每个工作程序都是一个单独的node.js进程，其开销约为600毫秒。进程间通信也有开销。
     jsWorkerPool = {
         // 生成的工作进程数，默认为（ os.cpus().length-1 ），fallback to 1 when require('os').cpus() is undefined
         workers: osLen,
@@ -22,9 +38,9 @@ let isPro = process.argv[ 3 ] === 'production',
         poolRespawn: false,
         // 空闲默认值为500（ms）时终止工作进程的超时，可以设置为无穷大，以便监视生成以保持工作进程的活动性
         // Infinity：可用于开发模式
-        // 2000
+        // 600000ms也就是10分钟
         poolTimeout: isPro
-                     ? 2000
+                     ? 600000
                      : Infinity,
         // 投票分配给工人的工作岗位数量默认为200个，分配效率较低但更公平
         poolParallelJobs: 50,
@@ -32,6 +48,14 @@ let isPro = process.argv[ 3 ] === 'production',
         name: 'jsWorkerPool',
     };
 
+// 将此装载机放在其他装载机的前面。以下加载程序在工作池中运行。
+// 在工作池中运行的装载程序受到限制。例子：
+// 1、加载程序无法发出文件。
+// 2、加载程序无法使用自定义加载程序API（即通过插件）。
+// 3、加载程序无法访问webpack选项。
+// PS：
+// 1、只能将此装载机用于昂贵的操作！
+// 2、每个工作程序都是一个单独的node.js进程，其开销约为600毫秒。进程间通信也有开销。
 threadLoader.warmup( jsWorkerPool, [
     'babel-loader',
 ] );
@@ -666,43 +690,193 @@ let fs = require( 'fs' ),
         // 专门在最新稳定版本的谷歌浏览器上测试用
         'Chrome >= 81',
     ],
-    postCSSLoader_fun = isPro => {
-        let obj = {
-            precision: 10,
-            mediaQueries: true,
-            selectors: true,
-        };
+    postCSSLoader_fun = isPro => ( {
+        loader: 'postcss-loader',
+        options: {
+            // 当使用{Function} / require（复杂选项）时，webpack在选项中需要标识符（ident）。
+            // ident可以自由命名，只要它是唯一的即可。建议命名（标识：“ postcss”）
+            ident: 'postcss',
+            plugins: loader => {
+                let arr = [
+                    require( 'postcss-import' )(),
+                    require( 'postcss-preset-env' )( {
+                        // 没有任何配置选项，PostCSS Preset Env启用第2阶段功能并支持所有浏览器。
+                        // 阶段可以是0（实验）到4（稳定），也可以是false。将stage设置为false将禁用每个polyfill。仅当您打算专门使用功能选项时，这样做才有用。
+                        stage: 0,
+                        // features选项通过ID启用或禁用特定的polyfill。将true传递给特定功能部件ID将启用其polyfill，而将false传递将禁用它。
+                        // 将对象关联到特定功能部件ID将同时启用和配置它。
+                        // 没有通过功能明确启用或禁用的任何polyfill由stage选项确定。
+                        features: {
+                            'custom-properties': {
+                                preserve: true,
+                            },
+                            // CSS嵌套规则
+                            'nesting-rules': true,
+                            'any-link-pseudo-class': {
+                                preserve: true,
+                            },
+                            // 设置没有值的输入的样式:
+                            // input:blank、input[blank]
+                            // <input value="" blank>、<input value="This element has a value">
+                            'blank-pseudo-class': {
+                                preserve: true,
+                            },
+                            'break-properties': true,
+                            // 不区分大小写的属性，true会启用转换: [data-attr-key = "a" i]--->[data-attr-key = "a" i],[data-attr-key = "A" i]
+                            'case-insensitive-attributes': true,
+                            'color-functional-notation': {
+                                preserve: true,
+                            },
+                            'color-mod-function': {
+                                // 有效值：throw、warn、ignore
+                                unresolved: 'throw',
+                            },
+                            'custom-media-queries': {
+                                preserve: true,
+                            },
+                            'custom-selectors': {
+                                preserve: true,
+                            },
+                            'dir-pseudo-class': {
+                                preserve: true,
+                            },
+                            'double-position-gradients': {
+                                preserve: true,
+                            },
+                            // 'environment-variables': {},
+                            'focus-visible-pseudo-class': {
+                                preserve: true,
+                            },
+                            'focus-within-pseudo-class': {
+                                preserve: true,
+                            },
+                            // PostCSS插件，可将W3C CSS(font variant properties)转换为更兼容的CSS（font-feature-settings）
+                            'font-variant-property': true,
+                            'gap-properties': {
+                                preserve: true,
+                            },
+                            'gray-function': {
+                                preserve: true,
+                            },
+                            'has-pseudo-class': {
+                                preserve: true,
+                            },
+                            'hexadecimal-alpha-notation': {
+                                preserve: true,
+                            },
+                            'image-set-function': {
+                                preserve: true,
+                                // 有效值：warn、throw、ignore
+                                onvalid: 'throw',
+                            },
+                            'lab-function': {
+                                preserve: true,
+                            },
+                            'logical-properties-and-values': {
+                                preserve: true,
+                            },
+                            // PostCSS插件将 :matches() W3C CSS伪类转换为更兼容的CSS（更简单的选择器）
+                            'matches-pseudo-class': {
+                                // 允许您在生成的选择器之间引入换行符。
+                                lineBreak: false,
+                            },
+                            // 编写简单而优美的媒体查询！
+                            'media-query-ranges': true,
+                            'not-pseudo-class': true,
+                            'overflow-property': {
+                                preserve: true,
+                            },
+                            // PostCSS插件，可将自动换行替换为自动换行。可以选择保留两个声明
+                            'overflow-wrap-property': {
+                                // 有效值：copy、replace
+                                method: 'copy',
+                            },
+                            'place-properties': {
+                                preserve: true,
+                            },
+                            'prefers-color-scheme-query': {
+                                preserve: true,
+                            },
+                            // PostCSS插件可将 rebeccapurple color 转换为rgb()
+                            'rebeccapurple-color': {
+                                preserve: true,
+                            },
+                            // 'system-ui-font-family': true,
+                        },
+                        browsers: browsers_arr,
+                        autoprefixer: {
+                            // 如果CSS未压缩，Autoprefixer是否要使用视觉级联，true使用。
+                            cascade: true,
+                            // Autoprefixer是否要添加前缀，true添加。
+                            add: true,
+                            // Autoprefixer是否要删除过时的前缀，false不删除。
+                            remove: false,
+                            // Autoprefixer是否要为"@supports"参数添加前缀，true添加。
+                            supports: true,
+                            // Autoprefixer是否要为flexbox属性添加前缀，true添加。
+                            // 字符串值"no-2009"，则Autoprefixer只会为最终版本和IE 10版本的规范添加前缀。
+                            flexbox: true,
+                            // 有效值：false、"autoplace"、"no-autoplace"，Autoprefixer是否应为Grid Layout属性添加IE 10-11前缀？
+                            // false: 防止Autoprefixer输出CSS网格转换。
+                            // "autoplace": 启用Autoprefixer网格转换并包括自动放置支持。您还可以在CSS中使用/* autoprefixer grid: autoplace */。
+                            // "no-autoplace": 启用Autoprefixer网格转换，但不包括自动放置支持。您还可以在CSS中使用/* autoprefixer grid: no-autoplace */。
+                            // 不推荐使用true这个布尔值。
+                            grid: 'autoplace',
+                            overrideBrowserslist: browsers_arr,
+                            // 不要在Browserslist配置中的未知浏览器版本上引发错误。
+                            ignoreUnknownVersions: true,
+                        },
+                    } ),
+                    require( 'postcss-calc' )( {
+                        precision: 6,
+                        preserve: true,
+                        // 当calc()不减少为单个值时添加警告。
+                        warnWhenCannotResolve: true,
+                        mediaQueries: true,
+                        selectors: true,
+                    } ),
+                    // 必须在postcss-simple-vars和postcss-nested之前设置此插件。
+                    require( 'postcss-mixins' )( {
+                        // 无声，删除未知的mixin，不要抛出错误。默认为false。
+                        silent: false,
+                    } ),
+                    require( 'postcss-easings' )( /*{
+                     // easings: {},
+                     }*/ ),
+                    require( 'postcss-color-hwb' )(),
+                    require( 'postcss-color-function' )( {
+                        preserveCustomProps: true,
+                    } ),
+                    require( 'postcss-size' )(),
+                    require( 'postcss-brand-colors' )(),
+                ];
 
-        !isPro && ( obj.preserve = true );
+                !isPro && ( arr.push( require( 'postcss-browser-reporter' )( {
+                    selector: 'html::before',
+                    styles: {
+                        display: 'block',
+                        position: 'fixed',
+                        top: 0,
+                        right: 0,
+                        bottom: 0,
+                        left: 0,
+                        'z-index': 202020202020,
+                        content: '',
+                        width: '100%',
+                        height: '100%',
+                        'background-color': 'red',
+                        color: 'white',
+                        'font-size': '14px',
+                        overflow: 'hidden',
+                        'white-space': 'pre-wrap',
+                    },
+                } ) ) );
+                isPro && ( arr.push( require( 'cssnano' )() ) );
 
-        let arr = [
-            require( 'postcss-import' )(),
-            require( 'postcss-preset-env' )( {
-                autoprefixer: {
-                    ignoreUnknownVersions: true,
-                    grid: false,
-                    overrideBrowserslist: browsers_arr,
-                    // browsers: browsers_arr,
-                },
-                browsers: browsers_arr,
-                stage: 3,
-                features: {
-                    'custom-properties': false,
-                },
-            } ),
-            require( 'postcss-calc' )( obj ),
-        ];
-
-        isPro && ( arr.push( require( 'cssnano' )() ) );
-
-        return {
-            loader: 'postcss-loader',
-            options: {
-                ident: 'postcss',
-                plugins: () => arr,
-            }
-        };
-    },
+                return arr;
+            },
+        },
+    } ),
     entry_obj = require( './src/js/App.js' ).pageRoutingManagement_obj,
     output_fun = ( { path, __dirname, proName_str, hashName_str } ) => ( {
         /*
@@ -2735,14 +2909,15 @@ let fs = require( 'fs' ),
 
         let obj = {
             hmr: !isPro,
-            // reloadAll isPro为true时去掉这个选项
+            // reloadAll isPro为true时去掉这个选项，如果hmr不起作用，这是一种有效的方法。
             // reloadAll: false,
+            // publicPath: '../',
             esModule: false,
         };
 
         !isPro && ( obj.reloadAll = true );
 
-        let arr = [
+        return [
             {
                 test: /\.(html|htm)$/i,
                 use: [
@@ -2907,8 +3082,15 @@ let fs = require( 'fs' ),
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
-                                // indentedSyntax: true,
-                                // indentWidth: 4,
+                                indentedSyntax: false,
+                                indentType: 'space',
+                                indentWidth: 2,
+                                // cr、crlf、lf、lfcr
+                                linefeed: 'lf',
+                                // nested(嵌套)、expanded(扩大)、compact(紧凑)、compressed(压缩)
+                                outputStyle: isPro
+                                             ? 'compressed'
+                                             : 'nested',
                                 precision: 6,
                             },
                         },
@@ -2952,15 +3134,21 @@ let fs = require( 'fs' ),
                         loader: 'file-loader',
                         options: {
                             // chunkhash hash contenthash
-                            name: `[name]_[${ isPro
-                                              ? 'contenthash'
-                                              : 'contenthash' }:6].css`,
+                            name: '[name]_[sha512:contenthash:hex:6].css',
                             // publicPath: '../',
                             outputPath: './styles/',
+                            // 如果为true，则发出一个文件（将文件写入文件系统）。如果为false，则加载程序将返回公共URI，但不会发出文件。
+                            // 禁用服务器端软件包的此选项通常很有用。
+                            emitFile: true,
                             esModule: false,
                         }
                     },
-                    { loader: 'extract-loader' },
+                    {
+                        loader: 'extract-loader',
+                        options: {
+                            // publicPath: '../',
+                        },
+                    },
                     {
                         loader: 'css-loader',
                         options: {
@@ -2975,7 +3163,15 @@ let fs = require( 'fs' ),
                         loader: 'less-loader',
                         options: {
                             lessOptions: {
-                                strictMath: true,
+                                // （不建议使用） 它已由math选项代替。
+                                // strictMath: true,
+                                // always(当前默认值)、parens-division(未来会成为默认值)、parens | strict(等效于：strictMath: true)、strict-legacy(不推荐)
+                                math: 'strict-legacy',
+                                // 启用严格的单位，我们假设这是计算中的错误并引发错误。
+                                strictUnits: true,
+                                // 兼容性IE8，不推荐使用，从v3.0.0开始默认为False。当前仅用于data-uri函数，以确保不会创建太大的图像，以至于浏览器无法处理。
+                                // ieCompat: true,
+                                // 最新的文档没有找到这个选项信息
                                 noIeCompat: true,
                             },
                         },
@@ -3018,6 +3214,8 @@ let fs = require( 'fs' ),
                     {
                         loader: 'style-loader',
                         options: {
+                            injectType: 'styleTag',
+                            insert: 'head',
                             esModule: false,
                         }
                     },
@@ -3036,7 +3234,14 @@ let fs = require( 'fs' ),
                         options: {
                             sassOptions: {
                                 indentedSyntax: true,
+                                indentType: 'space',
                                 indentWidth: 4,
+                                // cr、crlf、lf、lfcr
+                                linefeed: 'lf',
+                                // nested(嵌套)、expanded(扩大)、compact(紧凑)、compressed(压缩)
+                                outputStyle: isPro
+                                             ? 'compressed'
+                                             : 'nested',
                                 precision: 6,
                             },
                         },
@@ -3097,6 +3302,67 @@ let fs = require( 'fs' ),
                                     'href',
                                 ],
                             },
+                            compilerOptions: {
+                                // preserve保留、condense压缩
+                                whitespace: 'condense',
+                                // 从2.6开始不推荐使用，用来丢弃模板标签之间的空格，默认值：true
+                                // 默认情况下，编译的渲染函数保留HTML标记之间的所有空白字符。如果设置为false，标签之间的空白将被忽略。
+                                // 这可能会导致性能稍好，但可能会影响嵌入式元素的布局。
+                                // preserveWhitespace: true,
+                            },
+                            // transpileOptions选项建议不启用、不设置，交给babel-loader来处理
+                            /*
+                             transpileOptions: {
+                             target: {
+                             // 专门在最新稳定版本的谷歌浏览器上测试用
+                             chrome: 81,
+
+                             // 以下只是用于自己设备上的浏览器
+                             // ios: 13,
+                             // safari: 13,
+                             // edge: 81,
+                             // opera: 68,
+                             // operaMobile: 68,
+                             // chrome: 81,
+                             // android: 81,
+                             // chromeAndroid: 81,
+                             // firefox: 75,
+                             // firefoxAndroid: 75,
+                             },
+                             // 以下的配置可以用来覆盖上面的target选项：true触发转换，false不转换(被注释掉的大多都是启用了转换，以便兼容低版本的浏览器)
+                             transforms: {
+                             //设置为false可以用来配合webpack的代码切割
+                             modules: false,
+                             // 防止从类方法生成的函数表达式被赋予名称(需要防止IE8中的作用域泄漏)
+                             namedFunctionExpressions: false,
+
+                             // arrow: true,
+                             // classes: true,
+                             // collections: true,
+                             // computedProperty: true,
+                             // conciseMethodProperty: true,
+                             // constLoop: true,
+                             // dangerousForOf: false,
+                             // dangerousTaggedTemplateString: false,
+                             // defaultParameter: true,
+                             // forOf: true,
+                             // generator: true,
+                             // letConst: true,
+                             // numericLiteral: true,
+                             // destructuring: true,
+                             // parameterDestructuring: true,
+                             // reservedProperties: true,
+                             // spreadRest: true,
+                             // stickyRegExp: false,
+                             // 注意：不支持标记的模板字符串，除非您使用危险的TaggedTemplateString转换。请参阅危险变换。
+                             // templateString: true,
+                             // Unicode正则表达式
+                             // unicodeRegExp: true,
+                             },
+                             },
+                             */
+                            prettify: !isPro,
+                            exposeFilename: !isPro,
                         },
                     },
                 ],
@@ -3135,7 +3401,10 @@ let fs = require( 'fs' ),
                     {
                         loader: 'babel-loader',
                         options: {
+                            // 默认值是：false
                             cacheDirectory: !isPro,
+                            // 默认值是：true
+                            cacheCompression: isPro,
                             presets: babelPresets_fun( isPro, noTest_boo ),
                             plugins: babelPlugins_fun( isPro, noTest_boo, isESM_boo ),
                         },
@@ -3254,6 +3523,14 @@ let fs = require( 'fs' ),
                     // 或 node: {} 在模块级别(module level)上重新配置 node 层(layer)
                 },
                 use: [
+                    // 将此装载机放在其他装载机的前面。以下加载程序在工作池中运行。
+                    // 在工作池中运行的装载程序受到限制。例子：
+                    // 1、加载程序无法发出文件。
+                    // 2、加载程序无法使用自定义加载程序API（即通过插件）。
+                    // 3、加载程序无法访问webpack选项。
+                    // PS：
+                    // 1、只能将此装载机用于昂贵的操作！
+                    // 2、每个工作程序都是一个单独的node.js进程，其开销约为600毫秒。进程间通信也有开销。
                     {
                         loader: 'thread-loader',
                         options: jsWorkerPool,
@@ -3261,7 +3538,10 @@ let fs = require( 'fs' ),
                     {
                         loader: 'babel-loader',
                         options: {
+                            // 默认值是：false
                             cacheDirectory: !isPro,
+                            // 默认值是：true
+                            cacheCompression: isPro,
                             presets: babelPresets_fun( isPro, noTest_boo ),
                             plugins: babelPlugins_fun( isPro, noTest_boo, isESM_boo ),
                         },
@@ -3331,11 +3611,12 @@ let fs = require( 'fs' ),
                         loader: 'file-loader',
                         options: {
                             // chunkhash hash contenthash
-                            name: `[name]_[${ isPro
-                                              ? 'contenthash'
-                                              : 'contenthash' }:6].worker.js`,
+                            name: '[name]_[sha512:contenthash:hex:6].worker.js',
                             // publicPath: '../',
                             outputPath: './workers/',
+                            // 如果为true，则发出一个文件（将文件写入文件系统）。如果为false，则加载程序将返回公共URI，但不会发出文件。
+                            // 禁用服务器端软件包的此选项通常很有用。
+                            emitFile: true,
                             esModule: false,
                         },
                     },
@@ -3377,11 +3658,12 @@ let fs = require( 'fs' ),
                         loader: 'file-loader',
                         options: {
                             // chunkhash hash contenthash
-                            name: `[name]_[${ isPro
-                                              ? 'contenthash'
-                                              : 'contenthash' }:6].[ext]`,
+                            name: '[name]_[sha512:contenthash:hex:6].[ext]',
                             // publicPath: '../',
                             outputPath: './others/',
+                            // 如果为true，则发出一个文件（将文件写入文件系统）。如果为false，则加载程序将返回公共URI，但不会发出文件。
+                            // 禁用服务器端软件包的此选项通常很有用。
+                            emitFile: true,
                             esModule: false,
                         }
                     },
@@ -3464,11 +3746,6 @@ let fs = require( 'fs' ),
                 use: [
                     {
                         loader: 'xml-loader',
-                        /*
-                         options: {
-                         explicitChildren: true,
-                         },
-                         */
                     },
                 ],
                 include: [
@@ -3561,11 +3838,12 @@ let fs = require( 'fs' ),
                         loader: 'file-loader',
                         options: {
                             // chunkhash hash contenthash
-                            name: `[name]_[${ isPro
-                                              ? 'hash'
-                                              : 'hash' }:6].[ext]`,
+                            name: '[name]_[sha512:hash:hex:6].[ext]',
                             // publicPath: '../',
                             outputPath: './wasm/',
+                            // 如果为true，则发出一个文件（将文件写入文件系统）。如果为false，则加载程序将返回公共URI，但不会发出文件。
+                            // 禁用服务器端软件包的此选项通常很有用。
+                            emitFile: true,
                             esModule: false,
                         }
                     },
@@ -3605,13 +3883,17 @@ let fs = require( 'fs' ),
                     {
                         loader: 'url-loader',
                         options: {
+                            // 以字节为单位，以下是限定为10kb
+                            limit: 10240,
+                            encoding: 'base64',
+                            fallback: 'file-loader',
                             // chunkhash hash contenthash
-                            name: `[name]_[${ isPro
-                                              ? 'hash'
-                                              : 'hash' }:6].[ext]`,
+                            name: '[name]_[sha512:hash:hex:6].[ext]',
                             // publicPath: '../',
                             outputPath: './img/',
-                            limit: 10240,
+                            // 如果为true，则发出一个文件（将文件写入文件系统）。如果为false，则加载程序将返回公共URI，但不会发出文件。
+                            // 禁用服务器端软件包的此选项通常很有用。
+                            emitFile: true,
                             esModule: false,
                         }
                     },
@@ -3655,11 +3937,12 @@ let fs = require( 'fs' ),
                         loader: 'file-loader',
                         options: {
                             // chunkhash hash contenthash
-                            name: `[name]_[${ isPro
-                                              ? 'hash'
-                                              : 'hash' }:6].[ext]`,
+                            name: '[name]_[sha512:hash:hex:6].[ext]',
                             // publicPath: '../',
                             outputPath: './fonts/',
+                            // 如果为true，则发出一个文件（将文件写入文件系统）。如果为false，则加载程序将返回公共URI，但不会发出文件。
+                            // 禁用服务器端软件包的此选项通常很有用。
+                            emitFile: true,
                             esModule: false,
                         }
                     },
@@ -3707,11 +3990,12 @@ let fs = require( 'fs' ),
                         loader: 'file-loader',
                         options: {
                             // chunkhash hash contenthash
-                            name: `[name]_[${ isPro
-                                              ? 'hash'
-                                              : 'hash' }:6].[ext]`,
+                            name: '[name]_[sha512:hash:hex:6].[ext]',
                             // publicPath: '../',
                             outputPath: './music/',
+                            // 如果为true，则发出一个文件（将文件写入文件系统）。如果为false，则加载程序将返回公共URI，但不会发出文件。
+                            // 禁用服务器端软件包的此选项通常很有用。
+                            emitFile: true,
                             esModule: false,
                         }
                     },
@@ -3755,11 +4039,12 @@ let fs = require( 'fs' ),
                         loader: 'file-loader',
                         options: {
                             // chunkhash hash contenthash
-                            name: `[name]_[${ isPro
-                                              ? 'hash'
-                                              : 'hash' }:6].[ext]`,
+                            name: '[name]_[sha512:hash:hex:6].[ext]',
                             // publicPath: '../',
                             outputPath: './videos/',
+                            // 如果为true，则发出一个文件（将文件写入文件系统）。如果为false，则加载程序将返回公共URI，但不会发出文件。
+                            // 禁用服务器端软件包的此选项通常很有用。
+                            emitFile: true,
                             esModule: false,
                         }
                     },
@@ -3797,7 +4082,6 @@ let fs = require( 'fs' ),
                 // sideEffects: true,
             },
         ];
-        return arr;
     },
     watchIgnored_arr = [
         path.resolve( __dirname, './.git/' ),

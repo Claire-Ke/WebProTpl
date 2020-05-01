@@ -67,6 +67,8 @@ module.exports = {
             // chunkhash hash contenthash
             filename: 'styles/[name]_[contenthash:6].css',
             chunkFilename: 'styles/[name]_chunk_[contenthash:6].css',
+            // 启用以删除有关顺序冲突的警告
+            ignoreOrder: false,
             esModule: false,
         } ),
         new CleanWebpackPlugin( baseConfig.cleanWebpackPluginConfig_fun( 'production' ) ),
