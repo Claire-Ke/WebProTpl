@@ -69,6 +69,7 @@ const TSConfig_objC = {
         'lib': [
             // 'ES5',
             // 'ES6',
+            'lib.es6.d.ts',
             'lib.es2015.d.ts',
             // 'ES7',
             // 'ES2016',
