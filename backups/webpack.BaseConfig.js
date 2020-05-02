@@ -4185,8 +4185,8 @@ let fs = require( 'fs' ),
             chunkOrigins: false,
             // 默认值是字符串值：'id'，指示统计信息按给定字段对块进行排序。
             chunksSort: 'id',
-            // 设置上下文目录以缩短请求信息。
-            context: './src/',
+            // 设置上下文目录以缩短请求信息。必须是绝对路径
+            context: path.join( __dirname, './src/' ),
             colors: true,
             // 告诉“stats”是否显示每个模块到入口点的距离。
             depth: false,
