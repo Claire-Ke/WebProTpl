@@ -4200,7 +4200,7 @@ let fs = require( 'fs' ),
             errorDetails: true,
             // 告诉“stats”排除匹配的资产信息。
             // arr1
-            excludeAssets: false,
+            // excludeAssets: false,
             // 告诉“stats”排除匹配的模块信息。
             // 将stats.excludeModules设置为false将禁用排除行为。
             // excludeModules: arr1,
@@ -4215,7 +4215,7 @@ let fs = require( 'fs' ),
             logging: 'warn',
             // 告诉“stats”包括指定记录程序（例如插件或加载程序）的调试信息。当stats.logging设置为false时，stats.loggingDebug选项将被忽略。
             // arr1
-            loggingDebug: false,
+            // loggingDebug: false,
             // 在日志输出中启用堆栈跟踪以获取错误，警告和跟踪。设置stats.loggingTrace以隐藏跟踪。
             // true 启用日志跟踪
             loggingTrace: true,
@@ -4249,7 +4249,7 @@ let fs = require( 'fs' ),
             warnings: true,
             // 告诉“stats”排除与给定过滤器匹配的警告。
             // arr1
-            warningsFilter: false,
+            // warningsFilter: false,
         };
     } )(),
     ForkTsCheckerWebpackPlugin_obj = {
