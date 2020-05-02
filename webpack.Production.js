@@ -86,8 +86,8 @@ module.exports = {
     profile: false,
     performance: baseConfig.performance_obj,
     recordsPath: baseConfig.recordsPath_fun( 'production' ),
-    // 启用后貌似会导致整个项目重新编译(之所以会这么怀疑，是因为控制台会输出整个项目的所有输出文件的日志信息)
-    // stats: baseConfig.stats_obj,
+    // 对于webpack-dev-server，此属性必须位于devServer对象中。
+    stats: baseConfig.stats_obj,
     /*
      // 可能在“Webpack 5”中有效，“Webpack 4”中会报错！！！
      experiments: {
