@@ -427,7 +427,7 @@
 
 // 接口测试
 {
-    if( true ){
+    if( false ){
         interface LabeledValue{
             label: string;
         }
@@ -445,16 +445,18 @@
 }
 
 {
-    if( true ){
-        interface Point{
-            readonly x: number;
-            readonly y: number;
-        }
+    if( false ){
+        /*
+         interface Point{
+         readonly x: number;
+         readonly y: number;
+         }
 
-        let p1: Point = {
-            x: 10,
-            y: 20
-        };
+         let p1: Point = {
+         x: 10,
+         y: 20
+         };
+         */
 
         // p1.x = 5;
     }
