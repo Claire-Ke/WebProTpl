@@ -136,7 +136,7 @@ module.exports = {
         headers: webpackDevServer_obj.crossResHeader_obj,
         open: true,
         openPage: webProName_str + openPage_str,
-        writeToDisk: false, // true表示把内存里的文件写到硬盘里，被开发者可见，false反之
+        writeToDisk: false, // true 表示把内存里的文件写到硬盘里，被开发者可见，false 反之
         before( app, server, compiler ){
             console.log( '------>devServer before<------' );
 

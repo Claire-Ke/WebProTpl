@@ -135,11 +135,14 @@
             num2 = 10,
             num3 = 15,
             num4 = 20,
+            num5 = 25,
+            num6 = 30,
+            num7 = 35,
         }
 
-        let color1Name: string = Color1[ 15 ];
+        let color1Name: string = Color1[ 35 ];
         console.dir( Color1 );
-        console.log( `${ color1Name }: ${ Color1.num3 }` );
+        console.log( `${ color1Name }: ${ Color1.num7 }` );
     }
 }
 
