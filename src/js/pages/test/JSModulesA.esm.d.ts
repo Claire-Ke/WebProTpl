@@ -16,7 +16,7 @@ declare class JSModulesA{
 
     title: string;
 
-    constructor(): void;
+    constructor();
 
     getName(): string;
 

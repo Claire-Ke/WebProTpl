@@ -368,6 +368,31 @@
                            ] ) );
     }
 }
+{
+    if( false ){
+        function Fun1( { a: a1 = 0, b: b1 = 1, }: { a: number, b?: number, } = {
+            a: -1,
+            b: -2,
+        } ): object{
+            return {
+                a1,
+                b1,
+            };
+        }
+
+        console.dir( Fun1( {
+                               a: 11,
+                               b: 22,
+                           } ) );
+
+        console.dir( Fun1() );
+
+        console.dir( Fun1( { a: 77, } ) );
+
+        console.dir( Fun1( { a: 88, } ) );
+    }
+
+}
 
 {
     if( false ){
@@ -396,5 +421,41 @@
         import('jsPDir/test/TSModulesA.esm.ts').then( ( { TSModulesA } ) => {
             console.log( new TSModulesA().getName() );
         } );
+    }
+
+}
+
+// 接口测试
+{
+    if( true ){
+        interface LabeledValue{
+            label: string;
+        }
+
+        function printLabel( labeledObj: LabeledValue ){
+            console.log( labeledObj.label );
+        }
+
+        let myObj = {
+            label: 'Size 10 Object',
+            size: 10,
+        };
+        printLabel( myObj );
+    }
+}
+
+{
+    if( true ){
+        interface Point{
+            readonly x: number;
+            readonly y: number;
+        }
+
+        let p1: Point = {
+            x: 10,
+            y: 20
+        };
+
+        // p1.x = 5;
     }
 }
