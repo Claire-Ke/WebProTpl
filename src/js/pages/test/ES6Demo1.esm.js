@@ -921,7 +921,7 @@ let CT = new CTESM.CT();
             return arg + '---3>>>';
         }
 
-        console.log( 'qweqweqwe' |> Fun1|> Fun2|> Fun3 );
+        console.log( '管道运算符(|>)测试' |> Fun1|> Fun2|> Fun3 );
     }
 }
 

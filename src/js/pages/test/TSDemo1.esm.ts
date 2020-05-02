@@ -120,7 +120,7 @@
 
 // 枚举
 {
-    if( false ){
+    if( true ){
         const enum Color{
             Green = '#00ff00',
             Blue = '#0000ff',
@@ -138,6 +138,7 @@
         }
 
         let color1Name: string = Color1[ 15 ];
+        console.dir( Color1 );
         console.log( `${ color1Name }: ${ Color1.num3 }` );
     }
 }

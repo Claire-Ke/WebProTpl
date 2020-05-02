@@ -3349,7 +3349,7 @@ let fs = require( 'fs' ),
                             // 默认值是：false
                             cacheDirectory: !isPro,
                             // 默认值是：true
-                            cacheCompression: isPro,
+                            cacheCompression: true,
                             presets: babelPresets_fun( isPro, noTest_boo ),
                             plugins: babelPlugins_fun( isPro, noTest_boo, isESM_boo ),
                         },
@@ -3486,7 +3486,7 @@ let fs = require( 'fs' ),
                             // 默认值是：false
                             cacheDirectory: !isPro,
                             // 默认值是：true
-                            cacheCompression: isPro,
+                            cacheCompression: true,
                             presets: babelPresets_fun( isPro, noTest_boo ),
                             plugins: babelPlugins_fun( isPro, noTest_boo, isESM_boo ),
                         },
@@ -4143,6 +4143,7 @@ let fs = require( 'fs' ),
             externalAssets: require( './configures/CacheResources.js' ).cacheResources,
         },
     },
+    // 启用后貌似会导致整个项目重新编译(之所以会这么怀疑，是因为控制台会输出整个项目的所有输出文件的日志信息)
     stats_obj = ( () => {
         const arr1 = [
             /*/export .* was not found in/,*/
