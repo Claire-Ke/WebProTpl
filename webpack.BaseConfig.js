@@ -4143,30 +4143,113 @@ let fs = require( 'fs' ),
             externalAssets: require( './configures/CacheResources.js' ).cacheResources,
         },
     },
-    // 启用后貌似会导致整个项目重新编译(之所以会这么怀疑，是因为控制台会输出整个项目的所有输出文件的日志信息)
+    // 对于webpack-dev-server，此属性必须位于devServer对象中。
     stats_obj = ( () => {
         const arr1 = [
-            /*/export .* was not found in/,*/
-            /Current directory: .* CaseSensitiveFileNames: false/,
-            /FileWatcher:: Added:: WatchInfo: .*\.json .* Config file/,
-            /Synchronizing program/,
-            /CreatingProgramWith::/,
-            /*/.* roots: .*"]/,*/
-            /.* options: .*"}/,
-            /FileWatcher:: Added:: WatchInfo: .*node_modules.* Missing file/,
-            /DirectoryWatcher:: Added:: WatchInfo: .* Wild card directory/,
-            /Elapsed:: .* DirectoryWatcher:: Added:: WatchInfo: .* Wild card directory/,
+            // /export .* was not found in/,
+            /.*Current directory: .* CaseSensitiveFileNames: false.*/,
+            /.*FileWatcher:: Added:: WatchInfo: .*\.json .* Config file.*/,
+            /.*Synchronizing program.*/,
+            /.*CreatingProgramWith::.*/,
+            // /.* roots: .*"].*/,
+            /.* options: .*"}.*/,
+            /.*FileWatcher:: Added:: WatchInfo: .*node_modules.* Missing file.*/,
+            /.*DirectoryWatcher:: Added:: WatchInfo: .* Wild card directory.*/,
+            /.*Elapsed:: .* DirectoryWatcher:: Added:: WatchInfo: .* Wild card directory.*/,
         ];
 
         return {
-            // string = 'info': 'none'(false) | 'error' | 'warn' | 'info' | 'log'(true) | 'verbose' boolean
+            // 未定义选项时，统计信息选项的后备值。它优先于本地webpack默认值。
+            all: false,
+            // 告诉“stats”是否显示资产信息。将“stats.assets”设置为“false”以隐藏它。
+            assets: true,
+            // 默认值是字符串值：'id'，指示统计信息按给定字段对资产进行排序。
+            assetsSort: 'id',
+            // 告诉“stats”是否添加生成日期和生成时间信息。将“stats.builtAt”设置为“false”以隐藏它。
+            builtAt: true,
+            // 告诉“stats”是否添加有关缓存模块的信息（而不是生成的模块）。
+            // true会导致那些已被缓存起来的，在每次发生更改导致重新编译时，把那些没发生更改的模块也被输出显示
+            cached: false,
+            // 告诉“stats”是否添加有关缓存资产的信息。将“stats.cachedAssets”设置为“false”将告诉“stats”只显示发出的文件（而不是生成的文件）。
+            // true会导致那些已被缓存起来的，在每次发生更改导致重新编译时，把那些没发生更改的模块也被输出显示
+            cachedAssets: false,
+            // 告知“stats”是否添加有关子代的信息。true会在首次编译时显示有关子代的信息。
+            children: false,
+            // 告诉“stats”是否添加有关块的信息。将“stats.chunks”设置为“false”会减少冗长的输出。
+            chunks: false,
+            // 告诉“stats”是否添加有关namedChunkGroups的信息。true会显示多页入口的各个路口所包含的所有资源
+            chunkGroups: false,
+            // 告诉“stats”是否将有关已构建模块的信息添加到有关块的信息中。
+            chunkModules: false,
+            // 告诉“stats”是否添加有关块的起源和块合并的信息。
+            chunkOrigins: false,
+            // 默认值是字符串值：'id'，指示统计信息按给定字段对块进行排序。
+            chunksSort: 'id',
+            // 设置上下文目录以缩短请求信息。
+            context: './src/',
+            colors: true,
+            // 告诉“stats”是否显示每个模块到入口点的距离。
+            depth: false,
+            // 告诉“stats”是否显示带有相应捆绑商品的入口点。true会显示多页入口的各个路口所包含的所有资源
+            entrypoints: false,
+            // 告诉“stats”是否显示--env信息。
+            env: false,
+            // 告诉“stats”是否显示错误。
+            errors: true,
+            // 告知“stats”是否将详细信息添加到错误中。
+            errorDetails: true,
+            // 告诉“stats”排除匹配的资产信息。
+            // arr1
+            excludeAssets: false,
+            // 告诉“stats”排除匹配的模块信息。
+            // 将stats.excludeModules设置为false将禁用排除行为。
+            // excludeModules: arr1,
+            // 同"excludeModules"
+            // exclude: arr1,
+            // “stats”是否添加有关编译的哈希值的信息。
+            hash: true,
+            // 告诉“stats”是否添加日志记录输出。
+            // string = 'none'(false) | 'error' | 'warn' | 'info'(errors、warnings、info) | 'log'(true，错误，警告，信息消息，日志消息，组，清除。折叠的组以折叠状态显示。) | 'verbose' | boolean
             // 'none'(false) - disable logging
             // 'warn' - errors and warnings only
             logging: 'warn',
-            excludeAssets: arr1,
-            excludeModules: arr1,
-            exclude: arr1,
-            warningsFilter: arr1,
+            // 告诉“stats”包括指定记录程序（例如插件或加载程序）的调试信息。当stats.logging设置为false时，stats.loggingDebug选项将被忽略。
+            // arr1
+            loggingDebug: false,
+            // 在日志输出中启用堆栈跟踪以获取错误，警告和跟踪。设置stats.loggingTrace以隐藏跟踪。
+            // true 启用日志跟踪
+            loggingTrace: true,
+            // 设置要显示的最大模块数。
+            maxModules: 0,
+            // 告诉“stats”是否添加有关已构建模块的信息。
+            modules: true,
+            // 默认值是字符串值：'id'，指示统计信息按给定字段对模块进行排序。
+            modulesSort: 'id',
+            // 告诉“stats”显示依赖性和警告/错误的来源。自webpack 2.5.0起，stats.moduleTrace可用。
+            moduleTrace: true,
+            // 告诉“stats”显示outputPath。
+            outputPath: true,
+            // 当文件大小超过Performance.maxAssetSize时，告诉“stats”显示性能提示。
+            performance: true,
+            // 告诉“stats”以显示模块的导出。
+            providedExports: false,
+            // 告诉“stats”显示publicPath。
+            publicPath: true,
+            // 告诉“stats”添加有关为什么包含模块的原因的信息。
+            reasons: false,
+            // 告诉“stats”添加模块的源代码。
+            source: false,
+            // 告诉“stats”添加计时信息。
+            timings: true,
+            // 告诉“stats”是否显示使用了模块的哪些导出。
+            usedExports: false,
+            // 告诉“stats”添加有关所用Webpack版本的信息。
+            version: true,
+            // 告诉“stats”添加警告。
+            warnings: true,
+            // 告诉“stats”排除与给定过滤器匹配的警告。
+            // arr1
+            warningsFilter: false,
         };
     } )(),
     ForkTsCheckerWebpackPlugin_obj = {
@@ -4192,7 +4275,27 @@ let fs = require( 'fs' ),
             'src/webComponents/**/*.{ts,tsx}',
         ],
         // 数据类型是object，记录器实例。应该是实现方法的对象：error、warn、info，默认值：console。
-        // logger: {},
+        /*
+         logger: {
+         info( message_str = '' ){
+         console.log( '\n------------------ForkTsCheckerWebpackPlugin info Start------------------\n' );
+         console.log( message_str );
+         console.log( '\n------------------ForkTsCheckerWebpackPlugin info End------------------\n' );
+         },
+         // console.warn
+         warn( message_str = '' ){
+         console.warn( '\n------------------ForkTsCheckerWebpackPlugin warn Start------------------\n' );
+         console.warn( message_str );
+         console.warn( '\n------------------ForkTsCheckerWebpackPlugin warn End------------------\n' );
+         },
+         // console.error
+         error( message_str = '' ){
+         console.error( '\n------------------ForkTsCheckerWebpackPlugin error Start------------------\n' );
+         console.error( message_str );
+         console.error( '\n------------------ForkTsCheckerWebpackPlugin error End------------------\n' );
+         },
+         },
+         */
         // formatter: 'default',
         // 数据类型是object，
         // formatterOptions: {},

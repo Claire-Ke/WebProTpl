@@ -110,17 +110,29 @@
 // 元组 Tuple
 {
     if( false ){
-        let x: [ string, number ] = [
+        let x1: [ string, number, ] = [
             'hello',
-            10
+            10,
         ];
-        console.dir( x );
+
+        console.dir( x1 );
+
+        let x2: [ string, number, symbol, symbol, symbol, symbol, ] = [
+            'hello',
+            10,
+            Symbol( 'Symbol1' ),
+            Symbol( 'Symbol2' ),
+            Symbol( 'Symbol3' ),
+            Symbol( 'Symbol4' ),
+        ];
+
+        console.dir( x2 );
     }
 }
 
 // 枚举
 {
-    if( true ){
+    if( false ){
         const enum Color{
             Green = '#00ff00',
             Blue = '#0000ff',
@@ -287,16 +299,16 @@
 // 解构元组，元组可以像数组一样解构；解构后的变量获得对应元组元素的值：
 {
     if( false ){
-        let tuple: [ number, string, boolean ] = [
-            7,
-            'hello',
+        let tuple: [ number, string, boolean, ] = [
+            2020,
+            'Hello World111222',
             false,
         ];
 
         let [ a, b, c, ] = tuple;
 
-        // 7 "hello" false
-        console.log( a, b, c );
+        // 2020 "Hello World" false ...
+        console.log( a, b, c, );
     }
 }
 

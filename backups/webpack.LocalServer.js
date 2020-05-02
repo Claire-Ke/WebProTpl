@@ -109,7 +109,7 @@ module.exports = {
     profile: true,
     performance: baseConfig.performance_obj,
     recordsPath: baseConfig.recordsPath_fun( 'localServer' ),
-    // 启用后貌似会导致整个项目重新编译(之所以会这么怀疑，是因为控制台会输出整个项目的所有输出文件的日志信息)
+    // 对于webpack-dev-server，此属性必须位于devServer对象中。
     // stats: baseConfig.stats_obj,
     devServer: {
         contentBase: path.join( __dirname, './dist/localServer/' ),
@@ -120,16 +120,20 @@ module.exports = {
         compress: true,
         hot: false,
         hotOnly: false,
-        // none info
-        clientLogLevel: 'none',
+        // 'info'、'silent'(无声)、'trace(跟踪)'、'debug'、'warn'、'error'、'none'、'warning'
+        // 'none'和'warning'将在下一个主要版本中被弃用。
+        clientLogLevel: 'error',
         https: false,
         useLocalIp: false,
         overlay: {
-            warnings: false,
+            warnings: true,
             errors: true,
         },
         noInfo: false,
         quiet: false,
+        // 对于webpack-dev-server，此属性必须位于devServer对象中。
+        // 'none'、'errors-only'、'minimal'(仅在发生错误或新编译时输出)、'normal'、'verbose'、object
+        stats: baseConfig.stats_obj,
         watchContentBase: true,
         watchOptions: watchOptions_obj,
         proxy: proxyConfig,

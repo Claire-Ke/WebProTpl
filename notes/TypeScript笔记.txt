@@ -9,3 +9,10 @@ enum Color { Red = 1, Green, Blue }
 let colorName: string = Color[ 2 ];
 // 显示'Green'因为上面代码里它的值是2
 console.log( colorName );
+
+二、元组
+解构元组，元组可以像数组一样解构；解构后的变量获得对应元组“元素的值”。
+PS：
+虽然文档说是"元素的类型"，但是实际输出的却是"元素的值"。
+
+三、
