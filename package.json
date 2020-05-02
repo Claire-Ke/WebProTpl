@@ -1654,7 +1654,7 @@
         "readable-web-to-node-stream": "^2.0.0",
         "readdirp": "^3.4.0",
         "realpath-native": "^2.0.0",
-        "recast": "^0.19.0",
+        "recast": "^0.19.1",
         "rechoir": "^0.7.0",
         "redent": "^3.0.0",
         "redeyed": "^2.1.1",
