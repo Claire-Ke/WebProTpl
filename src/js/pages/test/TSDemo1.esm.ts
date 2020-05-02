@@ -437,8 +437,8 @@
         }
 
         let myObj = {
-            label: 'Size 10 Object',
-            size: 10,
+            label: 'Size 1 Object',
+            size: 1,
         };
         printLabel( myObj );
     }
