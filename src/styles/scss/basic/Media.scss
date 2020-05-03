@@ -61,6 +61,10 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
 /*iPhone 6/6S/7/8系列宽高( 750x1334 ) End*/
 
 /*iPhone 6Plus/6SPlus/7Plus/8Plus系列宽高( 1080x1920 ) Start*/
+/*PS:*/
+/*1242 x 2208(1080 x 1920): iPhone 6 Plus、iPhone 6S Plus、iPhone 7 Plus、iPhone 8 Plus*/
+/*PS：特别说明一下，以上设备的实际物理分辨率是(1080 x 1920)，它们的实际dpr是2.608695652173913。*/
+/*但是，渲染、计算却是按分辨率(1242 x 2208)、dpr是3。所以，APP的启动图片也是按这些个来的(1242 x 2208、dpr是3)。*/
 
 @media only screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (device-pixel-ratio: 3) {
 

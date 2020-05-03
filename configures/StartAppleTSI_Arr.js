@@ -135,29 +135,33 @@ let startAppleTSI_arr = [
         }
     },
 
-    // 1080 x 1920: iPhone 6 Plus、iPhone 6S Plus、iPhone 7 Plus、iPhone 8 Plus
+    // 1242 x 2208(1080 x 1920): iPhone 6 Plus、iPhone 6S Plus、iPhone 7 Plus、iPhone 8 Plus
+    // PS：特别说明一下，以上设备的实际物理分辨率是(1080 x 1920)，它们的实际dpr是2.608695652173913。
+    // 但是，渲染、计算却是按分辨率(1242 x 2208)、dpr是3。所以，APP的启动图片也是按这些个来的(1242 x 2208、dpr是3)。
     {
-        href: '../static/ico/startup/iPhone_1080_1920.png',
+        href: '../static/ico/startup/iPhone_1242_2208.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
         /*isExecute: false,*/
         attrs: {
-            sizes: '1080x1920',
+            sizes: '1242x2208',
             media: 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), ' +
                 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), ' +
                 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (device-pixel-ratio: 3)'
         }
     },
-    // 1920 x 1080: iPhone 6 Plus、iPhone 6S Plus、iPhone 7 Plus、iPhone 8 Plus
+    // 2208 x 1242(1920 x 1080): iPhone 6 Plus、iPhone 6S Plus、iPhone 7 Plus、iPhone 8 Plus
+    // PS：特别说明一下，以上设备的实际物理分辨率是(1080 x 1920)，它们的实际dpr是2.608695652173913。
+    // 但是，渲染、计算却是按分辨率(1242 x 2208)、dpr是3。所以，APP的启动图片也是按这些个来的(1242 x 2208、dpr是3)。
     {
-        href: '../static/ico/startup/iPhone_1920_1080.png',
+        href: '../static/ico/startup/iPhone_2208_1242.png',
         type: 'image/png',
         as: 'image',
         crossorigin: 'anonymous',
         /*isExecute: false,*/
         attrs: {
-            sizes: '1920x1080',
+            sizes: '2208x1242',
             media: 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), ' +
                 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), ' +
                 'only screen and (device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (device-pixel-ratio: 3)'
