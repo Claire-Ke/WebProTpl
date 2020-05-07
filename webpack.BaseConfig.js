@@ -62,6 +62,8 @@ threadLoader.warmup( jsWorkerPool, [
 
 let fs = require( 'fs' ),
     path = require( 'path' ),
+    imageminWebp = require( 'imagemin-webp' ),
+    imageminMozjpeg = require( 'imagemin-mozjpeg' ),
     compilerOptions_obj = {
         // Project Options Start
 
@@ -628,8 +630,8 @@ let fs = require( 'fs' ),
          'Android >= 81',
          'ChromeAndroid >= 81',
 
-         'Firefox >= 75',
-         'FirefoxAndroid >= 75',
+         'Firefox >= 76',
+         'FirefoxAndroid >= 76',
          */
 
         // 专门在最新稳定版本的谷歌浏览器上测试用
@@ -3271,8 +3273,8 @@ let fs = require( 'fs' ),
                              // chrome: 81,
                              // android: 81,
                              // chromeAndroid: 81,
-                             // firefox: 75,
-                             // firefoxAndroid: 75,
+                             // firefox: 76,
+                             // firefoxAndroid: 76,
                              },
                              // 以下的配置可以用来覆盖上面的target选项：true触发转换，false不转换(被注释掉的大多都是启用了转换，以便兼容低版本的浏览器)
                              transforms: {
@@ -4323,6 +4325,191 @@ let fs = require( 'fs' ),
         skipFirstNotification: true,
         // 跳过有关成功构建的通知。
         skipSuccessful: true,
+    },
+    ImageminPlugin_obj = {
+        // 设置为true时，它将完全禁用该插件。这对于在开发期间禁用插件以及仅在生产期间启用插件很有用
+        disable: !isPro,
+        test: /\.(gif|jpe|jpeg|jpg|png|svg|webp)$/i,
+        // 设置可以一次运行的 Imagemin 实例的最大数量。设置为 Infinity 可以对每个图像同时运行单独的进程。
+        maxConcurrency: os.cpus().length,
+        // 仅适用于大于此值（以字节为单位）的图像。100KB
+        minFileSize: 100 * 1024,
+        // 仅适用于小于或等于此值（以字节为单位）的图像。
+        // maxFileSize和minFileSize一起可用于通过不同文件大小的多个配置多次包含WebpackImageminPlugin。
+        maxFileSize: Infinity,
+
+        // 将给定的对象传递给 imagemin-optipng。设置为null以禁用optipng。
+        optipng: {
+            // 默认值：3，优化的版本(0到7)，值越大，图片压缩越小
+            // 优化级别0启用一组只需最少努力的优化操作。不会更改图像属性，如位深度或颜色类型，也不会重新压缩现有的IDAT数据流。
+            // 优化级别1支持单个IDAT压缩试验。选择的审判是什么。OptiPNG认为这可能是最有效的。优化级别2和更高级别支持多个IDAT压缩试验；级别越高，试验越多。
+            // 等级和试验：
+            // 1：1个试验
+            // 2：8个试验
+            // 3：16个试验
+            // 4：24个试验
+            // 5：48个试验
+            // 6：120个试验
+            // 7：240个试验
+            optimizationLevel: 3,
+            // 默认值：true，应用位深度减少。
+            bitDepthReduction: true,
+            // 默认值：true，应用颜色类型减少。
+            colorTypeReduction: true,
+            // 默认值：true，应用调色板减少。
+            paletteReduction: true,
+            // 默认值：true，将花费合理的努力来尝试恢复尽可能多的损坏图像数据，但是通常不能保证成功。
+            errorRecovery: true,
+        },
+        // 将给定的对象传递给 imagemin-gifsicle。设置为null以禁用gifsicle。
+        gifsicle: {
+            // 默认值：false，交错gif以进行渐进式渲染。
+            interlaced: false,
+            // 默认值：1，在1到3之间选择一个优化级别。
+            // 优化级别确定完成多少优化；较高的水平需要更长的时间，但可能会有更好的效果。
+            // 仅存储每个图像的更改部分。 还使用透明度进一步缩小文件。 尝试几种优化方法（通常速度较慢，有时效果更好）
+            optimizationLevel: 1,
+            // 将每个输出GIF中的不同颜色数量减少到num或更少。数值必须在2到256之间。
+            // colors: 2,
+        },
+        // 将给定的对象传递给 imagemin-jpegtran。设置为null可禁用jpegtran。
+        jpegtran: {
+            // 渐进，默认值：false，无损转换为渐进式。
+            progressive: false,
+            // 默认值：false，使用算术编码。
+            arithmetic: false,
+        },
+        // 将给定的对象传递给 imagemin-svgo。设置为null可禁用svgo。
+        svgo: {},
+        // 将给定的对象传递给 imagemin-pngquant。设置为null可禁用pngquant。
+        pngquant: {
+            // 速度，默认值：4，1（强力）至11（最快）
+            // 速度10的质量降低了5％，但比默认速度快8倍。速度11禁用抖动并降低压缩级别。
+            speed: 4,
+            // 默认值：false，删除可选的元数据。
+            strip: false,
+            // 质量，数据类型：Array<min: number, max: number>，值范围：Array<0...1, 0...1>
+            // 指示pngquant使用满足或超过最大质量所需的最少颜色量。如果转换结果质量低于最小质量，则不会保存图像。
+            // Min和max是介于0（最差）到1（完美）之间的数字，类似于JPEG。
+            quality: [
+                0.3,
+                0.5,
+            ],
+            // 抖动，默认值：1(完整)，值范围0-1，
+            // 使用介于0（无）和1（满）之间的小数设置抖动级别。输入false以禁用抖动。
+            dithering: 1,
+            // 后置，数据类型是number，截断颜色的最低有效位数（每个通道）。当图像将在低深度显示器（例如16位RGB）上输出时使用此功能。
+            // pngquant将使几乎不透明的像素完全不透明，并减少半透明颜色的数量。
+            // posterize: 1,
+            // 打印详细的状态消息。默认值是false
+            verbose: false,
+        },
+
+        // 将已经缩小的图像缓存到cacheFolder中。在下次运行时，插件将首先检查缓存的图像。如果存在缓存的图像，它将仅使用该图像。
+        // 否则，图像将被优化并写入到cacheFolder中以用于以后的构建。
+        cacheFolder: path.resolve( __dirname, './node_modules/.cache/imageminPlugin' ),
+
+        // 在这里包括您想要使用imagemin的任何其他插件。
+        // 默认情况下，上面的内容包括在内，但是如果您想（或需要）禁用它们（通过将它们设置为空），您可以在这里自己包含它们。
+        plugins: [
+            imageminWebp( {
+                // 预设设置: default, photo, picture, drawing, icon and text.
+                preset: 'default',
+                // 默认值75，将品质因数设置在0到100之间。
+                quality: 75,
+                // 将透明压缩质量设置为0到100。
+                alphaQuality: 100,
+                // 在0（最快）和6（最慢）之间指定要使用的压缩方法。此参数控制编码速度与压缩文件大小和质量之间的权衡。
+                method: 4,
+                // 设置目标大小（以字节为单位）。
+                // size: 1,
+                // 将空间噪声整形的幅度设置在0到100之间。
+                sns: 80,
+                // 将解块滤波器强度设置为0（关闭）到100。
+                // filter: 100,
+                // 自动调整过滤器强度。
+                autoFilter: false,
+                // 将滤镜的清晰度设置在0（最清晰）和7（最不清晰）之间。
+                sharpness: 0,
+                // 无损编码图像。
+                lossless: false,
+                // 使用附加的有损预处理步骤进行无损编码，其质量因子在0（最大预处理）和100（与无损相同）之间。
+                nearLossless: 100,
+                // 裁剪图像: Object { x: number, y: number, width: number, height: number }
+                // crop: {},
+                // 调整图像大小。crop后发生。Object { width: number, height: number }
+                // resize: {},
+                // 要从输入复制到输出的元数据列表（如果存在）。all none exif icc xmp
+                metadata: [ 'all', ],
+            } ),
+            imageminMozjpeg( {
+                // 压缩质量，范围从0（最差）到100（最完美）。
+                quality: 50,
+                // 默认值true，false创建基线JPEG文件。
+                progressive: false,
+                // 默认值false，输入文件为Targa格式（通常不需要）。
+                targa: false,
+                // 默认值false，恢复为标准默认设置，而不是mozjpeg默认设置。
+                revert: false,
+                // 默认值false，禁用渐进式扫描优化。
+                fastCrush: false,
+                // 设置直流扫描优化模式。
+                // 0 一键扫描所有组件
+                // 1 每个组件一次扫描
+                // 2 在所有组件的一次扫描和第一组件的一次扫描加其余组件的一次扫描之间进行优化
+                dcScanOpt: 1,
+                // 网格优化。
+                trellis: true,
+                // 直流系数的网格优化。
+                trellisDC: true,
+                // 设置网格优化方法。可用方法：psnr, hvs-psnr, ssim, ms-ssim
+                tune: 'hvs-psnr',
+                // 通过过冲进行黑白去鸣。
+                overshoot: true,
+                // 使用算术编码。
+                arithmetic: false,
+                // 设置DCT方法：
+                // int 使用整数DCT
+                // fast 使用快速整数DCT（精度较低）
+                // float 使用浮点DCT
+                dct: 'int',
+                // 使用8位量化表条目可实现基线JPEG兼容性。
+                quantBaseline: false,
+                // 使用预定义的量化表。
+                // 0 JPEG Annex K
+                // 1 Flat(平面)
+                // 2 Custom, tuned for MS-SSIM(自定义，针对MS-SSIM进行了调整)
+                // 3 ImageMagick table by N. Robidoux
+                // 4 Custom, tuned for PSNR-HVS(定制，针对PSNR-HVS进行了调整)
+                // 5 Table from paper by Klein, Silverstein and Carney
+                // quantTable: 1,
+                // 设置平滑抖动输入的强度。 （1 ... 100）
+                // smooth: 50,
+                // 设置要使用的最大内存（以千字节为单位，KB）。2MB
+                // maxMemory: 2 * 1024,
+                // 设置组件采样因子。每个项目都应采用HxV格式，例如2x1。
+                // sample: string[],
+            } ),
+        ],
+
+        /*
+         // 外部资源图片，不包含在webpack的资源中
+         externalImages: {
+         // 'src'
+         context: './',
+
+         // 资料来源
+         // [ 'src/images/qwe.png', ]
+         sources: [],
+
+         // 目的地
+         // 'src/public/images'
+         destination: null,
+
+         // '[path][name].[ext]'
+         fileName: null,
+         },
+         */
     };
 
 module.exports = {
@@ -4348,4 +4535,5 @@ module.exports = {
     stats_obj,
     ForkTsCheckerWebpackPlugin_obj,
     ForkTsCheckerNotifierWebpackPlugin_obj,
+    ImageminPlugin_obj,
 };

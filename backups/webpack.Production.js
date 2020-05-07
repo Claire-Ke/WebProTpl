@@ -16,6 +16,7 @@ let path = require( 'path' ),
     MiniCSSExtractPlugin = require( 'mini-css-extract-plugin' ),
     ForkTsCheckerWebpackPlugin = require( 'fork-ts-checker-webpack-plugin' ),
     ForkTsCheckerNotifierWebpackPlugin = require( 'fork-ts-checker-notifier-webpack-plugin' ),
+    ImageminPlugin = require( 'imagemin-webpack-plugin' ).default,
     os = require( 'os' ),
     baseConfig = require( './webpack.BaseConfig.js' ),
     htmlConfig = require( './configures/HTMLConfig.js' );
@@ -73,6 +74,7 @@ module.exports = {
         } ),
         new CleanWebpackPlugin( baseConfig.cleanWebpackPluginConfig_fun( 'production' ) ),
         new copyWebpackPlugin( baseConfig.copyWebpackPluginConfig_arr ),
+        new ImageminPlugin( baseConfig.ImageminPlugin_obj ),
         new AssetsWebpackPlugin( Object.assign( {}, baseConfig.AssetsWebpackPluginOption_obj, {
             keepInMemory: false,
             path: path.resolve( __dirname, `./dist/production/others/` ),
