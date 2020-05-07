@@ -81,7 +81,7 @@
         "production": "webpack --mode production --config webpack.Production.js --progress=true --display-error-details=true --color=true --node-args='--max-old-space-size=8192'",
         "production_WEB_Page": "start http://localhost:8081/WebProTpl/dist/production/pages/HelloWorld.html",
         "simServer": "nodemon --config simServer/nodemon.json --experimental-import-meta-resolve --experimental-json-modules --experimental-repl-await --experimental-wasi-unstable-preview1 --experimental-vm-modules --experimental-wasm-modules simServer/src/App.mjs",
-        "weinre": "weinre --boundHost 192.168.1.3 --httpPort 8888 --verbose false --debug true"
+        "weinre": "weinre --boundHost localhost --httpPort 8888 --verbose false --debug true"
     },
     "browserslist": [
         "Chrome >= 81"

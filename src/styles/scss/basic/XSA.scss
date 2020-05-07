@@ -156,134 +156,315 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
 // iPhone X、iPhone XS、iPhone 11 Pro(5.8英寸 1125x2436 458ppi)宽高 End
 */
 
-/*iPhone X、iPhone XS、iPhone 11 Pro   20191203测试通过！！！ Start*/
+/*iPhone X、iPhone XS、iPhone 11 Pro   20200508测试通过！！！ Start*/
 
 /*Safari 添加到主屏幕 Start*/
 
-@media only screen and (device-width: 375px) and (device-height: 812px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: portrait) and (device-pixel-ratio: 3) {
+@media only screen and (width: 375px) and (height: 768px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 768px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 768px) and (orientation: portrait) and (device-pixel-ratio: 3) {
+
     html.css-reset {
         position: absolute;
-        bottom: -10px;
+        top: 0;
+        right: 0;
+        bottom: -44px;
+        left: 0;
+        width: 100%;
         height: auto;
-    }
-
-    body.css-reset {
         padding-top: constant(safe-area-inset-top);
         padding-top: env(safe-area-inset-top);
+        padding-bottom: constant(safe-area-inset-bottom);
+        padding-bottom: env(safe-area-inset-bottom);
+        overflow: hidden;
     }
+
+    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    body.css-reset {
+        position: absolute;
+        top: constant(safe-area-inset-top);
+        top: env(safe-area-inset-top);
+        right: 0;
+        bottom: constant(safe-area-inset-bottom);
+        bottom: env(safe-area-inset-bottom);
+        left: 0;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+
 }
 
-@media only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (device-width: 375px) and (device-height: 812px) and (orientation: landscape) and (device-pixel-ratio: 3) {
-    body.css-reset {
+@media only screen and (width: 812px) and (height: 375px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 375px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 375px) and (orientation: landscape) and (device-pixel-ratio: 3) {
+
+    html.css-reset {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: auto;
+        height: auto;
         padding-right: constant(safe-area-inset-right);
         padding-right: env(safe-area-inset-right);
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
         padding-left: constant(safe-area-inset-left);
         padding-left: env(safe-area-inset-left);
-        /*百度浏览器特殊处理*/
-        padding-right: 44px;
-        padding-bottom: 21px;
-        padding-left: 44px;
+        overflow: hidden;
     }
+
+    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    body.css-reset {
+        position: absolute;
+        top: 0;
+        right: constant(safe-area-inset-right);
+        right: env(safe-area-inset-right);
+        bottom: constant(safe-area-inset-bottom);
+        bottom: env(safe-area-inset-bottom);
+        left: constant(safe-area-inset-left);
+        left: env(safe-area-inset-left);
+        width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
 }
 
 /*Safari 添加到主屏幕 End*/
 
-/*微信 横屏 Start*/
+/*Safari 横屏(有状态栏的情况) Start*/
 
-@media only screen and (width: 812px) and (height: 343px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 343px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 343px) and (orientation: landscape) and (device-pixel-ratio: 3) {
-    body.css-reset {
+@media only screen and (width: 812px) and (height: 325px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 325px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 325px) and (orientation: landscape) and (device-pixel-ratio: 3) {
+
+    html.css-reset {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: auto;
+        height: auto;
         padding-right: constant(safe-area-inset-right);
         padding-right: env(safe-area-inset-right);
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
         padding-left: constant(safe-area-inset-left);
         padding-left: env(safe-area-inset-left);
+        overflow: hidden;
     }
+
+    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    body.css-reset {
+        position: absolute;
+        top: 0;
+        right: constant(safe-area-inset-right);
+        right: env(safe-area-inset-right);
+        bottom: constant(safe-area-inset-bottom);
+        bottom: env(safe-area-inset-bottom);
+        left: constant(safe-area-inset-left);
+        left: env(safe-area-inset-left);
+        width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
 }
 
-/*微信 横屏 End*/
+/*Safari 横屏(有状态栏的情况) End*/
 
-/*QQ内置浏览器、新浪微博内置浏览器、支付宝内置浏览器、微信 竖屏 Start*/
+/*微信、QQ内置浏览器(竖屏)、新浪微博内置浏览器(竖屏)、支付宝内置浏览器(竖屏) Start*/
 
 @media only screen and (width: 375px) and (height: 724px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 724px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 724px) and (orientation: portrait) and (device-pixel-ratio: 3) {
-    body.css-reset {
+
+    html.css-reset {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
-        /*新浪微博内置浏览器横竖切换特殊处理*/
-        padding-bottom: 34px;
+        overflow: hidden;
     }
+
+    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    body.css-reset {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        bottom: constant(safe-area-inset-bottom);
+        bottom: env(safe-area-inset-bottom);
+        left: 0;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+
 }
 
-/*QQ内置浏览器、新浪微博内置浏览器、支付宝内置浏览器、微信 竖屏 End*/
+@media only screen and (width: 812px) and (height: 343px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 343px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 343px) and (orientation: landscape) and (device-pixel-ratio: 3) {
+
+    html.css-reset {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: auto;
+        height: auto;
+        padding-right: constant(safe-area-inset-right);
+        padding-right: env(safe-area-inset-right);
+        padding-bottom: constant(safe-area-inset-bottom);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: constant(safe-area-inset-left);
+        padding-left: env(safe-area-inset-left);
+        overflow: hidden;
+    }
+
+    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    body.css-reset {
+        position: absolute;
+        top: 0;
+        right: constant(safe-area-inset-right);
+        right: env(safe-area-inset-right);
+        bottom: constant(safe-area-inset-bottom);
+        bottom: env(safe-area-inset-bottom);
+        left: constant(safe-area-inset-left);
+        left: env(safe-area-inset-left);
+        width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
+}
+
+/*微信、QQ内置浏览器(竖屏)、新浪微博内置浏览器(竖屏)、支付宝内置浏览器(竖屏) End*/
 
 /*新浪微博内置浏览器 横屏 Start*/
 
 @media only screen and (width: 812px) and (height: 287px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 287px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 287px) and (orientation: landscape) and (device-pixel-ratio: 3) {
-    body.css-reset {
+
+    html.css-reset {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: auto;
+        height: auto;
         padding-right: constant(safe-area-inset-right);
         padding-right: env(safe-area-inset-right);
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
         padding-left: constant(safe-area-inset-left);
         padding-left: env(safe-area-inset-left);
-        /*以下特殊必须*/
-        padding-right: 44px;
-        padding-bottom: 21px;
-        padding-left: 44px;
+        overflow: hidden;
     }
+
+    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    body.css-reset {
+        position: absolute;
+        top: 0;
+        right: constant(safe-area-inset-right);
+        right: env(safe-area-inset-right);
+        bottom: constant(safe-area-inset-bottom);
+        bottom: env(safe-area-inset-bottom);
+        left: constant(safe-area-inset-left);
+        left: env(safe-area-inset-left);
+        width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
 }
 
 /*新浪微博内置浏览器 横屏 End*/
 
-/*谷歌浏览器 Egde浏览器 横屏 Start*/
+/*谷歌浏览器 横屏 Start*/
 
-/*以下是谷歌浏览器特殊情况，很难重现*/
-@media only screen and (width: 812px) and (height: 327px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 327px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 327px) and (orientation: landscape) and (device-pixel-ratio: 3) {
-    body.css-reset {
+@media only screen and (width: 724px) and (height: 325px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 724px) and (height: 325px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 724px) and (height: 325px) and (orientation: landscape) and (device-pixel-ratio: 3) {
+
+    html.css-reset {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: auto;
+        height: auto;
         padding-right: constant(safe-area-inset-right);
         padding-right: env(safe-area-inset-right);
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
         padding-left: constant(safe-area-inset-left);
         padding-left: env(safe-area-inset-left);
+        overflow: hidden;
     }
-}
 
-@media only screen and (width: 812px) and (height: 325px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 325px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 325px) and (orientation: landscape) and (device-pixel-ratio: 3) {
+    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
     body.css-reset {
-        padding-right: constant(safe-area-inset-right);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: constant(safe-area-inset-bottom);
-        padding-bottom: env(safe-area-inset-bottom);
-        /*这一个是Egde浏览器的特殊处理*/
-        padding-bottom: 21px;
-        padding-left: constant(safe-area-inset-left);
-        padding-left: env(safe-area-inset-left);
+        position: absolute;
+        top: 0;
+        right: constant(safe-area-inset-right);
+        right: env(safe-area-inset-right);
+        bottom: constant(safe-area-inset-bottom);
+        bottom: env(safe-area-inset-bottom);
+        left: constant(safe-area-inset-left);
+        left: env(safe-area-inset-left);
+        width: auto;
+        height: auto;
+        overflow: hidden;
     }
+
 }
 
-/*谷歌浏览器 Egde浏览器 横屏 End*/
+/*谷歌浏览器 横屏 End*/
 
 /*火狐浏览器 横屏 Start*/
 
 @media only screen and (width: 812px) and (height: 319px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 319px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 319px) and (orientation: landscape) and (device-pixel-ratio: 3) {
-    body.css-reset {
+
+    html.css-reset {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: auto;
+        height: auto;
         padding-right: constant(safe-area-inset-right);
         padding-right: env(safe-area-inset-right);
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
         padding-left: constant(safe-area-inset-left);
         padding-left: env(safe-area-inset-left);
+        overflow: hidden;
     }
+
+    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    body.css-reset {
+        position: absolute;
+        top: 0;
+        right: constant(safe-area-inset-right);
+        right: env(safe-area-inset-right);
+        bottom: constant(safe-area-inset-bottom);
+        bottom: env(safe-area-inset-bottom);
+        left: constant(safe-area-inset-left);
+        left: env(safe-area-inset-left);
+        width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
 }
 
 /*火狐浏览器 横屏 End*/
 
 /*Opera Touch Start*/
 
-@media only screen and (width: 812px) and (height: 331px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 331px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 331px) and (orientation: landscape) and (device-pixel-ratio: 3) {
+/*@media only screen and (width: 812px) and (height: 331px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 331px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 331px) and (orientation: landscape) and (device-pixel-ratio: 3) {
     body.css-reset {
         padding-right: constant(safe-area-inset-right);
         padding-right: env(safe-area-inset-right);
@@ -292,30 +473,31 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
         padding-left: constant(safe-area-inset-left);
         padding-left: env(safe-area-inset-left);
     }
-}
+}*/
 
 /*Opera Touch End*/
 
 /*傲游 Start*/
 
-@media only screen and (width: 812px) and (height: 272px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 272px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 272px) and (orientation: landscape) and (device-pixel-ratio: 3) {
+/*@media only screen and (width: 812px) and (height: 272px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 272px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 272px) and (orientation: landscape) and (device-pixel-ratio: 3) {
     body.css-reset {
         padding-right: constant(safe-area-inset-right);
         padding-right: env(safe-area-inset-right);
         padding-left: constant(safe-area-inset-left);
         padding-left: env(safe-area-inset-left);
     }
-}
+}*/
 
 /*傲游 End*/
 
 /*QQ浏览器 横屏 Start*/
 
+/*
 @media only screen and (width: 724px) and (height: 375px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 724px) and (height: 375px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 724px) and (height: 375px) and (orientation: landscape) and (device-pixel-ratio: 3) {
     body.css-reset {
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
-        /*特殊处理*/
+        !*特殊处理*!
         padding-bottom: 21px;
     }
 }
@@ -324,24 +506,26 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
     body.css-reset {
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
-        /*特殊处理*/
+        !*特殊处理*!
         padding-bottom: 21px;
     }
 }
+*/
 
 /*QQ浏览器 横屏 End*/
 
 /*360浏览器 Start*/
 
-@media only screen and (width: 375px) and (height: 664px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 664px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 664px) and (orientation: portrait) and (device-pixel-ratio: 3) {
+/*@media only screen and (width: 375px) and (height: 664px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 664px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 664px) and (orientation: portrait) and (device-pixel-ratio: 3) {
     html.css-reset {
         position: absolute;
         bottom: 7px;
         height: auto;
     }
-}
+}*/
 
 /*全屏*/
+/*
 @media only screen and (width: 375px) and (height: 765px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 765px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 765px) and (orientation: portrait) and (device-pixel-ratio: 3) {
     body.css-reset {
         padding-bottom: constant(safe-area-inset-bottom);
@@ -359,16 +543,18 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
         padding-left: env(safe-area-inset-left);
     }
 }
+*/
 
 /*360浏览器 End*/
 
 /*百度浏览器 奇葩比较多 Start*/
 
+/*
 @media only screen and (width: 375px) and (height: 770px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 770px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 770px) and (orientation: portrait) and (device-pixel-ratio: 3) {
     body.css-reset {
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
-        /*特殊处理*/
+        !*特殊处理*!
         padding-bottom: 34px;
     }
 }
@@ -377,7 +563,7 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
     body.css-reset {
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom);
-        /*特殊处理*/
+        !*特殊处理*!
         padding-bottom: 34px;
     }
 }
@@ -390,7 +576,7 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
         padding-bottom: env(safe-area-inset-bottom);
         padding-left: constant(safe-area-inset-left);
         padding-left: env(safe-area-inset-left);
-        /*百度浏览器特殊处理*/
+        !*百度浏览器特殊处理*!
         padding-right: 44px;
         padding-bottom: 21px;
         padding-left: 44px;
@@ -405,16 +591,17 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
         padding-bottom: env(safe-area-inset-bottom);
         padding-left: constant(safe-area-inset-left);
         padding-left: env(safe-area-inset-left);
-        /*百度浏览器特殊处理*/
+        !*百度浏览器特殊处理*!
         padding-right: 44px;
         padding-bottom: 21px;
         padding-left: 44px;
     }
 }
+*/
 
 /*百度浏览器 End*/
 
-/*iPhone X、iPhone XS、iPhone 11 Pro   20191203测试通过！！！ End*/
+/*iPhone X、iPhone XS、iPhone 11 Pro   20200508测试通过！！！ End*/
 
 /*iPhone XR、iPhone 11 Start*/
 
