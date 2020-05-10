@@ -36,5 +36,5 @@ let CT = new CTESM.CT();
         },
     } );
 
-    // CT.scrollFix( 'main' );
+    CT.scrollFix( 'main' );
 } )();

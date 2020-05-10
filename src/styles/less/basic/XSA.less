@@ -163,32 +163,33 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
 @media only screen and (width: 375px) and (height: 768px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 768px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 768px) and (orientation: portrait) and (device-pixel-ratio: 3) {
 
     html.css-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: -44px;
-        left: 0;
-        width: 100%;
-        height: auto;
-        padding-top: constant(safe-area-inset-top);
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: constant(safe-area-inset-bottom);
-        padding-bottom: env(safe-area-inset-bottom);
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: calc(-1 * constant(safe-area-inset-bottom)) !important;
+        bottom: calc(-1 * env(safe-area-inset-bottom)) !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        padding-top: constant(safe-area-inset-top) !important;
+        padding-top: env(safe-area-inset-top) !important;
+        padding-bottom: constant(safe-area-inset-bottom) !important;
+        padding-bottom: env(safe-area-inset-bottom) !important;
+        overflow: hidden !important;
     }
 
     // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
     body.css-reset {
-        position: absolute;
-        top: constant(safe-area-inset-top);
-        top: env(safe-area-inset-top);
-        right: 0;
-        bottom: constant(safe-area-inset-bottom);
-        bottom: env(safe-area-inset-bottom);
-        left: 0;
-        width: 100%;
-        height: auto;
-        overflow: hidden;
+        //position: absolute;
+        //top: constant(safe-area-inset-top);
+        //top: env(safe-area-inset-top);
+        //right: 0;
+        //bottom: constant(safe-area-inset-bottom);
+        //bottom: env(safe-area-inset-bottom);
+        //left: 0;
+        //width: 100%;
+        //height: auto;
+        //overflow: hidden;
     }
 
 }
