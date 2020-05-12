@@ -6,23 +6,31 @@ CreateDate：2019-01-01 00:00:00
 IDE: WebStorm
 */
 
-button.root.appBtn {
-    line-height: 0;
-    background-color: transparent;
+@font-face {
+    font-family: 'Font_Helvetica';
+    src: url(../../../assets/fonts/Helvetica.otf);
+}
 
-    > img {
+div.root.appBtn {
+    width: 83px;
+    height: 78px;
+    background-color: transparent;
+    line-height: 0;
+
+    > img.css-reset {
         width: 60px;
         height: 60px;
         border-radius: 12px;
         line-height: 0;
     }
 
-    > span {
+    > label.css-reset {
         width: 100%;
+        line-height: 1.1;
+        text-align: center;
         color: white;
         font-size: 12px;
         font-family: 'Font_Helvetica';
-        text-align: center;
-        line-height: 1;
     }
+
 }

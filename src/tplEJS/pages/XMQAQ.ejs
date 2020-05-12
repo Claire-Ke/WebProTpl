@@ -26,7 +26,7 @@ let options_obj = htmlWebpackPlugin.options,
     path1_str
 } ) %>
 <!DOCTYPE html>
-<html class = 'css-reset fullS ofh xmQAQ'
+<html class = 'css-reset fullS usN ofh xmQAQ'
       lang = 'zh-CN' <%= isOpen_boo
                          ? `manifest='${ publicPath_str + path1_str }'`
                          : `` %> >
@@ -80,22 +80,22 @@ let options_obj = htmlWebpackPlugin.options,
         fileName_str: 'XSA'
     } ) %> />
 </head>
-<body class = 'css-reset fullS ofh usN'>
+<body class = 'css-reset fullS usN ofh'>
 <!--LocalRoll节点说明：局部滚动容器，用于避免全局滚动下出现的滚动穿透BUG！！！-->
 <div id = 'LocalRoll'
-     class = 'css-reset fullS ofa'>
+     class = 'css-reset fullS usN ofa'>
     <!--XMQAQ节点说明：保证PC端下标准的最小尺寸(对于“pcMin”因为在相关样式中写好了媒体查询所以保持这样就行了)！！！请在这个节点里写HTML元素！！！-->
     <div id = 'XMQAQ'
-         class = 'css-reset pcMin ofh'>
+         class = 'css-reset pcMin usN ofh'>
         <!--***************************************弹窗一类的元素Start***************************************-->
         <!--说明：这里可以写对话框、提示框、警告框等弹窗一类的元素！！！建议使用定位为“position: absolute”！！！-->
         <!--这样就算这些元素中有可滚动的节点，也不会出现滚动穿透！！！-->
         <!--<dialog>例子！！！</dialog>-->
         <!--***************************************弹窗一类的元素End***************************************-->
         <!--在这个节点里写主体HTML！！！-->
-        <main class = 'css-reset fullS ofh'>
+        <main class = 'css-reset fullS usN ofh'>
             <template>
-                <article class = 'css-reset fullS ofXhYa homePage gridBox'>
+                <article class = 'css-reset fullS ofXhYa gridBox homePage'>
                     <app-btn ref = 'AppBtn'
                              class = 'css-reset'
                              v-for = '( item, index ) in appBtnConfig'

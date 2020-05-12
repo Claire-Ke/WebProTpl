@@ -10,9 +10,9 @@ IDE: WebStorm
        src = '../../styles/xmQAQ/ImgShowTool.scss' />
 <template>
     <div class = 'css-reset ofh root imgShowToolBox'>
-        <button class = 'css-reset returnToBtnBoxA cP'
+        <button class = 'css-reset cP returnToBtnBoxA'
                 @doubleTap = 'returnTo' />
-        <button class = 'css-reset refreshBtnBoxA cP'
+        <button class = 'css-reset cP refreshBtnBoxA'
                 @doubleTap = 'refresh' />
         <img class = 'css-reset'
              :src = 'src'
@@ -22,7 +22,7 @@ IDE: WebStorm
              :is-first = 'isFirst'
              :state = 'state'
              @load = 'imgLoad' />
-        <button class = 'css-reset prevBtn cP'
+        <button class = 'css-reset cP prevBtn'
                 :class = '{
                 touchAN: isTouchAN,
                 }'
@@ -32,7 +32,7 @@ IDE: WebStorm
                 @swipeLeft = 'nextImg'
                 @swipeUp = 'nextImg'
                 @swipeDown = 'prevImg' />
-        <button class = 'css-reset nextBtn cP'
+        <button class = 'css-reset cP nextBtn'
                 :class = '{
                 touchAN: isTouchAN,
                 }'

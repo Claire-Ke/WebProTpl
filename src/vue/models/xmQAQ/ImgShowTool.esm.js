@@ -8,8 +8,7 @@
 
 'use strict';
 
-// 192.168.1.105   http://192.168.1.2:8084
-const baseURL_strC = '/iPhoneX/',
+const baseURL_strC = 'http://192.168.1.3:8084/iPhoneX/',
     img_numC = 241;
 
 let CT = new CTESM.CT(),

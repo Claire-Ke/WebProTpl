@@ -36,5 +36,6 @@ let CT = new CTESM.CT();
         },
     } );
 
-    CT.scrollFix( 'main' );
+    CT.on( 'html, body, #LocalRoll, #HelloWorld, main', 'touchmove', event => void ( CT.allEStop( event ) ) );
+
 } )();

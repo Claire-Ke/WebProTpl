@@ -12,19 +12,9 @@ IDE: WebStorm
 }
 
 html.helloWorld {
-    //width: 100%;
-    //height: 100%;
     background-color: #22afe9;
 
-    body {
-        //width: 100%;
-        //height: 100%;
-        background-color: #22afe9;
-    }
-
-    #LocalRoll, #HelloWorld, main {
-        //width: 100%;
-        //height: 100%;
+    body, #LocalRoll, #HelloWorld, main {
         background-color: #22afe9;
     }
 
@@ -41,19 +31,6 @@ html.helloWorld {
                 font-size: 20px;
                 font-family: Font_Helvetica;
                 padding: 0 20px;
-                /*
-                word-wrap: break-word;
-                word-break: break-all;
-                text-wrap: unrestricted;
-                */
-            }
-
-            .title:nth-child(odd) {
-                background-color: purple;
-            }
-
-            .title:nth-child(even) {
-                background-color: red;
             }
 
         }
@@ -61,21 +38,3 @@ html.helloWorld {
     }
 
 }
-
-/*
-@media only screen and (width: 812px) and (height: 375px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 375px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 375px) and (orientation: landscape) and (device-pixel-ratio: 3) {
-
-    html.helloWorld {
-
-        #HelloWorld {
-
-            article {
-                padding: 0;
-            }
-
-        }
-
-    }
-
-}
-*/

@@ -166,30 +166,26 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
         position: absolute !important;
         top: 0 !important;
         right: 0 !important;
-        bottom: calc(-1 * constant(safe-area-inset-bottom)) !important;
-        bottom: calc(-1 * env(safe-area-inset-bottom)) !important;
+        bottom: calc(-1 * constant(safe-area-inset-bottom) + -10px) !important;
+        bottom: calc(-1 * env(safe-area-inset-bottom) + -10px) !important;
         left: 0 !important;
         width: 100% !important;
         height: auto !important;
-        padding-top: constant(safe-area-inset-top) !important;
-        padding-top: env(safe-area-inset-top) !important;
-        padding-bottom: constant(safe-area-inset-bottom) !important;
-        padding-bottom: env(safe-area-inset-bottom) !important;
         overflow: hidden !important;
     }
 
-    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    /*奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！*/
     body.css-reset {
-        //position: absolute;
-        //top: constant(safe-area-inset-top);
-        //top: env(safe-area-inset-top);
-        //right: 0;
-        //bottom: constant(safe-area-inset-bottom);
-        //bottom: env(safe-area-inset-bottom);
-        //left: 0;
-        //width: 100%;
-        //height: auto;
-        //overflow: hidden;
+        position: absolute !important;
+        top: constant(safe-area-inset-top) !important;
+        top: env(safe-area-inset-top) !important;
+        right: 0;
+        bottom: constant(safe-area-inset-bottom) !important;
+        bottom: env(safe-area-inset-bottom) !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: hidden !important;
     }
 
 }
@@ -197,35 +193,29 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
 @media only screen and (width: 812px) and (height: 375px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 375px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 375px) and (orientation: landscape) and (device-pixel-ratio: 3) {
 
     html.css-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: auto;
-        height: auto;
-        padding-right: constant(safe-area-inset-right);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: constant(safe-area-inset-bottom);
-        padding-bottom: env(safe-area-inset-bottom);
-        padding-left: constant(safe-area-inset-left);
-        padding-left: env(safe-area-inset-left);
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
     }
 
-    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    /*奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！*/
     body.css-reset {
-        position: absolute;
-        top: 0;
-        right: constant(safe-area-inset-right);
-        right: env(safe-area-inset-right);
-        bottom: constant(safe-area-inset-bottom);
-        bottom: env(safe-area-inset-bottom);
-        left: constant(safe-area-inset-left);
-        left: env(safe-area-inset-left);
-        width: auto;
-        height: auto;
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: constant(safe-area-inset-right) !important;
+        right: env(safe-area-inset-right) !important;
+        bottom: constant(safe-area-inset-bottom) !important;
+        bottom: env(safe-area-inset-bottom) !important;
+        left: constant(safe-area-inset-left) !important;
+        left: env(safe-area-inset-left) !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: hidden !important;
     }
 
 }
@@ -237,35 +227,29 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
 @media only screen and (width: 812px) and (height: 325px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 325px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 325px) and (orientation: landscape) and (device-pixel-ratio: 3) {
 
     html.css-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: auto;
-        height: auto;
-        padding-right: constant(safe-area-inset-right);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: constant(safe-area-inset-bottom);
-        padding-bottom: env(safe-area-inset-bottom);
-        padding-left: constant(safe-area-inset-left);
-        padding-left: env(safe-area-inset-left);
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
     }
 
-    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    /*奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！*/
     body.css-reset {
-        position: absolute;
-        top: 0;
-        right: constant(safe-area-inset-right);
-        right: env(safe-area-inset-right);
-        bottom: constant(safe-area-inset-bottom);
-        bottom: env(safe-area-inset-bottom);
-        left: constant(safe-area-inset-left);
-        left: env(safe-area-inset-left);
-        width: auto;
-        height: auto;
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: constant(safe-area-inset-right) !important;
+        right: env(safe-area-inset-right) !important;
+        bottom: constant(safe-area-inset-bottom) !important;
+        bottom: env(safe-area-inset-bottom) !important;
+        left: constant(safe-area-inset-left) !important;
+        left: env(safe-area-inset-left) !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: hidden !important;
     }
 
 }
@@ -277,30 +261,27 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
 @media only screen and (width: 375px) and (height: 724px) and (orientation: portrait) and (-moz-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 724px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3), only screen and (width: 375px) and (height: 724px) and (orientation: portrait) and (device-pixel-ratio: 3) {
 
     html.css-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: auto;
-        padding-bottom: constant(safe-area-inset-bottom);
-        padding-bottom: env(safe-area-inset-bottom);
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
     }
 
-    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    /*奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！*/
     body.css-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        bottom: constant(safe-area-inset-bottom);
-        bottom: env(safe-area-inset-bottom);
-        left: 0;
-        width: 100%;
-        height: auto;
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: constant(safe-area-inset-bottom) !important;
+        bottom: env(safe-area-inset-bottom) !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: hidden !important;
     }
 
 }
@@ -308,35 +289,29 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
 @media only screen and (width: 812px) and (height: 343px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 343px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 343px) and (orientation: landscape) and (device-pixel-ratio: 3) {
 
     html.css-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: auto;
-        height: auto;
-        padding-right: constant(safe-area-inset-right);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: constant(safe-area-inset-bottom);
-        padding-bottom: env(safe-area-inset-bottom);
-        padding-left: constant(safe-area-inset-left);
-        padding-left: env(safe-area-inset-left);
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
     }
 
-    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    /*奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！*/
     body.css-reset {
-        position: absolute;
-        top: 0;
-        right: constant(safe-area-inset-right);
-        right: env(safe-area-inset-right);
-        bottom: constant(safe-area-inset-bottom);
-        bottom: env(safe-area-inset-bottom);
-        left: constant(safe-area-inset-left);
-        left: env(safe-area-inset-left);
-        width: auto;
-        height: auto;
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: constant(safe-area-inset-right) !important;
+        right: env(safe-area-inset-right) !important;
+        bottom: constant(safe-area-inset-bottom) !important;
+        bottom: env(safe-area-inset-bottom) !important;
+        left: constant(safe-area-inset-left) !important;
+        left: env(safe-area-inset-left) !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: hidden !important;
     }
 
 }
@@ -348,35 +323,29 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
 @media only screen and (width: 812px) and (height: 287px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 287px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 287px) and (orientation: landscape) and (device-pixel-ratio: 3) {
 
     html.css-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: auto;
-        height: auto;
-        padding-right: constant(safe-area-inset-right);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: constant(safe-area-inset-bottom);
-        padding-bottom: env(safe-area-inset-bottom);
-        padding-left: constant(safe-area-inset-left);
-        padding-left: env(safe-area-inset-left);
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
     }
 
-    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    /*奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！*/
     body.css-reset {
-        position: absolute;
-        top: 0;
-        right: constant(safe-area-inset-right);
-        right: env(safe-area-inset-right);
-        bottom: constant(safe-area-inset-bottom);
-        bottom: env(safe-area-inset-bottom);
-        left: constant(safe-area-inset-left);
-        left: env(safe-area-inset-left);
-        width: auto;
-        height: auto;
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: constant(safe-area-inset-right) !important;
+        right: env(safe-area-inset-right) !important;
+        bottom: constant(safe-area-inset-bottom) !important;
+        bottom: env(safe-area-inset-bottom) !important;
+        left: constant(safe-area-inset-left) !important;
+        left: env(safe-area-inset-left) !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: hidden !important;
     }
 
 }
@@ -388,35 +357,29 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
 @media only screen and (width: 724px) and (height: 325px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 724px) and (height: 325px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 724px) and (height: 325px) and (orientation: landscape) and (device-pixel-ratio: 3) {
 
     html.css-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: auto;
-        height: auto;
-        padding-right: constant(safe-area-inset-right);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: constant(safe-area-inset-bottom);
-        padding-bottom: env(safe-area-inset-bottom);
-        padding-left: constant(safe-area-inset-left);
-        padding-left: env(safe-area-inset-left);
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
     }
 
-    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    /*奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！*/
     body.css-reset {
-        position: absolute;
-        top: 0;
-        right: constant(safe-area-inset-right);
-        right: env(safe-area-inset-right);
-        bottom: constant(safe-area-inset-bottom);
-        bottom: env(safe-area-inset-bottom);
-        left: constant(safe-area-inset-left);
-        left: env(safe-area-inset-left);
-        width: auto;
-        height: auto;
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: constant(safe-area-inset-right) !important;
+        right: env(safe-area-inset-right) !important;
+        bottom: constant(safe-area-inset-bottom) !important;
+        bottom: env(safe-area-inset-bottom) !important;
+        left: constant(safe-area-inset-left) !important;
+        left: env(safe-area-inset-left) !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: hidden !important;
     }
 
 }
@@ -428,35 +391,29 @@ only screen and (device-width: 375px) and (device-height: 812px) and (orientatio
 @media only screen and (width: 812px) and (height: 319px) and (orientation: landscape) and (-moz-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 319px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3), only screen and (width: 812px) and (height: 319px) and (orientation: landscape) and (device-pixel-ratio: 3) {
 
     html.css-reset {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: auto;
-        height: auto;
-        padding-right: constant(safe-area-inset-right);
-        padding-right: env(safe-area-inset-right);
-        padding-bottom: constant(safe-area-inset-bottom);
-        padding-bottom: env(safe-area-inset-bottom);
-        padding-left: constant(safe-area-inset-left);
-        padding-left: env(safe-area-inset-left);
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
     }
 
-    // 奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！
+    /*奇怪！！！当html滚动出界时，其出界的背景色竟然不是html控制的，而是body控制的！！！*/
     body.css-reset {
-        position: absolute;
-        top: 0;
-        right: constant(safe-area-inset-right);
-        right: env(safe-area-inset-right);
-        bottom: constant(safe-area-inset-bottom);
-        bottom: env(safe-area-inset-bottom);
-        left: constant(safe-area-inset-left);
-        left: env(safe-area-inset-left);
-        width: auto;
-        height: auto;
-        overflow: hidden;
+        position: absolute !important;
+        top: 0 !important;
+        right: constant(safe-area-inset-right) !important;
+        right: env(safe-area-inset-right) !important;
+        bottom: constant(safe-area-inset-bottom) !important;
+        bottom: env(safe-area-inset-bottom) !important;
+        left: constant(safe-area-inset-left) !important;
+        left: env(safe-area-inset-left) !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: hidden !important;
     }
 
 }

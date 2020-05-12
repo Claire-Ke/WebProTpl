@@ -9,13 +9,13 @@ IDE: WebStorm
        scoped
        src = '../../styles/xmQAQ/AppBtn.scss' />
 <template>
-    <button class = 'css-reset root appBtn flexBox flexSBC flexDC ofh cP'
-            @tap = 'activity'>
+    <div class = 'css-reset ofh cP flexBox flexSBC flexDC root appBtn'
+         @tap = 'activity'>
         <img class = 'css-reset'
              :src = 'src'
              :alt = 'alt' />
-        <span class = 'css-reset sLTextE'>{{ appName }}</span>
-    </button>
+        <label class = 'css-reset sLTextE'>{{ appName }}</label>
+    </div>
 </template>
 <script type = 'module'>
     'use strict';

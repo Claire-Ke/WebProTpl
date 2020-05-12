@@ -32,6 +32,542 @@ const appBtnConfig_arrC = [
             _this.$root.isShow2ImgShowTool = true;
         },
     },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
+    {
+        src: AppBtnIcoSrc,
+        alt: '轩墨宝宝图集.png',
+        appName: '轩墨宝宝图集',
+        goTo( event, _this ){
+            _this.$root.isShow2ImgShowTool = true;
+        },
+    },
 ];
 
 new Vue( {
@@ -80,7 +616,4 @@ new Vue( {
     },
 } );
 
-// body, #LocalRoll, #XMQAQ, main, .homePage
-// body
-CT.on( 'body, #LocalRoll, #XMQAQ, main, .homePage', 'touchmove', event => void ( CT.allEStop( event ) ) );
-// CT.scrollFix( '.homePage' );
+CT.on( 'html, body, #LocalRoll, #XMQAQ, main', 'touchmove', event => void ( CT.allEStop( event ) ) );
