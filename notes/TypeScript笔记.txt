@@ -1,6 +1,6 @@
 TypeScript笔记
 PS:
-1、
+1、function createWatchFactory
 
 一、枚举
 知道某个枚举的具体成员数值，但是不确定它映射到枚举里的哪个名字，要想知道这个名字，可以这么做：

@@ -180,11 +180,11 @@
         let obj4Any: object = {
             name: '林沐风',
             gName(){
-                // @ts-ignore
+                // @ts-expect-error
                 return this.name;
             },
         };
-        // @ts-ignore
+        // @ts-expect-error
         console.log( obj4Any.gName() );
 
         let list: any[] = [
@@ -334,7 +334,6 @@
 
         type type4Fun2 = { name: string, age?: number };
 
-        // @ts-ignore
         function Fun2( { name = 'qwe', age = 12 }: type4Fun2 = {
             name: '',
             age: 0
