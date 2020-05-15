@@ -255,7 +255,7 @@ let CT = new CTESM.CT();
 
 // Reflect、Proxy的观察者模式的Demo测试
 {
-    if( false ){
+    if( true ){
         let observeTarget1 = {
                 a: {
                     b: {

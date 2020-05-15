@@ -1971,7 +1971,7 @@ ${ onceFun1( 'q', 'w' ) }
 
 // ES6测试
 {
-    if( false ){
+    if( true ){
         import('./ES6Demo1.esm.js');
     }
 }
