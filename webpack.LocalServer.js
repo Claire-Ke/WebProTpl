@@ -95,7 +95,7 @@ module.exports = {
             ignoreOrder: false,
             esModule: false,
         } ),
-        new copyWebpackPlugin( baseConfig.copyWebpackPluginConfig_arr ),
+        new copyWebpackPlugin( baseConfig.copyWebpackPluginConfig_obj ),
         new ImageminPlugin( baseConfig.ImageminPlugin_obj ),
         new AssetsWebpackPlugin( Object.assign( {}, baseConfig.AssetsWebpackPluginOption_obj, {
             keepInMemory: true,

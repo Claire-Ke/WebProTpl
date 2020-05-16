@@ -4048,32 +4048,38 @@ let fs = require( 'fs' ),
         ignored: watchIgnored_arr,
         poll: 100,
     },
-    copyWebpackPluginConfig_arr = [
-        {
-            context: './src/',
-            from: 'static',
-            to: './static',
-            toType: 'dir',
-            force: true,
-            cache: true,
-            ignore: [
-                '**/.gitignore',
-                '该文件夹说明.txt',
-            ],
+    copyWebpackPluginConfig_obj = {
+        patterns: [
+            {
+                context: './src/',
+                from: 'static',
+                to: './static',
+                toType: 'dir',
+                force: true,
+                // cache: true,
+                // ignore: [
+                //    '**/.gitignore',
+                //    '该文件夹说明.txt',
+                // ],
+            },
+            {
+                context: './src/workers/',
+                from: 'tools',
+                to: './workers/tools',
+                toType: 'dir',
+                force: true,
+                // cache: true,
+                // ignore: [
+                //    '**/.gitignore',
+                //    'tools文件夹下的文件说明.txt',
+                // ],
+            },
+        ],
+        options: {
+            // 并发量，默认100
+            concurrency: 100,
         },
-        {
-            context: './src/workers/',
-            from: 'tools',
-            to: './workers/tools',
-            toType: 'dir',
-            force: true,
-            cache: true,
-            ignore: [
-                '**/.gitignore',
-                'tools文件夹下的文件说明.txt',
-            ],
-        },
-    ],
+    },
     cleanWebpackPluginConfig_fun = arg => ( {
         // 模拟删除文件的操作，true开启，开启后，不会真的删除硬盘上的文件
         dry: false,
@@ -4528,7 +4534,7 @@ module.exports = {
     moduleRules_fun,
     watchIgnored_arr,
     watchOptions_obj,
-    copyWebpackPluginConfig_arr,
+    copyWebpackPluginConfig_obj,
     cleanWebpackPluginConfig_fun,
     recordsPath_fun,
     AssetsWebpackPluginOption_obj,
