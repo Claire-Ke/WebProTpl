@@ -20,6 +20,7 @@ const TSConfig_objC = {
         'node_modules',
         'notes',
         'simServer',
+        'simServer4Deno',
         'src/assets',
         'src/pwa4Manifest',
         'src/static',

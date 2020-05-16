@@ -17,6 +17,7 @@
         "nodemon.json",
         "SimServer.bat",
         "该文件夹说明.txt",
+        "../simServer4Deno/*",
         "../src/*",
         "../webpackRecords/*",
         "../.gitignore",
