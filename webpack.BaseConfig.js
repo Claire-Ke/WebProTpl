@@ -4362,8 +4362,8 @@ let fs = require( 'fs' ),
         skipSuccessful: true,
     },
     ImageminPlugin_obj = {
-        // 设置为true时，它将完全禁用该插件。这对于在开发期间禁用插件以及仅在生产期间启用插件很有用
-        disable: !isPro,
+        // !isPro 设置为true时，它将完全禁用该插件。这对于在开发期间禁用插件以及仅在生产期间启用插件很有用
+        disable: true,
         test: /\.(gif|jpe|jpeg|jpg|png|svg|webp)$/i,
         // 设置可以一次运行的 Imagemin 实例的最大数量。设置为 Infinity 可以对每个图像同时运行单独的进程。
         maxConcurrency: osLen,
