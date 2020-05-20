@@ -460,3 +460,69 @@
         // p1.x = 5;
     }
 }
+
+// 定义泛型数组
+{
+    if( false ){
+        let arr1: Array<[ string, number ]> = [
+            [
+                'keyName1',
+                2020,
+            ],
+            [
+                'keyName2',
+                2021,
+            ],
+        ];
+
+        console.dir( arr1 );
+    }
+}
+
+// 查找字符串中出现最多次的那个字符
+{
+    if( false ){
+        let str4Target: string = 'zqweasgggggggdzxchhhhhhhhhhhhhhz',
+            result4Str: any = {},
+            str1: string = '',
+            strLen: number = str4Target.length;
+
+        for(
+            let i: number = 0;
+            i < strLen;
+            ++i
+        ){
+            str1 = str4Target[ i ];
+
+            if( !( str1 in result4Str ) ){
+                result4Str[ str1 ] = 1;
+
+                for(
+                    let j: number = 0;
+                    j < strLen;
+                    ++j
+                ){
+                    i !== j && str1 === str4Target[ j ] && ( ++( result4Str[ str1 ] ) );
+                }
+
+            }
+        }
+
+        // @ts-ignore
+        let result4Sort: Array<[ string, number ]> = Object.entries( result4Str )
+                                                           .sort( ( [
+                                                                        // @ts-ignore
+                                                                        keyNameA,
+                                                                        keyValueA
+                                                                    ]: [ string, number ],
+                                                                    [
+                                                                        // @ts-ignore
+                                                                        keyNameB,
+                                                                        keyValueB
+                                                                    ]: [ string, number ] ) => keyValueB - keyValueA );
+
+        console.log( str4Target );
+        console.dir( result4Sort );
+        console.log( `字符“${ result4Sort[ 0 ][ 0 ] }”出现的次数最多，一共“${ result4Sort[ 0 ][ 1 ] }”次！！！` );
+    }
+}

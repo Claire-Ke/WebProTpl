@@ -253,69 +253,6 @@ let CT = new CTESM.CT();
     }
 }
 
-// Reflect、Proxy的观察者模式的Demo测试
-{
-    if( true ){
-        let observeTarget1 = {
-                a: {
-                    b: {
-                        c: {
-                            d: 2020,
-                            e: [
-                                1,
-                                2,
-                                3,
-                                4,
-                                5,
-                            ],
-                        },
-                    },
-                },
-                a1: [
-                    'q',
-                    'w',
-                    'e',
-                ],
-            },
-            observeTarget2 = [
-                1,
-                [
-                    2,
-                    [
-                        3,
-                        [ 4, ],
-                    ],
-                ],
-            ];
-
-        let observeTarget4Proxy1 = CT.observe2Obj( observeTarget1, {
-                isDeep: true,
-                handle4Get: ( { target, key, value, receiver } ) => {
-                    console.log( `observeTarget4Proxy1 get 属性：${ key }` );
-
-                    if( key === 'd' ){
-                        // return '你在读取我ddd';
-                    }
-                },
-                handle4Set: ( { target, key, newValue, oldValue, receiver } ) => {
-                    console.log( `observeTarget4Proxy1 set 属性：${ key }` );
-                },
-            } ),
-            observeTarget4Proxy2 = CT.observe2Obj( observeTarget2, {
-                isDeep: true,
-                handle4Get: ( { target, key, value, receiver } ) => {
-                    console.log( `observeTarget4Proxy2 get 属性：${ key }` );
-                },
-                handle4Set: ( { target, key, newValue, oldValue, receiver } ) => {
-                    console.log( `observeTarget4Proxy2 set 属性：${ key }` );
-                },
-            } );
-
-        window.observeTarget4Proxy1 = observeTarget4Proxy1;
-        window.observeTarget4Proxy2 = observeTarget4Proxy2;
-    }
-}
-
 // Promise.any测试
 {
     if( false ){
@@ -956,5 +893,68 @@ let CT = new CTESM.CT();
         import('jsPDir/test/TSModulesA.esm.ts').then( ( { TSModulesA } ) => {
             console.log( new TSModulesA().getName() );
         } );
+    }
+}
+
+// Reflect、Proxy的观察者模式的Demo测试
+{
+    if( true ){
+        let observeTarget1 = {
+                a: {
+                    b: {
+                        c: {
+                            d: 2020,
+                            e: [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                            ],
+                        },
+                    },
+                },
+                a1: [
+                    'q',
+                    'w',
+                    'e',
+                ],
+            },
+            observeTarget2 = [
+                1,
+                [
+                    2,
+                    [
+                        3,
+                        [ 4, ],
+                    ],
+                ],
+            ];
+
+        let observeTarget4Proxy1 = CT.observe2Obj( observeTarget1, {
+                isDeep: true,
+                handle4Get: ( { target, key, value, receiver } ) => {
+                    console.log( `observeTarget4Proxy1 get 属性：${ key }` );
+
+                    if( key === 'd' ){
+                        // return '你在读取我ddd';
+                    }
+                },
+                handle4Set: ( { target, key, newValue, oldValue, receiver } ) => {
+                    console.log( `observeTarget4Proxy1 set 属性：${ key }` );
+                },
+            } ),
+            observeTarget4Proxy2 = CT.observe2Obj( observeTarget2, {
+                isDeep: true,
+                handle4Get: ( { target, key, value, receiver } ) => {
+                    console.log( `observeTarget4Proxy2 get 属性：${ key }` );
+                },
+                handle4Set: ( { target, key, newValue, oldValue, receiver } ) => {
+                    console.log( `observeTarget4Proxy2 set 属性：${ key }` );
+                },
+            } );
+
+        window.observeTarget4Proxy1 = observeTarget4Proxy1;
+        window.observeTarget4Proxy2 = observeTarget4Proxy2;
     }
 }

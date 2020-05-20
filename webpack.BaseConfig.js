@@ -626,16 +626,16 @@ let fs = require( 'fs' ),
          'Opera >= 68',
          'OperaMobile >= 68',
 
-         'Chrome >= 81',
-         'Android >= 81',
-         'ChromeAndroid >= 81',
+         'Chrome >= 83',
+         'Android >= 83',
+         'ChromeAndroid >= 83',
 
          'Firefox >= 76',
          'FirefoxAndroid >= 76',
          */
 
         // 专门在最新稳定版本的谷歌浏览器上测试用
-        'Chrome >= 81',
+        'Chrome >= 83',
     ],
     postCSSLoader_fun = isPro => ( {
         loader: 'postcss-loader',
@@ -4081,8 +4081,8 @@ let fs = require( 'fs' ),
                     concurrency: osLen,
                     deep: Infinity,
                     ignore: [
-                        '**/.gitignore',
-                        '该文件夹说明.txt',
+                        '**/*.gitignore',
+                        '**/该文件夹说明.txt',
                     ],
                 },
                 cacheTransform: true,
@@ -4097,8 +4097,8 @@ let fs = require( 'fs' ),
                     concurrency: osLen,
                     deep: Infinity,
                     ignore: [
-                        '**/.gitignore',
-                        '该文件夹说明.txt',
+                        '**/*.gitignore',
+                        '**/该文件夹说明.txt',
                     ],
                 },
                 cacheTransform: true,
