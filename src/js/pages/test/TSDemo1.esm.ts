@@ -482,7 +482,7 @@
 // 查找字符串中出现最多次的那个字符
 {
     if( false ){
-        let str4Target: string = 'zqweasgggggggdzxchhhhhhhhhhhhhhz',
+        let str4Target: string = 'qwergnfhjkqwerqqqweqrqwerasfvbnfhjuiotyfgeqrqewqee',
             result4Str: any = {},
             str1: string = '',
             strLen: number = str4Target.length;
@@ -508,21 +508,57 @@
             }
         }
 
-        // @ts-ignore
-        let result4Sort: Array<[ string, number ]> = Object.entries( result4Str )
-                                                           .sort( ( [
-                                                                        // @ts-ignore
-                                                                        keyNameA,
-                                                                        keyValueA
-                                                                    ]: [ string, number ],
-                                                                    [
-                                                                        // @ts-ignore
-                                                                        keyNameB,
-                                                                        keyValueB
-                                                                    ]: [ string, number ] ) => keyValueB - keyValueA );
+        let result4Sort: any = Object.entries( result4Str )
+                                     .sort( (
+                                                [
+                                                    // @ts-expect-error
+                                                    keyNameA,
+                                                    keyValueA
+                                                ]: any,
+                                                [
+                                                    // @ts-expect-error
+                                                    keyNameB,
+                                                    keyValueB
+                                                ]: any
+                                            ): number => keyValueB - keyValueA );
 
         console.log( str4Target );
         console.dir( result4Sort );
         console.log( `字符“${ result4Sort[ 0 ][ 0 ] }”出现的次数最多，一共“${ result4Sort[ 0 ][ 1 ] }”次！！！` );
+    }
+}
+
+// 二维数组的类型检查
+{
+    if( false ){
+        let arr1: Array<[ string, number ]> = [
+            [
+                'keyName1',
+                2021,
+            ],
+            [
+                'keyName2',
+                2022,
+            ],
+            [
+                'keyName3',
+                2023,
+            ],
+        ];
+
+        arr1.sort( (
+                       [
+                           // @ts-expect-error
+                           keyNameA,
+                           keyValueA
+                       ]: [ string, number ],
+                       [
+                           // @ts-expect-error
+                           keyNameB,
+                           keyValueB
+                       ]: [ string, number ]
+                   ): number => keyValueB - keyValueA );
+
+        console.dir( arr1 );
     }
 }
