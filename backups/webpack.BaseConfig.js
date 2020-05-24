@@ -4061,7 +4061,7 @@ let fs = require( 'fs' ),
         path.resolve( __dirname, './notes/' ),
         path.resolve( __dirname, './simServer/' ),
         path.resolve( __dirname, './simServer4Deno/' ),
-        path.resolve( __dirname, './src/static/' ),
+        // path.resolve( __dirname, './src/static/' ),
         path.resolve( __dirname, './webpackRecords/' ),
     ],
     watchOptions_obj = {

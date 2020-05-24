@@ -159,7 +159,7 @@ let htmlWebpackPluginA_arr = [
                        : excludeChunks_fun( 'HelloWorld' ),
         inject: 'body',
         scriptLoading: 'defer',
-        cache: false,
+        cache: !isPro_boo,
         minify: minify_obj,
         chunksSortMode: 'auto',
         // chunks没值，就不要写这个属性，写[]空数组，会导致任何.js都不添加到页面
@@ -393,7 +393,7 @@ let htmlWebpackPluginA_arr = [
                        : excludeChunks_fun( 'XMQAQ' ),
         inject: 'body',
         scriptLoading: 'defer',
-        cache: false,
+        cache: !isPro_boo,
         minify: minify_obj,
         chunksSortMode: 'auto',
         // chunks没值，就不要写这个属性，写[]空数组，会导致任何.js都不添加到页面
@@ -627,7 +627,7 @@ let htmlWebpackPluginA_arr = [
                        : excludeChunks_fun( 'DaMeng' ),
         inject: 'body',
         scriptLoading: 'defer',
-        cache: false,
+        cache: !isPro_boo,
         minify: minify_obj,
         chunksSortMode: 'auto',
         // chunks没值，就不要写这个属性，写[]空数组，会导致任何.js都不添加到页面
