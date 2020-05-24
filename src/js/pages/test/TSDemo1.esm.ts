@@ -482,49 +482,39 @@
 // 查找字符串中出现最多次的那个字符
 {
     if( false ){
-        let str4Target: string = 'qwergnfhjkqwerqqqweqrqwerasfvbnfhjuiotyfgeqrqewqee',
-            result4Str: any = {},
-            str1: string = '',
-            strLen: number = str4Target.length;
+        ( ( str4Target: string ): void => {
+            const target4Arr: Array<string> = [ ...str4Target ],
+                str4Obj: any = {};
 
-        for(
-            let i: number = 0;
-            i < strLen;
-            ++i
-        ){
-            str1 = str4Target[ i ];
+            // @ts-expect-error
+            target4Arr.forEach( ( c: string, i: number, a: Array<string> ): void => {
+                if( !( c in str4Obj ) ){
+                    str4Obj[ c ] = 1;
 
-            if( !( str1 in result4Str ) ){
-                result4Str[ str1 ] = 1;
-
-                for(
-                    let j: number = 0;
-                    j < strLen;
-                    ++j
-                ){
-                    i !== j && str1 === str4Target[ j ] && ( ++( result4Str[ str1 ] ) );
                 }
+                else{
+                    ++( str4Obj[ c ] );
+                }
+            } );
 
-            }
-        }
+            const result4Sort: any = Object.entries( str4Obj )
+                                           .sort( (
+                                                      [
+                                                          // @ts-expect-error
+                                                          keyNameA,
+                                                          keyValueA
+                                                      ]: any,
+                                                      [
+                                                          // @ts-expect-error
+                                                          keyNameB,
+                                                          keyValueB
+                                                      ]: any
+                                                  ): number => keyValueB - keyValueA );
 
-        let result4Sort: any = Object.entries( result4Str )
-                                     .sort( (
-                                                [
-                                                    // @ts-expect-error
-                                                    keyNameA,
-                                                    keyValueA
-                                                ]: any,
-                                                [
-                                                    // @ts-expect-error
-                                                    keyNameB,
-                                                    keyValueB
-                                                ]: any
-                                            ): number => keyValueB - keyValueA );
-
-        console.log( str4Target );
-        console.dir( result4Sort );
-        console.log( `字符“${ result4Sort[ 0 ][ 0 ] }”出现的次数最多，一共“${ result4Sort[ 0 ][ 1 ] }”次！！！` );
+            console.log( str4Target );
+            console.dir( result4Sort );
+            console.log( `字符“${ result4Sort[ 0 ][ 0 ] }”出现的次数最多，一共“${ result4Sort[ 0 ][ 1 ] }”次！！！` );
+        } )( '林沐风 林子空 𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷' );
     }
 }
 
@@ -546,19 +536,19 @@
             ],
         ];
 
-        arr1.sort( (
-                       [
-                           // @ts-expect-error
-                           keyNameA,
-                           keyValueA
-                       ]: [ string, number ],
-                       [
-                           // @ts-expect-error
-                           keyNameB,
-                           keyValueB
-                       ]: [ string, number ]
-                   ): number => keyValueB - keyValueA );
+        let result: Array<[ string, number ]> = arr1.sort( (
+                                                               [
+                                                                   // @ts-expect-error
+                                                                   keyNameA,
+                                                                   keyValueA
+                                                               ]: [ string, number ],
+                                                               [
+                                                                   // @ts-expect-error
+                                                                   keyNameB,
+                                                                   keyValueB
+                                                               ]: [ string, number ]
+                                                           ): number => keyValueB - keyValueA );
 
-        console.dir( arr1 );
+        console.dir( result );
     }
 }
