@@ -481,21 +481,15 @@
 
 // 查找字符串中出现最多次的那个字符
 {
-    if( false ){
+    if( true ){
         ( ( str4Target: string ): void => {
             const target4Arr: Array<string> = [ ...str4Target ],
                 str4Obj: any = {};
 
             // @ts-expect-error
-            target4Arr.forEach( ( c: string, i: number, a: Array<string> ): void => {
-                if( !( c in str4Obj ) ){
-                    str4Obj[ c ] = 1;
-
-                }
-                else{
-                    ++( str4Obj[ c ] );
-                }
-            } );
+            target4Arr.forEach( ( c: string, i: number, a: Array<string> ): void => void ( c in str4Obj
+                                                                                           ? ( ++( str4Obj[ c ] ) )
+                                                                                           : ( str4Obj[ c ] = 1 ) ) );
 
             const result4Sort: any = Object.entries( str4Obj )
                                            .sort( (
@@ -513,8 +507,8 @@
 
             console.log( str4Target );
             console.dir( result4Sort );
-            console.log( `字符“${ result4Sort[ 0 ][ 0 ] }”出现的次数最多，一共“${ result4Sort[ 0 ][ 1 ] }”次！！！` );
-        } )( '林沐风 林子空 𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷' );
+            console.log( `字符“${ result4Sort[ 0 ][ 0 ] }”出现的次数最多，一共出现“${ result4Sort[ 0 ][ 1 ] }”次！！！` );
+        } )( '林沐风林子空𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷' );
     }
 }
 
