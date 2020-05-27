@@ -621,7 +621,7 @@ let fs = require( 'fs' ),
          'iOS >= 13',
          'Safari >= 13',
 
-         'Edge >= 81',
+         'Edge >= 83',
 
          'Opera >= 68',
          'OperaMobile >= 68',
