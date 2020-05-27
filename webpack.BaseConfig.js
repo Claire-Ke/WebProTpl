@@ -2621,6 +2621,12 @@ let fs = require( 'fs' ),
                     }
                 ],
                 [ '@babel/plugin-proposal-partial-application' ],
+                [
+                    '@babel/plugin-proposal-private-property-in-object',
+                    {
+                        loose: true,
+                    }
+                ],
                 /*ES6+提案语法转换插件 End*/
 
                 /*句法转换插件 Start*/
