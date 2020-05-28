@@ -40,8 +40,10 @@ const serverPort9999 = Object.freeze( {
         // http.METHODS
         // string[]
         httpMethods: [
-            'GET',
             'POST',
+            'DELETE',
+            'PUT',
+            'GET',
             'OPTIONS',
         ],
         // 所有标准HTTP响应状态代码的集合，以及每个代码的简短描述。例如，http.STATUS_CODES [404] ==='未找到'

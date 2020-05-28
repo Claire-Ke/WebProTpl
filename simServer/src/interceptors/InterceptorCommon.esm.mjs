@@ -14,8 +14,10 @@ import {
 import {
     URLTool,
 } from '../tools/Tools.esm.mjs';
-import Interceptor4Get from './Interceptor4Get.esm.mjs';
 import Interceptor4Post from './Interceptor4Post.esm.mjs';
+import Interceptor4Delete from './Interceptor4Delete.esm.mjs';
+import Interceptor4Put from './Interceptor4Put.esm.mjs';
+import Interceptor4Get from './Interceptor4Get.esm.mjs';
 import Interceptor4Options from './Interceptor4Options.esm.mjs';
 import InterceptorError from './InterceptorError.esm.mjs';
 import ResSRFile from '../public/ResSRFile.esm.mjs';
@@ -43,11 +45,17 @@ function InterceptorCommon( server, request, response ){
     else if( pathNameStr === '/apple-touch-icon-precomposed.png' ){
         new ResSRFile( server, request, response ).img4Path( config9999_obj.faviconPath );
     }
-    else if( request.method.toLowerCase() === 'get' ){
-        Interceptor4Get( server, request, response );
-    }
     else if( request.method.toLowerCase() === 'post' ){
         Interceptor4Post( server, request, response );
+    }
+    else if( request.method.toLowerCase() === 'delete' ){
+        Interceptor4Delete( server, request, response );
+    }
+    else if( request.method.toLowerCase() === 'put' ){
+        Interceptor4Put( server, request, response );
+    }
+    else if( request.method.toLowerCase() === 'get' ){
+        Interceptor4Get( server, request, response );
     }
     else if( request.method.toLowerCase() === 'options' ){
         Interceptor4Options( server, request, response );

@@ -3171,6 +3171,8 @@ class JS2Ajax{
 
     /**
      * Ajax请求<br /><br />
+     * PS:<br />
+     * 1、跨域情况下，会先发出OPTIONS请求，其响应成功后才会去请求真正的post、delete、put请求。
      *
      * post请求content-type,即数据请求的格式主要设置方式：<br />
      * 1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />
@@ -3421,6 +3423,8 @@ class JS2Ajax{
 
     /**
      * fetch，封装了fetch()API工具。<br /><br />
+     * PS:<br />
+     * 1、跨域情况下，会先发出OPTIONS请求，其响应成功后才会去请求真正的post、delete、put请求。
      *
      * post请求content-type,即数据请求的格式主要设置方式：<br />
      * 1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />
@@ -3791,6 +3795,8 @@ class JS2Ajax{
 
     /**
      * Ajax的POST请求<br /><br />
+     * PS:<br />
+     * 1、跨域情况下，会先发出OPTIONS请求，其响应成功后才会去请求真正的post请求。
      *
      * post请求content-type,即数据请求的格式主要设置方式：<br />
      * 1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />
@@ -3911,6 +3917,8 @@ class JS2Ajax{
 
     /**
      * Ajax的DELETE请求<br /><br />
+     * PS:<br />
+     * 1、跨域情况下，会先发出OPTIONS请求，其响应成功后才会去请求真正的delete请求。
      *
      * post请求content-type,即数据请求的格式主要设置方式：<br />
      * 1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />
@@ -4032,6 +4040,8 @@ class JS2Ajax{
 
     /**
      * Ajax的PUT请求<br /><br />
+     * PS:<br />
+     * 1、跨域情况下，会先发出OPTIONS请求，其响应成功后才会去请求真正的put请求。
      *
      * post请求content-type,即数据请求的格式主要设置方式：<br />
      * 1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />
@@ -8886,7 +8896,9 @@ class WebService4Proxy{
     }
 
     /**
-     * 创建具体请求并使用具体请求
+     * 创建具体请求并使用具体请求<br />
+     * PS:<br />
+     * 1、跨域情况下，会先发出OPTIONS请求，其响应成功后才会去请求真正的post、delete、put请求。
      *
      * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
      * PS：<br />
@@ -9022,7 +9034,9 @@ class WebService4Proxy{
     }
 
     /**
-     * 创建"post"类型的具体请求并使用具体请求
+     * 创建"post"类型的具体请求并使用具体请求<br />
+     * PS:<br />
+     * 1、跨域情况下，会先发出OPTIONS请求，其响应成功后才会去请求真正的post请求。
      *
      * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
      * PS：<br />
@@ -9065,7 +9079,9 @@ class WebService4Proxy{
     }
 
     /**
-     * 创建"delete"类型的具体请求并使用具体请求
+     * 创建"delete"类型的具体请求并使用具体请求<br />
+     * PS:<br />
+     * 1、跨域情况下，会先发出OPTIONS请求，其响应成功后才会去请求真正的delete请求。
      *
      * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
      * PS：<br />
@@ -9108,7 +9124,9 @@ class WebService4Proxy{
     }
 
     /**
-     * 创建"put"类型的具体请求并使用具体请求
+     * 创建"put"类型的具体请求并使用具体请求<br />
+     * PS:<br />
+     * 1、跨域情况下，会先发出OPTIONS请求，其响应成功后才会去请求真正的put请求。
      *
      * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
      * PS：<br />

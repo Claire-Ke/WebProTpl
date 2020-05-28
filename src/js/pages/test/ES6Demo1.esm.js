@@ -178,7 +178,7 @@ let CT = new CTESM.CT();
     if( false ){
         let { WebService4Proxy, } = CT.getClass();
 
-        let ws4Proxy_ins = new WebService4Proxy( CT, 'http://192.168.1.2:9999/SimServer/' );
+        let ws4Proxy_ins = new WebService4Proxy( CT, 'http://localhost:9999/SimServer/' );
 
         /*
          ws4Proxy_ins.create( { type: 'json', } )
@@ -245,6 +245,60 @@ let CT = new CTESM.CT();
                             body: JSON.stringify( {
                                 type: 'json',
                             } ),
+                        },
+                    } )
+                    .then( json => {
+                        console.dir( json );
+                    } );
+
+        ws4Proxy_ins.delete( { type: 'json', } )
+                    .DELETE( {
+                        options: {
+                            // method: 'GET',
+                            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                            // responseType: 'json',
+                            headers: new Headers( { 'Content-Type': 'application/json', } ),
+                            mode: 'cors',
+                            credentials: 'omit',
+                            body: JSON.stringify( {
+                                type: 'json',
+                            } ),
+                        },
+                    } )
+                    .then( json => {
+                        console.dir( json );
+                    } );
+
+        ws4Proxy_ins.put( { type: 'json', } )
+                    .PUT( {
+                        options: {
+                            // method: 'GET',
+                            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                            // responseType: 'json',
+                            headers: new Headers( { 'Content-Type': 'application/json', } ),
+                            mode: 'cors',
+                            credentials: 'omit',
+                            body: JSON.stringify( {
+                                type: 'json',
+                            } ),
+                        },
+                    } )
+                    .then( json => {
+                        console.dir( json );
+                    } );
+
+        ws4Proxy_ins.get( { type: 'json', } )
+                    .GET( {
+                        options: {
+                            // method: 'GET',
+                            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                            // responseType: 'json',
+                            // headers: new Headers( { 'Content-Type': 'application/json', } ),
+                            mode: 'cors',
+                            credentials: 'omit',
+                            body: {
+                                type: 'json',
+                            },
                         },
                     } )
                     .then( json => {
@@ -898,7 +952,7 @@ let CT = new CTESM.CT();
 
 // Reflect、Proxy的观察者模式的Demo测试
 {
-    if( true ){
+    if( false ){
         let observeTarget1 = {
                 a: {
                     b: {
