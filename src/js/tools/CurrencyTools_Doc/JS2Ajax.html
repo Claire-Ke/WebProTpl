@@ -299,6 +299,156 @@
     
 
     
+    <h4 class="name" id="deleteAjax"><span class="type-signature"></span>deleteAjax<span class="signature">(url, paraObj)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Ajax的DELETE请求<br /><br />post请求content-type,即数据请求的格式主要设置方式：<br />1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />2、multipart/form-data<br />3、application/json（json格式对象，eg：{'name':'Denzel','age':'18'}）<br />4、text/xml(现在用的很少了，发送xml格式文件或流,webservice请求用的较多)<br /><br />当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />而且使用jQuery中的Ajax时，还需要：<br />contentType: false,<br />processData: false,<br /><br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">字符串，请求地址(url)，必须</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>paraObj</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">配置对象，可选<br />{<br /> sendData: 发送给后台服务器的数据，默认值null<br /> 注：<br /> 1、POST方法传数据给后台，则需要给请求头加："Content-type": "application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br /> 2、GET方法就算是设置了这个属性值，服务器也不会收到。<br /> 3、当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br /> async: boolean，true异步请求，false同步请求，默认true<br /><br /> user: string，用户名，默认null<br /><br /> password: string，用户密码，默认null<br /><br /> overrideMimeType: string，MIME Type，用途与responseType同类，早期的，建议用responseType代替它，默认值null，表示不传<br /> 如：'text/xml'、'text/plain'<br /><br /> responseType: string，MIME Type，设置响应的数据类型，会影响响应的数据的数据类型，默认值null，表示不传<br /> 如：'json'，响应的response的数据类型是JSON对象不会是JSON字符串了(IE被自定义处理过了，也会返回JSON对象)<br /> 有如下值：'arraybuffer'、'blob'、'document'、'json'、'text'<br /><br /> setTimeOut: number，设置请求超时时间，单位是ms，默认0，表示不超时，如：1000ms，表示1000ms后会触发超时事件<br /><br /> requestHeader: {}，JSON对象，设置请求头，keyName是请求头名，keyValue是请求头值。<br /> 注：<br /> post方法传数据给后台，则需要加："Content-type":"application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br /> 当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br /> withCredentials: boolean，指示Access-Control是否应使用cookie授权标头或TLS客户端证书等凭据进行跨站点请求。<br /> 来自不同域的cookie不能设置为XMLHttpRequest自己的域cookie值，除非在发出请求之前设置withCredentials为true。<br /> 通过设置withCredentials为true获得的第三方cookie，但仍将遵循同源策略，因此请求脚本无法通过document.cookie或响应头来访问它们。<br /> 此外，此标志还用于指示何时在响应中忽略cookie。默认true。<br /> 注：<br /> 为true时，哪怕服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，也会被同源策略限制。<br /> 为false时，只要服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，就能跨域访问了<br /> 所以，默认为true，也就是不允许跨域<br /><br /> 当 Access-Control-Allow-Origin:* 时<br /> 不允许使用凭证(即 withCredentials:true)<br /><br /> 当 Access-Control-Allow-Origin:* 时，<br /> 只需确保客户端在发出CORS请求时凭据标志的值为false就可以了。<br /> 1、如果请求使用XMLHttpRequest发出，请确保withCredentials为false。<br /> 2、如果使用服务器发送事件，确保EventSource.withCredentials是false（这是默认值）。<br /> 3、如果使用Fetch API，请确保Request.credentials是"omit"。<br /><br /> // 在加载资源的进度开始时会触发该事件<br /> loadStart: ( event, xhr, response, status ) => {},<br /><br /> // 当readyState文档的属性发生更改时会触发该事件<br /> readyStateChange: ( event, xhr, response, status ) => {},<br /><br /> // 操作、下载资源正在进行中<br /> progress: ( event, xhr, response, status ) => {},<br /><br /> // 由于预设时间到期，Progression终止时会触发该事件<br /> timeout: ( event, xhr ) => {},<br /><br /> // 资源及其相关资源完成加载时会触发该事件<br /> load: ( event, xhr, response, status ) => {},<br /><br /> // 请求发生错误时会触发该事件<br /> error: ( event, xhr ) => {},<br /><br /> // 中止加载资源时会触发该事件，调用XHR.abort()后，会触发这个事件<br /> abort: ( event, xhr ) => {},<br /><br /> // 当在加载资源时停止进度时（例如，在发送“错误”，“中止”或“加载”之后），将触发该事件<br /> loadEnd: ( event, xhr, response, status ) => {},<br /><br /> // 当responseType是'json'时，IE浏览器会被自定义处理，第三个参数response也会是JSON对象，但第二个参数xhr的response属性还是JSON字符串<br /> success: ( event, xhr, response ) => {},<br /><br /> // 上传资源事件对象<br /> uploadEvent: {<br />     // 上传已经开始<br />     loadStart: (event, xhr)=>{},<br /><br />     // 目前为止上传的进展<br />     progress: (event, xhr)=>{},<br /><br />     // 上传超时<br />     timeout: (event, xhr)=>{},<br /><br />     // 上传成功完成<br />     load: (event, xhr)=>{},<br /><br />     // 由于错误导致上传失败<br />     error: (event, xhr)=>{},<br /><br />     // 上传操作已中止<br />     abort: (event, xhr)=>{},<br /><br />     // 上传完成，此事件不区分成功或失败。load、error、abort、timeout都会触发它<br />     loadEnd: (event, xhr)=>{},<br /><br /> 注：<br /> 1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br /></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line4028">line 4028</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="domToStr"><span class="type-signature"></span>domToStr<span class="signature">(domObj)</span><span class="type-signature"> &rarr; {String}</span></h4>
     
 
@@ -757,7 +907,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line3752">line 3752</a>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line4270">line 4270</a>
     </li></ul></dd>
     
 
@@ -889,7 +1039,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line3765">line 3765</a>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line3644">line 3644</a>
     </li></ul></dd>
     
 
@@ -1061,7 +1211,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line3892">line 3892</a>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line3771">line 3771</a>
     </li></ul></dd>
     
 
@@ -1211,7 +1361,157 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line4013">line 4013</a>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line3907">line 3907</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="putAjax"><span class="type-signature"></span>putAjax<span class="signature">(url, paraObj)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Ajax的PUT请求<br /><br />post请求content-type,即数据请求的格式主要设置方式：<br />1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />2、multipart/form-data<br />3、application/json（json格式对象，eg：{'name':'Denzel','age':'18'}）<br />4、text/xml(现在用的很少了，发送xml格式文件或流,webservice请求用的较多)<br /><br />当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />而且使用jQuery中的Ajax时，还需要：<br />contentType: false,<br />processData: false,<br /><br />
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">字符串，请求地址(url)，必须</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>paraObj</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">配置对象，可选<br />{<br /> sendData: 发送给后台服务器的数据，默认值null<br /> 注：<br /> 1、POST方法传数据给后台，则需要给请求头加："Content-type": "application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br /> 2、GET方法就算是设置了这个属性值，服务器也不会收到。<br /> 3、当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br /> async: boolean，true异步请求，false同步请求，默认true<br /><br /> user: string，用户名，默认null<br /><br /> password: string，用户密码，默认null<br /><br /> overrideMimeType: string，MIME Type，用途与responseType同类，早期的，建议用responseType代替它，默认值null，表示不传<br /> 如：'text/xml'、'text/plain'<br /><br /> responseType: string，MIME Type，设置响应的数据类型，会影响响应的数据的数据类型，默认值null，表示不传<br /> 如：'json'，响应的response的数据类型是JSON对象不会是JSON字符串了(IE被自定义处理过了，也会返回JSON对象)<br /> 有如下值：'arraybuffer'、'blob'、'document'、'json'、'text'<br /><br /> setTimeOut: number，设置请求超时时间，单位是ms，默认0，表示不超时，如：1000ms，表示1000ms后会触发超时事件<br /><br /> requestHeader: {}，JSON对象，设置请求头，keyName是请求头名，keyValue是请求头值。<br /> 注：<br /> post方法传数据给后台，则需要加："Content-type":"application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br /> 当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br /> withCredentials: boolean，指示Access-Control是否应使用cookie授权标头或TLS客户端证书等凭据进行跨站点请求。<br /> 来自不同域的cookie不能设置为XMLHttpRequest自己的域cookie值，除非在发出请求之前设置withCredentials为true。<br /> 通过设置withCredentials为true获得的第三方cookie，但仍将遵循同源策略，因此请求脚本无法通过document.cookie或响应头来访问它们。<br /> 此外，此标志还用于指示何时在响应中忽略cookie。默认true。<br /> 注：<br /> 为true时，哪怕服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，也会被同源策略限制。<br /> 为false时，只要服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，就能跨域访问了<br /> 所以，默认为true，也就是不允许跨域<br /><br /> 当 Access-Control-Allow-Origin:* 时<br /> 不允许使用凭证(即 withCredentials:true)<br /><br /> 当 Access-Control-Allow-Origin:* 时，<br /> 只需确保客户端在发出CORS请求时凭据标志的值为false就可以了。<br /> 1、如果请求使用XMLHttpRequest发出，请确保withCredentials为false。<br /> 2、如果使用服务器发送事件，确保EventSource.withCredentials是false（这是默认值）。<br /> 3、如果使用Fetch API，请确保Request.credentials是"omit"。<br /><br /> // 在加载资源的进度开始时会触发该事件<br /> loadStart: ( event, xhr, response, status ) => {},<br /><br /> // 当readyState文档的属性发生更改时会触发该事件<br /> readyStateChange: ( event, xhr, response, status ) => {},<br /><br /> // 操作、下载资源正在进行中<br /> progress: ( event, xhr, response, status ) => {},<br /><br /> // 由于预设时间到期，Progression终止时会触发该事件<br /> timeout: ( event, xhr ) => {},<br /><br /> // 资源及其相关资源完成加载时会触发该事件<br /> load: ( event, xhr, response, status ) => {},<br /><br /> // 请求发生错误时会触发该事件<br /> error: ( event, xhr ) => {},<br /><br /> // 中止加载资源时会触发该事件，调用XHR.abort()后，会触发这个事件<br /> abort: ( event, xhr ) => {},<br /><br /> // 当在加载资源时停止进度时（例如，在发送“错误”，“中止”或“加载”之后），将触发该事件<br /> loadEnd: ( event, xhr, response, status ) => {},<br /><br /> // 当responseType是'json'时，IE浏览器会被自定义处理，第三个参数response也会是JSON对象，但第二个参数xhr的response属性还是JSON字符串<br /> success: ( event, xhr, response ) => {},<br /><br /> // 上传资源事件对象<br /> uploadEvent: {<br />     // 上传已经开始<br />     loadStart: (event, xhr)=>{},<br /><br />     // 目前为止上传的进展<br />     progress: (event, xhr)=>{},<br /><br />     // 上传超时<br />     timeout: (event, xhr)=>{},<br /><br />     // 上传成功完成<br />     load: (event, xhr)=>{},<br /><br />     // 由于错误导致上传失败<br />     error: (event, xhr)=>{},<br /><br />     // 上传操作已中止<br />     abort: (event, xhr)=>{},<br /><br />     // 上传完成，此事件不区分成功或失败。load、error、abort、timeout都会触发它<br />     loadEnd: (event, xhr)=>{},<br /><br /> 注：<br /> 1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br /></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line4149">line 4149</a>
     </li></ul></dd>
     
 
@@ -1361,7 +1661,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line4027">line 4027</a>
+        <a href="CurrencyTools.esm.js.html">CurrencyTools.esm.js</a>, <a href="CurrencyTools.esm.js.html#line3786">line 3786</a>
     </li></ul></dd>
     
 
@@ -1435,7 +1735,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu May 28 2020 14:07:07 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Fri May 29 2020 01:39:09 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -3634,127 +3634,6 @@ class JS2Ajax{
     }
 
     /**
-     * Ajax的GET请求<br /><br />
-     *
-     * post请求content-type,即数据请求的格式主要设置方式：<br />
-     * 1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />
-     * 2、multipart/form-data<br />
-     * 3、application/json（json格式对象，eg：{'name':'Denzel','age':'18'}）<br />
-     * 4、text/xml(现在用的很少了，发送xml格式文件或流,webservice请求用的较多)<br /><br />
-     *
-     * 当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
-     *
-     * 而且使用jQuery中的Ajax时，还需要：<br />
-     * contentType: false,<br />
-     * processData: false,<br /><br />
-     *
-     * @param url 字符串，请求地址(url)，必须
-     *
-     * @param paraObj 配置对象{}，可选<br />
-     * {<br />
-     *  sendData: 发送给后台服务器的数据，默认值null<br />
-     *  注：<br />
-     *  1、POST方法传数据给后台，则需要给请求头加："Content-type": "application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br />
-     *  2、GET方法就算是设置了这个属性值，服务器也不会收到。<br />
-     *  3、当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
-     *
-     *  async: boolean，true异步请求，false同步请求，默认true<br /><br />
-     *
-     *  user: string，用户名，默认null<br /><br />
-     *
-     *  password: string，用户密码，默认null<br /><br />
-     *
-     *  overrideMimeType: string，MIME Type，用途与responseType同类，早期的，建议用responseType代替它，默认值null，表示不传<br />
-     *  如：'text/xml'、'text/plain'<br /><br />
-     *
-     *  responseType: string，MIME Type，设置响应的数据类型，会影响响应的数据的数据类型，默认值null，表示不传<br />
-     *  如：'json'，响应的response的数据类型是JSON对象不会是JSON字符串了(IE被自定义处理过了，也会返回JSON对象)<br />
-     *  有如下值：'arraybuffer'、'blob'、'document'、'json'、'text'<br /><br />
-     *
-     *  setTimeOut: number，设置请求超时时间，单位是ms，默认0，表示不超时，如：1000ms，表示1000ms后会触发超时事件<br /><br />
-     *
-     *  requestHeader: {}，JSON对象，设置请求头，keyName是请求头名，keyValue是请求头值。<br />
-     *  注：<br />
-     *  post方法传数据给后台，则需要加："Content-type":"application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br />
-     *  当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
-     *
-     *  withCredentials: boolean，指示Access-Control是否应使用cookie授权标头或TLS客户端证书等凭据进行跨站点请求。<br />
-     *  来自不同域的cookie不能设置为XMLHttpRequest自己的域cookie值，除非在发出请求之前设置withCredentials为true。<br />
-     *  通过设置withCredentials为true获得的第三方cookie，但仍将遵循同源策略，因此请求脚本无法通过document.cookie或响应头来访问它们。<br />
-     *  此外，此标志还用于指示何时在响应中忽略cookie。默认true。<br />
-     *  注：<br />
-     *  为true时，哪怕服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，也会被同源策略限制。<br />
-     *  为false时，只要服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，就能跨域访问了<br />
-     *  所以，默认为true，也就是不允许跨域<br /><br />
-     *
-     *  当 Access-Control-Allow-Origin:* 时<br />
-     *  不允许使用凭证(即 withCredentials:true)<br /><br />
-     *
-     *  当 Access-Control-Allow-Origin:* 时，<br />
-     *  只需确保客户端在发出CORS请求时凭据标志的值为false就可以了。<br />
-     *  1、如果请求使用XMLHttpRequest发出，请确保withCredentials为false。<br />
-     *  2、如果使用服务器发送事件，确保EventSource.withCredentials是false（这是默认值）。<br />
-     *  3、如果使用Fetch API，请确保Request.credentials是"omit"。<br /><br />
-     *
-     *  // 在加载资源的进度开始时会触发该事件<br />
-     *  loadStart: ( event, xhr, response, status ) => {},<br /><br />
-     *
-     *  // 当readyState文档的属性发生更改时会触发该事件<br />
-     *  readyStateChange: ( event, xhr, response, status ) => {},<br /><br />
-     *
-     *  // 操作、下载资源正在进行中<br />
-     *  progress: ( event, xhr, response, status ) => {},<br /><br />
-     *
-     *  // 由于预设时间到期，Progression终止时会触发该事件<br />
-     *  timeout: ( event, xhr ) => {},<br /><br />
-     *
-     *  // 资源及其相关资源完成加载时会触发该事件<br />
-     *  load: ( event, xhr, response, status ) => {},<br /><br />
-     *
-     *  // 请求发生错误时会触发该事件<br />
-     *  error: ( event, xhr ) => {},<br /><br />
-     *
-     *  // 中止加载资源时会触发该事件，调用XHR.abort()后，会触发这个事件<br />
-     *  abort: ( event, xhr ) => {},<br /><br />
-     *
-     *  // 当在加载资源时停止进度时（例如，在发送“错误”，“中止”或“加载”之后），将触发该事件<br />
-     *  loadEnd: ( event, xhr, response, status ) => {},<br /><br />
-     *
-     *  // 当responseType是'json'时，IE浏览器会被自定义处理，第三个参数response也会是JSON对象，但第二个参数xhr的response属性还是JSON字符串<br />
-     *  success: ( event, xhr, response ) => {},<br /><br />
-     *
-     *  // 上传资源事件对象<br />
-     *  uploadEvent: {<br />
-     *      // 上传已经开始<br />
-     *      loadStart: (event, xhr)=>{},<br /><br />
-     *
-     *      // 目前为止上传的进展<br />
-     *      progress: (event, xhr)=>{},<br /><br />
-     *
-     *      // 上传超时<br />
-     *      timeout: (event, xhr)=>{},<br /><br />
-     *
-     *      // 上传成功完成<br />
-     *      load: (event, xhr)=>{},<br /><br />
-     *
-     *      // 由于错误导致上传失败<br />
-     *      error: (event, xhr)=>{},<br /><br />
-     *
-     *      // 上传操作已中止<br />
-     *      abort: (event, xhr)=>{},<br /><br />
-     *
-     *      // 上传完成，此事件不区分成功或失败。load、error、abort、timeout都会触发它<br />
-     *      loadEnd: (event, xhr)=>{},<br /><br />
-     *
-     *  注：<br />
-     *  1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br />
-     */
-    getAjax( url, paraObj = {} ){
-        paraObj[ 'method' ] = 'GET';
-        this.ajax( url, paraObj );
-    }
-
-    /**
      * 传入XMLHttpRequest对象，返回一个JSON对象，里头是所有的响应头，keyName是响应头名，keyValue是响应头值<br />
      * 注：如果未收到响应则返回null。如果发生网络错误，则返回空字符串''。
      *
@@ -3896,6 +3775,21 @@ class JS2Ajax{
     }
 
     /**
+     * 把字符串化的DOM对象解析为DOM对象
+     *
+     * @param data string，字符串化的DOM对象，必须
+     *
+     * @param type string，要解析成的DOM对象类型，必须，有：'application/xml'、'text/html'、'image/svg+xml'
+     *
+     * @returns {Document} XML对象、HTML对象、SVG对象
+     */
+    strToDOM( data, type ){
+        'use strict';
+
+        return new DOMParser().parseFromString( data, type );
+    }
+
+    /**
      * Ajax的POST请求<br /><br />
      *
      * post请求content-type,即数据请求的格式主要设置方式：<br />
@@ -4016,18 +3910,366 @@ class JS2Ajax{
     }
 
     /**
-     * 把字符串化的DOM对象解析为DOM对象
+     * Ajax的DELETE请求<br /><br />
      *
-     * @param data string，字符串化的DOM对象，必须
+     * post请求content-type,即数据请求的格式主要设置方式：<br />
+     * 1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />
+     * 2、multipart/form-data<br />
+     * 3、application/json（json格式对象，eg：{'name':'Denzel','age':'18'}）<br />
+     * 4、text/xml(现在用的很少了，发送xml格式文件或流,webservice请求用的较多)<br /><br />
      *
-     * @param type string，要解析成的DOM对象类型，必须，有：'application/xml'、'text/html'、'image/svg+xml'
+     * 当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
      *
-     * @returns {Document} XML对象、HTML对象、SVG对象
+     * 而且使用jQuery中的Ajax时，还需要：<br />
+     * contentType: false,<br />
+     * processData: false,<br /><br />
+     *
+     * @param url 字符串，请求地址(url)，必须
+     *
+     * @param paraObj 配置对象{}，可选<br />
+     * {<br />
+     *  sendData: 发送给后台服务器的数据，默认值null<br />
+     *  注：<br />
+     *  1、POST方法传数据给后台，则需要给请求头加："Content-type": "application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br />
+     *  2、GET方法就算是设置了这个属性值，服务器也不会收到。<br />
+     *  3、当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
+     *
+     *  async: boolean，true异步请求，false同步请求，默认true<br /><br />
+     *
+     *  user: string，用户名，默认null<br /><br />
+     *
+     *  password: string，用户密码，默认null<br /><br />
+     *
+     *  overrideMimeType: string，MIME Type，用途与responseType同类，早期的，建议用responseType代替它，默认值null，表示不传<br />
+     *  如：'text/xml'、'text/plain'<br /><br />
+     *
+     *  responseType: string，MIME Type，设置响应的数据类型，会影响响应的数据的数据类型，默认值null，表示不传<br />
+     *  如：'json'，响应的response的数据类型是JSON对象不会是JSON字符串了(IE被自定义处理过了，也会返回JSON对象)<br />
+     *  有如下值：'arraybuffer'、'blob'、'document'、'json'、'text'<br /><br />
+     *
+     *  setTimeOut: number，设置请求超时时间，单位是ms，默认0，表示不超时，如：1000ms，表示1000ms后会触发超时事件<br /><br />
+     *
+     *  requestHeader: {}，JSON对象，设置请求头，keyName是请求头名，keyValue是请求头值。<br />
+     *  注：<br />
+     *  post方法传数据给后台，则需要加："Content-type":"application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br />
+     *  当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
+     *
+     *  withCredentials: boolean，指示Access-Control是否应使用cookie授权标头或TLS客户端证书等凭据进行跨站点请求。<br />
+     *  来自不同域的cookie不能设置为XMLHttpRequest自己的域cookie值，除非在发出请求之前设置withCredentials为true。<br />
+     *  通过设置withCredentials为true获得的第三方cookie，但仍将遵循同源策略，因此请求脚本无法通过document.cookie或响应头来访问它们。<br />
+     *  此外，此标志还用于指示何时在响应中忽略cookie。默认true。<br />
+     *  注：<br />
+     *  为true时，哪怕服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，也会被同源策略限制。<br />
+     *  为false时，只要服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，就能跨域访问了<br />
+     *  所以，默认为true，也就是不允许跨域<br /><br />
+     *
+     *  当 Access-Control-Allow-Origin:* 时<br />
+     *  不允许使用凭证(即 withCredentials:true)<br /><br />
+     *
+     *  当 Access-Control-Allow-Origin:* 时，<br />
+     *  只需确保客户端在发出CORS请求时凭据标志的值为false就可以了。<br />
+     *  1、如果请求使用XMLHttpRequest发出，请确保withCredentials为false。<br />
+     *  2、如果使用服务器发送事件，确保EventSource.withCredentials是false（这是默认值）。<br />
+     *  3、如果使用Fetch API，请确保Request.credentials是"omit"。<br /><br />
+     *
+     *  // 在加载资源的进度开始时会触发该事件<br />
+     *  loadStart: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 当readyState文档的属性发生更改时会触发该事件<br />
+     *  readyStateChange: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 操作、下载资源正在进行中<br />
+     *  progress: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 由于预设时间到期，Progression终止时会触发该事件<br />
+     *  timeout: ( event, xhr ) => {},<br /><br />
+     *
+     *  // 资源及其相关资源完成加载时会触发该事件<br />
+     *  load: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 请求发生错误时会触发该事件<br />
+     *  error: ( event, xhr ) => {},<br /><br />
+     *
+     *  // 中止加载资源时会触发该事件，调用XHR.abort()后，会触发这个事件<br />
+     *  abort: ( event, xhr ) => {},<br /><br />
+     *
+     *  // 当在加载资源时停止进度时（例如，在发送“错误”，“中止”或“加载”之后），将触发该事件<br />
+     *  loadEnd: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 当responseType是'json'时，IE浏览器会被自定义处理，第三个参数response也会是JSON对象，但第二个参数xhr的response属性还是JSON字符串<br />
+     *  success: ( event, xhr, response ) => {},<br /><br />
+     *
+     *  // 上传资源事件对象<br />
+     *  uploadEvent: {<br />
+     *      // 上传已经开始<br />
+     *      loadStart: (event, xhr)=>{},<br /><br />
+     *
+     *      // 目前为止上传的进展<br />
+     *      progress: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传超时<br />
+     *      timeout: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传成功完成<br />
+     *      load: (event, xhr)=>{},<br /><br />
+     *
+     *      // 由于错误导致上传失败<br />
+     *      error: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传操作已中止<br />
+     *      abort: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传完成，此事件不区分成功或失败。load、error、abort、timeout都会触发它<br />
+     *      loadEnd: (event, xhr)=>{},<br /><br />
+     *
+     *  注：<br />
+     *  1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br />
      */
-    strToDOM( data, type ){
-        'use strict';
+    deleteAjax( url, paraObj = {} ){
+        paraObj[ 'method' ] = 'DELETE';
+        this.ajax( url, paraObj );
+    }
 
-        return new DOMParser().parseFromString( data, type );
+    /**
+     * Ajax的PUT请求<br /><br />
+     *
+     * post请求content-type,即数据请求的格式主要设置方式：<br />
+     * 1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />
+     * 2、multipart/form-data<br />
+     * 3、application/json（json格式对象，eg：{'name':'Denzel','age':'18'}）<br />
+     * 4、text/xml(现在用的很少了，发送xml格式文件或流,webservice请求用的较多)<br /><br />
+     *
+     * 当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
+     *
+     * 而且使用jQuery中的Ajax时，还需要：<br />
+     * contentType: false,<br />
+     * processData: false,<br /><br />
+     *
+     * @param url 字符串，请求地址(url)，必须
+     *
+     * @param paraObj 配置对象{}，可选<br />
+     * {<br />
+     *  sendData: 发送给后台服务器的数据，默认值null<br />
+     *  注：<br />
+     *  1、POST方法传数据给后台，则需要给请求头加："Content-type": "application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br />
+     *  2、GET方法就算是设置了这个属性值，服务器也不会收到。<br />
+     *  3、当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
+     *
+     *  async: boolean，true异步请求，false同步请求，默认true<br /><br />
+     *
+     *  user: string，用户名，默认null<br /><br />
+     *
+     *  password: string，用户密码，默认null<br /><br />
+     *
+     *  overrideMimeType: string，MIME Type，用途与responseType同类，早期的，建议用responseType代替它，默认值null，表示不传<br />
+     *  如：'text/xml'、'text/plain'<br /><br />
+     *
+     *  responseType: string，MIME Type，设置响应的数据类型，会影响响应的数据的数据类型，默认值null，表示不传<br />
+     *  如：'json'，响应的response的数据类型是JSON对象不会是JSON字符串了(IE被自定义处理过了，也会返回JSON对象)<br />
+     *  有如下值：'arraybuffer'、'blob'、'document'、'json'、'text'<br /><br />
+     *
+     *  setTimeOut: number，设置请求超时时间，单位是ms，默认0，表示不超时，如：1000ms，表示1000ms后会触发超时事件<br /><br />
+     *
+     *  requestHeader: {}，JSON对象，设置请求头，keyName是请求头名，keyValue是请求头值。<br />
+     *  注：<br />
+     *  post方法传数据给后台，则需要加："Content-type":"application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br />
+     *  当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
+     *
+     *  withCredentials: boolean，指示Access-Control是否应使用cookie授权标头或TLS客户端证书等凭据进行跨站点请求。<br />
+     *  来自不同域的cookie不能设置为XMLHttpRequest自己的域cookie值，除非在发出请求之前设置withCredentials为true。<br />
+     *  通过设置withCredentials为true获得的第三方cookie，但仍将遵循同源策略，因此请求脚本无法通过document.cookie或响应头来访问它们。<br />
+     *  此外，此标志还用于指示何时在响应中忽略cookie。默认true。<br />
+     *  注：<br />
+     *  为true时，哪怕服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，也会被同源策略限制。<br />
+     *  为false时，只要服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，就能跨域访问了<br />
+     *  所以，默认为true，也就是不允许跨域<br /><br />
+     *
+     *  当 Access-Control-Allow-Origin:* 时<br />
+     *  不允许使用凭证(即 withCredentials:true)<br /><br />
+     *
+     *  当 Access-Control-Allow-Origin:* 时，<br />
+     *  只需确保客户端在发出CORS请求时凭据标志的值为false就可以了。<br />
+     *  1、如果请求使用XMLHttpRequest发出，请确保withCredentials为false。<br />
+     *  2、如果使用服务器发送事件，确保EventSource.withCredentials是false（这是默认值）。<br />
+     *  3、如果使用Fetch API，请确保Request.credentials是"omit"。<br /><br />
+     *
+     *  // 在加载资源的进度开始时会触发该事件<br />
+     *  loadStart: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 当readyState文档的属性发生更改时会触发该事件<br />
+     *  readyStateChange: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 操作、下载资源正在进行中<br />
+     *  progress: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 由于预设时间到期，Progression终止时会触发该事件<br />
+     *  timeout: ( event, xhr ) => {},<br /><br />
+     *
+     *  // 资源及其相关资源完成加载时会触发该事件<br />
+     *  load: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 请求发生错误时会触发该事件<br />
+     *  error: ( event, xhr ) => {},<br /><br />
+     *
+     *  // 中止加载资源时会触发该事件，调用XHR.abort()后，会触发这个事件<br />
+     *  abort: ( event, xhr ) => {},<br /><br />
+     *
+     *  // 当在加载资源时停止进度时（例如，在发送“错误”，“中止”或“加载”之后），将触发该事件<br />
+     *  loadEnd: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 当responseType是'json'时，IE浏览器会被自定义处理，第三个参数response也会是JSON对象，但第二个参数xhr的response属性还是JSON字符串<br />
+     *  success: ( event, xhr, response ) => {},<br /><br />
+     *
+     *  // 上传资源事件对象<br />
+     *  uploadEvent: {<br />
+     *      // 上传已经开始<br />
+     *      loadStart: (event, xhr)=>{},<br /><br />
+     *
+     *      // 目前为止上传的进展<br />
+     *      progress: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传超时<br />
+     *      timeout: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传成功完成<br />
+     *      load: (event, xhr)=>{},<br /><br />
+     *
+     *      // 由于错误导致上传失败<br />
+     *      error: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传操作已中止<br />
+     *      abort: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传完成，此事件不区分成功或失败。load、error、abort、timeout都会触发它<br />
+     *      loadEnd: (event, xhr)=>{},<br /><br />
+     *
+     *  注：<br />
+     *  1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br />
+     */
+    putAjax( url, paraObj = {} ){
+        paraObj[ 'method' ] = 'PUT';
+        this.ajax( url, paraObj );
+    }
+
+    /**
+     * Ajax的GET请求<br /><br />
+     *
+     * post请求content-type,即数据请求的格式主要设置方式：<br />
+     * 1、application/x-www-form-urlencoded（大多数请求可用：eg：'name=Denzel&age=18'）<br />
+     * 2、multipart/form-data<br />
+     * 3、application/json（json格式对象，eg：{'name':'Denzel','age':'18'}）<br />
+     * 4、text/xml(现在用的很少了，发送xml格式文件或流,webservice请求用的较多)<br /><br />
+     *
+     * 当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
+     *
+     * 而且使用jQuery中的Ajax时，还需要：<br />
+     * contentType: false,<br />
+     * processData: false,<br /><br />
+     *
+     * @param url 字符串，请求地址(url)，必须
+     *
+     * @param paraObj 配置对象{}，可选<br />
+     * {<br />
+     *  sendData: 发送给后台服务器的数据，默认值null<br />
+     *  注：<br />
+     *  1、POST方法传数据给后台，则需要给请求头加："Content-type": "application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br />
+     *  2、GET方法就算是设置了这个属性值，服务器也不会收到。<br />
+     *  3、当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
+     *
+     *  async: boolean，true异步请求，false同步请求，默认true<br /><br />
+     *
+     *  user: string，用户名，默认null<br /><br />
+     *
+     *  password: string，用户密码，默认null<br /><br />
+     *
+     *  overrideMimeType: string，MIME Type，用途与responseType同类，早期的，建议用responseType代替它，默认值null，表示不传<br />
+     *  如：'text/xml'、'text/plain'<br /><br />
+     *
+     *  responseType: string，MIME Type，设置响应的数据类型，会影响响应的数据的数据类型，默认值null，表示不传<br />
+     *  如：'json'，响应的response的数据类型是JSON对象不会是JSON字符串了(IE被自定义处理过了，也会返回JSON对象)<br />
+     *  有如下值：'arraybuffer'、'blob'、'document'、'json'、'text'<br /><br />
+     *
+     *  setTimeOut: number，设置请求超时时间，单位是ms，默认0，表示不超时，如：1000ms，表示1000ms后会触发超时事件<br /><br />
+     *
+     *  requestHeader: {}，JSON对象，设置请求头，keyName是请求头名，keyValue是请求头值。<br />
+     *  注：<br />
+     *  post方法传数据给后台，则需要加："Content-type":"application/x-www-form-urlencoded;charset=UTF-8"等等一类的请求头<br />
+     *  当用“POST”请求将“FormData”类型的数据传给服务器时，千万别设置请求头"Content-type": "multipart/form-data"，不然会报错！<br /><br />
+     *
+     *  withCredentials: boolean，指示Access-Control是否应使用cookie授权标头或TLS客户端证书等凭据进行跨站点请求。<br />
+     *  来自不同域的cookie不能设置为XMLHttpRequest自己的域cookie值，除非在发出请求之前设置withCredentials为true。<br />
+     *  通过设置withCredentials为true获得的第三方cookie，但仍将遵循同源策略，因此请求脚本无法通过document.cookie或响应头来访问它们。<br />
+     *  此外，此标志还用于指示何时在响应中忽略cookie。默认true。<br />
+     *  注：<br />
+     *  为true时，哪怕服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，也会被同源策略限制。<br />
+     *  为false时，只要服务器的响应头设置为{'Access-Control-Allow-Origin': '*'}，就能跨域访问了<br />
+     *  所以，默认为true，也就是不允许跨域<br /><br />
+     *
+     *  当 Access-Control-Allow-Origin:* 时<br />
+     *  不允许使用凭证(即 withCredentials:true)<br /><br />
+     *
+     *  当 Access-Control-Allow-Origin:* 时，<br />
+     *  只需确保客户端在发出CORS请求时凭据标志的值为false就可以了。<br />
+     *  1、如果请求使用XMLHttpRequest发出，请确保withCredentials为false。<br />
+     *  2、如果使用服务器发送事件，确保EventSource.withCredentials是false（这是默认值）。<br />
+     *  3、如果使用Fetch API，请确保Request.credentials是"omit"。<br /><br />
+     *
+     *  // 在加载资源的进度开始时会触发该事件<br />
+     *  loadStart: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 当readyState文档的属性发生更改时会触发该事件<br />
+     *  readyStateChange: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 操作、下载资源正在进行中<br />
+     *  progress: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 由于预设时间到期，Progression终止时会触发该事件<br />
+     *  timeout: ( event, xhr ) => {},<br /><br />
+     *
+     *  // 资源及其相关资源完成加载时会触发该事件<br />
+     *  load: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 请求发生错误时会触发该事件<br />
+     *  error: ( event, xhr ) => {},<br /><br />
+     *
+     *  // 中止加载资源时会触发该事件，调用XHR.abort()后，会触发这个事件<br />
+     *  abort: ( event, xhr ) => {},<br /><br />
+     *
+     *  // 当在加载资源时停止进度时（例如，在发送“错误”，“中止”或“加载”之后），将触发该事件<br />
+     *  loadEnd: ( event, xhr, response, status ) => {},<br /><br />
+     *
+     *  // 当responseType是'json'时，IE浏览器会被自定义处理，第三个参数response也会是JSON对象，但第二个参数xhr的response属性还是JSON字符串<br />
+     *  success: ( event, xhr, response ) => {},<br /><br />
+     *
+     *  // 上传资源事件对象<br />
+     *  uploadEvent: {<br />
+     *      // 上传已经开始<br />
+     *      loadStart: (event, xhr)=>{},<br /><br />
+     *
+     *      // 目前为止上传的进展<br />
+     *      progress: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传超时<br />
+     *      timeout: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传成功完成<br />
+     *      load: (event, xhr)=>{},<br /><br />
+     *
+     *      // 由于错误导致上传失败<br />
+     *      error: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传操作已中止<br />
+     *      abort: (event, xhr)=>{},<br /><br />
+     *
+     *      // 上传完成，此事件不区分成功或失败。load、error、abort、timeout都会触发它<br />
+     *      loadEnd: (event, xhr)=>{},<br /><br />
+     *
+     *  注：<br />
+     *  1、GET请求中，sendData的值的数据类型可以是JSON对象(不需要字符串化)或是FormData，且不是特别指定，可以不需要设置请求头('Content-Type':'application/json')这一类的。<br /><br />
+     */
+    getAjax( url, paraObj = {} ){
+        paraObj[ 'method' ] = 'GET';
+        this.ajax( url, paraObj );
     }
 
 }
@@ -7012,11 +7254,14 @@ class ObjHandle{
         handle4Set: () => {
         },
     } ){
-        let _this = this;
+        let _this = this,
+            result,
+            oldValue,
+            setResult;
 
         const handle_fun = obj => new Proxy( obj, {
             get( target, propKey, receiver ){
-                let result = Reflect.get( target, propKey, receiver );
+                result = Reflect.get( target, propKey, receiver );
 
                 isDeep && ( _this.isObject( result ) || _this.isArray( result ) ) && ( result = handle_fun( result ) );
 
@@ -7029,8 +7274,8 @@ class ObjHandle{
             },
 
             set( target, propKey, value, receiver ){
-                let oldValue = Reflect.get( target, propKey, receiver ),
-                    setResult = Reflect.set( target, propKey, value, receiver );
+                oldValue = Reflect.get( target, propKey, receiver );
+                setResult = Reflect.set( target, propKey, value, receiver );
 
                 return ( handle4Set( {
                     target,
@@ -8777,49 +9022,6 @@ class WebService4Proxy{
     }
 
     /**
-     * 创建"get"类型的具体请求并使用具体请求
-     *
-     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
-     * PS：<br />
-     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
-     * 2、传的话会取代上面调用类的构造参数。<br />
-     *
-     * @param type 字符串，响应回来的数据的预处理类型('arrayBuffer'、'blob'、'formData'、'json'、'text')，可选<br />
-     * PS：<br />
-     * 1、不传的话，响应回来的数据将是原样的！<br />
-     * 2、如果传的话，也只能传上面提到的5种！否则，响应回来的数据将是原样的！<br />
-     *
-     * @returns {Proxy} Proxy实例
-     */
-    get( {
-             baseUrl = this.baseUrl,
-             type,
-         } = {} ){
-        let _this = this;
-
-        return new Proxy( {}, {
-            get( target, propKey, receiver ){
-                return ( {
-                             // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
-                             url = '',
-                             events = {},
-                             options = {},
-                         } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
-                                              method: 'GET',
-                                          } ) )
-                                          .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) ){
-                                                  return response.clone()[ type ]();
-                                              }
-                                              else{
-                                                  return response;
-                                              }
-                                          } );
-            },
-        } );
-    }
-
-    /**
      * 创建"post"类型的具体请求并使用具体请求
      *
      * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
@@ -8849,6 +9051,135 @@ class WebService4Proxy{
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
                                               method: 'POST',
+                                          } ) )
+                                          .then( response => {
+                                              if( _this.type4ResponseData.includes( type ) ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
+            },
+        } );
+    }
+
+    /**
+     * 创建"delete"类型的具体请求并使用具体请求
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @param type 字符串，响应回来的数据的预处理类型('arrayBuffer'、'blob'、'formData'、'json'、'text')，可选<br />
+     * PS：<br />
+     * 1、不传的话，响应回来的数据将是原样的！<br />
+     * 2、如果传的话，也只能传上面提到的5种！否则，响应回来的数据将是原样的！<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    delete( {
+                baseUrl = this.baseUrl,
+                type,
+            } = {} ){
+        let _this = this;
+
+        return new Proxy( {}, {
+            get( target, propKey, receiver ){
+                return ( {
+                             // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
+                             url = '',
+                             events = {},
+                             options = {},
+                         } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
+                                              method: 'DELETE',
+                                          } ) )
+                                          .then( response => {
+                                              if( _this.type4ResponseData.includes( type ) ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
+            },
+        } );
+    }
+
+    /**
+     * 创建"put"类型的具体请求并使用具体请求
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @param type 字符串，响应回来的数据的预处理类型('arrayBuffer'、'blob'、'formData'、'json'、'text')，可选<br />
+     * PS：<br />
+     * 1、不传的话，响应回来的数据将是原样的！<br />
+     * 2、如果传的话，也只能传上面提到的5种！否则，响应回来的数据将是原样的！<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    put( {
+             baseUrl = this.baseUrl,
+             type,
+         } = {} ){
+        let _this = this;
+
+        return new Proxy( {}, {
+            get( target, propKey, receiver ){
+                return ( {
+                             // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
+                             url = '',
+                             events = {},
+                             options = {},
+                         } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
+                                              method: 'PUT',
+                                          } ) )
+                                          .then( response => {
+                                              if( _this.type4ResponseData.includes( type ) ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
+            },
+        } );
+    }
+
+    /**
+     * 创建"get"类型的具体请求并使用具体请求
+     *
+     * @param baseUrl 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，默认就行，可选<br />
+     * PS：<br />
+     * 1、默认就行(默认值取得是类的构造函数的第一个参数值)。<br />
+     * 2、传的话会取代上面调用类的构造参数。<br />
+     *
+     * @param type 字符串，响应回来的数据的预处理类型('arrayBuffer'、'blob'、'formData'、'json'、'text')，可选<br />
+     * PS：<br />
+     * 1、不传的话，响应回来的数据将是原样的！<br />
+     * 2、如果传的话，也只能传上面提到的5种！否则，响应回来的数据将是原样的！<br />
+     *
+     * @returns {Proxy} Proxy实例
+     */
+    get( {
+             baseUrl = this.baseUrl,
+             type,
+         } = {} ){
+        let _this = this;
+
+        return new Proxy( {}, {
+            get( target, propKey, receiver ){
+                return ( {
+                             // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
+                             url = '',
+                             events = {},
+                             options = {},
+                         } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
+                                              method: 'GET',
                                           } ) )
                                           .then( response => {
                                               if( _this.type4ResponseData.includes( type ) ){
