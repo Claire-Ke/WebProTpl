@@ -29,10 +29,22 @@ let CT = new CTESM.CT();
     if( false ){
         let index = 0,
             myEfficientFn = CT.debounceFun( function(){
-                console.log( `resize：${ ++index }` );
-            }, 1000, );
+                console.log( `h1 click：${ ++index }` );
+            }, 500, );
 
-        window.addEventListener( 'resize', myEfficientFn );
+        CT.aCE( 'h1', myEfficientFn );
+    }
+}
+
+// 节流函数的测试
+{
+    if( false ){
+        let index = 0,
+            myEfficientFn = CT.throttleFun( function(){
+                console.log( `h1 click：${ ++index }` );
+            }, 300, false, );
+
+        CT.aCE( 'h1', myEfficientFn );
     }
 }
 

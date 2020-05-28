@@ -1969,7 +1969,9 @@ class ES6Handle{
 class FunHandle{
 
     /**
-     * 防抖函数(每次触发的时间间隔都小于规定时间，那么相应的方法不会执行，否则，执行触发的是最后一次的状态)
+     * 防抖函数(每次触发的时间间隔都小于规定时间，那么相应的方法不会执行，否则，执行触发的是最后一次的状态)<br />
+     * PS:<br />
+     * 1、比如，百度的搜索输入框，当我们输入每个字符时，都会触发搜索提示。<br />
      *
      * @param fun 函数，建议用“非箭头函数”，可选
      *
@@ -1981,10 +1983,14 @@ class FunHandle{
      */
     debounceFun( fun = function(){
     }, wait = 250, immediate = false ){
-        let clearTime;
+        let preTime = 0,
+            clearTime;
         return function( ...rest ){
-            ( clearTime !== null && clearTime !== undefined ) && ( clearTimeout( clearTime ) );
-            ( immediate && !clearTime ) && ( fun.apply( this, rest ) );
+            let nowTime = Date.now(),
+                timeOut = nowTime - preTime > wait;
+            preTime = nowTime;
+            clearTime !== null && clearTime !== undefined && !timeOut && clearTimeout( clearTime );
+            immediate && !clearTime && timeOut && fun.apply( this, rest );
             !immediate && ( clearTime = setTimeout( () => void ( clearTime = null, !immediate && ( fun.apply( this, rest ) ) ), wait ) );
         };
     }
@@ -2166,27 +2172,29 @@ class FunHandle{
     }
 
     /**
-     * 节流函数(规定的时间间隔内只触发一次相应的方法，且执行的是第一次的触发状态)
+     * 节流函数(规定的时间间隔内只触发一次相应的方法，且执行的是第一次的触发状态)<br />
+     * PS:<br />
+     * 1、比如，500毫秒内疯狂多次点击按钮，但只触发第一次的点击，就如，射击类游戏的场景，疯狂点击按钮射出子弹。<br />
      *
      * @param fun 函数，建议用“非箭头函数”，可选
      *
      * @param wait Number，规定的时间间隔，单位毫秒(ms)，默认值250，可选
      *
-     * @param immediate boolean，为true时，则回调func是在连续调用开始时就被调用，默认值false，可选
+     * @param immediate boolean，为true时，则回调func是在连续调用开始时就被调用，默认值true，可选
      *
      * @returns {function} function
      */
     throttleFun( fun = function(){
-    }, wait = 250, immediate = false ){
+    }, wait = 250, immediate = true ){
         let preTime = 0,
             clearTime;
         return function( ...rest ){
             let nowTime = Date.now(),
                 timeOut = nowTime - preTime > wait;
             preTime = nowTime;
-            ( clearTime !== null && clearTime !== undefined ) && ( clearTimeout( clearTime ) );
-            ( immediate && timeOut ) && ( fun.apply( this, rest ) );
-            ( !immediate && timeOut ) && ( clearTime = setTimeout( () => void ( fun.apply( this, rest ) ), wait ) );
+            clearTime !== null && clearTime !== undefined && timeOut && clearTimeout( clearTime );
+            immediate && timeOut && fun.apply( this, rest );
+            !immediate && timeOut && ( clearTime = setTimeout( () => void ( fun.apply( this, rest ) ), 0 ) );
         };
     }
 

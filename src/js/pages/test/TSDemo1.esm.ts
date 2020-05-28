@@ -481,7 +481,7 @@
 
 // 查找字符串中出现最多次的那个字符
 {
-    if( true ){
+    if( false ){
         ( ( str4Target: string ): void => {
             const target4Arr: Array<string> = [ ...str4Target ],
                 str4Obj: any = {};
@@ -508,7 +508,7 @@
             console.log( str4Target );
             console.dir( result4Sort );
             console.log( `字符“${ result4Sort[ 0 ][ 0 ] }”出现的次数最多，一共出现“${ result4Sort[ 0 ][ 1 ] }”次！！！` );
-        } )( '林沐风林子空𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷𠮷' );
+        } )( '林沐风_林子空_𠮷𠮷𠮷𠮷𠮷𠮷' );
     }
 }
 
