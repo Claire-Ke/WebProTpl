@@ -158,3 +158,61 @@ let CT = new CTESM.CT();
         } );
     }
 }
+
+// ajax
+{
+    if( false ){
+        CT.postAjax( 'http://localhost:9999/SimServer/POST', {
+            sendData: JSON.stringify( {
+                type: 'json',
+            } ),
+            responseType: 'json',
+            requestHeader: { 'Content-Type': 'application/json', },
+            withCredentials: false,
+            success( event, xhr, response ){
+                console.dir( response );
+            },
+        } );
+    }
+
+    if( false ){
+        CT.deleteAjax( 'http://localhost:9999/SimServer/DELETE', {
+            sendData: JSON.stringify( {
+                type: 'json',
+            } ),
+            responseType: 'json',
+            requestHeader: { 'Content-Type': 'application/json', },
+            withCredentials: false,
+            success( event, xhr, response ){
+                console.dir( response );
+            },
+        } );
+    }
+
+    if( false ){
+        CT.putAjax( 'http://localhost:9999/SimServer/PUT', {
+            sendData: JSON.stringify( {
+                type: 'json',
+            } ),
+            responseType: 'json',
+            requestHeader: { 'Content-Type': 'application/json', },
+            withCredentials: false,
+            success( event, xhr, response ){
+                console.dir( response );
+            },
+        } );
+    }
+
+    if( false ){
+        CT.getAjax( 'http://localhost:9999/SimServer/GET', {
+            sendData: {
+                type: 'json',
+            },
+            responseType: 'json',
+            withCredentials: false,
+            success( event, xhr, response ){
+                console.dir( response );
+            },
+        } );
+    }
+}
