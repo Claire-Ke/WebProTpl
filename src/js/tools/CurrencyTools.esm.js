@@ -9914,5 +9914,8 @@ class CT
 
 export {
     CT,
+    SSE4Client,
+    WebService4Proxy,
+    WebSocket4Client,
 };
 export default CT;
