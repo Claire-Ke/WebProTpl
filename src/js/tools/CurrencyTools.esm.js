@@ -8866,6 +8866,203 @@ class WASMTool{
 }
 
 /**
+ * 服务器发送事件(Server-Sent Event)客户端类
+ */
+class SSE4Client{
+
+    /**
+     * SSE客户端实例
+     */
+    sse4Client;
+
+    #onError;
+    #onMessage;
+    #onOpen;
+
+    /**
+     * 构造函数<br />
+     * PS:<br />
+     * 1、EventSource实例打开到HTTP服务器的持久连接，该服务器以“text/event-stream”格式发送事件。<br />
+     * 2、连接打开后，来自服务器的传入消息将以事件的形式传递到代码中。如果传入消息中有事件字段，则触发的事件与事件字段值相同。如果不存在事件字段，则会触发一般消息事件。<br />
+     * 3、例如，EventSource是一种有用的方法，用于处理社交媒体状态更新、新闻源或将数据传递到客户端存储机制（如IndexedDB或web存储）中。<br />
+     * 4、当不在HTTP/2上使用时，SSE会受到最大打开连接数的限制，这在打开各种选项卡时会特别痛苦，因为每个浏览器的限制是非常低的（6）。<br />
+     * 这个问题在Chrome和Firefox中被标记为“无法修复”。这个限制是针对每个浏览器+域的，<br />
+     * 这意味着您可以在所有选项卡上打开6个SSE连接www.example1.com网站还有6个SSE连接到www.example2.com。（从Stackoverflow）。<br />
+     * 使用HTTP/2时，服务器和客户端之间协商的同时HTTP流的最大数量（默认为100）。<br />
+     * 5、不是所有主流浏览器均支持Server-Sent Event，如Edge(旧版的，基于KHTML的那个Edge)、Internet Explorer不支持的。
+     *
+     * @param url 字符串，它表示服务事件/消息的远程资源的位置，必须
+     *
+     * @param opt JSON配置对象<br />
+     * {<br />
+     * withCredentials: true，布尔值，默认值是true，指示是否应将CORS设置为包括凭据，可选<br />
+     * PS:<br />
+     * 一、<br />
+     * 当 Access-Control-Allow-Origin:* 时<br />
+     * 不允许使用凭证(即不允许设置withCredentials为true)<br />
+     * 二、<br />
+     * 当 Access-Control-Allow-Origin:* 时，只需确保客户端在发出CORS请求时凭据标志的值为false就可以了。<br />
+     * 1、如果请求使用XMLHttpRequest发出，请确保withCredentials为false。<br />
+     * 2、如果使用服务器发送事件，确保EventSource.withCredentials是false（这是默认值）。<br />
+     * 3、如果使用Fetch API，请确保Request.credentials是"omit"。<br /><br />
+     *
+     * onError: ( sse4Client, event ) => {}，是在发生错误并且在EventSource对象上分派error事件时调用的EventHandler，可选。<br /><br />
+     *
+     * onMessage: ( sse4Client, event, data ) => {}，是在收到消息事件（即消息来自源）时调用的EventHandler，可选。<br /><br />
+     *
+     * onOpen: ( sse4Client, event ) => {}，是在接收到打开事件（即刚打开连接时）时调用的EventHandler，可选。
+     */
+    constructor( url, {
+        withCredentials = true,
+        onError = ( sse4Client, event ) => {
+        },
+        onMessage = ( sse4Client, event, data ) => {
+        },
+        onOpen = ( sse4Client, event ) => {
+        },
+    } = {} ){
+        this.sse4Client = new EventSource( url, { withCredentials } );
+
+        this.#onError = onError;
+        this.#onMessage = onMessage;
+        this.#onOpen = onOpen;
+
+        this.sse4Client.onerror = ( ...rest ) => {
+            this.#onError( this.sse4Client, ...rest );
+        };
+        this.sse4Client.onmessage = event => {
+            this.#onMessage( this.sse4Client, event, event.data );
+        };
+        this.sse4Client.onopen = ( ...rest ) => {
+            this.#onOpen( this.sse4Client, ...rest );
+        };
+    }
+
+    /**
+     * 关闭连接（如果建立了连接），并设置EventSource.readyState属性为2（closed）。如果连接已经关闭，则该方法不执行任何操作。
+     */
+    close(){
+        this.sse4Client.close();
+    }
+
+    /**
+     * 是在发生错误并且在EventSource对象上分派error事件时调用的EventHandler。
+     *
+     * @param eventFun 函数，该事件函数有两个参数(sse4Client, event)，可选
+     */
+    setOnError( eventFun = ( sse4Client, event ) => {
+    } ){
+        this.#onError = eventFun;
+    }
+
+    /**
+     * 是在收到消息事件（即消息来自源）时调用的EventHandler。
+     *
+     * @param eventFun 函数，该事件函数有三个参数(sse4Client, event, data)，可选
+     */
+    setOnMessage( eventFun = ( sse4Client, event, data ) => {
+    } ){
+        this.#onMessage = eventFun;
+    }
+
+    /**
+     * 是在接收到打开事件（即刚打开连接时）时调用的EventHandler。
+     *
+     * @param eventFun 函数，该事件函数有两个参数(sse4Client, event)，可选
+     */
+    setOnOpen( eventFun = ( sse4Client, event ) => {
+    } ){
+        this.#onOpen = eventFun;
+    }
+
+    /**
+     * 一次性只设置一个自定义监听的事件<br />
+     * PS:<br />
+     * 1、如：这将只监听与以下类似的事件(this.sse4Client.addEventListener( 'notice', e => {}, false ))<br />
+     * event: notice<br />
+     * data: useful data<br />
+     * id: someid<br />
+     * 2、<br />
+     * 事件“message”是一种特殊情况，因为它将捕获“没有事件字段”的事件以及具有特定类型“event:message”的事件，它不会在“任何其他事件类型”上触发。
+     *
+     * @param eventName 字符串，自定义的事件名，必须
+     *
+     * @param fun 函数，处理事件的函数，有一个参数event，可选
+     *
+     * @param opt 布尔值，事件的配置参数，默认值是false，可选
+     */
+    setEvent( eventName, fun = event => {
+    }, opt = false ){
+        this.sse4Client.addEventListener( eventName, fun, opt );
+    }
+
+    /**
+     * 一次性设置多个自定义监听的事件<br />
+     * PS:<br />
+     * 1、如：这将只监听与以下类似的事件(this.sse4Client.addEventListener( 'notice', e => {}, false ))<br />
+     * event: notice<br />
+     * data: useful data<br />
+     * id: someid<br />
+     * 2、<br />
+     * 事件“message”是一种特殊情况，因为它将捕获“没有事件字段”的事件以及具有特定类型“event:message”的事件，它不会在“任何其他事件类型”上触发。
+     *
+     * @param eventArr 数组，自定义的事件数组(成员都是一个个对象)，可选<br />
+     * PS:该数组的格式如下<br />
+     * [<br />
+     * {<br />
+     * eventName: 字符串，自定义的事件名，必须<br /><br />
+     *
+     * eventFun: 函数，处理事件的函数，有一个参数event，可选<br /><br />
+     *
+     * eventOpt: 布尔值，事件的配置参数，默认值是false，可选
+     * ]
+     */
+    setEvents( eventArr = [] ){
+        eventArr.forEach( ( {
+                                eventName,
+                                eventFun = event => {
+                                },
+                                eventOpt = false,
+                            }, i, a ) => void ( this.setEvent( eventName, eventFun, eventOpt ) ) );
+    }
+
+    /**
+     * 只读属性返回一个表示连接状态的数字。<br />
+     * PS:<br />
+     * 1、代表连接状态的数字。可能的值为：<br />
+     * 0 — connecting<br />
+     * 1 — open<br />
+     * 2 — closed<br />
+     *
+     * @returns {Number} Number
+     */
+    getReadyState(){
+        return this.sse4Client.readyState;
+    }
+
+    /**
+     * 只读属性返回表示源URL
+     *
+     * @returns {String} String
+     */
+    getURL(){
+        return this.sse4Client.url;
+    }
+
+    /**
+     * 只读属性返回一个布尔值，该布尔值指示是否使用CORS凭据集实例化了EventSource对象。<br />
+     * PS:<br />
+     * 1、一个布尔值，指示是否使用CORS凭据集实例化了EventSource对象（为true）（默认为false）。
+     *
+     * @returns {Boolean} 一个布尔值，指示是否使用CORS凭据集实例化了EventSource对象（为true）（默认为false）。
+     */
+    getWithCredentials(){
+        return this.sse4Client.withCredentials;
+    }
+
+}
+
+/**
  * 基于“Proxy”编写的“Web服务器客户端”
  */
 class WebService4Proxy{
@@ -9498,6 +9695,8 @@ const mixin_classArrC = [
 // 这个对象的每一个键名是具体的工具类名，键值是具体的工具类！
 // new CT().getClass()返回的就是toolsClass_objC！
 const toolsClass_objC = {
+    // 服务器发送事件(Server-Sent Event)客户端类
+    SSE4Client,
     // WebService4Proxy类
     WebService4Proxy,
     // WebSocket客户端类
