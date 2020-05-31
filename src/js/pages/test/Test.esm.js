@@ -10,20 +10,6 @@
 
 let CT = new CTESM.CT();
 
-// 测试“WASM”
-{
-    if( false ){
-        import('./WASMDemo1.esm.js');
-    }
-}
-
-// 测试“Node服务器”
-{
-    if( false ){
-        import('./AjaxDemo1.esm.js');
-    }
-}
-
 // 防抖函数的测试
 {
     if( false ){
@@ -1937,20 +1923,6 @@ ${ onceFun1( 'q', 'w' ) }
     }
 }
 
-// Worker测试
-{
-    if( false ){
-        import('./WorkersDemo1.esm.js');
-    }
-}
-
-// Service Worker测试
-{
-    if( false ){
-        import('./ServiceWorkerDemo1.esm.js');
-    }
-}
-
 // 函数尾递归调用优化版本的斐波拉契数列测试(index别超过6991)
 {
     if( false ){
@@ -1965,53 +1937,49 @@ ${ onceFun1( 'q', 'w' ) }
                 console.log( '项数别超过6991！！！' );
                 return Infinity;
             }
-            else{
-                return Fibonacci( index - 1, BigInt( initial2 ), BigInt( initial1 ) + BigInt( initial2 ) );
-            }
+
+            return Fibonacci( index - 1, BigInt( initial2 ), BigInt( initial1 ) + BigInt( initial2 ) );
         }
 
         console.log( BigInt( Fibonacci( 6991 ) ) );
     }
 }
 
-// Clipboard API测试
-{
-    if( false ){
-        import('./ClipboardAPIDemo1.esm.js');
-    }
-}
+Promise.allSettled( [
+           // 测试“WASM”
+           // import('./WASMDemo1.esm.js'),
 
-// ES6测试
-{
-    if( false ){
-        import('./ES6Demo1.esm.js');
-    }
-}
+           // 测试“Node服务器”
+           // import('./AjaxDemo1.esm.js'),
 
-// 算法测试
-{
-    if( false ){
-        import('./Algorithm.esm.js');
-    }
-}
+           // Worker测试
+           // import('./WorkersDemo1.esm.js'),
 
-// 加密算法(crypto)测试
-{
-    if( false ){
-        import('./CryptoDemo1.esm.js');
-    }
-}
+           // Service Worker测试
+           // import('./ServiceWorkerDemo1.esm.js'),
 
-// Web Components测试
-{
-    if( false ){
-        import('./WebComponentsDemo1.esm.js');
-    }
-}
+           // Clipboard API测试
+           // import('./ClipboardAPIDemo1.esm.js'),
 
-// TypeScript测试
-{
-    if( false ){
-        import('./TSDemo1.esm.ts');
-    }
-}
+           // ES6测试
+           // import('./ES6Demo1.esm.js'),
+
+           // 算法测试
+           // import('./Algorithm.esm.js'),
+
+           // 加密算法(crypto)测试
+           // import('./CryptoDemo1.esm.js'),
+
+           // Web Components测试
+           // import('./WebComponentsDemo1.esm.js'),
+
+           // TypeScript测试
+           // import('./TSDemo1.esm.ts'),
+
+           // WebSocket客户端类测试
+           // import('./WebSocket4Client2DemoA.esm.js'),
+       ] )
+       .then( result => {
+           // console.dir( result );
+       } )
+       .catch( error => void ( console.error( error.message ) ) );

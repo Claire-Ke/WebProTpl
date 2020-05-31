@@ -43,4 +43,7 @@ package.json里头的各个配置变量！！！
 
 webpack.BaseConfig.js
 PS：
+1、
 defineObj_fun函数的返回值(localURL、devURL、testURL、proURL)
+2、
+browsers_arr
