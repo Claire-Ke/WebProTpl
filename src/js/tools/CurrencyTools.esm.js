@@ -7,6 +7,10 @@
  */
 
 /**
+ * 该工具支持在浏览器、Node、Deno等多种支持JS的宿主环境中使用！！！
+ */
+
+/**
  * 该工具经过了如下优化(以后的代码添加、修改都应该尽量遵循如下的优化标准)：
  * PS：
  * 只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错。
@@ -86,12 +90,14 @@ function GetError( info_str ){
     throw new Error( info_str );
 }
 
-function Init( _this ){
-    globalThis.requestAnimationFrame = globalThis[ 'requestAnimationFrame' ] || globalThis[ 'webkitRequestAnimationFrame' ] || globalThis[ 'mozRequestAnimationFrame' ] || globalThis[ 'msRequestAnimationFrame' ] || globalThis[ 'oRequestAnimationFrame' ] || globalThis[ 'khtmlRequestAnimationFrame' ];
-    globalThis.cancelAnimationFrame = globalThis[ 'cancelAnimationFrame' ] || globalThis[ 'webkitCancelAnimationFrame' ] || globalThis[ 'mozCancelAnimationFrame' ] || globalThis[ 'msCancelAnimationFrame' ] || globalThis[ 'oCancelAnimationFrame' ] || globalThis[ 'khtmlCancelAnimationFrame' ];
+function Init( _this, isSupportBrowser ){
+    if( isSupportBrowser ){
+        globalThis.requestAnimationFrame = globalThis[ 'requestAnimationFrame' ] || globalThis[ 'webkitRequestAnimationFrame' ] || globalThis[ 'mozRequestAnimationFrame' ] || globalThis[ 'msRequestAnimationFrame' ] || globalThis[ 'oRequestAnimationFrame' ] || globalThis[ 'khtmlRequestAnimationFrame' ];
+        globalThis.cancelAnimationFrame = globalThis[ 'cancelAnimationFrame' ] || globalThis[ 'webkitCancelAnimationFrame' ] || globalThis[ 'mozCancelAnimationFrame' ] || globalThis[ 'msCancelAnimationFrame' ] || globalThis[ 'oCancelAnimationFrame' ] || globalThis[ 'khtmlCancelAnimationFrame' ];
 
-    // 触摸事件初始化，因为在touch()内部做了判断，所以，不管new CT多少次或调用touch()多少次，都只会执行一次触摸事件初始化！！！避免了重复注册触摸事件！！！
-    _this.isTouch() && _this.touch();
+        // 触摸事件初始化，因为在touch()内部做了判断，所以，不管new CT多少次或调用touch()多少次，都只会执行一次触摸事件初始化！！！避免了重复注册触摸事件！！！
+        _this.isTouch() && _this.touch();
+    }
 
     // 函数，将浮点数四舍五入到指定的长度(小数点之后的长度)
     // 会在“Number”的原型上添加这个函数
@@ -9500,13 +9506,10 @@ const toolsClass_objC = {
 
 /**
  * JS工具，其中的代码都是无关任何项目的代码(ES6，ESM模块写法)。<br />
- * 上次修改时间：2018年12月22号<br />
- * 修改人：LP<br />
- * QQ：2726893248<br />
- * email：2726893248@qq.com<br />
  * 注：<br />
  * 1、都是在当时最新的谷歌浏览器PC版上测试。<br />
- * 2、注意默认的初始化操作带来的影响
+ * 2、注意默认的初始化操作带来的影响<br />
+ * 3、该工具支持在浏览器、Node、Deno等多种支持JS的宿主环境中使用！<br />
  */
 class CT
     extends MixinHandle( ...mixin_classArrC ){
@@ -9578,43 +9581,112 @@ class CT
     // 类实例属性 End
 
     /**
-     * 构造函数 用于初始化工作
+     * 构造函数，用于初始化工作
+     *
+     * @param opt JSON配置对象，可选<br />
+     * {<br />
+     * isSupportBrowser: 布尔值，如果要将CT工具用于浏览器环境，那么传true可以自动初始化浏览器环境的各种功能；<br />
+     * 如果不是用于浏览器环境(如：用于NodeJS)，那么传false就不会初始化跟浏览器相关的操作功能。<br />
+     * 可选，默认值true。<br /><br />
      */
-    constructor(){
+    constructor( {
+                     isSupportBrowser = true,
+                 } = {} ){
         super();
 
-        /**
-         * 查找所有节点，处理所有节点，有返回值(存放在数组里)
-         *
-         * @param elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-         * 支持一个数组(以上提到的任何数据类型)，以便批量处理，必需
-         *
-         * @param fun 需要执行的函数，会传入一个Element参数，必需
-         *
-         * @returns {Array} 数组[*]
-         */
-        this.allElemHan = IsHandle10.bind( this );
+        if( isSupportBrowser ){
+            /**
+             * 查找所有节点，处理所有节点，有返回值(存放在数组里)
+             *
+             * @param elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
+             * 支持一个数组(以上提到的任何数据类型)，以便批量处理，必需
+             *
+             * @param fun 需要执行的函数，会传入一个Element参数，必需
+             *
+             * @returns {Array} 数组[*]
+             */
+            this.allElemHan = IsHandle10.bind( this );
 
-        /**
-         * 停止所有类型的传播(捕获和冒泡)，禁止默认事件
-         *
-         * @param event 事件对象，必需
-         *
-         * @returns {Element} Element节点
-         */
-        this.allEStop = AllEStop.bind( this );
+            /**
+             * 停止所有类型的传播(捕获和冒泡)，禁止默认事件
+             *
+             * @param event 事件对象，必需
+             *
+             * @returns {Element} Element节点
+             */
+            this.allEStop = AllEStop.bind( this );
 
-        /**
-         * 查找节点，但只处理第一个节点，有返回值(任何类型数据)
-         *
-         * @param elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-         * 支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只处理第一个节点
-         *
-         * @param fun 需要执行的函数，会传入一个Element参数，必需
-         *
-         * @returns {*} 任何类型数据
-         */
-        this.firstElemHan = IsHandle13.bind( this );
+            /**
+             * 查找节点，但只处理第一个节点，有返回值(任何类型数据)
+             *
+             * @param elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
+             * 支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只处理第一个节点
+             *
+             * @param fun 需要执行的函数，会传入一个Element参数，必需
+             *
+             * @returns {*} 任何类型数据
+             */
+            this.firstElemHan = IsHandle13.bind( this );
+
+            /**
+             * 操作localStorage的工具<br />
+             * 使用方法：<br />
+             * new CT().ls.aD()<br />
+             * {aD, dD, uD, qD, cD, isKN, storageCE等7个方法}
+             */
+            this.ls = IsHandle14.call( this, localStorage );
+
+            /**
+             * ready加强版
+             *
+             * @returns {Function} 函数，有一个f参数(所要执行的函数)，必需
+             */
+            this.readyS = ( () => {
+                let funcs = [],
+                    ready = false,
+                    handler = e => {
+                        if( ready ){
+                            return;
+                        }
+                        if( e.type === 'onreadystatechange' && document.readyState !== 'complete' ){
+                            return;
+                        }
+                        for(
+                            let i = 0;
+                            i < funcs.length;
+                            i++
+                        ){
+                            funcs[ i ].call( document );
+                        }
+                        ready = true;
+                        funcs = null;
+                    };
+                if( globalThis[ 'isOpenReadyS' ] !== true ){
+                    if( document.addEventListener ){
+                        document.addEventListener( 'DOMContentLoaded', handler, false );
+                        document.addEventListener( 'readystatechange', handler, false );
+                        globalThis.addEventListener( 'load', handler, false );
+                    }
+                    else if( document.attachEvent ){
+                        document.attachEvent( 'onreadystatechange', handler );
+                        globalThis.attachEvent( 'onload', handler );
+                    }
+                    globalThis[ 'isOpenReadyS' ] = true;
+                }
+                return ( f = ( () => {
+                } ) ) => void ( ready
+                                ? ( f.call( document ) )
+                                : ( funcs.push( f ) ) );
+            } )();
+
+            /**
+             * 操作sessionStorage的工具<br />
+             * 使用方法：<br />
+             * new CT().ss.aD()<br />
+             * {aD, dD, uD, qD, cD, isKN, storageCE等7个方法}
+             */
+            this.ss = IsHandle14.call( this, sessionStorage );
+        }
 
         /**
          * 自定义抛出错误、异常信息
@@ -9623,70 +9695,11 @@ class CT
          */
         this.gError = GetError;
 
-        /**
-         * 操作localStorage的工具<br />
-         * 使用方法：<br />
-         * new CT().ls.aD()<br />
-         * {aD, dD, uD, qD, cD, isKN, storageCE等7个方法}
-         */
-        this.ls = IsHandle14.call( this, localStorage );
-
         this.name = 'CT';
-
-        /**
-         * ready加强版
-         *
-         * @returns {Function} 函数，有一个f参数(所要执行的函数)，必需
-         */
-        this.readyS = ( () => {
-            let funcs = [],
-                ready = false,
-                handler = e => {
-                    if( ready ){
-                        return;
-                    }
-                    if( e.type === 'onreadystatechange' && document.readyState !== 'complete' ){
-                        return;
-                    }
-                    for(
-                        let i = 0;
-                        i < funcs.length;
-                        i++
-                    ){
-                        funcs[ i ].call( document );
-                    }
-                    ready = true;
-                    funcs = null;
-                };
-            if( globalThis[ 'isOpenReadyS' ] !== true ){
-                if( document.addEventListener ){
-                    document.addEventListener( 'DOMContentLoaded', handler, false );
-                    document.addEventListener( 'readystatechange', handler, false );
-                    globalThis.addEventListener( 'load', handler, false );
-                }
-                else if( document.attachEvent ){
-                    document.attachEvent( 'onreadystatechange', handler );
-                    globalThis.attachEvent( 'onload', handler );
-                }
-                globalThis[ 'isOpenReadyS' ] = true;
-            }
-            return ( f = ( () => {
-            } ) ) => void ( ready
-                            ? ( f.call( document ) )
-                            : ( funcs.push( f ) ) );
-        } )();
-
-        /**
-         * 操作sessionStorage的工具<br />
-         * 使用方法：<br />
-         * new CT().ss.aD()<br />
-         * {aD, dD, uD, qD, cD, isKN, storageCE等7个方法}
-         */
-        this.ss = IsHandle14.call( this, sessionStorage );
 
         this.version = '2020.01.01.1';
 
-        Init( this );
+        Init( this, isSupportBrowser );
     }
 
     /**
