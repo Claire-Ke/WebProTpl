@@ -305,6 +305,25 @@ let CT = new CTESM.CT();
                         console.dir( json );
                     } );
     }
+
+    if( false ){
+        const { WebService4Proxy, } = CT.getClass(),
+            ws4Proxy_ins = new WebService4Proxy( CT, 'http://localhost:9999/SimServer/' ),
+            ws4Proxy_GET = ws4Proxy_ins.get( { type: 'json', } );
+
+        ws4Proxy_GET.GET( {
+                        options: {
+                            mode: 'cors',
+                            credentials: 'omit',
+                            body: {
+                                type: 'json5',
+                            },
+                        },
+                    } )
+                    .then( json => {
+                        console.dir( json );
+                    } );
+    }
 }
 
 // Promise.any测试

@@ -8923,8 +8923,10 @@ class WebService4Proxy{
                 return ( {
                              // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
                              url = '',
-                             events,
-                             options,
+                             // 该参数的具体信息看CT的fetch()的第二个参数描述
+                             events = {},
+                             // 该参数的具体信息看CT的fetch()的第三个参数描述
+                             options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, options )
                                           .then( response => {
                                               if( _this.type4ResponseData.includes( type ) ){
@@ -8934,6 +8936,9 @@ class WebService4Proxy{
                                                   return response;
                                               }
                                           } );
+            },
+            set( target, propKey, value, receiver ){
+                return Reflect.set( target, propKey, value, receiver );
             },
         } );
     }
@@ -9061,7 +9066,9 @@ class WebService4Proxy{
                 return ( {
                              // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
                              url = '',
+                             // 该参数的具体信息看CT的fetch()的第二个参数描述
                              events = {},
+                             // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
                                               method: 'POST',
@@ -9074,6 +9081,9 @@ class WebService4Proxy{
                                                   return response;
                                               }
                                           } );
+            },
+            set( target, propKey, value, receiver ){
+                return Reflect.set( target, propKey, value, receiver );
             },
         } );
     }
@@ -9106,7 +9116,9 @@ class WebService4Proxy{
                 return ( {
                              // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
                              url = '',
+                             // 该参数的具体信息看CT的fetch()的第二个参数描述
                              events = {},
+                             // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
                                               method: 'DELETE',
@@ -9119,6 +9131,9 @@ class WebService4Proxy{
                                                   return response;
                                               }
                                           } );
+            },
+            set( target, propKey, value, receiver ){
+                return Reflect.set( target, propKey, value, receiver );
             },
         } );
     }
@@ -9151,7 +9166,9 @@ class WebService4Proxy{
                 return ( {
                              // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
                              url = '',
+                             // 该参数的具体信息看CT的fetch()的第二个参数描述
                              events = {},
+                             // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
                                               method: 'PUT',
@@ -9164,6 +9181,9 @@ class WebService4Proxy{
                                                   return response;
                                               }
                                           } );
+            },
+            set( target, propKey, value, receiver ){
+                return Reflect.set( target, propKey, value, receiver );
             },
         } );
     }
@@ -9194,7 +9214,9 @@ class WebService4Proxy{
                 return ( {
                              // 这里的url参数可传可不传！！！传的话最终完整的请求URL会被拼接成：最终的baseUrl的值 + 具体方法名(也就是指propKey的值) + url
                              url = '',
+                             // 该参数的具体信息看CT的fetch()的第二个参数描述
                              events = {},
+                             // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
                                               method: 'GET',
@@ -9207,6 +9229,9 @@ class WebService4Proxy{
                                                   return response;
                                               }
                                           } );
+            },
+            set( target, propKey, value, receiver ){
+                return Reflect.set( target, propKey, value, receiver );
             },
         } );
     }
@@ -9260,17 +9285,7 @@ class WebSocket4Client{
         },
         onOpen = ( ws, event ) => {
         },
-    } = {
-        protocols: null,
-        onClose: ( ws, event ) => {
-        },
-        onError: ( ws, event ) => {
-        },
-        onMessage: ( ws, event, data ) => {
-        },
-        onOpen: ( ws, event ) => {
-        },
-    } ){
+    } = {} ){
         !protocols
         ? ( this.ws4Client = new WebSocket( url ) )
         : ( this.ws4Client = new WebSocket( url, protocols ) );
