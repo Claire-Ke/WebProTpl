@@ -630,8 +630,8 @@ let fs = require( 'fs' ),
          'Android >= 83',
          'ChromeAndroid >= 83',
 
-         'Firefox >= 76',
-         'FirefoxAndroid >= 76',
+         'Firefox >= 77',
+         'FirefoxAndroid >= 77',
          */
 
         // 专门在最新稳定版本的谷歌浏览器上测试用

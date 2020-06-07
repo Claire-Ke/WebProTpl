@@ -216,3 +216,50 @@ let CT = new CTESM.CT();
         } );
     }
 }
+
+// graphql
+{
+    if( true ){
+        // http://192.168.1.75:8081
+        CT.postAjax( '/graphql/', {
+            sendData: `query {
+ibms_region_getParks( exp: "item.id == 'c479ad55297f442f97d58bdd3470175a'" ){
+   id,
+   name,
+   tags,
+   area,
+   introduction,
+   image,
+   blockCount,
+   
+   blocks( exp: "item.id == '5bdc99f4c60f4e25a4ad3fd550e02714'" ){
+       id,
+       name,
+       area,
+       tags,
+       buildings( exp: "item.id == 'bu003'" ){
+           id,
+           name,
+           floors( exp: "item.id == '77d3ac7839db4af0a9e775f222245a6e'" ){
+               id,
+               name,
+           },
+       },
+      
+       places( exp: "item.id == 'pl003'" ){
+           id,
+           name,
+       },
+       placeCount,
+   },
+},
+}`,
+            responseType: 'json',
+            requestHeader: { 'Content-Type': 'application/json', },
+            withCredentials: false,
+            success( event, xhr, response ){
+                console.dir( response );
+            },
+        } );
+    }
+}

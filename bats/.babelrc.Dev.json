@@ -17,8 +17,8 @@
                         "Chrome >= 83",
                         "Android >= 83",
                         "ChromeAndroid >= 83",
-                        "Firefox >= 76",
-                        "FirefoxAndroid >= 76"
+                        "Firefox >= 77",
+                        "FirefoxAndroid >= 77"
                     ]
                 }
             }
