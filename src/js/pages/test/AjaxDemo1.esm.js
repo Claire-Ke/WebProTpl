@@ -219,10 +219,11 @@ let CT = new CTESM.CT();
 
 // graphql
 {
-    if( true ){
+    if( false ){
         // http://192.168.1.75:8081
         CT.postAjax( '/graphql/', {
-            sendData: `query {
+            sendData: JSON.stringify( {
+                graphql: `query {
 ibms_region_getParks( exp: "item.id == 'c479ad55297f442f97d58bdd3470175a'" ){
    id,
    name,
@@ -254,6 +255,7 @@ ibms_region_getParks( exp: "item.id == 'c479ad55297f442f97d58bdd3470175a'" ){
    },
 },
 }`,
+            } ),
             responseType: 'json',
             requestHeader: { 'Content-Type': 'application/json', },
             withCredentials: false,

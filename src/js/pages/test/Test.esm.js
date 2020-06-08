@@ -1945,12 +1945,58 @@ ${ onceFun1( 'q', 'w' ) }
     }
 }
 
+// 资源转blob对象
+{
+    if( false ){
+        CT.getAjax( '/SimServer/GETFile', {
+            sendData: {
+                type: 'music',
+            },
+            // arraybuffer
+            responseType: 'blob',
+            withCredentials: false,
+            success( event, xhr, response ){
+                let blobURL = globalThis.URL.createObjectURL( response ),
+                    eleLink = document.createElement( 'audio' );
+
+                eleLink.autoplay = 'autoplay';
+                eleLink.controls = 'controls';
+                eleLink.loop = 'loop';
+                eleLink.src = blobURL;
+                document.querySelector( 'article' )
+                        .appendChild( eleLink );
+            },
+        } );
+    }
+    if( false ){
+        CT.getAjax( '/SimServer/StaticResources/music/1.flac', {
+            sendData: {
+                // type: 'music',
+            },
+            // arraybuffer
+            responseType: 'blob',
+            withCredentials: false,
+            success( event, xhr, response ){
+                let blobURL = globalThis.URL.createObjectURL( response ),
+                    eleLink = document.createElement( 'audio' );
+
+                eleLink.autoplay = 'autoplay';
+                eleLink.controls = 'controls';
+                eleLink.loop = 'loop';
+                eleLink.src = blobURL;
+                document.querySelector( 'article' )
+                        .appendChild( eleLink );
+            },
+        } );
+    }
+}
+
 Promise.allSettled( [
            // 测试“WASM”
            // import('./WASMDemo1.esm.js'),
 
            // 测试“Node服务器”
-           // import('./AjaxDemo1.esm.js'),
+           import('./AjaxDemo1.esm.js'),
 
            // Worker测试
            // import('./WorkersDemo1.esm.js'),
