@@ -97,10 +97,12 @@ module.exports = {
         } ),
         new copyWebpackPlugin( baseConfig.copyWebpackPluginConfig_obj ),
         // new ImageminPlugin( baseConfig.ImageminPlugin_obj ),
-        new AssetsWebpackPlugin( Object.assign( {}, baseConfig.AssetsWebpackPluginOption_obj, {
-            keepInMemory: true,
-            path: path.resolve( __dirname, `./dist/devServer/others/` ),
-        } ) ),
+        /*
+         new AssetsWebpackPlugin( Object.assign( {}, baseConfig.AssetsWebpackPluginOption_obj, {
+         keepInMemory: true,
+         path: path.resolve( __dirname, `./dist/devServer/others/` ),
+         } ) ),
+         */
     ] ),
     optimization: baseConfig.optimization_fun( isPro ),
     node: baseConfig.node_obj,

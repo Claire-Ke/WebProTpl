@@ -1,0 +1,30 @@
+query{
+    ibms_region_getParks{
+        id,
+        name,
+        tags,
+        area,
+        introduction,
+        image,
+        blockCount,
+        blocks{
+            id,
+            name,
+            area,
+            tags,
+            buildings{
+                id,
+                name,
+                floors{
+                    id,
+                    name,
+                },
+            },
+            places{
+                id,
+                name,
+            },
+            placeCount,
+        },
+    },
+}

@@ -10,6 +10,7 @@
 let isPro = process.argv[ 3 ] === 'production',
     os = require( 'os' ),
     osLen = os.cpus().length,
+    getTransformer = require( 'ts-transform-graphql-tag' ).getTransformer,
     // 将此装载机放在其他装载机的前面。以下加载程序在工作池中运行。
     // 在工作池中运行的装载程序受到限制。例子：
     // 1、加载程序无法发出文件。
@@ -211,6 +212,9 @@ let fs = require( 'fs' ),
             ],
             'compDir/*': [
                 'src/components/*'
+            ],
+            'gQLDir/*': [
+                'src/graphQL/*',
             ],
             'jsDir/*': [
                 'src/js/*'
@@ -892,6 +896,8 @@ let fs = require( 'fs' ),
 
             compDir: path.resolve( __dirname, './src/components/' ),
 
+            gQLDir: path.resolve( __dirname, './src/graphQL/' ),
+
             jsDir: path.resolve( __dirname, './src/js/' ),
             jsMDir: path.resolve( __dirname, './src/js/modules/' ),
             jsPDir: path.resolve( __dirname, './src/js/pages/' ),
@@ -1265,6 +1271,13 @@ let fs = require( 'fs' ),
         localURL: '"localhost"',
         testURL: '"localhost"',
         proURL: '"localhost"',
+
+        // 温伟成 http://192.168.1.75:8081/graphql
+        devURL4WWC: '"/devURL4WWC/"',
+        // 测试服 http://192.168.1.125:8080/graphql
+        devURL4Test: '"/devURL4Test/"',
+        // 开发服 http://192.168.1.100:8081/graphql
+        devURL4Dev: '"/devURL4Dev/"',
     } ),
     splitChunks_obj = {
         chunks: 'all',
@@ -2512,6 +2525,31 @@ let fs = require( 'fs' ),
                 [ '@babel/plugin-external-helpers' ],
 
                 [
+                    'graphql-tag',
+                    {
+                        // 要导入的模块的名称
+                        importName: 'graphql-tag',
+                        // 匹配导入的结尾而不是整个名称。对相对进口有用: ./utils/graphql (default = false)
+                        onlyMatchImportSuffix: false,
+                        // 从GraphQL字符串文字中剥离不重要的字符（例如空格），并返回该字符而不是AST对象: query foo{foo{bar baz}} (default = false)
+                        strip: true,
+                    },
+                ],
+                // 每次修改GraphQL文件时，必须清除"node_modules/.cache/babel-loader"文件夹，以使更改生效。
+                // 我建议在package.json中添加相关脚本，并在更改GraphQL文件时重新运行该脚本
+                [
+                    'import-graphql',
+                    {
+                        extensions: [
+                            '.graphql',
+                            '.gql',
+                        ],
+                        // 默认值是：false
+                        emitDeclarations: true,
+                    },
+                ],
+
+                [
                     'const-enum',
                     {
                         // removeConst constObject
@@ -2920,6 +2958,7 @@ let fs = require( 'fs' ),
 
                     path.resolve( __dirname, './src/assets/' ),
                     path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -2953,6 +2992,7 @@ let fs = require( 'fs' ),
 
                     path.resolve( __dirname, './src/assets/' ),
                     path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3005,6 +3045,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './webpackRecords/' ),
 
                     path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3072,6 +3113,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './webpackRecords/' ),
 
                     path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3154,6 +3196,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './webpackRecords/' ),
 
                     path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3225,6 +3268,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './webpackRecords/' ),
 
                     path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3343,6 +3387,7 @@ let fs = require( 'fs' ),
 
                     path.resolve( __dirname, './src/assets/' ),
                     path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3422,6 +3467,11 @@ let fs = require( 'fs' ),
                             // “ts loader”支持“project references”。启用此配置选项后，“ts loader”将像“tsc--build”那样增量地重建上游项目。
                             // 否则，引用项目中的源文件将被视为根项目的一部分。
                             projectReferences: true,
+                            getCustomTransformers: () => ( {
+                                before: [
+                                    getTransformer(),
+                                ],
+                            } ),
                         },
                     },
                 ],
@@ -3444,6 +3494,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './webpackRecords/' ),
 
                     path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
                     path.resolve( __dirname, './src/styles/' ),
@@ -3528,6 +3579,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './webpackRecords/' ),
 
                     path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
                     path.resolve( __dirname, './src/styles/' ),
@@ -3601,6 +3653,7 @@ let fs = require( 'fs' ),
 
                     path.resolve( __dirname, './src/assets/' ),
                     path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3649,6 +3702,7 @@ let fs = require( 'fs' ),
 
                     path.resolve( __dirname, './src/assets/' ),
                     path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/static/' ),
                     path.resolve( __dirname, './src/styles/' ),
@@ -3696,6 +3750,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/assets/img/' ),
                     path.resolve( __dirname, './src/assets/music/' ),
                     path.resolve( __dirname, './src/assets/videos/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3739,6 +3794,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/assets/img/' ),
                     path.resolve( __dirname, './src/assets/music/' ),
                     path.resolve( __dirname, './src/assets/videos/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3785,6 +3841,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/assets/img/' ),
                     path.resolve( __dirname, './src/assets/music/' ),
                     path.resolve( __dirname, './src/assets/videos/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3835,6 +3892,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './webpackRecords/' ),
 
                     path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3844,6 +3902,43 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/workers/' ),
                 ],
                 // sideEffects: true,
+            },
+
+            {
+                test: /\.(graphql|gql)$/i,
+                use: [
+                    {
+                        loader: 'graphql-tag/loader',
+                    },
+                ],
+                include: [
+                    path.resolve( __dirname, './src/graphQL/' ),
+                ],
+                exclude: [
+                    path.resolve( __dirname, './assistTools/' ),
+                    path.resolve( __dirname, './backups/' ),
+                    path.resolve( __dirname, './bats/' ),
+                    path.resolve( __dirname, './configures/' ),
+                    path.resolve( __dirname, './dist/' ),
+                    path.resolve( __dirname, './node_modules/' ),
+                    path.resolve( __dirname, './notes/' ),
+                    path.resolve( __dirname, './simServer/' ),
+                    path.resolve( __dirname, './simServer4Deno/' ),
+                    path.resolve( __dirname, './webpackRecords/' ),
+
+                    path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/js/' ),
+                    path.resolve( __dirname, './src/pwa4Manifest/' ),
+                    path.resolve( __dirname, './src/static/' ),
+                    path.resolve( __dirname, './src/styles/' ),
+                    path.resolve( __dirname, './src/tplEJS/' ),
+                    path.resolve( __dirname, './src/tplHTML/' ),
+                    path.resolve( __dirname, './src/vue/' ),
+                    path.resolve( __dirname, './src/wasm/' ),
+                    path.resolve( __dirname, './src/webComponents/' ),
+                    path.resolve( __dirname, './src/workers/' ),
+                ],
             },
 
             {
@@ -3889,6 +3984,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/assets/fonts/' ),
                     path.resolve( __dirname, './src/assets/music/' ),
                     path.resolve( __dirname, './src/assets/videos/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3943,6 +4039,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/assets/img/' ),
                     path.resolve( __dirname, './src/assets/music/' ),
                     path.resolve( __dirname, './src/assets/videos/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -3993,6 +4090,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/assets/fonts/' ),
                     path.resolve( __dirname, './src/assets/img/' ),
                     path.resolve( __dirname, './src/assets/videos/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
@@ -4043,6 +4141,7 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/assets/fonts/' ),
                     path.resolve( __dirname, './src/assets/img/' ),
                     path.resolve( __dirname, './src/assets/music/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),

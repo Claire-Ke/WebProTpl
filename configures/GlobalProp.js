@@ -32,8 +32,8 @@ const proName_str = 'WebProTpl',
     localHost_str = 'localhost',
     // WebStorm服务器的端口
     webStormPort_num = 8081,
-    // devServer(webpack.DevServer.js)的端口
-    devServerPort_num = 8082,
+    // devServer(webpack.DevServer.js)的端口 8082 8088
+    devServerPort_num = 8088,
     // localServer(webpack.LocalServer.js)的端口
     localServerPort_num = 8083,
     // 映射到公网的IP地址，一般是配合远端调试工具(weinre)的远端调试需要
