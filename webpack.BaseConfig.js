@@ -2524,30 +2524,34 @@ let fs = require( 'fs' ),
             plug_arr = [
                 [ '@babel/plugin-external-helpers' ],
 
-                [
-                    'graphql-tag',
-                    {
-                        // 要导入的模块的名称
-                        importName: 'graphql-tag',
-                        // 匹配导入的结尾而不是整个名称。对相对进口有用: ./utils/graphql (default = false)
-                        onlyMatchImportSuffix: false,
-                        // 从GraphQL字符串文字中剥离不重要的字符（例如空格），并返回该字符而不是AST对象: query foo{foo{bar baz}} (default = false)
-                        strip: true,
-                    },
-                ],
+                /*
+                 [
+                 'graphql-tag',
+                 {
+                 // 要导入的模块的名称
+                 importName: 'graphql-tag',
+                 // 匹配导入的结尾而不是整个名称。对相对进口有用: ./utils/graphql (default = false)
+                 onlyMatchImportSuffix: false,
+                 // 从GraphQL字符串文字中剥离不重要的字符（例如空格），并返回该字符而不是AST对象: query foo{foo{bar baz}} (default = false)
+                 strip: true,
+                 },
+                 ],
+                 */
                 // 每次修改GraphQL文件时，必须清除"node_modules/.cache/babel-loader"文件夹，以使更改生效。
                 // 我建议在package.json中添加相关脚本，并在更改GraphQL文件时重新运行该脚本
-                [
-                    'import-graphql',
-                    {
-                        extensions: [
-                            '.graphql',
-                            '.gql',
-                        ],
-                        // 默认值是：false
-                        emitDeclarations: true,
-                    },
-                ],
+                /*
+                 [
+                 'import-graphql',
+                 {
+                 extensions: [
+                 '.graphql',
+                 '.gql',
+                 ],
+                 // 默认值是：false
+                 emitDeclarations: true,
+                 },
+                 ],
+                 */
 
                 [
                     'const-enum',
@@ -2973,7 +2977,12 @@ let fs = require( 'fs' ),
             {
                 test: /\.ejs$/i,
                 use: [
-                    { loader: 'ejs-loader' },
+                    {
+                        loader: 'ejs-loader',
+                        options: {
+                            esModule: false,
+                        },
+                    },
                 ],
                 include: [
                     path.resolve( __dirname, './src/tplEJS/' ),
@@ -3467,11 +3476,13 @@ let fs = require( 'fs' ),
                             // “ts loader”支持“project references”。启用此配置选项后，“ts loader”将像“tsc--build”那样增量地重建上游项目。
                             // 否则，引用项目中的源文件将被视为根项目的一部分。
                             projectReferences: true,
-                            getCustomTransformers: () => ( {
-                                before: [
-                                    getTransformer(),
-                                ],
-                            } ),
+                            /*
+                             getCustomTransformers: () => ( {
+                             before: [
+                             getTransformer(),
+                             ],
+                             } ),
+                             */
                         },
                     },
                 ],
@@ -3904,42 +3915,44 @@ let fs = require( 'fs' ),
                 // sideEffects: true,
             },
 
-            {
-                test: /\.(graphql|gql)$/i,
-                use: [
-                    {
-                        loader: 'graphql-tag/loader',
-                    },
-                ],
-                include: [
-                    path.resolve( __dirname, './src/graphQL/' ),
-                ],
-                exclude: [
-                    path.resolve( __dirname, './assistTools/' ),
-                    path.resolve( __dirname, './backups/' ),
-                    path.resolve( __dirname, './bats/' ),
-                    path.resolve( __dirname, './configures/' ),
-                    path.resolve( __dirname, './dist/' ),
-                    path.resolve( __dirname, './node_modules/' ),
-                    path.resolve( __dirname, './notes/' ),
-                    path.resolve( __dirname, './simServer/' ),
-                    path.resolve( __dirname, './simServer4Deno/' ),
-                    path.resolve( __dirname, './webpackRecords/' ),
+            /*
+             {
+             test: /\.(graphql|gql)$/i,
+             use: [
+             {
+             loader: 'graphql-tag/loader',
+             },
+             ],
+             include: [
+             path.resolve( __dirname, './src/graphQL/' ),
+             ],
+             exclude: [
+             path.resolve( __dirname, './assistTools/' ),
+             path.resolve( __dirname, './backups/' ),
+             path.resolve( __dirname, './bats/' ),
+             path.resolve( __dirname, './configures/' ),
+             path.resolve( __dirname, './dist/' ),
+             path.resolve( __dirname, './node_modules/' ),
+             path.resolve( __dirname, './notes/' ),
+             path.resolve( __dirname, './simServer/' ),
+             path.resolve( __dirname, './simServer4Deno/' ),
+             path.resolve( __dirname, './webpackRecords/' ),
 
-                    path.resolve( __dirname, './src/assets/' ),
-                    path.resolve( __dirname, './src/components/' ),
-                    path.resolve( __dirname, './src/js/' ),
-                    path.resolve( __dirname, './src/pwa4Manifest/' ),
-                    path.resolve( __dirname, './src/static/' ),
-                    path.resolve( __dirname, './src/styles/' ),
-                    path.resolve( __dirname, './src/tplEJS/' ),
-                    path.resolve( __dirname, './src/tplHTML/' ),
-                    path.resolve( __dirname, './src/vue/' ),
-                    path.resolve( __dirname, './src/wasm/' ),
-                    path.resolve( __dirname, './src/webComponents/' ),
-                    path.resolve( __dirname, './src/workers/' ),
-                ],
-            },
+             path.resolve( __dirname, './src/assets/' ),
+             path.resolve( __dirname, './src/components/' ),
+             path.resolve( __dirname, './src/js/' ),
+             path.resolve( __dirname, './src/pwa4Manifest/' ),
+             path.resolve( __dirname, './src/static/' ),
+             path.resolve( __dirname, './src/styles/' ),
+             path.resolve( __dirname, './src/tplEJS/' ),
+             path.resolve( __dirname, './src/tplHTML/' ),
+             path.resolve( __dirname, './src/vue/' ),
+             path.resolve( __dirname, './src/wasm/' ),
+             path.resolve( __dirname, './src/webComponents/' ),
+             path.resolve( __dirname, './src/workers/' ),
+             ],
+             },
+             */
 
             {
                 test: /\.(jng|bmp|dcx|gif|icns|ico|jbig2|jpe|jpeg|jpg|pam|pbm|pcx|pgm|png|pnm|ppm|psd|rgbe|tga|tif|tiff|wbmp|xbm|xpm|svg|svgz|webp|heif|heic)$/i,
@@ -4271,13 +4284,26 @@ let fs = require( 'fs' ),
     AssetsWebpackPluginOption_obj = {
         filename: 'ProjectAssets.json',
         fullPath: true,
+        // 将清单javascript作为文本属性插入到资源中。接受清单块的名称。
+        // manifest是最后一个只包含webpack引导代码的CommonChunk。
+        // 当您希望将清单内联到HTML框架中以进行长期缓存时，这对于生产使用非常有用。
+        // 如：includeManifest: 'manifest'
+        // assets.json:
+        // {entries: {manifest: {js: `hashed_manifest.js`, text: 'function(modules)...'}}}
+        //
+        // Your html template:
+        // <script>
+        // {assets.entries.manifest.text}
+        // </script>
         includeManifest: false,
         manifestFirst: true,
         useCompilerPath: false,
         prettyPrint: false,
+        // 格式化资产输出。
+        // processOutput: assets => `window.ProjectAssets = ${ JSON.stringify( assets ) }`,
         update: false,
         includeAllFileTypes: true,
-        integrity: false,
+        integrity: isPro,
         entrypoints: false,
         metadata: {
             version: '2020.01.01',

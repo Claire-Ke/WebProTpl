@@ -97,12 +97,10 @@ module.exports = {
         } ),
         new copyWebpackPlugin( baseConfig.copyWebpackPluginConfig_obj ),
         // new ImageminPlugin( baseConfig.ImageminPlugin_obj ),
-        /*
-         new AssetsWebpackPlugin( Object.assign( {}, baseConfig.AssetsWebpackPluginOption_obj, {
-         keepInMemory: true,
-         path: path.resolve( __dirname, `./dist/devServer/others/` ),
-         } ) ),
-         */
+        new AssetsWebpackPlugin( Object.assign( {}, baseConfig.AssetsWebpackPluginOption_obj, {
+            keepInMemory: true,
+            // path: path.resolve( __dirname, `./dist/devServer/others/` ),
+        } ) ),
     ] ),
     optimization: baseConfig.optimization_fun( isPro ),
     node: baseConfig.node_obj,
@@ -137,7 +135,7 @@ module.exports = {
         quiet: false,
         // 对于webpack-dev-server，此属性必须位于devServer对象中。
         // 'none'、'errors-only'、'minimal'(仅在发生错误或新编译时输出)、'normal'、'verbose'、object
-        stats: baseConfig.stats_obj,
+        // stats: baseConfig.stats_obj,
         watchContentBase: true,
         watchOptions: watchOptions_obj,
         proxy: proxyConfig,

@@ -1996,7 +1996,7 @@ Promise.allSettled( [
            // import('./WASMDemo1.esm.js'),
 
            // 测试“Node服务器”
-           import('./AjaxDemo1.esm.js'),
+           // import('./AjaxDemo1.esm.js'),
 
            // Worker测试
            // import('./WorkersDemo1.esm.js'),
@@ -2024,6 +2024,9 @@ Promise.allSettled( [
 
            // WebSocket客户端类测试
            // import('./WebSocket4Client2DemoA.esm.js'),
+
+           // 测试GraphQL接口
+           import('./GraphQLTest.esm.js'),
        ] )
        .then( result => {
            // console.dir( result );

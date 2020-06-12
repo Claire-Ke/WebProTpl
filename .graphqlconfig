@@ -8,11 +8,11 @@
             "schemaPath": "./src/graphQL/GraphQLDemo.graphql",
             "extensions": {
                 "endpoints": {
-                    "devURL4WWC": {
-                        "url": "http://192.168.1.75:8081/graphql",
+                    "devURL4Dev": {
+                        "url": "http://192.168.1.100:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "GraphQLDemo JS GraphQL for devURL4WWC"
+                            "user-agent": "GraphQLDemo JS GraphQL for devURL4Dev"
                         },
                         "introspect": true
                     },
@@ -24,11 +24,11 @@
                         },
                         "introspect": true
                     },
-                    "devURL4Dev": {
-                        "url": "http://192.168.1.100:8081/graphql",
+                    "devURL4WWC": {
+                        "url": "http://192.168.1.75:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "GraphQLDemo JS GraphQL for devURL4Dev"
+                            "user-agent": "GraphQLDemo JS GraphQL for devURL4WWC"
                         },
                         "introspect": true
                     }
@@ -43,11 +43,11 @@
             "schemaPath": "./src/graphQL/SN_Park.graphql",
             "extensions": {
                 "endpoints": {
-                    "devURL4WWC": {
-                        "url": "http://192.168.1.75:8081/graphql",
+                    "devURL4Dev": {
+                        "url": "http://192.168.1.100:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_Park JS GraphQL for devURL4WWC"
+                            "user-agent": "SN_Park JS GraphQL for devURL4Dev"
                         },
                         "introspect": true
                     },
@@ -59,11 +59,11 @@
                         },
                         "introspect": true
                     },
-                    "devURL4Dev": {
-                        "url": "http://192.168.1.100:8081/graphql",
+                    "devURL4WWC": {
+                        "url": "http://192.168.1.75:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_Park JS GraphQL for devURL4Dev"
+                            "user-agent": "SN_Park JS GraphQL for devURL4WWC"
                         },
                         "introspect": true
                     }
@@ -78,11 +78,11 @@
             "schemaPath": "./src/graphQL/SN_Alert.graphql",
             "extensions": {
                 "endpoints": {
-                    "devURL4WWC": {
-                        "url": "http://192.168.1.75:8081/graphql",
+                    "devURL4Dev": {
+                        "url": "http://192.168.1.100:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_Alert JS GraphQL for devURL4WWC"
+                            "user-agent": "SN_Alert JS GraphQL for devURL4Dev"
                         },
                         "introspect": true
                     },
@@ -94,11 +94,11 @@
                         },
                         "introspect": true
                     },
-                    "devURL4Dev": {
-                        "url": "http://192.168.1.100:8081/graphql",
+                    "devURL4WWC": {
+                        "url": "http://192.168.1.75:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_Alert JS GraphQL for devURL4Dev"
+                            "user-agent": "SN_Alert JS GraphQL for devURL4WWC"
                         },
                         "introspect": true
                     }
