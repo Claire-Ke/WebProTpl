@@ -99,7 +99,7 @@ module.exports = {
         // new ImageminPlugin( baseConfig.ImageminPlugin_obj ),
         new AssetsWebpackPlugin( Object.assign( {}, baseConfig.AssetsWebpackPluginOption_obj, {
             keepInMemory: true,
-            // path: path.resolve( __dirname, `./dist/localServer/others/` ),
+            path: path.resolve( __dirname, `./dist/localServer/others/` ),
         } ) ),
     ] ),
     optimization: baseConfig.optimization_fun( isPro ),
