@@ -2020,7 +2020,7 @@ Promise.allSettled( [
            // import('./WebComponentsDemo1.esm.js'),
 
            // TypeScript测试
-           // import('./TSDemo1.esm.ts'),
+           import('./TSDemo1.esm.ts'),
 
            // WebSocket客户端类测试
            // import('./WebSocket4Client2DemoA.esm.js'),

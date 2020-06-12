@@ -333,3 +333,41 @@ if( false ){
      console.log( 'then，请求成功------>End' );
      } )*/;
 }
+
+// ../../../graphQL
+// gQLDir
+import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
+
+let {
+    definitions,
+    // 字符串：Document
+    kind,
+    loc: {
+        source: {
+            // gql的字符串
+            body,
+        },
+    },
+} = GraphQLDemoA4GQL;
+
+console.dir( GraphQLDemoA4GQL );
+console.log( body );
+
+if( false ){
+    import('gQLDir/GraphQLDemo.graphql').then( ( {
+                                                     default: GraphQLDemo,
+                                                     definitions,
+                                                     // 字符串：Document
+                                                     kind,
+                                                     loc: {
+                                                         source: {
+                                                             // gql的字符串
+                                                             body,
+                                                         },
+                                                     },
+                                                 } ) => {
+        console.dir( GraphQLDemo );
+        console.dir( definitions );
+        console.log( body );
+    } );
+}

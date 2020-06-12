@@ -206,6 +206,9 @@
             "compDir/*": [
                 "src/components/*"
             ],
+            "gQLDir/*": [
+                "src/graphQL/*"
+            ],
             "jsDir/*": [
                 "src/js/*"
             ],

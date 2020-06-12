@@ -1,0 +1,15 @@
+自己机子上的主要错误信息：
+The value "D:\NodeJS\" is invalid for option "options.paths"
+
+1、在Webpack的配置中设置一个别名：
+gQLDir: path.resolve( __dirname, './src/graphQL/' ),
+
+2、然后在项目中如下使用，会报错！！！
+import GraphQLDemoA4GQL from 'gQLDir/GraphQLDemo.graphql';
+错误信息：
+The value "D:\NodeJS\" is invalid for option "options.paths"
+
+3、不报错，可以使用的导入方法！！！
+import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
+import('gQLDir/GraphQLDemo.graphql');
+import('../../../graphQL/GraphQLDemo.graphql')

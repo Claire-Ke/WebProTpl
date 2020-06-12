@@ -896,6 +896,22 @@ let fs = require( 'fs' ),
 
             compDir: path.resolve( __dirname, './src/components/' ),
 
+            // 关于在JS和TS文件中导入graphql文件时出现的BUG说明！！！
+            // 自己机子上的主要错误信息：
+            // The value "D:\NodeJS\" is invalid for option "options.paths"
+            //
+            // 1、在Webpack的配置中设置一个别名：
+            // gQLDir: path.resolve( __dirname, './src/graphQL/' ),
+            //
+            //     2、然后在项目中如下使用，会报错！！！
+            // import GraphQLDemoA4GQL from 'gQLDir/GraphQLDemo.graphql';
+            // 错误信息：
+            // The value "D:\NodeJS\" is invalid for option "options.paths"
+            //
+            // 3、不报错，可以使用的导入方法！！！
+            // import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
+            // import('gQLDir/GraphQLDemo.graphql');
+            // import('../../../graphQL/GraphQLDemo.graphql')
             gQLDir: path.resolve( __dirname, './src/graphQL/' ),
 
             jsDir: path.resolve( __dirname, './src/js/' ),
@@ -2524,34 +2540,46 @@ let fs = require( 'fs' ),
             plug_arr = [
                 [ '@babel/plugin-external-helpers' ],
 
-                /*
-                 [
-                 'graphql-tag',
-                 {
-                 // 要导入的模块的名称
-                 importName: 'graphql-tag',
-                 // 匹配导入的结尾而不是整个名称。对相对进口有用: ./utils/graphql (default = false)
-                 onlyMatchImportSuffix: false,
-                 // 从GraphQL字符串文字中剥离不重要的字符（例如空格），并返回该字符而不是AST对象: query foo{foo{bar baz}} (default = false)
-                 strip: true,
-                 },
-                 ],
-                 */
+                [
+                    'graphql-tag',
+                    {
+                        // 要导入的模块的名称
+                        importName: 'graphql-tag',
+                        // 匹配导入的结尾而不是整个名称。对相对进口有用: ./utils/graphql (default = false)
+                        onlyMatchImportSuffix: false,
+                        // 从GraphQL字符串文字中剥离不重要的字符（例如空格），并返回该字符而不是AST对象: query foo{foo{bar baz}} (default = false)
+                        strip: true,
+                    },
+                ],
                 // 每次修改GraphQL文件时，必须清除"node_modules/.cache/babel-loader"文件夹，以使更改生效。
                 // 我建议在package.json中添加相关脚本，并在更改GraphQL文件时重新运行该脚本
-                /*
-                 [
-                 'import-graphql',
-                 {
-                 extensions: [
-                 '.graphql',
-                 '.gql',
-                 ],
-                 // 默认值是：false
-                 emitDeclarations: true,
-                 },
-                 ],
-                 */
+                // 关于在JS和TS文件中导入graphql文件时出现的BUG说明！！！
+                // 自己机子上的主要错误信息：
+                // The value "D:\NodeJS\" is invalid for option "options.paths"
+                //
+                // 1、在Webpack的配置中设置一个别名：
+                // gQLDir: path.resolve( __dirname, './src/graphQL/' ),
+                //
+                //     2、然后在项目中如下使用，会报错！！！
+                // import GraphQLDemoA4GQL from 'gQLDir/GraphQLDemo.graphql';
+                // 错误信息：
+                // The value "D:\NodeJS\" is invalid for option "options.paths"
+                //
+                // 3、不报错，可以使用的导入方法！！！
+                // import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
+                // import('gQLDir/GraphQLDemo.graphql');
+                // import('../../../graphQL/GraphQLDemo.graphql')
+                [
+                    'import-graphql',
+                    {
+                        extensions: [
+                            '.graphql',
+                            '.gql',
+                        ],
+                        // 默认值是：false
+                        emitDeclarations: true,
+                    },
+                ],
 
                 [
                     'const-enum',
@@ -3476,13 +3504,11 @@ let fs = require( 'fs' ),
                             // “ts loader”支持“project references”。启用此配置选项后，“ts loader”将像“tsc--build”那样增量地重建上游项目。
                             // 否则，引用项目中的源文件将被视为根项目的一部分。
                             projectReferences: true,
-                            /*
-                             getCustomTransformers: () => ( {
-                             before: [
-                             getTransformer(),
-                             ],
-                             } ),
-                             */
+                            getCustomTransformers: () => ( {
+                                before: [
+                                    getTransformer(),
+                                ],
+                            } ),
                         },
                     },
                 ],
@@ -3915,44 +3941,58 @@ let fs = require( 'fs' ),
                 // sideEffects: true,
             },
 
-            /*
-             {
-             test: /\.(graphql|gql)$/i,
-             use: [
-             {
-             loader: 'graphql-tag/loader',
-             },
-             ],
-             include: [
-             path.resolve( __dirname, './src/graphQL/' ),
-             ],
-             exclude: [
-             path.resolve( __dirname, './assistTools/' ),
-             path.resolve( __dirname, './backups/' ),
-             path.resolve( __dirname, './bats/' ),
-             path.resolve( __dirname, './configures/' ),
-             path.resolve( __dirname, './dist/' ),
-             path.resolve( __dirname, './node_modules/' ),
-             path.resolve( __dirname, './notes/' ),
-             path.resolve( __dirname, './simServer/' ),
-             path.resolve( __dirname, './simServer4Deno/' ),
-             path.resolve( __dirname, './webpackRecords/' ),
+            // 关于在JS和TS文件中导入graphql文件时出现的BUG说明！！！
+            // 自己机子上的主要错误信息：
+            // The value "D:\NodeJS\" is invalid for option "options.paths"
+            //
+            // 1、在Webpack的配置中设置一个别名：
+            // gQLDir: path.resolve( __dirname, './src/graphQL/' ),
+            //
+            //     2、然后在项目中如下使用，会报错！！！
+            // import GraphQLDemoA4GQL from 'gQLDir/GraphQLDemo.graphql';
+            // 错误信息：
+            // The value "D:\NodeJS\" is invalid for option "options.paths"
+            //
+            // 3、不报错，可以使用的导入方法！！！
+            // import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
+            // import('gQLDir/GraphQLDemo.graphql');
+            // import('../../../graphQL/GraphQLDemo.graphql')
+            {
+                test: /\.(graphql|gql)$/i,
+                use: [
+                    {
+                        loader: 'graphql-tag/loader',
+                    },
+                ],
+                include: [
+                    path.resolve( __dirname, './src/graphQL/' ),
+                ],
+                exclude: [
+                    path.resolve( __dirname, './assistTools/' ),
+                    path.resolve( __dirname, './backups/' ),
+                    path.resolve( __dirname, './bats/' ),
+                    path.resolve( __dirname, './configures/' ),
+                    path.resolve( __dirname, './dist/' ),
+                    path.resolve( __dirname, './node_modules/' ),
+                    path.resolve( __dirname, './notes/' ),
+                    path.resolve( __dirname, './simServer/' ),
+                    path.resolve( __dirname, './simServer4Deno/' ),
+                    path.resolve( __dirname, './webpackRecords/' ),
 
-             path.resolve( __dirname, './src/assets/' ),
-             path.resolve( __dirname, './src/components/' ),
-             path.resolve( __dirname, './src/js/' ),
-             path.resolve( __dirname, './src/pwa4Manifest/' ),
-             path.resolve( __dirname, './src/static/' ),
-             path.resolve( __dirname, './src/styles/' ),
-             path.resolve( __dirname, './src/tplEJS/' ),
-             path.resolve( __dirname, './src/tplHTML/' ),
-             path.resolve( __dirname, './src/vue/' ),
-             path.resolve( __dirname, './src/wasm/' ),
-             path.resolve( __dirname, './src/webComponents/' ),
-             path.resolve( __dirname, './src/workers/' ),
-             ],
-             },
-             */
+                    path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/js/' ),
+                    path.resolve( __dirname, './src/pwa4Manifest/' ),
+                    path.resolve( __dirname, './src/static/' ),
+                    path.resolve( __dirname, './src/styles/' ),
+                    path.resolve( __dirname, './src/tplEJS/' ),
+                    path.resolve( __dirname, './src/tplHTML/' ),
+                    path.resolve( __dirname, './src/vue/' ),
+                    path.resolve( __dirname, './src/wasm/' ),
+                    path.resolve( __dirname, './src/webComponents/' ),
+                    path.resolve( __dirname, './src/workers/' ),
+                ],
+            },
 
             {
                 test: /\.(jng|bmp|dcx|gif|icns|ico|jbig2|jpe|jpeg|jpg|pam|pbm|pcx|pgm|png|pnm|ppm|psd|rgbe|tga|tif|tiff|wbmp|xbm|xpm|svg|svgz|webp|heif|heic)$/i,

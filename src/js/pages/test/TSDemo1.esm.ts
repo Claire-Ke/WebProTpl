@@ -546,3 +546,26 @@
         console.dir( result );
     }
 }
+
+{
+    if( false ){
+        // @ts-expect-error
+        import('gQLDir/GraphQLDemo.graphql').then( ( {
+                                                         default: GraphQLDemo,
+                                                         definitions,
+                                                         // @ts-expect-error
+                                                         // 字符串：Document
+                                                         kind,
+                                                         loc: {
+                                                             source: {
+                                                                 // gql的字符串
+                                                                 body,
+                                                             },
+                                                         },
+                                                     } ): void => {
+            console.dir( GraphQLDemo );
+            console.dir( definitions );
+            console.log( body );
+        } );
+    }
+}
