@@ -14,7 +14,7 @@ let {
 } = CT.getClass();
 
 // devURL4WWC devURL4Test devURL4Dev devURL4Dev2Natapp
-const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev2Natapp }` ),
+const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
     post4JSON = webService_ins.post( {
         type: 'json',
     } ),
@@ -152,7 +152,7 @@ if( false ){
 }
 
 // 园区获取接口测试1 通过
-if( true ){
+if( false ){
     post4JSON.graphql( {
         url: '/',
         options: {
@@ -359,8 +359,8 @@ let {
     },
 } = GraphQLDemoA4GQL;
 
-// console.dir( GraphQLDemoA4GQL );
-// console.log( body );
+console.dir( GraphQLDemoA4GQL );
+console.log( body );
 
 if( false ){
     import('gQLDir/GraphQLDemo.graphql').then( ( {
