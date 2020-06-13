@@ -1,5 +1,5 @@
 query {
-    ibms_alarm_getAlarmByContent( pageIndex: 1, pageSize: 30, beginStamptime: "2013-01-01 00:00:00", endStamptime: "2025-01-01 00:00:00" ){
+    notReviewedList: ibms_alarm_getAlarmByContent( pageIndex: 1, pageSize: 30, beginStamptime: "2013-01-01 00:00:00", endStamptime: "2025-01-01 00:00:00" ){
         count,
         unCheckedCount,
         data{
@@ -17,7 +17,7 @@ query {
         },
     },
 
-    ibms_alarm_getMisinformationByContent( pageIndex: 1, pageSize: 30, beginStamptime: "2013-01-01 00:00:00", endStamptime: "2025-01-01 00:00:00" ){
+    reviewedList: ibms_alarm_getMisinformationByContent( pageIndex: 1, pageSize: 30, beginStamptime: "2013-01-01 00:00:00", endStamptime: "2025-01-01 00:00:00" ){
         count,
         checkedCount,
         data{

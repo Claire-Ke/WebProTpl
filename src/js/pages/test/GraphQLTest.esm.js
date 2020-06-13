@@ -297,67 +297,50 @@ if( false ){
 }
 
 // 警报接口测试1 全文检索查询未复核警报
-if( false ){
-    post4JSON.graphql( {
-        url: '/',
-        options: {
-            ...requestOpt,
-            body: JSON.stringify( {
-                query: `
-                query ibms_alarm_getAlarmByContent{
-                    ibms_alarm_getAlarmByContent( pageIndex: 1, pageSize: 10, beginStamptime: "2018-01-01 00:00:00", endStamptime: "2020-10-10 00:00:00", deviceCategory: "", alarmLevel: "", content: "" ){
-                        id,
-                        url,
-                        title,
-                        unCheckedAlarmTime,
-                        deviceId,
-                        deviceName,
-                        devieceFacturerName,
-                        deviceCategory,
-                        message,
-                        alarmLevel,
-                        subsystemName,
-                        unCheckedCount,
-                    }
-                },
-                `,
-            } ),
-        },
-        events: {
-            success: ( data4ResponseType, response ) => {
-                console.log( 'success，请求成功------>Start' );
-                console.dir( data4ResponseType );
-                console.log( 'success，请求成功------>End' );
-            },
-            error: ( status_num, response ) => {
-                console.warn( `错误，请求状态码：${ status_num }------>Start` );
-                console.error( response );
-                console.warn( `错误，请求状态码：${ status_num }------>End` );
-            },
-        },
-    } )/*
-     .then( response => {
-     console.log( 'then，请求成功------>Start' );
-     console.dir( response );
-     console.log( 'then，请求成功------>End' );
-     } )*/;
-}
-
 if( true ){
-    import('gQLDir/GraphQLDemo.graphql').then( ( {
-                                                     default: GraphQLDemo,
-                                                     definitions,
-                                                     // 字符串：Document
-                                                     kind,
-                                                     loc: {
-                                                         source: {
-                                                             // gql的字符串
-                                                             body,
-                                                         },
-                                                     },
-                                                 } ) => {
+    ( async () => {
+        let {
+            default: GraphQLDemo,
+            definitions,
+            // 字符串：Document
+            kind,
+            loc: {
+                source: {
+                    // gql的字符串
+                    body,
+                },
+            },
+        } = await import('gQLDir/GraphQLDemo.graphql');
+
         console.dir( GraphQLDemo );
         console.dir( definitions );
         console.log( body );
-    } );
+
+        post4JSON.graphql( {
+            url: '/',
+            options: {
+                ...requestOpt,
+                body: JSON.stringify( {
+                    query: body,
+                } ),
+            },
+            events: {
+                success: ( data4ResponseType, response ) => {
+                    console.log( 'success，请求成功------>Start' );
+                    console.dir( data4ResponseType );
+                    console.log( 'success，请求成功------>End' );
+                },
+                error: ( status_num, response ) => {
+                    console.warn( `错误，请求状态码：${ status_num }------>Start` );
+                    console.error( response );
+                    console.warn( `错误，请求状态码：${ status_num }------>End` );
+                },
+            },
+        } )/*
+         .then( response => {
+         console.log( 'then，请求成功------>Start' );
+         console.dir( response );
+         console.log( 'then，请求成功------>End' );
+         } )*/;
+    } )();
 }
