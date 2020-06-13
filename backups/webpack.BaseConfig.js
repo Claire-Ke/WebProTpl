@@ -1294,6 +1294,8 @@ let fs = require( 'fs' ),
         devURL4Test: '"/devURL4Test/"',
         // 开发服 http://192.168.1.100:8081/graphql
         devURL4Dev: '"/devURL4Dev/"',
+        // 内网穿透 http://sn2020a.nat300.top/graphql
+        devURL4Dev2Natapp: '"/devURL4Dev2Natapp/"',
     } ),
     splitChunks_obj = {
         chunks: 'all',

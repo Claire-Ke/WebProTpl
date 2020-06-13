@@ -13,8 +13,8 @@ let {
     WebService4Proxy,
 } = CT.getClass();
 
-// devURL4WWC devURL4Test devURL4Dev
-const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
+// devURL4WWC devURL4Test devURL4Dev devURL4Dev2Natapp
+const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev2Natapp }` ),
     post4JSON = webService_ins.post( {
         type: 'json',
     } ),
@@ -152,45 +152,54 @@ if( false ){
 }
 
 // 园区获取接口测试1 通过
-if( false ){
+if( true ){
     post4JSON.graphql( {
         url: '/',
         options: {
             ...requestOpt,
             body: JSON.stringify( {
                 query: `
-                query{
-                    ibms_region_getParks{
-                        id,
-                        name,
-                        tags,
-                        area,
-                        introduction,
-                        image,
-                        blockCount,
+                query {
+    ibms_alarm_getAlarmByContent( pageIndex: 1, pageSize: 30, beginStamptime: "2013-01-01 00:00:00", endStamptime: "2025-01-01 00:00:00" ){
+        count,
+        unCheckedCount,
+        data{
+            id,
+            url,
+            title,
+            unCheckedAlarmTime,
+            deviceId,
+            deviceName,
+            devieceFacturerName,
+            deviceCategory,
+            message,
+            alarmLevel,
+            subsystemName,
+        },
+    },
 
-                        blocks{
-                            id,
-                            name,
-                            area,
-                            tags,
-                            buildings{
-                                id,
-                                name,
-                                floors{
-                                    id,
-                                    name,
-                                },
-                            },
-                            places{
-                                id,
-                                name,
-                            },
-                            placeCount,
-                        },
-                    },
-                },
-                `,
+    ibms_alarm_getMisinformationByContent( pageIndex: 1, pageSize: 30, beginStamptime: "2013-01-01 00:00:00", endStamptime: "2025-01-01 00:00:00" ){
+        count,
+        checkedCount,
+        data{
+            id,
+            url,
+            title,
+            checkedAlarmTime,
+            deviceId,
+            deviceName,
+            devieceFacturerName,
+            deviceCategory,
+            message,
+            alarmLevel,
+            subsystemName,
+            checkedAccountId,
+            misinformationMessage,
+            reviewTime,
+        },
+    },
+}
+`,
             } ),
         },
         events: {
@@ -350,8 +359,8 @@ let {
     },
 } = GraphQLDemoA4GQL;
 
-console.dir( GraphQLDemoA4GQL );
-console.log( body );
+// console.dir( GraphQLDemoA4GQL );
+// console.log( body );
 
 if( false ){
     import('gQLDir/GraphQLDemo.graphql').then( ( {

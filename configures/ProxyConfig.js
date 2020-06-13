@@ -248,6 +248,68 @@ module.exports = {
             // console.log( 'Proxy------onClose End------' );
         },
     },
+    // 内网穿透 http://sn2020a.nat300.top/graphql
+    '/devURL4Dev2Natapp/graphql/*': {
+        pathRewrite: {
+            // rewrite path
+            // '^/old/api': '/new/api',
+            '^/devURL4Dev2Natapp/graphql/': '/graphql/',
+
+            // remove path
+            // '^/remove/api': '',
+
+            // add base path
+            // '^/': '/basepath/',
+        },
+        /*
+         pathRewrite: ( path, req ) => {
+         return path.replace( '/api', '/base/api' );
+         },
+         */
+        /*
+         pathRewrite: async ( path, req ) => {
+         // const should_add_something = await httpRequestToDecideSomething( path );
+         // if( should_add_something ){
+         //     path += 'something';
+         // }
+         // return path;
+         },
+         */
+
+        target: 'http://sn2020a.nat300.top',
+        changeOrigin,
+        router: {
+            [ devServerTarget_str ]: 'http://sn2020a.nat300.top',
+        },
+
+        onProxyReq: ( proxyReq, req, res ) => {
+            console.log( 'Proxy------onProxyReq Start------' );
+            console.log( `客户端的请求URL--->${ req.url }` );
+            console.log( `客户端的请求方法--->${ req.method }` );
+            console.dir( req.headers );
+            console.log( 'Proxy------onProxyReq End------' );
+        },
+        onProxyRes: ( proxyRes, req, res ) => {
+            // console.log( 'Proxy------onProxyRes Start------' );
+            // console.log( 'Proxy------onProxyRes End------' );
+        },
+        onError: ( err, req, res ) => {
+            // console.error( 'Proxy------onError Start------' );
+            // console.error( 'Proxy------onError End------' );
+        },
+        onProxyReqWs: ( proxyReq, req, socket, options, head ) => {
+            // console.log( 'Proxy------onProxyReqWs Start------' );
+            // console.log( 'Proxy------onProxyReqWs End------' );
+        },
+        onOpen: proxySocket => {
+            // console.log( 'Proxy------onOpen Start------' );
+            // console.log( 'Proxy------onOpen End------' );
+        },
+        onClose: ( res, socket, head ) => {
+            // console.log( 'Proxy------onClose Start------' );
+            // console.log( 'Proxy------onClose End------' );
+        },
+    },
 
     '/favicon.ico': {
         pathRewrite: {
