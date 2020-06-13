@@ -16,6 +16,14 @@
                         },
                         "introspect": true
                     },
+                    "devURL4Dev2Natapp": {
+                        "url": "http://sn2020a.nat300.top/graphql",
+                        "headers": {
+                            "Content-Type": "application/json",
+                            "user-agent": "GraphQLDemo JS GraphQL for devURL4Dev2Natapp"
+                        },
+                        "introspect": true
+                    },
                     "devURL4Test": {
                         "url": "http://192.168.1.125:8080/graphql",
                         "headers": {
@@ -51,6 +59,14 @@
                         },
                         "introspect": true
                     },
+                    "devURL4Dev2Natapp": {
+                        "url": "http://sn2020a.nat300.top/graphql",
+                        "headers": {
+                            "Content-Type": "application/json",
+                            "user-agent": "SN_Park JS GraphQL for devURL4Dev2Natapp"
+                        },
+                        "introspect": true
+                    },
                     "devURL4Test": {
                         "url": "http://192.168.1.125:8080/graphql",
                         "headers": {
@@ -83,6 +99,14 @@
                         "headers": {
                             "Content-Type": "application/json",
                             "user-agent": "SN_Alert JS GraphQL for devURL4Dev"
+                        },
+                        "introspect": true
+                    },
+                    "devURL4Dev2Natapp": {
+                        "url": "http://sn2020a.nat300.top/graphql",
+                        "headers": {
+                            "Content-Type": "application/json",
+                            "user-agent": "SN_Alert JS GraphQL for devURL4Dev2Natapp"
                         },
                         "introspect": true
                     },
