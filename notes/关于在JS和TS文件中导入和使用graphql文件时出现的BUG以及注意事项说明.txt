@@ -13,3 +13,5 @@ The value "D:\NodeJS\" is invalid for option "options.paths"
 import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
 import('gQLDir/GraphQLDemo.graphql');
 import('../../../graphQL/GraphQLDemo.graphql')
+
+4、使用动态导入时，修改“.graphql”是会触发重新编译的！但静态导入是不会的！

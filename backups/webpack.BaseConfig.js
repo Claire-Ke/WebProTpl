@@ -912,6 +912,8 @@ let fs = require( 'fs' ),
             // import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
             // import('gQLDir/GraphQLDemo.graphql');
             // import('../../../graphQL/GraphQLDemo.graphql')
+            //
+            // 4、使用动态导入时，修改“.graphql”是会触发重新编译的！但静态导入是不会的！
             gQLDir: path.resolve( __dirname, './src/graphQL/' ),
 
             jsDir: path.resolve( __dirname, './src/js/' ),
@@ -2571,6 +2573,8 @@ let fs = require( 'fs' ),
                 // import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
                 // import('gQLDir/GraphQLDemo.graphql');
                 // import('../../../graphQL/GraphQLDemo.graphql')
+                //
+                // 4、使用动态导入时，修改“.graphql”是会触发重新编译的！但静态导入是不会的！
                 [
                     'import-graphql',
                     {
@@ -3959,6 +3963,8 @@ let fs = require( 'fs' ),
             // import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
             // import('gQLDir/GraphQLDemo.graphql');
             // import('../../../graphQL/GraphQLDemo.graphql')
+            //
+            // 4、使用动态导入时，修改“.graphql”是会触发重新编译的！但静态导入是不会的！
             {
                 test: /\.(graphql|gql)$/i,
                 use: [
