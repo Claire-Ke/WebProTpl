@@ -296,7 +296,7 @@ if( false ){
      } )*/;
 }
 
-// 警报接口测试1 全文检索查询未复核警报
+// 警报接口测试1 全文检索查询未复核警报 通过
 if( true ){
     ( async () => {
         let {
@@ -313,7 +313,6 @@ if( true ){
         } = await import('gQLDir/GraphQLDemo.graphql');
 
         console.dir( GraphQLDemo );
-        console.dir( definitions );
         console.log( body );
 
         post4JSON.graphql( {
