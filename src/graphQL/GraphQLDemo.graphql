@@ -1,4 +1,4 @@
-query {
+query QueryA{
     notReviewedList: ibms_alarm_getAlarmByContent( pageIndex: 1, pageSize: 30, beginStamptime: "2013-01-01 00:00:00", endStamptime: "2025-01-01 00:00:00" ){
         count,
         unCheckedCount,
@@ -14,6 +14,10 @@ query {
             message,
             alarmLevel,
             subsystemName,
+            regionName,
+            similarAlarmTotal{
+                ...info,
+            },
         },
     },
 
@@ -35,6 +39,154 @@ query {
             checkedAccountId,
             misinformationMessage,
             reviewTime,
+            similarAlarmTotal{
+                ...info,
+            },
         },
     },
+
+    __schema{
+        types{
+            name,
+            description,
+            kind,
+            fields{
+                name,
+                description,
+                type{
+                    name,
+                    description,
+                    kind,
+                    ofType{
+                        name,
+                        description,
+                        kind,
+                    },
+                },
+                args{
+                    name,
+                    description,
+                    type{
+                        name,
+                        kind,
+                        description,
+                        ofType{
+                            name,
+                            kind,
+                            description,
+                        },
+                    },
+                },
+            },
+        },
+        queryType{
+            name,
+            description,
+            kind,
+            fields{
+                name,
+                description,
+                type{
+                    name,
+                    description,
+                    kind,
+                    ofType{
+                        name,
+                        description,
+                        kind,
+                    },
+                },
+                args{
+                    name,
+                    description,
+                    type{
+                        name,
+                        kind,
+                        description,
+                        ofType{
+                            name,
+                            kind,
+                            description,
+                        },
+                    },
+                },
+            },
+        },
+        mutationType{
+            name,
+            description,
+            kind,
+            fields{
+                name,
+                description,
+                type{
+                    name,
+                    description,
+                    kind,
+                    ofType{
+                        name,
+                        description,
+                        kind,
+                    },
+                },
+                args{
+                    name,
+                    description,
+                    type{
+                        name,
+                        kind,
+                        description,
+                        ofType{
+                            name,
+                            kind,
+                            description,
+                        },
+                    },
+                },
+            },
+        },
+        subscriptionType{
+            name,
+            description,
+            kind,
+            fields{
+                name,
+                description,
+                type{
+                    name,
+                    description,
+                    kind,
+                    ofType{
+                        name,
+                        description,
+                        kind,
+                    },
+                },
+                args{
+                    name,
+                    description,
+                    type{
+                        name,
+                        kind,
+                        description,
+                        ofType{
+                            name,
+                            kind,
+                            description,
+                        },
+                    },
+                },
+            },
+        },
+        directives{
+            name,
+            description,
+        },
+    },
+}
+
+fragment info on IBMS_SimilarAlarmTotal{
+    alarmTotal,
+    misinformationTotal,
+    malfunctionTotal,
 }

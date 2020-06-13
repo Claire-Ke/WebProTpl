@@ -14,7 +14,7 @@ let {
 } = CT.getClass();
 
 // devURL4WWC devURL4Test devURL4Dev devURL4Dev2Natapp
-const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
+const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev2Natapp }` ),
     post4JSON = webService_ins.post( {
         type: 'json',
     } ),
@@ -22,6 +22,7 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
         responseType: 'json',
         headers: {
             'Content-Type': 'application/json',
+            'Accept-Encoding': 'gzip',
         },
         mode: 'cors',
         credentials: 'omit',
@@ -102,6 +103,82 @@ if( false ){
                 console.log( 'success，请求成功------>Start' );
                 console.dir( data4ResponseType );
                 console.log( 'success，请求成功------>End' );
+
+                post4JSON.graphql( {
+                    url: '/',
+                    options: {
+                        ...requestOpt,
+                        body: JSON.stringify( {
+                            query: `mutation ibms_region_undefineBlock{
+    ibms_region_undefineBlock( blockId: "a26b21dce0df435696cff88b594ad7c8" ),
+}`,
+                        } ),
+                    },
+                    events: {
+                        success: ( data4ResponseType, response ) => {
+                            console.log( 'success，请求成功------>Start' );
+                            console.dir( data4ResponseType );
+                            console.log( 'success，请求成功------>End' );
+
+                            post4JSON.graphql( {
+                                url: '/',
+                                options: {
+                                    ...requestOpt,
+                                    body: JSON.stringify( {
+                                        query: `query{
+    ibms_region_getParks{
+        id,
+        name,
+        tags,
+        area,
+        introduction,
+        image,
+        blockCount,
+
+        blocks{
+            id,
+            name,
+            area,
+            tags,
+            buildings{
+                id,
+                name,
+                floors{
+                    id,
+                    name,
+                },
+            },
+            places{
+                id,
+                name,
+            },
+            placeCount,
+        },
+    },
+}`,
+                                    } ),
+                                },
+                                events: {
+                                    success: ( data4ResponseType, response ) => {
+                                        console.log( 'success，请求成功------>Start' );
+                                        console.dir( data4ResponseType );
+                                        console.log( 'success，请求成功------>End' );
+                                    },
+                                    error: ( status_num, response ) => {
+                                        console.warn( `错误，请求状态码：${ status_num }------>Start` );
+                                        console.error( response );
+                                        console.warn( `错误，请求状态码：${ status_num }------>End` );
+                                    },
+                                },
+                            } );
+                        },
+                        error: ( status_num, response ) => {
+                            console.warn( `错误，请求状态码：${ status_num }------>Start` );
+                            console.error( response );
+                            console.warn( `错误，请求状态码：${ status_num }------>End` );
+                        },
+                    },
+                } );
             },
             error: ( status_num, response ) => {
                 console.warn( `错误，请求状态码：${ status_num }------>Start` );
@@ -109,12 +186,7 @@ if( false ){
                 console.warn( `错误，请求状态码：${ status_num }------>End` );
             },
         },
-    } )/*
-     .then( response => {
-     console.log( 'then，请求成功------>Start' );
-     console.dir( response );
-     console.log( 'then，请求成功------>End' );
-     } )*/;
+    } );
 }
 
 // 删除地块接口测试1
@@ -126,7 +198,7 @@ if( false ){
             body: JSON.stringify( {
                 query: `
                     mutation ibms_region_undefineBlock{
-                        ibms_region_undefineBlock( blockId: "19e63f6e3f4042fb917ca3f4677648f3" ),
+                        ibms_region_undefineBlock( blockId: "96334ec1f0f24ca4b2ec589e4a6826c3" ),
                     },
                     `,
             } ),
@@ -297,7 +369,7 @@ if( false ){
 }
 
 // 警报接口测试1 全文检索查询未复核警报 通过
-if( true ){
+if( false ){
     ( async () => {
         let {
             default: GraphQLDemo,
@@ -341,5 +413,30 @@ if( true ){
          console.dir( response );
          console.log( 'then，请求成功------>End' );
          } )*/;
+
+    } )();
+}
+
+// 启用“loader: 'graphql-tag/loader'”、“babel-plugin-graphql-tag”、“babel-plugin-import-graphql”时，可以模块化导出.graphql的各个查询API：
+// 例如：
+// .graphql的内容是：
+// query MyQuery1 {......}
+// query MyQuery2 {......}
+// query MyQuery3 {......}
+// 那么可以模块化导出MyQuery1、MyQuery2、MyQuery3三者中的任意一个，或者全导出来都行！
+if( true ){
+    ( async () => {
+        import('gQLDir/GraphQLDemo.graphql').then( resultModule => {
+            // resultModule有如下属性字段：
+            // MyQuery1: definitions、kind、loc
+            // MyQuery2: definitions、kind、loc
+            // MyQuery3: definitions、kind、loc
+            // definitions
+            // kind
+            // loc
+            // default: 上面6个都包含了
+            console.dir( resultModule );
+            console.log( resultModule.loc.source.body );
+        } );
     } )();
 }

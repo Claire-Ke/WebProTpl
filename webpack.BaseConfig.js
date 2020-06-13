@@ -2544,17 +2544,17 @@ let fs = require( 'fs' ),
             plug_arr = [
                 [ '@babel/plugin-external-helpers' ],
 
-                [
-                    'graphql-tag',
-                    {
-                        // 要导入的模块的名称
-                        importName: 'graphql-tag',
-                        // 匹配导入的结尾而不是整个名称。对相对进口有用: ./utils/graphql (default = false)
-                        onlyMatchImportSuffix: false,
-                        // 从GraphQL字符串文字中剥离不重要的字符（例如空格），并返回该字符而不是AST对象: query foo{foo{bar baz}} (default = false)
-                        strip: true,
-                    },
-                ],
+                /*[
+                 'graphql-tag',
+                 {
+                 // 要导入的模块的名称
+                 importName: 'graphql-tag',
+                 // 匹配导入的结尾而不是整个名称。对相对进口有用: ./utils/graphql (default = false)
+                 onlyMatchImportSuffix: false,
+                 // 从GraphQL字符串文字中剥离不重要的字符（例如空格），并返回该字符而不是AST对象: query foo{foo{bar baz}} (default = false)
+                 strip: true,
+                 },
+                 ],*/
                 // 每次修改GraphQL文件时，必须清除"node_modules/.cache/babel-loader"文件夹，以使更改生效。
                 // 我建议在package.json中添加相关脚本，并在更改GraphQL文件时重新运行该脚本
                 // 关于在JS和TS文件中导入graphql文件时出现的BUG说明！！！
@@ -2575,17 +2575,17 @@ let fs = require( 'fs' ),
                 // import('../../../graphQL/GraphQLDemo.graphql')
                 //
                 // 4、使用动态导入时，修改“.graphql”是会触发重新编译的！但静态导入是不会的！
-                [
-                    'import-graphql',
-                    {
-                        extensions: [
-                            '.graphql',
-                            '.gql',
-                        ],
-                        // 默认值是：false
-                        emitDeclarations: true,
-                    },
-                ],
+                /*[
+                 'import-graphql',
+                 {
+                 extensions: [
+                 '.graphql',
+                 '.gql',
+                 ],
+                 // 默认值是：false
+                 emitDeclarations: true,
+                 },
+                 ],*/
 
                 [
                     'const-enum',

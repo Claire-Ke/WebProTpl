@@ -26,6 +26,7 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
         responseType: 'json',
         headers: {
             'Content-Type': 'application/json',
+            'Accept-Encoding': 'gzip',
         },
         mode: 'cors',
         credentials: 'omit',
