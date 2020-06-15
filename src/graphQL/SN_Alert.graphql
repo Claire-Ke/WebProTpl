@@ -1,7 +1,7 @@
 #import "./SN_Alert_Fragment.graphql"
 
 #获取所有未复核、已复核的
-query SN_Alert_GetAllReviewedList{
+query SN_Alert_GetAllReviewList{
     #获取所有未复核
     notReviewedList: ibms_alarm_getAlarmByContent( pageIndex: 1, pageSize: 30, beginStamptime: "2013-01-01 00:00:00", endStamptime: "2025-01-01 00:00:00" ){
         count,
@@ -44,7 +44,7 @@ query SN_Alert_GetAllReviewedList{
             checkedAccountId,
             misinformationMessage,
             reviewTime,
-            #regionName,
+            regionName,
             similarAlarmTotal{
                 ...SN_Alert_Fragment_SimilarAlarmTotal,
             },
