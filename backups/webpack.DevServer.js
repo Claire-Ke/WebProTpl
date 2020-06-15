@@ -135,7 +135,7 @@ module.exports = {
         quiet: false,
         // 对于webpack-dev-server，此属性必须位于devServer对象中。
         // 'none'、'errors-only'、'minimal'(仅在发生错误或新编译时输出)、'normal'、'verbose'、object
-        // stats: baseConfig.stats_obj,
+        stats: baseConfig.stats_obj,
         watchContentBase: true,
         watchOptions: watchOptions_obj,
         proxy: proxyConfig,

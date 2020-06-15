@@ -377,7 +377,7 @@ if( false ){
 // 那么可以模块化导出MyQuery1、MyQuery2、MyQuery3三者中的任意一个，或者全导出来都行！
 if( false ){
     ( async () => {
-        import('../../../../src/graphQL/GraphQLDemo.graphql').then( resultModule => {
+        import('../../../../src/graphQL/SN_Alert.graphql').then( resultModule => {
             // resultModule有如下属性字段：
             // MyQuery1: definitions、kind、loc
             // MyQuery2: definitions、kind、loc
@@ -393,16 +393,16 @@ if( false ){
 }
 
 // ../../../../src/graphQL gQLDir
-// import GraphQLDemo from 'gQLDir/GraphQLDemo.graphql';
+// import SN_Alert from 'gQLDir/SN_Alert.graphql';
 //
-// console.dir( GraphQLDemo );
-// console.log( GraphQLDemo.loc.source.body );
+// console.dir( SN_Alert );
+// console.log( SN_Alert.loc.source.body );
 
 // 警报接口测试1 全文检索查询未复核警报 通过
 if( true ){
     ( async () => {
         let {
-            default: GraphQLDemo,
+            default: SN_Alert,
             definitions,
             // 字符串：Document
             kind,
@@ -412,9 +412,9 @@ if( true ){
                     body,
                 },
             },
-        } = await import('gQLDir/GraphQLDemo.graphql');
+        } = await import('gQLDir/SN_Alert.graphql');
 
-        console.dir( GraphQLDemo );
+        console.dir( SN_Alert );
         console.log( body );
 
         post4JSON.graphql( {
