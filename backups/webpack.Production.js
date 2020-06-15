@@ -89,7 +89,7 @@ module.exports = {
     performance: baseConfig.performance_obj,
     recordsPath: baseConfig.recordsPath_fun( 'production' ),
     // 对于webpack-dev-server，此属性必须位于devServer对象中。
-    stats: baseConfig.stats_obj,
+    // stats: baseConfig.stats_obj,
     /*
      // 可能在“Webpack 5”中有效，“Webpack 4”中会报错！！！
      experiments: {
