@@ -14,7 +14,7 @@ let {
 } = CT.getClass();
 
 // devURL4WWC devURL4Test devURL4Dev devURL4Dev2Natapp
-const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev2Natapp }` ),
+const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
     post4JSON = webService_ins.post( {
         type: 'json',
     } ),
@@ -368,8 +368,38 @@ if( false ){
      } )*/;
 }
 
-// 警报接口测试1 全文检索查询未复核警报 通过
+// 启用“loader: 'graphql-tag/loader'”、“babel-plugin-graphql-tag”、“babel-plugin-import-graphql”时，可以模块化导出.graphql的各个查询API：
+// 例如：
+// .graphql的内容是：
+// query MyQuery1 {......}
+// query MyQuery2 {......}
+// query MyQuery3 {......}
+// 那么可以模块化导出MyQuery1、MyQuery2、MyQuery3三者中的任意一个，或者全导出来都行！
 if( false ){
+    ( async () => {
+        import('../../../../src/graphQL/GraphQLDemo.graphql').then( resultModule => {
+            // resultModule有如下属性字段：
+            // MyQuery1: definitions、kind、loc
+            // MyQuery2: definitions、kind、loc
+            // MyQuery3: definitions、kind、loc
+            // definitions
+            // kind
+            // loc
+            // default: 上面6个都包含了
+            console.dir( resultModule );
+            console.log( resultModule.loc.source.body );
+        } );
+    } )();
+}
+
+// ../../../../src/graphQL gQLDir
+// import GraphQLDemo from 'gQLDir/GraphQLDemo.graphql';
+//
+// console.dir( GraphQLDemo );
+// console.log( GraphQLDemo.loc.source.body );
+
+// 警报接口测试1 全文检索查询未复核警报 通过
+if( true ){
     ( async () => {
         let {
             default: GraphQLDemo,
@@ -407,42 +437,7 @@ if( false ){
                     console.warn( `错误，请求状态码：${ status_num }------>End` );
                 },
             },
-        } )/*
-         .then( response => {
-         console.log( 'then，请求成功------>Start' );
-         console.dir( response );
-         console.log( 'then，请求成功------>End' );
-         } )*/;
-
-    } )();
-}
-
-// 启用“loader: 'graphql-tag/loader'”、“babel-plugin-graphql-tag”、“babel-plugin-import-graphql”时，可以模块化导出.graphql的各个查询API：
-// 例如：
-// .graphql的内容是：
-// query MyQuery1 {......}
-// query MyQuery2 {......}
-// query MyQuery3 {......}
-// 那么可以模块化导出MyQuery1、MyQuery2、MyQuery3三者中的任意一个，或者全导出来都行！
-if( false ){
-    ( async () => {
-        import('../../../../src/graphQL/GraphQLDemo.graphql').then( resultModule => {
-            // resultModule有如下属性字段：
-            // MyQuery1: definitions、kind、loc
-            // MyQuery2: definitions、kind、loc
-            // MyQuery3: definitions、kind、loc
-            // definitions
-            // kind
-            // loc
-            // default: 上面6个都包含了
-            console.dir( resultModule );
-            console.log( resultModule.loc.source.body );
         } );
+
     } )();
 }
-
-// ../../../../src/graphQL gQLDir
-import GraphQLDemo from 'gQLDir/GraphQLDemo.graphql';
-
-console.dir( GraphQLDemo );
-console.log( GraphQLDemo.loc.source.body );

@@ -18,11 +18,7 @@ query QueryA{
             subsystemName,
             regionName,
             similarAlarmTotal{
-                #...similarAlarmTotal,
-
-                alarmTotal,
-                misinformationTotal,
-                malfunctionTotal,
+                ...similarAlarmTotal,
             },
         },
     },
@@ -47,11 +43,7 @@ query QueryA{
             reviewTime,
             #regionName,
             similarAlarmTotal{
-                #...similarAlarmTotal,
-
-                alarmTotal,
-                misinformationTotal,
-                malfunctionTotal,
+                ...similarAlarmTotal,
             },
         },
     },
