@@ -2544,6 +2544,7 @@ let fs = require( 'fs' ),
             plug_arr = [
                 [ '@babel/plugin-external-helpers' ],
 
+                // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
                 [
                     'graphql-tag',
                     {
@@ -2555,26 +2556,7 @@ let fs = require( 'fs' ),
                         strip: true,
                     },
                 ],
-                // 每次修改GraphQL文件时，必须清除"node_modules/.cache/babel-loader"文件夹，以使更改生效。
-                // 我建议在package.json中添加相关脚本，并在更改GraphQL文件时重新运行该脚本
-                // 关于在JS和TS文件中导入graphql文件时出现的BUG说明！！！
-                // 自己机子上的主要错误信息：
-                // The value "D:\NodeJS\" is invalid for option "options.paths"
-                //
-                // 1、在Webpack的配置中设置一个别名：
-                // gQLDir: path.resolve( __dirname, './src/graphQL/' ),
-                //
-                //     2、然后在项目中如下使用，会报错！！！
-                // import GraphQLDemoA4GQL from 'gQLDir/GraphQLDemo.graphql';
-                // 错误信息：
-                // The value "D:\NodeJS\" is invalid for option "options.paths"
-                //
-                // 3、不报错，可以使用的导入方法！！！
-                // import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
-                // import('gQLDir/GraphQLDemo.graphql');
-                // import('../../../graphQL/GraphQLDemo.graphql')
-                //
-                // 4、使用动态导入时，修改“.graphql”是会触发重新编译的！但静态导入是不会的！
+                // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
                 /*
                  [
                  'import-graphql',
@@ -3521,6 +3503,7 @@ let fs = require( 'fs' ),
                             projectReferences: true,
                             getCustomTransformers: () => ( {
                                 before: [
+                                    // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
                                     getTransformer(),
                                 ],
                             } ),
@@ -3964,27 +3947,12 @@ let fs = require( 'fs' ),
                 // sideEffects: true,
             },
 
-            // 关于在JS和TS文件中导入graphql文件时出现的BUG说明！！！
-            // 自己机子上的主要错误信息：
-            // The value "D:\NodeJS\" is invalid for option "options.paths"
-            //
-            // 1、在Webpack的配置中设置一个别名：
-            // gQLDir: path.resolve( __dirname, './src/graphQL/' ),
-            //
-            //     2、然后在项目中如下使用，会报错！！！
-            // import GraphQLDemoA4GQL from 'gQLDir/GraphQLDemo.graphql';
-            // 错误信息：
-            // The value "D:\NodeJS\" is invalid for option "options.paths"
-            //
-            // 3、不报错，可以使用的导入方法！！！
-            // import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
-            // import('gQLDir/GraphQLDemo.graphql');
-            // import('../../../graphQL/GraphQLDemo.graphql')
-            //
-            // 4、使用动态导入时，修改“.graphql”是会触发重新编译的！但静态导入是不会的！
+            // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
+            // graphql-tag/loader.js有被自己改过的！
             {
                 test: /\.(graphql|gql)$/i,
                 use: [
+                    // graphql-tag/loader.js有被自己改过的！
                     {
                         loader: 'graphql-tag/loader',
                     },

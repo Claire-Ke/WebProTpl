@@ -68,12 +68,7 @@ if( false ){
                 console.warn( `错误，请求状态码：${ status_num }------>End` );
             },
         },
-    } )/*
-     .then( response => {
-     console.log( 'then，请求成功------>Start' );
-     console.dir( response );
-     console.log( 'then，请求成功------>End' );
-     } )*/;
+    } );
 }
 
 // login接口测试2 通过
@@ -215,12 +210,7 @@ if( false ){
                 console.warn( `错误，请求状态码：${ status_num }------>End` );
             },
         },
-    } )/*
-     .then( response => {
-     console.log( 'then，请求成功------>Start' );
-     console.dir( response );
-     console.log( 'then，请求成功------>End' );
-     } )*/;
+    } );
 }
 
 // 园区获取接口测试1 通过
@@ -286,12 +276,7 @@ if( false ){
                 console.warn( `错误，请求状态码：${ status_num }------>End` );
             },
         },
-    } )/*
-     .then( response => {
-     console.log( 'then，请求成功------>Start' );
-     console.dir( response );
-     console.log( 'then，请求成功------>End' );
-     } )*/;
+    } );
 }
 
 // login接口、园区获取接口的合并查询测试 不通过，因为login接口和园区获取接口不能同时操作！！！
@@ -360,21 +345,9 @@ if( false ){
                 console.warn( `错误，请求状态码：${ status_num }------>End` );
             },
         },
-    } )/*
-     .then( response => {
-     console.log( 'then，请求成功------>Start' );
-     console.dir( response );
-     console.log( 'then，请求成功------>End' );
-     } )*/;
+    } );
 }
 
-// 启用“loader: 'graphql-tag/loader'”、“babel-plugin-graphql-tag”、“babel-plugin-import-graphql”时，可以模块化导出.graphql的各个查询API：
-// 例如：
-// .graphql的内容是：
-// query MyQuery1 {......}
-// query MyQuery2 {......}
-// query MyQuery3 {......}
-// 那么可以模块化导出MyQuery1、MyQuery2、MyQuery3三者中的任意一个，或者全导出来都行！
 if( false ){
     ( async () => {
         import('../../../../src/graphQL/SN_Alert.graphql').then( resultModule => {
@@ -392,14 +365,8 @@ if( false ){
     } )();
 }
 
-// ../../../../src/graphQL gQLDir
-// import SN_Alert from 'gQLDir/SN_Alert.graphql';
-//
-// console.dir( SN_Alert );
-// console.log( SN_Alert.loc.source.body );
-
 // 警报接口测试1 全文检索查询未复核警报 通过
-if( true ){
+if( false ){
     ( async () => {
         let {
             default: SN_Alert,
@@ -440,4 +407,42 @@ if( true ){
         } );
 
     } )();
+}
+
+import SN_Alert from 'gQLDir/SN_Alert.graphql';
+
+console.dir( SN_Alert );
+console.log( SN_Alert.loc.source.body );
+
+// 警报接口测试1 全文检索查询未复核警报 通过
+if( true ){
+    const {
+        loc: {
+            source: {
+                body,
+            },
+        },
+    } = SN_Alert;
+
+    post4JSON.graphql( {
+        url: '/',
+        options: {
+            ...requestOpt,
+            body: JSON.stringify( {
+                query: body,
+            } ),
+        },
+        events: {
+            success: ( data4ResponseType, response ) => {
+                console.log( 'success，请求成功------>Start' );
+                console.dir( data4ResponseType );
+                console.log( 'success，请求成功------>End' );
+            },
+            error: ( status_num, response ) => {
+                console.warn( `错误，请求状态码：${ status_num }------>Start` );
+                console.error( response );
+                console.warn( `错误，请求状态码：${ status_num }------>End` );
+            },
+        },
+    } );
 }

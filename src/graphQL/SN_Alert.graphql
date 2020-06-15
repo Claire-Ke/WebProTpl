@@ -1,6 +1,7 @@
 #import "./SN_Alert_Fragment.graphql"
 
-query QueryA{
+#获取所有未复核、已复核的
+query SN_Alert_GetAllReviewedList{
     notReviewedList: ibms_alarm_getAlarmByContent( pageIndex: 1, pageSize: 30, beginStamptime: "2013-01-01 00:00:00", endStamptime: "2025-01-01 00:00:00" ){
         count,
         unCheckedCount,
@@ -18,7 +19,7 @@ query QueryA{
             subsystemName,
             regionName,
             similarAlarmTotal{
-                ...similarAlarmTotal,
+                ...SN_Alert_Fragment_SimilarAlarmTotal,
             },
         },
     },
@@ -43,147 +44,8 @@ query QueryA{
             reviewTime,
             #regionName,
             similarAlarmTotal{
-                ...similarAlarmTotal,
+                ...SN_Alert_Fragment_SimilarAlarmTotal,
             },
-        },
-    },
-
-    __schema{
-        types{
-            name,
-            description,
-            kind,
-            fields{
-                name,
-                description,
-                type{
-                    name,
-                    description,
-                    kind,
-                    ofType{
-                        name,
-                        description,
-                        kind,
-                    },
-                },
-                args{
-                    name,
-                    description,
-                    type{
-                        name,
-                        kind,
-                        description,
-                        ofType{
-                            name,
-                            kind,
-                            description,
-                        },
-                    },
-                },
-            },
-        },
-        queryType{
-            name,
-            description,
-            kind,
-            fields{
-                name,
-                description,
-                type{
-                    name,
-                    description,
-                    kind,
-                    ofType{
-                        name,
-                        description,
-                        kind,
-                    },
-                },
-                args{
-                    name,
-                    description,
-                    type{
-                        name,
-                        kind,
-                        description,
-                        ofType{
-                            name,
-                            kind,
-                            description,
-                        },
-                    },
-                },
-            },
-        },
-        mutationType{
-            name,
-            description,
-            kind,
-            fields{
-                name,
-                description,
-                type{
-                    name,
-                    description,
-                    kind,
-                    ofType{
-                        name,
-                        description,
-                        kind,
-                    },
-                },
-                args{
-                    name,
-                    description,
-                    type{
-                        name,
-                        kind,
-                        description,
-                        ofType{
-                            name,
-                            kind,
-                            description,
-                        },
-                    },
-                },
-            },
-        },
-        subscriptionType{
-            name,
-            description,
-            kind,
-            fields{
-                name,
-                description,
-                type{
-                    name,
-                    description,
-                    kind,
-                    ofType{
-                        name,
-                        description,
-                        kind,
-                    },
-                },
-                args{
-                    name,
-                    description,
-                    type{
-                        name,
-                        kind,
-                        description,
-                        ofType{
-                            name,
-                            kind,
-                            description,
-                        },
-                    },
-                },
-            },
-        },
-        directives{
-            name,
-            description,
         },
     },
 }

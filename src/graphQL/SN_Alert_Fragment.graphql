@@ -1,4 +1,4 @@
-fragment similarAlarmTotal on IBMS_SimilarAlarmTotal{
+fragment SN_Alert_Fragment_SimilarAlarmTotal on IBMS_SimilarAlarmTotal{
     alarmTotal,
     misinformationTotal,
     malfunctionTotal,
