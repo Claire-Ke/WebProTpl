@@ -15,6 +15,7 @@
         "Webpack4",
         "VueJS",
         "NodeJS",
+        "Deno",
         "EJS",
         "SSE",
         "Web Socket",
@@ -24,7 +25,9 @@
         "Web Worker",
         "Shared Worker",
         "Service Worker",
-        "IndexedDB"
+        "IndexedDB",
+        "GraphQL",
+        "RESTful API"
     ],
     "homepage": "https://github.com/LP1994/WebProTpl/tree/master",
     "bugs": {
