@@ -1,3 +1,5 @@
+#import "./Fragment_SN_Alert_IBMS_SimilarAlarmTotal.graphql"
+
 query QueryA{
     notReviewedList: ibms_alarm_getAlarmByContent( pageIndex: 1, pageSize: 30, beginStamptime: "2013-01-01 00:00:00", endStamptime: "2025-01-01 00:00:00" ){
         count,
@@ -16,7 +18,11 @@ query QueryA{
             subsystemName,
             regionName,
             similarAlarmTotal{
-                ...info,
+                #...similarAlarmTotal,
+
+                alarmTotal,
+                misinformationTotal,
+                malfunctionTotal,
             },
         },
     },
@@ -39,8 +45,13 @@ query QueryA{
             checkedAccountId,
             misinformationMessage,
             reviewTime,
+            #regionName,
             similarAlarmTotal{
-                ...info,
+                #...similarAlarmTotal,
+
+                alarmTotal,
+                misinformationTotal,
+                malfunctionTotal,
             },
         },
     },
@@ -183,10 +194,4 @@ query QueryA{
             description,
         },
     },
-}
-
-fragment info on IBMS_SimilarAlarmTotal{
-    alarmTotal,
-    misinformationTotal,
-    malfunctionTotal,
 }

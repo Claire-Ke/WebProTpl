@@ -424,9 +424,9 @@ if( false ){
 // query MyQuery2 {......}
 // query MyQuery3 {......}
 // 那么可以模块化导出MyQuery1、MyQuery2、MyQuery3三者中的任意一个，或者全导出来都行！
-if( true ){
+if( false ){
     ( async () => {
-        import('gQLDir/GraphQLDemo.graphql').then( resultModule => {
+        import('../../../../src/graphQL/GraphQLDemo.graphql').then( resultModule => {
             // resultModule有如下属性字段：
             // MyQuery1: definitions、kind、loc
             // MyQuery2: definitions、kind、loc
@@ -440,3 +440,9 @@ if( true ){
         } );
     } )();
 }
+
+// ../../../../src/graphQL gQLDir
+import GraphQLDemo from 'gQLDir/GraphQLDemo.graphql';
+
+console.dir( GraphQLDemo );
+console.log( GraphQLDemo.loc.source.body );

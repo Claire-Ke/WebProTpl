@@ -1,0 +1,5 @@
+fragment similarAlarmTotal on IBMS_SimilarAlarmTotal{
+    alarmTotal,
+    misinformationTotal,
+    malfunctionTotal,
+}

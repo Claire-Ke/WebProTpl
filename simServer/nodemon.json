@@ -19,6 +19,7 @@
         "该文件夹说明.txt",
         "../simServer4Deno/*",
         "../src/*",
+        "../test/*",
         "../webpackRecords/*",
         "../.gitignore",
         "../OutPackageJSON.js",

@@ -29,6 +29,7 @@ const TSConfig_objC = {
         'src/tplHTML',
         'src/wasm',
         'src/workers',
+        'test',
         'webpackRecords',
         'bower_components',
         'jspm_packages'
