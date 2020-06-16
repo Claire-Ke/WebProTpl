@@ -14,7 +14,7 @@ let {
 } = CT.getClass();
 
 // devURL4WWC devURL4Test devURL4Dev devURL4Dev2Natapp
-const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev2Natapp }` ),
+const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
     post4JSON = webService_ins.post( {
         type: 'json',
     } ),

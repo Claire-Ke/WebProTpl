@@ -473,7 +473,8 @@ let fs = require( 'fs' ),
         // remove 删除仅引用类型的导入语句的默认行为。
         // preserve 保留所有从不使用值或类型的导入语句。这可能导致保留导入/副作用。
         // error 这将保留所有导入（与preserve选项相同），但当值导入仅用作类型时将出错。如果希望确保没有意外导入值，但仍使副作用导入显式化，则这可能很有用。
-        'importsNotUsedAsValues': 'remove',
+        // 优先设置成“remove”，但是fork-ts-checker-webpack-plugin插件建议设置成“preserve”，如果TypeScript >= 2.8.0的话！！！
+        'importsNotUsedAsValues': 'preserve',
         // 属于“有助于调试的标志”！！！
         // 编译JSX Elements时，更改.js文件中调用的函数。最常见的更改是使用“ h”或“ preact.h”，而不是默认的“ React.createElement”（如果使用preact）。
         'jsxFactory': 'React.createElement',
@@ -3352,7 +3353,7 @@ let fs = require( 'fs' ),
                              transpileOptions: {
                              target: {
                              // 专门在最新稳定版本的谷歌浏览器上测试用
-                             chrome: 81,
+                             chrome: 83,
 
                              // 以下只是用于自己设备上的浏览器
                              // ios: 13,
@@ -4460,64 +4461,56 @@ let fs = require( 'fs' ),
         };
     } )(),
     ForkTsCheckerWebpackPlugin_obj = {
-        tsconfig: path.resolve( __dirname, './tsconfig.json' ),
-        // 允许覆盖TypeScript options(编译选项compiler options，TypeScript选项应使用tsconfig.json文件设置)。应该以与“tsconfig.json”中的“compilerOptions”属性相同的格式指定。
-        compilerOptions: compilerOptions_obj,
-        // 可选值：true | undefined
-        eslint: false,
-        // eslintOptions: {},
         async: true,
-        // 默认值：number[]，要忽略的TypeScript诊断代码列表。
-        // ignoreDiagnostics: [],
-        // 默认值：string[]，eslint规则名称列表，可忽略。
-        // ignoreLints: [],
-        // 如果为true，将忽略所有棉绒警告。
-        ignoreLintWarnings: true,
-        // 仅报告与这些全局模式匹配的文件中的错误。当某些类型定义具有对您的应用程序不致命的错误时，这很有用。
-        reportFiles: [
-            'src/components/**/*.{ts,tsx}',
-            'src/js/**/*.{ts,tsx}',
-            'src/vue/**/*.{ts,tsx}',
-            'src/vue/**/*.ts.vue',
-            'src/webComponents/**/*.{ts,tsx}',
-        ],
-        // 数据类型是object，记录器实例。应该是实现方法的对象：error、warn、info，默认值：console。
-        /*
-         logger: {
-         info( message_str = '' ){
-         console.log( '\n------------------ForkTsCheckerWebpackPlugin info Start------------------\n' );
-         console.log( message_str );
-         console.log( '\n------------------ForkTsCheckerWebpackPlugin info End------------------\n' );
-         },
-         // console.warn
-         warn( message_str = '' ){
-         console.warn( '\n------------------ForkTsCheckerWebpackPlugin warn Start------------------\n' );
-         console.warn( message_str );
-         console.warn( '\n------------------ForkTsCheckerWebpackPlugin warn End------------------\n' );
-         },
-         // console.error
-         error( message_str = '' ){
-         console.error( '\n------------------ForkTsCheckerWebpackPlugin error Start------------------\n' );
-         console.error( message_str );
-         console.error( '\n------------------ForkTsCheckerWebpackPlugin error End------------------\n' );
-         },
-         },
-         */
-        // formatter: 'default',
-        // 数据类型是object，
-        // formatterOptions: {},
-        // 默认值：false，如果为true，则不会发出console.log消息。请注意，大多数错误消息都是通过webpack发出的，不受此标志的影响。
-        silent: true,
-        checkSyntacticErrors: true,
-        // 服务进程的内存限制，以MB为单位
-        memoryLimit: 4096,
-        vue: true,
-        // 如果为true，插件将使用TypeScript 2.7中引入的增量编译API。使用TypeScript 3+时默认为true，低于3时默认为false。
-        // 可以通过直接指定值来覆盖默认值。不要将它与启用VueJs一起使用-它还不受支持。
-        useTypescriptIncrementalApi: true,
-        // 如果为true，则插件将测量编译代码中花费的时间。这可能有助于比较模式，特别是在编译中涉及到其他加载程序/插件的情况下。需要Node.js>=8.5.0
-        measureCompilationTime: true,
-        typescript: path.resolve( __dirname, './node_modules/typescript/' ),
+        typescript: {
+            enabled: true,
+            // 单位：MB
+            memoryLimit: 4096,
+            configFile: path.resolve( __dirname, './tsconfig.json' ),
+            // 此配置将覆盖tsconfig.json文件中的配置。支持的字段包括: extends, compilerOptions, include, exclude, files, and references.
+            // configOverwrite: {},
+            // context: '',
+            build: false,
+            // 如果使用“babel-loader”，建议使用"write-references"模式来提高初始编译时间。如果使用“ts-loader”，建议使用"write-tsbuildinfo"模式，以不覆盖“ts-loader”发出的文件。
+            // readonly write-tsbuildinfo write-references
+            mode: 'write-tsbuildinfo',
+            // 用于选择我们要执行的诊断的设置。
+            diagnosticsOptions: {
+                // 句法，默认：false
+                syntactic: true,
+                // 语义，默认：true
+                semantic: true,
+                // 声明，默认：false
+                declaration: true,
+                // 全局，默认：false
+                global: true,
+            },
+            // TypeScript扩展选项
+            extensions: {
+                vue: {
+                    enabled: true,
+                    // 将用于分析“.vue”文件的编译器的包名称。如果使用"nativescript-vue"，则可以使用“nativescript-vue-template-compiler”
+                    compiler: 'vue-template-compiler',
+                },
+            },
+            // 测量并打印与TypeScript性能相关的计时
+            profile: false,
+        },
+        // 可选值：true | undefined
+        eslint: undefined,
+        issue: {
+            include: undefined,
+            exclude: undefined,
+            scope: 'all',
+        },
+        // formatter: {},
+        // 可用的记录器为: silent, console, and webpack-infrastructure
+        logger: {
+            // 基础设施
+            infrastructure: 'silent',
+            // 问题
+            issues: 'console',
+        },
     },
     ForkTsCheckerNotifierWebpackPlugin_obj = {
         // 通知中显示的标题前缀。

@@ -398,7 +398,7 @@
         "generateCpuProfile": "./dist/profile.cpuprofile",
         "assumeChangesOnlyAffectDirectDependencies": true,
         "emitDeclarationOnly": false,
-        "importsNotUsedAsValues": "remove",
+        "importsNotUsedAsValues": "preserve",
         "jsxFactory": "React.createElement",
         "resolveJsonModule": true,
         "emitBOM": false,

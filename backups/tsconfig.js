@@ -465,7 +465,8 @@ const TSConfig_objC = {
         // remove 删除仅引用类型的导入语句的默认行为。
         // preserve 保留所有从不使用值或类型的导入语句。这可能导致保留导入/副作用。
         // error 这将保留所有导入（与preserve选项相同），但当值导入仅用作类型时将出错。如果希望确保没有意外导入值，但仍使副作用导入显式化，则这可能很有用。
-        'importsNotUsedAsValues': 'remove',
+        // 优先设置成“remove”，但是fork-ts-checker-webpack-plugin插件建议设置成“preserve”，如果TypeScript >= 2.8.0的话！！！
+        'importsNotUsedAsValues': 'preserve',
         // 属于“有助于调试的标志”！！！
         // 编译JSX Elements时，更改.js文件中调用的函数。最常见的更改是使用“ h”或“ preact.h”，而不是默认的“ React.createElement”（如果使用preact）。
         'jsxFactory': 'React.createElement',
