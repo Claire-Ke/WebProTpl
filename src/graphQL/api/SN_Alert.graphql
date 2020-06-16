@@ -25,6 +25,7 @@ query SN_Alert_GetAllReviewList{
             alarmLevel,
             subsystemName,
             regionName,
+            alarmType,
             similarAlarmTotal{
                 ...SN_Alert_Fragment_SimilarAlarmTotal,
             },
@@ -51,6 +52,9 @@ query SN_Alert_GetAllReviewList{
             misinformationMessage,
             reviewTime,
             regionName,
+            alarmType,
+            report,
+            reviewType,
             similarAlarmTotal{
                 ...SN_Alert_Fragment_SimilarAlarmTotal,
             },

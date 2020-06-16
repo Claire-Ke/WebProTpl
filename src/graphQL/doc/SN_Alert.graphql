@@ -6,19 +6,19 @@ extend type Query{
     #注意,警报级别分为  NORMAL 一般  , PRIORITY 优先处理 , IMMEDIATELY 紧急状态(需要立刻处理) 三个级别
 
     #全文检索查询未复核警报         pageIndex:当前页数   pageSize:每页记录数   beginStamptime:开始时间   endStamptime:结束时间
-                     #  deviceCategory:设备类型    alarmLevel:警报级别     content:搜索文字
-    ibms_alarm_getAlarmByContent(pageIndex: Int! , pageSize: Int! , beginStamptime: String! , endStamptime: String! , 
-                   deviceCategory: String , content: String, alarmLevel: String): IBMS_Page_Unchecked!
+    #  deviceCategory:设备类型    alarmLevel:警报级别     content:搜索文字
+    ibms_alarm_getAlarmByContent(pageIndex: Int! , pageSize: Int! , beginStamptime: String! , endStamptime: String! ,
+        deviceCategory: String , content: String, alarmLevel: String): IBMS_Page_Unchecked!
 
     #全文检索查询已复核警报         pageIndex:当前页数   pageSize:每页记录数   beginStamptime:开始时间   endStamptime:结束时间
-                     #  deviceCategory:设备类型    alarmLevel:警报级别     content:搜索文字
-    ibms_alarm_getMisinformationByContent(pageIndex: Int! , pageSize: Int! , beginStamptime: String! , 
-            endStamptime: String! , deviceCategory: String , content: String, alarmLevel: String): IBMS_Page_Checked!
+    #  deviceCategory:设备类型    alarmLevel:警报级别     content:搜索文字
+    ibms_alarm_getMisinformationByContent(pageIndex: Int! , pageSize: Int! , beginStamptime: String! ,
+        endStamptime: String! , deviceCategory: String , content: String, alarmLevel: String): IBMS_Page_Checked!
 }
 
 #警报
 interface IBMS_IAlarm{
-    
+
     #警报流水号
     id: String!
     #警报事件的链接地址
@@ -47,25 +47,25 @@ interface IBMS_IAlarm{
 
 #条件查询未复核警报数量及数据
 type IBMS_Page_Unchecked{
-	count: String
-	data: [IBMS_UnCheckedAlarm]!
-	#总数量
-	unCheckedCount: String
+    count: String
+    data: [IBMS_UnCheckedAlarm]!
+    #总数量
+    unCheckedCount: String
 }
 
 #条件查询已复核警报数量及数据
 type IBMS_Page_Checked{
-	count: String
-	data: [IBMS_CheckedAlarm]!
-	#总数量
-	checkedCount: String
+    count: String
+    data: [IBMS_CheckedAlarm]!
+    #总数量
+    checkedCount: String
 }
 
 
 
 #已复核警报
 type IBMS_CheckedAlarm implements IBMS_IAlarm{
-    
+
     #警报流水号
     id: String!
     #警报事件的链接地址
@@ -102,7 +102,7 @@ type IBMS_CheckedAlarm implements IBMS_IAlarm{
     report: String
     #复核类型
     reviewType: String
-    
+
     #过往同类事件发生次数
     similarAlarmTotal: IBMS_SimilarAlarmTotal!
 
@@ -137,7 +137,7 @@ type IBMS_UnCheckedAlarm implements IBMS_IAlarm{
     regionName: String!
     #警报分类
     alarmType: String
-    
+
     #过往同类事件发生次数
     similarAlarmTotal: IBMS_SimilarAlarmTotal!
 }
@@ -158,31 +158,31 @@ type IBMS_SimilarAlarmTotal{
 #更新
 extend type Mutation{
 
-    #添加警报     alarmId:警报编号   url:警报事件的链接地址    title: alarmStamptime:报警时间戳   deviceId:设备编号   deviceName:设备名称 
-            #devieceFacturerName:设备厂家名称   deviceCategory:设备分类   functionalId:设备所在功能区编号
-            #message:警报消息   alarmLevel:警报级别   accountId:发起警报的用户编号
-    ibms_alarm_addAlarm(alarmId: String! , url: String! , title: String! , alarmStamptime: String! ,
-                        deviceId: String! , deviceName: String! , devieceFacturerName: String! , 
-                        deviceCategory: String! , functionalId: String! , message: String! , 
-                        alarmLevel: String! , accountId: String!): Boolean
-    
     #设备误报     alarmId:警报编号    misinformationMessage:误报消息
     ibms_alarm_reviewAlarm(alarmId: String! , misinformationMessage: String!): Boolean
-    
+
     #设备故障现场处理      alarmId:警报编号    misinformationMessage:故障处理
     ibms_alarm_siteTreatment(alarmId: String! , misinformationMessage: String!): Boolean
-    
+
+    #添加警报     alarmId:警报编号   url:警报事件的链接地址    title: alarmStamptime:报警时间戳   deviceId:设备编号   deviceName:设备名称 
+    #devieceFacturerName:设备厂家名称   deviceCategory:设备分类   functionalId:设备所在功能区编号
+    #message:警报消息   alarmLevel:警报级别   accountId:发起警报的用户编号
+    ibms_alarm_addAlarm(alarmId: String! , url: String! , title: String! , alarmStamptime: String! ,
+        deviceId: String! , deviceName: String! , devieceFacturerName: String! ,
+        deviceCategory: String! , functionalId: String! , message: String! ,
+        alarmLevel: String! , accountId: String!): Boolean
+
     #重置警报级别     alarmId:警报编号    alarmLevel:警报级别
     ibms_alarm_resetAlarmLevel(alarmId: String! , alarmLevel: String!): Boolean
-    
+
     #添加子系统触发警报    alarmId:警报编号   url:警报事件的链接地址    title: alarmStamptime:报警时间戳   deviceId:设备编号   deviceName:设备名称 
-            #devieceFacturerName:设备厂家名称   deviceCategory:设备分类   functionalId:设备所在功能区编号
-            #message:警报消息   alarmLevel:警报级别 
+    #devieceFacturerName:设备厂家名称   deviceCategory:设备分类   functionalId:设备所在功能区编号
+    #message:警报消息   alarmLevel:警报级别
     ibms_alarm_addSubsystemAlarm(alarmId: String! , url: String! , title: String! , alarmStamptime: String! ,
-                        deviceId: String! , deviceName: String! , devieceFacturerName: String! , 
-                        deviceCategory: String! , functionalId: String! , message: String! , 
-                        alarmLevel: String!): Boolean
-    
-    
+        deviceId: String! , deviceName: String! , devieceFacturerName: String! ,
+        deviceCategory: String! , functionalId: String! , message: String! ,
+        alarmLevel: String!): Boolean
+
+
 
 }

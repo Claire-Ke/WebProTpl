@@ -22,11 +22,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "CM_ContextMenu",
-                    "description": "涓婁笅鏂囪彍鍗�",
+                    "description": "上下文菜单",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -42,7 +42,7 @@
                         },
                         {
                             "name": "items",
-                            "description": "瀛愯彍鍗曢」鐩�",
+                            "description": "子菜单项目",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -69,26 +69,26 @@
                 {
                     "kind": "ENUM",
                     "name": "CM_InforLevel",
-                    "description": "淇℃伅绾у埆",
+                    "description": "信息级别",
                     "fields": null,
                     "inputFields": null,
                     "interfaces": null,
                     "enumValues": [
                         {
                             "name": "NORMAL",
-                            "description": "姝ｅ父",
+                            "description": "正常",
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
                             "name": "WARN",
-                            "description": "璀﹀憡",
+                            "description": "警告",
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
                             "name": "ERROR",
-                            "description": "閿欒",
+                            "description": "错误",
                             "isDeprecated": false,
                             "deprecationReason": null
                         }
@@ -98,11 +98,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "CM_Menu",
-                    "description": "鑿滃崟",
+                    "description": "菜单",
                     "fields": [
                         {
                             "name": "sidebar",
-                            "description": "渚ц竟鏍�",
+                            "description": "侧边栏",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -114,7 +114,7 @@
                         },
                         {
                             "name": "context",
-                            "description": "涓婁笅涓鸿彍鍗�",
+                            "description": "上下为菜单",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -133,11 +133,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "CM_MenuGroup",
-                    "description": "鑿滃崟缁�",
+                    "description": "菜单组",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -153,7 +153,7 @@
                         },
                         {
                             "name": "caption",
-                            "description": "鏍囬",
+                            "description": "标题",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -169,7 +169,7 @@
                         },
                         {
                             "name": "icon",
-                            "description": "鍥炬爣",
+                            "description": "图标",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -181,7 +181,7 @@
                         },
                         {
                             "name": "description",
-                            "description": "璇存槑",
+                            "description": "说明",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -193,7 +193,7 @@
                         },
                         {
                             "name": "items",
-                            "description": "瀛愯彍鍗曢」鐩�",
+                            "description": "子菜单项目",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -220,11 +220,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "CM_SidebarMenu",
-                    "description": "渚ц竟鏍忚彍鍗�",
+                    "description": "侧边栏菜单",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -240,7 +240,7 @@
                         },
                         {
                             "name": "caption",
-                            "description": "鏍囬",
+                            "description": "标题",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -256,7 +256,7 @@
                         },
                         {
                             "name": "items",
-                            "description": "瀛愯彍鍗曠粍",
+                            "description": "子菜单组",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -283,11 +283,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "CM_SimpleMenu",
-                    "description": "绠�鍗曠殑鑿滃崟",
+                    "description": "简单的菜单",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -303,7 +303,7 @@
                         },
                         {
                             "name": "caption",
-                            "description": "鏍囬",
+                            "description": "标题",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -319,7 +319,7 @@
                         },
                         {
                             "name": "icon",
-                            "description": "鍥炬爣",
+                            "description": "图标",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -343,7 +343,7 @@
                         },
                         {
                             "name": "description",
-                            "description": "璇存槑",
+                            "description": "说明",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -355,7 +355,7 @@
                         },
                         {
                             "name": "url",
-                            "description": "閾炬帴",
+                            "description": "链接",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -374,11 +374,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "CM_SpanContent",
-                    "description": "Span鍐呭",
+                    "description": "Span内容",
                     "fields": [
                         {
                             "name": "content",
-                            "description": "鍐呭",
+                            "description": "内容",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -394,7 +394,7 @@
                         },
                         {
                             "name": "shape",
-                            "description": "鏍峰紡",
+                            "description": "样式",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -410,7 +410,7 @@
                         },
                         {
                             "name": "inforLevel",
-                            "description": "淇℃伅绾у埆",
+                            "description": "信息级别",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -433,20 +433,20 @@
                 {
                     "kind": "ENUM",
                     "name": "CM_SpanShape",
-                    "description": "Span椋庢牸",
+                    "description": "Span风格",
                     "fields": null,
                     "inputFields": null,
                     "interfaces": null,
                     "enumValues": [
                         {
                             "name": "RECTANGLE",
-                            "description": "鐭╁舰",
+                            "description": "矩形",
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
                             "name": "ECLIPSE",
-                            "description": "妞渾",
+                            "description": "椭圆",
                             "isDeprecated": false,
                             "deprecationReason": null
                         }
@@ -466,11 +466,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_Architecture_Category",
-                    "description": "寤虹瓚鍒嗙被(鍔熻兘鍖哄ぇ绫�)",
+                    "description": "建筑分类(功能区大类)",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -486,7 +486,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -509,11 +509,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_Block",
-                    "description": "鍦板潡",
+                    "description": "地块",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -529,7 +529,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -545,7 +545,7 @@
                         },
                         {
                             "name": "tags",
-                            "description": "鏍囩",
+                            "description": "标签",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -561,7 +561,7 @@
                         },
                         {
                             "name": "parent",
-                            "description": "鎵�灞炲洯鍖�",
+                            "description": "所属园区",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -573,7 +573,7 @@
                         },
                         {
                             "name": "area",
-                            "description": "闈㈢Н",
+                            "description": "面积",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -585,7 +585,7 @@
                         },
                         {
                             "name": "architectureCount",
-                            "description": "寤虹瓚鏁伴噺,鍖呮嫭妤煎畤鍜屽満鎵�",
+                            "description": "建筑数量,包括楼宇和场所",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -601,7 +601,7 @@
                         },
                         {
                             "name": "buildings",
-                            "description": "妤煎畤",
+                            "description": "楼宇",
                             "args": [
                                 {
                                     "name": "exp",
@@ -632,7 +632,7 @@
                         },
                         {
                             "name": "buildingCount",
-                            "description": "妤煎畤鏁伴噺",
+                            "description": "楼宇数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -659,7 +659,7 @@
                         },
                         {
                             "name": "places",
-                            "description": "鍦烘墍",
+                            "description": "场所",
                             "args": [
                                 {
                                     "name": "exp",
@@ -690,7 +690,7 @@
                         },
                         {
                             "name": "placeCount",
-                            "description": "鍦烘墍鏁伴噺",
+                            "description": "场所数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -730,11 +730,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_Building",
-                    "description": "妤煎畤",
+                    "description": "楼宇",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -750,7 +750,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -766,7 +766,7 @@
                         },
                         {
                             "name": "tags",
-                            "description": "鏍囩",
+                            "description": "标签",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -782,7 +782,7 @@
                         },
                         {
                             "name": "parent",
-                            "description": "鎵�灞炲湴鍧�",
+                            "description": "所属地块",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -794,7 +794,7 @@
                         },
                         {
                             "name": "height",
-                            "description": "寤虹瓚楂樺害",
+                            "description": "建筑高度",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -806,7 +806,7 @@
                         },
                         {
                             "name": "underHeight",
-                            "description": "鍦颁笅楂樺害",
+                            "description": "地下高度",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -818,7 +818,7 @@
                         },
                         {
                             "name": "area",
-                            "description": "闈㈢Н",
+                            "description": "面积",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -830,7 +830,7 @@
                         },
                         {
                             "name": "categorys",
-                            "description": "鍒嗙被",
+                            "description": "分类",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -850,7 +850,7 @@
                         },
                         {
                             "name": "floors",
-                            "description": "妤煎眰",
+                            "description": "楼层",
                             "args": [
                                 {
                                     "name": "exp",
@@ -881,7 +881,7 @@
                         },
                         {
                             "name": "floorsPaging",
-                            "description": "妤煎眰鍒嗛〉",
+                            "description": "楼层分页",
                             "args": [
                                 {
                                     "name": "exp",
@@ -940,7 +940,7 @@
                         },
                         {
                             "name": "floorCount",
-                            "description": "妤煎眰鏁�",
+                            "description": "楼层数",
                             "args": [
                                 {
                                     "name": "exp",
@@ -967,7 +967,7 @@
                         },
                         {
                             "name": "funAreasCount",
-                            "description": "妤煎畤鎵�鏈夊姛鑳藉尯鏁伴噺",
+                            "description": "楼宇所有功能区数量",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -992,11 +992,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_CheckedAlarm",
-                    "description": "宸插鏍歌鎶�",
+                    "description": "已复核警报",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "璀︽姤娴佹按鍙�",
+                            "description": "警报流水号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1012,7 +1012,7 @@
                         },
                         {
                             "name": "url",
-                            "description": "璀︽姤浜嬩欢鐨勯摼鎺ュ湴鍧�",
+                            "description": "警报事件的链接地址",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1028,7 +1028,7 @@
                         },
                         {
                             "name": "title",
-                            "description": "璀︽姤浜嬩欢",
+                            "description": "警报事件",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1044,7 +1044,7 @@
                         },
                         {
                             "name": "checkedAlarmTime",
-                            "description": "鎶ヨ鏃堕棿",
+                            "description": "报警时间",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1060,7 +1060,7 @@
                         },
                         {
                             "name": "deviceId",
-                            "description": "鏁呴殰璁惧缂栧彿",
+                            "description": "故障设备编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1076,7 +1076,7 @@
                         },
                         {
                             "name": "deviceName",
-                            "description": "鏁呴殰璁惧鍚嶇О",
+                            "description": "故障设备名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1092,7 +1092,7 @@
                         },
                         {
                             "name": "devieceFacturerName",
-                            "description": "璁惧鍘傚鍚嶇О",
+                            "description": "设备厂家名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1108,7 +1108,7 @@
                         },
                         {
                             "name": "deviceCategory",
-                            "description": "璁惧鍒嗙被",
+                            "description": "设备分类",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1124,7 +1124,7 @@
                         },
                         {
                             "name": "message",
-                            "description": "璀︽姤娑堟伅",
+                            "description": "警报消息",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1136,7 +1136,7 @@
                         },
                         {
                             "name": "alarmLevel",
-                            "description": "璀︽姤绾у埆",
+                            "description": "警报级别",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1152,7 +1152,7 @@
                         },
                         {
                             "name": "subsystemName",
-                            "description": "璁惧瀛愮郴缁�",
+                            "description": "设备子系统",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1164,7 +1164,7 @@
                         },
                         {
                             "name": "checkedAccountId",
-                            "description": "澶嶆牳浜虹紪鍙�",
+                            "description": "复核人编号",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1176,7 +1176,7 @@
                         },
                         {
                             "name": "misinformationMessage",
-                            "description": "璁惧璇姤鍘熷洜",
+                            "description": "设备误报原因",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1188,7 +1188,7 @@
                         },
                         {
                             "name": "reviewTime",
-                            "description": "澶嶆牳鏃堕棿/澶勭悊鏃堕棿",
+                            "description": "复核时间/处理时间",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1200,7 +1200,7 @@
                         },
                         {
                             "name": "regionName",
-                            "description": "璁惧鍦扮偣",
+                            "description": "设备地点",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1216,7 +1216,7 @@
                         },
                         {
                             "name": "alarmType",
-                            "description": "璀︽姤鍒嗙被",
+                            "description": "警报分类",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1228,7 +1228,7 @@
                         },
                         {
                             "name": "report",
-                            "description": "澶嶆牳浜烘姤鍛�(鏁呴殰澶勭悊)",
+                            "description": "复核人报告(故障处理)",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1240,7 +1240,7 @@
                         },
                         {
                             "name": "reviewType",
-                            "description": "澶嶆牳绫诲瀷",
+                            "description": "复核类型",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1252,7 +1252,7 @@
                         },
                         {
                             "name": "similarAlarmTotal",
-                            "description": "杩囧線鍚岀被浜嬩欢鍙戠敓娆℃暟",
+                            "description": "过往同类事件发生次数",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1281,11 +1281,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_Floor",
-                    "description": "妤煎眰",
+                    "description": "楼层",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1301,7 +1301,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1317,7 +1317,7 @@
                         },
                         {
                             "name": "tags",
-                            "description": "鏍囩",
+                            "description": "标签",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -1333,7 +1333,7 @@
                         },
                         {
                             "name": "parent",
-                            "description": "鎵�灞炴ゼ瀹�",
+                            "description": "所属楼宇",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -1345,7 +1345,7 @@
                         },
                         {
                             "name": "height",
-                            "description": "灞傞珮",
+                            "description": "层高",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1361,7 +1361,7 @@
                         },
                         {
                             "name": "number",
-                            "description": "妤煎眰鍙�",
+                            "description": "楼层号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1377,7 +1377,7 @@
                         },
                         {
                             "name": "functionalAreas",
-                            "description": "鍖哄煙鍐呭姛鑳藉尯",
+                            "description": "区域内功能区",
                             "args": [
                                 {
                                     "name": "exp",
@@ -1436,7 +1436,7 @@
                         },
                         {
                             "name": "functionalAreaCount",
-                            "description": "鍔熻兘鍖烘暟閲�",
+                            "description": "功能区数量",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1461,11 +1461,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_FunctionalArea",
-                    "description": "鍔熻兘鍖�",
+                    "description": "功能区",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1481,7 +1481,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1497,7 +1497,7 @@
                         },
                         {
                             "name": "tags",
-                            "description": "鏍囩",
+                            "description": "标签",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -1513,7 +1513,7 @@
                         },
                         {
                             "name": "category",
-                            "description": "鍒嗙被",
+                            "description": "分类",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -1532,11 +1532,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_FunctionalArea_Category",
-                    "description": "鍔熻兘鍖哄垎绫�",
+                    "description": "功能区分类",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1552,7 +1552,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1568,7 +1568,7 @@
                         },
                         {
                             "name": "description",
-                            "description": "璇存槑",
+                            "description": "说明",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1587,11 +1587,11 @@
                 {
                     "kind": "INTERFACE",
                     "name": "IBMS_IAlarm",
-                    "description": "璀︽姤",
+                    "description": "警报",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "璀︽姤娴佹按鍙�",
+                            "description": "警报流水号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1607,7 +1607,7 @@
                         },
                         {
                             "name": "url",
-                            "description": "璀︽姤浜嬩欢鐨勯摼鎺ュ湴鍧�",
+                            "description": "警报事件的链接地址",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1623,7 +1623,7 @@
                         },
                         {
                             "name": "title",
-                            "description": "浜嬩欢鍚嶇О",
+                            "description": "事件名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1639,7 +1639,7 @@
                         },
                         {
                             "name": "deviceId",
-                            "description": "璁惧缂栧彿",
+                            "description": "设备编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1655,7 +1655,7 @@
                         },
                         {
                             "name": "deviceName",
-                            "description": "璁惧鍚嶇О",
+                            "description": "设备名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1671,7 +1671,7 @@
                         },
                         {
                             "name": "devieceFacturerName",
-                            "description": "璁惧鍘傚鍚嶇О",
+                            "description": "设备厂家名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1687,7 +1687,7 @@
                         },
                         {
                             "name": "deviceCategory",
-                            "description": "璁惧鍒嗙被",
+                            "description": "设备分类",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1703,7 +1703,7 @@
                         },
                         {
                             "name": "message",
-                            "description": "璀︽姤娑堟伅",
+                            "description": "警报消息",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1715,7 +1715,7 @@
                         },
                         {
                             "name": "alarmLevel",
-                            "description": "璀︽姤绾у埆",
+                            "description": "警报级别",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1731,7 +1731,7 @@
                         },
                         {
                             "name": "subsystemName",
-                            "description": "璁惧瀛愮郴缁�",
+                            "description": "设备子系统",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1743,7 +1743,7 @@
                         },
                         {
                             "name": "regionName",
-                            "description": "璁惧鍦扮偣",
+                            "description": "设备地点",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1759,7 +1759,7 @@
                         },
                         {
                             "name": "alarmType",
-                            "description": "璀︽姤鍒嗙被",
+                            "description": "警报分类",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1789,11 +1789,11 @@
                 {
                     "kind": "INTERFACE",
                     "name": "IBMS_IRegion",
-                    "description": "鍖哄煙",
+                    "description": "区域",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1809,7 +1809,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -1825,7 +1825,7 @@
                         },
                         {
                             "name": "tags",
-                            "description": "鏍囩",
+                            "description": "标签",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -1841,7 +1841,7 @@
                         },
                         {
                             "name": "parent",
-                            "description": "涓婄骇鍖哄煙",
+                            "description": "上级区域",
                             "args": [],
                             "type": {
                                 "kind": "INTERFACE",
@@ -1886,7 +1886,7 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_Page_Checked",
-                    "description": "鏉′欢鏌ヨ宸插鏍歌鎶ユ暟閲忓強鏁版嵁",
+                    "description": "条件查询已复核警报数量及数据",
                     "fields": [
                         {
                             "name": "count",
@@ -1922,7 +1922,7 @@
                         },
                         {
                             "name": "checkedCount",
-                            "description": "鎬绘暟閲�",
+                            "description": "总数量",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1941,7 +1941,7 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_Page_Unchecked",
-                    "description": "鏉′欢鏌ヨ鏈鏍歌鎶ユ暟閲忓強鏁版嵁",
+                    "description": "条件查询未复核警报数量及数据",
                     "fields": [
                         {
                             "name": "count",
@@ -1977,7 +1977,7 @@
                         },
                         {
                             "name": "unCheckedCount",
-                            "description": "鎬绘暟閲�",
+                            "description": "总数量",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -1996,11 +1996,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_Park",
-                    "description": "鍥尯",
+                    "description": "园区",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2016,7 +2016,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2032,7 +2032,7 @@
                         },
                         {
                             "name": "tags",
-                            "description": "鏍囩",
+                            "description": "标签",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -2048,7 +2048,7 @@
                         },
                         {
                             "name": "parent",
-                            "description": "涓婄骇鍖哄煙 (鍥尯娌℃湁涓婄骇)",
+                            "description": "上级区域 (园区没有上级)",
                             "args": [],
                             "type": {
                                 "kind": "INTERFACE",
@@ -2060,7 +2060,7 @@
                         },
                         {
                             "name": "area",
-                            "description": "闈㈢Н",
+                            "description": "面积",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2072,7 +2072,7 @@
                         },
                         {
                             "name": "introduction",
-                            "description": "绠�浠�",
+                            "description": "简介",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2084,7 +2084,7 @@
                         },
                         {
                             "name": "image",
-                            "description": "鍥剧墖",
+                            "description": "图片",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -2100,7 +2100,7 @@
                         },
                         {
                             "name": "blocks",
-                            "description": "鍦板潡",
+                            "description": "地块",
                             "args": [
                                 {
                                     "name": "exp",
@@ -2131,7 +2131,7 @@
                         },
                         {
                             "name": "blocksPaging",
-                            "description": "鍦板潡鍒嗛〉           pageSize: 鍗曢〉闈㈣褰曟暟       pageIndex:椤电爜,棣栭〉涓�0  sorting:鎺掑簭,鏍规嵁\"鍚嶇О\",\"鎵�灞炲洯鍖�\"鎴�\"鍦板潡闈㈢Н\"杩涜鎺掑簭",
+                            "description": "地块分页           pageSize: 单页面记录数       pageIndex:页码,首页为0  sorting:排序,根据\"名称\",\"所属园区\"或\"地块面积\"进行排序",
                             "args": [
                                 {
                                     "name": "exp",
@@ -2204,7 +2204,7 @@
                         },
                         {
                             "name": "blockCount",
-                            "description": "鍦板潡鏁伴噺",
+                            "description": "地块数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -2244,11 +2244,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_Place",
-                    "description": "鍦伴潰鍦烘墍",
+                    "description": "地面场所",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2264,7 +2264,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2280,7 +2280,7 @@
                         },
                         {
                             "name": "tags",
-                            "description": "鏍囩",
+                            "description": "标签",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -2296,7 +2296,7 @@
                         },
                         {
                             "name": "parent",
-                            "description": "鎵�灞炲湴鍧�",
+                            "description": "所属地块",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -2308,7 +2308,7 @@
                         },
                         {
                             "name": "area",
-                            "description": "闈㈢Н",
+                            "description": "面积",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2320,7 +2320,7 @@
                         },
                         {
                             "name": "categorys",
-                            "description": "鍒嗙被",
+                            "description": "分类",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2340,7 +2340,7 @@
                         },
                         {
                             "name": "placeFunAreas",
-                            "description": "鍦烘墍鍔熻兘鍖�",
+                            "description": "场所功能区",
                             "args": [
                                 {
                                     "name": "exp",
@@ -2399,7 +2399,7 @@
                         },
                         {
                             "name": "placeFunAreaCount",
-                            "description": "鍦烘墍鍔熻兘鍖烘暟閲�",
+                            "description": "场所功能区数量",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2428,7 +2428,7 @@
                     "fields": [
                         {
                             "name": "alarmTotal",
-                            "description": "璀︽姤鎬绘暟",
+                            "description": "警报总数",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2440,7 +2440,7 @@
                         },
                         {
                             "name": "misinformationTotal",
-                            "description": "璇姤娆℃暟",
+                            "description": "误报次数",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2452,7 +2452,7 @@
                         },
                         {
                             "name": "malfunctionTotal",
-                            "description": "鏁呴殰娆℃暟",
+                            "description": "故障次数",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2471,11 +2471,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "IBMS_UnCheckedAlarm",
-                    "description": "鏈鏍歌鎶�",
+                    "description": "未复核警报",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "璀︽姤娴佹按鍙�",
+                            "description": "警报流水号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2491,7 +2491,7 @@
                         },
                         {
                             "name": "url",
-                            "description": "璀︽姤浜嬩欢鐨勯摼鎺ュ湴鍧�",
+                            "description": "警报事件的链接地址",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2507,7 +2507,7 @@
                         },
                         {
                             "name": "title",
-                            "description": "璀︽姤浜嬩欢",
+                            "description": "警报事件",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2523,7 +2523,7 @@
                         },
                         {
                             "name": "unCheckedAlarmTime",
-                            "description": "鎶ヨ鏃堕棿",
+                            "description": "报警时间",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2535,7 +2535,7 @@
                         },
                         {
                             "name": "deviceId",
-                            "description": "鏁呴殰璁惧缂栧彿",
+                            "description": "故障设备编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2551,7 +2551,7 @@
                         },
                         {
                             "name": "deviceName",
-                            "description": "鏁呴殰璁惧鍚嶇О",
+                            "description": "故障设备名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2567,7 +2567,7 @@
                         },
                         {
                             "name": "devieceFacturerName",
-                            "description": "璁惧鍘傚鍚嶇О",
+                            "description": "设备厂家名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2583,7 +2583,7 @@
                         },
                         {
                             "name": "deviceCategory",
-                            "description": "璁惧鍒嗙被",
+                            "description": "设备分类",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2599,7 +2599,7 @@
                         },
                         {
                             "name": "message",
-                            "description": "鎶ヨ鍘熷洜",
+                            "description": "报警原因",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2611,7 +2611,7 @@
                         },
                         {
                             "name": "alarmLevel",
-                            "description": "璀︽姤绾у埆",
+                            "description": "警报级别",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2627,7 +2627,7 @@
                         },
                         {
                             "name": "subsystemName",
-                            "description": "璁惧瀛愮郴缁�",
+                            "description": "设备子系统",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2639,7 +2639,7 @@
                         },
                         {
                             "name": "regionName",
-                            "description": "璁惧鍦扮偣",
+                            "description": "设备地点",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2655,7 +2655,7 @@
                         },
                         {
                             "name": "alarmType",
-                            "description": "璀︽姤鍒嗙被",
+                            "description": "警报分类",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -2667,7 +2667,7 @@
                         },
                         {
                             "name": "similarAlarmTotal",
-                            "description": "杩囧線鍚岀被浜嬩欢鍙戠敓娆℃暟",
+                            "description": "过往同类事件发生次数",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2706,7 +2706,7 @@
                 {
                     "kind": "OBJECT",
                     "name": "MapEarnt",
-                    "description": "涓汉璐﹀彿",
+                    "description": "个人账号",
                     "fields": [
                         {
                             "name": "code",
@@ -2741,11 +2741,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "Mutation",
-                    "description": "鏇存柊",
+                    "description": "更新",
                     "fields": [
                         {
                             "name": "ua_login",
-                            "description": "鐧诲綍",
+                            "description": "登录",
                             "args": [
                                 {
                                     "name": "domain",
@@ -2800,7 +2800,7 @@
                         },
                         {
                             "name": "ua_logout",
-                            "description": "娉ㄩ攢鐧诲綍",
+                            "description": "注销登录",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -2816,7 +2816,7 @@
                         },
                         {
                             "name": "ua_resetMyDisplayName",
-                            "description": "閲嶇疆鎴戠殑鏄剧ず鍚嶇О",
+                            "description": "重置我的显示名称",
                             "args": [
                                 {
                                     "name": "displayName",
@@ -2843,7 +2843,7 @@
                         },
                         {
                             "name": "ua_resetMyPassword",
-                            "description": "閲嶇疆鎴戠殑瀵嗙爜",
+                            "description": "重置我的密码",
                             "args": [
                                 {
                                     "name": "password",
@@ -2884,7 +2884,7 @@
                         },
                         {
                             "name": "ua_resetPasswordModify",
-                            "description": "寮哄埗淇敼",
+                            "description": "强制修改",
                             "args": [
                                 {
                                     "name": "id",
@@ -2925,7 +2925,7 @@
                         },
                         {
                             "name": "ua_buildTableAll",
-                            "description": "閲嶅缓鍏ㄩ儴琛�",
+                            "description": "重建全部表",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -2937,7 +2937,7 @@
                         },
                         {
                             "name": "ibms_alarm_addAlarm",
-                            "description": "娣诲姞璀︽姤     alarmId:璀︽姤缂栧彿   url:璀︽姤浜嬩欢鐨勯摼鎺ュ湴鍧�    title: alarmStamptime:鎶ヨ鏃堕棿鎴�   deviceId:璁惧缂栧彿   deviceName:璁惧鍚嶇О \ndevieceFacturerName:璁惧鍘傚鍚嶇О   deviceCategory:璁惧鍒嗙被   functionalId:璁惧鎵�鍦ㄥ姛鑳藉尯缂栧彿\nmessage:璀︽姤娑堟伅   alarmLevel:璀︽姤绾у埆   accountId:鍙戣捣璀︽姤鐨勭敤鎴风紪鍙�",
+                            "description": "添加警报     alarmId:警报编号   url:警报事件的链接地址    title: alarmStamptime:报警时间戳   deviceId:设备编号   deviceName:设备名称 \ndevieceFacturerName:设备厂家名称   deviceCategory:设备分类   functionalId:设备所在功能区编号\nmessage:警报消息   alarmLevel:警报级别   accountId:发起警报的用户编号",
                             "args": [
                                 {
                                     "name": "alarmId",
@@ -3118,7 +3118,7 @@
                         },
                         {
                             "name": "ibms_alarm_reviewAlarm",
-                            "description": "璁惧璇姤     alarmId:璀︽姤缂栧彿    misinformationMessage:璇姤娑堟伅",
+                            "description": "设备误报     alarmId:警报编号    misinformationMessage:误报消息",
                             "args": [
                                 {
                                     "name": "alarmId",
@@ -3159,7 +3159,7 @@
                         },
                         {
                             "name": "ibms_alarm_siteTreatment",
-                            "description": "璁惧鏁呴殰鐜板満澶勭悊      alarmId:璀︽姤缂栧彿    misinformationMessage:鏁呴殰澶勭悊",
+                            "description": "设备故障现场处理      alarmId:警报编号    misinformationMessage:故障处理",
                             "args": [
                                 {
                                     "name": "alarmId",
@@ -3200,7 +3200,7 @@
                         },
                         {
                             "name": "ibms_alarm_resetAlarmLevel",
-                            "description": "閲嶇疆璀︽姤绾у埆     alarmId:璀︽姤缂栧彿    alarmLevel:璀︽姤绾у埆",
+                            "description": "重置警报级别     alarmId:警报编号    alarmLevel:警报级别",
                             "args": [
                                 {
                                     "name": "alarmId",
@@ -3241,7 +3241,7 @@
                         },
                         {
                             "name": "ibms_alarm_addSubsystemAlarm",
-                            "description": "娣诲姞瀛愮郴缁熻Е鍙戣鎶�    alarmId:璀︽姤缂栧彿   url:璀︽姤浜嬩欢鐨勯摼鎺ュ湴鍧�    title: alarmStamptime:鎶ヨ鏃堕棿鎴�   deviceId:璁惧缂栧彿   deviceName:璁惧鍚嶇О \ndevieceFacturerName:璁惧鍘傚鍚嶇О   deviceCategory:璁惧鍒嗙被   functionalId:璁惧鎵�鍦ㄥ姛鑳藉尯缂栧彿\nmessage:璀︽姤娑堟伅   alarmLevel:璀︽姤绾у埆 ",
+                            "description": "添加子系统触发警报    alarmId:警报编号   url:警报事件的链接地址    title: alarmStamptime:报警时间戳   deviceId:设备编号   deviceName:设备名称 \ndevieceFacturerName:设备厂家名称   deviceCategory:设备分类   functionalId:设备所在功能区编号\nmessage:警报消息   alarmLevel:警报级别 ",
                             "args": [
                                 {
                                     "name": "alarmId",
@@ -3408,7 +3408,7 @@
                         },
                         {
                             "name": "ibms_region_definePark",
-                            "description": "瀹氫箟鍥尯   parkName:鍥尯鍚嶇О  parkArea:鍥尯闈㈢Н  parkTags:鍥尯鏍囩 ",
+                            "description": "定义园区   parkName:园区名称  parkArea:园区面积  parkTags:园区标签 ",
                             "args": [
                                 {
                                     "name": "parkId",
@@ -3469,7 +3469,7 @@
                         },
                         {
                             "name": "ibms_region_resetParkName",
-                            "description": "閲嶇疆鍥尯鍚嶇О   parkId:鍥尯缂栧彿   parkName:鍥尯鍚嶇О",
+                            "description": "重置园区名称   parkId:园区编号   parkName:园区名称",
                             "args": [
                                 {
                                     "name": "parkId",
@@ -3510,7 +3510,7 @@
                         },
                         {
                             "name": "ibms_region_resetParkArea",
-                            "description": "閲嶇疆鍥尯闈㈢Н   parkId:鍥尯缂栧彿   parkArea:鍥尯闈㈢Н",
+                            "description": "重置园区面积   parkId:园区编号   parkArea:园区面积",
                             "args": [
                                 {
                                     "name": "parkId",
@@ -3547,7 +3547,7 @@
                         },
                         {
                             "name": "ibms_region_resetParkIntroduction",
-                            "description": "閲嶇疆鍥尯绠�浠�   parkId:鍥尯缂栧彿   introduction:鍥尯绠�浠�",
+                            "description": "重置园区简介   parkId:园区编号   introduction:园区简介",
                             "args": [
                                 {
                                     "name": "parkId",
@@ -3588,7 +3588,7 @@
                         },
                         {
                             "name": "ibms_region_resetParkPicture",
-                            "description": "閲嶇疆鍥尯鍥剧墖    parkId:鍥尯缂栧彿   parkPicturePath锛氬洯鍖哄浘鐗囪矾寰�",
+                            "description": "重置园区图片    parkId:园区编号   parkPicturePath：园区图片路径",
                             "args": [
                                 {
                                     "name": "parkId",
@@ -3625,7 +3625,7 @@
                         },
                         {
                             "name": "ibms_region_addParkTag",
-                            "description": "娣诲姞鍥尯鏍囩    parkId:鍥尯缂栧彿   parkTag:鍥尯鏍囩",
+                            "description": "添加园区标签    parkId:园区编号   parkTag:园区标签",
                             "args": [
                                 {
                                     "name": "parkId",
@@ -3662,7 +3662,7 @@
                         },
                         {
                             "name": "ibms_region_removeParkTag",
-                            "description": "绉婚櫎鍥尯鏍囩    parkId:鍥尯缂栧彿   parkTag:鍥尯鏍囩",
+                            "description": "移除园区标签    parkId:园区编号   parkTag:园区标签",
                             "args": [
                                 {
                                     "name": "parkId",
@@ -3699,7 +3699,7 @@
                         },
                         {
                             "name": "ibms_region_undefinePark",
-                            "description": "鍙栨秷鍥尯瀹氫箟    parkId:鍥尯缂栧彿",
+                            "description": "取消园区定义    parkId:园区编号",
                             "args": [
                                 {
                                     "name": "parkId",
@@ -3726,7 +3726,7 @@
                         },
                         {
                             "name": "ibms_region_defineBlock",
-                            "description": "瀹氫箟鍦板潡   blockName:鍦板潡鍚嶇О  blockParentId:鎵�灞炲洯鍖虹紪鍙�  blockArea:鍦板潡闈㈢Н  blockTags:鍦板潡鏍囩",
+                            "description": "定义地块   blockName:地块名称  blockParentId:所属园区编号  blockArea:地块面积  blockTags:地块标签",
                             "args": [
                                 {
                                     "name": "blockId",
@@ -3805,7 +3805,7 @@
                         },
                         {
                             "name": "ibms_region_resetBlockName",
-                            "description": "閲嶇疆鍦板潡鍚嶇О   blockId:鍦板潡缂栧彿   blockName:鍦板潡鍚嶇О   ",
+                            "description": "重置地块名称   blockId:地块编号   blockName:地块名称   ",
                             "args": [
                                 {
                                     "name": "blockId",
@@ -3846,7 +3846,7 @@
                         },
                         {
                             "name": "ibms_region_resetBlockParent",
-                            "description": "閲嶇疆鍦板潡鎵�灞炲洯鍖�    blockId:鍦板潡缂栧彿    blockParentId:鍥尯缂栧彿",
+                            "description": "重置地块所属园区    blockId:地块编号    blockParentId:园区编号",
                             "args": [
                                 {
                                     "name": "blockId",
@@ -3887,7 +3887,7 @@
                         },
                         {
                             "name": "ibms_region_resetBlockArea",
-                            "description": "閲嶇疆鍦板潡闈㈢Н    blockId:鍦板潡缂栧彿    blockArea:鍦板潡闈㈢Н",
+                            "description": "重置地块面积    blockId:地块编号    blockArea:地块面积",
                             "args": [
                                 {
                                     "name": "blockId",
@@ -3928,7 +3928,7 @@
                         },
                         {
                             "name": "ibms_region_addBlockTag",
-                            "description": "娣诲姞鍦板潡鏍囩    blockId:鍦板潡缂栧彿   blockTag:鍦板潡鏍囩",
+                            "description": "添加地块标签    blockId:地块编号   blockTag:地块标签",
                             "args": [
                                 {
                                     "name": "blockId",
@@ -3965,7 +3965,7 @@
                         },
                         {
                             "name": "ibms_region_removeBlockTag",
-                            "description": "绉婚櫎鍦板潡鏍囩     blockId:鍦板潡缂栧彿   blockTag:鍦板潡鏍囩",
+                            "description": "移除地块标签     blockId:地块编号   blockTag:地块标签",
                             "args": [
                                 {
                                     "name": "blockId",
@@ -4002,7 +4002,7 @@
                         },
                         {
                             "name": "ibms_region_undefineBlock",
-                            "description": "鍙栨秷鍦板潡瀹氫箟    blockId:鍦板潡缂栧彿",
+                            "description": "取消地块定义    blockId:地块编号",
                             "args": [
                                 {
                                     "name": "blockId",
@@ -4029,7 +4029,7 @@
                         },
                         {
                             "name": "ibms_region_definePlace",
-                            "description": "瀹氫箟鍦烘墍   placeName:鍦烘墍鍚嶇О  placeParentId:鎵�灞炲湴鍧楃紪鍙�  placeArea:鍦烘墍闈㈢Н  placeTags:鍦烘墍鏍囩  placeCategoryIds:鍦烘墍鍒嗙被缂栧彿",
+                            "description": "定义场所   placeName:场所名称  placeParentId:所属地块编号  placeArea:场所面积  placeTags:场所标签  placeCategoryIds:场所分类编号",
                             "args": [
                                 {
                                     "name": "placeId",
@@ -4126,7 +4126,7 @@
                         },
                         {
                             "name": "ibms_region_resetPlaceName",
-                            "description": "閲嶇疆鍦烘墍鍚嶇О   placeId:鍦烘墍缂栧彿    placeName:鍦烘墍鍚嶇О",
+                            "description": "重置场所名称   placeId:场所编号    placeName:场所名称",
                             "args": [
                                 {
                                     "name": "placeId",
@@ -4167,7 +4167,7 @@
                         },
                         {
                             "name": "ibms_region_resetPlaceParent",
-                            "description": "閲嶇疆鍦烘墍鎵�灞炲湴鍧�     placeId:鍦烘墍缂栧彿    placeParentId:鎵�灞炲湴鍧楃紪鍙�",
+                            "description": "重置场所所属地块     placeId:场所编号    placeParentId:所属地块编号",
                             "args": [
                                 {
                                     "name": "placeId",
@@ -4208,7 +4208,7 @@
                         },
                         {
                             "name": "ibms_region_resetPlaceArea",
-                            "description": "閲嶇疆鍦烘墍闈㈢Н     placeId:鍦烘墍缂栧彿     placeArea:鍦烘墍闈㈢Н",
+                            "description": "重置场所面积     placeId:场所编号     placeArea:场所面积",
                             "args": [
                                 {
                                     "name": "placeId",
@@ -4249,7 +4249,7 @@
                         },
                         {
                             "name": "ibms_region_addPlaceCategory",
-                            "description": "娣诲姞鍦烘墍鍒嗙被     placeId:鍦烘墍缂栧彿     placeCategoryId: 鍦烘墍鍒嗙被缂栧彿",
+                            "description": "添加场所分类     placeId:场所编号     placeCategoryId: 场所分类编号",
                             "args": [
                                 {
                                     "name": "placeId",
@@ -4290,7 +4290,7 @@
                         },
                         {
                             "name": "ibms_region_removePlaceCategory",
-                            "description": "绉婚櫎鍦烘墍鍒嗙被     placeId:鍦烘墍缂栧彿     placeCategoryId锛氬満鎵�鍒嗙被缂栧彿",
+                            "description": "移除场所分类     placeId:场所编号     placeCategoryId：场所分类编号",
                             "args": [
                                 {
                                     "name": "placeId",
@@ -4331,7 +4331,7 @@
                         },
                         {
                             "name": "ibms_region_addPlaceTag",
-                            "description": "娣诲姞鍦烘墍鏍囩    placeId:鍦烘墍缂栧彿     placeTag:鍦烘墍鏍囩",
+                            "description": "添加场所标签    placeId:场所编号     placeTag:场所标签",
                             "args": [
                                 {
                                     "name": "placeId",
@@ -4372,7 +4372,7 @@
                         },
                         {
                             "name": "ibms_region_removePlaceTag",
-                            "description": "绉婚櫎鍦烘墍鏍囩     placeId:鍦烘墍缂栧彿     placeTag:鍦烘墍鏍囩",
+                            "description": "移除场所标签     placeId:场所编号     placeTag:场所标签",
                             "args": [
                                 {
                                     "name": "placeId",
@@ -4413,7 +4413,7 @@
                         },
                         {
                             "name": "ibms_region_undefinePlace",
-                            "description": "鍙栨秷骞垮満瀹氫箟    placeId:鍦烘墍缂栧彿",
+                            "description": "取消广场定义    placeId:场所编号",
                             "args": [
                                 {
                                     "name": "placeId",
@@ -4440,7 +4440,7 @@
                         },
                         {
                             "name": "ibms_region_defineBuilding",
-                            "description": "瀹氫箟妤煎畤   buildingName:妤煎畤鍚嶇О  buildingParentId:鎵�灞炲湴鍧楃紪鍙�  buildingHeight:鍦伴潰寤虹瓚楂樺害  buildingUnderHeight:鍦颁笅寤虹瓚楂樺害  buildingTags:寤虹瓚鏍囩  buildingCategoryIds:寤虹瓚鍒嗙被缂栧彿",
+                            "description": "定义楼宇   buildingName:楼宇名称  buildingParentId:所属地块编号  buildingHeight:地面建筑高度  buildingUnderHeight:地下建筑高度  buildingTags:建筑标签  buildingCategoryIds:建筑分类编号",
                             "args": [
                                 {
                                     "name": "buildingId",
@@ -4547,7 +4547,7 @@
                         },
                         {
                             "name": "ibms_region_resetBuildingName",
-                            "description": "閲嶇疆妤煎畤鍚嶇О   buildingId:妤煎畤缂栧彿    buildingName:妤煎畤鍚嶇О",
+                            "description": "重置楼宇名称   buildingId:楼宇编号    buildingName:楼宇名称",
                             "args": [
                                 {
                                     "name": "buildingId",
@@ -4588,7 +4588,7 @@
                         },
                         {
                             "name": "ibms_region_resetBuildingParent",
-                            "description": "閲嶇疆妤煎畤鎵�灞炲湴鍧�   buildingId:妤煎畤缂栧彿     buildingParentId:鎵�灞炲湴鍧楃紪鍙�",
+                            "description": "重置楼宇所属地块   buildingId:楼宇编号     buildingParentId:所属地块编号",
                             "args": [
                                 {
                                     "name": "buildingId",
@@ -4629,7 +4629,7 @@
                         },
                         {
                             "name": "ibms_region_resetBuildingHeight",
-                            "description": "閲嶇疆妤煎畤鍦伴潰楂樺害    buildingId:妤煎畤缂栧彿    buildingHeight:鍦伴潰寤虹瓚楂樺害",
+                            "description": "重置楼宇地面高度    buildingId:楼宇编号    buildingHeight:地面建筑高度",
                             "args": [
                                 {
                                     "name": "buildingId",
@@ -4670,7 +4670,7 @@
                         },
                         {
                             "name": "ibms_region_resetBuildingUnderHeight",
-                            "description": "閲嶇疆妤煎畤鍦颁笅楂樺害    buildingId:妤煎畤缂栧彿     buildingUnderHeight:妤煎畤鍦颁笅楂樺害",
+                            "description": "重置楼宇地下高度    buildingId:楼宇编号     buildingUnderHeight:楼宇地下高度",
                             "args": [
                                 {
                                     "name": "buildingId",
@@ -4711,7 +4711,7 @@
                         },
                         {
                             "name": "ibms_region_addBuildingCategory",
-                            "description": "娣诲姞妤煎畤鍒嗙被    buildingId:妤煎畤缂栧彿    buildingCategoryId:妤煎畤鍒嗙被缂栧彿",
+                            "description": "添加楼宇分类    buildingId:楼宇编号    buildingCategoryId:楼宇分类编号",
                             "args": [
                                 {
                                     "name": "buildingId",
@@ -4752,7 +4752,7 @@
                         },
                         {
                             "name": "ibms_region_removeBuildingCategory",
-                            "description": "绉婚櫎妤煎畤鍒嗙被    buildingId:妤煎畤缂栧彿    buildingCategoryId:妤煎畤鍒嗙被缂栧彿",
+                            "description": "移除楼宇分类    buildingId:楼宇编号    buildingCategoryId:楼宇分类编号",
                             "args": [
                                 {
                                     "name": "buildingId",
@@ -4793,7 +4793,7 @@
                         },
                         {
                             "name": "ibms_region_addBuildingTag",
-                            "description": "娣诲姞妤煎畤鏍囩     buildingId:妤煎畤缂栧彿    buildingTag锛氭ゼ瀹囨爣绛�",
+                            "description": "添加楼宇标签     buildingId:楼宇编号    buildingTag：楼宇标签",
                             "args": [
                                 {
                                     "name": "buildingId",
@@ -4830,7 +4830,7 @@
                         },
                         {
                             "name": "ibms_region_removeBuildingTag",
-                            "description": "绉婚櫎妤煎畤鏍囩     buildingId:妤煎畤缂栧彿    buildingTag锛氭ゼ瀹囨爣绛�",
+                            "description": "移除楼宇标签     buildingId:楼宇编号    buildingTag：楼宇标签",
                             "args": [
                                 {
                                     "name": "buildingId",
@@ -4867,7 +4867,7 @@
                         },
                         {
                             "name": "ibms_region_undefineBuilding",
-                            "description": "鍙栨秷妤煎畤瀹氫箟    buildingId:妤煎畤缂栧彿",
+                            "description": "取消楼宇定义    buildingId:楼宇编号",
                             "args": [
                                 {
                                     "name": "buildingId",
@@ -4894,7 +4894,7 @@
                         },
                         {
                             "name": "ibms_region_defineFloor",
-                            "description": "瀹氫箟妤煎眰   floorName:妤煎眰鍚嶇О  floorParentId:鎵�灞炴ゼ瀹囩紪鍙�  floorHeight:灞傞珮  floorNumber:妤煎眰鍙�  floorTags:妤煎眰鏍囩   categoryIds:鍔熻兘鍖哄垎绫荤紪鍙�",
+                            "description": "定义楼层   floorName:楼层名称  floorParentId:所属楼宇编号  floorHeight:层高  floorNumber:楼层号  floorTags:楼层标签   categoryIds:功能区分类编号",
                             "args": [
                                 {
                                     "name": "floorId",
@@ -4987,7 +4987,7 @@
                         },
                         {
                             "name": "ibms_region_resetFloorName",
-                            "description": "閲嶇疆妤煎眰鍚嶇О  floorId:妤煎眰缂栧彿    floorName:妤煎眰鍚嶇О",
+                            "description": "重置楼层名称  floorId:楼层编号    floorName:楼层名称",
                             "args": [
                                 {
                                     "name": "floorId",
@@ -5028,7 +5028,7 @@
                         },
                         {
                             "name": "ibms_region_resetFloorParent",
-                            "description": "閲嶇疆妤煎眰鎵�灞炴ゼ瀹�    floorId:妤煎眰缂栧彿    floorParentId:鎵�灞炴ゼ瀹囩紪鍙�",
+                            "description": "重置楼层所属楼宇    floorId:楼层编号    floorParentId:所属楼宇编号",
                             "args": [
                                 {
                                     "name": "floorId",
@@ -5069,7 +5069,7 @@
                         },
                         {
                             "name": "ibms_region_resetFloorHeight",
-                            "description": "閲嶇疆妤煎眰灞傞珮      floorId:妤煎眰缂栧彿      floorHeight:灞傞珮",
+                            "description": "重置楼层层高      floorId:楼层编号      floorHeight:层高",
                             "args": [
                                 {
                                     "name": "floorId",
@@ -5110,7 +5110,7 @@
                         },
                         {
                             "name": "ibms_region_resetFloorNumber",
-                            "description": "閲嶇疆妤煎眰鍙�         floorId:妤煎眰缂栧彿     floorCount:妤煎眰鍙�",
+                            "description": "重置楼层号         floorId:楼层编号     floorCount:楼层号",
                             "args": [
                                 {
                                     "name": "floorId",
@@ -5151,7 +5151,7 @@
                         },
                         {
                             "name": "ibms_region_addFloorTag",
-                            "description": "娣诲姞妤煎眰鏍囩     floorId:妤煎眰缂栧彿     floorTag:妤煎眰鏍囩",
+                            "description": "添加楼层标签     floorId:楼层编号     floorTag:楼层标签",
                             "args": [
                                 {
                                     "name": "floorId",
@@ -5188,7 +5188,7 @@
                         },
                         {
                             "name": "ibms_region_removeFloorTag",
-                            "description": "绉婚櫎妤煎眰鏍囩      floorId:妤煎眰缂栧彿     floorTag:妤煎眰鏍囩",
+                            "description": "移除楼层标签      floorId:楼层编号     floorTag:楼层标签",
                             "args": [
                                 {
                                     "name": "floorId",
@@ -5225,7 +5225,7 @@
                         },
                         {
                             "name": "ibms_region_addFuCategory",
-                            "description": "娣诲姞鍔熻兘鍖哄垎绫�",
+                            "description": "添加功能区分类",
                             "args": [
                                 {
                                     "name": "floorId",
@@ -5262,7 +5262,7 @@
                         },
                         {
                             "name": "ibms_region_removeFuCategory",
-                            "description": "绉婚櫎鍔熻兘鍖哄垎绫�",
+                            "description": "移除功能区分类",
                             "args": [
                                 {
                                     "name": "floorId",
@@ -5299,7 +5299,7 @@
                         },
                         {
                             "name": "ibms_region_undefineFloor",
-                            "description": "鍙栨秷妤煎眰瀹氫箟      floorId:妤煎眰缂栧彿",
+                            "description": "取消楼层定义      floorId:楼层编号",
                             "args": [
                                 {
                                     "name": "floorId",
@@ -5326,7 +5326,7 @@
                         },
                         {
                             "name": "ibms_region_defineFunctionalArea",
-                            "description": "瀹氫箟鍔熻兘鍖�     fuAreaId:鍔熻兘鍖虹紪鍙�   fuAreaName:鍔熻兘鍖哄悕绉�   fuAreaParentId:鎵�灞炴ゼ灞傜紪鍙�    categoryId:鍔熻兘鍖哄垎绫荤紪鍙�   fuAreaTags:鍔熻兘鍖烘爣绛�",
+                            "description": "定义功能区     fuAreaId:功能区编号   fuAreaName:功能区名称   fuAreaParentId:所属楼层编号    categoryId:功能区分类编号   fuAreaTags:功能区标签",
                             "args": [
                                 {
                                     "name": "fuAreaId",
@@ -5409,7 +5409,7 @@
                         },
                         {
                             "name": "ibms_region_undefineFunctionalArea",
-                            "description": "鍙栨秷瀹氫箟鍔熻兘鍖�   fuAreaId:鍔熻兘鍖虹紪鍙�",
+                            "description": "取消定义功能区   fuAreaId:功能区编号",
                             "args": [
                                 {
                                     "name": "fuAreaId",
@@ -5436,7 +5436,7 @@
                         },
                         {
                             "name": "ibms_region_resetFunAreaName",
-                            "description": "閲嶇疆鍔熻兘鍖哄悕绉�    fuAreaId:鍔熻兘鍖虹紪鍙�    fuAreaName:鍔熻兘鍖哄悕绉�",
+                            "description": "重置功能区名称    fuAreaId:功能区编号    fuAreaName:功能区名称",
                             "args": [
                                 {
                                     "name": "fuAreaId",
@@ -5477,7 +5477,7 @@
                         },
                         {
                             "name": "ibms_region_resetFunAreaParent",
-                            "description": "閲嶇疆鍔熻兘鍖烘墍灞炴ゼ灞�     fuAreaId:鍔熻兘鍖虹紪鍙�    fuAreaParentId:鎵�灞炴ゼ灞傜紪鍙�",
+                            "description": "重置功能区所属楼层     fuAreaId:功能区编号    fuAreaParentId:所属楼层编号",
                             "args": [
                                 {
                                     "name": "fuAreaId",
@@ -5518,7 +5518,7 @@
                         },
                         {
                             "name": "ibms_region_resetFunAreaCategory",
-                            "description": "閲嶇疆鍔熻兘鍖哄垎绫�    fuAreaId:鍔熻兘鍖虹紪鍙�    categoryId:鍔熻兘鍖哄垎绫荤紪鍙�",
+                            "description": "重置功能区分类    fuAreaId:功能区编号    categoryId:功能区分类编号",
                             "args": [
                                 {
                                     "name": "fuAreaId",
@@ -5559,7 +5559,7 @@
                         },
                         {
                             "name": "ibms_region_addFunAreaTag",
-                            "description": "娣诲姞鍔熻兘鍖烘爣绛�    fuAreaId:鍔熻兘鍖虹紪鍙�    fuAreaTag:鍔熻兘鍖烘爣绛�",
+                            "description": "添加功能区标签    fuAreaId:功能区编号    fuAreaTag:功能区标签",
                             "args": [
                                 {
                                     "name": "fuAreaId",
@@ -5600,7 +5600,7 @@
                         },
                         {
                             "name": "ibms_region_removeFunAreaTag",
-                            "description": "绉婚櫎鍔熻兘鍖烘爣绛�    fuAreaId:鍔熻兘鍖虹紪鍙�    fuAreaTag:鍔熻兘鍖烘爣绛�",
+                            "description": "移除功能区标签    fuAreaId:功能区编号    fuAreaTag:功能区标签",
                             "args": [
                                 {
                                     "name": "fuAreaId",
@@ -5641,7 +5641,7 @@
                         },
                         {
                             "name": "ua_renameOfOpsOrgan",
-                            "description": "閲嶇疆杩愯惀缁勭粐鍚嶇О",
+                            "description": "重置运营组织名称",
                             "args": [
                                 {
                                     "name": "name",
@@ -5668,7 +5668,7 @@
                         },
                         {
                             "name": "ua_resetShortNameOfOpsOrgan",
-                            "description": " name: 杩愯惀缁勭粐鍚嶇О\n閲嶇疆杩愯惀缁勭粐绠�绉�",
+                            "description": " name: 运营组织名称\n重置运营组织简称",
                             "args": [
                                 {
                                     "name": "name",
@@ -5695,7 +5695,7 @@
                         },
                         {
                             "name": "ua_resetShortNameAndresName",
-                            "description": " name: 杩愯惀绠�绉�\n聽閲嶇疆杩愯惀缁勭粐鍚嶇О鍜岃繍钀ョ粍缁囩畝绉奥犅犺繍钀ョ粍缁囩畝绉奥爏hortName聽聽聽杩愯惀缁勭粐鍚�",
+                            "description": " name: 运营简称\n 重置运营组织名称和运营组织简称  运营组织简称 shortName   运营组织名",
                             "args": [
                                 {
                                     "name": "shortName",
@@ -5728,7 +5728,7 @@
                         },
                         {
                             "name": "ua_estableshDepartment",
-                            "description": "璁剧珛閮ㄩ棬",
+                            "description": "设立部门",
                             "args": [
                                 {
                                     "name": "opsorganId",
@@ -5783,7 +5783,7 @@
                         },
                         {
                             "name": "ua_resetDepartmentName",
-                            "description": "opsorganId杩愯惀缂栧彿 deptName 閮ㄩ棬鍚嶇О parentName鐖剁骇閮ㄩ棬鍚嶇О\n鏇存敼閮ㄩ棬鍚嶇О",
+                            "description": "opsorganId运营编号 deptName 部门名称 parentName父级部门名称\n更改部门名称",
                             "args": [
                                 {
                                     "name": "opsorganId",
@@ -5838,7 +5838,7 @@
                         },
                         {
                             "name": "ua_adjuestDepartmentSuperior",
-                            "description": " opsorganId杩愯惀缂栧彿 deptName 閮ㄩ棬鍚嶇О newName: 閮ㄩ棬鏂板悕绉�\n璋冩暣閮ㄩ棬涓婄骇",
+                            "description": " opsorganId运营编号 deptName 部门名称 newName: 部门新名称\n调整部门上级",
                             "args": [
                                 {
                                     "name": "opsorganId",
@@ -5889,7 +5889,7 @@
                         },
                         {
                             "name": "ua_mergeDepartments",
-                            "description": " opsorganId杩愯惀缂栧彿 deptName 閮ㄩ棬鍚嶇О  parentName鐖剁骇閮ㄩ棬鍚嶇О\n鍚堝苟閮ㄩ棬",
+                            "description": " opsorganId运营编号 deptName 部门名称  parentName父级部门名称\n合并部门",
                             "args": [
                                 {
                                     "name": "opsorganId",
@@ -5944,7 +5944,7 @@
                         },
                         {
                             "name": "ua_revokeDepartment",
-                            "description": " opsorganId杩愯惀缂栧彿 deptName 閮ㄩ棬鍚嶇О  mergetName鍚堝苟閮ㄩ棬鍚嶇О\n瑁佹挙閮ㄩ棬",
+                            "description": " opsorganId运营编号 deptName 部门名称  mergetName合并部门名称\n裁撤部门",
                             "args": [
                                 {
                                     "name": "opsorganId",
@@ -5985,7 +5985,7 @@
                         },
                         {
                             "name": "ua_onboard",
-                            "description": " opsorganId杩愯惀缂栧彿 deptName 閮ㄩ棬鍚嶇О \n闆囧憳鍏ヨ亴    ",
+                            "description": " opsorganId运营编号 deptName 部门名称 \n雇员入职    ",
                             "args": [
                                 {
                                     "name": "id",
@@ -6117,7 +6117,7 @@
                         },
                         {
                             "name": "ua_employeeLeaving",
-                            "description": "UA_OperationsEmployee闆囧憳缂栧彿\n闆囧憳鍘昏亴",
+                            "description": "UA_OperationsEmployee雇员编号\n雇员去职",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6144,7 +6144,7 @@
                         },
                         {
                             "name": "ua_reinstatement",
-                            "description": "employeeId闆囧憳缂栧彿",
+                            "description": "employeeId雇员编号",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6191,7 +6191,7 @@
                         },
                         {
                             "name": "ua_resetEmployeeName",
-                            "description": "employeeId闆囧憳缂栧彿\n鏇存敼闆囧憳鍚嶇О",
+                            "description": "employeeId雇员编号\n更改雇员名称",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6232,7 +6232,7 @@
                         },
                         {
                             "name": "ua_resetEmployeeMale",
-                            "description": "employeeId 闆囧憳缂栧彿 name闆囧憳鍚嶇О\n鏇存敼闆囧憳鎬у埆",
+                            "description": "employeeId 雇员编号 name雇员名称\n更改雇员性别",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6269,7 +6269,7 @@
                         },
                         {
                             "name": "ua_adjuestDepartmentOfEmployee",
-                            "description": "employeeId 闆囧憳缂栧彿 male闆囧憳鎬у埆\n鏇存敼闆囧憳鎵�灞為儴闂�",
+                            "description": "employeeId 雇员编号 male雇员性别\n更改雇员所属部门",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6310,7 +6310,7 @@
                         },
                         {
                             "name": "ua_resetTitleOfEmployee",
-                            "description": " employeeId 闆囧憳缂栧彿 deptName閮ㄩ棬鍚嶇О\n鏇存敼闆囧憳鑱屽姟绉拌皳",
+                            "description": " employeeId 雇员编号 deptName部门名称\n更改雇员职务称谓",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6347,7 +6347,7 @@
                         },
                         {
                             "name": "ua_heavyCreate",
-                            "description": " employeeId 闆囧憳缂栧彿 title绉拌皳\n闆囧憳閲嶅畾宀�",
+                            "description": " employeeId 雇员编号 title称谓\n雇员重定岗",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6408,7 +6408,7 @@
                         },
                         {
                             "name": "ua_addEmailContactOfEmployee",
-                            "description": "娣诲姞閭欢鑱旂郴鏂瑰紡",
+                            "description": "添加邮件联系方式",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6445,7 +6445,7 @@
                         },
                         {
                             "name": "ua_addTelephoneContactOfEmployee",
-                            "description": " employeeId 闆囧憳缂栧彿   email閭   \n娣诲姞鍥哄畾鐢佃瘽鑱旂郴鏂瑰紡    # employeeId 闆囧憳缂栧彿   telephone鑱旂郴鏂瑰紡  areaCode鍖哄彿    extension鍒嗘満鍙�",
+                            "description": " employeeId 雇员编号   email邮箱   \n添加固定电话联系方式    # employeeId 雇员编号   telephone联系方式  areaCode区号    extension分机号",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6506,7 +6506,7 @@
                         },
                         {
                             "name": "ua_addFaxContactOfEmployee",
-                            "description": "娣诲姞浼犵湡鑱旂郴鏂瑰紡",
+                            "description": "添加传真联系方式",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6547,7 +6547,7 @@
                         },
                         {
                             "name": "ua_addMobileContactOfEmployee",
-                            "description": " employeeId 闆囧憳缂栧彿   fax浼犵湡鑱旂郴鏂瑰紡\n娣诲姞绉诲姩鐢佃瘽鑱旂郴鏂瑰紡",
+                            "description": " employeeId 雇员编号   fax传真联系方式\n添加移动电话联系方式",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6588,7 +6588,7 @@
                         },
                         {
                             "name": "ua_addAddressContactOfEmployee",
-                            "description": " employeeId 闆囧憳缂栧彿   mobile绉诲姩鐢佃瘽鑱旂郴鏂瑰紡\n娣诲姞鍦板潃鏂瑰紡",
+                            "description": " employeeId 雇员编号   mobile移动电话联系方式\n添加地址方式",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6629,7 +6629,7 @@
                         },
                         {
                             "name": "ua_removeEmailContactOfEmployee",
-                            "description": " employeeId 闆囧憳缂栧彿   mobile绉诲姩鐢佃瘽鑱旂郴鏂瑰紡\n浣滃簾閭欢鑱旂郴鏂瑰紡      ",
+                            "description": " employeeId 雇员编号   mobile移动电话联系方式\n作废邮件联系方式      ",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6666,7 +6666,7 @@
                         },
                         {
                             "name": "ua_removeTelephoneContactOfEmployee",
-                            "description": " employeeId 闆囧憳缂栧彿   email閭欢鑱旂郴鏂瑰紡\n浣滃簾鍥哄畾鐢佃瘽鑱旂郴鏂瑰紡  # employeeId 闆囧憳缂栧彿   telephone鑱旂郴鏂瑰紡  areaCode鍖哄彿    extension鍒嗘満鍙�",
+                            "description": " employeeId 雇员编号   email邮件联系方式\n作废固定电话联系方式  # employeeId 雇员编号   telephone联系方式  areaCode区号    extension分机号",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6727,7 +6727,7 @@
                         },
                         {
                             "name": "ua_removeFaxContactOfEmployee",
-                            "description": " employeeId 闆囧憳缂栧彿   telephone鍥哄畾鐢佃瘽鑱旂郴鏂瑰紡\n浣滃簾浼犵湡鑱旂郴鏂瑰紡",
+                            "description": " employeeId 雇员编号   telephone固定电话联系方式\n作废传真联系方式",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6768,7 +6768,7 @@
                         },
                         {
                             "name": "ua_removeMobileContactOfEmployee",
-                            "description": " employeeId 闆囧憳缂栧彿   fax浣滃簾浼犵湡鑱旂郴鏂瑰紡\n浣滃簾绉诲姩鐢佃瘽鑱旂郴鏂瑰紡",
+                            "description": " employeeId 雇员编号   fax作废传真联系方式\n作废移动电话联系方式",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6809,7 +6809,7 @@
                         },
                         {
                             "name": "ua_removeAddressContactOfEmployee",
-                            "description": " employeeId 闆囧憳缂栧彿   mobile绉诲姩鐢佃瘽鑱旂郴鏂瑰紡\n浣滃簾鍦板潃",
+                            "description": " employeeId 雇员编号   mobile移动电话联系方式\n作废地址",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -6850,7 +6850,7 @@
                         },
                         {
                             "name": "ua_resetMyName",
-                            "description": " employeeId 闆囧憳缂栧彿   mobile绉诲姩鐢佃瘽鑱旂郴鏂瑰紡\n閲嶇疆鎴戠殑濮撳悕",
+                            "description": " employeeId 雇员编号   mobile移动电话联系方式\n重置我的姓名",
                             "args": [
                                 {
                                     "name": "name",
@@ -6877,7 +6877,7 @@
                         },
                         {
                             "name": "ua_resetMyMale",
-                            "description": " employeeId 闆囧憳缂栧彿   name鎴戠殑濮撳悕\n閲嶇疆鎴戠殑鎬у埆",
+                            "description": " employeeId 雇员编号   name我的姓名\n重置我的性别",
                             "args": [
                                 {
                                     "name": "male",
@@ -6900,7 +6900,7 @@
                         },
                         {
                             "name": "ua_addMyMobile",
-                            "description": " employeeId 闆囧憳缂栧彿   male鎬у埆\n娣诲姞鎴戠殑绉诲姩鐢佃瘽",
+                            "description": " employeeId 雇员编号   male性别\n添加我的移动电话",
                             "args": [
                                 {
                                     "name": "mobile",
@@ -6927,7 +6927,7 @@
                         },
                         {
                             "name": "ua_removeMyMobile",
-                            "description": " mobile:绉诲姩鐢佃瘽\n绉婚櫎鎴戠殑鐢佃瘽",
+                            "description": " mobile:移动电话\n移除我的电话",
                             "args": [
                                 {
                                     "name": "mobile",
@@ -6954,7 +6954,7 @@
                         },
                         {
                             "name": "ua_addMyEmail",
-                            "description": " mobile绉诲姩鐢佃瘽\n娣诲姞鎴戠殑閭",
+                            "description": " mobile移动电话\n添加我的邮箱",
                             "args": [
                                 {
                                     "name": "email",
@@ -6981,7 +6981,7 @@
                         },
                         {
                             "name": "ua_removeMyEmail",
-                            "description": " email:閭\n绉婚櫎鎴戠殑閭",
+                            "description": " email:邮箱\n移除我的邮箱",
                             "args": [
                                 {
                                     "name": "email",
@@ -7008,7 +7008,7 @@
                         },
                         {
                             "name": "ua_addMyFax",
-                            "description": " email閭\n娣诲姞鎴戠殑浼犵湡",
+                            "description": " email邮箱\n添加我的传真",
                             "args": [
                                 {
                                     "name": "fax",
@@ -7035,7 +7035,7 @@
                         },
                         {
                             "name": "ua_removeMyFax",
-                            "description": " fax:浼犵湡\n绉婚櫎鎴戠殑鐢佃瘽",
+                            "description": " fax:传真\n移除我的电话",
                             "args": [
                                 {
                                     "name": "fax",
@@ -7062,7 +7062,7 @@
                         },
                         {
                             "name": "ua_addMyTelephone",
-                            "description": " fax浼犵湡\n娣诲姞鎴戠殑鍥哄畾鐢佃瘽",
+                            "description": " fax传真\n添加我的固定电话",
                             "args": [
                                 {
                                     "name": "telephone",
@@ -7089,7 +7089,7 @@
                         },
                         {
                             "name": "ua_removeMyTelephone",
-                            "description": " telephone:鍥哄畾鐢佃瘽\n绉婚櫎鎴戠殑鍥哄畾鐢佃瘽",
+                            "description": " telephone:固定电话\n移除我的固定电话",
                             "args": [
                                 {
                                     "name": "telephone",
@@ -7116,7 +7116,7 @@
                         },
                         {
                             "name": "ua_addMyAddress",
-                            "description": " telephone鍥哄畾鐢佃瘽\n娣诲姞鎴戠殑鍥哄畾鐢佃瘽",
+                            "description": " telephone固定电话\n添加我的固定电话",
                             "args": [
                                 {
                                     "name": "address",
@@ -7143,7 +7143,7 @@
                         },
                         {
                             "name": "ua_removeMyAddress",
-                            "description": " address:鍦板潃\n绉婚櫎鎴戠殑鍥哄畾鐢佃瘽",
+                            "description": " address:地址\n移除我的固定电话",
                             "args": [
                                 {
                                     "name": "address",
@@ -7170,7 +7170,7 @@
                         },
                         {
                             "name": "ua_defineRoleCategory",
-                            "description": "瀹氫箟瑙掕壊鍒嗙被   鍒嗙被缂栧彿:categoryId 鍒嗙被鍚嶇О:name   鍒嗙被璇存槑: description",
+                            "description": "定义角色分类   分类编号:categoryId 分类名称:name   分类说明: description",
                             "args": [
                                 {
                                     "name": "name",
@@ -7207,7 +7207,7 @@
                         },
                         {
                             "name": "ua_resetRoleCategoryName",
-                            "description": "瑙掕壊鍒嗙被閲嶅懡鍚�  ",
+                            "description": "角色分类重命名  ",
                             "args": [
                                 {
                                     "name": "categoryId",
@@ -7248,7 +7248,7 @@
                         },
                         {
                             "name": "ua_resetRoleCategoryDescrption",
-                            "description": "瑙掕壊鍒嗙被閲嶇疆璇存槑   ",
+                            "description": "角色分类重置说明   ",
                             "args": [
                                 {
                                     "name": "categoryId",
@@ -7285,7 +7285,7 @@
                         },
                         {
                             "name": "ua_deleteRoleCategoryDescrption",
-                            "description": "鍒犻櫎瑙掕壊鍒嗙被璇存槑",
+                            "description": "删除角色分类说明",
                             "args": [
                                 {
                                     "name": "categoryId",
@@ -7312,7 +7312,7 @@
                         },
                         {
                             "name": "ua_undefineRoleCategory",
-                            "description": "鍙栨秷瑙掕壊鍒嗙被瀹氫箟",
+                            "description": "取消角色分类定义",
                             "args": [
                                 {
                                     "name": "categoryId",
@@ -7339,7 +7339,7 @@
                         },
                         {
                             "name": "ua_defineRole",
-                            "description": "瀹氫箟瑙掕壊  瑙掕壊缂栧彿:roleId 瑙掕壊鍚嶇О:name   瑙掕壊璇存槑: description   杩愯惀缂栧彿锛歰rganId  璁稿彲锛歱ermissionIds",
+                            "description": "定义角色  角色编号:roleId 角色名称:name   角色说明: description   运营编号：organId  许可：permissionIds",
                             "args": [
                                 {
                                     "name": "categoryId",
@@ -7404,7 +7404,7 @@
                         },
                         {
                             "name": "ua_resetRoleName",
-                            "description": "瑙掕壊閲嶅懡鍚�",
+                            "description": "角色重命名",
                             "args": [
                                 {
                                     "name": "roleId",
@@ -7445,7 +7445,7 @@
                         },
                         {
                             "name": "ua_resetRoleDescription",
-                            "description": "瑙掕壊閲嶇疆璇存槑",
+                            "description": "角色重置说明",
                             "args": [
                                 {
                                     "name": "roleId",
@@ -7482,7 +7482,7 @@
                         },
                         {
                             "name": "ua_resetRoleCategory",
-                            "description": "瑙掕壊閲嶇疆鎵�灞炲垎绫�",
+                            "description": "角色重置所属分类",
                             "args": [
                                 {
                                     "name": "roleId",
@@ -7523,7 +7523,7 @@
                         },
                         {
                             "name": "ua_addPermissionToRole",
-                            "description": "娣诲姞鏉冮檺鍒拌鑹�",
+                            "description": "添加权限到角色",
                             "args": [
                                 {
                                     "name": "roleId",
@@ -7564,7 +7564,7 @@
                         },
                         {
                             "name": "ua_removePermissionFromRole",
-                            "description": "绉婚櫎鏉冮檺鍒拌鑹�",
+                            "description": "移除权限到角色",
                             "args": [
                                 {
                                     "name": "roleId",
@@ -7605,7 +7605,7 @@
                         },
                         {
                             "name": "ua_undefineRole",
-                            "description": "鍙栨秷瑙掕壊瀹氫箟",
+                            "description": "取消角色定义",
                             "args": [
                                 {
                                     "name": "roleId",
@@ -7632,7 +7632,7 @@
                         },
                         {
                             "name": "ua_grantRole",
-                            "description": "鎺堟潈  璐﹀彿缂栧彿:accountId  瑙掕壊缂栧彿:roleId ",
+                            "description": "授权  账号编号:accountId  角色编号:roleId ",
                             "args": [
                                 {
                                     "name": "accountId",
@@ -7673,7 +7673,7 @@
                         },
                         {
                             "name": "ua_grantaccountsRole",
-                            "description": "鎺堟潈  澶氫釜璐﹀彿缂栧彿:accountIds  瑙掕壊缂栧彿:roleId ",
+                            "description": "授权  多个账号编号:accountIds  角色编号:roleId ",
                             "args": [
                                 {
                                     "name": "accountIds",
@@ -7722,7 +7722,7 @@
                         },
                         {
                             "name": "ua_recycleaccountsRoles",
-                            "description": "鎵归噺澶氫釜璐﹀彿鍥炴敹鎺堟潈",
+                            "description": "批量多个账号回收授权",
                             "args": [
                                 {
                                     "name": "accountIds",
@@ -7771,7 +7771,7 @@
                         },
                         {
                             "name": "ua_grantRoles",
-                            "description": "鎵归噺鎺堟潈",
+                            "description": "批量授权",
                             "args": [
                                 {
                                     "name": "accountId",
@@ -7820,7 +7820,7 @@
                         },
                         {
                             "name": "ua_recycleRole",
-                            "description": "鍙栨秷鎺堟潈",
+                            "description": "取消授权",
                             "args": [
                                 {
                                     "name": "accountId",
@@ -7861,7 +7861,7 @@
                         },
                         {
                             "name": "ua_recycleRoles",
-                            "description": "鎵归噺鍥炴敹鎺堟潈",
+                            "description": "批量回收授权",
                             "args": [
                                 {
                                     "name": "accountId",
@@ -7917,11 +7917,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "Query",
-                    "description": "鏌ヨ",
+                    "description": "查询",
                     "fields": [
                         {
                             "name": "cm_getPageMenu",
-                            "description": "鏍规嵁椤甸潰璺緞鍜屽瓙绯荤粺鑿滃崟缂栧彿鑾峰彇瀵瑰簲鐨勮彍鍗�(渚ц竟鏍忓拰涓婁笅涓鸿彍鍗�)",
+                            "description": "根据页面路径和子系统菜单编号获取对应的菜单(侧边栏和上下为菜单)",
                             "args": [
                                 {
                                     "name": "path",
@@ -7972,7 +7972,7 @@
                         },
                         {
                             "name": "ua_currentUser",
-                            "description": "褰撳墠鐢ㄦ埛",
+                            "description": "当前用户",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -7988,7 +7988,7 @@
                         },
                         {
                             "name": "ua_findAccountById",
-                            "description": "鏍规嵁缂栧彿鏌ユ壘鐗瑰畾鐢ㄦ埛",
+                            "description": "根据编号查找特定用户",
                             "args": [
                                 {
                                     "name": "accountId",
@@ -8015,7 +8015,7 @@
                         },
                         {
                             "name": "ua_findEmployeeById",
-                            "description": "鏍规嵁缂栧彿鏌ユ壘鐗瑰畾鐢ㄦ埛",
+                            "description": "根据编号查找特定用户",
                             "args": [
                                 {
                                     "name": "accountId",
@@ -8042,7 +8042,7 @@
                         },
                         {
                             "name": "ibms_alarm_getAlarmByContent",
-                            "description": "娉ㄦ剰,璀︽姤绾у埆鍒嗕负  NORMAL 涓�鑸�  , PRIORITY 浼樺厛澶勭悊 , IMMEDIATELY 绱ф�ョ姸鎬�(闇�瑕佺珛鍒诲鐞�) 涓変釜绾у埆\n鍏ㄦ枃妫�绱㈡煡璇㈡湭澶嶆牳璀︽姤         pageIndex:褰撳墠椤垫暟   pageSize:姣忛〉璁板綍鏁�   beginStamptime:寮�濮嬫椂闂�   endStamptime:缁撴潫鏃堕棿\n  deviceCategory:璁惧绫诲瀷    alarmLevel:璀︽姤绾у埆     content:鎼滅储鏂囧瓧",
+                            "description": "注意,警报级别分为  NORMAL 一般  , PRIORITY 优先处理 , IMMEDIATELY 紧急状态(需要立刻处理) 三个级别\n全文检索查询未复核警报         pageIndex:当前页数   pageSize:每页记录数   beginStamptime:开始时间   endStamptime:结束时间\n  deviceCategory:设备类型    alarmLevel:警报级别     content:搜索文字",
                             "args": [
                                 {
                                     "name": "pageIndex",
@@ -8145,7 +8145,7 @@
                         },
                         {
                             "name": "ibms_alarm_getMisinformationByContent",
-                            "description": "鍏ㄦ枃妫�绱㈡煡璇㈠凡澶嶆牳璀︽姤         pageIndex:褰撳墠椤垫暟   pageSize:姣忛〉璁板綍鏁�   beginStamptime:寮�濮嬫椂闂�   endStamptime:缁撴潫鏃堕棿\n  deviceCategory:璁惧绫诲瀷    alarmLevel:璀︽姤绾у埆     content:鎼滅储鏂囧瓧",
+                            "description": "全文检索查询已复核警报         pageIndex:当前页数   pageSize:每页记录数   beginStamptime:开始时间   endStamptime:结束时间\n  deviceCategory:设备类型    alarmLevel:警报级别     content:搜索文字",
                             "args": [
                                 {
                                     "name": "pageIndex",
@@ -8248,7 +8248,7 @@
                         },
                         {
                             "name": "ibms_region_findById",
-                            "description": "鏍规嵁缂栧彿鏌ヨ鍖哄煙",
+                            "description": "根据编号查询区域",
                             "args": [
                                 {
                                     "name": "regionId",
@@ -8275,7 +8275,7 @@
                         },
                         {
                             "name": "ibms_region_getParks",
-                            "description": "鎵�鏈夊洯鍖�",
+                            "description": "所有园区",
                             "args": [
                                 {
                                     "name": "exp",
@@ -8306,7 +8306,7 @@
                         },
                         {
                             "name": "ua_getOperationsOrganization",
-                            "description": "鑾峰彇杩愯惀缁勭粐",
+                            "description": "获取运营组织",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -8322,7 +8322,7 @@
                         },
                         {
                             "name": "ua_findOperationsEmployee",
-                            "description": "鏍规嵁缂栧彿鏌ユ壘杩愯惀缁勭粐闆囧憳",
+                            "description": "根据编号查找运营组织雇员",
                             "args": [
                                 {
                                     "name": "employeeId",
@@ -8349,7 +8349,7 @@
                         },
                         {
                             "name": "ua_findActionalResource",
-                            "description": "鎸夌紪鍙锋煡鎵惧彲鎿嶄綔璧勬簮   璧勬簮缂栧彿锛� resourceId",
+                            "description": "按编号查找可操作资源   资源编号： resourceId",
                             "args": [
                                 {
                                     "name": "resourceId",
@@ -8376,7 +8376,7 @@
                         },
                         {
                             "name": "ua_getActionalResources",
-                            "description": "婊¤冻exp鐨勬墍鏈夊彲鎿嶄綔璧勬簮",
+                            "description": "满足exp的所有可操作资源",
                             "args": [
                                 {
                                     "name": "exp",
@@ -8407,7 +8407,7 @@
                         },
                         {
                             "name": "ua_getActionalResourcesPaging",
-                            "description": "婊¤冻exp鐨勬墍鏈夊彲鎿嶄綔璧勬簮骞跺垎椤�",
+                            "description": "满足exp的所有可操作资源并分页",
                             "args": [
                                 {
                                     "name": "exp",
@@ -8466,7 +8466,7 @@
                         },
                         {
                             "name": "ua_getActionalResourceCount",
-                            "description": "婊¤冻exp鐨勬墍鏈夊彲鎿嶄綔璧勬簮鏁伴噺",
+                            "description": "满足exp的所有可操作资源数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -8493,7 +8493,7 @@
                         },
                         {
                             "name": "ua_getActionalResourceWithRoot",
-                            "description": "鎵�鏈夊彲鎿嶄綔璧勬簮鐨勬牴锛堟牴鏄寚娌℃湁涓婃父璧勬簮鐨勮祫婧愶級",
+                            "description": "所有可操作资源的根（根是指没有上游资源的资源）",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -8513,7 +8513,7 @@
                         },
                         {
                             "name": "ua_findPermission",
-                            "description": "鎸夌紪鍙锋煡鎵炬潈闄�",
+                            "description": "按编号查找权限",
                             "args": [
                                 {
                                     "name": "id",
@@ -8540,7 +8540,7 @@
                         },
                         {
                             "name": "ua_getAccountRoles",
-                            "description": "鎸夎处鍙风紪鍙疯幏鍙栧凡鎺堟潈瑙掕壊  ",
+                            "description": "按账号编号获取已授权角色  ",
                             "args": [
                                 {
                                     "name": "accountId",
@@ -8577,7 +8577,7 @@
                         },
                         {
                             "name": "ua_getCurrentAccountRole",
-                            "description": "鎸夊綋鍓嶇敤鎴疯幏鍙栧凡鎺堟潈瑙掕壊",
+                            "description": "按当前用户获取已授权角色",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -8593,7 +8593,7 @@
                         },
                         {
                             "name": "ua_findResourceCategory",
-                            "description": "鎸夌紪鍙锋煡鎵捐鑹插垎绫�",
+                            "description": "按编号查找角色分类",
                             "args": [
                                 {
                                     "name": "categoryId",
@@ -8620,7 +8620,7 @@
                         },
                         {
                             "name": "ua_getResourceCategorys",
-                            "description": "鎵�鏈夎鑹插垎绫�",
+                            "description": "所有角色分类",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -8640,7 +8640,7 @@
                         },
                         {
                             "name": "ua_getResourceCategorysPaging",
-                            "description": "鎵�鏈夎鑹插垎绫诲垎椤�",
+                            "description": "所有角色分类分页",
                             "args": [
                                 {
                                     "name": "pageSize",
@@ -8689,7 +8689,7 @@
                         },
                         {
                             "name": "ua_getResourceCategoryCount",
-                            "description": "鎵�鏈夎鑹插垎绫绘暟閲�",
+                            "description": "所有角色分类数量",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -8705,7 +8705,7 @@
                         },
                         {
                             "name": "ua_findRole",
-                            "description": "鎸夌紪鍙锋煡鎵捐鑹�  瑙掕壊缂栧彿锛� roleId",
+                            "description": "按编号查找角色  角色编号： roleId",
                             "args": [
                                 {
                                     "name": "roleId",
@@ -8732,7 +8732,7 @@
                         },
                         {
                             "name": "ua_getRoles",
-                            "description": "鎵�鏈夎鑹�",
+                            "description": "所有角色",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -8752,7 +8752,7 @@
                         },
                         {
                             "name": "ua_getRolesPaging",
-                            "description": "鎵�鏈夎鑹插垎椤�  roleName:瑙掕壊鍚嶇О   roleCategoryId:鍒嗙被缂栧彿",
+                            "description": "所有角色分页  roleName:角色名称   roleCategoryId:分类编号",
                             "args": [
                                 {
                                     "name": "roleName",
@@ -8821,7 +8821,7 @@
                         },
                         {
                             "name": "ua_getRoleCount",
-                            "description": "鎵�鏈夎鑹叉暟閲�",
+                            "description": "所有角色数量",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -8837,7 +8837,7 @@
                         },
                         {
                             "name": "ua_getonlineAccountPaging",
-                            "description": "鎺堟潈鍒楄〃   \nua_getRolePermissions(id: String!,name:String):[UA_RolePermission]\n鍦ㄧ嚎鐢ㄦ埛鍒楄〃   ",
+                            "description": "授权列表   \nua_getRolePermissions(id: String!,name:String):[UA_RolePermission]\n在线用户列表   ",
                             "args": [
                                 {
                                     "name": "exp",
@@ -8916,7 +8916,7 @@
                         },
                         {
                             "name": "ua_getonlineAccountCount",
-                            "description": "鍦ㄧ嚎鐢ㄦ埛鎬绘暟",
+                            "description": "在线用户总数",
                             "args": [
                                 {
                                     "name": "exp",
@@ -8943,7 +8943,7 @@
                         },
                         {
                             "name": "ua_getOnlineAccountDetails",
-                            "description": "鍦ㄧ嚎鐢ㄦ埛璇︽儏",
+                            "description": "在线用户详情",
                             "args": [
                                 {
                                     "name": "id",
@@ -8966,7 +8966,7 @@
                         },
                         {
                             "name": "ua_getOnlineEmployees",
-                            "description": "鍦ㄧ嚎闆囧憳鍒楄〃",
+                            "description": "在线雇员列表",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9025,7 +9025,7 @@
                         },
                         {
                             "name": "ua_getOnlineEmployeeCount",
-                            "description": "鍦ㄧ嚎闆囧憳鏁伴噺",
+                            "description": "在线雇员数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9069,11 +9069,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_Account",
-                    "description": "璐﹀彿",
+                    "description": "账号",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9089,7 +9089,7 @@
                         },
                         {
                             "name": "displayName",
-                            "description": "鏄剧ず鍚嶇О",
+                            "description": "显示名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9105,7 +9105,7 @@
                         },
                         {
                             "name": "loginTokens",
-                            "description": "鎸佹湁鐨勭櫥褰曚护鐗�,exp琛ㄨ揪寮�",
+                            "description": "持有的登录令牌,exp表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9149,11 +9149,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_AccountRoles",
-                    "description": "鏉冮檺",
+                    "description": "权限",
                     "fields": [
                         {
                             "name": "accountId",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -9165,7 +9165,7 @@
                         },
                         {
                             "name": "roleId",
-                            "description": "瑙掕壊缂栧彿",
+                            "description": "角色编号",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -9177,7 +9177,7 @@
                         },
                         {
                             "name": "roleName",
-                            "description": "瑙掕壊鍒嗙被缂栧彿",
+                            "description": "角色分类编号",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -9201,7 +9201,7 @@
                         },
                         {
                             "name": "roleCategoryName",
-                            "description": "瑙掕壊鍒嗙被鍚嶇О",
+                            "description": "角色分类名称",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -9213,7 +9213,7 @@
                         },
                         {
                             "name": "permissionName",
-                            "description": "鏉冮檺",
+                            "description": "权限",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -9236,11 +9236,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_ActionalResource",
-                    "description": "鍙搷浣滅殑璧勬簮",
+                    "description": "可操作的资源",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9256,7 +9256,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "璧勬簮鍚嶇О",
+                            "description": "资源名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9272,7 +9272,7 @@
                         },
                         {
                             "name": "path",
-                            "description": "璺緞",
+                            "description": "路径",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9288,7 +9288,7 @@
                         },
                         {
                             "name": "upstream",
-                            "description": "涓婃父璧勬簮",
+                            "description": "上游资源",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -9300,7 +9300,7 @@
                         },
                         {
                             "name": "downstreams",
-                            "description": "涓嬫父璧勬簮",
+                            "description": "下游资源",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9327,7 +9327,7 @@
                         },
                         {
                             "name": "downstreamCount",
-                            "description": "涓嬫父璧勬簮鏁伴噺",
+                            "description": "下游资源数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9350,7 +9350,7 @@
                         },
                         {
                             "name": "permissions",
-                            "description": "鏉冮檺",
+                            "description": "权限",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9377,7 +9377,7 @@
                         },
                         {
                             "name": "permissionCount",
-                            "description": "鏉冮檺鏁伴噺",
+                            "description": "权限数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9411,11 +9411,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_Contact",
-                    "description": "鑱旂郴鏂瑰紡",
+                    "description": "联系方式",
                     "fields": [
                         {
                             "name": "category",
-                            "description": "鍒嗙被",
+                            "description": "分类",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9431,7 +9431,7 @@
                         },
                         {
                             "name": "content",
-                            "description": "鍐呭",
+                            "description": "内容",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9460,11 +9460,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_CurrentUser",
-                    "description": "褰撳墠鐢ㄦ埛",
+                    "description": "当前用户",
                     "fields": [
                         {
                             "name": "account",
-                            "description": "璐﹀彿",
+                            "description": "账号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9480,7 +9480,7 @@
                         },
                         {
                             "name": "authenticated",
-                            "description": "鏄惁閫氳繃韬唤璁よ瘉",
+                            "description": "是否通过身份认证",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9496,7 +9496,7 @@
                         },
                         {
                             "name": "forceRestPassword",
-                            "description": "鏄惁闇�瑕佸己鍒舵洿鏀瑰瘑鐮�",
+                            "description": "是否需要强制更改密码",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9512,7 +9512,7 @@
                         },
                         {
                             "name": "sessionId",
-                            "description": "浼氳瘽缂栧彿",
+                            "description": "会话编号",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -9531,11 +9531,11 @@
                 {
                     "kind": "INTERFACE",
                     "name": "UA_IAccount",
-                    "description": "璐﹀彿鎺ュ彛",
+                    "description": "账号接口",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9551,7 +9551,7 @@
                         },
                         {
                             "name": "displayName",
-                            "description": "鏄剧ず鍚嶇О",
+                            "description": "显示名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9567,7 +9567,7 @@
                         },
                         {
                             "name": "loginTokens",
-                            "description": "鎸佹湁鐨勭櫥褰曚护鐗�,exp琛ㄨ揪寮�",
+                            "description": "持有的登录令牌,exp表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9621,11 +9621,11 @@
                 {
                     "kind": "INTERFACE",
                     "name": "UA_IContact",
-                    "description": "鑱旂郴鏂瑰紡鎺ュ彛",
+                    "description": "联系方式接口",
                     "fields": [
                         {
                             "name": "category",
-                            "description": "鍒嗙被",
+                            "description": "分类",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9641,7 +9641,7 @@
                         },
                         {
                             "name": "content",
-                            "description": "鍐呭",
+                            "description": "内容",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9670,11 +9670,11 @@
                 {
                     "kind": "INTERFACE",
                     "name": "UA_IDepartment",
-                    "description": "閮ㄩ棬鎺ュ彛",
+                    "description": "部门接口",
                     "fields": [
                         {
                             "name": "name",
-                            "description": "鍏ㄧО",
+                            "description": "全称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9690,7 +9690,7 @@
                         },
                         {
                             "name": "organization",
-                            "description": "鎵�灞炵粍缁囨満鏋�",
+                            "description": "所属组织机构",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9718,7 +9718,7 @@
                         },
                         {
                             "name": "superior",
-                            "description": "涓婄骇閮ㄩ棬",
+                            "description": "上级部门",
                             "args": [],
                             "type": {
                                 "kind": "INTERFACE",
@@ -9730,7 +9730,7 @@
                         },
                         {
                             "name": "subordinates",
-                            "description": "鐩村睘涓嬬骇閮ㄩ棬",
+                            "description": "直属下级部门",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9750,7 +9750,7 @@
                         },
                         {
                             "name": "subordinateCount",
-                            "description": "鐩村睘涓嬬骇閮ㄩ棬鏁伴噺",
+                            "description": "直属下级部门数量",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9766,7 +9766,7 @@
                         },
                         {
                             "name": "employeeCount",
-                            "description": "閮ㄩ棬涓嬬殑闆囧憳鏁伴噺",
+                            "description": "部门下的雇员数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9793,7 +9793,7 @@
                         },
                         {
                             "name": "employeesPaging",
-                            "description": "鍒嗛〉鏄剧ず閮ㄩ棬闆囧憳",
+                            "description": "分页显示部门雇员",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9868,7 +9868,7 @@
                         },
                         {
                             "name": "employees",
-                            "description": "鏄剧ず閮ㄩ棬闆囧憳",
+                            "description": "显示部门雇员",
                             "args": [
                                 {
                                     "name": "exp",
@@ -9908,11 +9908,11 @@
                 {
                     "kind": "INTERFACE",
                     "name": "UA_IEmployee",
-                    "description": "闆囧憳鎺ュ彛",
+                    "description": "雇员接口",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9928,7 +9928,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "濮撳悕",
+                            "description": "姓名",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -9944,7 +9944,7 @@
                         },
                         {
                             "name": "male",
-                            "description": "鏄惁鐢锋��",
+                            "description": "是否男性",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -9956,7 +9956,7 @@
                         },
                         {
                             "name": "deptName",
-                            "description": "閮ㄩ棬鍚嶇О",
+                            "description": "部门名称",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -9968,7 +9968,7 @@
                         },
                         {
                             "name": "time",
-                            "description": "鏃堕棿",
+                            "description": "时间",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -9980,7 +9980,7 @@
                         },
                         {
                             "name": "headerPri",
-                            "description": "澶村儚",
+                            "description": "头像",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -9992,7 +9992,7 @@
                         },
                         {
                             "name": "removed",
-                            "description": "鍦ㄨ亴",
+                            "description": "在职",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -10004,7 +10004,7 @@
                         },
                         {
                             "name": "title",
-                            "description": "鑱屽姟绉拌皳",
+                            "description": "职务称谓",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -10016,7 +10016,7 @@
                         },
                         {
                             "name": "leave",
-                            "description": "鏄惁绂昏亴",
+                            "description": "是否离职",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -10028,7 +10028,7 @@
                         },
                         {
                             "name": "account",
-                            "description": "鎸佹湁鐨勮处鍙�",
+                            "description": "持有的账号",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -10040,7 +10040,7 @@
                         },
                         {
                             "name": "contacts",
-                            "description": "鑱旂郴鏂瑰紡",
+                            "description": "联系方式",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -10069,11 +10069,11 @@
                 {
                     "kind": "INTERFACE",
                     "name": "UA_IIdentity",
-                    "description": "韬唤瀵硅薄鎺ュ彛",
+                    "description": "身份对象接口",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10102,11 +10102,11 @@
                 {
                     "kind": "INTERFACE",
                     "name": "UA_IOrganization",
-                    "description": "缁勭粐鏈烘瀯鎺ュ彛",
+                    "description": "组织机构接口",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10122,7 +10122,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍏ㄧО",
+                            "description": "全称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10138,7 +10138,7 @@
                         },
                         {
                             "name": "shortName",
-                            "description": "绠�绉�",
+                            "description": "简称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10154,7 +10154,7 @@
                         },
                         {
                             "name": "departments",
-                            "description": "閮ㄩ棬, exp:琛ㄨ揪寮�",
+                            "description": "部门, exp:表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -10185,7 +10185,7 @@
                         },
                         {
                             "name": "departmentCount",
-                            "description": "閮ㄩ棬鏁伴噺,exp:琛ㄨ揪寮�",
+                            "description": "部门数量,exp:表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -10225,11 +10225,11 @@
                 {
                     "kind": "INTERFACE",
                     "name": "UA_IPersonalAccount",
-                    "description": "涓汉璐﹀彿鎺ュ彛",
+                    "description": "个人账号接口",
                     "fields": [
                         {
                             "name": "identityTypes",
-                            "description": "韬唤绫诲瀷,exp琛ㄨ揪寮�",
+                            "description": "身份类型,exp表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -10256,7 +10256,7 @@
                         },
                         {
                             "name": "identity",
-                            "description": "鎻愬彇鎸囧畾绫诲瀷鐨勮韩浠�",
+                            "description": "提取指定类型的身份",
                             "args": [
                                 {
                                     "name": "className",
@@ -10296,11 +10296,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_Identity",
-                    "description": "韬唤瀵硅薄瀹炰緥",
+                    "description": "身份对象实例",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10329,11 +10329,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_IdentityType",
-                    "description": "韬唤绫诲瀷",
+                    "description": "身份类型",
                     "fields": [
                         {
                             "name": "className",
-                            "description": "绫诲悕",
+                            "description": "类名",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10349,7 +10349,7 @@
                         },
                         {
                             "name": "identityId",
-                            "description": "绫诲疄渚嬬紪鍙�",
+                            "description": "类实例编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10372,26 +10372,26 @@
                 {
                     "kind": "ENUM",
                     "name": "UA_LoginDomain",
-                    "description": "鐧诲綍浠ょ墝鍩�",
+                    "description": "登录令牌域",
                     "fields": null,
                     "inputFields": null,
                     "interfaces": null,
                     "enumValues": [
                         {
                             "name": "userName",
-                            "description": "鐢ㄦ埛鍚�",
+                            "description": "用户名",
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
                             "name": "mobile",
-                            "description": "鎵嬫満鍙�",
+                            "description": "手机号",
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
                             "name": "email",
-                            "description": "閭",
+                            "description": "邮箱",
                             "isDeprecated": false,
                             "deprecationReason": null
                         }
@@ -10401,11 +10401,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_LoginToken",
-                    "description": "鐧诲綍浠ょ墝锛屾瘡涓处鍙锋寔鏈夎嚦灏戜竴涓櫥褰曚护鐗�",
+                    "description": "登录令牌，每个账号持有至少一个登录令牌",
                     "fields": [
                         {
                             "name": "domain",
-                            "description": "鎵�灞炲煙",
+                            "description": "所属域",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10421,7 +10421,7 @@
                         },
                         {
                             "name": "identifier",
-                            "description": "鍦ㄦ墍灞炲煙涓殑鍞竴鏍囩ず",
+                            "description": "在所属域中的唯一标示",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10444,11 +10444,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_OnlineAccount",
-                    "description": "鏉冮檺",
+                    "description": "权限",
                     "fields": [
                         {
                             "name": "accountId",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -10503,7 +10503,7 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_OnlineAccountDetails",
-                    "description": "鍦ㄧ嚎鐢ㄦ埛璇︽儏",
+                    "description": "在线用户详情",
                     "fields": [
                         {
                             "name": "name",
@@ -10577,7 +10577,7 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_OnlineEmployee",
-                    "description": "鍦ㄧ嚎闆囧憳",
+                    "description": "在线雇员",
                     "fields": [
                         {
                             "name": "name",
@@ -10660,11 +10660,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_OperationsDepartment",
-                    "description": "杩愯惀缁勭粐鐨勯儴闂�",
+                    "description": "运营组织的部门",
                     "fields": [
                         {
                             "name": "name",
-                            "description": "鍏ㄧО",
+                            "description": "全称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10680,7 +10680,7 @@
                         },
                         {
                             "name": "organization",
-                            "description": "鎵�灞炵粍缁囨満鏋�",
+                            "description": "所属组织机构",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10696,7 +10696,7 @@
                         },
                         {
                             "name": "superior",
-                            "description": "涓婄骇閮ㄩ棬",
+                            "description": "上级部门",
                             "args": [],
                             "type": {
                                 "kind": "INTERFACE",
@@ -10708,7 +10708,7 @@
                         },
                         {
                             "name": "subordinates",
-                            "description": "鐩村睘涓嬬骇閮ㄩ棬",
+                            "description": "直属下级部门",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10728,7 +10728,7 @@
                         },
                         {
                             "name": "subordinateCount",
-                            "description": "鐩村睘涓嬬骇閮ㄩ棬鏁伴噺",
+                            "description": "直属下级部门数量",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10744,7 +10744,7 @@
                         },
                         {
                             "name": "superiorId",
-                            "description": "鐖剁骇id",
+                            "description": "父级id",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -10756,7 +10756,7 @@
                         },
                         {
                             "name": "employees",
-                            "description": "閮ㄩ棬闆囧憳",
+                            "description": "部门雇员",
                             "args": [
                                 {
                                     "name": "exp",
@@ -10783,7 +10783,7 @@
                         },
                         {
                             "name": "employeesPaging",
-                            "description": "鍒嗛〉鏄剧ず閮ㄩ棬闆囧憳",
+                            "description": "分页显示部门雇员",
                             "args": [
                                 {
                                     "name": "exp",
@@ -10858,7 +10858,7 @@
                         },
                         {
                             "name": "employeeCount",
-                            "description": "閮ㄩ棬涓嬬殑闆囧憳鏁伴噺\nemployeeCount: Int!",
+                            "description": "部门下的雇员数量\nemployeeCount: Int!",
                             "args": [
                                 {
                                     "name": "exp",
@@ -10898,11 +10898,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_OperationsEmployee",
-                    "description": "杩愯惀缁勭粐鐨勯泧鍛�",
+                    "description": "运营组织的雇员",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10918,7 +10918,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "濮撳悕",
+                            "description": "姓名",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -10934,7 +10934,7 @@
                         },
                         {
                             "name": "male",
-                            "description": "鏄惁鐢锋��",
+                            "description": "是否男性",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -10946,7 +10946,7 @@
                         },
                         {
                             "name": "deptName",
-                            "description": "閮ㄩ棬鍚嶇О",
+                            "description": "部门名称",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -10958,7 +10958,7 @@
                         },
                         {
                             "name": "time",
-                            "description": "鏃堕棿",
+                            "description": "时间",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -10970,7 +10970,7 @@
                         },
                         {
                             "name": "headerPri",
-                            "description": "澶村儚",
+                            "description": "头像",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -10982,7 +10982,7 @@
                         },
                         {
                             "name": "removed",
-                            "description": "鍦ㄨ亴",
+                            "description": "在职",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -10994,7 +10994,7 @@
                         },
                         {
                             "name": "organization",
-                            "description": "鎵�灞炶繍钀ョ粍缁�",
+                            "description": "所属运营组织",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11010,7 +11010,7 @@
                         },
                         {
                             "name": "department",
-                            "description": "鎵�灞為儴闂�",
+                            "description": "所属部门",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -11022,7 +11022,7 @@
                         },
                         {
                             "name": "title",
-                            "description": "鑱屽姟绉拌皳",
+                            "description": "职务称谓",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -11034,7 +11034,7 @@
                         },
                         {
                             "name": "leave",
-                            "description": "鏄惁绂昏亴",
+                            "description": "是否离职",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -11046,7 +11046,7 @@
                         },
                         {
                             "name": "account",
-                            "description": "鎸佹湁鐨勮处鍙�",
+                            "description": "持有的账号",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -11058,7 +11058,7 @@
                         },
                         {
                             "name": "contacts",
-                            "description": "鑱旂郴鏂瑰紡",
+                            "description": "联系方式",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -11087,11 +11087,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_OperationsOrganization",
-                    "description": "杩愯惀缁勭粐",
+                    "description": "运营组织",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11107,7 +11107,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍏ㄧО",
+                            "description": "全称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11123,7 +11123,7 @@
                         },
                         {
                             "name": "shortName",
-                            "description": "绠�绉�",
+                            "description": "简称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11139,7 +11139,7 @@
                         },
                         {
                             "name": "departments",
-                            "description": "閮ㄩ棬, exp:琛ㄨ揪寮�",
+                            "description": "部门, exp:表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -11170,7 +11170,7 @@
                         },
                         {
                             "name": "departmentCount",
-                            "description": "閮ㄩ棬鏁伴噺,exp:琛ㄨ揪寮�",
+                            "description": "部门数量,exp:表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -11197,7 +11197,7 @@
                         },
                         {
                             "name": "employeesTotal",
-                            "description": "闆囧憳鎬绘暟,exp:琛ㄨ揪寮�",
+                            "description": "雇员总数,exp:表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -11224,7 +11224,7 @@
                         },
                         {
                             "name": "employees",
-                            "description": "闆囧憳锛宔xp:琛ㄨ揪寮�",
+                            "description": "雇员，exp:表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -11255,7 +11255,7 @@
                         },
                         {
                             "name": "employeesPaging",
-                            "description": "鍒嗛〉鏄剧ず闆囧憳",
+                            "description": "分页显示雇员",
                             "args": [
                                 {
                                     "name": "exp",
@@ -11324,7 +11324,7 @@
                         },
                         {
                             "name": "employeeCount",
-                            "description": "婊¤冻exp琛ㄨ揪寮忛泧鍛樼殑鏁伴噺",
+                            "description": "满足exp表达式雇员的数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -11351,7 +11351,7 @@
                         },
                         {
                             "name": "employeesPag",
-                            "description": "鍒嗛〉鍖呰绫�\nemployeesPag(title: String): UA_OperationsOrganization\n聽聽pageNum:聽椤电爜,聽pageSize:聽姣忛〉澶氬皯鏉�,leave:聽onJob聽鍦ㄨ亴聽聽聽departure聽绂昏亴聽online聽鍦ㄧ嚎,screah:鐢佃瘽聽濮撳悕聽,sorting聽鎺掑簭:聽聽name聽濮撳悕聽聽namePinyin聽濮撳悕鎷奸煶聽time鍏ヨ亴鏃堕棿",
+                            "description": "分页包装类\nemployeesPag(title: String): UA_OperationsOrganization\n  pageNum: 页码, pageSize: 每页多少条,leave: onJob 在职   departure 离职 online 在线,screah:电话 姓名 ,sorting 排序:  name 姓名  namePinyin 姓名拼音 time入职时间",
                             "args": [
                                 {
                                     "name": "exp",
@@ -11449,7 +11449,7 @@
                     "fields": [
                         {
                             "name": "recordsTotal",
-                            "description": "璁板綍鎬绘暟",
+                            "description": "记录总数",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11465,7 +11465,7 @@
                         },
                         {
                             "name": "departureTotal",
-                            "description": "鍦ㄨ亴浜烘暟",
+                            "description": "在职人数",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11481,7 +11481,7 @@
                         },
                         {
                             "name": "onlineTotal",
-                            "description": "绂昏亴浜烘暟",
+                            "description": "离职人数",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11497,7 +11497,7 @@
                         },
                         {
                             "name": "data",
-                            "description": "绂昏亴浜烘暟\n鏁版嵁闆嗗悎",
+                            "description": "离职人数\n数据集合",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11524,11 +11524,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_Permission",
-                    "description": "鏉冮檺",
+                    "description": "权限",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11544,7 +11544,7 @@
                         },
                         {
                             "name": "action",
-                            "description": "鎿嶄綔",
+                            "description": "操作",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11560,7 +11560,7 @@
                         },
                         {
                             "name": "description",
-                            "description": "璇存槑",
+                            "description": "说明",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -11572,7 +11572,7 @@
                         },
                         {
                             "name": "exclusives",
-                            "description": "浜掓枼鏉冮檺",
+                            "description": "互斥权限",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11592,7 +11592,7 @@
                         },
                         {
                             "name": "exclusiveCount",
-                            "description": "浜掓枼鏉冮檺鏁伴噺",
+                            "description": "互斥权限数量",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11608,7 +11608,7 @@
                         },
                         {
                             "name": "resource",
-                            "description": "鎵�灞炲彲鎿嶄綔璧勬簮璧勬簮",
+                            "description": "所属可操作资源资源",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11631,11 +11631,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_PersonalAccount",
-                    "description": "涓汉璐﹀彿",
+                    "description": "个人账号",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11651,7 +11651,7 @@
                         },
                         {
                             "name": "displayName",
-                            "description": "鏄剧ず鍚嶇О",
+                            "description": "显示名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11667,7 +11667,7 @@
                         },
                         {
                             "name": "loginTokens",
-                            "description": "鎸佹湁鐨勭櫥褰曚护鐗�,exp琛ㄨ揪寮�",
+                            "description": "持有的登录令牌,exp表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -11698,7 +11698,7 @@
                         },
                         {
                             "name": "identityTypes",
-                            "description": "韬唤绫诲瀷,exp琛ㄨ揪寮�",
+                            "description": "身份类型,exp表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -11725,7 +11725,7 @@
                         },
                         {
                             "name": "identity",
-                            "description": "鎻愬彇鎸囧畾绫诲瀷鐨勮韩浠�",
+                            "description": "提取指定类型的身份",
                             "args": [
                                 {
                                     "name": "className",
@@ -11770,11 +11770,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_ResetEmployeeTitleCommand",
-                    "description": "杩愯惀缁勭粐鐨勯泧鍛�",
+                    "description": "运营组织的雇员",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11790,7 +11790,7 @@
                         },
                         {
                             "name": "title",
-                            "description": "濮撳悕",
+                            "description": "姓名",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11813,7 +11813,7 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_ResourcePermission",
-                    "description": "鏉冮檺鍒嗙被",
+                    "description": "权限分类",
                     "fields": [
                         {
                             "name": "id",
@@ -11833,7 +11833,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "璧勬簮鍚嶇О",
+                            "description": "资源名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11849,7 +11849,7 @@
                         },
                         {
                             "name": "path",
-                            "description": "璺緞",
+                            "description": "路径",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11865,7 +11865,7 @@
                         },
                         {
                             "name": "permission",
-                            "description": "璁稿彲",
+                            "description": "许可",
                             "args": [],
                             "type": {
                                 "kind": "LIST",
@@ -11888,11 +11888,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_Role",
-                    "description": "鏉冮檺",
+                    "description": "权限",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11908,7 +11908,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -11924,7 +11924,7 @@
                         },
                         {
                             "name": "description",
-                            "description": "璇存槑",
+                            "description": "说明",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -11936,7 +11936,7 @@
                         },
                         {
                             "name": "organName",
-                            "description": "杩愯惀缁勭粐鍚嶇О",
+                            "description": "运营组织名称",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -11948,7 +11948,7 @@
                         },
                         {
                             "name": "roleCategory",
-                            "description": "瑙掕壊鍒嗙被",
+                            "description": "角色分类",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -11960,7 +11960,7 @@
                         },
                         {
                             "name": "permissions",
-                            "description": "鏉冮檺",
+                            "description": "权限",
                             "args": [
                                 {
                                     "name": "exp",
@@ -12003,7 +12003,7 @@
                         },
                         {
                             "name": "permissionCount",
-                            "description": "鏉冮檺鏁伴噺",
+                            "description": "权限数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -12030,7 +12030,7 @@
                         },
                         {
                             "name": "exclusives",
-                            "description": "浜掓枼瑙掕壊",
+                            "description": "互斥角色",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -12050,7 +12050,7 @@
                         },
                         {
                             "name": "exclusiveCount",
-                            "description": "浜掓枼瑙掕壊鏁伴噺",
+                            "description": "互斥角色数量",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -12066,7 +12066,7 @@
                         },
                         {
                             "name": "holders",
-                            "description": "鎸佹湁浜�",
+                            "description": "持有人",
                             "args": [
                                 {
                                     "name": "exp",
@@ -12093,7 +12093,7 @@
                         },
                         {
                             "name": "holderCount",
-                            "description": "鎸佹湁浜烘暟閲�",
+                            "description": "持有人数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -12127,11 +12127,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_RoleCategory",
-                    "description": "鏉冮檺鍒嗙被",
+                    "description": "权限分类",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -12147,7 +12147,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "鍚嶇О",
+                            "description": "名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -12163,7 +12163,7 @@
                         },
                         {
                             "name": "description",
-                            "description": "璇存槑",
+                            "description": "说明",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -12175,7 +12175,7 @@
                         },
                         {
                             "name": "owner",
-                            "description": "鎵�灞炵粍缁�\nowner: [UA_IOrganization]",
+                            "description": "所属组织\nowner: [UA_IOrganization]",
                             "args": [],
                             "type": {
                                 "kind": "INTERFACE",
@@ -12187,7 +12187,7 @@
                         },
                         {
                             "name": "roles",
-                            "description": "瑙掕壊",
+                            "description": "角色",
                             "args": [
                                 {
                                     "name": "exp",
@@ -12214,7 +12214,7 @@
                         },
                         {
                             "name": "roleCount",
-                            "description": "瑙掕壊鏁伴噺",
+                            "description": "角色数量",
                             "args": [
                                 {
                                     "name": "exp",
@@ -12252,7 +12252,7 @@
                     "fields": [
                         {
                             "name": "rolePName",
-                            "description": "鏉冮檺鍚嶇О",
+                            "description": "权限名称",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -12318,11 +12318,11 @@
                 {
                     "kind": "OBJECT",
                     "name": "UA_UEmployee",
-                    "description": "鏉冮檺鍒嗙被",
+                    "description": "权限分类",
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -12338,7 +12338,7 @@
                         },
                         {
                             "name": "name",
-                            "description": "濮撳悕",
+                            "description": "姓名",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -12354,7 +12354,7 @@
                         },
                         {
                             "name": "male",
-                            "description": "鏄惁鐢锋��",
+                            "description": "是否男性",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -12366,7 +12366,7 @@
                         },
                         {
                             "name": "deptName",
-                            "description": "閮ㄩ棬鍚嶇О",
+                            "description": "部门名称",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -12378,7 +12378,7 @@
                         },
                         {
                             "name": "removed",
-                            "description": "鍦ㄨ亴",
+                            "description": "在职",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -12390,7 +12390,7 @@
                         },
                         {
                             "name": "title",
-                            "description": "鑱屽姟绉拌皳",
+                            "description": "职务称谓",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -12402,7 +12402,7 @@
                         },
                         {
                             "name": "leave",
-                            "description": "鏄惁绂昏亴",
+                            "description": "是否离职",
                             "args": [],
                             "type": {
                                 "kind": "SCALAR",
@@ -12425,7 +12425,7 @@
                     "fields": [
                         {
                             "name": "id",
-                            "description": "缂栧彿",
+                            "description": "编号",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -12441,7 +12441,7 @@
                         },
                         {
                             "name": "displayName",
-                            "description": "鏄剧ず鍚嶇О",
+                            "description": "显示名称",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -12457,7 +12457,7 @@
                         },
                         {
                             "name": "loginTokens",
-                            "description": "鎸佹湁鐨勭櫥褰曚护鐗�,exp琛ㄨ揪寮�",
+                            "description": "持有的登录令牌,exp表达式",
                             "args": [
                                 {
                                     "name": "exp",
@@ -12488,7 +12488,7 @@
                         },
                         {
                             "name": "employee",
-                            "description": "閮ㄩ棬鍚嶇О\ndepartmentName: String\n闆囧憳",
+                            "description": "部门名称\ndepartmentName: String\n雇员",
                             "args": [],
                             "type": {
                                 "kind": "OBJECT",
@@ -12513,20 +12513,20 @@
                 {
                     "kind": "ENUM",
                     "name": "Void",
-                    "description": "浠ｈ〃鏃犺繑鍥�",
+                    "description": "代表无返回",
                     "fields": null,
                     "inputFields": null,
                     "interfaces": null,
                     "enumValues": [
                         {
                             "name": "TRUE",
-                            "description": "鏃犳剰涔夌殑杩斿洖鍊�",
+                            "description": "无意义的返回值",
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
                             "name": "FALSE",
-                            "description": "鏃犳剰涔夌殑杩斿洖鍊�",
+                            "description": "无意义的返回值",
                             "isDeprecated": false,
                             "deprecationReason": null
                         }

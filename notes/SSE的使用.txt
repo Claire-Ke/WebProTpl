@@ -1,4 +1,4 @@
-﻿SSE是GET请求类型
+SSE是GET请求类型
 
 当 Access-Control-Allow-Origin:* 时
 不允许使用凭证(即不允许设置withCredentials为true)

@@ -115,6 +115,6 @@ function Update4GraphQLSchemaJSON( opt = {} ){
 }
 
 // 根据需要自己选取用哪个：option4Dev_objC option4Dev2Natapp_objC option4Test_objC option4WWC_objC
-Update4GraphQLSchemaJSON( option4Dev_objC )
+Update4GraphQLSchemaJSON( option4Dev2Natapp_objC )
     .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {}, outContent_obj, result ) ) ) ) )
     .catch( e => void ( console.error( e ) ) );

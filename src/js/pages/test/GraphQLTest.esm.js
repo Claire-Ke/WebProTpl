@@ -410,12 +410,48 @@ if( false ){
 }
 
 import SN_Alert from 'gQLAPIDir/SN_Alert.graphql';
+import SN_Alert2 from 'gQLAPIDir/SN_Alert2.graphql';
 
 console.dir( SN_Alert );
 console.log( SN_Alert.loc.source.body );
+console.dir( SN_Alert2 );
+console.log( SN_Alert2.loc.source.body );
 
-// 警报接口测试1 全文检索查询未复核警报 通过
-if( true ){
+// 设备故障现场处理
+if( false ){
+    const {
+        loc: {
+            source: {
+                body,
+            },
+        },
+    } = SN_Alert2;
+
+    post4JSON.graphql( {
+        url: '/',
+        options: {
+            ...requestOpt,
+            body: JSON.stringify( {
+                query: body,
+            } ),
+        },
+        events: {
+            success: ( data4ResponseType, response ) => {
+                console.log( 'success，请求成功------>Start' );
+                console.dir( data4ResponseType );
+                console.log( 'success，请求成功------>End' );
+            },
+            error: ( status_num, response ) => {
+                console.warn( `错误，请求状态码：${ status_num }------>Start` );
+                console.error( response );
+                console.warn( `错误，请求状态码：${ status_num }------>End` );
+            },
+        },
+    } );
+}
+
+// 获取所有未复核、已复核的
+if( false ){
     const {
         loc: {
             source: {

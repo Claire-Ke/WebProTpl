@@ -1,4 +1,4 @@
-﻿.appcache的使用说明
+.appcache的使用说明
 
 必须是在HTTPS协议中才能正常使用生效
 
