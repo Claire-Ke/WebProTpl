@@ -2,17 +2,17 @@
 The value "D:\NodeJS\" is invalid for option "options.paths"
 
 1、在Webpack的配置中设置一个别名：
-gQLDir: path.resolve( __dirname, './src/graphQL/' ),
+gQLAPIDir: path.resolve( __dirname, './src/graphQL/api/' ),
 
 2、然后在项目中如下使用，会报错！
-import GraphQLDemoA4GQL from 'gQLDir/GraphQLDemo.graphql';
+import SN_Alert from 'gQLAPIDir/SN_Alert.graphql';
 错误信息：
 The value "D:\NodeJS\" is invalid for option "options.paths"
 
 3、不报错，可以使用的导入方法！
-import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
-import('gQLDir/GraphQLDemo.graphql');
-import('../../../graphQL/GraphQLDemo.graphql')
+import SN_Alert from '../../../graphQL/api/SN_Alert.graphql';
+import('gQLAPIDir/SN_Alert.graphql');
+import('../../../graphQL/api/SN_Alert.graphql')
 
 4、使用动态导入时，修改“.graphql”是会触发重新编译的！但静态导入是不会的！
 PS:
@@ -27,7 +27,7 @@ PS:
 // 那么可以模块化导出MyQuery1、MyQuery2、MyQuery3三者中的任意一个，或者全导出来都行！
 if( true ){
     ( async () => {
-        import('gQLDir/GraphQLDemo.graphql').then( resultModule => {
+        import('gQLAPIDir/SN_Alert.graphql').then( resultModule => {
             // resultModule有如下属性字段：
             // MyQuery1: definitions、kind、loc
             // MyQuery2: definitions、kind、loc

@@ -550,8 +550,8 @@
 {
     if( false ){
         // @ts-expect-error
-        import('gQLDir/GraphQLDemo.graphql').then( ( {
-                                                         default: GraphQLDemo,
+        import('gQLAPIDir/SN_Alert.graphql').then( ( {
+                                                         default: SN_Alert,
                                                          definitions,
                                                          // @ts-expect-error
                                                          // 字符串：Document
@@ -563,7 +563,7 @@
                                                              },
                                                          },
                                                      } ): void => {
-            console.dir( GraphQLDemo );
+            console.dir( SN_Alert );
             console.dir( definitions );
             console.log( body );
         } );

@@ -213,8 +213,8 @@ let fs = require( 'fs' ),
             'compDir/*': [
                 'src/components/*'
             ],
-            'gQLDir/*': [
-                'src/graphQL/*',
+            'gQLAPIDir/*': [
+                'src/graphQL/api/*',
             ],
             'jsDir/*': [
                 'src/js/*'
@@ -897,25 +897,8 @@ let fs = require( 'fs' ),
 
             compDir: path.resolve( __dirname, './src/components/' ),
 
-            // 关于在JS和TS文件中导入graphql文件时出现的BUG说明！！！
-            // 自己机子上的主要错误信息：
-            // The value "D:\NodeJS\" is invalid for option "options.paths"
-            //
-            // 1、在Webpack的配置中设置一个别名：
-            // gQLDir: path.resolve( __dirname, './src/graphQL/' ),
-            //
-            //     2、然后在项目中如下使用，会报错！！！
-            // import GraphQLDemoA4GQL from 'gQLDir/GraphQLDemo.graphql';
-            // 错误信息：
-            // The value "D:\NodeJS\" is invalid for option "options.paths"
-            //
-            // 3、不报错，可以使用的导入方法！！！
-            // import GraphQLDemoA4GQL from '../../../graphQL/GraphQLDemo.graphql';
-            // import('gQLDir/GraphQLDemo.graphql');
-            // import('../../../graphQL/GraphQLDemo.graphql')
-            //
-            // 4、使用动态导入时，修改“.graphql”是会触发重新编译的！但静态导入是不会的！
-            gQLDir: path.resolve( __dirname, './src/graphQL/' ),
+            // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
+            gQLAPIDir: path.resolve( __dirname, './src/graphQL/api/' ),
 
             jsDir: path.resolve( __dirname, './src/js/' ),
             jsMDir: path.resolve( __dirname, './src/js/modules/' ),
@@ -3959,7 +3942,7 @@ let fs = require( 'fs' ),
                     },
                 ],
                 include: [
-                    path.resolve( __dirname, './src/graphQL/' ),
+                    path.resolve( __dirname, './src/graphQL/api/' ),
                 ],
                 exclude: [
                     path.resolve( __dirname, './assistTools/' ),
@@ -3976,6 +3959,7 @@ let fs = require( 'fs' ),
 
                     path.resolve( __dirname, './src/assets/' ),
                     path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/graphQL/doc/' ),
                     path.resolve( __dirname, './src/js/' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),

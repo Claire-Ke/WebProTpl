@@ -350,7 +350,7 @@ if( false ){
 
 if( false ){
     ( async () => {
-        import('../../../../src/graphQL/SN_Alert.graphql').then( resultModule => {
+        import('../../../../src/graphQL/api/SN_Alert.graphql').then( resultModule => {
             // resultModule有如下属性字段：
             // MyQuery1: definitions、kind、loc
             // MyQuery2: definitions、kind、loc
@@ -379,7 +379,7 @@ if( false ){
                     body,
                 },
             },
-        } = await import('gQLDir/SN_Alert.graphql');
+        } = await import('gQLAPIDir/SN_Alert.graphql');
 
         console.dir( SN_Alert );
         console.log( body );
@@ -409,7 +409,7 @@ if( false ){
     } )();
 }
 
-import SN_Alert from 'gQLDir/SN_Alert.graphql';
+import SN_Alert from 'gQLAPIDir/SN_Alert.graphql';
 
 console.dir( SN_Alert );
 console.log( SN_Alert.loc.source.body );

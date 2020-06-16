@@ -205,8 +205,8 @@ const TSConfig_objC = {
             'compDir/*': [
                 'src/components/*'
             ],
-            'gQLDir/*': [
-                'src/graphQL/*'
+            'gQLAPIDir/*': [
+                'src/graphQL/api/*'
             ],
             'jsDir/*': [
                 'src/js/*'
