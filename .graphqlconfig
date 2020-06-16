@@ -2,10 +2,13 @@
     "projects": {
         "SN_Alert": {
             "name": "SN_Alert",
+            "schemaPath": "./src/graphQL/GraphQL.Schema.json",
             "includes": [
-                "./src/graphQL/SN_Alert.graphql"
+                "./src/graphQL/api/**"
             ],
-            "schemaPath": "./src/graphQL/SN_Alert.graphql",
+            "excludes": [
+                "./src/graphQL/doc/**"
+            ],
             "extensions": {
                 "endpoints": {
                     "devURL4Dev": {

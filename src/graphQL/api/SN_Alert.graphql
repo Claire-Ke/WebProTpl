@@ -51,3 +51,9 @@ query SN_Alert_GetAllReviewList{
         },
     },
 }
+
+fragment SN_Alert_Fragment_SimilarAlarmTotal on IBMS_SimilarAlarmTotal{
+    alarmTotal,
+    misinformationTotal,
+    malfunctionTotal,
+}
