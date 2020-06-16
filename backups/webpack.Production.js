@@ -56,7 +56,7 @@ module.exports = {
         new webpack.ProvidePlugin( baseConfig.provide_obj ),
 
         // 插件顺序很重要。错误的顺序将导致一些钩子未定义并且生成失败
-        new ForkTsCheckerWebpackPlugin( baseConfig.ForkTsCheckerWebpackPlugin_obj ),
+        // new ForkTsCheckerWebpackPlugin( baseConfig.ForkTsCheckerWebpackPlugin_obj ),
         // new ForkTsCheckerNotifierWebpackPlugin( baseConfig.ForkTsCheckerNotifierWebpackPlugin_obj ),
 
         new VueLoaderPlugin(),
