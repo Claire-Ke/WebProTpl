@@ -1,4 +1,3 @@
-
 #设备故障之现场处理
 mutation SN_Alert_EquipmentFailure_Scene_ToReview( $alarmId: String!, $misinformationMessage: String! ){
     ibms_alarm_siteTreatment( alarmId: $alarmId, misinformationMessage: $misinformationMessage ),
