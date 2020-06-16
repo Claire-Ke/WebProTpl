@@ -1,4 +1,4 @@
-#import "./SN_Alert_Fragment.graphql"
+#import "./SN_Alert.fragment.graphql"
 
 #获取所有未复核、已复核的
 query SN_Alert_GetAllReviewList{

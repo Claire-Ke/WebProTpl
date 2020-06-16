@@ -1,0 +1,1 @@
+graphQL文件夹下都是各种.graphql(主文件)、.fragment.graphql(片段文件)文件！
