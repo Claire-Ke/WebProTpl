@@ -17,6 +17,8 @@ http://192.168.1.100:8081/graphql/schema.json
 http://sn2020a.nat300.top/graphql/schema.json
 测试：
 http://192.168.1.125:8080/graphql/schema.json
+注：
+启动“bats/graphQL/Update4GraphQLSchemaJSON.bat”可以自动更新该文件(GraphQL.Schema.json)，具体使用细节看“bats/graphQL/该文件夹说明.txt”。
 
 5、
 src/**/avlfd/*.graphql
