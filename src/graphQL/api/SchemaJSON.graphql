@@ -1,4 +1,4 @@
-query GetSchemaJSON{
+query SchemaJSON{
     __schema{
         queryType{
             name,

@@ -58,17 +58,6 @@ const option4Dev_objC = {
             'Accept-Encoding': 'gzip, deflate, br',
             'Content-Type': 'application/json',
         },
-    },
-    option4WWC_objC = {
-        host: '192.168.1.75',
-        port: '8081',
-        path: '/graphql/schema.json',
-        method: 'GET',
-        headers: {
-            'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Content-Type': 'application/json',
-        },
     };
 
 function Update4GraphQLSchemaJSON( opt = {} ){
@@ -114,7 +103,7 @@ function Update4GraphQLSchemaJSON( opt = {} ){
                       .on( 'error', e => void ( reject( e ) ) ) ) );
 }
 
-// 根据需要自己选取用哪个：option4Dev_objC option4Dev2Natapp_objC option4Test_objC option4WWC_objC
+// 根据需要自己选取用哪个：option4Dev_objC option4Dev2Natapp_objC option4Test_objC
 Update4GraphQLSchemaJSON( option4Dev2Natapp_objC )
     .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {}, outContent_obj, result ) ) ) ) )
     .catch( e => void ( console.error( e ) ) );

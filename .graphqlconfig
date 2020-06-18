@@ -4,7 +4,8 @@
             "name": "SN_Alert",
             "schemaPath": "./src/graphQL/GraphQL.Schema.json",
             "includes": [
-                "./src/graphQL/api/**"
+                "./src/graphQL/api/**",
+                "./src/graphQL/GraphQL.Schema.json.graphql"
             ],
             "excludes": [
                 "./src/graphQL/doc/**"
