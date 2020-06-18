@@ -157,7 +157,9 @@
 
 
 <div class="description">
-    禁止返回键<br />注：<br />这个方法跟popStateChange方法都是注册了同一个事件，都执行的时候会冲突到！
+    禁止返回键<br />
+注：<br />
+这个方法跟popStateChange方法都是注册了同一个事件，都执行的时候会冲突到！
 </div>
 
 
@@ -289,7 +291,14 @@
 
 
 <div class="description">
-    根据输入的“url字符串片段”获得当前拼接后的“绝对URL”<br />例子：<br />当前的URL：http://localhost:8082/WebProTpl/dist/devServer/pages/HelloWorld.html<br /><br />'something1?pageNumber=1': http://localhost:8082/WebProTpl/dist/devServer/pages/something1?pageNumber=1<br />'/something2?pageNumber=2': http://localhost:8082/something2?pageNumber=2<br />'../something3?pageNumber=3': http://localhost:8082/WebProTpl/dist/devServer/something3?pageNumber=3
+    根据输入的“url字符串片段”获得当前拼接后的“绝对URL”<br />
+
+例子：<br />
+当前的URL：http://localhost:8082/WebProTpl/dist/devServer/pages/HelloWorld.html<br /><br />
+
+'something1?pageNumber=1': http://localhost:8082/WebProTpl/dist/devServer/pages/something1?pageNumber=1<br />
+'/something2?pageNumber=2': http://localhost:8082/something2?pageNumber=2<br />
+'../something3?pageNumber=3': http://localhost:8082/WebProTpl/dist/devServer/something3?pageNumber=3
 </div>
 
 
@@ -443,7 +452,9 @@
 
 
 <div class="description">
-    锚点发生改变时，会触发的事件<br />该事件仅由执行浏览器操作！<br />如单击后退按钮(history.back()、history.go(-1))、前进按钮(history.forward()、history.go(1))，触发
+    锚点发生改变时，会触发的事件<br />
+该事件仅由执行浏览器操作！<br />
+如单击后退按钮(history.back()、history.go(-1))、前进按钮(history.forward()、history.go(1))，触发
 </div>
 
 
@@ -575,7 +586,9 @@
 
 
 <div class="description">
-    反序列化URL查询参数，将JSON对象转换成字符串形式的URL查询参数<br />键值会被strToUCode()方法处理，这样才不会导致中文乱码！<br />读取键值时要用uCodeToStr()方法解码！
+    反序列化URL查询参数，将JSON对象转换成字符串形式的URL查询参数<br />
+键值会被strToUCode()方法处理，这样才不会导致中文乱码！<br />
+读取键值时要用uCodeToStr()方法解码！
 </div>
 
 
@@ -729,7 +742,11 @@
 
 
 <div class="description">
-    url改变时触发，包括锚点改变时也会触发，查询字符串改变时也会触发<br />该事件仅由执行浏览器操作！<br />如单击后退按钮(history.back()、history.go(-1))、前进按钮(history.forward()、history.go(1))，触发<br />注：<br />这个方法跟cReturn方法都是注册了同一个事件，都执行的时候会冲突到！
+    url改变时触发，包括锚点改变时也会触发，查询字符串改变时也会触发<br />
+该事件仅由执行浏览器操作！<br />
+如单击后退按钮(history.back()、history.go(-1))、前进按钮(history.forward()、history.go(1))，触发<br />
+注：<br />
+这个方法跟cReturn方法都是注册了同一个事件，都执行的时候会冲突到！
 </div>
 
 
@@ -861,7 +878,10 @@
 
 
 <div class="description">
-    跟浏览器的后退按钮一样的功能，向左的箭头按钮<br />注：<br />0，表示刷新页面<br />数值不在history的条数之内时，不执行
+    跟浏览器的后退按钮一样的功能，向左的箭头按钮<br />
+注：<br />
+0，表示刷新页面<br />
+数值不在history的条数之内时，不执行
 </div>
 
 
@@ -993,7 +1013,10 @@
 
 
 <div class="description">
-    跟浏览器的前进按钮一样的功能，向右的箭头按钮<br />注：<br />0，表示刷新页面<br />数值不在history的条数之内时，不执行
+    跟浏览器的前进按钮一样的功能，向右的箭头按钮<br />
+注：<br />
+0，表示刷新页面<br />
+数值不在history的条数之内时，不执行
 </div>
 
 
@@ -1180,7 +1203,23 @@
 
             
 
-            <td class="description last">JSON对象，配置对象，必须<br />{<br />newURLStr 字符串(新的同源的URL，完整的URL)，默认值是如下格式的当前URL，必须！<br />格式是：http://localhost:8082/WebProTpl/app/devServer/pages/webProTpl.html<br /><br />searchObj JSON对象(键名是url中的参数名，键值是参数对应的值，值是字符串；可选！<br />存在的键名便会更新其值，不存在的键名会添加到url中；也可以是有且仅有一个是键名为“#”，键值是锚点值，字符串的)，默认值是空JSON对象<br />就是问号后面的参数：?q=1&a=2，如果键值是没有的那就传空字符串<br />注：锚点放在最后！<br />{<br />  a: 1,<br />  b: 'qwe',<br />  #: 'asd'<br /><br />stateData 数据类型可以是任何类型，但建议是JSON对象，用于存储数据(640KB字符的大小限制)，默认值是null；可选！<br /><br />history.state将获取到设置的stateData数据！</td>
+            <td class="description last">JSON对象，配置对象，必须<br />
+{<br />
+newURLStr 字符串(新的同源的URL，完整的URL)，默认值是如下格式的当前URL，必须！<br />
+格式是：http://localhost:8082/WebProTpl/app/devServer/pages/webProTpl.html<br /><br />
+
+searchObj JSON对象(键名是url中的参数名，键值是参数对应的值，值是字符串；可选！<br />
+存在的键名便会更新其值，不存在的键名会添加到url中；也可以是有且仅有一个是键名为“#”，键值是锚点值，字符串的)，默认值是空JSON对象<br />
+就是问号后面的参数：?q=1&a=2，如果键值是没有的那就传空字符串<br />
+注：锚点放在最后！<br />
+{<br />
+  a: 1,<br />
+  b: 'qwe',<br />
+  #: 'asd'<br /><br />
+
+stateData 数据类型可以是任何类型，但建议是JSON对象，用于存储数据(640KB字符的大小限制)，默认值是null；可选！<br /><br />
+
+history.state将获取到设置的stateData数据！</td>
         </tr>
 
     
@@ -1334,7 +1373,23 @@
 
             
 
-            <td class="description last">JSON对象，配置对象，必须<br />{<br />newURLStr 字符串(新的同源的URL，完整的URL)，默认值是如下格式的当前URL，必须！<br />格式是：http://localhost:8082/WebProTpl/app/devServer/pages/webProTpl.html<br /><br />searchObj JSON对象(键名是url中的参数名，键值是参数对应的值，值是字符串；可选！<br />存在的键名便会更新其值，不存在的键名会添加到url中；也可以是有且仅有一个是键名为“#”，键值是锚点值，字符串的)，默认值是空JSON对象<br />就是问号后面的参数：?q=1&a=2，如果键值是没有的那就传空字符串<br />注：锚点放在最后！<br />{<br />  a: 1,<br />  b: 'qwe',<br />  #: 'asd'<br /><br />stateData 数据类型可以是任何类型，但建议是JSON对象，用于存储数据(640KB字符的大小限制)，默认值是null；可选！<br /><br />history.state将获取到设置的stateData数据！</td>
+            <td class="description last">JSON对象，配置对象，必须<br />
+{<br />
+newURLStr 字符串(新的同源的URL，完整的URL)，默认值是如下格式的当前URL，必须！<br />
+格式是：http://localhost:8082/WebProTpl/app/devServer/pages/webProTpl.html<br /><br />
+
+searchObj JSON对象(键名是url中的参数名，键值是参数对应的值，值是字符串；可选！<br />
+存在的键名便会更新其值，不存在的键名会添加到url中；也可以是有且仅有一个是键名为“#”，键值是锚点值，字符串的)，默认值是空JSON对象<br />
+就是问号后面的参数：?q=1&a=2，如果键值是没有的那就传空字符串<br />
+注：锚点放在最后！<br />
+{<br />
+  a: 1,<br />
+  b: 'qwe',<br />
+  #: 'asd'<br /><br />
+
+stateData 数据类型可以是任何类型，但建议是JSON对象，用于存储数据(640KB字符的大小限制)，默认值是null；可选！<br /><br />
+
+history.state将获取到设置的stateData数据！</td>
         </tr>
 
     
@@ -1603,7 +1658,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 17 2020 06:56:15 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 17 2020 11:06:58 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

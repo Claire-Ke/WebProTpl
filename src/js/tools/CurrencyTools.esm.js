@@ -9132,7 +9132,7 @@ class WebService4Proxy{
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, options )
                                           .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) ){
+                                              if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
                                                   return response.clone()[ type ]();
                                               }
                                               else{
@@ -9277,7 +9277,7 @@ class WebService4Proxy{
                                               method: 'POST',
                                           } ) )
                                           .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) ){
+                                              if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
                                                   return response.clone()[ type ]();
                                               }
                                               else{
@@ -9327,7 +9327,7 @@ class WebService4Proxy{
                                               method: 'DELETE',
                                           } ) )
                                           .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) ){
+                                              if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
                                                   return response.clone()[ type ]();
                                               }
                                               else{
@@ -9377,7 +9377,7 @@ class WebService4Proxy{
                                               method: 'PUT',
                                           } ) )
                                           .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) ){
+                                              if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
                                                   return response.clone()[ type ]();
                                               }
                                               else{
@@ -9425,7 +9425,7 @@ class WebService4Proxy{
                                               method: 'GET',
                                           } ) )
                                           .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) ){
+                                              if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
                                                   return response.clone()[ type ]();
                                               }
                                               else{

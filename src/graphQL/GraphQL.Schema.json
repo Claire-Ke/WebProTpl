@@ -966,6 +966,26 @@
                             "deprecationReason": null
                         },
                         {
+                            "name": "funAreas",
+                            "description": "楼宇所有功能区",
+                            "args": [],
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "LIST",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "OBJECT",
+                                        "name": "IBMS_FunctionalArea",
+                                        "ofType": null
+                                    }
+                                }
+                            },
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
                             "name": "funAreasCount",
                             "description": "楼宇所有功能区数量",
                             "args": [],
@@ -4966,12 +4986,16 @@
                                     "name": "categoryIds",
                                     "description": null,
                                     "type": {
-                                        "kind": "LIST",
+                                        "kind": "NON_NULL",
                                         "name": null,
                                         "ofType": {
-                                            "kind": "SCALAR",
-                                            "name": "String",
-                                            "ofType": null
+                                            "kind": "LIST",
+                                            "name": null,
+                                            "ofType": {
+                                                "kind": "SCALAR",
+                                                "name": "String",
+                                                "ofType": null
+                                            }
                                         }
                                     },
                                     "defaultValue": null

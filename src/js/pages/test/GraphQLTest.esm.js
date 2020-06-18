@@ -409,23 +409,24 @@ if( false ){
     } )();
 }
 
-import SN_Alert from 'gQLAPIDir/SN_Alert.graphql';
+import SN_Alert from 'gQLAPIDir/SN_Alert_IndexPage4Init.graphql';
 import SN_Alert2 from 'gQLAPIDir/SN_Alert2.graphql';
 
 console.dir( SN_Alert );
 console.log( SN_Alert.loc.source.body );
+
 console.dir( SN_Alert2 );
 console.log( SN_Alert2.loc.source.body );
 
-// 设备故障现场处理
-if( false ){
+// 获取所有未复核、已复核的
+function SN_Alert_GetAllReviewList(){
     const {
         loc: {
             source: {
                 body,
             },
         },
-    } = SN_Alert2;
+    } = SN_Alert;
 
     post4JSON.graphql( {
         url: '/',
@@ -450,22 +451,68 @@ if( false ){
     } );
 }
 
-// 获取所有未复核、已复核的
+// 设备故障现场处理
 if( false ){
     const {
+        definitions: [
+            {
+                variableDefinitions: [
+                    {
+                        variable: {
+                            name: {
+                                value: varDef1,
+                            },
+                        },
+                    },
+                    {
+                        variable: {
+                            name: {
+                                value: varDef2,
+                            },
+                        },
+                    },
+                ],
+                selectionSet: {
+                    selections: [
+                        {
+                            name: {
+                                value: opName1,
+                            },
+                        },
+                    ],
+                },
+            },
+        ],
         loc: {
             source: {
                 body,
             },
         },
-    } = SN_Alert;
+    } = SN_Alert2;
 
     post4JSON.graphql( {
         url: '/',
         options: {
             ...requestOpt,
             body: JSON.stringify( {
-                query: body,
+                operationName: 'ua_login',
+                variables: {
+                    identifier: 'roleAdmin',
+                    password: '123456',
+                },
+                query: `
+                mutation ua_login( $identifier: String!, $password: String! ){
+                    ua_login( domain: userName, identifier: $identifier, password: $password ){
+                        account{
+                            id,
+                            displayName,
+                            __typename,
+                        },
+                        forceRestPassword,
+                        __typename,
+                    },
+                },
+                `,
             } ),
         },
         events: {
@@ -473,6 +520,35 @@ if( false ){
                 console.log( 'success，请求成功------>Start' );
                 console.dir( data4ResponseType );
                 console.log( 'success，请求成功------>End' );
+
+                post4JSON.graphql( {
+                    url: '/',
+                    options: {
+                        ...requestOpt,
+                        body: JSON.stringify( {
+                            operationName: 'SN_Alert_EquipmentFailure_Scene_ToReview',
+                            variables: {
+                                [ varDef1 ]: '2002522536',
+                                [ varDef2 ]: '设备故障之现场处理_20200617DDD',
+                            },
+                            query: body,
+                        } ),
+                    },
+                    events: {
+                        success: ( data4ResponseType, response ) => {
+                            console.log( 'success，请求成功------>Start' );
+                            console.dir( data4ResponseType );
+                            console.log( 'success，请求成功------>End' );
+
+                            SN_Alert_GetAllReviewList();
+                        },
+                        error: ( status_num, response ) => {
+                            console.warn( `错误，请求状态码：${ status_num }------>Start` );
+                            console.error( response );
+                            console.warn( `错误，请求状态码：${ status_num }------>End` );
+                        },
+                    },
+                } );
             },
             error: ( status_num, response ) => {
                 console.warn( `错误，请求状态码：${ status_num }------>Start` );

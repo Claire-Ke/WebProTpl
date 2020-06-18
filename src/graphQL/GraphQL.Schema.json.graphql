@@ -248,6 +248,8 @@ type IBMS_Building implements IBMS_IRegion {
     floors(exp: String): [IBMS_Floor]!
     "楼层分页"
     floorsPaging(exp: String, pageIndex: Int!, pageSize: Int!): [IBMS_Floor]!
+    "楼宇所有功能区"
+    funAreas: [IBMS_FunctionalArea]!
     "楼宇所有功能区数量"
     funAreasCount: Int
     "建筑高度"
@@ -500,7 +502,7 @@ type Mutation {
     "定义楼宇   buildingName:楼宇名称  buildingParentId:所属地块编号  buildingHeight:地面建筑高度  buildingUnderHeight:地下建筑高度  buildingTags:建筑标签  buildingCategoryIds:建筑分类编号"
     ibms_region_defineBuilding(buildingCategoryIds: [String]!, buildingHeight: String, buildingId: String, buildingName: String!, buildingParentId: String!, buildingTags: [String]!, buildingUnderHeight: String): Boolean
     "定义楼层   floorName:楼层名称  floorParentId:所属楼宇编号  floorHeight:层高  floorNumber:楼层号  floorTags:楼层标签   categoryIds:功能区分类编号"
-    ibms_region_defineFloor(categoryIds: [String], floorHeight: String, floorId: String, floorNumber: String!, floorParentId: String!, floorTags: [String]!): Boolean
+    ibms_region_defineFloor(categoryIds: [String]!, floorHeight: String, floorId: String, floorNumber: String!, floorParentId: String!, floorTags: [String]!): Boolean
     "定义功能区     fuAreaId:功能区编号   fuAreaName:功能区名称   fuAreaParentId:所属楼层编号    categoryId:功能区分类编号   fuAreaTags:功能区标签"
     ibms_region_defineFunctionalArea(categoryId: String!, fuAreaId: String, fuAreaName: String!, fuAreaParentId: String!, fuAreaTags: [String]!): Boolean
     "定义园区   parkName:园区名称  parkArea:园区面积  parkTags:园区标签 "
