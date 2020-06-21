@@ -1,7 +1,7 @@
 {
     "projects": {
-        "SN_Alert": {
-            "name": "SN_Alert",
+        "SN_ProA": {
+            "name": "SN_ProA",
             "schemaPath": "./src/graphQL/GraphQL.Schema.json",
             "includes": [
                 "./src/graphQL/api/**",
@@ -16,37 +16,37 @@
                         "url": "http://192.168.1.100:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_Alert JS GraphQL for devURL4Dev",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev",
                             "Accept-Encoding": "gzip"
                         },
-                        "introspect": true
+                        "introspect": false
                     },
                     "devURL4Dev2Natapp": {
                         "url": "http://sn2020a.nat300.top/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_Alert JS GraphQL for devURL4Dev2Natapp",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev2Natapp",
                             "Accept-Encoding": "gzip"
                         },
-                        "introspect": true
+                        "introspect": false
                     },
                     "devURL4Test": {
                         "url": "http://192.168.1.125:8080/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_Alert JS GraphQL for devURL4Test",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4Test",
                             "Accept-Encoding": "gzip"
                         },
-                        "introspect": true
+                        "introspect": false
                     },
                     "devURL4WWC": {
                         "url": "http://192.168.1.75:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_Alert JS GraphQL for devURL4WWC",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4WWC",
                             "Accept-Encoding": "gzip"
                         },
-                        "introspect": true
+                        "introspect": false
                     }
                 }
             }
