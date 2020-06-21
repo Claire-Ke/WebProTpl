@@ -142,7 +142,7 @@ let fs = require( 'fs' ),
         // 告诉TypeScript将上次编译的项目图信息保存到存储在磁盘上的文件中。这将在编译输出所在的文件夹中创建一系列.tsbuildinfo文件。
         // 它们在运行时不被JavaScript使用，可以安全地删除。
         'incremental': true,
-        'tsBuildInfoFile': './webpackRecords/TSBuildInfo.json',
+        'tsBuildInfoFile': './webpackRecords/TSBuildInfo.tsbuildinfo',
         // ES3、ES5、ES6、ES2015、ES7、ES2016、ES2017(Node 8)、ES2018(Node 10)、ES2019(Node 12)、ES2020、ESNext
         'target': 'ES2020',
         // CommonJS(default if target is ES3 or ES5)、ES6、ES2015、ES2020、None、UMD、AMD、System、ESNext
