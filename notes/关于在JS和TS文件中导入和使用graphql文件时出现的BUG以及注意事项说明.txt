@@ -1,3 +1,15 @@
+PS:
+1、
+优先使用如下插件：
+webpack-graphql-loader(已在项目中配置使用了)
+babel-plugin-import-graphql-string(未在项目中配置使用)
+2、
+不使用如下插件：
+graphql-import-loader
+import-graphql-string
+
+
+
 自己机子上的主要错误信息：
 The value "D:\NodeJS\" is invalid for option "options.paths"
 

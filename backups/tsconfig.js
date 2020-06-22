@@ -135,7 +135,7 @@ const compilerOptions4lib_arrC = [
             // 告诉TypeScript将上次编译的项目图信息保存到存储在磁盘上的文件中。这将在编译输出所在的文件夹中创建一系列.tsbuildinfo文件。
             // 它们在运行时不被JavaScript使用，可以安全地删除。
             'incremental': true,
-            'tsBuildInfoFile': './webpackRecords/TSBuildInfo.tsbuildinfo',
+            'tsBuildInfoFile': './test/TSBuildInfo.tsbuildinfo',
             // ES3、ES5、ES6、ES2015、ES7、ES2016、ES2017(Node 8)、ES2018(Node 10)、ES2019(Node 12)、ES2020、ESNext
             'target': 'ES2020',
             // CommonJS(default if target is ES3 or ES5)、ES6、ES2015、ES2020、None、UMD、AMD、System、ESNext
@@ -464,8 +464,8 @@ const compilerOptions4lib_arrC = [
 
             // Source Maps Start
 
-            'sourceRoot': './dist/',
-            'mapRoot': './dist/',
+            'sourceRoot': './test/',
+            'mapRoot': './test/',
             // 设置后，TypeScript将在.js文件中嵌入源映射内容，而不是写出.js.map文件来提供源映射。尽管这会产生更大的JS文件，但在某些情况下，这是很方便的。
             // 例如，您可能希望在不允许提供.map文件的Web服务器上调试JS文件。
             'inlineSourceMap': false,
@@ -521,7 +521,7 @@ const compilerOptions4lib_arrC = [
             // 属于“有助于调试的标志”！！！
             // 此选项使您有机会让TypeScript在编译器运行期间发出v8 CPU配置文件。CPU配置文件可以提供对构建可能缓慢的原因的洞察。
             // 可以在基于Chromium的浏览器（如Chrome浏览器或Edge Profiler）中的Chrome或Edge Developer中打开此文件。
-            'generateCpuProfile': './dist/profile.cpuprofile',
+            'generateCpuProfile': './test/profile.cpuprofile',
             // 属于“有助于调试的标志”！！！
             // 启用此选项后，TypeScript将避免重新检查/重新生成所有真正可能受影响的文件，并且只重新检查/重新生成已更改的文件以及直接导入它们的文件。
             // 这可以被认为是监视算法的“快速和松散”实现，它可以大大减少增量重建时间，但代价是必须偶尔运行完整的构建以获取所有编译器错误消息。
@@ -579,7 +579,7 @@ const compilerOptions4lib_arrC = [
             // 将preserveConstEnums设置为true时，枚举在运行时存在并且仍会发出数字。
             // 这实质上使此类const枚举仅具有源代码功能，而没有运行时跟踪。
             'preserveConstEnums': true,
-            'declarationDir': './dist/',
+            'declarationDir': './test/',
             // 跳过默认库声明文件的类型检查。
             'skipLibCheck': true,
             // 设置为false可禁用有关未使用标签的警告。 标签在JavaScript中很少见，通常表示尝试编写对象文字：
