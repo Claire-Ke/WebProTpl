@@ -2590,18 +2590,22 @@ let fs = require( 'fs' ),
             plug_arr = [
                 [ '@babel/plugin-external-helpers' ],
 
+                // 暂时不用！
                 // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
-                [
-                    'graphql-tag',
-                    {
-                        // 要导入的模块的名称
-                        importName: 'graphql-tag',
-                        // 匹配导入的结尾而不是整个名称。对相对进口有用: ./utils/graphql (default = false)
-                        onlyMatchImportSuffix: false,
-                        // 从GraphQL字符串文字中剥离不重要的字符（例如空格），并返回该字符而不是AST对象: query foo{foo{bar baz}} (default = false)
-                        strip: true,
-                    },
-                ],
+                /*
+                 [
+                 'graphql-tag',
+                 {
+                 // 要导入的模块的名称
+                 importName: 'graphql-tag',
+                 // 匹配导入的结尾而不是整个名称。对相对进口有用: ./utils/graphql (default = false)
+                 onlyMatchImportSuffix: false,
+                 // 从GraphQL字符串文字中剥离不重要的字符（例如空格），并返回该字符而不是AST对象: query foo{foo{bar baz}} (default = false)
+                 strip: true,
+                 },
+                 ],
+                 */
+                // 暂时不用！
                 // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
                 /*
                  [
@@ -3547,12 +3551,15 @@ let fs = require( 'fs' ),
                             // “ts loader”支持“project references”。启用此配置选项后，“ts loader”将像“tsc--build”那样增量地重建上游项目。
                             // 否则，引用项目中的源文件将被视为根项目的一部分。
                             projectReferences: true,
-                            getCustomTransformers: () => ( {
-                                before: [
-                                    // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
-                                    getTransformer(),
-                                ],
-                            } ),
+                            // 暂时不用！
+                            /*
+                             getCustomTransformers: () => ( {
+                             before: [
+                             // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
+                             getTransformer(),
+                             ],
+                             } ),
+                             */
                         },
                     },
                 ],
@@ -3999,8 +4006,26 @@ let fs = require( 'fs' ),
                 test: /\.(graphql|gql)$/i,
                 use: [
                     // graphql-tag/loader.js有被自己改过的！
+                    // 暂时不用！
+                    // {
+                    //     loader: 'graphql-tag/loader',
+                    // },
                     {
-                        loader: 'graphql-tag/loader',
+                        loader: 'webpack-graphql-loader',
+                        options: {
+                            // graphql自省查询架构JSON文件的位置。如果与validate选项一起使用，它将用于验证导入的查询和片段。
+                            schema: './src/graphQL/GraphQL.Schema.json',
+                            // 如果为true，则加载程序将根据您指定的模式文件验证导入的文档。
+                            validate: true,
+                            // 'string'、'document'
+                            output: 'string',
+                            // 如果为true且输出选项为字符串，则加载程序将从graphql文档字符串中删除注释和空格。这有助于减小捆绑的代码大小。
+                            minify: true,
+                            // 如果为true，则加载程序将从导入的文档中删除未使用的碎片。
+                            // 如果查询要从文件导入片段，但未使用该文件中的所有片段，则这可能很有用。
+                            // 另请参阅此问题。
+                            removeUnusedFragments: false,
+                        },
                     },
                 ],
                 include: [

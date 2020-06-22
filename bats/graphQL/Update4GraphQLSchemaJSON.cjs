@@ -24,7 +24,6 @@ const fs = require( 'fs' ),
     http = require( 'http' );
 
 const jsonPath_strC = path.join( __dirname, '../../src/graphQL/GraphQL.Schema.json' ),
-    outContent_obj = JSON.parse( fs.readFileSync( jsonPath_strC ) ),
     mySchemaJSONGraphQL = JSON.stringify( {
         query: fs.readFileSync( path.join( __dirname, '../../src/graphQL/api/SchemaJSON.graphql' ), {
             encoding: 'utf8',
@@ -127,7 +126,9 @@ if( true ){
     // option4Test_objC
     // option4WWC_objC
     Update4GraphQLSchemaJSON( option4Dev2Natapp_objC )
-        .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {}, outContent_obj, result ) ) ) ) )
+        .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {
+            __schema: {},
+        }, result.data ) ) ) ) )
         .catch( e => void ( console.error( e ) ) );
 }
 
@@ -234,6 +235,8 @@ if( false ){
     // option4Test_objC
     // option4WWC_objC
     Update4GraphQLSchemaJSON( option4Dev2Natapp_objC )
-        .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {}, outContent_obj, result ) ) ) ) )
+        .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {
+            __schema: {},
+        }, result.data ) ) ) ) )
         .catch( e => void ( console.error( e ) ) );
 }
