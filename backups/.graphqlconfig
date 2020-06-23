@@ -5,7 +5,7 @@
             "schemaPath": "./src/graphQL/GraphQL.Schema.json",
             "includes": [
                 "./src/graphQL/api/**",
-                "./src/graphQL/GraphQL.Schema.json.graphql"
+                "./src/graphQL/test/**"
             ],
             "excludes": [
                 "./src/graphQL/doc/**"
