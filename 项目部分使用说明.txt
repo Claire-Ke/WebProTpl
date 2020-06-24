@@ -153,3 +153,12 @@ styles/demoLess1_2e4cfd4d.css : [object Object]
 p {
   font-family: 'MicrosoftYaHeiUI_Regular';
 }
+
+
+
+十、关于webpack中的“~”的使用
+样式文件、HTML文件中
+各类非 js 直接引用（import require）静态资源，依赖相对路径加载问题，都可以用 ~ 语法完美解决；
+例如 css module 中： @import "~@/style/theme"
+css 属性中： background: url("~@/assets/xxx.jpg")
+html 标签中： <img src="~@/assets/xxx.jpg" alt="alias">

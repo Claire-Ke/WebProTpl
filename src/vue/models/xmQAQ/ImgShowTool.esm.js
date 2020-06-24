@@ -8,7 +8,7 @@
 
 'use strict';
 
-const baseURL_strC = 'http://192.168.1.3:8084/iPhoneX/',
+const baseURL_strC = 'http://192.168.1.150:8084/iPhoneX/',
     img_numC = 241;
 
 let CT = new CTESM.CT(),

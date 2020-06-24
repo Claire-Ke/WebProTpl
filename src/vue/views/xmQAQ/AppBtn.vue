@@ -7,7 +7,7 @@ IDE: WebStorm
 -->
 <style lang = 'scss'
        scoped
-       src = '../../styles/xmQAQ/AppBtn.scss' />
+       src = 'vueStyDir/xmQAQ/AppBtn.scss' />
 <template>
     <div class = 'css-reset ofh cP flexBox flexSBC flexDC root appBtn'
          @tap = 'activity'>

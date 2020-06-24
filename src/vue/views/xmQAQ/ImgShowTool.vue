@@ -7,7 +7,7 @@ IDE: WebStorm
 -->
 <style lang = 'scss'
        scoped
-       src = '../../styles/xmQAQ/ImgShowTool.scss' />
+       src = 'vueStyDir/xmQAQ/ImgShowTool.scss' />
 <template>
     <div class = 'css-reset ofh root imgShowToolBox'>
         <button class = 'css-reset cP returnToBtnBoxA'

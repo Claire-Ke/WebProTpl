@@ -7,7 +7,7 @@ IDE: WebStorm
 -->
 <style lang = 'scss'
        scoped
-       src = '../../styles/test/VueDemo.scss' />
+       src = 'vueStyDir/test/VueDemo.scss' />
 <template>
     <div class = 'css-reset root'>
         <p class = 'css-reset'

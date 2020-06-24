@@ -7,7 +7,7 @@ IDE: WebStorm
 -->
 <style lang = 'scss'
        scoped
-       src = '../styles/ExampleA.scss' />
+       src = 'vueStyDir/ExampleA.scss' />
 <template>
     <div class = 'css-reset root'>
         {{ textA }}
