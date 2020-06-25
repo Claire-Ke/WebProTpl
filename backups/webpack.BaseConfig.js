@@ -699,8 +699,8 @@ let fs = require( 'fs' ),
 
          'Edge >= 83',
 
-         'Opera >= 68',
-         'OperaMobile >= 68',
+         'Opera >= 69',
+         'OperaMobile >= 69',
 
          'Chrome >= 83',
          'Android >= 83',
