@@ -238,8 +238,6 @@ type IBMS_Block implements IBMS_IRegion {
 
 "楼宇"
 type IBMS_Building implements IBMS_IRegion {
-    "面积"
-    area: Float
     "分类"
     categorys: [IBMS_Architecture_Category]!
     "楼层数"
@@ -628,7 +626,7 @@ type Mutation {
     """
     ua_addMyTelephone(telephone: String!): Void
     "添加权限到角色"
-    ua_addPermissionToRole(permissionId: String!, roleId: String!): Void
+    ua_addPermissionToRole(permissionId: [String!]!, roleId: String!): Void
     """
 
     employeeId 雇员编号   email邮箱
@@ -663,7 +661,7 @@ type Mutation {
     """
     ua_employeeLeaving(employeeId: String!): Void
     "设立部门"
-    ua_estableshDepartment(deptName: String!, opsorganId: String!, parentName: String!): Void
+    ua_estableshDepartment(deptName: String!, opsorganId: String!, parentName: String): Void
     "授权  账号编号:accountId  角色编号:roleId "
     ua_grantRole(accountId: String!, roleId: String!): Void
     "批量授权"
@@ -857,6 +855,10 @@ type Query {
     deviceCategory:设备类型    alarmLevel:警报级别     content:搜索文字
     """
     ibms_alarm_getMisinformationByContent(alarmLevel: String, beginStamptime: String!, content: String, deviceCategory: String, endStamptime: String!, pageIndex: Int!, pageSize: Int!): IBMS_Page_Checked!
+    "获取所有建筑分类"
+    ibms_getArchitectureCategories(exp: String): [IBMS_Architecture_Category]!
+    "获取所有功能区分类"
+    ibms_getFunCategories(exp: String): [IBMS_FunctionalArea_Category]!
     "根据编号查询区域"
     ibms_region_findById(regionId: String): IBMS_IRegion!
     "所有园区"
@@ -966,7 +968,7 @@ type UA_ActionalResource {
 }
 
 "联系方式"
-type UA_Contact implements UA_IContact {
+type UA_Contact {
     "分类"
     category: String!
     "内容"
@@ -1035,17 +1037,17 @@ type UA_OnlineEmployee {
 }
 
 "运营组织的部门"
-type UA_OperationsDepartment implements UA_IDepartment {
+type UA_OperationsDepartment {
+    "部门下的雇员数量"
+    employeeCount(exp: String): Int!
     """
 
-    部门下的雇员数量
-    employeeCount: Int!
+    分页显示部门雇员
+    employeesPaging(exp: String,screah: String, sorting:String, pageNum: Int!, pageSize: Int!): [UA_OperationsEmployee]
     """
-    employeeCount(exp: String): Int!
+    employeePaging(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_OperationsEmployee]
     "部门雇员"
     employees(exp: String): [UA_OperationsEmployee]
-    "分页显示部门雇员"
-    employeesPaging(exp: String, pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_OperationsEmployee]
     "全称"
     name: String!
     "所属组织机构"
@@ -1053,15 +1055,15 @@ type UA_OperationsDepartment implements UA_IDepartment {
     "直属下级部门数量"
     subordinateCount: Int!
     "直属下级部门"
-    subordinates: [UA_IDepartment]!
+    subordinates: [UA_OperationsDepartment]!
     "上级部门"
-    superior: UA_IDepartment
+    superior: UA_OperationsDepartment
     "父级id"
     superiorId: String
 }
 
 "运营组织的雇员"
-type UA_OperationsEmployee implements UA_IEmployee {
+type UA_OperationsEmployee {
     "持有的账号"
     account: UA_PersonalAccount
     "联系方式"
@@ -1091,11 +1093,15 @@ type UA_OperationsEmployee implements UA_IEmployee {
 }
 
 "运营组织"
-type UA_OperationsOrganization implements UA_IOrganization {
+type UA_OperationsOrganization {
     "部门数量,exp:表达式"
     departmentCount(exp: String): Int!
     "部门, exp:表达式"
-    departments(exp: String): [UA_IDepartment]!
+    departments(exp: String): [UA_OperationsDepartment]!
+    "离职雇员数量"
+    dismissionEmployeeCount: String
+    "离职雇员"
+    dismissionEmployees(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_OperationsEmployee]!
     "满足exp表达式雇员的数量"
     employeeCount(exp: String): Int!
     "雇员，exp:表达式"
@@ -1115,6 +1121,14 @@ type UA_OperationsOrganization implements UA_IOrganization {
     id: String!
     "全称"
     name: String!
+    "在职雇员数量"
+    onJobEmployeeCount: String
+    "在职雇员"
+    onJobEmployees(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_OperationsEmployee]!
+    "在线雇员数量"
+    onlineEmployeeCount: String
+    "在线雇员"
+    onlineEmployees(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_OperationsEmployee]!
     "简称"
     shortName: String!
 }
@@ -1260,14 +1274,11 @@ type UA_UEmployee {
 }
 
 type UA_UIAccount implements UA_IAccount {
+    "部门名称"
+    departmentName: String
     "显示名称"
     displayName: String!
-    """
-
-    部门名称
-    departmentName: String
-    雇员
-    """
+    "雇员"
     employee: UA_UEmployee
     "编号"
     id: String!

@@ -816,18 +816,6 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "area",
-                        "description": "面积",
-                        "args": [],
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "Float",
-                            "ofType": null
-                        },
-                        "isDeprecated": false,
-                        "deprecationReason": null
-                    },
-                    {
                         "name": "categorys",
                         "description": "分类",
                         "args": [],
@@ -5785,13 +5773,9 @@
                                 "name": "parentName",
                                 "description": null,
                                 "type": {
-                                    "kind": "NON_NULL",
-                                    "name": null,
-                                    "ofType": {
-                                        "kind": "SCALAR",
-                                        "name": "String",
-                                        "ofType": null
-                                    }
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
                                 },
                                 "defaultValue": null
                             }
@@ -7569,9 +7553,17 @@
                                     "kind": "NON_NULL",
                                     "name": null,
                                     "ofType": {
-                                        "kind": "SCALAR",
-                                        "name": "String",
-                                        "ofType": null
+                                        "kind": "LIST",
+                                        "name": null,
+                                        "ofType": {
+                                            "kind": "NON_NULL",
+                                            "name": null,
+                                            "ofType": {
+                                                "kind": "SCALAR",
+                                                "name": "String",
+                                                "ofType": null
+                                            }
+                                        }
                                     }
                                 },
                                 "defaultValue": null
@@ -8320,6 +8312,68 @@
                                 "ofType": {
                                     "kind": "OBJECT",
                                     "name": "IBMS_Park",
+                                    "ofType": null
+                                }
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "ibms_getArchitectureCategories",
+                        "description": "获取所有建筑分类",
+                        "args": [
+                            {
+                                "name": "exp",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "LIST",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "IBMS_Architecture_Category",
+                                    "ofType": null
+                                }
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "ibms_getFunCategories",
+                        "description": "获取所有功能区分类",
+                        "args": [
+                            {
+                                "name": "exp",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "LIST",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "IBMS_FunctionalArea_Category",
                                     "ofType": null
                                 }
                             }
@@ -9470,13 +9524,7 @@
                     }
                 ],
                 "inputFields": null,
-                "interfaces": [
-                    {
-                        "kind": "INTERFACE",
-                        "name": "UA_IContact",
-                        "ofType": null
-                    }
-                ],
+                "interfaces": [],
                 "enumValues": null,
                 "possibleTypes": null
             },
@@ -9682,13 +9730,7 @@
                 "inputFields": null,
                 "interfaces": null,
                 "enumValues": null,
-                "possibleTypes": [
-                    {
-                        "kind": "OBJECT",
-                        "name": "UA_Contact",
-                        "ofType": null
-                    }
-                ]
+                "possibleTypes": []
             },
             {
                 "kind": "INTERFACE",
@@ -9920,13 +9962,7 @@
                 "inputFields": null,
                 "interfaces": null,
                 "enumValues": null,
-                "possibleTypes": [
-                    {
-                        "kind": "OBJECT",
-                        "name": "UA_OperationsDepartment",
-                        "ofType": null
-                    }
-                ]
+                "possibleTypes": []
             },
             {
                 "kind": "INTERFACE",
@@ -10081,13 +10117,7 @@
                 "inputFields": null,
                 "interfaces": null,
                 "enumValues": null,
-                "possibleTypes": [
-                    {
-                        "kind": "OBJECT",
-                        "name": "UA_OperationsEmployee",
-                        "ofType": null
-                    }
-                ]
+                "possibleTypes": []
             },
             {
                 "kind": "INTERFACE",
@@ -10237,13 +10267,7 @@
                 "inputFields": null,
                 "interfaces": null,
                 "enumValues": null,
-                "possibleTypes": [
-                    {
-                        "kind": "OBJECT",
-                        "name": "UA_OperationsOrganization",
-                        "ofType": null
-                    }
-                ]
+                "possibleTypes": []
             },
             {
                 "kind": "INTERFACE",
@@ -10722,8 +10746,8 @@
                         "description": "上级部门",
                         "args": [],
                         "type": {
-                            "kind": "INTERFACE",
-                            "name": "UA_IDepartment",
+                            "kind": "OBJECT",
+                            "name": "UA_OperationsDepartment",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -10740,8 +10764,8 @@
                                 "kind": "LIST",
                                 "name": null,
                                 "ofType": {
-                                    "kind": "INTERFACE",
-                                    "name": "UA_IDepartment",
+                                    "kind": "OBJECT",
+                                    "name": "UA_OperationsDepartment",
                                     "ofType": null
                                 }
                             }
@@ -10805,19 +10829,9 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "employeesPaging",
-                        "description": "分页显示部门雇员",
+                        "name": "employeePaging",
+                        "description": "分页显示部门雇员\nemployeesPaging(exp: String,screah: String, sorting:String, pageNum: Int!, pageSize: Int!): [UA_OperationsEmployee]",
                         "args": [
-                            {
-                                "name": "exp",
-                                "description": null,
-                                "type": {
-                                    "kind": "SCALAR",
-                                    "name": "String",
-                                    "ofType": null
-                                },
-                                "defaultValue": null
-                            },
                             {
                                 "name": "screah",
                                 "description": null,
@@ -10881,7 +10895,7 @@
                     },
                     {
                         "name": "employeeCount",
-                        "description": "部门下的雇员数量\nemployeeCount: Int!",
+                        "description": "部门下的雇员数量",
                         "args": [
                             {
                                 "name": "exp",
@@ -10908,13 +10922,7 @@
                     }
                 ],
                 "inputFields": null,
-                "interfaces": [
-                    {
-                        "kind": "INTERFACE",
-                        "name": "UA_IDepartment",
-                        "ofType": null
-                    }
-                ],
+                "interfaces": [],
                 "enumValues": null,
                 "possibleTypes": null
             },
@@ -11097,13 +11105,7 @@
                     }
                 ],
                 "inputFields": null,
-                "interfaces": [
-                    {
-                        "kind": "INTERFACE",
-                        "name": "UA_IEmployee",
-                        "ofType": null
-                    }
-                ],
+                "interfaces": [],
                 "enumValues": null,
                 "possibleTypes": null
             },
@@ -11182,8 +11184,8 @@
                                 "kind": "LIST",
                                 "name": null,
                                 "ofType": {
-                                    "kind": "INTERFACE",
-                                    "name": "UA_IDepartment",
+                                    "kind": "OBJECT",
+                                    "name": "UA_OperationsDepartment",
                                     "ofType": null
                                 }
                             }
@@ -11452,16 +11454,253 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
+                    },
+                    {
+                        "name": "onJobEmployees",
+                        "description": "在职雇员",
+                        "args": [
+                            {
+                                "name": "screah",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "sorting",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "pageNum",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "Int",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "pageSize",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "Int",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "LIST",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "UA_OperationsEmployee",
+                                    "ofType": null
+                                }
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "onJobEmployeeCount",
+                        "description": "在职雇员数量",
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "dismissionEmployees",
+                        "description": "离职雇员",
+                        "args": [
+                            {
+                                "name": "screah",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "sorting",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "pageNum",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "Int",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "pageSize",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "Int",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "LIST",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "UA_OperationsEmployee",
+                                    "ofType": null
+                                }
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "dismissionEmployeeCount",
+                        "description": "离职雇员数量",
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "onlineEmployees",
+                        "description": "在线雇员",
+                        "args": [
+                            {
+                                "name": "screah",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "sorting",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "pageNum",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "Int",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "pageSize",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "Int",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "LIST",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "UA_OperationsEmployee",
+                                    "ofType": null
+                                }
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "onlineEmployeeCount",
+                        "description": "在线雇员数量",
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
                     }
                 ],
                 "inputFields": null,
-                "interfaces": [
-                    {
-                        "kind": "INTERFACE",
-                        "name": "UA_IOrganization",
-                        "ofType": null
-                    }
-                ],
+                "interfaces": [],
                 "enumValues": null,
                 "possibleTypes": null
             },
@@ -12510,8 +12749,20 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "departmentName",
+                        "description": "部门名称",
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "employee",
-                        "description": "部门名称\ndepartmentName: String\n雇员",
+                        "description": "雇员",
                         "args": [],
                         "type": {
                             "kind": "OBJECT",

@@ -1639,6 +1639,15 @@ let fs = require( 'fs' ),
                             reuseExistingChunk: true
                         },
 
+                        GQLAPIDir_JS: {
+                            test: /src[\\/]graphQL[\\/]api[\\/].*\.(graphql|gql)$/,
+                            name: 'GQLAPIDir_JS',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+
                         ComponentsDir_JS: {
                             test: new RegExp( `src[\\\\/]components[\\\\/][^(/)]+[\\\\/].*\\.js$` ),
                             name: 'ComponentsDir_JS',
@@ -2183,6 +2192,40 @@ let fs = require( 'fs' ),
                         WASMPagesDir: {
                             test: /src[\\/]wasm[\\/]pages[\\/]/,
                             name: 'WASMPagesDir',
+                            // 数值越高越先添加加载
+                            // priority: 1000,
+                            enforce: true,
+                            reuseExistingChunk: true
+                        },
+
+                        ...( () => {
+                            let result_obj = {},
+                                str1;
+
+                            fs.readdirSync( path.join( __dirname, './src/graphQL/api' ) )
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/graphQL/api/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
+
+                                  result_obj[ `GQLAPI_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]graphQL[\\\\/]api[\\\\/]${ c }[\\\\/].*\\.(graphql|gql)$` ),
+                                      name: `GQLAPI_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
+
+                            return result_obj;
+                        } )(),
+                        GQLAPI_JS: {
+                            test: new RegExp( `src[\\\\/]graphQL[\\\\/]api[\\\\/][^(/)]+\\.(graphql|gql)$` ),
+                            name: 'GQLAPI_JS',
                             // 数值越高越先添加加载
                             // priority: 1000,
                             enforce: true,
