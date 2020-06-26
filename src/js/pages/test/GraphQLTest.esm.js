@@ -12,5 +12,4 @@ import AllReviewList from 'gQLAPIDir/SN_Alert_ReviewList4Init.graphql';
 
 let CT = new CTESM.CT();
 
-console.dir( AllReviewList );
-console.log( AllReviewList.loc.source.body );
+console.log( AllReviewList );

@@ -2590,33 +2590,24 @@ let fs = require( 'fs' ),
             plug_arr = [
                 [ '@babel/plugin-external-helpers' ],
 
-                // 暂时不用！
                 // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
                 /*
                  [
-                 'graphql-tag',
-                 {
-                 // 要导入的模块的名称
-                 importName: 'graphql-tag',
-                 // 匹配导入的结尾而不是整个名称。对相对进口有用: ./utils/graphql (default = false)
-                 onlyMatchImportSuffix: false,
-                 // 从GraphQL字符串文字中剥离不重要的字符（例如空格），并返回该字符而不是AST对象: query foo{foo{bar baz}} (default = false)
-                 strip: true,
-                 },
-                 ],
-                 */
-                // 暂时不用！
-                // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
-                /*
-                 [
-                 'import-graphql',
+                 'import-graphql-string',
                  {
                  extensions: [
                  '.graphql',
                  '.gql',
                  ],
-                 // 默认值是：false
-                 emitDeclarations: true,
+                 // 设置为true时，从已编译的graphQL字符串中删除所有不必要的字符。
+                 stripIgnoredCharacters: isPro_boo,
+                 // 设置为true将导致__typename字段包含在所有操作和片段的所有非标量字段中。
+                 includeTypeNames: false,
+                 // 用于解析路径别名的插件，例如webpack别名。每个键都应包含一个别名，该别名的相对路径为相应的值，例如：{ '@': './src/', }。
+                 aliases: {
+                 // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
+                 gQLAPIDir: path.resolve( __dirname, './src/graphQL/api/' ),
+                 },
                  },
                  ],
                  */
@@ -4001,12 +3992,10 @@ let fs = require( 'fs' ),
             },
 
             // 注意事项去看：notes/关于在JS和TS文件中导入和使用graphql文件时出现的BUG以及注意事项说明.txt
-            // graphql-tag/loader.js有被自己改过的！
             {
                 test: /\.(graphql|gql)$/i,
                 use: [
-                    // graphql-tag/loader.js有被自己改过的！
-                    // 暂时不用！
+                    // graphql-tag/loader.js有被自己改过的！暂时不用！
                     // {
                     //     loader: 'graphql-tag/loader',
                     // },
@@ -4020,7 +4009,7 @@ let fs = require( 'fs' ),
                             // 'string'、'document'
                             output: 'string',
                             // 如果为true且输出选项为字符串，则加载程序将从graphql文档字符串中删除注释和空格。这有助于减小捆绑的代码大小。
-                            minify: true,
+                            minify: isPro,
                             // 如果为true，则加载程序将从导入的文档中删除未使用的碎片。
                             // 如果查询要从文件导入片段，但未使用该文件中的所有片段，则这可能很有用。
                             // 另请参阅此问题。
