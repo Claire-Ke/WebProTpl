@@ -1218,7 +1218,7 @@
         "https-browserify": "^1.0.0",
         "human-signals": "^2.1.0",
         "hyperlinker": "^1.0.0",
-        "iconv-lite": "^0.6.0",
+        "iconv-lite": "^0.6.1",
         "icss-replace-symbols": "^1.1.0",
         "icss-utils": "^4.1.1",
         "ieee754": "^1.1.13",
