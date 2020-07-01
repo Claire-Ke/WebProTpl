@@ -157,14 +157,7 @@
 
 
 <div class="description">
-    完整复制对象所有自身属性(非继承属性)的描述对象，然后合并到目标对象<br />
-例子：<br />
-// let obj = { foo: 1, get bar(){ return 2; } };<br />
-// let copy = completeAssign( {}, obj );<br />
-// console.dir( copy );<br />
-// { foo: 1, get bar() { return 2; } }<br />
-PS：<br />
-this.isObject( target )为true才会执行操作！！！
+    完整复制对象所有自身属性(非继承属性)的描述对象，然后合并到目标对象<br />例子：<br />// let obj = { foo: 1, get bar(){ return 2; } };<br />// let copy = completeAssign( {}, obj );<br />// console.dir( copy );<br />// { foo: 1, get bar() { return 2; } }<br />PS：<br />this.isObject( target )为true才会执行操作！！！
 </div>
 
 
@@ -356,9 +349,7 @@ this.isObject( target )为true才会执行操作！！！
 
 
 <div class="description">
-    数组、字符串、数字串去重<br />
-注1：数组(如果里头的子数据是数组、对象这类的对象类型数据，则无法去重)<br />
-注2：数字串(会被先转换成字符串)
+    数组、字符串、数字串去重<br />注1：数组(如果里头的子数据是数组、对象这类的对象类型数据，则无法去重)<br />注2：数字串(会被先转换成字符串)
 </div>
 
 
@@ -530,10 +521,7 @@ this.isObject( target )为true才会执行操作！！！
 
 
 <div class="description">
-    完整的对象、数组深度拷贝(包括Symbol、get、set、原型)<br />
-PS: <br />
-1、处理被Vue处理过的对象、数组时，会报错！！！<br />
-2、this.isObject( obj ) || this.isArray( obj )为true才会执行！！！其他都会被原样返回！！！
+    完整的对象、数组深度拷贝(包括Symbol、get、set、原型)<br />PS: <br />1、处理被Vue处理过的对象、数组时，会报错！！！<br />2、this.isObject( obj ) || this.isArray( obj )为true才会执行！！！其他都会被原样返回！！！
 </div>
 
 
@@ -1152,9 +1140,7 @@ PS: <br />
 
 
 <div class="description">
-    深度遍历数组，把所有数据(多层嵌套数组)提取出来放到一个一维数组里，里头的数据类型保持原样<br />
-注：ES2019有新的类似的数组方法可以达到同样的效果<br />
-[ 1, [ 2, [ 3 ] ] ].flat( 2 )返回[ 1, 2, 3 ]，2表示需要被处理的数组是有两成嵌套的，但是需要知道数组的内部嵌套数
+    深度遍历数组，把所有数据(多层嵌套数组)提取出来放到一个一维数组里，里头的数据类型保持原样<br />注：ES2019有新的类似的数组方法可以达到同样的效果<br />[ 1, [ 2, [ 3 ] ] ].flat( 2 )返回[ 1, 2, 3 ]，2表示需要被处理的数组是有两成嵌套的，但是需要知道数组的内部嵌套数
 </div>
 
 
@@ -1346,9 +1332,7 @@ PS: <br />
 
 
 <div class="description">
-    深度拷贝一个对象的原型(包括原型的原型...N...)，返回的是一个对象(已经深度拷贝的原型链)<br />
-PS：<br />
-拿到这个方法的返回值后，直接使用Object.setPrototypeOf设置到目标对象就行！
+    深度拷贝一个对象的原型(包括原型的原型...N...)，返回的是一个对象(已经深度拷贝的原型链)<br />PS：<br />拿到这个方法的返回值后，直接使用Object.setPrototypeOf设置到目标对象就行！
 </div>
 
 
@@ -1967,9 +1951,7 @@ PS：<br />
 
 
 <div class="description">
-    基于“Reflect”、“Proxy”实现的观察者模式<br />
-PS:<br />
-1、第一个参数之后是一个对象参数，里头有三个属性(isDeep、handle4Get、handle4Set)。
+    基于“Reflect”、“Proxy”实现的观察者模式<br />PS:<br />1、第一个参数之后是一个对象参数，里头有三个属性(isDeep、handle4Get、handle4Set)。
 </div>
 
 
@@ -2052,9 +2034,7 @@ PS:<br />
 
             
 
-            <td class="description last">函数，有一个对象参数，其中有四个属性：target, key, value, receiver，可选<br />
-PS:<br />
-1、如果返回值不是null、undefined，那么返回值会被作为get函数的返回值。</td>
+            <td class="description last">函数，有一个对象参数，其中有四个属性：target, key, value, receiver，可选<br />PS:<br />1、如果返回值不是null、undefined，那么返回值会被作为get函数的返回值。</td>
         </tr>
 
     
@@ -2072,10 +2052,7 @@ PS:<br />
 
             
 
-            <td class="description last">函数，有一个对象参数，其中有五个属性：target, key, newValue, oldValue, receiver，可选<br />
-PS:<br />
-1、如果返回值不是null、undefined，那么返回值会被作为set函数的返回值。<br />
-2、严格模式下，set代理如果没有返回true，就会报错。返回false或者undefined，都会报错。</td>
+            <td class="description last">函数，有一个对象参数，其中有五个属性：target, key, newValue, oldValue, receiver，可选<br />PS:<br />1、如果返回值不是null、undefined，那么返回值会被作为set函数的返回值。<br />2、严格模式下，set代理如果没有返回true，就会报错。返回false或者undefined，都会报错。</td>
         </tr>
 
     
@@ -2182,10 +2159,7 @@ PS:<br />
 
 
 <div class="description">
-    随机打乱数组的洗牌算法<br />
-PS：<br />
-时间复杂度为O( n-1 )，忽略低项式、常数项，就是O( n )，n表示数组的长度；<br />
-空间复杂度为O( 1 ),只占用了4个变量，且不随输入参数数量而增长；
+    随机打乱数组的洗牌算法<br />PS：<br />时间复杂度为O( n-1 )，忽略低项式、常数项，就是O( n )，n表示数组的长度；<br />空间复杂度为O( 1 ),只占用了4个变量，且不随输入参数数量而增长；
 </div>
 
 
@@ -2341,13 +2315,13 @@ PS：<br />
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemClass.html">ElemClass</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="SSE4Client.html">SSE4Client</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li><li><a href="WebSocket4Client.html">WebSocket4Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemClass.html">ElemClass</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="SSE4Client.html">SSE4Client</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="Upload4GraphQL.html">Upload4GraphQL</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li><li><a href="WebSocket4Client.html">WebSocket4Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 17 2020 11:06:58 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jul 01 2020 16:35:48 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -204,28 +204,7 @@
 
             
 
-            <td class="description last">JSON对象，必须，用于设置查询操作的选项：<br />
-{<br />
-name: 字符串，要查询其权限的API的名称，必须。<br />
-例如，<br />
-Firefox目前支持“geolocation地理定位”、“notifications通知”、“push推送”和“persistent-storage持久存储”<br />
-在规范中的“PermissionName enum”下可以找到最新的权限名称列表，但请记住，浏览器支持的实际权限目前远小于此值。<br />
-PermissionName权限名称列表(并非所有的API权限状态都可以使用Permissions API查询，随着时间的推移，更多的API将获得Permissions API支持。)：<br />
-geolocation、notifications、push、midi、camera、microphone、speaker、device-info、background-fetch、background-sync、<br />
-bluetooth、persistent-storage、ambient-light-sensor、accelerometer、gyroscope、magnetometer、clipboard、<br />
-display-capture、nfc。<br />
-最新谷歌浏览器(80.0.3987.149)测试的各个权限名称的情况(不同于上头提到的"PermissionName权限名称列表“)：<br />
-accelerometer、accessibility events permisson(报错，识别不到)、<br />
-ambient-light-sensor(GenericSensorExtraClasses的标识要打开，否则会报错，识别不到)、<br />
-camera、clipboard-read、clipboard-write、geolocation、<br />
-background-sync(如果用户主动设置了浏览器禁止后台同步，那么授权状态就是拒绝的)、magnetometer、microphone、midi、notifications、<br />
-payment-handler、persistent-storage、push(必须userVisibleOnly: true，否则会报错，识别不到)<br /><br />
-
-userVisibleOnly: boolean，仅限push推送，指示您是要为每条消息显示通知还是能够发送静默推送通知。默认值为false。<br />
-PS：<br />
-最新谷歌浏览器测试中发现，其值必须为true，否则会报错，且“push”权限会识别不到。<br /><br />
-
-sysex: boolean，（“仅限Midi”）指示您是否需要或接收系统独占消息。默认值为false。<br /><br /></td>
+            <td class="description last">JSON对象，必须，用于设置查询操作的选项：<br />{<br />name: 字符串，要查询其权限的API的名称，必须。<br />例如，<br />Firefox目前支持“geolocation地理定位”、“notifications通知”、“push推送”和“persistent-storage持久存储”<br />在规范中的“PermissionName enum”下可以找到最新的权限名称列表，但请记住，浏览器支持的实际权限目前远小于此值。<br />PermissionName权限名称列表(并非所有的API权限状态都可以使用Permissions API查询，随着时间的推移，更多的API将获得Permissions API支持。)：<br />geolocation、notifications、push、midi、camera、microphone、speaker、device-info、background-fetch、background-sync、<br />bluetooth、persistent-storage、ambient-light-sensor、accelerometer、gyroscope、magnetometer、clipboard、<br />display-capture、nfc。<br />最新谷歌浏览器(80.0.3987.149)测试的各个权限名称的情况(不同于上头提到的"PermissionName权限名称列表“)：<br />accelerometer、accessibility events permisson(报错，识别不到)、<br />ambient-light-sensor(GenericSensorExtraClasses的标识要打开，否则会报错，识别不到)、<br />camera、clipboard-read、clipboard-write、geolocation、<br />background-sync(如果用户主动设置了浏览器禁止后台同步，那么授权状态就是拒绝的)、magnetometer、microphone、midi、notifications、<br />payment-handler、persistent-storage、push(必须userVisibleOnly: true，否则会报错，识别不到)<br /><br />userVisibleOnly: boolean，仅限push推送，指示您是要为每条消息显示通知还是能够发送静默推送通知。默认值为false。<br />PS：<br />最新谷歌浏览器测试中发现，其值必须为true，否则会报错，且“push”权限会识别不到。<br /><br />sysex: boolean，（“仅限Midi”）指示您是否需要或接收系统独占消息。默认值为false。<br /><br /></td>
         </tr>
 
     
@@ -243,17 +222,7 @@ sysex: boolean，（“仅限Midi”）指示您是否需要或接收系统独�
 
             
 
-            <td class="description last">JSON对象，里头都是各个事件，可选<br />
-{<br />
-prompt: 函数，当权限状态为“提示授权”时执行，可选<br /><br />
-
-granted: 函数，当权限状态为“已经授予”时执行，可选<br /><br />
-
-denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />
-
-stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br /><br />
-
-error: 函数，报错时执行的函数，会有一个参数(error)，可选<br /></td>
+            <td class="description last">JSON对象，里头都是各个事件，可选<br />{<br />prompt: 函数，当权限状态为“提示授权”时执行，可选<br /><br />granted: 函数，当权限状态为“已经授予”时执行，可选<br /><br />denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br /><br />error: 函数，报错时执行的函数，会有一个参数(error)，可选<br /></td>
         </tr>
 
     
@@ -362,13 +331,13 @@ error: 函数，报错时执行的函数，会有一个参数(error)，可选<br
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemClass.html">ElemClass</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="SSE4Client.html">SSE4Client</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li><li><a href="WebSocket4Client.html">WebSocket4Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemClass.html">ElemClass</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="SSE4Client.html">SSE4Client</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="Upload4GraphQL.html">Upload4GraphQL</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li><li><a href="WebSocket4Client.html">WebSocket4Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 17 2020 11:06:58 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jul 01 2020 16:35:48 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -157,9 +157,7 @@
 
 
 <div class="description">
-    获取设备信息以及浏览器信息<br />
-navigator.userAgent.match( new RegExp( 'Chrome/[\\d\\.]+', 'g' ) )[ 0 ].split( '/' )[1]<br />
-上头返回字符串'73.0.3683.86'
+    获取设备信息以及浏览器信息<br />navigator.userAgent.match( new RegExp( 'Chrome/[\\d\\.]+', 'g' ) )[ 0 ].split( '/' )[1]<br />上头返回字符串'73.0.3683.86'
 </div>
 
 
@@ -269,14 +267,7 @@ navigator.userAgent.match( new RegExp( 'Chrome/[\\d\\.]+', 'g' ) )[ 0 ].split( '
 
 
 <div class="description">
-    以“Blob”的形式下载文件<br />
-PS：<br />
-Blob构造函数的第一个参数得是数组，里头成员的数据类型可以是：<br />
-ArrayBuffer，ArrayBufferView，Blob，USVString(编码为UTF-8)。<br />
-第二个参数是一个对象(可选的)：<br />
-{<br />
-type: 将存储到Blob中的数据的MIME类型。默认值为空字符串（“”）。<br />
-endings: 如果数据是文本，如何解释内容中的换行符（“\n”）。默认值“transparent”将换行符复制到blob中，而不更改它们。要将换行符转换为主机系统的本机约定，请指定“endings”。
+    以“Blob”的形式下载文件<br />PS：<br />Blob构造函数的第一个参数得是数组，里头成员的数据类型可以是：<br />ArrayBuffer，ArrayBufferView，Blob，USVString(编码为UTF-8)。<br />第二个参数是一个对象(可选的)：<br />{<br />type: 将存储到Blob中的数据的MIME类型。默认值为空字符串（“”）。<br />endings: 如果数据是文本，如何解释内容中的换行符（“\n”）。默认值“transparent”将换行符复制到blob中，而不更改它们。要将换行符转换为主机系统的本机约定，请指定“endings”。
 </div>
 
 
@@ -438,11 +429,7 @@ endings: 如果数据是文本，如何解释内容中的换行符（“\n”）
 
 
 <div class="description">
-    动态计算rem，建议尽量早的执行该代码，最好是在html标签加载完之后以及head标签加载之前就执行<br />
-iPhone 5S/SE DPR为2 (css像素320*568) 4英寸 (设备实际像素640*1136)<br />
-iPhone 6/6S/7/8 DPR为2 (css像素375*667) 4.7英寸 (设备实际像素750*1334)<br />
-iPhone 6/6S/7/8 Plus DPR为3(其实为2.608695652173913更准确) (css像素414*736) 5.5英寸 (设备实际像素1080*1920)<br />
-iPhone X DPR为3 (css像素375*812) 5.8英寸 (设备实际像素1125*2436)
+    动态计算rem，建议尽量早的执行该代码，最好是在html标签加载完之后以及head标签加载之前就执行<br />iPhone 5S/SE DPR为2 (css像素320*568) 4英寸 (设备实际像素640*1136)<br />iPhone 6/6S/7/8 DPR为2 (css像素375*667) 4.7英寸 (设备实际像素750*1334)<br />iPhone 6/6S/7/8 Plus DPR为3(其实为2.608695652173913更准确) (css像素414*736) 5.5英寸 (设备实际像素1080*1920)<br />iPhone X DPR为3 (css像素375*812) 5.8英寸 (设备实际像素1125*2436)
 </div>
 
 
@@ -582,14 +569,7 @@ iPhone X DPR为3 (css像素375*812) 5.8英寸 (设备实际像素1125*2436)
 
 
 <div class="description">
-    部署“三种相等算法”中的第三种(-0全等+0，NaN全等NaN)<br />
-PS：<br />
-1、第一种：===<br />
--0全等+0，NaN不全等NaN<br />
-2、第二种：Object.is<br />
--0不全等+0，NaN全等NaN<br />
-3、第三种：目前未部署具体API<br />
--0全等+0，NaN全等NaN<br />
+    部署“三种相等算法”中的第三种(-0全等+0，NaN全等NaN)<br />PS：<br />1、第一种：===<br />-0全等+0，NaN不全等NaN<br />2、第二种：Object.is<br />-0不全等+0，NaN全等NaN<br />3、第三种：目前未部署具体API<br />-0全等+0，NaN全等NaN<br />
 </div>
 
 
@@ -761,14 +741,7 @@ PS：<br />
 
 
 <div class="description">
-    判断网页是否是从设备的桌面主屏幕打开的<br /><br />
-
-注：<br />
-1、“window.navigator.standalone”貌似是iOS中的浏览器(如：Safari等浏览器)独有的！<br />
-2、用CSS3媒体查询检测(值有：fullscreen、standalone、minimal-ui、browser)<br />
-@ media all and (display-mode: standalone) {}<br />
-3、用JS检测(值有：fullscreen、standalone、minimal-ui、browser)<br />
-if (window.matchMedia('(display-mode: standalone)').matches) {}
+    判断网页是否是从设备的桌面主屏幕打开的<br /><br />注：<br />1、“window.navigator.standalone”貌似是iOS中的浏览器(如：Safari等浏览器)独有的！<br />2、用CSS3媒体查询检测(值有：fullscreen、standalone、minimal-ui、browser)<br />@ media all and (display-mode: standalone) {}<br />3、用JS检测(值有：fullscreen、standalone、minimal-ui、browser)<br />if (window.matchMedia('(display-mode: standalone)').matches) {}
 </div>
 
 
@@ -925,8 +898,7 @@ if (window.matchMedia('(display-mode: standalone)').matches) {}
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -1098,8 +1070,7 @@ if (window.matchMedia('(display-mode: standalone)').matches) {}
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -1224,11 +1195,7 @@ if (window.matchMedia('(display-mode: standalone)').matches) {}
 
 
 <div class="description">
-    执行这个函数时，先给“window”注册“orientationchange”事件，<br />
-但触发该事件时，横屏执行横屏所要执行的函数，竖屏执行竖屏所要执行的函数<br />
-注：<br />
-window.orientation和screen.orientation.angle都为undefined时，<br />
-会给“window”注册“resize”事件，触发该事件时，会根据设备的宽高来判断横竖屏
+    执行这个函数时，先给“window”注册“orientationchange”事件，<br />但触发该事件时，横屏执行横屏所要执行的函数，竖屏执行竖屏所要执行的函数<br />注：<br />window.orientation和screen.orientation.angle都为undefined时，<br />会给“window”注册“resize”事件，触发该事件时，会根据设备的宽高来判断横竖屏
 </div>
 
 
@@ -1615,44 +1582,7 @@ window.orientation和screen.orientation.angle都为undefined时，<br />
 
             
 
-            <td class="description last">数组，成员是一个个JSON对象，必须<br />
-成员JSON对象的格式是<br />
-{<br />
-  href: 资源的url 字符串，必须<br /><br />
-
-  as： 'font' 字符串，可选<br /><br />
-
-  type: 'font/ttf' 字符串，可选<br /><br />
-
-  crossorigin: 'anonymous' 字符串，可选<br /><br />
-
-  isExecute: false 布尔值，是否立即执行.js脚本，默认false，不立即执行，true立即执行，可选<br /><br />
-
-  attrs: JSON对象{}，用于配置标签的属性，键名是属性名，键值是属性值，可选<br /><br />
-
-as的值:<br />
-支持不填写“as”属性，那么链接地址就是资源任何地址<br />
-audio(音频文件)、<br />
-document(用于嵌入<frame>或中的HTML文档<iframe>)、<br />
-embed(要嵌入<embed>元素内的资源)、<br />
-fetch(要由fetch或XHR请求访问的资源，例如ArrayBuffer或JSON文件)、<br />
-font(字体文件)、<br />
-image(图像文件、SVG)、<br />
-object(要嵌入<embed>元素内的资源)、<br />
-script(JavaScript文件)、<br />
-style(样式表)、<br />
-track(WebVTT文件)、<br />
-worker(Web Worker或Shared Worker)、<br />
-video(视频文件)、<br />
-report(不需要链接地址)、<br />
-audioworklet、<br />
-paintworklet、<br />
-serviceworker、<br />
-manifest、<br />
-xslt<br /><br />
-
-type值:(链接查找)<br />
-http://www.w3school.com.cn/media/media_mimeref.asp</td>
+            <td class="description last">数组，成员是一个个JSON对象，必须<br />成员JSON对象的格式是<br />{<br />  href: 资源的url 字符串，必须<br /><br />  as： 'font' 字符串，可选<br /><br />  type: 'font/ttf' 字符串，可选<br /><br />  crossorigin: 'anonymous' 字符串，可选<br /><br />  isExecute: false 布尔值，是否立即执行.js脚本，默认false，不立即执行，true立即执行，可选<br /><br />  attrs: JSON对象{}，用于配置标签的属性，键名是属性名，键值是属性值，可选<br /><br />as的值:<br />支持不填写“as”属性，那么链接地址就是资源任何地址<br />audio(音频文件)、<br />document(用于嵌入<frame>或中的HTML文档<iframe>)、<br />embed(要嵌入<embed>元素内的资源)、<br />fetch(要由fetch或XHR请求访问的资源，例如ArrayBuffer或JSON文件)、<br />font(字体文件)、<br />image(图像文件、SVG)、<br />object(要嵌入<embed>元素内的资源)、<br />script(JavaScript文件)、<br />style(样式表)、<br />track(WebVTT文件)、<br />worker(Web Worker或Shared Worker)、<br />video(视频文件)、<br />report(不需要链接地址)、<br />audioworklet、<br />paintworklet、<br />serviceworker、<br />manifest、<br />xslt<br /><br />type值:(链接查找)<br />http://www.w3school.com.cn/media/media_mimeref.asp</td>
         </tr>
 
     
@@ -1737,9 +1667,7 @@ http://www.w3school.com.cn/media/media_mimeref.asp</td>
 
 
 <div class="description">
-    解决iOS上的滚动出界(尤其是在iOS上的微信内置浏览器上进行滚动操作)<br />
-PS：<br />
-返回值是一个已经注册的“touchstart”事件函数，可用于解除这个事件。
+    解决iOS上的滚动出界(尤其是在iOS上的微信内置浏览器上进行滚动操作)<br />PS：<br />返回值是一个已经注册的“touchstart”事件函数，可用于解除这个事件。
 </div>
 
 
@@ -1786,9 +1714,7 @@ PS：<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(节点选择器、节点选择器组)，以便批量处理，但只处理第一个节点，(就是子元素内容超过父容器的那个父容器)，必需<br />
-注：建议将所有滚动都伪装成局部滚动，也就是滚动条不出现在body、html上，body、html全都禁止滚动。如：把滚动条挂在main标签上。</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(节点选择器、节点选择器组)，以便批量处理，但只处理第一个节点，(就是子元素内容超过父容器的那个父容器)，必需<br />注：建议将所有滚动都伪装成局部滚动，也就是滚动条不出现在body、html上，body、html全都禁止滚动。如：把滚动条挂在main标签上。</td>
         </tr>
 
     
@@ -2134,10 +2060,7 @@ PS：<br />
                 </td>
             
 
-            <td class="description last">单个数字(如：100、200之类的，表示振动时间是100ms)，数组[单个数字(如：100、200之类的)]，默认100，可选<br />
-'SOS'：<br />
-[100,30,100,30,100,30,200,30,200,30,200,30,100,30,100,30,100]<br />
-奇数位表示振动多久，偶数位表示暂停的时间间隔</td>
+            <td class="description last">单个数字(如：100、200之类的，表示振动时间是100ms)，数组[单个数字(如：100、200之类的)]，默认100，可选<br />'SOS'：<br />[100,30,100,30,100,30,200,30,200,30,200,30,100,30,100,30,100]<br />奇数位表示振动多久，偶数位表示暂停的时间间隔</td>
         </tr>
 
     
@@ -2268,13 +2191,13 @@ PS：<br />
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemClass.html">ElemClass</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="SSE4Client.html">SSE4Client</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li><li><a href="WebSocket4Client.html">WebSocket4Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemClass.html">ElemClass</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="SSE4Client.html">SSE4Client</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="Upload4GraphQL.html">Upload4GraphQL</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li><li><a href="WebSocket4Client.html">WebSocket4Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 17 2020 11:06:58 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jul 01 2020 16:35:48 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

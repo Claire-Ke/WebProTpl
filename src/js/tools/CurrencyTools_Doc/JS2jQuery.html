@@ -204,8 +204,7 @@
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -241,13 +240,7 @@
 
             
 
-            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />
-第一种是布尔值，true表示捕获，false表示不捕获<br />
-第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />
-capture布尔值，是否捕获，默认为false，不捕获<br />
-once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />
-passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />
-mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
+            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />第一种是布尔值，true表示捕获，false表示不捕获<br />第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />capture布尔值，是否捕获，默认为false，不捕获<br />once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
         </tr>
 
     
@@ -354,9 +347,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
 
 <div class="description">
-    给节点增加类名<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    给节点增加类名<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -403,8 +394,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -422,9 +412,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个类名('t1')或类名组('t1,t2,t3')，都是字符串类型的数据，不能是''、' ',必需<br />
-DOMTokenList.length 数组长度<br />
-DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
+            <td class="description last">单个类名('t1')或类名组('t1,t2,t3')，都是字符串类型的数据，不能是''、' ',必需<br />DOMTokenList.length 数组长度<br />DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
         </tr>
 
     
@@ -578,8 +566,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -615,26 +602,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">动画效果的配置对象，可选<br />
-如：<br />
-{<br />
-  duration: 300, // 表示动画要多久执行完，单位是ms，默认300ms<br /><br />
-
-  easing: 'linear', // 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值<br /><br />
-
-  begin: elements => {}, // 动画开始时执行的函数，会有一个'elements'参数，节点数组([Element])<br /><br />
-
-  complete: elements => {}, // 动画完成时执行的函数，会有一个'elements'参数，节点数组([Element])<br /><br />
-
-  // 动画正在进行中执行的函数，会有四个函数参数<br />
-  // elements(节点数组[Element])<br />
-  // complete(number，当前动画完成的百分比，作为小数值，范围是'0'到'1'，'0'表示动画刚开始，'1'表示动画刚执行结束)<br />
-  // remaining(number，动画还有多少时间结束，以'ms'为单位，'0'表示动画刚执行结束)<br />
-  // start(number，回调函数开始执行的绝对时间，以'ms'为单位，如：1538238132659这样的时间戳)<br />
-  progress: (elements, complete, remaining, start) => {}<br /><br />
-
-注：complete处理函数在多个节点('#div_p > p, input')时无法触发！可以嵌套处理！得到每一个元素后再把该元素进行animate处理<br />
-节点的顺序是根据文档中节点位置而定的前后！最前的先执行</td>
+            <td class="description last">动画效果的配置对象，可选<br />如：<br />{<br />  duration: 300, // 表示动画要多久执行完，单位是ms，默认300ms<br /><br />  easing: 'linear', // 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值<br /><br />  begin: elements => {}, // 动画开始时执行的函数，会有一个'elements'参数，节点数组([Element])<br /><br />  complete: elements => {}, // 动画完成时执行的函数，会有一个'elements'参数，节点数组([Element])<br /><br />  // 动画正在进行中执行的函数，会有四个函数参数<br />  // elements(节点数组[Element])<br />  // complete(number，当前动画完成的百分比，作为小数值，范围是'0'到'1'，'0'表示动画刚开始，'1'表示动画刚执行结束)<br />  // remaining(number，动画还有多少时间结束，以'ms'为单位，'0'表示动画刚执行结束)<br />  // start(number，回调函数开始执行的绝对时间，以'ms'为单位，如：1538238132659这样的时间戳)<br />  progress: (elements, complete, remaining, start) => {}<br /><br />注：complete处理函数在多个节点('#div_p > p, input')时无法触发！可以嵌套处理！得到每一个元素后再把该元素进行animate处理<br />节点的顺序是根据文档中节点位置而定的前后！最前的先执行</td>
         </tr>
 
     
@@ -719,13 +687,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    动画被取消、中断时触发<br />
-注：<br />
-1、只有火狐浏览器(PC、Android、iOS、iOS的Safari浏览器(而且不是从主屏幕启动的))支持，其他浏览器不支持<br />
-2、动画被任何操作中断(不包括动画的暂停(animation-play-state: paused)和继续(animation-play-state: running)这两个操作)<br />
-3、触发的情况：<br />
-任何时候它停止运行而不发送animationend事件时发送此事件<br />
-例如当animation-name更改、移除动画、动画节点被隐藏(display:none)
+    动画被取消、中断时触发<br />注：<br />1、只有火狐浏览器(PC、Android、iOS、iOS的Safari浏览器(而且不是从主屏幕启动的))支持，其他浏览器不支持<br />2、动画被任何操作中断(不包括动画的暂停(animation-play-state: paused)和继续(animation-play-state: running)这两个操作)<br />3、触发的情况：<br />任何时候它停止运行而不发送animationend事件时发送此事件<br />例如当animation-name更改、移除动画、动画节点被隐藏(display:none)
 </div>
 
 
@@ -772,8 +734,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -809,13 +770,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />
-第一种是布尔值，true表示捕获，false表示不捕获<br />
-第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />
-capture布尔值，是否捕获，默认为false，不捕获<br />
-once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />
-passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />
-mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
+            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />第一种是布尔值，true表示捕获，false表示不捕获<br />第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />capture布尔值，是否捕获，默认为false，不捕获<br />once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
         </tr>
 
     
@@ -922,8 +877,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
 
 <div class="description">
-    动画完成后触发<br />
-前提是动画没被任何操作中断，正常完成动画
+    动画完成后触发<br />前提是动画没被任何操作中断，正常完成动画
 </div>
 
 
@@ -970,8 +924,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -1007,13 +960,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />
-第一种是布尔值，true表示捕获，false表示不捕获<br />
-第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />
-capture布尔值，是否捕获，默认为false，不捕获<br />
-once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />
-passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />
-mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
+            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />第一种是布尔值，true表示捕获，false表示不捕获<br />第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />capture布尔值，是否捕获，默认为false，不捕获<br />once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
         </tr>
 
     
@@ -1120,8 +1067,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
 
 <div class="description">
-    动画迭代事件<br />
-如果只有一次那就不会触发，每一次迭代重复完成后触发，(animation-iteration-count: 3)，会触发(3 - 1)次
+    动画迭代事件<br />如果只有一次那就不会触发，每一次迭代重复完成后触发，(animation-iteration-count: 3)，会触发(3 - 1)次
 </div>
 
 
@@ -1168,8 +1114,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -1205,13 +1150,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />
-第一种是布尔值，true表示捕获，false表示不捕获<br />
-第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />
-capture布尔值，是否捕获，默认为false，不捕获<br />
-once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />
-passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />
-mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
+            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />第一种是布尔值，true表示捕获，false表示不捕获<br />第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />capture布尔值，是否捕获，默认为false，不捕获<br />once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
         </tr>
 
     
@@ -1318,8 +1257,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
 
 <div class="description">
-    绑定动画的开始事件<br />
-在动画延迟(如果有的话)完成之后触发
+    绑定动画的开始事件<br />在动画延迟(如果有的话)完成之后触发
 </div>
 
 
@@ -1366,8 +1304,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -1403,13 +1340,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />
-第一种是布尔值，true表示捕获，false表示不捕获<br />
-第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />
-capture布尔值，是否捕获，默认为false，不捕获<br />
-once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />
-passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />
-mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
+            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />第一种是布尔值，true表示捕获，false表示不捕获<br />第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />capture布尔值，是否捕获，默认为false，不捕获<br />once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
         </tr>
 
     
@@ -1563,18 +1494,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">JSON对象，配置对象，tagName属性必须！<br />
-{<br />
-tagName: 单个标签名、数组[单个标签名]，必需<br /><br />
-
-data: 单个节点、单个节点List、单个文本字符串、单个数组(节点、节点List、文本字符串)，可选，默认''<br /><br />
-
-fun: 处理节点的函数，会把新建的节点作为参数传入，用于节点的各种操作，可选<br /><br />
-
-isText: 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
-默认false，可选<br /><br />
-
-is: 字符串，使用customElements.define()定义的自定义元素的标签名称(有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成)，默认值是null(表示不传)，可选<br /><br /></td>
+            <td class="description last">JSON对象，配置对象，tagName属性必须！<br />{<br />tagName: 单个标签名、数组[单个标签名]，必需<br /><br />data: 单个节点、单个节点List、单个文本字符串、单个数组(节点、节点List、文本字符串)，可选，默认''<br /><br />fun: 处理节点的函数，会把新建的节点作为参数传入，用于节点的各种操作，可选<br /><br />isText: 布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />默认false，可选<br /><br />is: 字符串，使用customElements.define()定义的自定义元素的标签名称(有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成)，默认值是null(表示不传)，可选<br /><br /></td>
         </tr>
 
     
@@ -1731,8 +1651,7 @@ is: 字符串，使用customElements.define()定义的自定义元素的标签�
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -1768,13 +1687,7 @@ is: 字符串，使用customElements.define()定义的自定义元素的标签�
 
             
 
-            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />
-第一种是布尔值，true表示捕获，false表示不捕获<br />
-第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />
-capture布尔值，是否捕获，默认为false，不捕获<br />
-once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />
-passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />
-mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
+            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />第一种是布尔值，true表示捕获，false表示不捕获<br />第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />capture布尔值，是否捕获，默认为false，不捕获<br />once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
         </tr>
 
     
@@ -2038,11 +1951,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
 
 <div class="description">
-    在节点上读写data的方法，模拟jQuery的data()<br />
-注意：<br />
-如果要把undefined、null设置成数据，请把这两个以字符串形式设置，就是：'undefined'、'null'<br />
-ctoElemDataStoragew未定义！返回undefined<br />
-属性名不在ctoElemDataStoragew中定义！返回null
+    在节点上读写data的方法，模拟jQuery的data()<br />注意：<br />如果要把undefined、null设置成数据，请把这两个以字符串形式设置，就是：'undefined'、'null'<br />ctoElemDataStoragew未定义！返回undefined<br />属性名不在ctoElemDataStoragew中定义！返回null
 </div>
 
 
@@ -2089,8 +1998,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -2215,9 +2123,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
 
 <div class="description">
-    清空节点内的所有<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    清空节点内的所有<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -2264,8 +2170,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -2419,8 +2324,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -2438,13 +2342,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">配置对象，，可选<br />
-{<br />
-  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />
-
-  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />
-
-  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
+            <td class="description last">配置对象，，可选<br />{<br />  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
         </tr>
 
     
@@ -2576,8 +2474,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -2595,13 +2492,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">配置对象，，可选<br />
-{<br />
-  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />
-
-  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />
-
-  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
+            <td class="description last">配置对象，，可选<br />{<br />  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
         </tr>
 
     
@@ -2733,8 +2624,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -2752,15 +2642,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">配置对象，，可选<br />
-{<br />
-  opacity: 0.5, number，0(包括0)到1(包括1)的透明度，默认0.5，可选<br /><br />
-
-  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />
-
-  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />
-
-  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
+            <td class="description last">配置对象，，可选<br />{<br />  opacity: 0.5, number，0(包括0)到1(包括1)的透明度，默认0.5，可选<br /><br />  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
         </tr>
 
     
@@ -2892,8 +2774,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -2911,13 +2792,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">配置对象，，可选<br />
-{<br />
-  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />
-
-  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />
-
-  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
+            <td class="description last">配置对象，，可选<br />{<br />  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
         </tr>
 
     
@@ -3049,8 +2924,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -3086,13 +2960,7 @@ ctoElemDataStoragew未定义！返回undefined<br />
 
             
 
-            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />
-第一种是布尔值，true表示捕获，false表示不捕获<br />
-第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />
-capture布尔值，是否捕获，默认为false，不捕获<br />
-once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />
-passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />
-mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
+            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />第一种是布尔值，true表示捕获，false表示不捕获<br />第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />capture布尔值，是否捕获，默认为false，不捕获<br />once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
         </tr>
 
     
@@ -3246,8 +3114,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -3419,8 +3286,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -3527,9 +3393,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
 
 <div class="description">
-    返回全部的直接子节点(HTMLCollection实时的节点集合)，没有文本节点<br />
-注：<br />
-1、“window”会被先转换为“document”处理
+    返回全部的直接子节点(HTMLCollection实时的节点集合)，没有文本节点<br />注：<br />1、“window”会被先转换为“document”处理
 </div>
 
 
@@ -3576,8 +3440,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -3702,9 +3565,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
 
 <div class="description">
-    获取所有子节点(实时节点集合HTMLCollection)，没有文本节点<br />
-注：<br />
-1、“window”会被先转换为“document”处理
+    获取所有子节点(实时节点集合HTMLCollection)，没有文本节点<br />注：<br />1、“window”会被先转换为“document”处理
 </div>
 
 
@@ -3751,8 +3612,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -3924,8 +3784,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -4032,9 +3891,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
 
 <div class="description">
-    返回节点的所有类名<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    返回节点的所有类名<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -4081,10 +3938,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需<br />
-DOMTokenList.length 数组长度<br />
-DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需<br />DOMTokenList.length 数组长度<br />DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
         </tr>
 
     
@@ -4191,10 +4045,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    获取节点的CSS，如：“style.getPropertyValue( cssNameString )”<br />
-注：<br />
-1、如果未设置，则返回值中的value是空字符串。<br />
-2、返回值中的priority是一个DOMString代表优先级（例如  "important"）（如果存在）的。如果不存在，则返回空字符串。
+    获取节点的CSS，如：“style.getPropertyValue( cssNameString )”<br />注：<br />1、如果未设置，则返回值中的value是空字符串。<br />2、返回值中的priority是一个DOMString代表优先级（例如  "important"）（如果存在）的。如果不存在，则返回空字符串。
 </div>
 
 
@@ -4241,8 +4092,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -4414,8 +4264,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -4569,8 +4418,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">elem 单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -4677,9 +4525,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    向下查找所有的同胞节点(不包括文本节点)，没有的话，返回null<br />
-注：<br />
-1、当elem是“document”、“window”、第一个结果就是null、所有结果节点都不满足“selector”的会直接返回null
+    向下查找所有的同胞节点(不包括文本节点)，没有的话，返回null<br />注：<br />1、当elem是“document”、“window”、第一个结果就是null、所有结果节点都不满足“selector”的会直接返回null
 </div>
 
 
@@ -4726,8 +4572,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -4852,9 +4697,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    查找下一个同胞节点(不包括文本节点)，没有的话，返回null<br />
-注：<br />
-1、当elem是“document”、“window”、结果是null的会直接返回null
+    查找下一个同胞节点(不包括文本节点)，没有的话，返回null<br />注：<br />1、当elem是“document”、“window”、结果是null的会直接返回null
 </div>
 
 
@@ -4901,8 +4744,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -5009,9 +4851,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    获取直接的父亲节点，只有一个<br />
-注：<br />
-1、当elem是“document”、“window”的会直接返回null
+    获取直接的父亲节点，只有一个<br />注：<br />1、当elem是“document”、“window”的会直接返回null
 </div>
 
 
@@ -5058,8 +4898,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -5166,9 +5005,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    获取所有的父亲节点<br />
-注：<br />
-1、当elem是“document”、“window”、“HTML”、所有结果节点都不满足“selector”的会直接返回null
+    获取所有的父亲节点<br />注：<br />1、当elem是“document”、“window”、“HTML”、所有结果节点都不满足“selector”的会直接返回null
 </div>
 
 
@@ -5215,8 +5052,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -5341,9 +5177,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    向上查找所有的同胞节点(不包括文本节点)，没有的话，返回null<br />
-注：<br />
-1、当elem是“document”、“window”、第一个结果就是null、所有结果节点都不满足“selector”的会直接返回null
+    向上查找所有的同胞节点(不包括文本节点)，没有的话，返回null<br />注：<br />1、当elem是“document”、“window”、第一个结果就是null、所有结果节点都不满足“selector”的会直接返回null
 </div>
 
 
@@ -5390,8 +5224,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -5516,9 +5349,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    查找上一个同胞节点(不包括文本节点)，没有的话，返回null<br />
-注：<br />
-1、当elem是“document”、“window”、结果是null的会直接返回null
+    查找上一个同胞节点(不包括文本节点)，没有的话，返回null<br />注：<br />1、当elem是“document”、“window”、结果是null的会直接返回null
 </div>
 
 
@@ -5565,8 +5396,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -5673,10 +5503,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    返回上下文对象的根，该根对象可选地包括"shadow root"(如果有的话)。<br />
-PS:<br />
-1、在标准网页内的某个元素上调用它会返回一个HTMLDocument代表整个页面的对象。<br />
-2、在影子DOM内的元素上调用它会返回关联的ShadowRoot对象。<br />
+    返回上下文对象的根，该根对象可选地包括"shadow root"(如果有的话)。<br />PS:<br />1、在标准网页内的某个元素上调用它会返回一个HTMLDocument代表整个页面的对象。<br />2、在影子DOM内的元素上调用它会返回关联的ShadowRoot对象。<br />
 </div>
 
 
@@ -5723,8 +5550,7 @@ PS:<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只处理第一个节点。</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只处理第一个节点。</td>
         </tr>
 
     
@@ -5742,10 +5568,7 @@ PS:<br />
 
             
 
-            <td class="description last">Boolean，默认值是false，可选。<br />
-PS:<br />
-1、true：卷影根以外的根节点(HTMLDocument代表整个页面的对象)。<br />
-1、false：返回卷影根(关联的ShadowRoot对象)。<br /></td>
+            <td class="description last">Boolean，默认值是false，可选。<br />PS:<br />1、true：卷影根以外的根节点(HTMLDocument代表整个页面的对象)。<br />1、false：返回卷影根(关联的ShadowRoot对象)。<br /></td>
         </tr>
 
     
@@ -5855,9 +5678,7 @@ PS:<br />
 
 
 <div class="description">
-    获取节点的所有同胞节点(不包括文本节点)<br />
-注：<br />
-1、当elem是“document”、“window”、“HTML”、所有结果节点都不满足“selector”的会直接返回null
+    获取节点的所有同胞节点(不包括文本节点)<br />注：<br />1、当elem是“document”、“window”、“HTML”、所有结果节点都不满足“selector”的会直接返回null
 </div>
 
 
@@ -5904,8 +5725,7 @@ PS:<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -6030,9 +5850,7 @@ PS:<br />
 
 
 <div class="description">
-    根据元素样式名获取元素样式值<br /><br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    根据元素样式名获取元素样式值<br /><br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -6085,8 +5903,7 @@ PS:<br />
                 </td>
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，但只处理第一个节点，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，但只处理第一个节点，必需</td>
         </tr>
 
     
@@ -6289,8 +6106,7 @@ PS:<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -6415,9 +6231,7 @@ PS:<br />
 
 
 <div class="description">
-    节点是否存在指点的类名<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    节点是否存在指点的类名<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -6464,8 +6278,7 @@ PS:<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -6590,9 +6403,7 @@ PS:<br />
 
 
 <div class="description">
-    判断节点上是否有指定的data键名，模拟jQuery的hasData()<br />
-注意：<br />
-ctoElemDataStoragew未定义！返回undefined
+    判断节点上是否有指定的data键名，模拟jQuery的hasData()<br />注意：<br />ctoElemDataStoragew未定义！返回undefined
 </div>
 
 
@@ -6639,8 +6450,7 @@ ctoElemDataStoragew未定义！返回undefined
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -6765,9 +6575,7 @@ ctoElemDataStoragew未定义！返回undefined
 
 
 <div class="description">
-    获取节点的渲染高度<br />
-PS:<br />
-如果值不能有效的转换成数字，那么会返回原本的字符串值。
+    获取节点的渲染高度<br />PS:<br />如果值不能有效的转换成数字，那么会返回原本的字符串值。
 </div>
 
 
@@ -6814,8 +6622,7 @@ PS:<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -6969,8 +6776,7 @@ PS:<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -6988,13 +6794,7 @@ PS:<br />
 
             
 
-            <td class="description last">配置对象，，可选<br />
-{<br />
-  time: 0, number，多久完成，单位ms，默认0，可选<br /><br />
-
-  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />
-
-  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
+            <td class="description last">配置对象，，可选<br />{<br />  time: 0, number，多久完成，单位ms，默认0，可选<br /><br />  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
         </tr>
 
     
@@ -7079,9 +6879,7 @@ PS:<br />
 
 
 <div class="description">
-    原生JS代替jQuery的html()方法<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    原生JS代替jQuery的html()方法<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -7128,8 +6926,7 @@ PS:<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -7301,8 +7098,7 @@ PS:<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -7338,8 +7134,7 @@ PS:<br />
 
             
 
-            <td class="description last">布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
-默认false，可选</td>
+            <td class="description last">布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />默认false，可选</td>
         </tr>
 
     
@@ -7493,8 +7288,7 @@ PS:<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -7530,8 +7324,7 @@ PS:<br />
 
             
 
-            <td class="description last">布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
-默认false，可选</td>
+            <td class="description last">布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />默认false，可选</td>
         </tr>
 
     
@@ -7638,16 +7431,7 @@ PS:<br />
 
 
 <div class="description">
-    往一个样式表里或页面的一个style标签里添加一个样式规则(如：#xxx{color:white;})，也可以是@keyframes规则<br />
-注：<br />
-1、默认往第一个CSSStyleSheet(document.styleSheets[0])里添加样式规则，如果没有的话(document.styleSheets.length=0)，<br />
-会往页面的head标签内部的最后面新增一个style标签，然后把样式规则添加到这个新增的style标签里<br />
-2、火狐浏览器有点特殊“BUG”！<br />
-InvalidAccessError: A parameter or an operation is not supported by the underlying object<br />
-InvalidAccessError：基础对象不支持参数或操作<br />
-let index = document.styleSheets.length - 1;<br />
-document.styleSheets.item( index ).cssRules;会报错！<br />
-但document.styleSheets.item( 0 ).cssRules就不会报错！
+    往一个样式表里或页面的一个style标签里添加一个样式规则(如：#xxx{color:white;})，也可以是@keyframes规则<br />注：<br />1、默认往第一个CSSStyleSheet(document.styleSheets[0])里添加样式规则，如果没有的话(document.styleSheets.length=0)，<br />会往页面的head标签内部的最后面新增一个style标签，然后把样式规则添加到这个新增的style标签里<br />2、火狐浏览器有点特殊“BUG”！<br />InvalidAccessError: A parameter or an operation is not supported by the underlying object<br />InvalidAccessError：基础对象不支持参数或操作<br />let index = document.styleSheets.length - 1;<br />document.styleSheets.item( index ).cssRules;会报错！<br />但document.styleSheets.item( 0 ).cssRules就不会报错！
 </div>
 
 
@@ -7712,13 +7496,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">JSON对象，配置参数，可选<br />
-{<br />
- cssStyleSheet：数据类型是CSSStyleSheet，一个CSSStyleSheet或页面的一个style标签，默认是null<br /><br />
-
- index：数据类型是number，插入的位置，默认是null，添加在最后，范围：0(包括)到CSSStyleSheet.cssRules.length(包括)<br /><br />
-
- isR：数据类型是布尔值，是否替换已有的同名的样式规则，默认是false不替换<br /><br /></td>
+            <td class="description last">JSON对象，配置参数，可选<br />{<br /> cssStyleSheet：数据类型是CSSStyleSheet，一个CSSStyleSheet或页面的一个style标签，默认是null<br /><br /> index：数据类型是number，插入的位置，默认是null，添加在最后，范围：0(包括)到CSSStyleSheet.cssRules.length(包括)<br /><br /> isR：数据类型是布尔值，是否替换已有的同名的样式规则，默认是false不替换<br /><br /></td>
         </tr>
 
     
@@ -7803,9 +7581,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
 
 <div class="description">
-    判断是否包含指定的节点(文本不能算节点)<br />
-注：<br />
-1、“window”会被先转换为“document”处理
+    判断是否包含指定的节点(文本不能算节点)<br />注：<br />1、“window”会被先转换为“document”处理
 </div>
 
 
@@ -7852,8 +7628,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -7978,9 +7753,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
 
 <div class="description">
-    判断节点是否存在子元素(文本、空格也算子元素)<br />
-注：<br />
-1、“window”会被先转换为“document”处理
+    判断节点是否存在子元素(文本、空格也算子元素)<br />注：<br />1、“window”会被先转换为“document”处理
 </div>
 
 
@@ -8027,8 +7800,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -8135,9 +7907,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
 
 <div class="description">
-    判断节点是否存在子节点(文本、空格不算子节点)<br />
-注：<br />
-1、“window”会被先转换为“document”处理
+    判断节点是否存在子节点(文本、空格不算子节点)<br />注：<br />1、“window”会被先转换为“document”处理
 </div>
 
 
@@ -8184,8 +7954,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -8339,8 +8108,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只会取第一个元素</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只会取第一个元素</td>
         </tr>
 
     
@@ -8494,8 +8262,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -8549,8 +8316,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">布尔值，true表示捕获，false表示不捕获，可选<br />
-如果同一个监听事件分别为“事件捕获”和“事件冒泡”注册了一次，一共两次，这两次事件需要分别移除。两者不会互相干扰。</td>
+            <td class="description last">布尔值，true表示捕获，false表示不捕获，可选<br />如果同一个监听事件分别为“事件捕获”和“事件冒泡”注册了一次，一共两次，这两次事件需要分别移除。两者不会互相干扰。</td>
         </tr>
 
     
@@ -8657,9 +8423,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
 
 <div class="description">
-    把这个节点以HTML字符串输出，有第二个参数的时候，表示用参数替换这个节点<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    把这个节点以HTML字符串输出，有第二个参数的时候，表示用参数替换这个节点<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -8706,8 +8470,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -8879,8 +8642,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -8916,8 +8678,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
-默认false，可选</td>
+            <td class="description last">布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />默认false，可选</td>
         </tr>
 
     
@@ -9071,8 +8832,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -9108,8 +8868,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />
-默认false，可选</td>
+            <td class="description last">布尔值，true表示'文本字符串'类型的数据以纯文本方式(传什么就是什么)添加，false表示'文本字符串'类型的数据以HTML片段方式添加，<br />默认false，可选</td>
         </tr>
 
     
@@ -9263,8 +9022,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -9318,13 +9076,7 @@ document.styleSheets.item( index ).cssRules;会报错！<br />
 
             
 
-            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />
-第一种是布尔值，true表示捕获，false表示不捕获<br />
-第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />
-capture布尔值，是否捕获，默认为false，不捕获<br />
-once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />
-passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />
-mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
+            <td class="description last">有两种数据类型，options参数的默认值是false，可选<br />第一种是布尔值，true表示捕获，false表示不捕获<br />第二种是JSON对象，里头有capture、once、passive、mozSystemGroup等这几个属性，<br />capture布尔值，是否捕获，默认为false，不捕获<br />once布尔值，表示事件执行函数在添加之后最多只调用一次。如果是 true，事件执行函数会在其被调用之后自动移除。默认false<br />passive布尔值，表示事件执行函数永远不会调用preventDefault()。如果事件执行函数仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。<br />mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean，表示 listener 被添加到 system group。</td>
         </tr>
 
     
@@ -9478,8 +9230,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -9651,8 +9402,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -9688,8 +9438,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">布尔值，true表示捕获，false表示不捕获，可选<br />
-如果同一个监听事件分别为“事件捕获”和“事件冒泡”注册了一次，一共两次，这两次事件需要分别移除。两者不会互相干扰。</td>
+            <td class="description last">布尔值，true表示捕获，false表示不捕获，可选<br />如果同一个监听事件分别为“事件捕获”和“事件冒泡”注册了一次，一共两次，这两次事件需要分别移除。两者不会互相干扰。</td>
         </tr>
 
     
@@ -9796,9 +9545,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
 
 <div class="description">
-    给节点删除类名<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    给节点删除类名<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -9845,8 +9592,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -9864,9 +9610,7 @@ mozSystemGroup只能在 XBL 或者是 Firefox' chrome 使用，这是个 Boolean
 
             
 
-            <td class="description last">单个类名('t1')或类名组('t1,t2,t3')，都是字符串类型的数据，不能是''、' ',必需<br />
-DOMTokenList.length 数组长度<br />
-DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
+            <td class="description last">单个类名('t1')或类名组('t1,t2,t3')，都是字符串类型的数据，不能是''、' ',必需<br />DOMTokenList.length 数组长度<br />DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
         </tr>
 
     
@@ -9973,10 +9717,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    移除节点的CSS，如：“style.removeProperty( cssNameString )”<br />
-注：<br />
-1、请注意，多字属性名称是带连字符的，而不是驼峰式的。<br />
-2、返回值是DOMString等于CSS属性的值被移除之前。但是自己封装的这个方法不做该值的返回
+    移除节点的CSS，如：“style.removeProperty( cssNameString )”<br />注：<br />1、请注意，多字属性名称是带连字符的，而不是驼峰式的。<br />2、返回值是DOMString等于CSS属性的值被移除之前。但是自己封装的这个方法不做该值的返回
 </div>
 
 
@@ -10023,8 +9764,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -10149,8 +9889,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    ready方法，当文档加载完就会执行，不需要等待图片等网络资源加载完<br />
-注意：文档加载完时，意味着<img>等标签也加载完了！但并不意味着<img>等代表的网络资源也加载完了！
+    ready方法，当文档加载完就会执行，不需要等待图片等网络资源加载完<br />注意：文档加载完时，意味着<img>等标签也加载完了！但并不意味着<img>等代表的网络资源也加载完了！
 </div>
 
 
@@ -10282,9 +10021,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    移除节点<br />
-注：<br />
-1、当elem是“document”、“window”的会被转换为document.documentElement处理
+    移除节点<br />注：<br />1、当elem是“document”、“window”的会被转换为document.documentElement处理
 </div>
 
 
@@ -10331,8 +10068,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -10439,9 +10175,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    移除节点上指定的data键名，模拟jQuery的removeData()<br />
-注意：<br />
-ctoElemDataStoragew未定义！返回undefined
+    移除节点上指定的data键名，模拟jQuery的removeData()<br />注意：<br />ctoElemDataStoragew未定义！返回undefined
 </div>
 
 
@@ -10488,8 +10222,7 @@ ctoElemDataStoragew未定义！返回undefined
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -10614,9 +10347,7 @@ ctoElemDataStoragew未定义！返回undefined
 
 
 <div class="description">
-    节点替换操作<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    节点替换操作<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -10663,8 +10394,7 @@ ctoElemDataStoragew未定义！返回undefined
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -10836,8 +10566,7 @@ ctoElemDataStoragew未定义！返回undefined
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -11009,8 +10738,7 @@ ctoElemDataStoragew未定义！返回undefined
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只会取第一个元素</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只会取第一个元素</td>
         </tr>
 
     
@@ -11171,9 +10899,7 @@ ctoElemDataStoragew未定义！返回undefined
 
 
 <div class="description">
-    滚到顶部(强烈建议将全局滚动伪装为局部滚动，就是不把滚动条挂在body或html上)<br />
-注：Edge、2345、搜狗、百度、猎豹、UC、微信内置等不支持HTML元素滚到顶部，也不支持body元素滚到顶部(不支持全局滚动)！<br />
-但jQuery可以通过$('html,body').animate({scrollTop:'100'},1000)来操作滚动;
+    滚到顶部(强烈建议将全局滚动伪装为局部滚动，就是不把滚动条挂在body或html上)<br />注：Edge、2345、搜狗、百度、猎豹、UC、微信内置等不支持HTML元素滚到顶部，也不支持body元素滚到顶部(不支持全局滚动)！<br />但jQuery可以通过$('html,body').animate({scrollTop:'100'},1000)来操作滚动;
 </div>
 
 
@@ -11220,8 +10946,7 @@ ctoElemDataStoragew未定义！返回undefined
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只会取第一个元素</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需，但只会取第一个元素</td>
         </tr>
 
     
@@ -11346,14 +11071,7 @@ ctoElemDataStoragew未定义！返回undefined
 
 
 <div class="description">
-    设置节点的CSS，如：“style.setProperty( cssNameString, cssValueString, priority )”<br />
-注：<br />
-1、cssNameString是一个DOMString代表要修改的CSS属性名称（连字符）。<br />
-2、cssValueString可选的是DOMString包含新属性值的。如果未指定，则视为空字符串。不得包含"!important"，如果要包含"!important"应该使用priority参数设置。<br />
-3、priority可选的是DOMString允许设置"important"CSS优先级。如果未指定，则视为空字符串。接受以下值：<br />
-字符串值: "important"<br />
-关键词: undefined<br />
-字符串空值: ""
+    设置节点的CSS，如：“style.setProperty( cssNameString, cssValueString, priority )”<br />注：<br />1、cssNameString是一个DOMString代表要修改的CSS属性名称（连字符）。<br />2、cssValueString可选的是DOMString包含新属性值的。如果未指定，则视为空字符串。不得包含"!important"，如果要包含"!important"应该使用priority参数设置。<br />3、priority可选的是DOMString允许设置"important"CSS优先级。如果未指定，则视为空字符串。接受以下值：<br />字符串值: "important"<br />关键词: undefined<br />字符串空值: ""
 </div>
 
 
@@ -11400,8 +11118,7 @@ ctoElemDataStoragew未定义！返回undefined
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -11419,12 +11136,7 @@ ctoElemDataStoragew未定义！返回undefined
 
             
 
-            <td class="description last">JSON对象，key是样式名(如：'border-width')，value是样式值配置对象，必需<br />
-格式如：<br />
-{<br />
-'border-width': {<br />
-value: '10px'<br />
-priority: 'important'</td>
+            <td class="description last">JSON对象，key是样式名(如：'border-width')，value是样式值配置对象，必需<br />格式如：<br />{<br />'border-width': {<br />value: '10px'<br />priority: 'important'</td>
         </tr>
 
     
@@ -11531,47 +11243,7 @@ priority: 'important'</td>
 
 
 <div class="description">
-    代替jQuery的serialize方法<br />
-如下标签要是没有name属性，就不会被处理！<br /><br />
-
-注：<br />
-只处理如下标签<br />
-select标签<br />
-textarea标签<br />
-input标签的如下type类型<br />
-checkbox<br />
-color<br />
-date<br />
-datetime-local<br />
-email<br />
-hidden<br />
-month<br />
-number<br />
-password<br />
-radio<br />
-range<br />
-search<br />
-tel<br />
-text<br />
-time<br />
-url<br />
-week<br />
-datetime(已经被标准删除了，过时，不建议用！)<br />
-input标签的type类型以下5种不被处理！<br />
-file<br />
-submit<br />
-button<br />
-image<br />
-reset<br /><br />
-
-不支持的input标签的type类型：<br />
-iOS 12.2 移动端不支持<br />
-week<br /><br />
-
-火狐PC不支持<br />
-datetime-local<br />
-month<br />
-week
+    代替jQuery的serialize方法<br />如下标签要是没有name属性，就不会被处理！<br /><br />注：<br />只处理如下标签<br />select标签<br />textarea标签<br />input标签的如下type类型<br />checkbox<br />color<br />date<br />datetime-local<br />email<br />hidden<br />month<br />number<br />password<br />radio<br />range<br />search<br />tel<br />text<br />time<br />url<br />week<br />datetime(已经被标准删除了，过时，不建议用！)<br />input标签的type类型以下5种不被处理！<br />file<br />submit<br />button<br />image<br />reset<br /><br />不支持的input标签的type类型：<br />iOS 12.2 移动端不支持<br />week<br /><br />火狐PC不支持<br />datetime-local<br />month<br />week
 </div>
 
 
@@ -11725,47 +11397,7 @@ week
 
 
 <div class="description">
-    代替jQuery的serializeArray方法<br />
-如下标签要是没有name属性，就不会被处理！<br /><br />
-
-注：<br />
-只处理如下标签<br />
-select标签<br />
-textarea标签<br />
-input标签的如下type类型<br />
-checkbox<br />
-color<br />
-date<br />
-datetime-local<br />
-email<br />
-hidden<br />
-month<br />
-number<br />
-password<br />
-radio<br />
-range<br />
-search<br />
-tel<br />
-text<br />
-time<br />
-url<br />
-week<br />
-datetime(已经被标准删除了，过时，不建议用！)<br />
-input标签的type类型以下5种不被处理！<br />
-file<br />
-submit<br />
-button<br />
-image<br />
-reset<br /><br />
-
-不支持的input标签的type类型：<br />
-iOS 12.2 移动端不支持<br />
-week<br /><br />
-
-火狐PC不支持<br />
-datetime-local<br />
-month<br />
-week
+    代替jQuery的serializeArray方法<br />如下标签要是没有name属性，就不会被处理！<br /><br />注：<br />只处理如下标签<br />select标签<br />textarea标签<br />input标签的如下type类型<br />checkbox<br />color<br />date<br />datetime-local<br />email<br />hidden<br />month<br />number<br />password<br />radio<br />range<br />search<br />tel<br />text<br />time<br />url<br />week<br />datetime(已经被标准删除了，过时，不建议用！)<br />input标签的type类型以下5种不被处理！<br />file<br />submit<br />button<br />image<br />reset<br /><br />不支持的input标签的type类型：<br />iOS 12.2 移动端不支持<br />week<br /><br />火狐PC不支持<br />datetime-local<br />month<br />week
 </div>
 
 
@@ -11966,8 +11598,7 @@ week
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -11985,13 +11616,7 @@ week
 
             
 
-            <td class="description last">配置对象，，可选<br />
-{<br />
-  time: 0, number，多久完成，单位ms，默认0，可选<br /><br />
-
-  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />
-
-  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
+            <td class="description last">配置对象，，可选<br />{<br />  time: 0, number，多久完成，单位ms，默认0，可选<br /><br />  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
         </tr>
 
     
@@ -12123,8 +11748,7 @@ week
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -12142,13 +11766,7 @@ week
 
             
 
-            <td class="description last">配置对象，，可选<br />
-{<br />
-  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />
-
-  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />
-
-  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
+            <td class="description last">配置对象，，可选<br />{<br />  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
         </tr>
 
     
@@ -12280,8 +11898,7 @@ week
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -12299,13 +11916,7 @@ week
 
             
 
-            <td class="description last">配置对象，，可选<br />
-{<br />
-  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />
-
-  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />
-
-  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
+            <td class="description last">配置对象，，可选<br />{<br />  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
         </tr>
 
     
@@ -12437,8 +12048,7 @@ week
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -12456,13 +12066,7 @@ week
 
             
 
-            <td class="description last">配置对象，，可选<br />
-{<br />
-  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />
-
-  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />
-
-  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
+            <td class="description last">配置对象，，可选<br />{<br />  time: 300, number，多久完成，单位ms，默认300，可选<br /><br />  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
         </tr>
 
     
@@ -12547,9 +12151,7 @@ week
 
 
 <div class="description">
-    设置样式 样式名用驼峰命名法(如：fontSize)<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    设置样式 样式名用驼峰命名法(如：fontSize)<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -12596,8 +12198,7 @@ week
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -12722,9 +12323,7 @@ week
 
 
 <div class="description">
-    给节点增加或删除类名，存在这个类名，就会删除这个类名；不存在，就会添加这个类名<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    给节点增加或删除类名，存在这个类名，就会删除这个类名；不存在，就会添加这个类名<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -12771,8 +12370,7 @@ week
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -12790,9 +12388,7 @@ week
 
             
 
-            <td class="description last">单个类名('t1')或类名组('t1,t2,t3')，都是字符串类型的数据，不能是''、' ',必需<br />
-DOMTokenList.length 数组长度<br />
-DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
+            <td class="description last">单个类名('t1')或类名组('t1,t2,t3')，都是字符串类型的数据，不能是''、' ',必需<br />DOMTokenList.length 数组长度<br />DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
         </tr>
 
     
@@ -12899,9 +12495,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    原生JS代替jQuery的text()方法，返回值都是去除标签了的纯本文<br />
-注：<br />
-1、“document”、“window”会被先转换为“document.documentElement”处理
+    原生JS代替jQuery的text()方法，返回值都是去除标签了的纯本文<br />注：<br />1、“document”、“window”会被先转换为“document.documentElement”处理
 </div>
 
 
@@ -12948,8 +12542,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -13121,8 +12714,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -13140,13 +12732,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">配置对象，，可选<br />
-{<br />
-  time: 0, number，多久完成，单位ms，默认0，可选<br /><br />
-
-  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />
-
-  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
+            <td class="description last">配置对象，，可选<br />{<br />  time: 0, number，多久完成，单位ms，默认0，可选<br /><br />  easing: 'linear', 动画缓动，默认为'linear'线性匀速，也可以是'swing'(摇摆)，支持函数，会传入一个number类型的参数progress，但需要返回一个number数值，可选<br /><br />  fun: element => {}, 动画结束后执行的函数，会有一个elemO节点对象的参数，可选</td>
         </tr>
 
     
@@ -13278,8 +12864,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -13404,9 +12989,7 @@ DOMTokenList.value 一个类名集合的字符串，如：'a b c d'</td>
 
 
 <div class="description">
-    获取节点的渲染宽度<br />
-PS:<br />
-如果值不能有效的转换成数字，那么会返回原本的字符串值。
+    获取节点的渲染宽度<br />PS:<br />如果值不能有效的转换成数字，那么会返回原本的字符串值。
 </div>
 
 
@@ -13453,8 +13036,7 @@ PS:<br />
 
             
 
-            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />
-支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
+            <td class="description last">单个节点选择器(字符串)、单个节点选择器组(字符串)、单个节点对象、单个节点List、单个jQuery节点对象，<br />支持一个数组(以上提到的任何数据类型)，以便批量处理，必需</td>
         </tr>
 
     
@@ -13563,13 +13145,13 @@ PS:<br />
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemClass.html">ElemClass</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="SSE4Client.html">SSE4Client</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li><li><a href="WebSocket4Client.html">WebSocket4Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemClass.html">ElemClass</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="SSE4Client.html">SSE4Client</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="Upload4GraphQL.html">Upload4GraphQL</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li><li><a href="WebSocket4Client.html">WebSocket4Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 17 2020 11:06:58 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jul 01 2020 16:35:48 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -157,13 +157,7 @@
 
 
 <div class="description">
-    复制文本的方法，默认不传值的话是复制当前的URL。<br />
-返回“true”，表示复制成功！反之，失败！<br /><br />
-
-PS：<br />
-复制文本的方法在“长按”的操作中竟然无法复制成功！！！<br />
-但是，一般的“tap”点击却可以成功！！！<br />
-奇怪！！！奇怪！！！奇怪！！！
+    复制文本的方法，默认不传值的话是复制当前的URL。<br />返回“true”，表示复制成功！反之，失败！<br /><br />PS：<br />复制文本的方法在“长按”的操作中竟然无法复制成功！！！<br />但是，一般的“tap”点击却可以成功！！！<br />奇怪！！！奇怪！！！奇怪！！！
 </div>
 
 
@@ -317,10 +311,7 @@ PS：<br />
 
 
 <div class="description">
-    使用“Clipboard API”的read方法读取系统剪切板上第一个内容<br />
-PS：<br />
-1、<br />
-当系统剪切板无值或为空时，会报错误：DOMException: No valid data on clipboard.<br />
+    使用“Clipboard API”的read方法读取系统剪切板上第一个内容<br />PS：<br />1、<br />当系统剪切板无值或为空时，会报错误：DOMException: No valid data on clipboard.<br />
 </div>
 
 
@@ -367,17 +358,7 @@ PS：<br />
 
             
 
-            <td class="description last">函数，有两个参数( data4Blob, type(如：image/png、text/plain一类的字符串) )，可选<br />
-PS：<br />
-1、允许从系统剪切板读取的数据类型如下：<br />
-text/plain、text/uri-list、text/csv、text/css、text/html、application/xhtml+xml、image/png、image/jpg、image/jpeg、<br />
-image/gif、image/svg+xml、application/xml、text/xml、application/javascript、application/json、<br />
-application/octet-stream<br />
-2、data4Blob使用说明(Blob有以下4个方法)：<br />
-Blob slice( start: Number, end: Number, contentType: String )<br />
-Readable stream()<br />
-Promise<String> text()<br />
-Promise<ArrayBuffer> arrayBuffer()<br /></td>
+            <td class="description last">函数，有两个参数( data4Blob, type(如：image/png、text/plain一类的字符串) )，可选<br />PS：<br />1、允许从系统剪切板读取的数据类型如下：<br />text/plain、text/uri-list、text/csv、text/css、text/html、application/xhtml+xml、image/png、image/jpg、image/jpeg、<br />image/gif、image/svg+xml、application/xml、text/xml、application/javascript、application/json、<br />application/octet-stream<br />2、data4Blob使用说明(Blob有以下4个方法)：<br />Blob slice( start: Number, end: Number, contentType: String )<br />Readable stream()<br />Promise<String> text()<br />Promise<ArrayBuffer> arrayBuffer()<br /></td>
         </tr>
 
     
@@ -395,13 +376,7 @@ Promise<ArrayBuffer> arrayBuffer()<br /></td>
 
             
 
-            <td class="description last">JSON对象，里头都是各个事件，可选<br />
-{<br />
-denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />
-
-stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br /><br />
-
-error: 函数，报错时执行的函数，会有一个参数(error)，可选<br /></td>
+            <td class="description last">JSON对象，里头都是各个事件，可选<br />{<br />denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br /><br />error: 函数，报错时执行的函数，会有一个参数(error)，可选<br /></td>
         </tr>
 
     
@@ -486,9 +461,7 @@ error: 函数，报错时执行的函数，会有一个参数(error)，可选<br
 
 
 <div class="description">
-    使用“Clipboard API”的readText方法读取系统剪切板上第一个文本类型的内容<br />
-PS：<br />
-如果剪贴板为空、不包含文本或在表示剪贴板内容的数据传输对象中不包含文本表示，则返回空字符串。
+    使用“Clipboard API”的readText方法读取系统剪切板上第一个文本类型的内容<br />PS：<br />如果剪贴板为空、不包含文本或在表示剪贴板内容的数据传输对象中不包含文本表示，则返回空字符串。
 </div>
 
 
@@ -535,9 +508,7 @@ PS：<br />
 
             
 
-            <td class="description last">函数，有一个参数(text)，可选<br />
-PS：<br />
-如果剪贴板为空、不包含文本或在表示剪贴板内容的数据传输对象中不包含文本表示，则返回空字符串。</td>
+            <td class="description last">函数，有一个参数(text)，可选<br />PS：<br />如果剪贴板为空、不包含文本或在表示剪贴板内容的数据传输对象中不包含文本表示，则返回空字符串。</td>
         </tr>
 
     
@@ -555,13 +526,7 @@ PS：<br />
 
             
 
-            <td class="description last">JSON对象，里头都是各个事件，可选<br />
-{<br />
-denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />
-
-stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br /><br />
-
-error: 函数，报错时执行的函数，会有一个参数(error)，可选<br /></td>
+            <td class="description last">JSON对象，里头都是各个事件，可选<br />{<br />denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br /><br />error: 函数，报错时执行的函数，会有一个参数(error)，可选<br /></td>
         </tr>
 
     
@@ -646,9 +611,7 @@ error: 函数，报错时执行的函数，会有一个参数(error)，可选<br
 
 
 <div class="description">
-    使用“Clipboard API”的write方法将一个内容写入系统剪切板<br />
-PS：<br />
-1、奇怪！！！浏览器竟然对写入系统剪切板的权限没有提示！！！不管其权限是何种状态！！！而且不能成功写入！！！<br />
+    使用“Clipboard API”的write方法将一个内容写入系统剪切板<br />PS：<br />1、奇怪！！！浏览器竟然对写入系统剪切板的权限没有提示！！！不管其权限是何种状态！！！而且不能成功写入！！！<br />
 </div>
 
 
@@ -695,12 +658,7 @@ PS：<br />
 
             
 
-            <td class="description last">Blob、DataTransfer，一个写入系统剪切板的数据，必须<br />
-PS：<br />
-1、允许写入系统剪切板的数据类型如下：<br />
-text/plain、text/uri-list、text/csv、text/html、image/svg+xml、application/xml、text/xml、application/json<br />
-2、警告！为了安全起见，不受信任的脚本允许写入剪贴板的数据类型受到限制。<br />
-不受信任的脚本可以尝试利用本地软件中的安全漏洞，方法是将已知触发这些漏洞的数据放在剪贴板上。<br /></td>
+            <td class="description last">Blob、DataTransfer，一个写入系统剪切板的数据，必须<br />PS：<br />1、允许写入系统剪切板的数据类型如下：<br />text/plain、text/uri-list、text/csv、text/html、image/svg+xml、application/xml、text/xml、application/json<br />2、警告！为了安全起见，不受信任的脚本允许写入剪贴板的数据类型受到限制。<br />不受信任的脚本可以尝试利用本地软件中的安全漏洞，方法是将已知触发这些漏洞的数据放在剪贴板上。<br /></td>
         </tr>
 
     
@@ -718,17 +676,7 @@ text/plain、text/uri-list、text/csv、text/html、image/svg+xml、application/
 
             
 
-            <td class="description last">JSON对象，里头都是各个事件，可选<br />
-{<br />
-success: 函数，将一个内容成功写入系统剪切板时执行，可选<br /><br />
-
-fail: 函数，将一个内容写入系统剪切板失败时执行，可选<br /><br />
-
-denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />
-
-stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br /><br />
-
-error: 函数，报错时执行的函数，会有一个参数(error)，可选<br /></td>
+            <td class="description last">JSON对象，里头都是各个事件，可选<br />{<br />success: 函数，将一个内容成功写入系统剪切板时执行，可选<br /><br />fail: 函数，将一个内容写入系统剪切板失败时执行，可选<br /><br />denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br /><br />error: 函数，报错时执行的函数，会有一个参数(error)，可选<br /></td>
         </tr>
 
     
@@ -813,9 +761,7 @@ error: 函数，报错时执行的函数，会有一个参数(error)，可选<br
 
 
 <div class="description">
-    使用“Clipboard API”的writeText方法将一个字符串写入系统剪切板<br />
-PS：<br />
-1、奇怪！！！浏览器竟然对写入系统剪切板的权限没有提示！！！不管其权限是何种状态！！！而且能成功！！！<br />
+    使用“Clipboard API”的writeText方法将一个字符串写入系统剪切板<br />PS：<br />1、奇怪！！！浏览器竟然对写入系统剪切板的权限没有提示！！！不管其权限是何种状态！！！而且能成功！！！<br />
 </div>
 
 
@@ -880,17 +826,7 @@ PS：<br />
 
             
 
-            <td class="description last">JSON对象，里头都是各个事件，可选<br />
-{<br />
-success: 函数，将一个字符串成功写入系统剪切板时执行，可选<br /><br />
-
-fail: 函数，将一个字符串写入系统剪切板失败时执行，可选<br /><br />
-
-denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />
-
-stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br /><br />
-
-error: 函数，报错时执行的函数，会有一个参数(error)，可选<br /></td>
+            <td class="description last">JSON对象，里头都是各个事件，可选<br />{<br />success: 函数，将一个字符串成功写入系统剪切板时执行，可选<br /><br />fail: 函数，将一个字符串写入系统剪切板失败时执行，可选<br /><br />denied: 函数，当权限状态为“拒绝授权”时执行，可选<br /><br />stateChange: 函数，当权限状态改变时执行，会有一个参数(permissionStatus对象)，可选<br /><br />error: 函数，报错时执行的函数，会有一个参数(error)，可选<br /></td>
         </tr>
 
     
@@ -977,13 +913,13 @@ error: 函数，报错时执行的函数，会有一个参数(error)，可选<br
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemClass.html">ElemClass</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="SSE4Client.html">SSE4Client</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li><li><a href="WebSocket4Client.html">WebSocket4Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Canvas2Others.html">Canvas2Others</a></li><li><a href="CopyAPI.html">CopyAPI</a></li><li><a href="CryptoAPI.html">CryptoAPI</a></li><li><a href="CT.html">CT</a></li><li><a href="DataFormat.html">DataFormat</a></li><li><a href="ElemClass.html">ElemClass</a></li><li><a href="ElemQuery.html">ElemQuery</a></li><li><a href="ES6Handle.html">ES6Handle</a></li><li><a href="FunHandle.html">FunHandle</a></li><li><a href="InputHandle.html">InputHandle</a></li><li><a href="IsDataType.html">IsDataType</a></li><li><a href="JS2Ajax.html">JS2Ajax</a></li><li><a href="JS2jQuery.html">JS2jQuery</a></li><li><a href="ObjHandle.html">ObjHandle</a></li><li><a href="OthersHandle.html">OthersHandle</a></li><li><a href="PermissionsAPI.html">PermissionsAPI</a></li><li><a href="RegExpHandle.html">RegExpHandle</a></li><li><a href="SSE4Client.html">SSE4Client</a></li><li><a href="StringHandle.html">StringHandle</a></li><li><a href="TouchEvent.html">TouchEvent</a></li><li><a href="Upload4GraphQL.html">Upload4GraphQL</a></li><li><a href="UrlHandle.html">UrlHandle</a></li><li><a href="WASMTool.html">WASMTool</a></li><li><a href="WebService4Proxy.html">WebService4Proxy</a></li><li><a href="WebSocket4Client.html">WebSocket4Client</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aD">aD</a></li><li><a href="global.html#cD">cD</a></li><li><a href="global.html#dD">dD</a></li><li><a href="global.html#GetError">GetError</a></li><li><a href="global.html#IsHandle1">IsHandle1</a></li><li><a href="global.html#IsHandle10">IsHandle10</a></li><li><a href="global.html#IsHandle13">IsHandle13</a></li><li><a href="global.html#isKN">isKN</a></li><li><a href="global.html#Prompt">Prompt</a></li><li><a href="global.html#qD">qD</a></li><li><a href="global.html#RAnimationFFun">RAnimationFFun</a></li><li><a href="global.html#storageCE">storageCE</a></li><li><a href="global.html#uD">uD</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 17 2020 11:06:58 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jul 01 2020 16:35:47 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>
