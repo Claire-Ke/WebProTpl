@@ -33,7 +33,7 @@ const jsonPath_strC = path.join( __dirname, '../../src/graphQL/GraphQL.Schema.js
 // 获取"系统默认"的"GraphQL的Schema文档"
 if( true ){
     const option4Dev_objC = {
-            host: '192.168.1.100',
+            host: '192.168.1.159',
             port: '8081',
             path: '/graphql/schema.json',
             method: 'GET',
@@ -135,7 +135,7 @@ if( true ){
 // 获取"自己定义"的更加全面详细的"GraphQL的Schema文档"
 if( false ){
     const option4Dev_objC = {
-            host: '192.168.1.100',
+            host: '192.168.1.159',
             port: '8081',
             path: '/graphql/',
             method: 'POST',
