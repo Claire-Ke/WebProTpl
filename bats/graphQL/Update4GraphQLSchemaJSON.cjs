@@ -10,7 +10,7 @@
  * 动态更新“GraphQL.Schema.json”。
  *
  * 开发：
- * http://192.168.1.100:8081/graphql/schema.json
+ * http://192.168.1.159:8081/graphql/schema.json
  * 内网穿透的，指向开发的：
  * http://sn2020a.nat300.top/graphql/schema.json
  * 测试：
