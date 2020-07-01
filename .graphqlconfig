@@ -13,7 +13,7 @@
             "extensions": {
                 "endpoints": {
                     "devURL4Dev": {
-                        "url": "http://192.168.1.100:8081/graphql",
+                        "url": "http://192.168.1.159:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
                             "user-agent": "SN_ProA JS GraphQL for devURL4Dev",
@@ -44,6 +44,15 @@
                         "headers": {
                             "Content-Type": "application/json",
                             "user-agent": "SN_ProA JS GraphQL for devURL4WWC",
+                            "Accept-Encoding": "gzip"
+                        },
+                        "introspect": false
+                    },
+                    "devURL4HZJ": {
+                        "url": "http://192.168.1.76:8080/graphql",
+                        "headers": {
+                            "Content-Type": "application/json",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4HZJ",
                             "Accept-Encoding": "gzip"
                         },
                         "introspect": false
