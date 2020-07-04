@@ -706,8 +706,8 @@ let fs = require( 'fs' ),
          'Android >= 83',
          'ChromeAndroid >= 83',
 
-         'Firefox >= 77',
-         'FirefoxAndroid >= 77',
+         'Firefox >= 78',
+         'FirefoxAndroid >= 78',
          */
 
         // 专门在最新稳定版本的谷歌浏览器上测试用
@@ -3193,17 +3193,23 @@ let fs = require( 'fs' ),
                     {
                         loader: 'sass-loader',
                         options: {
+                            // 使用dart-sass实现
+                            // 不支持以下选项：precision、sourceComments
+                            implementation: require( 'sass' ),
                             sassOptions: {
+                                fiber: require( 'fibers' ),
                                 indentedSyntax: false,
                                 indentType: 'space',
                                 indentWidth: 2,
                                 // cr、crlf、lf、lfcr
                                 linefeed: 'lf',
                                 // nested(嵌套)、expanded(扩大)、compact(紧凑)、compressed(压缩)
+                                // 使用“dart-sass”实现的只支持：expanded(扩大)、compressed(压缩)
                                 outputStyle: isPro
                                              ? 'compressed'
-                                             : 'nested',
-                                precision: 6,
+                                             : 'expanded',
+                                // Dart Sass默认为所有现有浏览器提供足够高的精度，并且使其可自定义将使代码的效率大大降低。
+                                // precision: 6,
                             },
                         },
                     },
@@ -3350,17 +3356,23 @@ let fs = require( 'fs' ),
                     {
                         loader: 'sass-loader',
                         options: {
+                            // 使用dart-sass实现
+                            // 不支持以下选项：precision、sourceComments
+                            implementation: require( 'sass' ),
                             sassOptions: {
+                                fiber: require( 'fibers' ),
                                 indentedSyntax: true,
                                 indentType: 'space',
                                 indentWidth: 4,
                                 // cr、crlf、lf、lfcr
                                 linefeed: 'lf',
                                 // nested(嵌套)、expanded(扩大)、compact(紧凑)、compressed(压缩)
+                                // 使用“dart-sass”实现的只支持：expanded(扩大)、compressed(压缩)
                                 outputStyle: isPro
                                              ? 'compressed'
-                                             : 'nested',
-                                precision: 6,
+                                             : 'expanded',
+                                // Dart Sass默认为所有现有浏览器提供足够高的精度，并且使其可自定义将使代码的效率大大降低。
+                                // precision: 6,
                             },
                         },
                     },

@@ -8,8 +8,8 @@
 
 'use strict';
 
-import AllReviewList from 'gQLAPIDir/SN_Alert_ReviewList4Init.graphql';
+import AlertQuery from 'gQLAPIDir/alert/Query.graphql';
 
 let CT = new CTESM.CT();
 
-console.log( AllReviewList );
+console.log( AlertQuery );

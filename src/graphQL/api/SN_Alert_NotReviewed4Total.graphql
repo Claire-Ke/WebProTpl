@@ -1,6 +1,0 @@
-#获取所有未复核的总数
-query SN_Alert_NotReviewed4Total( $pageIndex: Int = 1, $pageSize: Int = 1, $beginStamptime: String = "1949-10-01 00:00:00", $endStamptime: String = "2949-10-01 00:00:00" ){
-    notReviewed4Total: ibms_alarm_getAlarmByContent( pageIndex: $pageIndex, pageSize: $pageSize, beginStamptime: $beginStamptime, endStamptime: $endStamptime ){
-        unCheckedCount,
-    },
-}

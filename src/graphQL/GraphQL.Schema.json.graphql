@@ -3,6 +3,7 @@
 schema {
     query: Query
     mutation: Mutation
+    subscription: Subscription
 }
 
 "警报"
@@ -311,7 +312,7 @@ type IBMS_Floor implements IBMS_IRegion {
     "功能区数量"
     functionalAreaCount: Int
     "区域内功能区"
-    functionalAreas(exp: String, pageIndex: Int!, pageSize: Int!): [IBMS_FunctionalArea]!
+    functionalAreas(exp: String, pageIndex: Int, pageSize: Int): [IBMS_FunctionalArea]!
     "层高"
     height: Float!
     "编号"
@@ -372,7 +373,7 @@ type IBMS_Park implements IBMS_IRegion {
     blockCount(exp: String): Int!
     "地块"
     blocks(exp: String): [IBMS_Block]!
-    "地块分页           pageSize: 单页面记录数       pageIndex:页码,首页为0  sorting:排序,根据\"名称\",\"所属园区\"或\"地块面积\"进行排序"
+    "地块分页           pageSize: 单页记录数       pageIndex:页码,首页为1  sorting:排序,根据\"名称\",\"所属园区\"或\"地块面积\"进行排序"
     blocksPaging(exp: String, pageIndex: Int!, pageSize: Int!, sorting: String!): [IBMS_Block]!
     "编号"
     id: String!
@@ -760,7 +761,7 @@ type Mutation {
     作废固定电话联系方式  # employeeId 雇员编号   telephone联系方式  areaCode区号    extension分机号
     """
     ua_removeTelephoneContactOfEmployee(areaCode: String, employeeId: String!, extension: String, telephone: String!): Boolean
-    "重置运营组织名称"
+    "重置运营组织名称    "
     ua_renameOfOpsOrgan(name: String!): Void
     """
 
@@ -922,6 +923,9 @@ type Query {
     ua_getonlineAccountPaging(exp: String, name: String, pageIndex: Int!, pageSize: Int!, sorting: String): [UA_OnlineAccount]!
 }
 
+"订阅"
+type Subscription
+
 "账号"
 type UA_Account implements UA_IAccount {
     "显示名称"
@@ -1044,6 +1048,7 @@ type UA_OperationsDepartment {
 
     分页显示部门雇员
     employeesPaging(exp: String,screah: String, sorting:String, pageNum: Int!, pageSize: Int!): [UA_OperationsEmployee]
+    screah:电话或者姓名    sorting:通过"姓名","姓名拼音"和"入职日期"进行排序    pageNum:页码    pageSize:每页记录数
     """
     employeePaging(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_OperationsEmployee]
     "部门雇员"
@@ -1100,7 +1105,7 @@ type UA_OperationsOrganization {
     departments(exp: String): [UA_OperationsDepartment]!
     "离职雇员数量"
     dismissionEmployeeCount: String
-    "离职雇员"
+    "离职雇员    screah:电话或者姓名    sorting:通过\"姓名\",\"姓名拼音\"和\"入职日期\"进行排序    pageNum:页码    pageSize:每页记录数"
     dismissionEmployees(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_OperationsEmployee]!
     "满足exp表达式雇员的数量"
     employeeCount(exp: String): Int!
@@ -1123,11 +1128,11 @@ type UA_OperationsOrganization {
     name: String!
     "在职雇员数量"
     onJobEmployeeCount: String
-    "在职雇员"
+    "在职雇员    screah:电话或者姓名    sorting:通过\"姓名\",\"姓名拼音\"和\"入职日期\"进行排序    pageNum:页码    pageSize:每页记录数"
     onJobEmployees(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_OperationsEmployee]!
     "在线雇员数量"
     onlineEmployeeCount: String
-    "在线雇员"
+    "在线雇员    screah:电话或者姓名    sorting:通过\"姓名\",\"姓名拼音\"和\"入职日期\"进行排序    pageNum:页码    pageSize:每页记录数"
     onlineEmployees(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_OperationsEmployee]!
     "简称"
     shortName: String!
