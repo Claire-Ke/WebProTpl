@@ -4060,7 +4060,7 @@ let fs = require( 'fs' ),
                             // graphql自省查询架构JSON文件的位置。如果与validate选项一起使用，它将用于验证导入的查询和片段。
                             schema: './src/graphQL/GraphQL.Schema.json',
                             // 如果为true，则加载程序将根据您指定的模式文件验证导入的文档。
-                            validate: true,
+                            validate: false,
                             // 'string'、'document'
                             output: 'string',
                             // 如果为true且输出选项为字符串，则加载程序将从graphql文档字符串中删除注释和空格。这有助于减小捆绑的代码大小。
