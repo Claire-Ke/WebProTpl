@@ -1345,10 +1345,10 @@ let fs = require( 'fs' ),
     // 如果定义的值是字符串值，得单引号内部嵌套双引号，如：'"例子"'，否则没法真正输出这个字符串
     defineObj_fun = isPro => ( {
         isPro,
-        devURL: '"localhost"',
-        localURL: '"localhost"',
-        testURL: '"localhost"',
-        proURL: '"localhost"',
+        devURL: '"/devURL/"',
+        localURL: '"/localURL/"',
+        testURL: '"/testURL/"',
+        proURL: '"/proURL/"',
     } ),
     splitChunks_obj = {
         chunks: 'all',
@@ -2460,7 +2460,7 @@ let fs = require( 'fs' ),
         'window.$': 'jQueryESM',
         'window.jQuery': 'jQueryESM',
 
-        swiperCSS: 'swiperESMCSS',
+        SwiperCSS: 'swiperESMCSS',
         Swiper: 'swiperESM',
 
         Vue: 'vueESM',

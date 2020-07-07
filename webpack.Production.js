@@ -24,7 +24,21 @@ let path = require( 'path' ),
 let { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 
 let isPro = process.argv[ 3 ] === 'production',
-    define_obj = baseConfig.defineObj_fun( isPro );
+    define_obj = ( str => {
+        let result_obj = {};
+
+        Array.from( Object.entries( baseConfig.defineObj_fun( isPro ) ) )
+             .forEach( ( [ keyName, keyValue ], i, a ) => {
+                 if( keyName === 'isPro' ){
+                     result_obj[ keyName ] = keyValue;
+                 }
+                 else{
+                     result_obj[ keyName ] = str;
+                 }
+             } );
+
+        return result_obj;
+    } )( '"/"' );
 
 define_obj[ 'proCat' ] = '"production"';
 

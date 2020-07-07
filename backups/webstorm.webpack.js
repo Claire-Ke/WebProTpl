@@ -21,7 +21,7 @@ module.exports = {
             elementUIESMCSS: 'element-ui/lib/theme-chalk/index.css',
             elementUIESM: 'element-ui/lib/index.js',
             jQueryESM: 'jquery/dist/jquery.js',
-            swiperCSS: 'swiper/swiper-bundle.css',
+            swiperESMCSS: 'swiper/swiper-bundle.css',
             swiperESM: 'swiper/swiper-bundle.js',
             vueESM: 'vue/dist/vue.js',
             vueRouterESM: 'vue-router/dist/vue-router.js',
@@ -124,10 +124,10 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin( {
-            devURL: '"localhost"',
-            localURL: '"localhost"',
-            testURL: '"localhost"',
-            proURL: '"localhost"',
+            devURL: '"/devURL/"',
+            localURL: '"/localURL/"',
+            testURL: '"/"',
+            proURL: '"/"',
         } ),
         new webpack.ProvidePlugin( {
             echarts: 'echartsESM',
@@ -140,7 +140,7 @@ module.exports = {
             'window.$': 'jQueryESM',
             'window.jQuery': 'jQueryESM',
 
-            swiperCSS: 'swiperCSS',
+            SwiperCSS: 'swiperESMCSS',
             Swiper: 'swiperESM',
 
             Vue: 'vueESM',
