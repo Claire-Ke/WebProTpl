@@ -19,7 +19,8 @@ module.exports = {
         alias: {
             echartsESM: 'echarts/dist/echarts.js',
             jQueryESM: 'jquery/dist/jquery.js',
-            swiperESM: 'swiper/js/swiper.js',
+            swiperCSS: 'swiper/swiper-bundle.css',
+            swiperESM: 'swiper/swiper-bundle.js',
             vueESM: 'vue/dist/vue.js',
             vueRouterESM: 'vue-router/dist/vue-router.js',
             vuexESM: 'vuex/dist/vuex.js',
@@ -119,4 +120,35 @@ module.exports = {
         ],
         symlinks: false,
     },
+    plugins: [
+        new webpack.DefinePlugin( {
+            devURL: '"localhost"',
+            localURL: '"localhost"',
+            testURL: '"localhost"',
+            proURL: '"localhost"',
+        } ),
+        new webpack.ProvidePlugin( {
+            echarts: 'echartsESM',
+
+            $: 'jQueryESM',
+            jQuery: 'jQueryESM',
+            'window.$': 'jQueryESM',
+            'window.jQuery': 'jQueryESM',
+
+            swiperCSS: 'swiperCSS',
+            Swiper: 'swiperESM',
+
+            Vue: 'vueESM',
+            VueRouter: 'vueRouterESM',
+            Vuex: 'vuexESM',
+
+            CompESM: 'CompESM',
+
+            CTESM: 'CTESM',
+            DecESM: 'DecESM',
+            HTML2C4ESM: 'HTML2C4ESM',
+            WebCESM: 'WebCESM',
+            WorkersESM: 'WorkersESM',
+        } ),
+    ],
 };

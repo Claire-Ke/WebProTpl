@@ -934,9 +934,12 @@ let fs = require( 'fs' ),
             jQueryESM: isPro_boo
                        ? 'jquery/dist/jquery.min.js'
                        : 'jquery/dist/jquery.js',
+            swiperCSS: isPro_boo
+                       ? 'swiper/swiper-bundle.min.css'
+                       : 'swiper/swiper-bundle.css',
             swiperESM: isPro_boo
-                       ? 'swiper/js/swiper.min.js'
-                       : 'swiper/js/swiper.js',
+                       ? 'swiper/swiper-bundle.min.js'
+                       : 'swiper/swiper-bundle.js',
             vueESM: isPro_boo
                     ? 'vue/dist/vue.min.js'
                     : 'vue/dist/vue.js',
@@ -2452,6 +2455,7 @@ let fs = require( 'fs' ),
         'window.$': 'jQueryESM',
         'window.jQuery': 'jQueryESM',
 
+        swiperCSS: 'swiperCSS',
         Swiper: 'swiperESM',
 
         Vue: 'vueESM',
