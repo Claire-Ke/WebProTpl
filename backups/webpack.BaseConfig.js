@@ -931,12 +931,14 @@ let fs = require( 'fs' ),
             echartsESM: isPro_boo
                         ? 'echarts/dist/echarts.min.js'
                         : 'echarts/dist/echarts.js',
+            elementUIESMCSS: 'element-ui/lib/theme-chalk/index.css',
+            elementUIESM: 'element-ui/lib/index.js',
             jQueryESM: isPro_boo
                        ? 'jquery/dist/jquery.min.js'
                        : 'jquery/dist/jquery.js',
-            swiperCSS: isPro_boo
-                       ? 'swiper/swiper-bundle.min.css'
-                       : 'swiper/swiper-bundle.css',
+            swiperESMCSS: isPro_boo
+                          ? 'swiper/swiper-bundle.min.css'
+                          : 'swiper/swiper-bundle.css',
             swiperESM: isPro_boo
                        ? 'swiper/swiper-bundle.min.js'
                        : 'swiper/swiper-bundle.js',
@@ -2450,12 +2452,15 @@ let fs = require( 'fs' ),
     provide_obj = {
         echarts: 'echartsESM',
 
+        ELEMENTCSS: 'elementUIESMCSS',
+        ELEMENT: 'elementUIESM',
+
         $: 'jQueryESM',
         jQuery: 'jQueryESM',
         'window.$': 'jQueryESM',
         'window.jQuery': 'jQueryESM',
 
-        swiperCSS: 'swiperCSS',
+        swiperCSS: 'swiperESMCSS',
         Swiper: 'swiperESM',
 
         Vue: 'vueESM',
@@ -3142,7 +3147,9 @@ let fs = require( 'fs' ),
                     postCSSLoader_fun( isPro ),
                 ],
                 include: [
-                    /node_modules[\\/](element-ui[\\/]).*\.css/,
+                    path.resolve( __dirname, './node_modules/' ),
+                    // /node_modules[\\/](element-ui[\\/]).*\.css/,
+                    // /node_modules[\\/](swiper[\\/]).*\.css/,
                     path.resolve( __dirname, './src/components/' ),
                     path.resolve( __dirname, './src/styles/css/' ),
                     path.resolve( __dirname, './src/vue/' ),
@@ -3154,7 +3161,8 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './bats/' ),
                     path.resolve( __dirname, './configures/' ),
                     path.resolve( __dirname, './dist/' ),
-                    /node_modules[\\/](?!element-ui[\\/]).*\.css/,
+                    // /node_modules[\\/](?!element-ui[\\/]).*\.css/,
+                    // /node_modules[\\/](?!swiper[\\/]).*\.css/,
                     // path.resolve( __dirname, './node_modules/' ),
                     path.resolve( __dirname, './notes/' ),
                     path.resolve( __dirname, './simServer/' ),
@@ -4182,8 +4190,11 @@ let fs = require( 'fs' ),
                     },
                 ],
                 include: [
-                    /node_modules[\\/](element-ui[\\/]).*\.ttf/,
-                    /node_modules[\\/](element-ui[\\/]).*\.woff/,
+                    path.resolve( __dirname, './node_modules/' ),
+                    // /node_modules[\\/](element-ui[\\/]).*\.ttf/,
+                    // /node_modules[\\/](element-ui[\\/]).*\.woff/,
+                    // /node_modules[\\/](swiper[\\/]).*\.ttf/,
+                    // /node_modules[\\/](swiper[\\/]).*\.woff/,
                     path.resolve( __dirname, './src/assets/fonts/' ),
                     path.resolve( __dirname, './src/components/' ),
                     path.resolve( __dirname, './src/vue/' ),
@@ -4195,8 +4206,10 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './bats/' ),
                     path.resolve( __dirname, './configures/' ),
                     path.resolve( __dirname, './dist/' ),
-                    /node_modules[\\/](?!element-ui[\\/]).*\.ttf/,
-                    /node_modules[\\/](?!element-ui[\\/]).*\.woff/,
+                    // /node_modules[\\/](?!element-ui[\\/]).*\.ttf/,
+                    // /node_modules[\\/](?!element-ui[\\/]).*\.woff/,
+                    // /node_modules[\\/](?!swiper[\\/]).*\.ttf/,
+                    // /node_modules[\\/](?!swiper[\\/]).*\.woff/,
                     // path.resolve( __dirname, './node_modules/' ),
                     path.resolve( __dirname, './notes/' ),
                     path.resolve( __dirname, './simServer/' ),

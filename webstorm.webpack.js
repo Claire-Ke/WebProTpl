@@ -18,6 +18,8 @@ module.exports = {
     resolve: {
         alias: {
             echartsESM: 'echarts/dist/echarts.js',
+            elementUIESMCSS: 'element-ui/lib/theme-chalk/index.css',
+            elementUIESM: 'element-ui/lib/index.js',
             jQueryESM: 'jquery/dist/jquery.js',
             swiperCSS: 'swiper/swiper-bundle.css',
             swiperESM: 'swiper/swiper-bundle.js',
@@ -129,6 +131,9 @@ module.exports = {
         } ),
         new webpack.ProvidePlugin( {
             echarts: 'echartsESM',
+
+            ELEMENTCSS: 'elementUIESMCSS',
+            ELEMENT: 'elementUIESM',
 
             $: 'jQueryESM',
             jQuery: 'jQueryESM',
