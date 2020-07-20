@@ -19,6 +19,8 @@
 
 'use strict';
 
+// '[object HTMLDocument]'.slice( 8, -1 ); // HTMLDocument
+// '[object HTMLDocument XXX]'.slice( 8, -1 ); // HTMLDocument XXX
 function DataT( arg ){
     'use strict';
 
@@ -118,10 +120,8 @@ function IsDataT( data, type ){
             .includes( type );
     }
 
-    let str1 = DataT( data )
-        .split( ' ' )[ 1 ];
-
-    return str1.slice( 0, str1.length - 1 ) === type;
+    return DataT( data )
+        .slice( 8, -1 ) === type;
 }
 
 function IsDataView( arg ){

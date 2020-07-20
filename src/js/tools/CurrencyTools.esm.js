@@ -359,10 +359,8 @@ function IsHandle1( arg1, arg2 ){
                    .includes( arg2 );
     }
 
-    let str1 = this.dataT( arg1 )
-                   .split( ' ' )[ 1 ];
-
-    return str1.slice( 0, str1.length - 1 ) === arg2;
+    return this.dataT( arg1 )
+               .slice( 8, -1 ) === arg2;
 }
 
 function IsHandle2( arg, regStr ){
@@ -2407,7 +2405,10 @@ class IsDataType{
     /**
      * 获取数据类型<br />
      * PS:<br />
-     * 1、如果传入的是被Proxy代理过的对象，会报错！！！
+     * 1、如果传入的是被Proxy代理过的对象，会报错！！！<br />
+     * 2、<br />
+     * '[object HTMLDocument]'.slice( 8, -1 ); // HTMLDocument<br />
+     * '[object HTMLDocument XXX]'.slice( 8, -1 ); // HTMLDocument XXX<br />
      *
      * @param arg 任何类型的数据，参数个数为1，必需
      *

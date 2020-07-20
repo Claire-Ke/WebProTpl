@@ -208,14 +208,23 @@ const compilerOptions4lib_arrC = [
                 'echarts': [
                     'node_modules/echarts/dist/echarts.min.js'
                 ],
+                'ELEMENTCSS': [
+                    'node_modules/element-ui/lib/theme-chalk/index.css'
+                ],
+                'ELEMENT': [
+                    'node_modules/element-ui/lib/index.js'
+                ],
                 'jQuery': [
                     'node_modules/jquery/dist/jquery.min.js'
                 ],
                 '$': [
                     'node_modules/jquery/dist/jquery.min.js'
                 ],
+                'SwiperCSS': [
+                    'node_modules/swiper/swiper-bundle.min.css'
+                ],
                 'Swiper': [
-                    'node_modules/swiper/js/swiper.min.js'
+                    'node_modules/swiper/swiper-bundle.min.js'
                 ],
                 'Vue': [
                     'node_modules/vue/dist/vue.min.js'
