@@ -8,7 +8,7 @@ IDE: WebStorm
 <!--
 关于样式的loader处理：
 1、
-.css、.scss在.js中导入使用，或者是.vue中的<style lang = 'css' scoped></style>、<style lang = 'scss' scoped></style>的使用方式！
+.css、.scss、.styl、.stylus在.js中导入使用，或者是.vue中的<style lang = 'css' scoped></style>、<style lang = 'scss' scoped></style>、<style lang = 'styl' scoped></style>、<style lang = 'stylus' scoped></style>的使用方式！
 但是无法在.ejs中以link标签引入！也无法require导入！
 最后会被提取到一个.css文件中，最后把这个.css文件以link标签引入到页面中！
 

@@ -72,7 +72,9 @@
         "**/*.css",
         "**/*.scss",
         "**/*.less",
-        "**/*.sass"
+        "**/*.sass",
+        "**/*.styl",
+        "**/*.stylus"
     ],
     "scripts": {
         "devServer": "webpack-dev-server --mode development --config webpack.DevServer.js --watch --progress=true --display-error-details=true --color=true --node-args='--max-old-space-size=8192'",
