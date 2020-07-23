@@ -3432,6 +3432,62 @@ let fs = require( 'fs' ),
                 ],
                 sideEffects: true,
             },
+            {
+                test: /\.(styl|stylus)$/i,
+                use: [
+                    {
+                        loader: MiniCSSExtractPlugin.loader,
+                        options: obj,
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: true,
+                            import: true,
+                            importLoaders: 2,
+                            esModule: false,
+                        }
+                    },
+                    postCSSLoader_fun( isPro ),
+                    {
+                        loader: 'stylus-loader',
+                    },
+                ],
+                include: [
+                    path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/styles/stylus/' ),
+                    path.resolve( __dirname, './src/vue/' ),
+                    path.resolve( __dirname, './src/webComponents/' ),
+                ],
+                exclude: [
+                    path.resolve( __dirname, './assistTools/' ),
+                    path.resolve( __dirname, './backups/' ),
+                    path.resolve( __dirname, './bats/' ),
+                    path.resolve( __dirname, './configures/' ),
+                    path.resolve( __dirname, './dist/' ),
+                    path.resolve( __dirname, './node_modules/' ),
+                    path.resolve( __dirname, './notes/' ),
+                    path.resolve( __dirname, './simServer/' ),
+                    path.resolve( __dirname, './simServer4Deno/' ),
+                    path.resolve( __dirname, './test/' ),
+                    path.resolve( __dirname, './webpackRecords/' ),
+
+                    path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
+                    path.resolve( __dirname, './src/js/' ),
+                    path.resolve( __dirname, './src/pwa4Manifest/' ),
+                    path.resolve( __dirname, './src/static/' ),
+                    path.resolve( __dirname, './src/styles/css/' ),
+                    path.resolve( __dirname, './src/styles/less/' ),
+                    path.resolve( __dirname, './src/styles/sass/' ),
+                    path.resolve( __dirname, './src/styles/scss/' ),
+                    path.resolve( __dirname, './src/tplEJS/' ),
+                    path.resolve( __dirname, './src/tplHTML/' ),
+                    path.resolve( __dirname, './src/wasm/' ),
+                    path.resolve( __dirname, './src/workers/' ),
+                ],
+                sideEffects: true,
+            },
 
             {
                 test: /\.vue$/i,
