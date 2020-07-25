@@ -131,15 +131,15 @@ function GoImg2WebP(){
         delFileSrc_str = '',
         outFileSrc_str = '',
         fileName_arr = fs.readdirSync( path1_fun( 'img2WebP_In' ) )
-        .filter( c => fs.statSync( path1_fun( in_str + c ) )
-        .isFile() )
-        .filter( c => {
-            suffix_str = path.extname( c )
-            .slice( 1 )
-            .toLocaleLowerCase();
+                         .filter( c => fs.statSync( path1_fun( in_str + c ) )
+                                         .isFile() )
+                         .filter( c => {
+                             suffix_str = path.extname( c )
+                                              .slice( 1 )
+                                              .toLocaleLowerCase();
 
-            return suffix_str === 'png' || suffix_str === 'jpe' || suffix_str === 'jpeg' || suffix_str === 'jpg' || suffix_str === 'tiff' || suffix_str === 'webp';
-        } ),
+                             return suffix_str === 'png' || suffix_str === 'jpe' || suffix_str === 'jpeg' || suffix_str === 'jpg' || suffix_str === 'tiff' || suffix_str === 'webp';
+                         } ),
         promise_ins = inFileSrc_str => FastEXIF.read( inFileSrc_str ),
         index_num = 0;
 
@@ -207,14 +207,14 @@ function GoWebP2PNG(){
         out_str = 'webP2PNG_Out/';
 
     fs.readdirSync( path1_fun( 'webP2PNG_In' ) )
-    .filter( c => fs.statSync( path1_fun( in_str + c ) )
-    .isFile() )
-    .filter( c => path.extname( c )
-    .slice( 1 )
-    .toLocaleLowerCase() === 'webp' )
-    .forEach( c => void ( execSync( WebP2PNG4Command( path1_fun( in_str + c ), path1_fun( out_str + c + '.png' ) ), {
-        cwd: null
-    } ) ) );
+      .filter( c => fs.statSync( path1_fun( in_str + c ) )
+                      .isFile() )
+      .filter( c => path.extname( c )
+                        .slice( 1 )
+                        .toLocaleLowerCase() === 'webp' )
+      .forEach( c => void ( execSync( WebP2PNG4Command( path1_fun( in_str + c ), path1_fun( out_str + c + '.png' ) ), {
+          cwd: null
+      } ) ) );
 
     console.log( '------>GoWebP2PNG End<------' );
 }
@@ -226,14 +226,14 @@ function GoGIF2WebP(){
         out_str = 'gif2WebP_Out/';
 
     fs.readdirSync( path1_fun( 'gif2WebP_In' ) )
-    .filter( c => fs.statSync( path1_fun( in_str + c ) )
-    .isFile() )
-    .filter( c => path.extname( c )
-    .slice( 1 )
-    .toLocaleLowerCase() === 'gif' )
-    .forEach( c => void ( execSync( GIF2WebP4Command( path1_fun( in_str + c ), path1_fun( out_str + c + '.webp' ) ), {
-        cwd: null
-    } ) ) );
+      .filter( c => fs.statSync( path1_fun( in_str + c ) )
+                      .isFile() )
+      .filter( c => path.extname( c )
+                        .slice( 1 )
+                        .toLocaleLowerCase() === 'gif' )
+      .forEach( c => void ( execSync( GIF2WebP4Command( path1_fun( in_str + c ), path1_fun( out_str + c + '.webp' ) ), {
+          cwd: null
+      } ) ) );
 
     console.log( '------>GoGIF2WebP End<------' );
 }

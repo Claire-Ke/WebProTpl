@@ -189,7 +189,7 @@ function Init( _this, isSupportBrowser ){
                     len = strfi.substr( dotPos + 1 ).length,
                     times = Math.pow( 10, len ),
                     intNum = Number( floatNum.toString()
-                    .replace( '.', '' ) );
+                                             .replace( '.', '' ) );
                 ret.times = times;
                 ret.num = intNum;
                 return ret;
@@ -356,11 +356,11 @@ function Init( _this, isSupportBrowser ){
 function IsHandle1( arg1, arg2 ){
     if( 'Element' === arg2 ){
         return this.dataT( arg1 )
-        .includes( arg2 );
+                   .includes( arg2 );
     }
 
     return this.dataT( arg1 )
-    .slice( 8, -1 ) === arg2;
+               .slice( 8, -1 ) === arg2;
 }
 
 function IsHandle2( arg, regStr ){
@@ -385,10 +385,10 @@ function IsHandle5( o, s, f ){
     let result = Object[ s ]( o ),
         prop;
     Reflect.ownKeys( o )
-    .forEach( currentValue => {
-        prop = o[ currentValue ];
-        ( this.isArray( prop ) || this.isObject( prop ) ) && f( prop );
-    } );
+           .forEach( currentValue => {
+               prop = o[ currentValue ];
+               ( this.isArray( prop ) || this.isObject( prop ) ) && f( prop );
+           } );
     return result;
 }
 
@@ -397,15 +397,15 @@ function IsHandle6( elem, classN, type ){
 
     return IsHandle10.call( this, elem, elemO => {
         this.remSpace( classN )
-        .split( ',' )
-        .forEach( currentValue => {
-            if( currentValue.length !== 0 && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                document[ 'documentElement' ][ 'classList' ][ type ]( currentValue );
-            }
-            else if( currentValue.length !== 0 && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                elemO.classList[ type ]( currentValue );
-            }
-        } );
+            .split( ',' )
+            .forEach( currentValue => {
+                if( currentValue.length !== 0 && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                    document[ 'documentElement' ][ 'classList' ][ type ]( currentValue );
+                }
+                else if( currentValue.length !== 0 && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                    elemO.classList[ type ]( currentValue );
+                }
+            } );
         if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
             return document.documentElement.classList;
         }
@@ -435,7 +435,7 @@ function IsHandle8( ar1, f, seN, rootE ){
             else if( this.isArray( seN ) && seN.length !== 0 ){
                 let result = [];
                 this.dataRemRe( seN )
-                .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue, rootE ) ) ) );
+                    .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue, rootE ) ) ) );
                 if( result.length !== 0 ){
                     return result;
                 }
@@ -469,7 +469,7 @@ function IsHandle9( arg, f ){
     else if( this.isArray( arg ) && arg.length !== 0 ){
         let result = [];
         this.dataRemRe( arg )
-        .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue ) ) ) );
+            .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue ) ) ) );
         if( result.length !== 0 ){
             return result;
         }
@@ -491,7 +491,7 @@ function IsHandle10( elem, fun ){
         handle1 = arg => {
             let result = [];
             Array.from( arg )
-            .forEach( currentValue => void ( result.push( handle( currentValue ) ) ) );
+                 .forEach( currentValue => void ( result.push( handle( currentValue ) ) ) );
             return result;
         },
         handle2 = elem => {
@@ -832,7 +832,7 @@ function IsHandle17( arr, selectorElems ){
     }
     let result = [];
     arr.forEach( currentValue => void ( Array.from( selectorElems )
-    .forEach( c => void ( currentValue === c && result.push( currentValue ) ) ) ) );
+                                             .forEach( c => void ( currentValue === c && result.push( currentValue ) ) ) ) );
     if( result.length === 0 ){
         return null;
     }
@@ -1211,11 +1211,11 @@ class CopyAPI{
         }
         else{
             const readText = () => clip_objC.readText()
-            .then( text => void ( fun( text ) ) );
+                                            .then( text => void ( fun( text ) ) );
 
             this.permissionsQuery( {
-                name: 'clipboard-read',
-            }, Object.assign( {}, {
+                                       name: 'clipboard-read',
+                                   }, Object.assign( {}, {
                 denied(){
                     GetError( '拒绝授权' );
                 },
@@ -1225,13 +1225,13 @@ class CopyAPI{
                     GetError( e.message );
                 },
             }, events, {
-                prompt(){
-                    readText();
-                },
-                granted(){
-                    readText();
-                },
-            } ) );
+                                                         prompt(){
+                                                             readText();
+                                                         },
+                                                         granted(){
+                                                             readText();
+                                                         },
+                                                     } ) );
         }
     }
 
@@ -1282,22 +1282,22 @@ class CopyAPI{
                         GetError( e.message );
                     },
                 }, events, {
-                    prompt(){
-                        read();
-                    },
-                    granted(){
-                        read();
-                    },
-                } ),
+                                                   prompt(){
+                                                       read();
+                                                   },
+                                                   granted(){
+                                                       read();
+                                                   },
+                                               } ),
                 read = () => clip_objC.read()
-                .then( data => void ( data.forEach( c => void ( c.getType( c.types[ 0 ] )
-                .then( data4Blob => void ( fun( data4Blob, c.types[ 0 ] ) ) )
-                .catch( events_objC.error ) ) ) ) )
-                .catch( events_objC.error );
+                                      .then( data => void ( data.forEach( c => void ( c.getType( c.types[ 0 ] )
+                                                                                       .then( data4Blob => void ( fun( data4Blob, c.types[ 0 ] ) ) )
+                                                                                       .catch( events_objC.error ) ) ) ) )
+                                      .catch( events_objC.error );
 
             this.permissionsQuery( {
-                name: 'clipboard-read',
-            }, events_objC );
+                                       name: 'clipboard-read',
+                                   }, events_objC );
         }
     }
 
@@ -1345,19 +1345,19 @@ class CopyAPI{
                         GetError( e.message );
                     },
                 }, events, {
-                    prompt(){
-                        writeText();
-                    },
-                    granted(){
-                        writeText();
-                    },
-                } ),
+                                                   prompt(){
+                                                       writeText();
+                                                   },
+                                                   granted(){
+                                                       writeText();
+                                                   },
+                                               } ),
                 writeText = () => clip_objC.writeText( str )
-                .then( events_objC.success, events_objC.fail );
+                                           .then( events_objC.success, events_objC.fail );
 
             this.permissionsQuery( {
-                name: 'clipboard-write',
-            }, events_objC );
+                                       name: 'clipboard-write',
+                                   }, events_objC );
         }
     }
 
@@ -1410,19 +1410,19 @@ class CopyAPI{
                         GetError( e.message );
                     },
                 }, events, {
-                    prompt(){
-                        write();
-                    },
-                    granted(){
-                        write();
-                    },
-                } ),
+                                                   prompt(){
+                                                       write();
+                                                   },
+                                                   granted(){
+                                                       write();
+                                                   },
+                                               } ),
                 write = () => clip_objC.write( data )
-                .then( events_objC.success, events_objC.fail );
+                                       .then( events_objC.success, events_objC.fail );
 
             this.permissionsQuery( {
-                name: 'clipboard-write',
-            }, events_objC );
+                                       name: 'clipboard-write',
+                                   }, events_objC );
         }
     }
 
@@ -1557,8 +1557,8 @@ class CryptoAPI{
             hashArray = Array.from( new Uint8Array( hashArrayBuffer ) ),
             // convert hashArray to hex string
             hashHex = hashArray.map( b => b.toString( 16 )
-            .padStart( 2, '0' ) )
-            .join( '' );
+                                           .padStart( 2, '0' ) )
+                               .join( '' );
 
         return hashHex;
     }
@@ -1919,11 +1919,11 @@ class ES6Handle{
         let arr4Obj = [];
         !this.isObject( obj ) && GetError( '参数的数据类型必须是Object' );
         Object.entries( obj )
-        .forEach( ( c, i, ) => void ( arr4Obj.push( {
-            key: c[ 0 ],
-            value: c[ 1 ],
-            index: i,
-        } ) ) );
+              .forEach( ( c, i, ) => void ( arr4Obj.push( {
+                                                              key: c[ 0 ],
+                                                              value: c[ 1 ],
+                                                              index: i,
+                                                          } ) ) );
         return arr4Obj;
     }
 
@@ -2021,8 +2021,8 @@ class FunHandle{
     } ){
         if( typeof globalThis.queueMicrotask !== 'function' ){
             Promise.resolve()
-            .then( callback )
-            .catch( e => void ( setTimeout( () => void ( throw new Error( e ) ) ) ) );
+                   .then( callback )
+                   .catch( e => void ( setTimeout( () => void ( throw new Error( e ) ) ) ) );
         }
         else{
             queueMicrotask( callback );
@@ -2136,13 +2136,13 @@ class FunHandle{
         let str1 = 'setInterval函数--->',
             str2 = '必须是布尔类型或是函数类型的数据！',
             paraObj = Object.assign( {
-                fun: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
-                },
-                howClear: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => false,
-                howStart: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => true,
-                otherFun: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
-                }
-            }, argObj ),
+                                         fun: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
+                                         },
+                                         howClear: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => false,
+                                         howStart: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => true,
+                                         otherFun: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
+                                         }
+                                     }, argObj ),
             howClear = ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
             },
             howStart = ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
@@ -3298,49 +3298,49 @@ class JS2Ajax{
      */
     ajax( url, paraObj = {} ){
         let opt_obj = Object.assign( {
-                sendData: null,
-                method: 'GET',
-                async: true,
-                user: null,
-                password: null,
-                overrideMimeType: null,
-                responseType: null,
-                setTimeOut: 0,
-                requestHeader: {},
-                withCredentials: true,
-                loadStart: ( event, xhr, response, status ) => {
-                },
-                readyStateChange: ( event, xhr, response, status ) => {
-                },
-                progress: ( event, xhr, response, status ) => {
-                },
-                timeout: ( event, xhr ) => {
-                },
-                load: ( event, xhr, response, status ) => {
-                },
-                error: ( event, xhr ) => GetError( xhr ),
-                abort: ( event, xhr ) => {
-                },
-                loadEnd: ( event, xhr, response, status ) => {
-                },
-                success: ( event, xhr, response ) => {
-                },
-                uploadEvent: {
-                    loadStart: ( event, xhr ) => {
-                    },
-                    progress: ( event, xhr ) => {
-                    },
-                    timeout: ( event, xhr ) => {
-                    },
-                    load: ( event, xhr ) => {
-                    },
-                    error: ( event, xhr ) => GetError( xhr ),
-                    abort: ( event, xhr ) => {
-                    },
-                    loadEnd: ( event, xhr ) => {
-                    }
-                }
-            }, paraObj ),
+                                         sendData: null,
+                                         method: 'GET',
+                                         async: true,
+                                         user: null,
+                                         password: null,
+                                         overrideMimeType: null,
+                                         responseType: null,
+                                         setTimeOut: 0,
+                                         requestHeader: {},
+                                         withCredentials: true,
+                                         loadStart: ( event, xhr, response, status ) => {
+                                         },
+                                         readyStateChange: ( event, xhr, response, status ) => {
+                                         },
+                                         progress: ( event, xhr, response, status ) => {
+                                         },
+                                         timeout: ( event, xhr ) => {
+                                         },
+                                         load: ( event, xhr, response, status ) => {
+                                         },
+                                         error: ( event, xhr ) => GetError( xhr ),
+                                         abort: ( event, xhr ) => {
+                                         },
+                                         loadEnd: ( event, xhr, response, status ) => {
+                                         },
+                                         success: ( event, xhr, response ) => {
+                                         },
+                                         uploadEvent: {
+                                             loadStart: ( event, xhr ) => {
+                                             },
+                                             progress: ( event, xhr ) => {
+                                             },
+                                             timeout: ( event, xhr ) => {
+                                             },
+                                             load: ( event, xhr ) => {
+                                             },
+                                             error: ( event, xhr ) => GetError( xhr ),
+                                             abort: ( event, xhr ) => {
+                                             },
+                                             loadEnd: ( event, xhr ) => {
+                                             }
+                                         }
+                                     }, paraObj ),
             XHR = new XMLHttpRequest();
 
         XHR.onloadstart = event => void ( opt_obj.loadStart( event, event.currentTarget, event.currentTarget[ 'response' ], event.currentTarget[ 'status' ] ) );
@@ -3381,17 +3381,17 @@ class JS2Ajax{
 
             if( this.isFormData( opt_obj.sendData ) ){
                 Array.from( opt_obj.sendData.entries() )
-                .forEach( ( [ key, value ] ) => void ( sendData[ key ] = value ) );
+                     .forEach( ( [ key, value ] ) => void ( sendData[ key ] = value ) );
             }
             else{
                 sendData = opt_obj.sendData;
             }
 
             Object.entries( Object.assign( urlSea2Obj, sendData ) )
-            .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ keyValue }&` ) );
+                  .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ keyValue }&` ) );
 
             XHR.open( opt_obj.method, `${ newUrl }?${ searchStr.trim()
-            .slice( 0, -1 ) }`, opt_obj.async, opt_obj.user, opt_obj.password );
+                                                               .slice( 0, -1 ) }`, opt_obj.async, opt_obj.user, opt_obj.password );
         }
         else{
             XHR.open( opt_obj.method, url, opt_obj.async, opt_obj.user, opt_obj.password );
@@ -3545,22 +3545,22 @@ class JS2Ajax{
      */
     fetch( input, arg_obj = {}, opt_obj = {} ){
         let pra1_obj = Object.assign( {
-                resolved: ( response, status_num ) => {
-                },
-                rejected: event => void ( GetError( event.message ) ),
-                success: ( data4ResponseType, response ) => {
-                },
-                error: ( status_num, response ) => void ( GetError( response ) ),
-            }, arg_obj ),
+                                          resolved: ( response, status_num ) => {
+                                          },
+                                          rejected: event => void ( GetError( event.message ) ),
+                                          success: ( data4ResponseType, response ) => {
+                                          },
+                                          error: ( status_num, response ) => void ( GetError( response ) ),
+                                      }, arg_obj ),
             pra2_obj = Object.assign( {
-                method: 'GET',
-                mode: 'same-origin',
-                credentials: 'same-origin',
-                cache: 'default',
-                redirect: 'follow',
-                referrer: 'client',
-                referrerPolicy: 'no-referrer'
-            }, opt_obj ),
+                                          method: 'GET',
+                                          mode: 'same-origin',
+                                          credentials: 'same-origin',
+                                          cache: 'default',
+                                          redirect: 'follow',
+                                          referrer: 'client',
+                                          referrerPolicy: 'no-referrer'
+                                      }, opt_obj ),
             responseType_str = pra2_obj.responseType,
             newInput = input;
 
@@ -3578,17 +3578,17 @@ class JS2Ajax{
 
             if( this.isFormData( pra2_obj.body ) ){
                 Array.from( pra2_obj.body.entries() )
-                .forEach( ( [ key, value ] ) => void ( body[ key ] = value ) );
+                     .forEach( ( [ key, value ] ) => void ( body[ key ] = value ) );
             }
             else{
                 body = pra2_obj.body;
             }
 
             Object.entries( Object.assign( urlSea2Obj, body ) )
-            .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ keyValue }&` ) );
+                  .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ keyValue }&` ) );
 
             newInput = `${ newInput }?${ searchStr.trim()
-            .slice( 0, -1 ) }`;
+                                                  .slice( 0, -1 ) }`;
         }
 
         pra2_obj.method === 'GET' && ( delete pra2_obj.body );
@@ -3600,37 +3600,37 @@ class JS2Ajax{
             if( isSuccess && responseType_str === 'arrayBuffer' ){
                 // arrayBuffer() ArrayBuffer
                 response.clone()
-                .arrayBuffer()
-                .then( arrayBuffer => pra1_obj.success( arrayBuffer, response.clone() ) )
-                .catch( pra1_obj.rejected );
+                        .arrayBuffer()
+                        .then( arrayBuffer => pra1_obj.success( arrayBuffer, response.clone() ) )
+                        .catch( pra1_obj.rejected );
             }
             else if( isSuccess && responseType_str === 'blob' ){
                 // blob() // Blob
                 response.clone()
-                .blob()
-                .then( blob => pra1_obj.success( blob, response.clone() ) )
-                .catch( pra1_obj.rejected );
+                        .blob()
+                        .then( blob => pra1_obj.success( blob, response.clone() ) )
+                        .catch( pra1_obj.rejected );
             }
             else if( isSuccess && responseType_str === 'formData' ){
                 // formData() // FormData
                 response.clone()
-                .formData()
-                .then( formData => pra1_obj.success( formData, response.clone() ) )
-                .catch( pra1_obj.rejected );
+                        .formData()
+                        .then( formData => pra1_obj.success( formData, response.clone() ) )
+                        .catch( pra1_obj.rejected );
             }
             else if( isSuccess && responseType_str === 'json' ){
                 // json() // JSON
                 response.clone()
-                .json()
-                .then( json => pra1_obj.success( json, response.clone() ) )
-                .catch( pra1_obj.rejected );
+                        .json()
+                        .then( json => pra1_obj.success( json, response.clone() ) )
+                        .catch( pra1_obj.rejected );
             }
             else if( isSuccess && responseType_str === 'text' ){
                 // text() // string
                 response.clone()
-                .text()
-                .then( text => pra1_obj.success( text, response.clone() ) )
-                .catch( pra1_obj.rejected );
+                        .text()
+                        .then( text => pra1_obj.success( text, response.clone() ) )
+                        .catch( pra1_obj.rejected );
             }
             else if( isSuccess && !responseType_str ){
                 let responseClone = response.clone();
@@ -3659,10 +3659,10 @@ class JS2Ajax{
                 allRHO = {},
                 arr;
             allRHArr.slice( 0, allRHArr.length - 1 )
-            .forEach( value => {
-                arr = value.split( ': ' );
-                allRHO[ arr[ 0 ] ] = arr[ 1 ];
-            } );
+                    .forEach( value => {
+                        arr = value.split( ': ' );
+                        allRHO[ arr[ 0 ] ] = arr[ 1 ];
+                    } );
             return allRHO;
         }
         else{
@@ -4384,9 +4384,9 @@ class JS2jQuery{
             const a = {
                 props: Object.assign( {}, initialProps ),
                 params: Object.assign( {
-                    duration: 300,
-                    easing: 'linear',
-                }, initialParams ),
+                                           duration: 300,
+                                           easing: 'linear',
+                                       }, initialParams ),
                 elements: els,
                 animating: false,
                 que: [],
@@ -4423,9 +4423,9 @@ class JS2jQuery{
                 animate( props, params ){
                     if( a.animating ){
                         a.que.push( [
-                            props,
-                            params
-                        ] );
+                                        props,
+                                        params
+                                    ] );
                         return a;
                     }
                     const elements = [];
@@ -4440,23 +4440,23 @@ class JS2jQuery{
                             container: el,
                         };
                         Object.keys( props )
-                        .forEach( prop => {
-                            initialFullValue = globalThis.getComputedStyle( el, null )
-                            .getPropertyValue( prop )
-                            .replace( ',', '.' );
-                            initialValue = parseFloat( initialFullValue );
-                            unit = initialFullValue.replace( initialValue, '' );
-                            finalValue = parseFloat( props[ prop ] );
-                            finalFullValue = props[ prop ] + unit;
-                            elements[ index ][ prop ] = {
-                                initialFullValue,
-                                initialValue,
-                                unit,
-                                finalValue,
-                                finalFullValue,
-                                currentValue: initialValue,
-                            };
-                        } );
+                              .forEach( prop => {
+                                  initialFullValue = globalThis.getComputedStyle( el, null )
+                                                               .getPropertyValue( prop )
+                                                               .replace( ',', '.' );
+                                  initialValue = parseFloat( initialFullValue );
+                                  unit = initialFullValue.replace( initialValue, '' );
+                                  finalValue = parseFloat( props[ prop ] );
+                                  finalFullValue = props[ prop ] + unit;
+                                  elements[ index ][ prop ] = {
+                                      initialFullValue,
+                                      initialValue,
+                                      unit,
+                                      finalValue,
+                                      finalFullValue,
+                                      currentValue: initialValue,
+                                  };
+                              } );
                     } );
                     let startTime = null,
                         time,
@@ -4480,27 +4480,27 @@ class JS2jQuery{
                                 return;
                             }
                             Object.keys( props )
-                            .forEach( prop => {
-                                if( done || el.done ){
-                                    return;
-                                }
-                                progress = Math.max( Math.min( ( time - startTime ) / params.duration, 1 ), 0 );
-                                easeProgress = a.easingProgress( params.easing, progress );
-                                const { initialValue, finalValue, unit } = el[ prop ];
-                                el[ prop ].currentValue = initialValue + ( easeProgress * ( finalValue - initialValue ) );
-                                const currentValue = el[ prop ].currentValue;
-                                if( ( finalValue > initialValue && currentValue >= finalValue ) || ( finalValue < initialValue && currentValue <= finalValue ) ){
-                                    el.container.style[ prop ] = finalValue + unit;
-                                    ++propsDone;
-                                    ( propsDone === Object.keys( props ).length ) && ( el.done = true, ++elementsDone );
-                                    ( elementsDone === elements.length ) && ( done = true );
-                                }
-                                if( done ){
-                                    a.done( params.complete );
-                                    return;
-                                }
-                                el.container.style[ prop ] = currentValue + unit;
-                            } );
+                                  .forEach( prop => {
+                                      if( done || el.done ){
+                                          return;
+                                      }
+                                      progress = Math.max( Math.min( ( time - startTime ) / params.duration, 1 ), 0 );
+                                      easeProgress = a.easingProgress( params.easing, progress );
+                                      const { initialValue, finalValue, unit } = el[ prop ];
+                                      el[ prop ].currentValue = initialValue + ( easeProgress * ( finalValue - initialValue ) );
+                                      const currentValue = el[ prop ].currentValue;
+                                      if( ( finalValue > initialValue && currentValue >= finalValue ) || ( finalValue < initialValue && currentValue <= finalValue ) ){
+                                          el.container.style[ prop ] = finalValue + unit;
+                                          ++propsDone;
+                                          ( propsDone === Object.keys( props ).length ) && ( el.done = true, ++elementsDone );
+                                          ( elementsDone === elements.length ) && ( done = true );
+                                      }
+                                      if( done ){
+                                          a.done( params.complete );
+                                          return;
+                                      }
+                                      el.container.style[ prop ] = currentValue + unit;
+                                  } );
                         } );
                         if( done ){
                             return;
@@ -4668,12 +4668,12 @@ class JS2jQuery{
      */
     cElem( arg_obj = {} ){
         let pra_obj = Object.assign( {
-            data: '',
-            fun: elemO => {
-            },
-            isText: false,
-            is: null,
-        }, arg_obj );
+                                         data: '',
+                                         fun: elemO => {
+                                         },
+                                         isText: false,
+                                         is: null,
+                                     }, arg_obj );
 
         const isNull_booC = this.isNull( pra_obj.is );
 
@@ -4829,12 +4829,12 @@ class JS2jQuery{
      */
     fadeHide( elem, para = {} ){
         let argObj = Object.assign( {
-            opacity: 0,
-            time: 300,
-            easing: 'linear',
-            fun: element => {
-            }
-        }, para );
+                                        opacity: 0,
+                                        time: 300,
+                                        easing: 'linear',
+                                        fun: element => {
+                                        }
+                                    }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
@@ -4842,27 +4842,27 @@ class JS2jQuery{
                 this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
-                    duration: argObj.time,
-                    easing: argObj.easing,
-                    complete: elementArr => {
-                        this.sAttr( elementArr[ 0 ], {
-                            style: 'display:none;',
-                            fadeHide: 'fadeHide',
-                        } );
-                        this.rAttr( elementArr[ 0 ], [
-                            'fadeShow',
-                            'fadeTo',
-                            'fadeToggle',
-                            'hide',
-                            'show',
-                            'toggle',
-                            'slideHide',
-                            'slideShow',
-                            'slideToggle',
-                        ] );
-                        argObj.fun( elementArr[ 0 ] );
-                    },
-                } );
+                                  duration: argObj.time,
+                                  easing: argObj.easing,
+                                  complete: elementArr => {
+                                      this.sAttr( elementArr[ 0 ], {
+                                          style: 'display:none;',
+                                          fadeHide: 'fadeHide',
+                                      } );
+                                      this.rAttr( elementArr[ 0 ], [
+                                          'fadeShow',
+                                          'fadeTo',
+                                          'fadeToggle',
+                                          'hide',
+                                          'show',
+                                          'toggle',
+                                          'slideHide',
+                                          'slideShow',
+                                          'slideToggle',
+                                      ] );
+                                      argObj.fun( elementArr[ 0 ] );
+                                  },
+                              } );
             }
         } );
     }
@@ -4883,12 +4883,12 @@ class JS2jQuery{
      */
     fadeShow( elem, para = {} ){
         let argObj = Object.assign( {
-            opacity: 1,
-            time: 300,
-            easing: 'linear',
-            fun: element => {
-            },
-        }, para );
+                                        opacity: 1,
+                                        time: 300,
+                                        easing: 'linear',
+                                        fun: element => {
+                                        },
+                                    }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) === 'none' ){
@@ -4898,53 +4898,53 @@ class JS2jQuery{
                 this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
-                    duration: argObj.time,
-                    easing: argObj.easing,
-                    complete: elementArr => {
-                        this.sAttr( elemO, {
-                            style: '',
-                            fadeShow: 'fadeShow',
-                        } );
-                        this.rAttr( elementArr[ 0 ], [
-                            'fadeHide',
-                            'fadeTo',
-                            'fadeToggle',
-                            'hide',
-                            'show',
-                            'toggle',
-                            'slideHide',
-                            'slideShow',
-                            'slideToggle',
-                        ] );
-                        argObj.fun( elementArr[ 0 ] );
-                    },
-                } );
+                                  duration: argObj.time,
+                                  easing: argObj.easing,
+                                  complete: elementArr => {
+                                      this.sAttr( elemO, {
+                                          style: '',
+                                          fadeShow: 'fadeShow',
+                                      } );
+                                      this.rAttr( elementArr[ 0 ], [
+                                          'fadeHide',
+                                          'fadeTo',
+                                          'fadeToggle',
+                                          'hide',
+                                          'show',
+                                          'toggle',
+                                          'slideHide',
+                                          'slideShow',
+                                          'slideToggle',
+                                      ] );
+                                      argObj.fun( elementArr[ 0 ] );
+                                  },
+                              } );
             }
             else if( this.gStyle( elemO, 'display' ) !== 'none' && this.gAttr( elemO, 'fadeTo' )[ 0 ] === 'fadeTo' && this.pFloat( this.gAttr( elemO, 'data-opacity' )[ 0 ] ) !== 1 ){
                 this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
-                    duration: argObj.time,
-                    easing: argObj.easing,
-                    complete: elementArr => {
-                        this.sAttr( elemO, {
-                            style: '',
-                            fadeShow: 'fadeShow',
-                        } );
-                        this.rAttr( elementArr[ 0 ], [
-                            'fadeHide',
-                            'fadeTo',
-                            'fadeToggle',
-                            'hide',
-                            'show',
-                            'toggle',
-                            'slideHide',
-                            'slideShow',
-                            'slideToggle',
-                        ] );
-                        argObj.fun( elementArr[ 0 ] );
-                    },
-                } );
+                                  duration: argObj.time,
+                                  easing: argObj.easing,
+                                  complete: elementArr => {
+                                      this.sAttr( elemO, {
+                                          style: '',
+                                          fadeShow: 'fadeShow',
+                                      } );
+                                      this.rAttr( elementArr[ 0 ], [
+                                          'fadeHide',
+                                          'fadeTo',
+                                          'fadeToggle',
+                                          'hide',
+                                          'show',
+                                          'toggle',
+                                          'slideHide',
+                                          'slideShow',
+                                          'slideToggle',
+                                      ] );
+                                      argObj.fun( elementArr[ 0 ] );
+                                  },
+                              } );
             }
         } );
     }
@@ -4967,12 +4967,12 @@ class JS2jQuery{
      */
     fadeTo( elem, para = {} ){
         let argObj = Object.assign( {
-            opacity: 0.5,
-            time: 300,
-            easing: 'linear',
-            fun: element => {
-            },
-        }, para );
+                                        opacity: 0.5,
+                                        time: 300,
+                                        easing: 'linear',
+                                        fun: element => {
+                                        },
+                                    }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) === 'none' ){
@@ -4982,53 +4982,53 @@ class JS2jQuery{
                 this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
-                    duration: argObj.time,
-                    easing: argObj.easing,
-                    complete: elementArr => {
-                        this.sAttr( elemO, {
-                            fadeTo: 'fadeTo',
-                        } );
-                        this.rAttr( elementArr[ 0 ], [
-                            'fadeHide',
-                            'fadeShow',
-                            'fadeToggle',
-                            'hide',
-                            'show',
-                            'toggle',
-                            'slideHide',
-                            'slideShow',
-                            'slideToggle',
-                        ] );
-                        argObj.fun( elementArr[ 0 ] );
-                    },
-                } );
+                                  duration: argObj.time,
+                                  easing: argObj.easing,
+                                  complete: elementArr => {
+                                      this.sAttr( elemO, {
+                                          fadeTo: 'fadeTo',
+                                      } );
+                                      this.rAttr( elementArr[ 0 ], [
+                                          'fadeHide',
+                                          'fadeShow',
+                                          'fadeToggle',
+                                          'hide',
+                                          'show',
+                                          'toggle',
+                                          'slideHide',
+                                          'slideShow',
+                                          'slideToggle',
+                                      ] );
+                                      argObj.fun( elementArr[ 0 ] );
+                                  },
+                              } );
             }
             else if( this.gStyle( elemO, 'display' ) !== 'none' ){
                 IsHandle19( this, elemO );
                 this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
-                    duration: argObj.time,
-                    easing: argObj.easing,
-                    complete: elementArr => {
-                        this.sAttr( elemO, {
-                            'data-opacity': argObj.opacity,
-                            fadeTo: 'fadeTo',
-                        } );
-                        this.rAttr( elementArr[ 0 ], [
-                            'fadeHide',
-                            'fadeShow',
-                            'fadeToggle',
-                            'hide',
-                            'show',
-                            'toggle',
-                            'slideHide',
-                            'slideShow',
-                            'slideToggle',
-                        ] );
-                        argObj.fun( elementArr[ 0 ] );
-                    },
-                } );
+                                  duration: argObj.time,
+                                  easing: argObj.easing,
+                                  complete: elementArr => {
+                                      this.sAttr( elemO, {
+                                          'data-opacity': argObj.opacity,
+                                          fadeTo: 'fadeTo',
+                                      } );
+                                      this.rAttr( elementArr[ 0 ], [
+                                          'fadeHide',
+                                          'fadeShow',
+                                          'fadeToggle',
+                                          'hide',
+                                          'show',
+                                          'toggle',
+                                          'slideHide',
+                                          'slideShow',
+                                          'slideToggle',
+                                      ] );
+                                      argObj.fun( elementArr[ 0 ] );
+                                  },
+                              } );
             }
         } );
     }
@@ -5049,11 +5049,11 @@ class JS2jQuery{
      */
     fadeToggle( elem, para = {} ){
         let argObj = Object.assign( {
-            time: 300,
-            easing: 'linear',
-            fun: element => {
-            },
-        }, para );
+                                        time: 300,
+                                        easing: 'linear',
+                                        fun: element => {
+                                        },
+                                    }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) === 'none' ){
@@ -5132,7 +5132,7 @@ class JS2jQuery{
             : ( attrs = elemO.attributes );
             result[ 'length' ] = attrs.length;
             Array.from( attrs )
-            .forEach( currentValue => void ( result[ currentValue[ 'name' ] ] = currentValue[ 'value' ] ) );
+                 .forEach( currentValue => void ( result[ currentValue[ 'name' ] ] = currentValue[ 'value' ] ) );
             return result;
         } );
     }
@@ -5257,16 +5257,16 @@ class JS2jQuery{
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return {
                     value: document.documentElement.style.getPropertyValue( this.remSpace( attrN ) )
-                    .trim(),
+                                   .trim(),
                     priority: document.documentElement.style.getPropertyPriority( this.remSpace( attrN ) )
-                    .trim(),
+                                      .trim(),
                 };
             }
             return {
                 value: elemO.style.getPropertyValue( this.remSpace( attrN ) )
-                .trim(),
+                            .trim(),
                 priority: elemO.style.getPropertyPriority( this.remSpace( attrN ) )
-                .trim(),
+                               .trim(),
             };
         } );
     }
@@ -5692,11 +5692,11 @@ class JS2jQuery{
      */
     hide( elem, para = {} ){
         let argObj = Object.assign( {
-            time: 0,
-            easing: 'linear',
-            fun: element => {
-            },
-        }, para );
+                                        time: 0,
+                                        easing: 'linear',
+                                        fun: element => {
+                                        },
+                                    }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
@@ -5714,27 +5714,27 @@ class JS2jQuery{
                     margin: 0,
                     'outline-width': 0,
                 }, {
-                    duration: argObj.time,
-                    easing: argObj.easing,
-                    complete: elementArr => {
-                        this.sAttr( elementArr[ 0 ], {
-                            style: 'display:none;',
-                            hide: 'hide',
-                        } );
-                        this.rAttr( elementArr[ 0 ], [
-                            'fadeHide',
-                            'fadeShow',
-                            'fadeTo',
-                            'fadeToggle',
-                            'show',
-                            'toggle',
-                            'slideHide',
-                            'slideShow',
-                            'slideToggle',
-                        ] );
-                        argObj.fun( elementArr[ 0 ] );
-                    },
-                } );
+                                  duration: argObj.time,
+                                  easing: argObj.easing,
+                                  complete: elementArr => {
+                                      this.sAttr( elementArr[ 0 ], {
+                                          style: 'display:none;',
+                                          hide: 'hide',
+                                      } );
+                                      this.rAttr( elementArr[ 0 ], [
+                                          'fadeHide',
+                                          'fadeShow',
+                                          'fadeTo',
+                                          'fadeToggle',
+                                          'show',
+                                          'toggle',
+                                          'slideHide',
+                                          'slideShow',
+                                          'slideToggle',
+                                      ] );
+                                      argObj.fun( elementArr[ 0 ] );
+                                  },
+                              } );
             }
         } );
     }
@@ -5838,10 +5838,10 @@ class JS2jQuery{
             let ruleN = keyName,
                 dataStr = cssRuleO[ keyName ],
                 paraInitInit = Object.assign( {
-                    cssStyleSheet: null,
-                    index: null,
-                    isR: false,
-                }, para ),
+                                                  cssStyleSheet: null,
+                                                  index: null,
+                                                  isR: false,
+                                              }, para ),
                 len = document.styleSheets.length,
                 is1 = this.isNull( paraInitInit.cssStyleSheet ) || this.isUndefined( paraInitInit.cssStyleSheet ),
                 handle = cssStyleSheet => {
@@ -5854,13 +5854,13 @@ class JS2jQuery{
                     }
                     else if( paraInitInit.isR && len !== 0 ){
                         Array.from( cssStyleSheet.cssRules )
-                        .forEach( ( v, i, ) => {
-                            if( name in v
-                                ? v.name === this.trim( ruleN )
-                                : v.selectorText === this.trim( ruleN ) ){
-                                cssStyleSheet.deleteRule( i );
-                            }
-                        } );
+                             .forEach( ( v, i, ) => {
+                                 if( name in v
+                                     ? v.name === this.trim( ruleN )
+                                     : v.selectorText === this.trim( ruleN ) ){
+                                     cssStyleSheet.deleteRule( i );
+                                 }
+                             } );
                         cssStyleSheet.insertRule( dataStr, in1 );
                     }
                     else{
@@ -5869,10 +5869,10 @@ class JS2jQuery{
                 };
             if( is1 && len === 0 ){
                 this.iInsertA( document.head, this.cElem( {
-                    tagName: 'style',
-                    data: dataStr,
-                    isText: true,
-                } ) );
+                                                              tagName: 'style',
+                                                              data: dataStr,
+                                                              isText: true,
+                                                          } ) );
             }
             else if( is1 && len !== 0 ){
                 handle( document.styleSheets[ 0 ] );
@@ -6459,7 +6459,7 @@ class JS2jQuery{
     serialize( elem ){
         let result_str = '';
         this.serializeArray( elem )
-        .forEach( c => void ( result_str += `${ encodeURIComponent( c.name ) }=${ encodeURIComponent( c.value ) }&` ) );
+            .forEach( c => void ( result_str += `${ encodeURIComponent( c.name ) }=${ encodeURIComponent( c.value ) }&` ) );
         return result_str.slice( 0, -1 );
     }
 
@@ -6518,43 +6518,43 @@ class JS2jQuery{
                 // elem_arrC的数据类型是HTMLFormControlsCollection，类数组
                 const elem_arrC = elem_obj.elements;
                 Array.from( elem_arrC )
-                .forEach( c => {
-                    if( fun1( c, 'select' ) ){
-                        Array.from( c.selectedOptions )
-                        .forEach( c1 => {
-                            result_arr.push( {
-                                name: this.trim( c.name ),
-                                value: c1.value || c1.text
-                            } );
-                        } );
-                    }
-                    else if( fun1( c, 'textarea' ) ){
-                        result_arr.push( {
-                            name: this.trim( c.name ),
-                            value: c.value.replace( /\r?\n/g, '\r\n' )
-                        } );
-                    }
-                    else if( fun1( c, 'input' ) && !c.disabled && c.type !== 'file' && c.type !== 'submit' && c.type !== 'button' && c.type !== 'image' && c.type !== 'reset' ){
-                        if( c.type === 'radio' && c.checked ){
-                            result_arr.push( {
-                                name: this.trim( c.name ),
-                                value: c.value
-                            } );
-                        }
-                        if( c.type === 'checkbox' && c.checked ){
-                            result_arr.push( {
-                                name: this.trim( c.name ),
-                                value: c.value
-                            } );
-                        }
-                        if( c.type !== 'radio' && c.type !== 'checkbox' ){
-                            result_arr.push( {
-                                name: this.trim( c.name ),
-                                value: c.value
-                            } );
-                        }
-                    }
-                } );
+                     .forEach( c => {
+                         if( fun1( c, 'select' ) ){
+                             Array.from( c.selectedOptions )
+                                  .forEach( c1 => {
+                                      result_arr.push( {
+                                                           name: this.trim( c.name ),
+                                                           value: c1.value || c1.text
+                                                       } );
+                                  } );
+                         }
+                         else if( fun1( c, 'textarea' ) ){
+                             result_arr.push( {
+                                                  name: this.trim( c.name ),
+                                                  value: c.value.replace( /\r?\n/g, '\r\n' )
+                                              } );
+                         }
+                         else if( fun1( c, 'input' ) && !c.disabled && c.type !== 'file' && c.type !== 'submit' && c.type !== 'button' && c.type !== 'image' && c.type !== 'reset' ){
+                             if( c.type === 'radio' && c.checked ){
+                                 result_arr.push( {
+                                                      name: this.trim( c.name ),
+                                                      value: c.value
+                                                  } );
+                             }
+                             if( c.type === 'checkbox' && c.checked ){
+                                 result_arr.push( {
+                                                      name: this.trim( c.name ),
+                                                      value: c.value
+                                                  } );
+                             }
+                             if( c.type !== 'radio' && c.type !== 'checkbox' ){
+                                 result_arr.push( {
+                                                      name: this.trim( c.name ),
+                                                      value: c.value
+                                                  } );
+                             }
+                         }
+                     } );
             }
         } );
         return result_arr;
@@ -6576,11 +6576,11 @@ class JS2jQuery{
      */
     show( elem, para = {} ){
         let argObj = Object.assign( {
-            time: 0,
-            easing: 'linear',
-            fun: element => {
-            },
-        }, para );
+                                        time: 0,
+                                        easing: 'linear',
+                                        fun: element => {
+                                        },
+                                    }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             let styleObj = this.data( elemO, 'style3Obj' )[ 0 ];
@@ -6631,11 +6631,11 @@ class JS2jQuery{
      */
     slideHide( elem, para = {} ){
         let argObj = Object.assign( {
-            time: 300,
-            easing: 'linear',
-            fun: element => {
-            },
-        }, para );
+                                        time: 300,
+                                        easing: 'linear',
+                                        fun: element => {
+                                        },
+                                    }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
@@ -6650,27 +6650,27 @@ class JS2jQuery{
                     'margin-top': 0,
                     'margin-bottom': 0,
                 }, {
-                    duration: argObj.time,
-                    easing: argObj.easing,
-                    complete: elementArr => {
-                        this.sAttr( elementArr[ 0 ], {
-                            style: 'display:none;',
-                            slideHide: 'slideHide',
-                        } );
-                        this.rAttr( elementArr[ 0 ], [
-                            'fadeHide',
-                            'fadeShow',
-                            'fadeTo',
-                            'fadeToggle',
-                            'hide',
-                            'show',
-                            'toggle',
-                            'slideShow',
-                            'slideToggle',
-                        ] );
-                        argObj.fun( elementArr[ 0 ] );
-                    },
-                } );
+                                  duration: argObj.time,
+                                  easing: argObj.easing,
+                                  complete: elementArr => {
+                                      this.sAttr( elementArr[ 0 ], {
+                                          style: 'display:none;',
+                                          slideHide: 'slideHide',
+                                      } );
+                                      this.rAttr( elementArr[ 0 ], [
+                                          'fadeHide',
+                                          'fadeShow',
+                                          'fadeTo',
+                                          'fadeToggle',
+                                          'hide',
+                                          'show',
+                                          'toggle',
+                                          'slideShow',
+                                          'slideToggle',
+                                      ] );
+                                      argObj.fun( elementArr[ 0 ] );
+                                  },
+                              } );
             }
         } );
     }
@@ -6691,11 +6691,11 @@ class JS2jQuery{
      */
     slideShow( elem, para = {} ){
         let argObj = Object.assign( {
-            time: 300,
-            easing: 'linear',
-            fun: element => {
-            },
-        }, para );
+                                        time: 300,
+                                        easing: 'linear',
+                                        fun: element => {
+                                        },
+                                    }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             let styleObj = this.data( elemO, 'style3Obj' )[ 0 ];
@@ -6752,11 +6752,11 @@ class JS2jQuery{
      */
     slideToggle( elem, para = {} ){
         let argObj = Object.assign( {
-            time: 300,
-            easing: 'linear',
-            fun: element => {
-            },
-        }, para );
+                                        time: 300,
+                                        easing: 'linear',
+                                        fun: element => {
+                                        },
+                                    }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
@@ -6837,11 +6837,11 @@ class JS2jQuery{
      */
     toggle( elem, para = {} ){
         let argObj = Object.assign( {
-            time: 0,
-            easing: 'linear',
-            fun: element => {
-            },
-        }, para );
+                                        time: 0,
+                                        easing: 'linear',
+                                        fun: element => {
+                                        },
+                                    }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
@@ -6943,8 +6943,8 @@ class JS2jQuery{
 
         return IsHandle10.call( this, elem, elemO => {
             this.trim( eType )
-            .split( /\s/g )
-            .forEach( currentValue => void ( elemO.addEventListener( currentValue, f, options || false ) ) );
+                .split( /\s/g )
+                .forEach( currentValue => void ( elemO.addEventListener( currentValue, f, options || false ) ) );
             return elemO;
         } );
     }
@@ -6969,8 +6969,8 @@ class JS2jQuery{
 
         return IsHandle10.call( this, elem, elemO => {
             this.trim( eType )
-            .split( /\s/g )
-            .forEach( currentValue => void ( elemO.removeEventListener( currentValue, f, options || false ) ) );
+                .split( /\s/g )
+                .forEach( currentValue => void ( elemO.removeEventListener( currentValue, f, options || false ) ) );
             return elemO;
         } );
     }
@@ -7001,10 +7001,10 @@ class ObjHandle{
     completeAssign( target = {}, ...sources ){
         if( this.isObject( target ) ){
             sources.forEach( source => void ( Object.defineProperties( target, Reflect.ownKeys( source )
-            .reduce( ( descriptors, key ) => {
-                descriptors[ key ] = Object.getOwnPropertyDescriptor( source, key );
-                return descriptors;
-            }, {} ) ) ) );
+                                                                                      .reduce( ( descriptors, key ) => {
+                                                                                          descriptors[ key ] = Object.getOwnPropertyDescriptor( source, key );
+                                                                                          return descriptors;
+                                                                                      }, {} ) ) ) );
             return target;
         }
     }
@@ -7283,11 +7283,11 @@ class ObjHandle{
                 isDeep && ( _this.isObject( result ) || _this.isArray( result ) ) && ( result = handle_fun( result ) );
 
                 return ( handle4Get( {
-                    target,
-                    key: propKey,
-                    value: result,
-                    receiver,
-                } ) ?? result );
+                                         target,
+                                         key: propKey,
+                                         value: result,
+                                         receiver,
+                                     } ) ?? result );
             },
 
             set( target, propKey, value, receiver ){
@@ -7295,12 +7295,12 @@ class ObjHandle{
                 setResult = Reflect.set( target, propKey, value, receiver );
 
                 return ( handle4Set( {
-                    target,
-                    key: propKey,
-                    newValue: value,
-                    oldValue,
-                    receiver,
-                } ) ?? setResult );
+                                         target,
+                                         key: propKey,
+                                         newValue: value,
+                                         oldValue,
+                                         receiver,
+                                     } ) ?? setResult );
             },
         } );
 
@@ -7692,7 +7692,7 @@ class OthersHandle{
         };
         let imageLoad = new ImageLoad;
         imageLoad.queueImage( imgA )
-        .imageLoadingProgressCallback( f1, f2 );
+                 .imageLoadingProgressCallback( f1, f2 );
     }
 
     /**
@@ -7748,7 +7748,7 @@ class OthersHandle{
             ( 'type' in c ) && ( preloadElem.type = c.type );
             ( 'crossorigin' in c ) && ( preloadElem.setAttribute( 'crossorigin', c.crossorigin ) );
             'attrs' in c && ( Object.keys( c.attrs )
-            .forEach( c1 => void ( preloadElem.setAttribute( c1, c.attrs[ c1 ] ) ) ) );
+                                    .forEach( c1 => void ( preloadElem.setAttribute( c1, c.attrs[ c1 ] ) ) ) );
             document.head.appendChild( preloadElem );
         } );
         arr.forEach( c => {
@@ -7756,7 +7756,7 @@ class OthersHandle{
                 preloadScriptElem = document.createElement( 'script' );
                 preloadScriptElem.src = c.href;
                 'attrs' in c && ( Object.keys( c.attrs )
-                .forEach( c1 => void ( preloadScriptElem.setAttribute( c1, c.attrs[ c1 ] ) ) ) );
+                                        .forEach( c1 => void ( preloadScriptElem.setAttribute( c1, c.attrs[ c1 ] ) ) ) );
                 document.body.appendChild( preloadScriptElem );
             }
         } );
@@ -7926,45 +7926,45 @@ class PermissionsAPI{
         }
         else{
             const events_objC = Object.assign( {
-                prompt(){
-                },
-                granted(){
-                },
-                denied(){
-                    GetError( '拒绝授权' );
-                },
-                stateChange( _this ){
-                },
-                error( e ){
-                    GetError( e.message );
-                },
-            }, events );
+                                                   prompt(){
+                                                   },
+                                                   granted(){
+                                                   },
+                                                   denied(){
+                                                       GetError( '拒绝授权' );
+                                                   },
+                                                   stateChange( _this ){
+                                                   },
+                                                   error( e ){
+                                                       GetError( e.message );
+                                                   },
+                                               }, events );
 
             try{
                 return permissions_objC.query( options )
-                .then( permissionStatus => {
-                    const state_strC = permissionStatus.state;
+                                       .then( permissionStatus => {
+                                           const state_strC = permissionStatus.state;
 
-                    // 提示授权
-                    if( state_strC === 'prompt' ){
-                        events_objC.prompt();
-                    }
-                    // 已经授予
-                    else if( state_strC === 'granted' ){
-                        events_objC.granted();
-                    }
-                    // 拒绝授权
-                    else if( state_strC === 'denied' ){
-                        events_objC.denied();
-                    }
+                                           // 提示授权
+                                           if( state_strC === 'prompt' ){
+                                               events_objC.prompt();
+                                           }
+                                           // 已经授予
+                                           else if( state_strC === 'granted' ){
+                                               events_objC.granted();
+                                           }
+                                           // 拒绝授权
+                                           else if( state_strC === 'denied' ){
+                                               events_objC.denied();
+                                           }
 
-                    permissionStatus.onchange = function (){
-                        events_objC.stateChange( this );
-                    };
+                                           permissionStatus.onchange = function (){
+                                               events_objC.stateChange( this );
+                                           };
 
-                    return permissionStatus;
-                } )
-                .catch( events_objC.error );
+                                           return permissionStatus;
+                                       } )
+                                       .catch( events_objC.error );
             }
             catch( e ){
                 events_objC.error( e );
@@ -8114,7 +8114,7 @@ class RegExpHandle{
 
         return IsHandle7.call( this, data, a => String( a )
         .replace( new RegExp( reg, 'g' ), repStr ), String( data )
-        .replace( new RegExp( reg, 'g' ), repStr ) );
+                               .replace( new RegExp( reg, 'g' ), repStr ) );
     }
 
     /**
@@ -8129,7 +8129,7 @@ class RegExpHandle{
 
         return IsHandle7.call( this, arg, a => ( String( a )
         .trim() ), String( arg )
-        .trim() );
+                               .trim() );
     }
 
 }
@@ -8388,7 +8388,7 @@ class StringHandle{
      */
     strFL( str ){
         return str.slice( 0, 1 )
-        .toLocaleLowerCase() + str.slice( 1 );
+                  .toLocaleLowerCase() + str.slice( 1 );
     }
 
     /**
@@ -8400,7 +8400,7 @@ class StringHandle{
      */
     strFU( str ){
         return str.slice( 0, 1 )
-        .toLocaleUpperCase() + str.slice( 1 );
+                  .toLocaleUpperCase() + str.slice( 1 );
     }
 
     /**
@@ -8482,7 +8482,7 @@ class StringHandle{
             if( isS && this.trim( str ).length !== 0 ){
                 let [ arr, arr1 ] = [
                     this.trim( str )
-                    .split( '8' ),
+                        .split( '8' ),
                     []
                 ];
                 arr.forEach( currentValue => void ( arr1.push( parseInt( '0' + currentValue, 8 ) - 520 ) ) );
@@ -8830,12 +8830,12 @@ class Upload4GraphQL{
                     file4KeyName = throw new Error( 'file4KeyName参数必须！' ),
                 } = throw new Error( '参数必须！' ) ){
         return this.#handleA( {
-            operationName,
-            query,
-            variables,
-            file4KeyName,
-            isSingleFile: true,
-        } ).formData;
+                                  operationName,
+                                  query,
+                                  variables,
+                                  file4KeyName,
+                                  isSingleFile: true,
+                              } ).formData;
     }
 
     /**
@@ -8870,12 +8870,12 @@ class Upload4GraphQL{
                        file4KeyName = throw new Error( 'file4KeyName参数必须！' ),
                    } = throw new Error( '参数必须！' ) ){
         return this.#handleA( {
-            operationName,
-            query,
-            variables,
-            file4KeyName,
-            isSingleFile: false,
-        } ).formData;
+                                  operationName,
+                                  query,
+                                  variables,
+                                  file4KeyName,
+                                  isSingleFile: false,
+                              } ).formData;
     }
 
     /**
@@ -8919,39 +8919,39 @@ class Upload4GraphQL{
                 operations,
                 map,
             } = this.#handleA( {
-                operationName,
-                query,
-                variables,
-                file4KeyName,
-                isSingleFile,
-            } );
+                                   operationName,
+                                   query,
+                                   variables,
+                                   file4KeyName,
+                                   isSingleFile,
+                               } );
 
             operationsAll_arr.push( operations );
 
             if( isSingleFile ){
                 mapAll_arr.push( [
-                    index_num,
-                    [
-                        `${ i }.${ Array.from( Object.values( map ) )
-                        .flat( Infinity )[ 0 ] }`,
-                    ],
-                ] );
+                                     index_num,
+                                     [
+                                         `${ i }.${ Array.from( Object.values( map ) )
+                                                         .flat( Infinity )[ 0 ] }`,
+                                     ],
+                                 ] );
 
                 ++index_num;
             }
             else{
                 Array.from( Object.values( map ) )
-                .flat( Infinity )
-                .forEach( ( c1, i1, a1 ) => {
-                    mapAll_arr.push( [
-                        index_num,
-                        [
-                            `${ i }.${ c1 }`,
-                        ],
-                    ] );
+                     .flat( Infinity )
+                     .forEach( ( c1, i1, a1 ) => {
+                         mapAll_arr.push( [
+                                              index_num,
+                                              [
+                                                  `${ i }.${ c1 }`,
+                                              ],
+                                          ] );
 
-                    ++index_num;
-                } );
+                         ++index_num;
+                     } );
             }
 
             let formData4KeyNames = Array.from( formData.keys() );
@@ -9002,9 +9002,9 @@ class UrlHandle{
     cReturn( toDo_fun = ( event => {
     } ) ){
         let pushHistory = () => void ( globalThis.history.pushState( {
-                title: 'title',
-                url: '#'
-            }, 'title', '#' ) ),
+                                                                         title: 'title',
+                                                                         url: '#'
+                                                                     }, 'title', '#' ) ),
             bool = false;
         pushHistory();
         setTimeout( () => void ( bool = true ), 1 );
@@ -9063,7 +9063,7 @@ class UrlHandle{
         let searchStr = '';
 
         Object.entries( searchObj )
-        .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ this.strToUCode( keyValue ) }&` ) );
+              .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ this.strToUCode( keyValue ) }&` ) );
 
         return searchStr.slice( 0, -1 );
     }
@@ -9131,10 +9131,10 @@ class UrlHandle{
      */
     urlPush( arg_obj = {} ){
         let pra_obj = Object.assign( {
-            newURLStr: globalThis.location.origin + globalThis.location.pathname,
-            searchObj: {},
-            stateData: null
-        }, arg_obj );
+                                         newURLStr: globalThis.location.origin + globalThis.location.pathname,
+                                         searchObj: {},
+                                         stateData: null
+                                     }, arg_obj );
         return IsHandle18( pra_obj.newURLStr, pra_obj.searchObj, pra_obj.stateData, 'pushState' );
     }
 
@@ -9163,10 +9163,10 @@ class UrlHandle{
      */
     urlReplace( arg_obj = {} ){
         let pra_obj = Object.assign( {
-            newURLStr: globalThis.location.origin + globalThis.location.pathname,
-            searchObj: {},
-            stateData: null
-        }, arg_obj );
+                                         newURLStr: globalThis.location.origin + globalThis.location.pathname,
+                                         searchObj: {},
+                                         stateData: null
+                                     }, arg_obj );
         return IsHandle18( pra_obj.newURLStr, pra_obj.searchObj, pra_obj.stateData, 'replaceState' );
     }
 
@@ -9182,17 +9182,17 @@ class UrlHandle{
             arr1;
         ( searchStr.length !== 0 && searchStr[ 0 ] === '?' ) && ( searchStr = searchStr.slice( 1, searchStr.length ) );
         searchStr.split( '#' )[ 0 ].split( '&' )
-        .filter( item => item.length !== 0 )
-        .filter( item => {
-            arr1 = item.split( '=' )
-            .filter( item => item.length !== 0 );
-            if( arr1.length === 1 ){
-                searchObj[ arr1[ 0 ] ] = '';
-            }
-            else if( arr1.length === 2 ){
-                searchObj[ arr1[ 0 ] ] = arr1[ 1 ];
-            }
-        } );
+                                   .filter( item => item.length !== 0 )
+                                   .filter( item => {
+                                       arr1 = item.split( '=' )
+                                                  .filter( item => item.length !== 0 );
+                                       if( arr1.length === 1 ){
+                                           searchObj[ arr1[ 0 ] ] = '';
+                                       }
+                                       else if( arr1.length === 2 ){
+                                           searchObj[ arr1[ 0 ] ] = arr1[ 1 ];
+                                       }
+                                   } );
         return searchObj;
     }
 
@@ -9294,38 +9294,38 @@ class WASMTool{
                  importObject = {},
              } = {} ){
         return this.fetch( url, callBack, Object.assign( options, { responseType: 'arrayBuffer', } ) )
-        .then( response => response.clone()
-        .arrayBuffer() )
-        .then( bufferSource => WebAssembly.validate( bufferSource )
-                               ? WebAssembly.instantiate( bufferSource, Object.assign( {
-                global: {},
-                env: {
-                    // 初始大小为100页（64 * 100 = 6400‬KiB、6.25MiB），最大大小为1024页（64 * 1024 = 65536‬‬‬KiB、64MiB）。
-                    memory: new WebAssembly.Memory( {
-                        // WebAssembly Memory的初始大小，以WebAssembly pages为单位。
-                        initial: 100,
-                        // WebAssembly Memory的最大尺寸允许以WebAssembly pages为单位生长。
-                        // 当存在时，最大参数充当引擎预留存储器的提示。
-                        // 但是，引擎可能会忽略或限制此预订请求。
-                        // 一般来说，大多数WebAssembly modules不需要设置最大值。
-                        // 一个WebAssembly page的大小恒定为65536字节，即64KiB。
-                        maximum: 1024,
-                    } ),
-                    table: new WebAssembly.Table( {
-                        // WebAssembly表的初始元素数。
-                        initial: 0,
-                        // 表示要存储在表中的值类型的字符串。目前，它只能有一个值“anyfunc”（函数）。
-                        element: 'anyfunc',
-                        // 允许WebAssembly Table增长的元素的最大数目。
-                        // maximum: 102400,
-                    } ),
-                },
-            }, importObject ) )
-                               : undefined )
-        .then( ( { module, instance, } = throw new Error( '这是一个无效的“wasm”模块！' ) ) => ( {
-            module,
-            instance,
-        } ) );
+                   .then( response => response.clone()
+                                              .arrayBuffer() )
+                   .then( bufferSource => WebAssembly.validate( bufferSource )
+                                          ? WebAssembly.instantiate( bufferSource, Object.assign( {
+                                                                                                      global: {},
+                                                                                                      env: {
+                                                                                                          // 初始大小为100页（64 * 100 = 6400‬KiB、6.25MiB），最大大小为1024页（64 * 1024 = 65536‬‬‬KiB、64MiB）。
+                                                                                                          memory: new WebAssembly.Memory( {
+                                                                                                                                              // WebAssembly Memory的初始大小，以WebAssembly pages为单位。
+                                                                                                                                              initial: 100,
+                                                                                                                                              // WebAssembly Memory的最大尺寸允许以WebAssembly pages为单位生长。
+                                                                                                                                              // 当存在时，最大参数充当引擎预留存储器的提示。
+                                                                                                                                              // 但是，引擎可能会忽略或限制此预订请求。
+                                                                                                                                              // 一般来说，大多数WebAssembly modules不需要设置最大值。
+                                                                                                                                              // 一个WebAssembly page的大小恒定为65536字节，即64KiB。
+                                                                                                                                              maximum: 1024,
+                                                                                                                                          } ),
+                                                                                                          table: new WebAssembly.Table( {
+                                                                                                                                            // WebAssembly表的初始元素数。
+                                                                                                                                            initial: 0,
+                                                                                                                                            // 表示要存储在表中的值类型的字符串。目前，它只能有一个值“anyfunc”（函数）。
+                                                                                                                                            element: 'anyfunc',
+                                                                                                                                            // 允许WebAssembly Table增长的元素的最大数目。
+                                                                                                                                            // maximum: 102400,
+                                                                                                                                        } ),
+                                                                                                      },
+                                                                                                  }, importObject ) )
+                                          : undefined )
+                   .then( ( { module, instance, } = throw new Error( '这是一个无效的“wasm”模块！' ) ) => ( {
+                       module,
+                       instance,
+                   } ) );
     }
 
 }
@@ -9399,14 +9399,14 @@ class WebService4Proxy{
                              // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, options )
-                .then( response => {
-                    if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
-                        return response.clone()[ type ]();
-                    }
-                    else{
-                        return response;
-                    }
-                } );
+                                          .then( response => {
+                                              if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
             },
             set( target, propKey, value, receiver ){
                 return Reflect.set( target, propKey, value, receiver );
@@ -9428,9 +9428,9 @@ class WebService4Proxy{
         'use strict';
 
         return this.create( {
-            baseUrl,
-            type: 'arrayBuffer',
-        } );
+                                baseUrl,
+                                type: 'arrayBuffer',
+                            } );
     }
 
     /**
@@ -9447,9 +9447,9 @@ class WebService4Proxy{
         'use strict';
 
         return this.create( {
-            baseUrl,
-            type: 'blob',
-        } );
+                                baseUrl,
+                                type: 'blob',
+                            } );
     }
 
     /**
@@ -9466,9 +9466,9 @@ class WebService4Proxy{
         'use strict';
 
         return this.create( {
-            baseUrl,
-            type: 'formData',
-        } );
+                                baseUrl,
+                                type: 'formData',
+                            } );
     }
 
     /**
@@ -9485,9 +9485,9 @@ class WebService4Proxy{
         'use strict';
 
         return this.create( {
-            baseUrl,
-            type: 'json',
-        } );
+                                baseUrl,
+                                type: 'json',
+                            } );
     }
 
     /**
@@ -9504,9 +9504,9 @@ class WebService4Proxy{
         'use strict';
 
         return this.create( {
-            baseUrl,
-            type: 'text',
-        } );
+                                baseUrl,
+                                type: 'text',
+                            } );
     }
 
     /**
@@ -9544,14 +9544,14 @@ class WebService4Proxy{
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
                     method: 'POST',
                 } ) )
-                .then( response => {
-                    if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
-                        return response.clone()[ type ]();
-                    }
-                    else{
-                        return response;
-                    }
-                } );
+                                          .then( response => {
+                                              if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
             },
             set( target, propKey, value, receiver ){
                 return Reflect.set( target, propKey, value, receiver );
@@ -9594,14 +9594,14 @@ class WebService4Proxy{
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
                     method: 'DELETE',
                 } ) )
-                .then( response => {
-                    if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
-                        return response.clone()[ type ]();
-                    }
-                    else{
-                        return response;
-                    }
-                } );
+                                          .then( response => {
+                                              if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
             },
             set( target, propKey, value, receiver ){
                 return Reflect.set( target, propKey, value, receiver );
@@ -9644,14 +9644,14 @@ class WebService4Proxy{
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
                     method: 'PUT',
                 } ) )
-                .then( response => {
-                    if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
-                        return response.clone()[ type ]();
-                    }
-                    else{
-                        return response;
-                    }
-                } );
+                                          .then( response => {
+                                              if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
             },
             set( target, propKey, value, receiver ){
                 return Reflect.set( target, propKey, value, receiver );
@@ -9692,14 +9692,14 @@ class WebService4Proxy{
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
                     method: 'GET',
                 } ) )
-                .then( response => {
-                    if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
-                        return response.clone()[ type ]();
-                    }
-                    else{
-                        return response;
-                    }
-                } );
+                                          .then( response => {
+                                              if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
+                                                  return response.clone()[ type ]();
+                                              }
+                                              else{
+                                                  return response;
+                                              }
+                                          } );
             },
             set( target, propKey, value, receiver ){
                 return Reflect.set( target, propKey, value, receiver );

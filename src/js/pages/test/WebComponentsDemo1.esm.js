@@ -14,47 +14,47 @@ let CT = new CTESM.CT(),
 {
     if( true ){
         new WebComponents( {
-            attach: {
-                delegatesFocus: null,
-                mode: 'open',
-            },
-            define: {
-                name: 'popup-info',
-                extends: null,
-            },
-            enableExtends: true,
-            events: {
-                init: ( cusHTMLClassIns, shadowRoot ) => {
-                    // console.dir( shadowRoot );
+                               attach: {
+                                   delegatesFocus: null,
+                                   mode: 'open',
+                               },
+                               define: {
+                                   name: 'popup-info',
+                                   extends: null,
+                               },
+                               enableExtends: true,
+                               events: {
+                                   init: ( cusHTMLClassIns, shadowRoot ) => {
+                                       // console.dir( shadowRoot );
 
-                    const wrapper = document.createElement( 'span' );
-                    wrapper.setAttribute( 'class', 'wrapper' );
+                                       const wrapper = document.createElement( 'span' );
+                                       wrapper.setAttribute( 'class', 'wrapper' );
 
-                    const icon = document.createElement( 'span' );
-                    icon.setAttribute( 'class', 'icon' );
-                    icon.setAttribute( 'tabindex', 0 );
+                                       const icon = document.createElement( 'span' );
+                                       icon.setAttribute( 'class', 'icon' );
+                                       icon.setAttribute( 'tabindex', 0 );
 
-                    const info = document.createElement( 'span' );
-                    info.setAttribute( 'class', 'info' );
+                                       const info = document.createElement( 'span' );
+                                       info.setAttribute( 'class', 'info' );
 
-                    const text = cusHTMLClassIns.getAttribute( 'data-text' );
-                    info.textContent = text;
+                                       const text = cusHTMLClassIns.getAttribute( 'data-text' );
+                                       info.textContent = text;
 
-                    let imgUrl;
-                    if( cusHTMLClassIns.hasAttribute( 'data-img' ) ){
-                        imgUrl = cusHTMLClassIns.getAttribute( 'data-img' );
-                    }
-                    else{
-                        imgUrl = 'img/default.png';
-                    }
+                                       let imgUrl;
+                                       if( cusHTMLClassIns.hasAttribute( 'data-img' ) ){
+                                           imgUrl = cusHTMLClassIns.getAttribute( 'data-img' );
+                                       }
+                                       else{
+                                           imgUrl = 'img/default.png';
+                                       }
 
-                    const img = document.createElement( 'img' );
-                    img.src = imgUrl;
-                    icon.appendChild( img );
+                                       const img = document.createElement( 'img' );
+                                       img.src = imgUrl;
+                                       icon.appendChild( img );
 
-                    const style = document.createElement( 'style' );
+                                       const style = document.createElement( 'style' );
 
-                    style.textContent = `
+                                       style.textContent = `
       .wrapper {
         position: relative;
       }
@@ -81,94 +81,94 @@ let CT = new CTESM.CT(),
       }
     `;
 
-                    shadowRoot.appendChild( style );
-                    shadowRoot.appendChild( wrapper );
+                                       shadowRoot.appendChild( style );
+                                       shadowRoot.appendChild( wrapper );
 
-                    wrapper.appendChild( icon );
-                    wrapper.appendChild( info );
-                },
-                connectedCallback: () => {
-                },
-                disconnectedCallback: () => {
-                },
-                adoptedCallback: () => {
-                },
-                attributeChangedCallback: () => {
-                },
-            },
-            extends: HTMLElement,
-            isExtendsCusHTML: false,
-            isInit: true,
-            obsAttrs: [],
-        } );
+                                       wrapper.appendChild( icon );
+                                       wrapper.appendChild( info );
+                                   },
+                                   connectedCallback: () => {
+                                   },
+                                   disconnectedCallback: () => {
+                                   },
+                                   adoptedCallback: () => {
+                                   },
+                                   attributeChangedCallback: () => {
+                                   },
+                               },
+                               extends: HTMLElement,
+                               isExtendsCusHTML: false,
+                               isInit: true,
+                               obsAttrs: [],
+                           } );
     }
 }
 
 {
     if( true ){
         let expandingList = new WebComponents( {
-                attach: {
-                    delegatesFocus: null,
-                    mode: 'open',
-                },
-                define: {
-                    name: 'expanding-list',
-                    extends: 'ul',
-                },
-                enableExtends: true,
-                events: {
-                    init: ( cusHTMLClassIns, shadowRoot ) => {
-                        // console.dir( shadowRoot );
+                                                   attach: {
+                                                       delegatesFocus: null,
+                                                       mode: 'open',
+                                                   },
+                                                   define: {
+                                                       name: 'expanding-list',
+                                                       extends: 'ul',
+                                                   },
+                                                   enableExtends: true,
+                                                   events: {
+                                                       init: ( cusHTMLClassIns, shadowRoot ) => {
+                                                           // console.dir( shadowRoot );
 
-                        function ShowUL( event ){
-                            const nextul = event.target.nextElementSibling;
+                                                           function ShowUL( event ){
+                                                               const nextul = event.target.nextElementSibling;
 
-                            if( nextul.style.display == 'block' ){
-                                nextul.style.display = 'none';
-                                nextul.parentNode.setAttribute( 'class', 'closed' );
-                            }
-                            else{
-                                nextul.style.display = 'block';
-                                nextul.parentNode.setAttribute( 'class', 'open' );
-                            }
-                        }
+                                                               if( nextul.style.display == 'block' ){
+                                                                   nextul.style.display = 'none';
+                                                                   nextul.parentNode.setAttribute( 'class', 'closed' );
+                                                               }
+                                                               else{
+                                                                   nextul.style.display = 'block';
+                                                                   nextul.parentNode.setAttribute( 'class', 'open' );
+                                                               }
+                                                           }
 
-                        const uls = Array.from( cusHTMLClassIns.querySelectorAll( 'ul' ) ),
-                            lis = Array.from( cusHTMLClassIns.querySelectorAll( 'li' ) );
+                                                           const uls = Array.from( cusHTMLClassIns.querySelectorAll( 'ul' ) ),
+                                                               lis = Array.from( cusHTMLClassIns.querySelectorAll( 'li' ) );
 
-                        uls.forEach( ul => void ( ul.style.display = 'none' ) );
+                                                           uls.forEach( ul => void ( ul.style.display = 'none' ) );
 
-                        lis.forEach( li => {
-                            if( li.querySelectorAll( 'ul' ).length > 0 ){
-                                li.setAttribute( 'class', 'closed' );
+                                                           lis.forEach( li => {
+                                                               if( li.querySelectorAll( 'ul' ).length > 0 ){
+                                                                   li.setAttribute( 'class', 'closed' );
 
-                                const childText = li.childNodes[ 0 ];
-                                const newSpan = document.createElement( 'span' );
+                                                                   const childText = li.childNodes[ 0 ];
+                                                                   const newSpan = document.createElement( 'span' );
 
-                                newSpan.textContent = childText.textContent;
-                                newSpan.style.cursor = 'pointer';
+                                                                   newSpan.textContent = childText.textContent;
+                                                                   newSpan.style.cursor = 'pointer';
 
-                                newSpan.onclick = ShowUL;
+                                                                   newSpan.onclick = ShowUL;
 
-                                childText.parentNode.insertBefore( newSpan, childText );
-                                childText.parentNode.removeChild( childText );
-                            }
-                        } );
-                    },
-                    connectedCallback: () => {
-                    },
-                    disconnectedCallback: () => {
-                    },
-                    adoptedCallback: () => {
-                    },
-                    attributeChangedCallback: () => {
-                    },
-                },
-                extends: 'auto',
-                isExtendsCusHTML: false,
-                isInit: true,
-                obsAttrs: [],
-            } ),
+                                                                   childText.parentNode.insertBefore( newSpan, childText );
+                                                                   childText.parentNode.removeChild( childText );
+                                                               }
+                                                           } );
+                                                       },
+                                                       connectedCallback: () => {
+                                                       },
+                                                       disconnectedCallback: () => {
+                                                       },
+                                                       adoptedCallback: () => {
+                                                       },
+                                                       attributeChangedCallback: () => {
+                                                       },
+                                                   },
+                                                   extends: 'auto',
+                                                   isExtendsCusHTML: false,
+                                                   isInit: true,
+                                                   obsAttrs: [],
+                                               } ),
             expandingListClass = expandingList.getHTMLClass(),
             expandingListClassIns = expandingList.getHTMLClassIns();
 
@@ -180,63 +180,63 @@ let CT = new CTESM.CT(),
 {
     if( true ){
         new WebComponents( {
-            attach: {
-                delegatesFocus: null,
-                mode: 'open',
-            },
-            define: {
-                name: 'custom-square',
-                extends: null,
-            },
-            enableExtends: true,
-            events: {
-                init: ( cusHTMLClassIns, shadowRoot ) => {
-                    // console.dir( shadowRoot );
+                               attach: {
+                                   delegatesFocus: null,
+                                   mode: 'open',
+                               },
+                               define: {
+                                   name: 'custom-square',
+                                   extends: null,
+                               },
+                               enableExtends: true,
+                               events: {
+                                   init: ( cusHTMLClassIns, shadowRoot ) => {
+                                       // console.dir( shadowRoot );
 
-                    const div = document.createElement( 'div' ),
-                        style = document.createElement( 'style' );
+                                       const div = document.createElement( 'div' ),
+                                           style = document.createElement( 'style' );
 
-                    shadowRoot.appendChild( style );
-                    shadowRoot.appendChild( div );
-                },
-                connectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
-                    console.log( '自定义元素已经添加到文档中了！' );
+                                       shadowRoot.appendChild( style );
+                                       shadowRoot.appendChild( div );
+                                   },
+                                   connectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
+                                       console.log( '自定义元素已经添加到文档中了！' );
 
-                    shadowRoot.querySelector( 'style' ).textContent = `
+                                       shadowRoot.querySelector( 'style' ).textContent = `
     div {
       width: ${ cusHTMLClassIns.getAttribute( 'l' ) }px;
       height: ${ cusHTMLClassIns.getAttribute( 'l' ) }px;
       background-color: ${ cusHTMLClassIns.getAttribute( 'c' ) };
     }
   `;
-                },
-                disconnectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
-                    console.log( '自定义元素从文档中移除了！' );
-                },
-                adoptedCallback: ( cusHTMLClassIns, shadowRoot ) => {
-                    console.log( '自定义元素移动到新的文档中了！' );
-                },
-                attributeChangedCallback: ( cusHTMLClassIns, shadowRoot, arr ) => {
-                    console.log( '自定义元素的属性发生了变化！' );
-                    console.dir( arr );
+                                   },
+                                   disconnectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
+                                       console.log( '自定义元素从文档中移除了！' );
+                                   },
+                                   adoptedCallback: ( cusHTMLClassIns, shadowRoot ) => {
+                                       console.log( '自定义元素移动到新的文档中了！' );
+                                   },
+                                   attributeChangedCallback: ( cusHTMLClassIns, shadowRoot, arr ) => {
+                                       console.log( '自定义元素的属性发生了变化！' );
+                                       console.dir( arr );
 
-                    shadowRoot.querySelector( 'style' ).textContent = `
+                                       shadowRoot.querySelector( 'style' ).textContent = `
     div {
       width: ${ cusHTMLClassIns.getAttribute( 'l' ) }px;
       height: ${ cusHTMLClassIns.getAttribute( 'l' ) }px;
       background-color: ${ cusHTMLClassIns.getAttribute( 'c' ) };
     }
   `;
-                },
-            },
-            extends: HTMLElement,
-            isExtendsCusHTML: false,
-            isInit: true,
-            obsAttrs: [
-                'c',
-                'l',
-            ],
-        } );
+                                   },
+                               },
+                               extends: HTMLElement,
+                               isExtendsCusHTML: false,
+                               isInit: true,
+                               obsAttrs: [
+                                   'c',
+                                   'l',
+                               ],
+                           } );
 
         const add = document.querySelector( '.add' ),
             update = document.querySelector( '.update' ),
@@ -254,7 +254,7 @@ let CT = new CTESM.CT(),
         add.onclick = () => {
             square = document.createElement( 'custom-square' );
             document.querySelector( 'article' )
-            .appendChild( square );
+                    .appendChild( square );
             square.setAttribute( 'l', '100' );
             square.setAttribute( 'c', 'red' );
 
@@ -270,7 +270,7 @@ let CT = new CTESM.CT(),
 
         remove.onclick = () => {
             document.querySelector( 'article' )
-            .removeChild( square );
+                    .removeChild( square );
 
             update.disabled = true;
             remove.disabled = true;
@@ -282,100 +282,100 @@ let CT = new CTESM.CT(),
 {
     if( true ){
         let cusDiv = new WebComponents( {
-                attach: {
-                    delegatesFocus: null,
-                    mode: 'open',
-                },
-                define: {
-                    name: 'cus-div',
-                    extends: null,
-                },
-                enableExtends: true,
-                events: {
-                    init: ( cusHTMLClassIns, shadowRoot ) => {
-                        // console.log( '父类初始化开始！1' );
-                        // console.dir( cusHTMLClassIns.shadowRoot );
-                        // console.dir( shadowRoot );
-                        // console.log( '父类初始化开始！2' );
+                                            attach: {
+                                                delegatesFocus: null,
+                                                mode: 'open',
+                                            },
+                                            define: {
+                                                name: 'cus-div',
+                                                extends: null,
+                                            },
+                                            enableExtends: true,
+                                            events: {
+                                                init: ( cusHTMLClassIns, shadowRoot ) => {
+                                                    // console.log( '父类初始化开始！1' );
+                                                    // console.dir( cusHTMLClassIns.shadowRoot );
+                                                    // console.dir( shadowRoot );
+                                                    // console.log( '父类初始化开始！2' );
 
-                        const pElem = document.createElement( 'p' ),
-                            spanElem = document.createElement( 'span' );
+                                                    const pElem = document.createElement( 'p' ),
+                                                        spanElem = document.createElement( 'span' );
 
-                        pElem.textContent = '这是一个p元素！！！';
-                        spanElem.textContent = '这是一个span元素！！！';
+                                                    pElem.textContent = '这是一个p元素！！！';
+                                                    spanElem.textContent = '这是一个span元素！！！';
 
-                        pElem.onclick = event => {
-                            console.log( '父类p' );
-                        };
-                        spanElem.onclick = event => {
-                            console.log( '父类span' );
-                        };
+                                                    pElem.onclick = event => {
+                                                        console.log( '父类p' );
+                                                    };
+                                                    spanElem.onclick = event => {
+                                                        console.log( '父类span' );
+                                                    };
 
-                        shadowRoot.appendChild( pElem );
-                        shadowRoot.appendChild( spanElem );
+                                                    shadowRoot.appendChild( pElem );
+                                                    shadowRoot.appendChild( spanElem );
 
-                        cusHTMLClassIns.style = 'background-color: blue;display: block;';
-                    },
-                    connectedCallback: () => {
-                    },
-                    disconnectedCallback: () => {
-                    },
-                    adoptedCallback: () => {
-                    },
-                    attributeChangedCallback: () => {
-                    },
-                },
-                extends: HTMLElement,
-                isInit: true,
-                obsAttrs: [],
-            } ),
+                                                    cusHTMLClassIns.style = 'background-color: blue;display: block;';
+                                                },
+                                                connectedCallback: () => {
+                                                },
+                                                disconnectedCallback: () => {
+                                                },
+                                                adoptedCallback: () => {
+                                                },
+                                                attributeChangedCallback: () => {
+                                                },
+                                            },
+                                            extends: HTMLElement,
+                                            isInit: true,
+                                            obsAttrs: [],
+                                        } ),
             cusDivClass = cusDiv.getHTMLClass();
 
         let cusDivRed = new WebComponents( {
-                attach: {
-                    delegatesFocus: null,
-                    mode: 'open',
-                },
-                define: {
-                    name: 'cus-div-red',
-                    extends: null,
-                },
-                enableExtends: true,
-                events: {
-                    init: ( cusHTMLClassIns, shadowRoot ) => {
-                        // console.log( '子类初始化开始！1' );
-                        // console.dir( cusHTMLClassIns.shadowRoot );
-                        // console.dir( shadowRoot );
-                        // console.log( '子类初始化开始！2' );
+                                               attach: {
+                                                   delegatesFocus: null,
+                                                   mode: 'open',
+                                               },
+                                               define: {
+                                                   name: 'cus-div-red',
+                                                   extends: null,
+                                               },
+                                               enableExtends: true,
+                                               events: {
+                                                   init: ( cusHTMLClassIns, shadowRoot ) => {
+                                                       // console.log( '子类初始化开始！1' );
+                                                       // console.dir( cusHTMLClassIns.shadowRoot );
+                                                       // console.dir( shadowRoot );
+                                                       // console.log( '子类初始化开始！2' );
 
-                        const h1Elem = document.createElement( 'h1' );
+                                                       const h1Elem = document.createElement( 'h1' );
 
-                        h1Elem.textContent = '这是一个h1元素！';
+                                                       h1Elem.textContent = '这是一个h1元素！';
 
-                        cusHTMLClassIns.shadowRoot.appendChild( h1Elem );
+                                                       cusHTMLClassIns.shadowRoot.appendChild( h1Elem );
 
-                        cusHTMLClassIns.shadowRoot.querySelector( 'p' ).textContent = '111这是一个p元素！！！';
+                                                       cusHTMLClassIns.shadowRoot.querySelector( 'p' ).textContent = '111这是一个p元素！！！';
 
-                        cusHTMLClassIns.shadowRoot.querySelector( 'span' ).onclick = event => {
-                            console.dir( '子类span' );
-                        };
+                                                       cusHTMLClassIns.shadowRoot.querySelector( 'span' ).onclick = event => {
+                                                           console.dir( '子类span' );
+                                                       };
 
-                        cusHTMLClassIns.style = 'background-color: red;display: block;';
-                    },
-                    connectedCallback: () => {
-                    },
-                    disconnectedCallback: () => {
-                    },
-                    adoptedCallback: () => {
-                    },
-                    attributeChangedCallback: () => {
-                    },
-                },
-                extends: cusDivClass,
-                isExtendsCusHTML: true,
-                isInit: true,
-                obsAttrs: [],
-            } ),
+                                                       cusHTMLClassIns.style = 'background-color: red;display: block;';
+                                                   },
+                                                   connectedCallback: () => {
+                                                   },
+                                                   disconnectedCallback: () => {
+                                                   },
+                                                   adoptedCallback: () => {
+                                                   },
+                                                   attributeChangedCallback: () => {
+                                                   },
+                                               },
+                                               extends: cusDivClass,
+                                               isExtendsCusHTML: true,
+                                               isInit: true,
+                                               obsAttrs: [],
+                                           } ),
             cusDivRedClass = cusDivRed.getHTMLClass();
     }
 }
@@ -383,36 +383,36 @@ let CT = new CTESM.CT(),
 {
     if( true ){
         new WebComponents( {
-            attach: {
-                delegatesFocus: null,
-                mode: 'open',
-            },
-            define: {
-                name: 'my-template',
-                extends: null,
-            },
-            enableExtends: true,
-            events: {
-                init: ( cusHTMLClassIns, shadowRoot ) => {
-                    shadowRoot.appendChild( document.getElementById( 'MyTemplate1' )
-                    .content
-                    .cloneNode( true ) );
+                               attach: {
+                                   delegatesFocus: null,
+                                   mode: 'open',
+                               },
+                               define: {
+                                   name: 'my-template',
+                                   extends: null,
+                               },
+                               enableExtends: true,
+                               events: {
+                                   init: ( cusHTMLClassIns, shadowRoot ) => {
+                                       shadowRoot.appendChild( document.getElementById( 'MyTemplate1' )
+                                                                       .content
+                                                                       .cloneNode( true ) );
 
-                    console.dir( WebComponents.GRootN( shadowRoot ) );
-                    console.dir( CT.gRootN( shadowRoot ) );
-                },
-                connectedCallback: () => {
-                },
-                disconnectedCallback: () => {
-                },
-                adoptedCallback: () => {
-                },
-                attributeChangedCallback: () => {
-                },
-            },
-            extends: HTMLElement,
-            isInit: true,
-            obsAttrs: [],
-        } );
+                                       console.dir( WebComponents.GRootN( shadowRoot ) );
+                                       console.dir( CT.gRootN( shadowRoot ) );
+                                   },
+                                   connectedCallback: () => {
+                                   },
+                                   disconnectedCallback: () => {
+                                   },
+                                   adoptedCallback: () => {
+                                   },
+                                   attributeChangedCallback: () => {
+                                   },
+                               },
+                               extends: HTMLElement,
+                               isInit: true,
+                               obsAttrs: [],
+                           } );
     }
 }

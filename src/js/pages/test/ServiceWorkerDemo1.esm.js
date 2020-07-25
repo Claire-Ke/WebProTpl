@@ -15,16 +15,16 @@ let CT = new CTESM.CT();
 
 if( 'serviceWorker' in navigator ){
     navigator.serviceWorker.register( ServiceWorkerTestA, { scope: '/' } )
-    .then( async ServiceWorkerRegistration => {
-        if( ServiceWorkerRegistration.active ){
-            ServiceWorkerRegistration.active.postMessage( {
-                GetAllAssets: GetAllAssets.toString(),
-            } );
-        }
+             .then( async ServiceWorkerRegistration => {
+                 if( ServiceWorkerRegistration.active ){
+                     ServiceWorkerRegistration.active.postMessage( {
+                                                                       GetAllAssets: GetAllAssets.toString(),
+                                                                   } );
+                 }
 
-        return ServiceWorkerRegistration;
-    } )
-    .catch( error => {
-        console.error( 'failed：' + error.message );
-    } );
+                 return ServiceWorkerRegistration;
+             } )
+             .catch( error => {
+                 console.error( 'failed：' + error.message );
+             } );
 }

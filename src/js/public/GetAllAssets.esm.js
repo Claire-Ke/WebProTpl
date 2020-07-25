@@ -26,42 +26,42 @@ async function GetAllAssets( url = '../others/ProjectAssets.json', option = {} )
     .then( response => {
         if( response && response.ok && response.status === 200 ){
             return response.clone()
-            .json()
-            .then( json => {
-                let obj = json,
-                    CTAllAssets = [],
-                    item;
+                           .json()
+                           .then( json => {
+                               let obj = json,
+                                   CTAllAssets = [],
+                                   item;
 
-                Object.keys( obj )
-                .filter( ( c, i, a ) => c !== '' && c !== 'metadata' )
-                .forEach( ( c, i, a ) => {
-                    item = obj[ c ];
+                               Object.keys( obj )
+                                     .filter( ( c, i, a ) => c !== '' && c !== 'metadata' )
+                                     .forEach( ( c, i, a ) => {
+                                         item = obj[ c ];
 
-                    if( Object.prototype.toString.call( item )
-                    .includes( 'String' ) ){
-                        CTAllAssets.push( item );
-                    }
-                    else if( Array.isArray( item ) ){
-                        CTAllAssets.push( ...item );
-                    }
-                    else if( Object.prototype.toString.call( item )
-                    .includes( 'Object' ) ){
-                        CTAllAssets.push( ...( Object.values( item )
-                        .flat( Infinity ) ) );
-                    }
-                } );
+                                         if( Object.prototype.toString.call( item )
+                                                   .includes( 'String' ) ){
+                                             CTAllAssets.push( item );
+                                         }
+                                         else if( Array.isArray( item ) ){
+                                             CTAllAssets.push( ...item );
+                                         }
+                                         else if( Object.prototype.toString.call( item )
+                                                        .includes( 'Object' ) ){
+                                             CTAllAssets.push( ...( Object.values( item )
+                                                                          .flat( Infinity ) ) );
+                                         }
+                                     } );
 
-                CTAllAssets.push( ...( Object.values( obj[ '' ] )
-                .flat( Infinity ) ) );
+                               CTAllAssets.push( ...( Object.values( obj[ '' ] )
+                                                            .flat( Infinity ) ) );
 
-                CTAllAssets.push( obj.metadata.assetsFileName );
-                CTAllAssets.push( ...( obj.metadata.externalAssets ) );
+                               CTAllAssets.push( obj.metadata.assetsFileName );
+                               CTAllAssets.push( ...( obj.metadata.externalAssets ) );
 
-                return Array.from( new Set( CTAllAssets ) );
-            } )
-            .catch( error => {
-                console.error( error.message );
-            } );
+                               return Array.from( new Set( CTAllAssets ) );
+                           } )
+                           .catch( error => {
+                               console.error( error.message );
+                           } );
         }
     } )
     .catch( error => {

@@ -22,13 +22,13 @@ FileBtn.call( CT, {
         event( event, filesArr ){
             if( filesArr.length > 0 ){
                 Array.from( filesArr )
-                .forEach( async ( c, i, a ) => {
+                     .forEach( async ( c, i, a ) => {
 
-                    let result = await CT.getDigest2Hex4File( c );
+                         let result = await CT.getDigest2Hex4File( c );
 
-                    console.log( result );
+                         console.log( result );
 
-                } );
+                     } );
             }
         },
     },

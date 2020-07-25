@@ -19,6 +19,6 @@ wWorker4CT_ins.onMessage( event => {
     console.log( `${ wWorker4CT2Name_str }--->End` );
 
     wWorker4CT_ins.postMessage( {
-        dataA: `${ wWorker4CT2Name_str }：${ new Date() }`,
-    } );
+                                    dataA: `${ wWorker4CT2Name_str }：${ new Date() }`,
+                                } );
 } );

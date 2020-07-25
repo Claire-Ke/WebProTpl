@@ -68,23 +68,23 @@ class AppInstallEvent{
      */
     constructor( arg_obj = {} ){
         let pra_obj = Object.assign( {
-            onAppInstalled: event => {
-                console.log( 'window.onappinstalled触发了！' );
-            },
-            onBeforeInstallPrompt: event => {
-                console.log( 'window.onbeforeinstallprompt触发了！' );
-            },
-            isPreventDefault: true,
-            accepted: userChoiceResult => {
-                console.log( '已经添加到主屏幕了！' );
-            },
-            dismissed: userChoiceResult => {
-                console.log( '还没添加到主屏幕！' );
-            },
-            rejected: error => {
-                console.error( error.message );
-            },
-        }, arg_obj );
+                                         onAppInstalled: event => {
+                                             console.log( 'window.onappinstalled触发了！' );
+                                         },
+                                         onBeforeInstallPrompt: event => {
+                                             console.log( 'window.onbeforeinstallprompt触发了！' );
+                                         },
+                                         isPreventDefault: true,
+                                         accepted: userChoiceResult => {
+                                             console.log( '已经添加到主屏幕了！' );
+                                         },
+                                         dismissed: userChoiceResult => {
+                                             console.log( '还没添加到主屏幕！' );
+                                         },
+                                         rejected: error => {
+                                             console.error( error.message );
+                                         },
+                                     }, arg_obj );
         this.#onAppInstalled = pra_obj.onAppInstalled;
         this.#accepted = pra_obj.accepted;
         this.#dismissed = pra_obj.dismissed;
@@ -106,7 +106,7 @@ class AppInstallEvent{
                     this.userChoiceResult_obj = undefined;
                 }
             } )
-            .catch( pra_obj.rejected );
+                                 .catch( pra_obj.rejected );
         };
     }
 

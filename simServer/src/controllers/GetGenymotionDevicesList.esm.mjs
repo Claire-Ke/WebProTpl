@@ -33,26 +33,26 @@ async function GetResult( url ){
         } );
 
         Object.entries( result_obj )
-        .forEach( ( [ keyName, keyValue ], i, a ) => {
-            arr1 = keyValue;
+              .forEach( ( [ keyName, keyValue ], i, a ) => {
+                  arr1 = keyValue;
 
-            keyValue.forEach( ( { vmtemplate_uuid, system_version: { system_version_uuid, ova_name, }, }, index, array ) => {
-                for(
-                    j = index + 1;
-                    j < keyValue.length;
-                    ++j
-                ){
-                    if( system_version_uuid === keyValue[ j ][ 'system_version' ][ 'system_version_uuid' ] ){
-                        delete arr1[ j ];
-                    }
-                }
-            } );
+                  keyValue.forEach( ( { vmtemplate_uuid, system_version: { system_version_uuid, ova_name, }, }, index, array ) => {
+                      for(
+                          j = index + 1;
+                          j < keyValue.length;
+                          ++j
+                      ){
+                          if( system_version_uuid === keyValue[ j ][ 'system_version' ][ 'system_version_uuid' ] ){
+                              delete arr1[ j ];
+                          }
+                      }
+                  } );
 
-            obj1[ 'url' ].push( ...arr1.filter( c => c )
-            .map( ( { vmtemplate_uuid, system_version: { system_version_uuid, ova_name, aosp_version, }, }, i, a ) => {
-                return `https://dl.genymotion.com/dists/${ aosp_version }/ova/${ ova_name }`;
-            } ) );
-        } );
+                  obj1[ 'url' ].push( ...arr1.filter( c => c )
+                                             .map( ( { vmtemplate_uuid, system_version: { system_version_uuid, ova_name, aosp_version, }, }, i, a ) => {
+                                                 return `https://dl.genymotion.com/dists/${ aosp_version }/ova/${ ova_name }`;
+                                             } ) );
+              } );
 
         obj1[ 'url' ] = Array.from( new Set( obj1[ 'url' ] ) );
         obj1[ 'text' ] = obj1[ 'url' ].join( '\n' );
@@ -69,7 +69,7 @@ async function GetGenymotionDevicesList( server, request, response ){
     let obj2 = await GetResult( '../../staticResources/json/GenymotionDevicesList2.json' );
 
     result[ 'url' ] = Array.from( new Set( [].concat( obj1[ 'url' ], obj2[ 'url' ] ) ) )
-    .sort();
+                           .sort();
     result[ 'text' ] = result[ 'url' ].join( '\n' );
 
     SetHeaders( response, {

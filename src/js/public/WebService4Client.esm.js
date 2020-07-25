@@ -17,8 +17,8 @@ let {
 
 const webService_insC = new WebService4Proxy( CT, `/` ),
     post4JSON = webService_insC.post( {
-        type: 'json',
-    } ),
+                                          type: 'json',
+                                      } ),
     requestOpt = {
         responseType: 'json',
         headers: {
@@ -63,10 +63,10 @@ function post4JSON2GraphQL( {
     ( CT.isArray( body ) || CT.isObject( body ) ) && ( body = JSON.stringify( body ) );
 
     return post4JSON.graphql( {
-        url,
-        options: Object.assign( {}, requestOpt, options, { body, }, ),
-        events,
-    } );
+                                  url,
+                                  options: Object.assign( {}, requestOpt, options, { body, }, ),
+                                  events,
+                              } );
 }
 
 export {

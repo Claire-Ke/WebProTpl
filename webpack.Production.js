@@ -28,14 +28,14 @@ let isPro = process.argv[ 3 ] === 'production',
         let result_obj = {};
 
         Array.from( Object.entries( baseConfig.defineObj_fun( isPro ) ) )
-        .forEach( ( [ keyName, keyValue ], i, a ) => {
-            if( keyName === 'isPro' ){
-                result_obj[ keyName ] = keyValue;
-            }
-            else{
-                result_obj[ keyName ] = str;
-            }
-        } );
+             .forEach( ( [ keyName, keyValue ], i, a ) => {
+                 if( keyName === 'isPro' ){
+                     result_obj[ keyName ] = keyValue;
+                 }
+                 else{
+                     result_obj[ keyName ] = str;
+                 }
+             } );
 
         return result_obj;
     } )( '"/"' );
@@ -47,53 +47,53 @@ module.exports = {
     mode: 'production',
     entry: baseConfig.entry_obj,
     output: baseConfig.output_fun( {
-        path,
-        __dirname,
-        proName_str: 'production',
-        // chunkhash hash contenthash
-        hashName_str: 'contenthash',
-    } ),
+                                       path,
+                                       __dirname,
+                                       proName_str: 'production',
+                                       // chunkhash hash contenthash
+                                       hashName_str: 'contenthash',
+                                   } ),
     module: {
         rules: baseConfig.moduleRules_fun( {
-            path,
-            __dirname,
-            isPro,
-            MiniCSSExtractPlugin,
-            noTest_boo: true,
-            isESM_boo: true,
-        } ),
+                                               path,
+                                               __dirname,
+                                               isPro,
+                                               MiniCSSExtractPlugin,
+                                               noTest_boo: true,
+                                               isESM_boo: true,
+                                           } ),
     },
     resolve: baseConfig.resolve_fun( path, __dirname, isPro ),
     externals: baseConfig.externals_obj,
     plugins: htmlConfig.concat( [
-        new webpack.DefinePlugin( define_obj ),
-        new webpack.ProvidePlugin( baseConfig.provide_obj ),
+                                    new webpack.DefinePlugin( define_obj ),
+                                    new webpack.ProvidePlugin( baseConfig.provide_obj ),
 
-        // 插件顺序很重要。错误的顺序将导致一些钩子未定义并且生成失败
-        new ForkTsCheckerWebpackPlugin( baseConfig.ForkTsCheckerWebpackPlugin_obj ),
-        new ForkTsCheckerNotifierWebpackPlugin( baseConfig.ForkTsCheckerNotifierWebpackPlugin_obj ),
+                                    // 插件顺序很重要。错误的顺序将导致一些钩子未定义并且生成失败
+                                    new ForkTsCheckerWebpackPlugin( baseConfig.ForkTsCheckerWebpackPlugin_obj ),
+                                    new ForkTsCheckerNotifierWebpackPlugin( baseConfig.ForkTsCheckerNotifierWebpackPlugin_obj ),
 
-        new VueLoaderPlugin(),
-        new webpack.HashedModuleIdsPlugin( baseConfig.hashedModuleIds_obj ),
-        new webpack.optimize.SplitChunksPlugin( baseConfig.splitChunks_obj ),
-        new MiniCSSExtractPlugin( {
-            // 默认值是webpackOptions.output.publicPath
-            // publicPath: '../',
-            // chunkhash hash contenthash
-            filename: 'styles/[name]_[contenthash:6].css',
-            chunkFilename: 'styles/[name]_chunk_[contenthash:6].css',
-            // 启用以删除有关顺序冲突的警告
-            ignoreOrder: false,
-            esModule: false,
-        } ),
-        new CleanWebpackPlugin( baseConfig.cleanWebpackPluginConfig_fun( 'production' ) ),
-        new copyWebpackPlugin( baseConfig.copyWebpackPluginConfig_obj ),
-        // new ImageminPlugin( baseConfig.ImageminPlugin_obj ),
-        new AssetsWebpackPlugin( Object.assign( {}, baseConfig.AssetsWebpackPluginOption_obj, {
-            keepInMemory: false,
-            path: path.resolve( __dirname, `./dist/production/others/` ),
-        } ) ),
-    ] ),
+                                    new VueLoaderPlugin(),
+                                    new webpack.HashedModuleIdsPlugin( baseConfig.hashedModuleIds_obj ),
+                                    new webpack.optimize.SplitChunksPlugin( baseConfig.splitChunks_obj ),
+                                    new MiniCSSExtractPlugin( {
+                                                                  // 默认值是webpackOptions.output.publicPath
+                                                                  // publicPath: '../',
+                                                                  // chunkhash hash contenthash
+                                                                  filename: 'styles/[name]_[contenthash:6].css',
+                                                                  chunkFilename: 'styles/[name]_chunk_[contenthash:6].css',
+                                                                  // 启用以删除有关顺序冲突的警告
+                                                                  ignoreOrder: false,
+                                                                  esModule: false,
+                                                              } ),
+                                    new CleanWebpackPlugin( baseConfig.cleanWebpackPluginConfig_fun( 'production' ) ),
+                                    new copyWebpackPlugin( baseConfig.copyWebpackPluginConfig_obj ),
+                                    // new ImageminPlugin( baseConfig.ImageminPlugin_obj ),
+                                    new AssetsWebpackPlugin( Object.assign( {}, baseConfig.AssetsWebpackPluginOption_obj, {
+                                        keepInMemory: false,
+                                        path: path.resolve( __dirname, `./dist/production/others/` ),
+                                    } ) ),
+                                ] ),
     optimization: baseConfig.optimization_fun( isPro, false ),
     node: baseConfig.node_obj,
     cache: false,

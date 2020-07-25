@@ -168,7 +168,7 @@ function MyExtractImports( source, document, filePath ){
 
 // ------My Code End------
 
-module.exports = function( source ){
+module.exports = function ( source ){
     /*
      this，有如下属性:
      _module: {
@@ -207,7 +207,7 @@ module.exports = function( source ){
     // Allow multiple query/mutation definitions in a file. This parses out dependencies
     // at compile time, and then uses those at load time to create minimal query documents
     // We cannot do the latter at compile time due to how the #import code works.
-    let operationCount = doc.definitions.reduce( function( accum, op ){
+    let operationCount = doc.definitions.reduce( function ( accum, op ){
         if( op.kind === 'OperationDefinition' ){
             return accum + 1;
         }

@@ -11,9 +11,9 @@
 let CT = new CTESM.CT();
 
 const MutationsEventName = CT.deepFreeze( {
-    addCountAMutation: 'addCountAMutation',
-    subCountAMutation: 'subCountAMutation',
-} );
+                                              addCountAMutation: 'addCountAMutation',
+                                              subCountAMutation: 'subCountAMutation',
+                                          } );
 
 export {
     MutationsEventName,

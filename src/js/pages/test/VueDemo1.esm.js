@@ -512,27 +512,27 @@ if( true ){
         } ){
             setTimeout( () => {
                 resolve( {
-                    data(){
-                        return {
-                            text1: 'This is a VueComponentB for Global!!!',
-                        };
-                    },
-                    props: {},
-                    provide(){
-                        let _this = this;
+                             data(){
+                                 return {
+                                     text1: 'This is a VueComponentB for Global!!!',
+                                 };
+                             },
+                             props: {},
+                             provide(){
+                                 let _this = this;
 
-                        return {};
-                    },
-                    inject: {},
-                    computed: {},
-                    methods: {},
-                    watch: {},
-                    filters: {},
-                    components: {},
-                    directives: {},
-                    template: `
-                        <p class = 'css-reset'>{{ text1 }}</p>`,
-                } );
+                                 return {};
+                             },
+                             inject: {},
+                             computed: {},
+                             methods: {},
+                             watch: {},
+                             filters: {},
+                             components: {},
+                             directives: {},
+                             template: `
+                                 <p class = 'css-reset'>{{ text1 }}</p>`,
+                         } );
             }, 4000 );
         } );
 }
@@ -615,10 +615,10 @@ let o1 = {
         slotAttr1: 'slotAttr1',
         isTransitionTest1: true,
         cells: Array.apply( null, { length: 81, } )
-        .map( ( c, i, a ) => ( {
-            id: i,
-            number: i % 9 + 1,
-        } ) ),
+                    .map( ( c, i, a ) => ( {
+                        id: i,
+                        number: i % 9 + 1,
+                    } ) ),
 
         rootState1: Store.state.rootState1,
         moduleA: Store.state.moduleA.moduleA,
@@ -977,46 +977,46 @@ let o1 = {
     },
 };
 let vue4Win = new Vue( {
-    /*el: '#HelloWorld',
-     data: {
-     obj1: {
-     name: 'obj1',
-     value: {
-     age: 12,
-     },
-     },
-     arr1: [
-     [[[{
-     name: 'name0',
-     value: {
-     age: 20,
-     },
-     }]]],
-     [[[{
-     name: 'name1',
-     value: {
-     age: 21,
-     },
-     }]]],
-     [[[{
-     name: 'name2',
-     value: {
-     age: 22,
-     },
-     }]]],
-     ],
-     arr2: [
-     1,
-     [
-     2,
-     [
-     3,
-     [ 4, ],
-     ],
-     ],
-     ],
-     },*/
-    ...o1,
-} );
+                           /*el: '#HelloWorld',
+                            data: {
+                            obj1: {
+                            name: 'obj1',
+                            value: {
+                            age: 12,
+                            },
+                            },
+                            arr1: [
+                            [[[{
+                            name: 'name0',
+                            value: {
+                            age: 20,
+                            },
+                            }]]],
+                            [[[{
+                            name: 'name1',
+                            value: {
+                            age: 21,
+                            },
+                            }]]],
+                            [[[{
+                            name: 'name2',
+                            value: {
+                            age: 22,
+                            },
+                            }]]],
+                            ],
+                            arr2: [
+                            1,
+                            [
+                            2,
+                            [
+                            3,
+                            [ 4, ],
+                            ],
+                            ],
+                            ],
+                            },*/
+                           ...o1,
+                       } );
 
 window.vue4Win = vue4Win;

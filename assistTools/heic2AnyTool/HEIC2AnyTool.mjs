@@ -50,15 +50,15 @@ const fsPromises = fs.promises,
 
 let suffix_str = '',
     fileName_arr = fs.readdirSync( path1_fun( 'inDir' ) )
-    .filter( c => fs.statSync( path1_fun( inDir_str + c ) )
-    .isFile() )
-    .filter( c => {
-        suffix_str = path.extname( c )
-        .slice( 1 )
-        .toLocaleLowerCase();
+                     .filter( c => fs.statSync( path1_fun( inDir_str + c ) )
+                                     .isFile() )
+                     .filter( c => {
+                         suffix_str = path.extname( c )
+                                          .slice( 1 )
+                                          .toLocaleLowerCase();
 
-        return suffix_str === 'heic' || suffix_str === 'heif';
-    } ),
+                         return suffix_str === 'heic' || suffix_str === 'heif';
+                     } ),
     index_num = 0,
     imgFileData = null,
     resultBuffer = null,

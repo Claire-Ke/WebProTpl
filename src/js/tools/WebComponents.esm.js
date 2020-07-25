@@ -275,37 +275,37 @@ class WebC{
         let _this = this;
 
         _this.optionObj = Object.assign( {
-            attach: {
-                delegatesFocus: null,
-                mode: 'open',
-            },
-            define: {
-                extends: null,
-                name: null,
-            },
-            enableExtends: true,
-            events: {
-                init: ( cusHTMLClassIns, shadowRoot ) => {
-                },
-                connectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
-                },
-                disconnectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
-                },
-                adoptedCallback: ( cusHTMLClassIns, shadowRoot ) => {
-                },
-                attributeChangedCallback: ( cusHTMLClassIns, shadowRoot, [
-                    name,
-                    oldValue,
-                    newValue,
-                    arg4
-                ] ) => {
-                },
-            },
-            extends: HTMLElement,
-            isExtendsCusHTML: false,
-            isInit: true,
-            obsAttrs: [],
-        }, initOption );
+                                             attach: {
+                                                 delegatesFocus: null,
+                                                 mode: 'open',
+                                             },
+                                             define: {
+                                                 extends: null,
+                                                 name: null,
+                                             },
+                                             enableExtends: true,
+                                             events: {
+                                                 init: ( cusHTMLClassIns, shadowRoot ) => {
+                                                 },
+                                                 connectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
+                                                 },
+                                                 disconnectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
+                                                 },
+                                                 adoptedCallback: ( cusHTMLClassIns, shadowRoot ) => {
+                                                 },
+                                                 attributeChangedCallback: ( cusHTMLClassIns, shadowRoot, [
+                                                     name,
+                                                     oldValue,
+                                                     newValue,
+                                                     arg4
+                                                 ] ) => {
+                                                 },
+                                             },
+                                             extends: HTMLElement,
+                                             isExtendsCusHTML: false,
+                                             isInit: true,
+                                             obsAttrs: [],
+                                         }, initOption );
 
         _this.optionObj.enableExtends
         ? ( _this.optionObj.attach.mode = 'open' )

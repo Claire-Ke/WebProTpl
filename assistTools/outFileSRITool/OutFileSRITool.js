@@ -22,8 +22,8 @@ const fs = require( 'fs' ),
     bufferSize_numC = 1 * 1024 * 1024 * 1024,
     dirPath_str = path.join( __dirname, 'dir' ),
     fileName_arr = fs.readdirSync( dirPath_str )
-    .filter( c => fs.statSync( `${ dirPath_str }/${ c }` )
-        .size !== 0 );
+                     .filter( c => fs.statSync( `${ dirPath_str }/${ c }` )
+                         .size !== 0 );
 
 console.log( `buffer.constants.MAX_LENGTH--->${ buffer.constants.MAX_LENGTH }` );
 
@@ -45,7 +45,7 @@ function GetPromiseIns( fileSrc_str = '', hash2Digest1_obj = { sha512: { hex: ''
         hash2Digest_obj = JSON.parse( JSON.stringify( hash2Digest1_obj ) );
         hash2Digest4Keys_arr = Object.keys( hash2Digest_obj );
         hash_objArr = hash2Digest4Keys_arr.map( c => Object.keys( hash2Digest_obj[ c ] )
-        .map( () => crypto.createHash( c ) ) );
+                                                           .map( () => crypto.createHash( c ) ) );
 
         readStream_obj.on( 'open', fd => {
             console.log( `文件已打开：${ fd }！！！` );
@@ -58,7 +58,7 @@ function GetPromiseIns( fileSrc_str = '', hash2Digest1_obj = { sha512: { hex: ''
         readStream_obj.on( 'readable', () => {
             while( null !== ( chunk_buf = readStream_obj.read( bufferSize_numC ) ) ){
                 hash_objArr.flat( Infinity )
-                .forEach( c => void ( c[ 'update' ]( chunk_buf ) ) );
+                           .forEach( c => void ( c[ 'update' ]( chunk_buf ) ) );
 
                 chunkBuf_num = chunk_buf.length / 1024 / 1024;
                 readStreamByte_num = readStream_obj.bytesRead / 1024 / 1024;
@@ -74,22 +74,22 @@ function GetPromiseIns( fileSrc_str = '', hash2Digest1_obj = { sha512: { hex: ''
 
         readStream_obj.on( 'close', () => {
             Object.values( hash2Digest_obj )
-            .forEach( ( c, i, ) => void ( Object.keys( c )
-            .forEach( ( c1, i1, ) => void ( hash2Digest_obj[ hash2Digest4Keys_arr[ i ] ][ c1 ] = `${ hash2Digest4Keys_arr[ i ] }-${ hash_objArr[ i ][ i1 ].digest( c1 ) }` ) ) ) );
+                  .forEach( ( c, i, ) => void ( Object.keys( c )
+                                                      .forEach( ( c1, i1, ) => void ( hash2Digest_obj[ hash2Digest4Keys_arr[ i ] ][ c1 ] = `${ hash2Digest4Keys_arr[ i ] }-${ hash_objArr[ i ][ i1 ].digest( c1 ) }` ) ) ) );
 
             resolve( [
-                hash2Digest_obj,
-                true,
-            ] );
+                         hash2Digest_obj,
+                         true,
+                     ] );
 
             console.log( '文件已关闭！！！' );
         } );
 
         readStream_obj.on( 'error', error => {
             resolve( [
-                {},
-                false,
-            ] );
+                         {},
+                         false,
+                     ] );
 
             console.error( error );
         } );

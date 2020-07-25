@@ -32,9 +32,9 @@ function testEventLoop(){
 
         // w6
         Promise.resolve()
-        .then( () => {
-            console.log( 'setImmediate phase - promise' );
-        } );
+               .then( () => {
+                   console.log( 'setImmediate phase - promise' );
+               } );
 
     }, 3 );
 
@@ -49,9 +49,9 @@ function testEventLoop(){
 
         // w4
         Promise.resolve()
-        .then( () => {
-            console.log( 'setTimeout phase - promise' );
-        } );
+               .then( () => {
+                   console.log( 'setTimeout phase - promise' );
+               } );
 
     }, 3 );
 
@@ -64,9 +64,9 @@ function testEventLoop(){
 
     // w2
     Promise.resolve()
-    .then( () => {
-        console.log( 'Poll phase - promise' );
-    } );
+           .then( () => {
+               console.log( 'Poll phase - promise' );
+           } );
 }
 
 testEventLoop();

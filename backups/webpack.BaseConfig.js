@@ -149,9 +149,9 @@ let fs = require( 'fs' ),
         'module': 'ES2020',
         // [ 'lib.es6.d.ts', 'lib.es2015.d.ts' ]
         'lib': ( () => fs.readdirSync( path.join( __dirname, './node_modules/typescript/lib' ) )
-        .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
-        .isDirectory() )
-        .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) ) )(),
+                         .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
+                                                    .isDirectory() )
+                         .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) ) )(),
         // true时，可以在.ts中导入.js；但是，false时，这么干，会报错！
         'allowJs': false,
         // true时，当把.js文件导入到.ts文件中时，如果.js文件中有错，将报告错误，这相当于在项目中包含的所有JavaScript文件的顶部包含"// @ts-check"。
@@ -731,177 +731,177 @@ let fs = require( 'fs' ),
                 let arr = [
                     require( 'postcss-import' )(),
                     require( 'postcss-preset-env' )( {
-                        // 没有任何配置选项，PostCSS Preset Env启用第2阶段功能并支持所有浏览器。
-                        // 阶段可以是0（实验）到4（稳定），也可以是false。将stage设置为false将禁用每个polyfill。仅当您打算专门使用功能选项时，这样做才有用。
-                        stage: 0,
-                        // features选项通过ID启用或禁用特定的polyfill。将true传递给特定功能部件ID将启用其polyfill，而将false传递将禁用它。
-                        // 将对象关联到特定功能部件ID将同时启用和配置它。
-                        // 没有通过功能明确启用或禁用的任何polyfill由stage选项确定。
-                        features: {
-                            'custom-properties': {
-                                preserve: true,
-                            },
-                            // CSS嵌套规则
-                            'nesting-rules': true,
-                            'any-link-pseudo-class': {
-                                preserve: true,
-                            },
-                            // 设置没有值的输入的样式:
-                            // input:blank、input[blank]
-                            // <input value="" blank>、<input value="This element has a value">
-                            'blank-pseudo-class': {
-                                preserve: true,
-                            },
-                            'break-properties': true,
-                            // 不区分大小写的属性，true会启用转换: [data-attr-key = "a" i]--->[data-attr-key = "a" i],[data-attr-key = "A" i]
-                            'case-insensitive-attributes': true,
-                            'color-functional-notation': {
-                                preserve: true,
-                            },
-                            'color-mod-function': {
-                                // 有效值：throw、warn、ignore
-                                unresolved: 'throw',
-                            },
-                            'custom-media-queries': {
-                                preserve: true,
-                            },
-                            'custom-selectors': {
-                                preserve: true,
-                            },
-                            'dir-pseudo-class': {
-                                preserve: true,
-                            },
-                            'double-position-gradients': {
-                                preserve: true,
-                            },
-                            // 'environment-variables': {},
-                            'focus-visible-pseudo-class': {
-                                preserve: true,
-                            },
-                            'focus-within-pseudo-class': {
-                                preserve: true,
-                            },
-                            // PostCSS插件，可将W3C CSS(font variant properties)转换为更兼容的CSS（font-feature-settings）
-                            'font-variant-property': true,
-                            'gap-properties': {
-                                preserve: true,
-                            },
-                            'gray-function': {
-                                preserve: true,
-                            },
-                            'has-pseudo-class': {
-                                preserve: true,
-                            },
-                            'hexadecimal-alpha-notation': {
-                                preserve: true,
-                            },
-                            'image-set-function': {
-                                preserve: true,
-                                // 有效值：warn、throw、ignore
-                                onvalid: 'throw',
-                            },
-                            'lab-function': {
-                                preserve: true,
-                            },
-                            'logical-properties-and-values': {
-                                preserve: true,
-                            },
-                            // PostCSS插件将 :matches() W3C CSS伪类转换为更兼容的CSS（更简单的选择器）
-                            'matches-pseudo-class': {
-                                // 允许您在生成的选择器之间引入换行符。
-                                lineBreak: false,
-                            },
-                            // 编写简单而优美的媒体查询！
-                            'media-query-ranges': true,
-                            'not-pseudo-class': true,
-                            'overflow-property': {
-                                preserve: true,
-                            },
-                            // PostCSS插件，可将自动换行替换为自动换行。可以选择保留两个声明
-                            'overflow-wrap-property': {
-                                // 有效值：copy、replace
-                                method: 'copy',
-                            },
-                            'place-properties': {
-                                preserve: true,
-                            },
-                            'prefers-color-scheme-query': {
-                                preserve: true,
-                            },
-                            // PostCSS插件可将 rebeccapurple color 转换为rgb()
-                            'rebeccapurple-color': {
-                                preserve: true,
-                            },
-                            // 'system-ui-font-family': true,
-                        },
-                        browsers: browsers_arr,
-                        autoprefixer: {
-                            // 如果CSS未压缩，Autoprefixer是否要使用视觉级联，true使用。
-                            cascade: true,
-                            // Autoprefixer是否要添加前缀，true添加。
-                            add: true,
-                            // Autoprefixer是否要删除过时的前缀，false不删除。
-                            remove: false,
-                            // Autoprefixer是否要为"@supports"参数添加前缀，true添加。
-                            supports: true,
-                            // Autoprefixer是否要为flexbox属性添加前缀，true添加。
-                            // 字符串值"no-2009"，则Autoprefixer只会为最终版本和IE 10版本的规范添加前缀。
-                            flexbox: true,
-                            // 有效值：false、"autoplace"、"no-autoplace"，Autoprefixer是否应为Grid Layout属性添加IE 10-11前缀？
-                            // false: 防止Autoprefixer输出CSS网格转换。
-                            // "autoplace": 启用Autoprefixer网格转换并包括自动放置支持。您还可以在CSS中使用/* autoprefixer grid: autoplace */。
-                            // "no-autoplace": 启用Autoprefixer网格转换，但不包括自动放置支持。您还可以在CSS中使用/* autoprefixer grid: no-autoplace */。
-                            // 不推荐使用true这个布尔值。
-                            grid: 'autoplace',
-                            overrideBrowserslist: browsers_arr,
-                            // 不要在Browserslist配置中的未知浏览器版本上引发错误。
-                            ignoreUnknownVersions: false,
-                        },
-                    } ),
+                                                         // 没有任何配置选项，PostCSS Preset Env启用第2阶段功能并支持所有浏览器。
+                                                         // 阶段可以是0（实验）到4（稳定），也可以是false。将stage设置为false将禁用每个polyfill。仅当您打算专门使用功能选项时，这样做才有用。
+                                                         stage: 0,
+                                                         // features选项通过ID启用或禁用特定的polyfill。将true传递给特定功能部件ID将启用其polyfill，而将false传递将禁用它。
+                                                         // 将对象关联到特定功能部件ID将同时启用和配置它。
+                                                         // 没有通过功能明确启用或禁用的任何polyfill由stage选项确定。
+                                                         features: {
+                                                             'custom-properties': {
+                                                                 preserve: true,
+                                                             },
+                                                             // CSS嵌套规则
+                                                             'nesting-rules': true,
+                                                             'any-link-pseudo-class': {
+                                                                 preserve: true,
+                                                             },
+                                                             // 设置没有值的输入的样式:
+                                                             // input:blank、input[blank]
+                                                             // <input value="" blank>、<input value="This element has a value">
+                                                             'blank-pseudo-class': {
+                                                                 preserve: true,
+                                                             },
+                                                             'break-properties': true,
+                                                             // 不区分大小写的属性，true会启用转换: [data-attr-key = "a" i]--->[data-attr-key = "a" i],[data-attr-key = "A" i]
+                                                             'case-insensitive-attributes': true,
+                                                             'color-functional-notation': {
+                                                                 preserve: true,
+                                                             },
+                                                             'color-mod-function': {
+                                                                 // 有效值：throw、warn、ignore
+                                                                 unresolved: 'throw',
+                                                             },
+                                                             'custom-media-queries': {
+                                                                 preserve: true,
+                                                             },
+                                                             'custom-selectors': {
+                                                                 preserve: true,
+                                                             },
+                                                             'dir-pseudo-class': {
+                                                                 preserve: true,
+                                                             },
+                                                             'double-position-gradients': {
+                                                                 preserve: true,
+                                                             },
+                                                             // 'environment-variables': {},
+                                                             'focus-visible-pseudo-class': {
+                                                                 preserve: true,
+                                                             },
+                                                             'focus-within-pseudo-class': {
+                                                                 preserve: true,
+                                                             },
+                                                             // PostCSS插件，可将W3C CSS(font variant properties)转换为更兼容的CSS（font-feature-settings）
+                                                             'font-variant-property': true,
+                                                             'gap-properties': {
+                                                                 preserve: true,
+                                                             },
+                                                             'gray-function': {
+                                                                 preserve: true,
+                                                             },
+                                                             'has-pseudo-class': {
+                                                                 preserve: true,
+                                                             },
+                                                             'hexadecimal-alpha-notation': {
+                                                                 preserve: true,
+                                                             },
+                                                             'image-set-function': {
+                                                                 preserve: true,
+                                                                 // 有效值：warn、throw、ignore
+                                                                 onvalid: 'throw',
+                                                             },
+                                                             'lab-function': {
+                                                                 preserve: true,
+                                                             },
+                                                             'logical-properties-and-values': {
+                                                                 preserve: true,
+                                                             },
+                                                             // PostCSS插件将 :matches() W3C CSS伪类转换为更兼容的CSS（更简单的选择器）
+                                                             'matches-pseudo-class': {
+                                                                 // 允许您在生成的选择器之间引入换行符。
+                                                                 lineBreak: false,
+                                                             },
+                                                             // 编写简单而优美的媒体查询！
+                                                             'media-query-ranges': true,
+                                                             'not-pseudo-class': true,
+                                                             'overflow-property': {
+                                                                 preserve: true,
+                                                             },
+                                                             // PostCSS插件，可将自动换行替换为自动换行。可以选择保留两个声明
+                                                             'overflow-wrap-property': {
+                                                                 // 有效值：copy、replace
+                                                                 method: 'copy',
+                                                             },
+                                                             'place-properties': {
+                                                                 preserve: true,
+                                                             },
+                                                             'prefers-color-scheme-query': {
+                                                                 preserve: true,
+                                                             },
+                                                             // PostCSS插件可将 rebeccapurple color 转换为rgb()
+                                                             'rebeccapurple-color': {
+                                                                 preserve: true,
+                                                             },
+                                                             // 'system-ui-font-family': true,
+                                                         },
+                                                         browsers: browsers_arr,
+                                                         autoprefixer: {
+                                                             // 如果CSS未压缩，Autoprefixer是否要使用视觉级联，true使用。
+                                                             cascade: true,
+                                                             // Autoprefixer是否要添加前缀，true添加。
+                                                             add: true,
+                                                             // Autoprefixer是否要删除过时的前缀，false不删除。
+                                                             remove: false,
+                                                             // Autoprefixer是否要为"@supports"参数添加前缀，true添加。
+                                                             supports: true,
+                                                             // Autoprefixer是否要为flexbox属性添加前缀，true添加。
+                                                             // 字符串值"no-2009"，则Autoprefixer只会为最终版本和IE 10版本的规范添加前缀。
+                                                             flexbox: true,
+                                                             // 有效值：false、"autoplace"、"no-autoplace"，Autoprefixer是否应为Grid Layout属性添加IE 10-11前缀？
+                                                             // false: 防止Autoprefixer输出CSS网格转换。
+                                                             // "autoplace": 启用Autoprefixer网格转换并包括自动放置支持。您还可以在CSS中使用/* autoprefixer grid: autoplace */。
+                                                             // "no-autoplace": 启用Autoprefixer网格转换，但不包括自动放置支持。您还可以在CSS中使用/* autoprefixer grid: no-autoplace */。
+                                                             // 不推荐使用true这个布尔值。
+                                                             grid: 'autoplace',
+                                                             overrideBrowserslist: browsers_arr,
+                                                             // 不要在Browserslist配置中的未知浏览器版本上引发错误。
+                                                             ignoreUnknownVersions: false,
+                                                         },
+                                                     } ),
                     require( 'postcss-calc' )( {
-                        precision: 6,
-                        preserve: true,
-                        // 当calc()不减少为单个值时添加警告。
-                        warnWhenCannotResolve: false,
-                        mediaQueries: true,
-                        selectors: true,
-                    } ),
+                                                   precision: 6,
+                                                   preserve: true,
+                                                   // 当calc()不减少为单个值时添加警告。
+                                                   warnWhenCannotResolve: false,
+                                                   mediaQueries: true,
+                                                   selectors: true,
+                                               } ),
                     // 必须在postcss-simple-vars和postcss-nested之前设置此插件。
                     require( 'postcss-mixins' )( {
-                        // 无声，删除未知的mixin，不要抛出错误。默认为false。
-                        silent: false,
-                    } ),
+                                                     // 无声，删除未知的mixin，不要抛出错误。默认为false。
+                                                     silent: false,
+                                                 } ),
                     require( 'postcss-easings' )( /*{
-                     // easings: {},
-                     }*/ ),
+                                                   // easings: {},
+                                                   }*/ ),
                     require( 'postcss-color-hwb' )(),
                     require( 'postcss-color-function' )( {
-                        preserveCustomProps: true,
-                    } ),
+                                                             preserveCustomProps: true,
+                                                         } ),
                     require( 'postcss-size' )(),
                     require( 'postcss-brand-colors' )(),
                 ];
 
                 !isPro && ( arr.push( require( 'postcss-browser-reporter' )( {
-                    selector: 'html::before',
-                    styles: {
-                        display: 'block',
-                        position: 'fixed',
-                        top: 0,
-                        right: 0,
-                        bottom: 0,
-                        left: 0,
-                        'z-index': 202020202020,
-                        content: '',
-                        width: '100%',
-                        height: '100%',
-                        'background-color': 'red',
-                        color: 'white',
-                        'font-size': '14px',
-                        overflow: 'hidden',
-                        'white-space': 'pre-wrap',
-                    },
-                } ) ) );
+                                                                                 selector: 'html::before',
+                                                                                 styles: {
+                                                                                     display: 'block',
+                                                                                     position: 'fixed',
+                                                                                     top: 0,
+                                                                                     right: 0,
+                                                                                     bottom: 0,
+                                                                                     left: 0,
+                                                                                     'z-index': 202020202020,
+                                                                                     content: '',
+                                                                                     width: '100%',
+                                                                                     height: '100%',
+                                                                                     'background-color': 'red',
+                                                                                     color: 'white',
+                                                                                     'font-size': '14px',
+                                                                                     overflow: 'hidden',
+                                                                                     'white-space': 'pre-wrap',
+                                                                                 },
+                                                                             } ) ) );
                 isPro && ( arr.push( require( 'cssnano' )() ) );
 
                 return arr;
@@ -1577,7 +1577,7 @@ let fs = require( 'fs' ),
                         VendorsDir_JS: ( arr => {
                             return {
                                 test: new RegExp( `node_modules[\\\\/](?!${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
-                                .join( '|' ) }).*\\.js$` ),
+                                                                               .join( '|' ) }).*\\.js$` ),
                                 name: 'VendorsDir_JS',
                                 // 数值越高越先添加加载
                                 // priority: 1000,
@@ -1585,17 +1585,17 @@ let fs = require( 'fs' ),
                                 reuseExistingChunk: true
                             };
                         } )( [
-                            'echarts',
-                            'jquery',
-                            'swiper',
-                            'vue',
-                            'vue-router',
-                            'vuex',
-                        ] ),
+                                 'echarts',
+                                 'jquery',
+                                 'swiper',
+                                 'vue',
+                                 'vue-router',
+                                 'vuex',
+                             ] ),
                         VendorsToolsDir_JS: ( arr => {
                             return {
                                 test: new RegExp( `node_modules[\\\\/](${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
-                                .join( '|' ) }).*\\.js$` ),
+                                                                             .join( '|' ) }).*\\.js$` ),
                                 name: 'VendorsToolsDir_JS',
                                 // 数值越高越先添加加载
                                 // priority: 1000,
@@ -1603,13 +1603,13 @@ let fs = require( 'fs' ),
                                 reuseExistingChunk: true
                             };
                         } )( [
-                            'echarts',
-                            'jquery',
-                            'swiper',
-                            'vue',
-                            'vue-router',
-                            'vuex',
-                        ] ),
+                                 'echarts',
+                                 'jquery',
+                                 'swiper',
+                                 'vue',
+                                 'vue-router',
+                                 'vuex',
+                             ] ),
                         ToolsDir_JS: {
                             test: /src[\\/]js[\\/]tools[\\/].*\.js$/,
                             name: 'ToolsDir_JS',
@@ -1763,9 +1763,9 @@ let fs = require( 'fs' ),
                     };
 
                 Object.entries( obj )
-                .forEach( ( c, i, ) => {
-                    c[ 1 ].priority = start_num - i;
-                } );
+                      .forEach( ( c, i, ) => {
+                          c[ 1 ].priority = start_num - i;
+                      } );
 
                 return obj;
             } )( 100000000 ) )
@@ -1774,7 +1774,7 @@ let fs = require( 'fs' ),
                         let arr1 = [ ...c ];
 
                         return `${ arr1.shift()
-                        .toLocaleUpperCase() }${ arr1.join( '' ) }`.replace( new RegExp( '[^a-zA-Z0-9_@]', 'g' ), '' );
+                                       .toLocaleUpperCase() }${ arr1.join( '' ) }`.replace( new RegExp( '[^a-zA-Z0-9_@]', 'g' ), '' );
                     },
                     styleType_arr = [
                         'css',
@@ -1832,25 +1832,25 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/components' ) )
-                            .filter( ( c, i, a ) => {
-                                return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
-                                .isDirectory();
-                            } )
-                            .filter( ( c, i, a ) => true )
-                            .forEach( ( c, i, a ) => {
-                                arr.forEach( ( c1, i1, a1 ) => {
-                                    str1 = fun( c );
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  arr.forEach( ( c1, i1, a1 ) => {
+                                      str1 = fun( c );
 
-                                    result_obj[ `Components_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
-                                        test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                        name: `Components_${ str1 }_${ c1.toLocaleUpperCase() }`,
-                                        // 数值越高越先添加加载
-                                        // priority: 1000,
-                                        enforce: true,
-                                        reuseExistingChunk: true
-                                    };
-                                } );
-                            } );
+                                      result_obj[ `Components_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                          test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                          name: `Components_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                          // 数值越高越先添加加载
+                                          // priority: 1000,
+                                          enforce: true,
+                                          reuseExistingChunk: true
+                                      };
+                                  } );
+                              } );
 
                             return result_obj;
                         } )( styleType_arr ),
@@ -1877,25 +1877,25 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/webComponents' ) )
-                            .filter( ( c, i, a ) => {
-                                return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
-                                .isDirectory();
-                            } )
-                            .filter( ( c, i, a ) => true )
-                            .forEach( ( c, i, a ) => {
-                                arr.forEach( ( c1, i1, a1 ) => {
-                                    str1 = fun( c );
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  arr.forEach( ( c1, i1, a1 ) => {
+                                      str1 = fun( c );
 
-                                    result_obj[ `WebComponents_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
-                                        test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                        name: `WebComponents_${ str1 }_${ c1.toLocaleUpperCase() }`,
-                                        // 数值越高越先添加加载
-                                        // priority: 1000,
-                                        enforce: true,
-                                        reuseExistingChunk: true
-                                    };
-                                } );
-                            } );
+                                      result_obj[ `WebComponents_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                          test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                          name: `WebComponents_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                          // 数值越高越先添加加载
+                                          // priority: 1000,
+                                          enforce: true,
+                                          reuseExistingChunk: true
+                                      };
+                                  } );
+                              } );
 
                             return result_obj;
                         } )( styleType_arr ),
@@ -1940,25 +1940,25 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/vue/components' ) )
-                            .filter( ( c, i, a ) => {
-                                return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
-                                .isDirectory();
-                            } )
-                            .filter( ( c, i, a ) => true )
-                            .forEach( ( c, i, a ) => {
-                                arr.forEach( ( c1, i1, a1 ) => {
-                                    str1 = fun( c );
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  arr.forEach( ( c1, i1, a1 ) => {
+                                      str1 = fun( c );
 
-                                    result_obj[ `VueComponents_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
-                                        test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                        name: `VueComponents_${ str1 }_${ c1.toLocaleUpperCase() }`,
-                                        // 数值越高越先添加加载
-                                        // priority: 1000,
-                                        enforce: true,
-                                        reuseExistingChunk: true
-                                    };
-                                } );
-                            } );
+                                      result_obj[ `VueComponents_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                          test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                          name: `VueComponents_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                          // 数值越高越先添加加载
+                                          // priority: 1000,
+                                          enforce: true,
+                                          reuseExistingChunk: true
+                                      };
+                                  } );
+                              } );
 
                             return result_obj;
                         } )( styleType_arr ),
@@ -1985,25 +1985,25 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/vue/styles' ) )
-                            .filter( ( c, i, a ) => {
-                                return fs.statSync( path.join( __dirname, `./src/vue/styles/${ c }` ) )
-                                .isDirectory();
-                            } )
-                            .filter( ( c, i, a ) => true )
-                            .forEach( ( c, i, a ) => {
-                                arr.forEach( ( c1, i1, a1 ) => {
-                                    str1 = fun( c );
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/vue/styles/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  arr.forEach( ( c1, i1, a1 ) => {
+                                      str1 = fun( c );
 
-                                    result_obj[ `VueStyles_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
-                                        test: new RegExp( `src[\\\\/]vue[\\\\/]styles[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                        name: `VueStyles_${ str1 }_${ c1.toLocaleUpperCase() }`,
-                                        // 数值越高越先添加加载
-                                        // priority: 1000,
-                                        enforce: true,
-                                        reuseExistingChunk: true
-                                    };
-                                } );
-                            } );
+                                      result_obj[ `VueStyles_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                          test: new RegExp( `src[\\\\/]vue[\\\\/]styles[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                          name: `VueStyles_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                          // 数值越高越先添加加载
+                                          // priority: 1000,
+                                          enforce: true,
+                                          reuseExistingChunk: true
+                                      };
+                                  } );
+                              } );
 
                             return result_obj;
                         } )( styleType_arr ),
@@ -2031,23 +2031,23 @@ let fs = require( 'fs' ),
 
                             arr.forEach( ( c1, i1, a1 ) => {
                                 fs.readdirSync( path.join( __dirname, `./src/styles/${ c1 }/pages` ) )
-                                .filter( ( c, i, a ) => {
-                                    return fs.statSync( path.join( __dirname, `./src/styles/${ c1 }/pages/${ c }` ) )
-                                    .isDirectory();
-                                } )
-                                .filter( ( c, i, a ) => true )
-                                .forEach( ( c, i, a ) => {
-                                    str1 = fun( c );
+                                  .filter( ( c, i, a ) => {
+                                      return fs.statSync( path.join( __dirname, `./src/styles/${ c1 }/pages/${ c }` ) )
+                                               .isDirectory();
+                                  } )
+                                  .filter( ( c, i, a ) => true )
+                                  .forEach( ( c, i, a ) => {
+                                      str1 = fun( c );
 
-                                    result_obj[ `Pages_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
-                                        test: new RegExp( `src[\\\\/]styles[\\\\/]${ c1 }[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                        name: `Pages_${ str1 }_${ c1.toLocaleUpperCase() }`,
-                                        // 数值越高越先添加加载
-                                        // priority: 1000,
-                                        enforce: true,
-                                        reuseExistingChunk: true
-                                    };
-                                } );
+                                      result_obj[ `Pages_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                          test: new RegExp( `src[\\\\/]styles[\\\\/]${ c1 }[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                          name: `Pages_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                          // 数值越高越先添加加载
+                                          // priority: 1000,
+                                          enforce: true,
+                                          reuseExistingChunk: true
+                                      };
+                                  } );
                             } );
 
                             return result_obj;
@@ -2072,7 +2072,7 @@ let fs = require( 'fs' ),
                         VendorsDir_JS: ( arr => {
                             return {
                                 test: new RegExp( `node_modules[\\\\/](?!${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
-                                .join( '|' ) }).*\\.js$` ),
+                                                                               .join( '|' ) }).*\\.js$` ),
                                 name: 'VendorsDir_JS',
                                 // 数值越高越先添加加载
                                 // priority: 1000,
@@ -2080,13 +2080,13 @@ let fs = require( 'fs' ),
                                 reuseExistingChunk: true
                             };
                         } )( [
-                            'echarts',
-                            'jquery',
-                            'swiper',
-                            'vue',
-                            'vue-router',
-                            'vuex',
-                        ] ),
+                                 'echarts',
+                                 'jquery',
+                                 'swiper',
+                                 'vue',
+                                 'vue-router',
+                                 'vuex',
+                             ] ),
                         VueFamily_JS: {
                             test: /node_modules[\\/](vue[\\/]|vue-router[\\/]|vuex[\\/]).*\.js$/,
                             name: 'VueFamily_JS',
@@ -2171,12 +2171,12 @@ let fs = require( 'fs' ),
                                 reuseExistingChunk: true
                             };
                         } )( [
-                            'CurrencyTools.esm.js',
-                            'Decorator4ES6.esm.js',
-                            'HTML2Canvas.esm.js',
-                            'WebComponents.esm.js',
-                            'Workers4MT.esm.js',
-                        ] ),
+                                 'CurrencyTools.esm.js',
+                                 'Decorator4ES6.esm.js',
+                                 'HTML2Canvas.esm.js',
+                                 'WebComponents.esm.js',
+                                 'Workers4MT.esm.js',
+                             ] ),
 
                         WASMBasicDir: {
                             test: /src[\\/]wasm[\\/]basic[\\/]/,
@@ -2216,23 +2216,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/graphQL/api' ) )
-                            .filter( ( c, i, a ) => {
-                                return fs.statSync( path.join( __dirname, `./src/graphQL/api/${ c }` ) )
-                                .isDirectory();
-                            } )
-                            .filter( ( c, i, a ) => true )
-                            .forEach( ( c, i, a ) => {
-                                str1 = fun( c );
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/graphQL/api/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
 
-                                result_obj[ `GQLAPI_${ str1 }_JS` ] = {
-                                    test: new RegExp( `src[\\\\/]graphQL[\\\\/]api[\\\\/]${ c }[\\\\/].*\\.(graphql|gql)$` ),
-                                    name: `GQLAPI_${ str1 }_JS`,
-                                    // 数值越高越先添加加载
-                                    // priority: 1000,
-                                    enforce: true,
-                                    reuseExistingChunk: true
-                                };
-                            } );
+                                  result_obj[ `GQLAPI_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]graphQL[\\\\/]api[\\\\/]${ c }[\\\\/].*\\.(graphql|gql)$` ),
+                                      name: `GQLAPI_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
 
                             return result_obj;
                         } )(),
@@ -2251,23 +2251,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/components' ) )
-                            .filter( ( c, i, a ) => {
-                                return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
-                                .isDirectory();
-                            } )
-                            .filter( ( c, i, a ) => true )
-                            .forEach( ( c, i, a ) => {
-                                str1 = fun( c );
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
 
-                                result_obj[ `Components_${ str1 }_JS` ] = {
-                                    test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                    name: `Components_${ str1 }_JS`,
-                                    // 数值越高越先添加加载
-                                    // priority: 1000,
-                                    enforce: true,
-                                    reuseExistingChunk: true
-                                };
-                            } );
+                                  result_obj[ `Components_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                      name: `Components_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
 
                             return result_obj;
                         } )(),
@@ -2285,23 +2285,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/webComponents' ) )
-                            .filter( ( c, i, a ) => {
-                                return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
-                                .isDirectory();
-                            } )
-                            .filter( ( c, i, a ) => true )
-                            .forEach( ( c, i, a ) => {
-                                str1 = fun( c );
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
 
-                                result_obj[ `WebComponents_${ str1 }_JS` ] = {
-                                    test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                    name: `WebComponents_${ str1 }_JS`,
-                                    // 数值越高越先添加加载
-                                    // priority: 1000,
-                                    enforce: true,
-                                    reuseExistingChunk: true
-                                };
-                            } );
+                                  result_obj[ `WebComponents_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                      name: `WebComponents_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
 
                             return result_obj;
                         } )(),
@@ -2343,23 +2343,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/vue/components' ) )
-                            .filter( ( c, i, a ) => {
-                                return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
-                                .isDirectory();
-                            } )
-                            .filter( ( c, i, a ) => true )
-                            .forEach( ( c, i, a ) => {
-                                str1 = fun( c );
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
 
-                                result_obj[ `VueComponents_${ str1 }_JS` ] = {
-                                    test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                    name: `VueComponents_${ str1 }_JS`,
-                                    // 数值越高越先添加加载
-                                    // priority: 1000,
-                                    enforce: true,
-                                    reuseExistingChunk: true
-                                };
-                            } );
+                                  result_obj[ `VueComponents_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                      name: `VueComponents_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
 
                             return result_obj;
                         } )(),
@@ -2376,23 +2376,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/vue/models' ) )
-                            .filter( ( c, i, a ) => {
-                                return fs.statSync( path.join( __dirname, `./src/vue/models/${ c }` ) )
-                                .isDirectory();
-                            } )
-                            .filter( ( c, i, a ) => true )
-                            .forEach( ( c, i, a ) => {
-                                str1 = fun( c );
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/vue/models/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
 
-                                result_obj[ `VueModels_${ str1 }_JS` ] = {
-                                    test: new RegExp( `src[\\\\/]vue[\\\\/]models[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                    name: `VueModels_${ str1 }_JS`,
-                                    // 数值越高越先添加加载
-                                    // priority: 1000,
-                                    enforce: true,
-                                    reuseExistingChunk: true
-                                };
-                            } );
+                                  result_obj[ `VueModels_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]vue[\\\\/]models[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                      name: `VueModels_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
 
                             return result_obj;
                         } )(),
@@ -2410,23 +2410,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/js/pages' ) )
-                            .filter( ( c, i, a ) => {
-                                return fs.statSync( path.join( __dirname, `./src/js/pages/${ c }` ) )
-                                .isDirectory();
-                            } )
-                            .filter( ( c, i, a ) => true )
-                            .forEach( ( c, i, a ) => {
-                                str1 = fun( c );
+                              .filter( ( c, i, a ) => {
+                                  return fs.statSync( path.join( __dirname, `./src/js/pages/${ c }` ) )
+                                           .isDirectory();
+                              } )
+                              .filter( ( c, i, a ) => true )
+                              .forEach( ( c, i, a ) => {
+                                  str1 = fun( c );
 
-                                result_obj[ `Pages_${ str1 }_JS` ] = {
-                                    test: new RegExp( `src[\\\\/]js[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                    name: `Pages_${ str1 }_JS`,
-                                    // 数值越高越先添加加载
-                                    // priority: 1000,
-                                    enforce: true,
-                                    reuseExistingChunk: true
-                                };
-                            } );
+                                  result_obj[ `Pages_${ str1 }_JS` ] = {
+                                      test: new RegExp( `src[\\\\/]js[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                      name: `Pages_${ str1 }_JS`,
+                                      // 数值越高越先添加加载
+                                      // priority: 1000,
+                                      enforce: true,
+                                      reuseExistingChunk: true
+                                  };
+                              } );
 
                             return result_obj;
                         } )(),
@@ -2450,9 +2450,9 @@ let fs = require( 'fs' ),
                     };
 
                 Object.entries( obj )
-                .forEach( ( c, i, ) => {
-                    c[ 1 ].priority = start_num - i;
-                } );
+                      .forEach( ( c, i, ) => {
+                          c[ 1 ].priority = start_num - i;
+                      } );
 
                 return obj;
             } )( 100000000 ) )
@@ -4870,83 +4870,83 @@ let fs = require( 'fs' ),
         // 默认情况下，上面的内容包括在内，但是如果您想（或需要）禁用它们（通过将它们设置为空），您可以在这里自己包含它们。
         plugins: [
             imageminWebp( {
-                // 预设设置: default, photo, picture, drawing, icon and text.
-                preset: 'default',
-                // 默认值75，将品质因数设置在0到100之间。
-                quality: 75,
-                // 将透明压缩质量设置为0到100。
-                alphaQuality: 100,
-                // 在0（最快）和6（最慢）之间指定要使用的压缩方法。此参数控制编码速度与压缩文件大小和质量之间的权衡。
-                method: 4,
-                // 设置目标大小（以字节为单位）。
-                // size: 1,
-                // 将空间噪声整形的幅度设置在0到100之间。
-                sns: 80,
-                // 将解块滤波器强度设置为0（关闭）到100。
-                // filter: 100,
-                // 自动调整过滤器强度。
-                autoFilter: false,
-                // 将滤镜的清晰度设置在0（最清晰）和7（最不清晰）之间。
-                sharpness: 0,
-                // 无损编码图像。
-                lossless: false,
-                // 使用附加的有损预处理步骤进行无损编码，其质量因子在0（最大预处理）和100（与无损相同）之间。
-                nearLossless: 100,
-                // 裁剪图像: Object { x: number, y: number, width: number, height: number }
-                // crop: {},
-                // 调整图像大小。crop后发生。Object { width: number, height: number }
-                // resize: {},
-                // 要从输入复制到输出的元数据列表（如果存在）。all none exif icc xmp
-                metadata: [ 'all', ],
-            } ),
+                              // 预设设置: default, photo, picture, drawing, icon and text.
+                              preset: 'default',
+                              // 默认值75，将品质因数设置在0到100之间。
+                              quality: 75,
+                              // 将透明压缩质量设置为0到100。
+                              alphaQuality: 100,
+                              // 在0（最快）和6（最慢）之间指定要使用的压缩方法。此参数控制编码速度与压缩文件大小和质量之间的权衡。
+                              method: 4,
+                              // 设置目标大小（以字节为单位）。
+                              // size: 1,
+                              // 将空间噪声整形的幅度设置在0到100之间。
+                              sns: 80,
+                              // 将解块滤波器强度设置为0（关闭）到100。
+                              // filter: 100,
+                              // 自动调整过滤器强度。
+                              autoFilter: false,
+                              // 将滤镜的清晰度设置在0（最清晰）和7（最不清晰）之间。
+                              sharpness: 0,
+                              // 无损编码图像。
+                              lossless: false,
+                              // 使用附加的有损预处理步骤进行无损编码，其质量因子在0（最大预处理）和100（与无损相同）之间。
+                              nearLossless: 100,
+                              // 裁剪图像: Object { x: number, y: number, width: number, height: number }
+                              // crop: {},
+                              // 调整图像大小。crop后发生。Object { width: number, height: number }
+                              // resize: {},
+                              // 要从输入复制到输出的元数据列表（如果存在）。all none exif icc xmp
+                              metadata: [ 'all', ],
+                          } ),
             imageminMozjpeg( {
-                // 压缩质量，范围从0（最差）到100（最完美）。
-                quality: 50,
-                // 默认值true，false创建基线JPEG文件。
-                progressive: false,
-                // 默认值false，输入文件为Targa格式（通常不需要）。
-                targa: false,
-                // 默认值false，恢复为标准默认设置，而不是mozjpeg默认设置。
-                revert: false,
-                // 默认值false，禁用渐进式扫描优化。
-                fastCrush: false,
-                // 设置直流扫描优化模式。
-                // 0 一键扫描所有组件
-                // 1 每个组件一次扫描
-                // 2 在所有组件的一次扫描和第一组件的一次扫描加其余组件的一次扫描之间进行优化
-                dcScanOpt: 1,
-                // 网格优化。
-                trellis: true,
-                // 直流系数的网格优化。
-                trellisDC: true,
-                // 设置网格优化方法。可用方法：psnr, hvs-psnr, ssim, ms-ssim
-                tune: 'hvs-psnr',
-                // 通过过冲进行黑白去鸣。
-                overshoot: true,
-                // 使用算术编码。
-                arithmetic: false,
-                // 设置DCT方法：
-                // int 使用整数DCT
-                // fast 使用快速整数DCT（精度较低）
-                // float 使用浮点DCT
-                dct: 'int',
-                // 使用8位量化表条目可实现基线JPEG兼容性。
-                quantBaseline: false,
-                // 使用预定义的量化表。
-                // 0 JPEG Annex K
-                // 1 Flat(平面)
-                // 2 Custom, tuned for MS-SSIM(自定义，针对MS-SSIM进行了调整)
-                // 3 ImageMagick table by N. Robidoux
-                // 4 Custom, tuned for PSNR-HVS(定制，针对PSNR-HVS进行了调整)
-                // 5 Table from paper by Klein, Silverstein and Carney
-                // quantTable: 1,
-                // 设置平滑抖动输入的强度。 （1 ... 100）
-                // smooth: 50,
-                // 设置要使用的最大内存（以千字节为单位，KB）。2MB
-                // maxMemory: 2 * 1024,
-                // 设置组件采样因子。每个项目都应采用HxV格式，例如2x1。
-                // sample: string[],
-            } ),
+                                 // 压缩质量，范围从0（最差）到100（最完美）。
+                                 quality: 50,
+                                 // 默认值true，false创建基线JPEG文件。
+                                 progressive: false,
+                                 // 默认值false，输入文件为Targa格式（通常不需要）。
+                                 targa: false,
+                                 // 默认值false，恢复为标准默认设置，而不是mozjpeg默认设置。
+                                 revert: false,
+                                 // 默认值false，禁用渐进式扫描优化。
+                                 fastCrush: false,
+                                 // 设置直流扫描优化模式。
+                                 // 0 一键扫描所有组件
+                                 // 1 每个组件一次扫描
+                                 // 2 在所有组件的一次扫描和第一组件的一次扫描加其余组件的一次扫描之间进行优化
+                                 dcScanOpt: 1,
+                                 // 网格优化。
+                                 trellis: true,
+                                 // 直流系数的网格优化。
+                                 trellisDC: true,
+                                 // 设置网格优化方法。可用方法：psnr, hvs-psnr, ssim, ms-ssim
+                                 tune: 'hvs-psnr',
+                                 // 通过过冲进行黑白去鸣。
+                                 overshoot: true,
+                                 // 使用算术编码。
+                                 arithmetic: false,
+                                 // 设置DCT方法：
+                                 // int 使用整数DCT
+                                 // fast 使用快速整数DCT（精度较低）
+                                 // float 使用浮点DCT
+                                 dct: 'int',
+                                 // 使用8位量化表条目可实现基线JPEG兼容性。
+                                 quantBaseline: false,
+                                 // 使用预定义的量化表。
+                                 // 0 JPEG Annex K
+                                 // 1 Flat(平面)
+                                 // 2 Custom, tuned for MS-SSIM(自定义，针对MS-SSIM进行了调整)
+                                 // 3 ImageMagick table by N. Robidoux
+                                 // 4 Custom, tuned for PSNR-HVS(定制，针对PSNR-HVS进行了调整)
+                                 // 5 Table from paper by Klein, Silverstein and Carney
+                                 // quantTable: 1,
+                                 // 设置平滑抖动输入的强度。 （1 ... 100）
+                                 // smooth: 50,
+                                 // 设置要使用的最大内存（以千字节为单位，KB）。2MB
+                                 // maxMemory: 2 * 1024,
+                                 // 设置组件采样因子。每个项目都应采用HxV格式，例如2x1。
+                                 // sample: string[],
+                             } ),
         ],
 
         /*

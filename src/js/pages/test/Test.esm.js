@@ -51,11 +51,11 @@ let CT = new CTESM.CT();
 
             return result;
         }, 10000, 1000 )
-        .then( resolve4Arg => {
-            console.log( resolve4Arg );
-        }, reject4Arg => {
-            console.error( reject4Arg );
-        } );
+          .then( resolve4Arg => {
+              console.log( resolve4Arg );
+          }, reject4Arg => {
+              console.error( reject4Arg );
+          } );
     }
 }
 
@@ -1964,7 +1964,7 @@ ${ onceFun1( 'q', 'w' ) }
                 eleLink.loop = 'loop';
                 eleLink.src = blobURL;
                 document.querySelector( 'article' )
-                .appendChild( eleLink );
+                        .appendChild( eleLink );
             },
         } );
     }
@@ -1985,50 +1985,50 @@ ${ onceFun1( 'q', 'w' ) }
                 eleLink.loop = 'loop';
                 eleLink.src = blobURL;
                 document.querySelector( 'article' )
-                .appendChild( eleLink );
+                        .appendChild( eleLink );
             },
         } );
     }
 }
 
 Promise.allSettled( [
-    // 测试“WASM”
-    // import('./WASMDemo1.esm.js'),
+                        // 测试“WASM”
+                        // import('./WASMDemo1.esm.js'),
 
-    // 测试“Node服务器”
-    // import('./AjaxDemo1.esm.js'),
+                        // 测试“Node服务器”
+                        // import('./AjaxDemo1.esm.js'),
 
-    // Worker测试
-    // import('./WorkersDemo1.esm.js'),
+                        // Worker测试
+                        // import('./WorkersDemo1.esm.js'),
 
-    // Service Worker测试
-    // import('./ServiceWorkerDemo1.esm.js'),
+                        // Service Worker测试
+                        // import('./ServiceWorkerDemo1.esm.js'),
 
-    // Clipboard API测试
-    // import('./ClipboardAPIDemo1.esm.js'),
+                        // Clipboard API测试
+                        // import('./ClipboardAPIDemo1.esm.js'),
 
-    // ES6测试
-    // import('./ES6Demo1.esm.js'),
+                        // ES6测试
+                        // import('./ES6Demo1.esm.js'),
 
-    // 算法测试
-    // import('./Algorithm.esm.js'),
+                        // 算法测试
+                        // import('./Algorithm.esm.js'),
 
-    // 加密算法(crypto)测试
-    // import('./CryptoDemo1.esm.js'),
+                        // 加密算法(crypto)测试
+                        // import('./CryptoDemo1.esm.js'),
 
-    // Web Components测试
-    // import('./WebComponentsDemo1.esm.js'),
+                        // Web Components测试
+                        // import('./WebComponentsDemo1.esm.js'),
 
-    // TypeScript测试
-    import('./TSDemo1.esm.ts'),
+                        // TypeScript测试
+                        import('./TSDemo1.esm.ts'),
 
-    // WebSocket客户端类测试
-    // import('./WebSocket4Client2DemoA.esm.js'),
+                        // WebSocket客户端类测试
+                        // import('./WebSocket4Client2DemoA.esm.js'),
 
-    // 测试GraphQL接口
-    import('./GraphQLTest.esm.js'),
-] )
-.then( result => {
-    // console.dir( result );
-} )
-.catch( error => void ( console.error( error.message ) ) );
+                        // 测试GraphQL接口
+                        import('./GraphQLTest.esm.js'),
+                    ] )
+       .then( result => {
+           // console.dir( result );
+       } )
+       .catch( error => void ( console.error( error.message ) ) );

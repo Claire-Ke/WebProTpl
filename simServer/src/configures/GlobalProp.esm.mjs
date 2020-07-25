@@ -17,56 +17,56 @@ import {
 const __dirname = Get__dirname( import.meta.url );
 
 const serverPort9999 = Object.freeze( {
-        // localhost   192.168.1.105   192.168.1.2
-        host: 'localhost',
-        port: 9999,
-        // 整数，等待队列中客户端的最大连接数，超过后将拒绝新客户端的连接
-        // 默认：2020
-        backlog: 2020,
-        // 单位：毫秒，整数
-        // 值设为 0 可禁用请求连接的超时行为。
-        // 注意，socket 的超时逻辑是在连接上设定的，所以改变这个值只影响服务器新建的连接，而不会影响任何已存在的连接。
-        // 默认：0
-        timeout: 0,
-        // 单位：毫秒，整数 值为 0 时禁用传入连接 keep-alive 的超时行为
-        // 默认:5000
-        keepAliveTimeout: 5000,
-        // 单位：整数 限制请求头的最大数量，默认为 2000。 如果设为 0，则没有限制。
-        maxHeadersCount: 2020,
-        // 限制解析器等待接收完整的HTTP标头的时间
-        // 默认: 40000 单位：毫秒
-        headersTimeout: 40000,
-        // 解析器支持的HTTP方法的列表
-        // http.METHODS
-        // string[]
-        httpMethods: [
-            'POST',
-            'DELETE',
-            'PUT',
-            'GET',
-            'OPTIONS',
-        ],
-        // 所有标准HTTP响应状态代码的集合，以及每个代码的简短描述。例如，http.STATUS_CODES [404] ==='未找到'
-        // http.STATUS_CODES
-        // Object
-        statusCodes: {
-            404: 'Not Found',
-        },
-        // 服务器名称，如：http://localhost:9999/SimServer/StaticResources中的SimServer
-        serverName: 'SimServer',
-        // 响应“http://localhost:9999/”的页面地址！！！
-        rootPath: path.join( __dirname, '../../staticResources/html/index.html' ),
-        // 响应http://localhost:9999/favicon.ico的图片地址！！！
-        faviconPath: path.join( __dirname, '../../staticResources/img/favicon.ico' ),
-        // http 404的时候指向的页面
-        http404PagePath: path.join( __dirname, '../../staticResources/html/Error404.html' ),
-        // 请求方法不在支持之内的时候指向的页面
-        error4ReqMethod2PagePath: path.join( __dirname, '../../staticResources/html/Error4ReqMethod.html' ),
-        // staticResources静态资源文件夹的路径
-        srPath: path.join( __dirname, '../../staticResources/' ),
-        // 存放WEB项目的文件夹(webPro)路径
-        webProPath: path.join( __dirname, '../../webPro/' ),
-    } ),
+                                          // localhost   192.168.1.105   192.168.1.2
+                                          host: 'localhost',
+                                          port: 9999,
+                                          // 整数，等待队列中客户端的最大连接数，超过后将拒绝新客户端的连接
+                                          // 默认：2020
+                                          backlog: 2020,
+                                          // 单位：毫秒，整数
+                                          // 值设为 0 可禁用请求连接的超时行为。
+                                          // 注意，socket 的超时逻辑是在连接上设定的，所以改变这个值只影响服务器新建的连接，而不会影响任何已存在的连接。
+                                          // 默认：0
+                                          timeout: 0,
+                                          // 单位：毫秒，整数 值为 0 时禁用传入连接 keep-alive 的超时行为
+                                          // 默认:5000
+                                          keepAliveTimeout: 5000,
+                                          // 单位：整数 限制请求头的最大数量，默认为 2000。 如果设为 0，则没有限制。
+                                          maxHeadersCount: 2020,
+                                          // 限制解析器等待接收完整的HTTP标头的时间
+                                          // 默认: 40000 单位：毫秒
+                                          headersTimeout: 40000,
+                                          // 解析器支持的HTTP方法的列表
+                                          // http.METHODS
+                                          // string[]
+                                          httpMethods: [
+                                              'POST',
+                                              'DELETE',
+                                              'PUT',
+                                              'GET',
+                                              'OPTIONS',
+                                          ],
+                                          // 所有标准HTTP响应状态代码的集合，以及每个代码的简短描述。例如，http.STATUS_CODES [404] ==='未找到'
+                                          // http.STATUS_CODES
+                                          // Object
+                                          statusCodes: {
+                                              404: 'Not Found',
+                                          },
+                                          // 服务器名称，如：http://localhost:9999/SimServer/StaticResources中的SimServer
+                                          serverName: 'SimServer',
+                                          // 响应“http://localhost:9999/”的页面地址！！！
+                                          rootPath: path.join( __dirname, '../../staticResources/html/index.html' ),
+                                          // 响应http://localhost:9999/favicon.ico的图片地址！！！
+                                          faviconPath: path.join( __dirname, '../../staticResources/img/favicon.ico' ),
+                                          // http 404的时候指向的页面
+                                          http404PagePath: path.join( __dirname, '../../staticResources/html/Error404.html' ),
+                                          // 请求方法不在支持之内的时候指向的页面
+                                          error4ReqMethod2PagePath: path.join( __dirname, '../../staticResources/html/Error4ReqMethod.html' ),
+                                          // staticResources静态资源文件夹的路径
+                                          srPath: path.join( __dirname, '../../staticResources/' ),
+                                          // 存放WEB项目的文件夹(webPro)路径
+                                          webProPath: path.join( __dirname, '../../webPro/' ),
+                                      } ),
     /*
      当 Access-Control-Allow-Origin:* 时
      不允许使用凭证(即 withCredentials:true)

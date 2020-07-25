@@ -81,38 +81,38 @@ let ImgShowTool = {
 
                 if( img_numC > 0 && imgInteger_num === 0 ){
                     PreloadImg( {
-                        num: imgRemainder_num,
-                        isStart: true,
-                        _this: this,
-                    } );
+                                    num: imgRemainder_num,
+                                    isStart: true,
+                                    _this: this,
+                                } );
                 }
                 else if( img_numC > 0 && imgInteger_num !== 0 && imgRemainder_num !== 0 ){
                     --imgInteger_num;
 
                     PreloadImg( {
-                        num: imgRemainder_num + 10,
-                        isStart: true,
-                        _this: this,
-                    } );
+                                    num: imgRemainder_num + 10,
+                                    isStart: true,
+                                    _this: this,
+                                } );
                 }
                 else if( img_numC > 0 && imgInteger_num !== 0 && imgRemainder_num === 0 ){
                     --imgInteger_num;
 
                     PreloadImg( {
-                        num: 10,
-                        isStart: true,
-                        _this: this,
-                    } );
+                                    num: 10,
+                                    isStart: true,
+                                    _this: this,
+                                } );
                 }
             }
             else if( this.state === 'next' && imgInteger_num !== 0 && this.index % 5 === 0 ){
                 --imgInteger_num;
 
                 PreloadImg( {
-                    num: this.preloadImgCount + 10,
-                    isStart: false,
-                    _this: this,
-                } );
+                                num: this.preloadImgCount + 10,
+                                isStart: false,
+                                _this: this,
+                            } );
             }
         },
         prevImg( event ){

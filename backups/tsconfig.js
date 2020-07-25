@@ -142,9 +142,9 @@ const compilerOptions4lib_arrC = [
             'module': 'ES2020',
             // [ 'lib.es6.d.ts', 'lib.es2015.d.ts' ]
             'lib': ( () => fs.readdirSync( path.join( __dirname, './node_modules/typescript/lib' ) )
-            .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
-            .isDirectory() )
-            .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) ) )(),
+                             .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
+                                                        .isDirectory() )
+                             .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) ) )(),
             // true时，可以在.ts中导入.js；但是，false时，这么干，会报错！
             'allowJs': false,
             // true时，当把.js文件导入到.ts文件中时，如果.js文件中有错，将报告错误，这相当于在项目中包含的所有JavaScript文件的顶部包含"// @ts-check"。

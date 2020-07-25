@@ -116,12 +116,12 @@ class SWorker4CT
      */
     constructor( _self, arg_obj = {} ){
         let pra_obj = Object.assign( {
-            onConnect: ( port, onConnectEvent ) => {
-            },
-            portOnMessage: ( portEvent, port, onConnectEvent ) => {
-            },
-            portOnMessageError: ( portEvent, port, onConnectEvent ) => void ( console.error( portEvent.message ) ),
-        }, arg_obj );
+                                         onConnect: ( port, onConnectEvent ) => {
+                                         },
+                                         portOnMessage: ( portEvent, port, onConnectEvent ) => {
+                                         },
+                                         portOnMessageError: ( portEvent, port, onConnectEvent ) => void ( console.error( portEvent.message ) ),
+                                     }, arg_obj );
 
         super( _self, pra_obj );
 

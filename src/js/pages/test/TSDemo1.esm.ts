@@ -492,18 +492,18 @@
                                                                                            : ( str4Obj[ c ] = 1 ) ) );
 
             const result4Sort: any = Object.entries( str4Obj )
-            .sort( (
-                [
-                    // @ts-expect-error
-                    keyNameA,
-                    keyValueA
-                ]: any,
-                [
-                    // @ts-expect-error
-                    keyNameB,
-                    keyValueB
-                ]: any
-            ): number => keyValueB - keyValueA );
+                                           .sort( (
+                                               [
+                                                   // @ts-expect-error
+                                                   keyNameA,
+                                                   keyValueA
+                                               ]: any,
+                                               [
+                                                   // @ts-expect-error
+                                                   keyNameB,
+                                                   keyValueB
+                                               ]: any
+                                           ): number => keyValueB - keyValueA );
 
             console.log( str4Target );
             console.dir( result4Sort );

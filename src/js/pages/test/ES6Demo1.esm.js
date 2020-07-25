@@ -234,76 +234,76 @@ let CT = new CTESM.CT();
          */
 
         ws4Proxy_ins.post( { type: 'json', } )
-        .POST( {
-            options: {
-                // method: 'GET',
-                // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                // responseType: 'json',
-                headers: new Headers( { 'Content-Type': 'application/json', } ),
-                mode: 'cors',
-                credentials: 'omit',
-                body: JSON.stringify( {
-                    type: 'json',
-                } ),
-            },
-        } )
-        .then( json => {
-            console.dir( json );
-        } );
+                    .POST( {
+                               options: {
+                                   // method: 'GET',
+                                   // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                                   // responseType: 'json',
+                                   headers: new Headers( { 'Content-Type': 'application/json', } ),
+                                   mode: 'cors',
+                                   credentials: 'omit',
+                                   body: JSON.stringify( {
+                                                             type: 'json',
+                                                         } ),
+                               },
+                           } )
+                    .then( json => {
+                        console.dir( json );
+                    } );
 
         ws4Proxy_ins.delete( { type: 'json', } )
-        .DELETE( {
-            options: {
-                // method: 'GET',
-                // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                // responseType: 'json',
-                headers: new Headers( { 'Content-Type': 'application/json', } ),
-                mode: 'cors',
-                credentials: 'omit',
-                body: JSON.stringify( {
-                    type: 'json',
-                } ),
-            },
-        } )
-        .then( json => {
-            console.dir( json );
-        } );
+                    .DELETE( {
+                                 options: {
+                                     // method: 'GET',
+                                     // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                                     // responseType: 'json',
+                                     headers: new Headers( { 'Content-Type': 'application/json', } ),
+                                     mode: 'cors',
+                                     credentials: 'omit',
+                                     body: JSON.stringify( {
+                                                               type: 'json',
+                                                           } ),
+                                 },
+                             } )
+                    .then( json => {
+                        console.dir( json );
+                    } );
 
         ws4Proxy_ins.put( { type: 'json', } )
-        .PUT( {
-            options: {
-                // method: 'GET',
-                // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                // responseType: 'json',
-                headers: new Headers( { 'Content-Type': 'application/json', } ),
-                mode: 'cors',
-                credentials: 'omit',
-                body: JSON.stringify( {
-                    type: 'json',
-                } ),
-            },
-        } )
-        .then( json => {
-            console.dir( json );
-        } );
+                    .PUT( {
+                              options: {
+                                  // method: 'GET',
+                                  // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                                  // responseType: 'json',
+                                  headers: new Headers( { 'Content-Type': 'application/json', } ),
+                                  mode: 'cors',
+                                  credentials: 'omit',
+                                  body: JSON.stringify( {
+                                                            type: 'json',
+                                                        } ),
+                              },
+                          } )
+                    .then( json => {
+                        console.dir( json );
+                    } );
 
         ws4Proxy_ins.get( { type: 'json', } )
-        .GET( {
-            options: {
-                // method: 'GET',
-                // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                // responseType: 'json',
-                // headers: new Headers( { 'Content-Type': 'application/json', } ),
-                mode: 'cors',
-                credentials: 'omit',
-                body: {
-                    type: 'json',
-                },
-            },
-        } )
-        .then( json => {
-            console.dir( json );
-        } );
+                    .GET( {
+                              options: {
+                                  // method: 'GET',
+                                  // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                                  // responseType: 'json',
+                                  // headers: new Headers( { 'Content-Type': 'application/json', } ),
+                                  mode: 'cors',
+                                  credentials: 'omit',
+                                  body: {
+                                      type: 'json',
+                                  },
+                              },
+                          } )
+                    .then( json => {
+                        console.dir( json );
+                    } );
     }
 
     if( false ){
@@ -312,17 +312,17 @@ let CT = new CTESM.CT();
             ws4Proxy_GET = ws4Proxy_ins.get( { type: 'json', } );
 
         ws4Proxy_GET.GET( {
-            options: {
-                mode: 'cors',
-                credentials: 'omit',
-                body: {
-                    type: 'json5',
-                },
-            },
-        } )
-        .then( json => {
-            console.dir( json );
-        } );
+                              options: {
+                                  mode: 'cors',
+                                  credentials: 'omit',
+                                  body: {
+                                      type: 'json5',
+                                  },
+                              },
+                          } )
+                    .then( json => {
+                        console.dir( json );
+                    } );
     }
 }
 
@@ -348,26 +348,26 @@ let CT = new CTESM.CT();
          */
 
         Promise.any( [
-            reject1,
-            reject2,
-        ] )
-        .then( result => {
-            console.dir( result );
-        } )
-        .catch( ( result/*{ errors, stack, message }*/ ) => {
-            console.dir( result );
+                         reject1,
+                         reject2,
+                     ] )
+               .then( result => {
+                   console.dir( result );
+               } )
+               .catch( ( result/*{ errors, stack, message }*/ ) => {
+                   console.dir( result );
 
-            // [ 'reject1', 'reject2' ]
-            // console.dir( errors );
+                   // [ 'reject1', 'reject2' ]
+                   // console.dir( errors );
 
-            // AggregateError: No one promise resolved
-            //     at new AggregateError (webpack:///./node_modules/core-js/modules/esnext.aggregate-error.js?:20:27)
-            //     at eval (webpack:///./node_modules/core-js/modules/esnext.promise.any.js?:38:33)
-            // console.log( `stack--->${ stack }<---stack` );
+                   // AggregateError: No one promise resolved
+                   //     at new AggregateError (webpack:///./node_modules/core-js/modules/esnext.aggregate-error.js?:20:27)
+                   //     at eval (webpack:///./node_modules/core-js/modules/esnext.promise.any.js?:38:33)
+                   // console.log( `stack--->${ stack }<---stack` );
 
-            // No one promise resolved
-            // console.log( `message--->${ message }` );
-        } );
+                   // No one promise resolved
+                   // console.log( `message--->${ message }` );
+               } );
     }
 }
 
@@ -381,13 +381,13 @@ let CT = new CTESM.CT();
         } ) => {
             resolve( '5' );
         } ) )
-        .then( arg => {
-            console.log( arg );
-            console.log( '4' );
-        } )
-        .catch( error => {
-            console.error( error.message );
-        } );
+               .then( arg => {
+                   console.log( arg );
+                   console.log( '4' );
+               } )
+               .catch( error => {
+                   console.error( error.message );
+               } );
 
         console.log( '2' );
     }
@@ -701,15 +701,15 @@ let CT = new CTESM.CT();
 
             @MapType
             property34 = new Map( [
-                [
-                    1,
-                    2
-                ],
-                [
-                    3,
-                    4
-                ],
-            ] );
+                                      [
+                                          1,
+                                          2
+                                      ],
+                                      [
+                                          3,
+                                          4
+                                      ],
+                                  ] );
 
             @PromiseType
             property35 = new Promise( () => {
@@ -717,9 +717,9 @@ let CT = new CTESM.CT();
 
             @SetType
             property36 = new Set( [
-                1,
-                2,
-            ] );
+                                      1,
+                                      2,
+                                  ] );
 
             @SharedArrayBufferType
             property37 = new SharedArrayBuffer( 1024 );
@@ -738,27 +738,27 @@ let CT = new CTESM.CT();
 
             @WeakMapType
             property42 = new WeakMap( [
-                [
-                    [ 1 ],
-                    2
-                ],
-                [
-                    [ 3 ],
-                    4
-                ],
-            ] );
+                                          [
+                                              [ 1 ],
+                                              2
+                                          ],
+                                          [
+                                              [ 3 ],
+                                              4
+                                          ],
+                                      ] );
 
             @WeakSetType
             property43 = new WeakSet( [
-                [
-                    1,
-                    2
-                ],
-                [
-                    3,
-                    4
-                ],
-            ] );
+                                          [
+                                              1,
+                                              2
+                                          ],
+                                          [
+                                              3,
+                                              4
+                                          ],
+                                      ] );
 
             @ErrorType
             property44 = new Error( 'Error' );
@@ -851,27 +851,27 @@ let CT = new CTESM.CT();
         } = DecESM;
 
         @Mixin2Class4Proto( {
-            mixinA4Property1: '混入的第一个实例属性',
-            mixinA4Method1(){
-                console.log( '混入的第一个实例方法' );
-            },
-        }, {
-            mixinB4Property1: '混入的第二个实例属性',
-            mixinB4Method1(){
-                console.log( '混入的第二个实例方法' );
-            },
-        }, )
+                                mixinA4Property1: '混入的第一个实例属性',
+                                mixinA4Method1(){
+                                    console.log( '混入的第一个实例方法' );
+                                },
+                            }, {
+                                mixinB4Property1: '混入的第二个实例属性',
+                                mixinB4Method1(){
+                                    console.log( '混入的第二个实例方法' );
+                                },
+                            }, )
         @Mixin2Class4Static( {
-            mixinA4StaticProperty1: '混入的第一个静态属性',
-            mixinA4StaticMethod1(){
-                console.log( '混入的第一个静态方法' );
-            },
-        }, {
-            mixinB4StaticProperty1: '混入的第二个静态属性',
-            mixinB4StaticMethod1(){
-                console.log( '混入的第二个静态方法' );
-            },
-        }, )
+                                 mixinA4StaticProperty1: '混入的第一个静态属性',
+                                 mixinA4StaticMethod1(){
+                                     console.log( '混入的第一个静态方法' );
+                                 },
+                             }, {
+                                 mixinB4StaticProperty1: '混入的第二个静态属性',
+                                 mixinB4StaticMethod1(){
+                                     console.log( '混入的第二个静态方法' );
+                                 },
+                             }, )
         class TestClassA{
 
             property1 = '实例属性1';

@@ -23,7 +23,7 @@ const routers4Get_objC = ( ( obj => {
     let resultObj = {};
 
     Object.keys( obj )
-    .forEach( ( c, i, a ) => void ( resultObj[ c + '/' ] = obj[ c ] ) );
+          .forEach( ( c, i, a ) => void ( resultObj[ c + '/' ] = obj[ c ] ) );
 
     return Object.assign( obj, resultObj );
 } )( Object.assign( request4Config_objC.get, {

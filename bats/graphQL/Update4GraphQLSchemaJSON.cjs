@@ -25,10 +25,10 @@ const fs = require( 'fs' ),
 
 const jsonPath_strC = path.join( __dirname, '../../src/graphQL/GraphQL.Schema.json' ),
     mySchemaJSONGraphQL = JSON.stringify( {
-        query: fs.readFileSync( path.join( __dirname, '../../src/graphQL/api/SchemaJSON.graphql' ), {
-            encoding: 'utf8',
-        } ),
-    } );
+                                              query: fs.readFileSync( path.join( __dirname, '../../src/graphQL/api/SchemaJSON.graphql' ), {
+                                                  encoding: 'utf8',
+                                              } ),
+                                          } );
 
 // 获取"系统默认"的"GraphQL的Schema文档"
 if( true ){
@@ -117,7 +117,7 @@ if( true ){
                 }
             } );
         } )
-        .on( 'error', e => void ( reject( e ) ) ) ) );
+                          .on( 'error', e => void ( reject( e ) ) ) ) );
     }
 
     // 根据需要自己选取用哪个：
@@ -127,8 +127,8 @@ if( true ){
     // option4WWC_objC
     Update4GraphQLSchemaJSON( option4Dev2Natapp_objC )
     .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {
-        __schema: {},
-    }, result.data ) ) ) ) )
+                                                                                                __schema: {},
+                                                                                            }, result.data ) ) ) ) )
     .catch( e => void ( console.error( e ) ) );
 }
 
@@ -236,7 +236,7 @@ if( false ){
     // option4WWC_objC
     Update4GraphQLSchemaJSON( option4Dev2Natapp_objC )
     .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {
-        __schema: {},
-    }, result.data ) ) ) ) )
+                                                                                                __schema: {},
+                                                                                            }, result.data ) ) ) ) )
     .catch( e => void ( console.error( e ) ) );
 }

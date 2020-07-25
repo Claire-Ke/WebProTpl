@@ -20,18 +20,18 @@ sWorker4CT_ins.onConnect( ( port, onConnectEvent ) => {
     console.log( `${ sWorker4CT2Name_str }---onConnectEvent--->End` );
 
     Array.from( onConnectEvent.ports )
-    .forEach( ( c, i, a ) => {
-        c.onmessage = event => {
-            console.log( `${ sWorker4CT2Name_str }---port${ i }---onmessage--->Start` );
-            console.dir( c );
-            console.dir( event );
-            console.log( `${ sWorker4CT2Name_str }---port${ i }---onmessage--->End` );
+         .forEach( ( c, i, a ) => {
+             c.onmessage = event => {
+                 console.log( `${ sWorker4CT2Name_str }---port${ i }---onmessage--->Start` );
+                 console.dir( c );
+                 console.dir( event );
+                 console.log( `${ sWorker4CT2Name_str }---port${ i }---onmessage--->End` );
 
-            sWorker4CT_ins.portPostMessage( c, {
-                dataA: `${ sWorker4CT2Name_str }---port${ i }：${ new Date() }`,
-                numA: numA,
-            } );
-        };
-        c.start();
-    } );
+                 sWorker4CT_ins.portPostMessage( c, {
+                     dataA: `${ sWorker4CT2Name_str }---port${ i }：${ new Date() }`,
+                     numA: numA,
+                 } );
+             };
+             c.start();
+         } );
 } );

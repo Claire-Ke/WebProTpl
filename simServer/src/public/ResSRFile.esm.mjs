@@ -126,7 +126,7 @@ class ResSRFile{
                 'Content-Encoding': 'gzip',
             } );
             stream.pipe( CreGZip() )
-            .pipe( _this.#response );
+                  .pipe( _this.#response );
         }
         else{
             RemGZip( _this.#response );
@@ -155,7 +155,7 @@ class ResSRFile{
         fs.createReadStream( img4Path_str, {
             // highWaterMark: _this.#bufferSize_num,
         } )
-        .pipe( _this.#response );
+          .pipe( _this.#response );
 
         _this.#response.statusCode = 200;
         _this.#response.statusMessage = 'OK';
