@@ -93,6 +93,7 @@ const compilerOptions4lib_arrC = [
             'simServer',
             'simServer4Deno',
             'src/assets',
+            'src/graphQL',
             'src/pwa4Manifest',
             'src/static',
             'src/styles',
@@ -337,6 +338,21 @@ const compilerOptions4lib_arrC = [
                 'lessPubDir/*': [
                     'src/styles/less/public/*'
                 ],
+                'pcssDir/*': [
+                    'src/styles/postcss/*'
+                ],
+                'pcssBDir/*': [
+                    'src/styles/postcss/basic/*'
+                ],
+                'pcssMDir/*': [
+                    'src/styles/postcss/modules/*'
+                ],
+                'pcssPDir/*': [
+                    'src/styles/postcss/pages/*'
+                ],
+                'pcssPubDir/*': [
+                    'src/styles/postcss/public/*'
+                ],
                 'sassDir/*': [
                     'src/styles/sass/*'
                 ],
@@ -366,6 +382,21 @@ const compilerOptions4lib_arrC = [
                 ],
                 'scssPubDir/*': [
                     'src/styles/scss/public/*'
+                ],
+                'stylDir/*': [
+                    'src/styles/stylus/*'
+                ],
+                'stylBDir/*': [
+                    'src/styles/stylus/basic/*'
+                ],
+                'stylMDir/*': [
+                    'src/styles/stylus/modules/*'
+                ],
+                'stylPDir/*': [
+                    'src/styles/stylus/pages/*'
+                ],
+                'stylPubDir/*': [
+                    'src/styles/stylus/public/*'
                 ],
                 'tplEJSDir/*': [
                     'src/tplEJS/*'

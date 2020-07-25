@@ -22,14 +22,19 @@
         "../test/*",
         "../webpackRecords/*",
         "../.gitignore",
+        "../.graphqlconfig",
+        "../GetTypeScriptLib.js",
         "../OutPackageJSON.js",
         "../package.json",
         "../package-lock.json",
+        "../tsconfig.js",
+        "../tsconfig.json",
         "../webpack.BaseConfig.js",
         "../webpack.DevServer.js",
         "../webpack.LocalServer.js",
         "../webpack.Production.js",
         "../webpack.Test.js",
+        "../webstorm.webpack.js",
         "../代码切割说明.txt",
         "../具体项目开发时该模板可能需要修改的地方.txt",
         "../各类文件的loader处理说明.txt",
@@ -41,6 +46,6 @@
     "watch": [
         "simServer/src/*"
     ],
-    "ext": "js mjs cjs json json5",
+    "ext": "js ts mjs cjs json json5",
     "delay": "1000"
 }
