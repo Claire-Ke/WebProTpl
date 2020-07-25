@@ -96,7 +96,7 @@ let CT = new CTESM.CT(),
          * mounted不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用vm.$nextTick替换掉mounted。
          */
         mounted(){
-            this.$nextTick( function(){
+            this.$nextTick( function (){
                 let _this = this;
 
             } );
@@ -119,7 +119,7 @@ let CT = new CTESM.CT(),
          * updated不会承诺所有的子组件也都一起被重绘。如果你希望等到整个视图都重绘完毕，可以用vm.$nextTick替换掉updated。
          */
         updated(){
-            this.$nextTick( function(){
+            this.$nextTick( function (){
                 let _this = this;
 
             } );

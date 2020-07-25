@@ -119,25 +119,25 @@ function FileBtn( arg_obj = {} ){
                     'class': 'css-reset',
                 } );
                 CTO.aClassN( element, para_obj.class.split( ',' )
-                                              .filter( c => {
-                                                  is_boo = CTO.trim( c ).length !== 0;
-                                                  index_num = 0;
-                                                  if( is_boo && c.includes( postfix_arr[ 0 ] ) ){
-                                                      defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 0 ] ) && ( index_num = i ) ) );
-                                                      defClass_arr.splice( index_num, 1 );
-                                                  }
-                                                  else if( is_boo && c.includes( postfix_arr[ 1 ] ) ){
-                                                      defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 1 ] ) && ( index_num = i ) ) );
-                                                      defClass_arr.splice( index_num, 1 );
-                                                  }
-                                                  else if( is_boo && c.includes( postfix_arr[ 2 ] ) ){
-                                                      defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 2 ] ) && ( index_num = i ) ) );
-                                                      defClass_arr.splice( index_num, 1 );
-                                                  }
-                                                  return is_boo;
-                                              } )
-                                              .concat( defClass_arr )
-                                              .join( ',' ) );
+                .filter( c => {
+                    is_boo = CTO.trim( c ).length !== 0;
+                    index_num = 0;
+                    if( is_boo && c.includes( postfix_arr[ 0 ] ) ){
+                        defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 0 ] ) && ( index_num = i ) ) );
+                        defClass_arr.splice( index_num, 1 );
+                    }
+                    else if( is_boo && c.includes( postfix_arr[ 1 ] ) ){
+                        defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 1 ] ) && ( index_num = i ) ) );
+                        defClass_arr.splice( index_num, 1 );
+                    }
+                    else if( is_boo && c.includes( postfix_arr[ 2 ] ) ){
+                        defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 2 ] ) && ( index_num = i ) ) );
+                        defClass_arr.splice( index_num, 1 );
+                    }
+                    return is_boo;
+                } )
+                .concat( defClass_arr )
+                .join( ',' ) );
             }
             else if( element.localName === 'label' ){
                 CTO.sAttr( element, {

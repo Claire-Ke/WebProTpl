@@ -8,62 +8,65 @@
 
 //不论顺序如何！setImmediate总是先执行！
 /*
-setTimeout(() => {
-    setImmediate(() => {
-        console.log('setImmediate');
-    });
-    setTimeout(() => {
-        console.log('setTimeout');
-    }, 0);
-}, 0);
-*/
+ setTimeout(() => {
+ setImmediate(() => {
+ console.log('setImmediate');
+ });
+ setTimeout(() => {
+ console.log('setTimeout');
+ }, 0);
+ }, 0);
+ */
 
-function testEventLoop() {
-  console.log('=============');
+function testEventLoop(){
+    console.log( '=============' );
 
-// h2
-  setImmediate(() => {
-    console.log('setImmediate phase');
+    // h2
+    setImmediate( () => {
+        console.log( 'setImmediate phase' );
 
-// w5
-    process.nextTick(() => {
-      console.log('setImmediate phase - nextTick');
-    });
+        // w5
+        process.nextTick( () => {
+            console.log( 'setImmediate phase - nextTick' );
+        } );
 
-// w6
-    Promise.resolve().then(() => {
-      console.log('setImmediate phase - promise');
-    });
+        // w6
+        Promise.resolve()
+        .then( () => {
+            console.log( 'setImmediate phase - promise' );
+        } );
 
-  }, 3);
+    }, 3 );
 
-// h1
-  setTimeout(() => {
-    console.log('setTimeout phase');
+    // h1
+    setTimeout( () => {
+        console.log( 'setTimeout phase' );
 
-// w3
-    process.nextTick(() => {
-      console.log('setTimeout phase - nextTick');
-    });
+        // w3
+        process.nextTick( () => {
+            console.log( 'setTimeout phase - nextTick' );
+        } );
 
-// w4
-    Promise.resolve().then(() => {
-      console.log('setTimeout phase - promise');
-    });
+        // w4
+        Promise.resolve()
+        .then( () => {
+            console.log( 'setTimeout phase - promise' );
+        } );
 
-  }, 3);
+    }, 3 );
 
-  console.log('Poll phase');
+    console.log( 'Poll phase' );
 
-// w1
-  process.nextTick(() => {
-    console.log('Poll phase - nextTick');
-  });
+    // w1
+    process.nextTick( () => {
+        console.log( 'Poll phase - nextTick' );
+    } );
 
-// w2
-  Promise.resolve().then(() => {
-    console.log('Poll phase - promise');
-  });
+    // w2
+    Promise.resolve()
+    .then( () => {
+        console.log( 'Poll phase - promise' );
+    } );
 }
 
 testEventLoop();

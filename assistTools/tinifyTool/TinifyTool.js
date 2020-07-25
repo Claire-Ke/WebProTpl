@@ -23,14 +23,14 @@ Tinify.key = '0s9wNbBqccdXS2z9x45Z92MLy0t2J6ln';
 
 inDirFileName_arrC.forEach( c => {
     suffix_str = path.extname( c )
-                     .slice( 1 )
-                     .toLocaleLowerCase();
+    .slice( 1 )
+    .toLocaleLowerCase();
     inDirFileSrc_str = path.join( __dirname, `./inDir/${ c }` );
 
     if( fs.statSync( inDirFileSrc_str ).size < maxSize_num ){
         if( suffix_str === 'png' || suffix_str === 'jpe' || suffix_str === 'jpeg' || suffix_str === 'jpg' ){
             Tinify.fromFile( inDirFileSrc_str )
-                  .toFile( path.join( __dirname, `./outDir/${ c }` ) );
+            .toFile( path.join( __dirname, `./outDir/${ c }` ) );
         }
         else{
             console.error( '只支持后缀名为“.png”、“.jpe”、“.jpeg”、“.jpg”的图片。' );

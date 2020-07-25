@@ -36,14 +36,14 @@ function OutSRIValue( { assets_obj, hashName_arr = [ 'sha512' ], fileName_str, i
         if( keyName_str.includes( fileName_str ) ){
             item = assets_obj[ keyName_str ];
             itemFileName_str = keyName_str.toLowerCase()
-                                          .trim();
+            .trim();
             isFileType_boo = itemFileName_str.endsWith( '.js' ) || itemFileName_str.endsWith( '.css' ) || itemFileName_str.endsWith( '.json' );
             _value = item[ '_value' ];
             isValue_boo = _value !== null && _value !== undefined && _value !== '';
             if( isFileType_boo && isValue_boo ){
                 hashName_arr.forEach( c => void ( sriValue_str += c + '-' + crypto.createHash( c )
-                                                                                  .update( _value, inputEncoding4Update_str )
-                                                                                  .digest( encoding4Digest_str ) + ' ' ) );
+                .update( _value, inputEncoding4Update_str )
+                .digest( encoding4Digest_str ) + ' ' ) );
                 break;
             }
         }

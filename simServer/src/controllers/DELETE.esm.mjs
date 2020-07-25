@@ -27,31 +27,31 @@ async function DELETEContr( server, request, response ){
         }, reject = () => {
         } ) => {
             CreateFormidable()
-                .parse( request, ( err, fields, files ) => {
-                    if( err ){
-                        console.log( '------>formidable DELETEContr err Start<------' );
-                        console.error( err );
-                        console.log( '------>formidable DELETEContr err End<------' );
+            .parse( request, ( err, fields, files ) => {
+                if( err ){
+                    console.log( '------>formidable DELETEContr err Start<------' );
+                    console.error( err );
+                    console.log( '------>formidable DELETEContr err End<------' );
 
-                        return;
-                    }
+                    return;
+                }
 
-                    // fields 对象数据，所有字段
-                    if( fields ){
-                        console.log( '--->fields<---Start' );
-                        console.dir( fields );
-                        console.log( '--->fields<---End' );
+                // fields 对象数据，所有字段
+                if( fields ){
+                    console.log( '--->fields<---Start' );
+                    console.dir( fields );
+                    console.log( '--->fields<---End' );
 
-                        resolve( fields );
-                    }
+                    resolve( fields );
+                }
 
-                    // files 对象数据，所有文件
-                    if( files ){
-                        console.log( '--->files<---Start' );
-                        console.dir( files );
-                        console.log( '--->files<---End' );
-                    }
-                } );
+                // files 对象数据，所有文件
+                if( files ){
+                    console.log( '--->files<---Start' );
+                    console.dir( files );
+                    console.log( '--->files<---End' );
+                }
+            } );
         } );
 
     Object.assign( resultContent, fields );

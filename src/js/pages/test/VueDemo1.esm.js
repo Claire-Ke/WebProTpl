@@ -22,7 +22,7 @@ if( true ){
     // 全局异步加载一个组件(包含处理加载状态)，标准写法！可以更改组件的相关配置属性！
     // 记得先深度拷贝再修改组件的属性，不然多次如下使用后会出现最后一个组件的修改会覆盖之前组件的修改
     // 不要复制完整对象的描述符(也就是不要执行CT.completeAssign)，不然会出现覆盖的情况！
-    let Global4VueComponDemo = Vue.component( 'VueComponDemo', function( resolve = () => {
+    let Global4VueComponDemo = Vue.component( 'VueComponDemo', function ( resolve = () => {
         }, reject = () => {
         } ){
             setTimeout( () => {
@@ -68,7 +68,7 @@ if( true ){
                 timeout: 10000,
             };
         } ),
-        Global4VueComponDemoA = Vue.component( 'VueComponDemoA', function( resolve = () => {
+        Global4VueComponDemoA = Vue.component( 'VueComponDemoA', function ( resolve = () => {
         }, reject = () => {
         } ){
             setTimeout( () => {
@@ -118,7 +118,7 @@ if( true ){
         // 全局异步加载一个组件，例子1，标准写法！可以更改组件的相关配置属性！
         // 记得先深度拷贝再修改组件的属性，不然多次如下使用后会出现最后一个组件的修改会覆盖之前组件的修改
         // 不要复制完整对象的描述符(也就是不要执行CT.completeAssign)，不然会出现覆盖的情况！
-        Global4ExampleA = Vue.component( 'ExampleA', function( resolve = () => {
+        Global4ExampleA = Vue.component( 'ExampleA', function ( resolve = () => {
         }, reject = () => {
         } ){
             setTimeout( () => {
@@ -157,7 +157,7 @@ if( true ){
                 console.error( error );
             } );
         } ),
-        Global4ExampleA1 = Vue.component( 'ExampleA1', function( resolve = () => {
+        Global4ExampleA1 = Vue.component( 'ExampleA1', function ( resolve = () => {
         }, reject = () => {
         } ){
             setTimeout( () => {
@@ -190,7 +190,7 @@ if( true ){
         // 全局异步加载一个组件，例子2，标准写法！可以更改组件的相关配置属性！
         // 记得先深度拷贝再修改组件的属性，不然多次如下使用后会出现最后一个组件的修改会覆盖之前组件的修改
         // 不要复制完整对象的描述符(也就是不要执行CT.completeAssign)，不然会出现覆盖的情况！
-        Global4ExampleA2 = Vue.component( 'ExampleA2', async function( resolve = () => {
+        Global4ExampleA2 = Vue.component( 'ExampleA2', async function ( resolve = () => {
         }, reject = () => {
         } ){
             let { ExampleA, default: ExampleADef } = await import( 'vueVDir/ExampleA.vue' ).then( function resolve( arg ){
@@ -218,7 +218,7 @@ if( true ){
 
             resolve( ExampleADef );
         } ),
-        Global4ExampleA21 = Vue.component( 'ExampleA21', async function( resolve = () => {
+        Global4ExampleA21 = Vue.component( 'ExampleA21', async function ( resolve = () => {
         }, reject = () => {
         } ){
             let { ExampleA, default: ExampleADef } = await import( 'vueVDir/ExampleA.vue' ).then( function resolve( arg ){
@@ -249,7 +249,7 @@ if( true ){
         // 全局异步加载一个组件，例子3，标准写法！可以更改组件的相关配置属性！
         // 记得先深度拷贝再修改组件的属性，不然多次如下使用后会出现最后一个组件的修改会覆盖之前组件的修改！
         // 不要复制完整对象的描述符(也就是不要执行CT.completeAssign)，不然会出现覆盖的情况！
-        Global4ExampleA3 = Vue.component( 'ExampleA3', function( resolve = () => {
+        Global4ExampleA3 = Vue.component( 'ExampleA3', function ( resolve = () => {
         }, reject = () => {
         } ){
             setTimeout( async () => {
@@ -279,7 +279,7 @@ if( true ){
                 resolve( ExampleA );
             }, 3000 );
         } ),
-        Global4ExampleA31 = Vue.component( 'ExampleA31', function( resolve = () => {
+        Global4ExampleA31 = Vue.component( 'ExampleA31', function ( resolve = () => {
         }, reject = () => {
         } ){
             setTimeout( async () => {
@@ -507,7 +507,7 @@ if( true ){
         } ),
 
         // 全局异步加载一个来自服务器的组件，标准写法！
-        Global4VueComponentB = Vue.component( 'Global4VueComponentB', function( resolve = () => {
+        Global4VueComponentB = Vue.component( 'Global4VueComponentB', function ( resolve = () => {
         }, reject = () => {
         } ){
             setTimeout( () => {
@@ -615,10 +615,10 @@ let o1 = {
         slotAttr1: 'slotAttr1',
         isTransitionTest1: true,
         cells: Array.apply( null, { length: 81, } )
-                    .map( ( c, i, a ) => ( {
-                        id: i,
-                        number: i % 9 + 1,
-                    } ) ),
+        .map( ( c, i, a ) => ( {
+            id: i,
+            number: i % 9 + 1,
+        } ) ),
 
         rootState1: Store.state.rootState1,
         moduleA: Store.state.moduleA.moduleA,
@@ -923,7 +923,7 @@ let o1 = {
      * mounted不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用vm.$nextTick替换掉mounted。
      */
     mounted(){
-        this.$nextTick( function(){
+        this.$nextTick( function (){
             let _this = this;
         } );
     },
@@ -945,7 +945,7 @@ let o1 = {
      * updated不会承诺所有的子组件也都一起被重绘。如果你希望等到整个视图都重绘完毕，可以用vm.$nextTick替换掉updated。
      */
     updated(){
-        this.$nextTick( function(){
+        this.$nextTick( function (){
             let _this = this;
         } );
     },

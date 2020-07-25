@@ -323,14 +323,14 @@
         }
 
         console.dir( Fun1( {
-                               name: '阿丁',
-                               age: 18,
-                           } ) );
+            name: '阿丁',
+            age: 18,
+        } ) );
         console.dir( Fun1() );
         console.dir( Fun1( {
-                               name: '汤圆',
-                               age: 12,
-                           } ) );
+            name: '汤圆',
+            age: 12,
+        } ) );
 
         type type4Fun2 = { name: string, age?: number };
 
@@ -357,14 +357,14 @@
         }
 
         console.dir( Fun3( [
-                               111,
-                               222,
-                           ] ) );
+            111,
+            222,
+        ] ) );
         console.dir( Fun3() );
         console.dir( Fun3( [
-                               999,
-                               888,
-                           ] ) );
+            999,
+            888,
+        ] ) );
     }
 }
 {
@@ -380,9 +380,9 @@
         }
 
         console.dir( Fun1( {
-                               a: 11,
-                               b: 22,
-                           } ) );
+            a: 11,
+            b: 22,
+        } ) );
 
         console.dir( Fun1() );
 
@@ -492,18 +492,18 @@
                                                                                            : ( str4Obj[ c ] = 1 ) ) );
 
             const result4Sort: any = Object.entries( str4Obj )
-                                           .sort( (
-                                                      [
-                                                          // @ts-expect-error
-                                                          keyNameA,
-                                                          keyValueA
-                                                      ]: any,
-                                                      [
-                                                          // @ts-expect-error
-                                                          keyNameB,
-                                                          keyValueB
-                                                      ]: any
-                                                  ): number => keyValueB - keyValueA );
+            .sort( (
+                [
+                    // @ts-expect-error
+                    keyNameA,
+                    keyValueA
+                ]: any,
+                [
+                    // @ts-expect-error
+                    keyNameB,
+                    keyValueB
+                ]: any
+            ): number => keyValueB - keyValueA );
 
             console.log( str4Target );
             console.dir( result4Sort );
@@ -531,17 +531,17 @@
         ];
 
         let result: Array<[ string, number ]> = arr1.sort( (
-                                                               [
-                                                                   // @ts-expect-error
-                                                                   keyNameA,
-                                                                   keyValueA
-                                                               ]: [ string, number ],
-                                                               [
-                                                                   // @ts-expect-error
-                                                                   keyNameB,
-                                                                   keyValueB
-                                                               ]: [ string, number ]
-                                                           ): number => keyValueB - keyValueA );
+            [
+                // @ts-expect-error
+                keyNameA,
+                keyValueA
+            ]: [ string, number ],
+            [
+                // @ts-expect-error
+                keyNameB,
+                keyValueB
+            ]: [ string, number ]
+        ): number => keyValueB - keyValueA );
 
         console.dir( result );
     }

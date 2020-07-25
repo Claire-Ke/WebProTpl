@@ -48,7 +48,7 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
                 event( event, filesArr ){
                     if( filesArr.length > 0 ){
                         Array.from( filesArr )
-                             .forEach( ( c, i, a ) => void ( formData.append( 'img', c, c.name ) ) );
+                        .forEach( ( c, i, a ) => void ( formData.append( 'img', c, c.name ) ) );
 
                         CT.fetch( 'http://localhost:9999/SimServer/POST', {
                             success( data4ResponseType, response ){

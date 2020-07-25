@@ -8,9 +8,7 @@
 
 'use strict';
 
-const ActionsRoot = {
-
-};
+const ActionsRoot = {};
 
 export {
     ActionsRoot,

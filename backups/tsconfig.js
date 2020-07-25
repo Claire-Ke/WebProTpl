@@ -142,9 +142,9 @@ const compilerOptions4lib_arrC = [
             'module': 'ES2020',
             // [ 'lib.es6.d.ts', 'lib.es2015.d.ts' ]
             'lib': ( () => fs.readdirSync( path.join( __dirname, './node_modules/typescript/lib' ) )
-                             .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
-                                                        .isDirectory() )
-                             .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) ) )(),
+            .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
+            .isDirectory() )
+            .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) ) )(),
             // true时，可以在.ts中导入.js；但是，false时，这么干，会报错！
             'allowJs': false,
             // true时，当把.js文件导入到.ts文件中时，如果.js文件中有错，将报告错误，这相当于在项目中包含的所有JavaScript文件的顶部包含"// @ts-check"。
@@ -473,7 +473,6 @@ const compilerOptions4lib_arrC = [
 
             // Source Maps Start
 
-            'sourceRoot': './test/',
             'mapRoot': './test/',
             // 设置后，TypeScript将在.js文件中嵌入源映射内容，而不是写出.js.map文件来提供源映射。尽管这会产生更大的JS文件，但在某些情况下，这是很方便的。
             // 例如，您可能希望在不允许提供.map文件的Web服务器上调试JS文件。

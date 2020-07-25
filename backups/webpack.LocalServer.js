@@ -45,7 +45,7 @@ function ResIcon( req, res, url = path.resolve( __dirname, './simServer/staticRe
 
     res.setHeader( 'Content-Type', 'image/vnd.microsoft.icon' );
     fs.createReadStream( url )
-      .pipe( res );
+    .pipe( res );
     res.statusCode = 200;
     res.statusMessage = 'OK';
 }

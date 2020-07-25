@@ -234,76 +234,76 @@ let CT = new CTESM.CT();
          */
 
         ws4Proxy_ins.post( { type: 'json', } )
-                    .POST( {
-                        options: {
-                            // method: 'GET',
-                            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                            // responseType: 'json',
-                            headers: new Headers( { 'Content-Type': 'application/json', } ),
-                            mode: 'cors',
-                            credentials: 'omit',
-                            body: JSON.stringify( {
-                                type: 'json',
-                            } ),
-                        },
-                    } )
-                    .then( json => {
-                        console.dir( json );
-                    } );
+        .POST( {
+            options: {
+                // method: 'GET',
+                // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                // responseType: 'json',
+                headers: new Headers( { 'Content-Type': 'application/json', } ),
+                mode: 'cors',
+                credentials: 'omit',
+                body: JSON.stringify( {
+                    type: 'json',
+                } ),
+            },
+        } )
+        .then( json => {
+            console.dir( json );
+        } );
 
         ws4Proxy_ins.delete( { type: 'json', } )
-                    .DELETE( {
-                        options: {
-                            // method: 'GET',
-                            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                            // responseType: 'json',
-                            headers: new Headers( { 'Content-Type': 'application/json', } ),
-                            mode: 'cors',
-                            credentials: 'omit',
-                            body: JSON.stringify( {
-                                type: 'json',
-                            } ),
-                        },
-                    } )
-                    .then( json => {
-                        console.dir( json );
-                    } );
+        .DELETE( {
+            options: {
+                // method: 'GET',
+                // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                // responseType: 'json',
+                headers: new Headers( { 'Content-Type': 'application/json', } ),
+                mode: 'cors',
+                credentials: 'omit',
+                body: JSON.stringify( {
+                    type: 'json',
+                } ),
+            },
+        } )
+        .then( json => {
+            console.dir( json );
+        } );
 
         ws4Proxy_ins.put( { type: 'json', } )
-                    .PUT( {
-                        options: {
-                            // method: 'GET',
-                            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                            // responseType: 'json',
-                            headers: new Headers( { 'Content-Type': 'application/json', } ),
-                            mode: 'cors',
-                            credentials: 'omit',
-                            body: JSON.stringify( {
-                                type: 'json',
-                            } ),
-                        },
-                    } )
-                    .then( json => {
-                        console.dir( json );
-                    } );
+        .PUT( {
+            options: {
+                // method: 'GET',
+                // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                // responseType: 'json',
+                headers: new Headers( { 'Content-Type': 'application/json', } ),
+                mode: 'cors',
+                credentials: 'omit',
+                body: JSON.stringify( {
+                    type: 'json',
+                } ),
+            },
+        } )
+        .then( json => {
+            console.dir( json );
+        } );
 
         ws4Proxy_ins.get( { type: 'json', } )
-                    .GET( {
-                        options: {
-                            // method: 'GET',
-                            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                            // responseType: 'json',
-                            // headers: new Headers( { 'Content-Type': 'application/json', } ),
-                            mode: 'cors',
-                            credentials: 'omit',
-                            body: {
-                                type: 'json',
-                            },
-                        },
-                    } )
-                    .then( json => {
-                        console.dir( json );
-                    } );
+        .GET( {
+            options: {
+                // method: 'GET',
+                // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+                // responseType: 'json',
+                // headers: new Headers( { 'Content-Type': 'application/json', } ),
+                mode: 'cors',
+                credentials: 'omit',
+                body: {
+                    type: 'json',
+                },
+            },
+        } )
+        .then( json => {
+            console.dir( json );
+        } );
     }
 
     if( false ){
@@ -312,17 +312,17 @@ let CT = new CTESM.CT();
             ws4Proxy_GET = ws4Proxy_ins.get( { type: 'json', } );
 
         ws4Proxy_GET.GET( {
-                        options: {
-                            mode: 'cors',
-                            credentials: 'omit',
-                            body: {
-                                type: 'json5',
-                            },
-                        },
-                    } )
-                    .then( json => {
-                        console.dir( json );
-                    } );
+            options: {
+                mode: 'cors',
+                credentials: 'omit',
+                body: {
+                    type: 'json5',
+                },
+            },
+        } )
+        .then( json => {
+            console.dir( json );
+        } );
     }
 }
 
@@ -348,26 +348,26 @@ let CT = new CTESM.CT();
          */
 
         Promise.any( [
-                   reject1,
-                   reject2,
-               ] )
-               .then( result => {
-                   console.dir( result );
-               } )
-               .catch( ( result/*{ errors, stack, message }*/ ) => {
-                   console.dir( result );
+            reject1,
+            reject2,
+        ] )
+        .then( result => {
+            console.dir( result );
+        } )
+        .catch( ( result/*{ errors, stack, message }*/ ) => {
+            console.dir( result );
 
-                   // [ 'reject1', 'reject2' ]
-                   // console.dir( errors );
+            // [ 'reject1', 'reject2' ]
+            // console.dir( errors );
 
-                   // AggregateError: No one promise resolved
-                   //     at new AggregateError (webpack:///./node_modules/core-js/modules/esnext.aggregate-error.js?:20:27)
-                   //     at eval (webpack:///./node_modules/core-js/modules/esnext.promise.any.js?:38:33)
-                   // console.log( `stack--->${ stack }<---stack` );
+            // AggregateError: No one promise resolved
+            //     at new AggregateError (webpack:///./node_modules/core-js/modules/esnext.aggregate-error.js?:20:27)
+            //     at eval (webpack:///./node_modules/core-js/modules/esnext.promise.any.js?:38:33)
+            // console.log( `stack--->${ stack }<---stack` );
 
-                   // No one promise resolved
-                   // console.log( `message--->${ message }` );
-               } );
+            // No one promise resolved
+            // console.log( `message--->${ message }` );
+        } );
     }
 }
 
@@ -377,17 +377,17 @@ let CT = new CTESM.CT();
         console.log( '1' );
 
         Promise.try( () => new Promise( ( resolve = () => {
-               }, reject = () => {
-               } ) => {
-                   resolve( '5' );
-               } ) )
-               .then( arg => {
-                   console.log( arg );
-                   console.log( '4' );
-               } )
-               .catch( error => {
-                   console.error( error.message );
-               } );
+        }, reject = () => {
+        } ) => {
+            resolve( '5' );
+        } ) )
+        .then( arg => {
+            console.log( arg );
+            console.log( '4' );
+        } )
+        .catch( error => {
+            console.error( error.message );
+        } );
 
         console.log( '2' );
     }

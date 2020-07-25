@@ -95,157 +95,157 @@ const {
 } = CT.urlSea2Obj();
 
 MathTool4WASM()
-    .then( ( {
-                 module,
-                 instance,
-                 funs,
-             } ) => {
-        const {
-            Fib,
+.then( ( {
+             module,
+             instance,
+             funs,
+         } ) => {
+    const {
+        Fib,
 
-            Add,
-            Sub,
-            Mul,
-            Div,
-            Mod,
+        Add,
+        Sub,
+        Mul,
+        Div,
+        Mod,
 
-            Pow,
-            Fmod,
-            Remainder,
-            Fmax,
-            Fmin,
-            Fdim,
+        Pow,
+        Fmod,
+        Remainder,
+        Fmax,
+        Fmin,
+        Fdim,
 
-            NaN,
+        NaN,
 
-            Exp,
-            Exp2,
-            Expm1,
-            Log,
-            Log10,
-            Log2,
-            Log1p,
-            LogXY,
-            Cbrt,
-            Hypot2,
-            Hypot3,
-            Sin,
-            Cos,
-            Tan,
-            Asin,
-            Acos,
-            Atan,
-            Atan2,
-            Sinh,
-            Cosh,
-            Tanh,
-            Asinh,
-            Acosh,
-            Atanh,
-            Ceil,
-            Floor,
-            Trunc,
-            Round,
-            Nearbyint,
-            Rint,
-            Ldexp,
+        Exp,
+        Exp2,
+        Expm1,
+        Log,
+        Log10,
+        Log2,
+        Log1p,
+        LogXY,
+        Cbrt,
+        Hypot2,
+        Hypot3,
+        Sin,
+        Cos,
+        Tan,
+        Asin,
+        Acos,
+        Atan,
+        Atan2,
+        Sinh,
+        Cosh,
+        Tanh,
+        Asinh,
+        Acosh,
+        Atanh,
+        Ceil,
+        Floor,
+        Trunc,
+        Round,
+        Nearbyint,
+        Rint,
+        Ldexp,
 
-        } = funs;
+    } = funs;
 
-        // 小于4时，值都是1；大于等于4时，可用这个公式快速求值：3 + Math.trunc( ( num - 4 ) / 2 ) * 4
-        function BeerCount4Fast( num = 10 ){
-            if( num < 2 ){
-                return '不够钱(每瓶两块钱，四个瓶盖换一瓶、两个空瓶换一瓶，不能借瓶盖、空瓶)。';
+    // 小于4时，值都是1；大于等于4时，可用这个公式快速求值：3 + Math.trunc( ( num - 4 ) / 2 ) * 4
+    function BeerCount4Fast( num = 10 ){
+        if( num < 2 ){
+            return '不够钱(每瓶两块钱，四个瓶盖换一瓶、两个空瓶换一瓶，不能借瓶盖、空瓶)。';
+        }
+        else if( num < 4 ){
+            return 1;
+        }
+        else{
+            return 3 + Math.trunc( ( num - 4 ) / 2 ) * 4;
+        }
+    }
+
+    function BeerCount( num = BeerCountX ){
+        let result_num = Trunc( num / 2 ),
+            // 瓶盖数
+            bottleCap_num = result_num,
+            // 空瓶数
+            emptyBottle_num = result_num,
+            // 是否满足计算“瓶盖数”
+            handleA4Judge = num => num >= 4,
+            // 是否满足计算“空瓶数”
+            handleB4Judge = num => num >= 2,
+            boo0 = result_num > 0,
+            boo1 = !handleA4Judge( result_num ) && !handleB4Judge( result_num ),
+            integer_num = null,
+            remainder_num = null,
+            // 计算“瓶盖数”
+            handle4BottleCap = () => {
+                while( handleA4Judge( bottleCap_num ) ){
+                    integer_num = Trunc( bottleCap_num / 4 );
+                    remainder_num = bottleCap_num % 4;
+
+                    bottleCap_num = integer_num + remainder_num;
+                    emptyBottle_num += integer_num;
+                    result_num += integer_num;
+                }
+            },
+            // 计算“空瓶数”
+            handle4EmptyBottle = () => {
+                while( handleB4Judge( emptyBottle_num ) ){
+                    integer_num = Trunc( emptyBottle_num / 2 );
+                    remainder_num = emptyBottle_num % 2;
+
+                    emptyBottle_num = integer_num + remainder_num;
+                    bottleCap_num += integer_num;
+                    result_num += integer_num;
+                }
+            };
+
+        if( boo0 && boo1 ){
+            return result_num;
+        }
+        else if( boo0 && !boo1 ){
+            while( handleA4Judge( bottleCap_num ) || handleB4Judge( emptyBottle_num ) ){
+                handle4EmptyBottle();
+                handle4BottleCap();
             }
-            else if( num < 4 ){
-                return 1;
+
+            return result_num;
+        }
+        else{
+            return '不够钱(每瓶两块钱，四个瓶盖换一瓶、两个空瓶换一瓶，不能借瓶盖、空瓶)。';
+        }
+    }
+
+    CT.iInsertA( '.helloWorld article', `<p class = 'css-reset' >------fetch WASM Start------</p><br />` );
+
+    const startTime = performance.now();
+    const result_num = do{
+        let num = Fib( FibX, 1, 1 );
+
+        if( 'BigInt' in window ){
+            if( CT.isNaN( num ) ){
+                console.log( '项数别超过1476！！！' );
+                Infinity;
             }
             else{
-                return 3 + Math.trunc( ( num - 4 ) / 2 ) * 4;
+                BigInt( num );
             }
         }
-
-        function BeerCount( num = BeerCountX ){
-            let result_num = Trunc( num / 2 ),
-                // 瓶盖数
-                bottleCap_num = result_num,
-                // 空瓶数
-                emptyBottle_num = result_num,
-                // 是否满足计算“瓶盖数”
-                handleA4Judge = num => num >= 4,
-                // 是否满足计算“空瓶数”
-                handleB4Judge = num => num >= 2,
-                boo0 = result_num > 0,
-                boo1 = !handleA4Judge( result_num ) && !handleB4Judge( result_num ),
-                integer_num = null,
-                remainder_num = null,
-                // 计算“瓶盖数”
-                handle4BottleCap = () => {
-                    while( handleA4Judge( bottleCap_num ) ){
-                        integer_num = Trunc( bottleCap_num / 4 );
-                        remainder_num = bottleCap_num % 4;
-
-                        bottleCap_num = integer_num + remainder_num;
-                        emptyBottle_num += integer_num;
-                        result_num += integer_num;
-                    }
-                },
-                // 计算“空瓶数”
-                handle4EmptyBottle = () => {
-                    while( handleB4Judge( emptyBottle_num ) ){
-                        integer_num = Trunc( emptyBottle_num / 2 );
-                        remainder_num = emptyBottle_num % 2;
-
-                        emptyBottle_num = integer_num + remainder_num;
-                        bottleCap_num += integer_num;
-                        result_num += integer_num;
-                    }
-                };
-
-            if( boo0 && boo1 ){
-                return result_num;
-            }
-            else if( boo0 && !boo1 ){
-                while( handleA4Judge( bottleCap_num ) || handleB4Judge( emptyBottle_num ) ){
-                    handle4EmptyBottle();
-                    handle4BottleCap();
-                }
-
-                return result_num;
+        else{
+            if( CT.isNaN( num ) ){
+                console.log( '项数别超过1476！！！' );
+                Infinity;
             }
             else{
-                return '不够钱(每瓶两块钱，四个瓶盖换一瓶、两个空瓶换一瓶，不能借瓶盖、空瓶)。';
+                JSBI.BigInt( num );
             }
         }
+    };
+    const endTime = performance.now();
 
-        CT.iInsertA( '.helloWorld article', `<p class = 'css-reset' >------fetch WASM Start------</p><br />` );
-
-        const startTime = performance.now();
-        const result_num = do{
-            let num = Fib( FibX, 1, 1 );
-
-            if( 'BigInt' in window ){
-                if( CT.isNaN( num ) ){
-                    console.log( '项数别超过1476！！！' );
-                    Infinity;
-                }
-                else{
-                    BigInt( num );
-                }
-            }
-            else{
-                if( CT.isNaN( num ) ){
-                    console.log( '项数别超过1476！！！' );
-                    Infinity;
-                }
-                else{
-                    JSBI.BigInt( num );
-                }
-            }
-        };
-        const endTime = performance.now();
-
-        CT.iInsertA( '.helloWorld article', `
+    CT.iInsertA( '.helloWorld article', `
 <p class = 'css-reset' >WASM_BeerCount( ${ BeerCountX } )：${ BeerCount( BeerCountX ) }</p><br />
 
 <p class = 'css-reset' >WASM_Fib( ${ FibX } )：${ result_num }</p><br />
@@ -314,5 +314,5 @@ MathTool4WASM()
 <p class = 'css-reset' >------fetch WASM End------</p><br />
 ` );
 
-    } )
-    .catch( error => void ( CT.iInsertA( '.helloWorld article', `<p class = 'css-reset' >error：${ error }</p><br />` ) ) );
+} )
+.catch( error => void ( CT.iInsertA( '.helloWorld article', `<p class = 'css-reset' >error：${ error }</p><br />` ) ) );

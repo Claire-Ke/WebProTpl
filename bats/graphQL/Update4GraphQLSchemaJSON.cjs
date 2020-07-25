@@ -81,43 +81,43 @@ if( true ){
         return new Promise( ( resolve = () => {
         }, reject = () => {
         } ) => void ( http.get( opt, res => {
-                              const {
-                                  statusCode,
-                              } = res;
-                              const contentType = res.headers[ 'content-type' ];
+            const {
+                statusCode,
+            } = res;
+            const contentType = res.headers[ 'content-type' ];
 
-                              let error = null;
+            let error = null;
 
-                              if( statusCode !== 200 ){
-                                  error = new Error( 'Request Failed.\n' + `Status Code: ${ statusCode }` );
-                              }
-                              else if( !/^application\/json/.test( contentType ) ){
-                                  error = new Error( 'Invalid content-type.\n' + `Expected application/json but received ${ contentType }` );
-                              }
+            if( statusCode !== 200 ){
+                error = new Error( 'Request Failed.\n' + `Status Code: ${ statusCode }` );
+            }
+            else if( !/^application\/json/.test( contentType ) ){
+                error = new Error( 'Invalid content-type.\n' + `Expected application/json but received ${ contentType }` );
+            }
 
-                              if( error ){
-                                  // 使用响应数据释放内存
-                                  res.resume();
+            if( error ){
+                // 使用响应数据释放内存
+                res.resume();
 
-                                  return error;
-                              }
+                return error;
+            }
 
-                              res.setEncoding( 'utf8' );
+            res.setEncoding( 'utf8' );
 
-                              let rawData = '';
+            let rawData = '';
 
-                              res.on( 'data', chunk => void ( rawData += chunk ) );
+            res.on( 'data', chunk => void ( rawData += chunk ) );
 
-                              res.on( 'end', () => {
-                                  try{
-                                      resolve( JSON.parse( rawData ) );
-                                  }
-                                  catch( e ){
-                                      reject( e );
-                                  }
-                              } );
-                          } )
-                          .on( 'error', e => void ( reject( e ) ) ) ) );
+            res.on( 'end', () => {
+                try{
+                    resolve( JSON.parse( rawData ) );
+                }
+                catch( e ){
+                    reject( e );
+                }
+            } );
+        } )
+        .on( 'error', e => void ( reject( e ) ) ) ) );
     }
 
     // 根据需要自己选取用哪个：
@@ -126,10 +126,10 @@ if( true ){
     // option4Test_objC
     // option4WWC_objC
     Update4GraphQLSchemaJSON( option4Dev2Natapp_objC )
-        .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {
-            __schema: {},
-        }, result.data ) ) ) ) )
-        .catch( e => void ( console.error( e ) ) );
+    .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {
+        __schema: {},
+    }, result.data ) ) ) ) )
+    .catch( e => void ( console.error( e ) ) );
 }
 
 // 获取"自己定义"的更加全面详细的"GraphQL的Schema文档"
@@ -235,8 +235,8 @@ if( false ){
     // option4Test_objC
     // option4WWC_objC
     Update4GraphQLSchemaJSON( option4Dev2Natapp_objC )
-        .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {
-            __schema: {},
-        }, result.data ) ) ) ) )
-        .catch( e => void ( console.error( e ) ) );
+    .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {
+        __schema: {},
+    }, result.data ) ) ) ) )
+    .catch( e => void ( console.error( e ) ) );
 }

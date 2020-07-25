@@ -14,9 +14,9 @@ let fs = require( 'fs' ),
         read_fun = ( filePath_str = '' ) => fs.readFileSync( filePath_str ),
         tsConfig_obj = JSON.parse( read_fun( path.join( __dirname, './tsconfig.json' ) ) ),
         arr1 = fs.readdirSync( path.join( __dirname, './node_modules/typescript/lib' ) )
-                 .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
-                                            .isDirectory() )
-                 .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) );
+        .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
+        .isDirectory() )
+        .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) );
 
     tsConfig_obj[ 'compilerOptions' ][ 'lib' ] = [
         'dom',

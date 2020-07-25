@@ -224,7 +224,7 @@ function Batching( opeArr = throw new Error( '参数必须！' ) ){
                 index_num,
                 [
                     `${ i }.${ Array.from( Object.values( map ) )
-                                    .flat( Infinity )[ 0 ] }`,
+                    .flat( Infinity )[ 0 ] }`,
                 ],
             ] );
 
@@ -232,17 +232,17 @@ function Batching( opeArr = throw new Error( '参数必须！' ) ){
         }
         else{
             Array.from( Object.values( map ) )
-                 .flat( Infinity )
-                 .forEach( ( c1, i1, a1 ) => {
-                     mapAll_arr.push( [
-                         index_num,
-                         [
-                             `${ i }.${ c1 }`,
-                         ],
-                     ] );
+            .flat( Infinity )
+            .forEach( ( c1, i1, a1 ) => {
+                mapAll_arr.push( [
+                    index_num,
+                    [
+                        `${ i }.${ c1 }`,
+                    ],
+                ] );
 
-                     ++index_num;
-                 } );
+                ++index_num;
+            } );
         }
 
         let formData4KeyNames = Array.from( formData.keys() );

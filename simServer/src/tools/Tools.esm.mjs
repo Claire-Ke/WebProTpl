@@ -67,7 +67,7 @@ function IsGZip( request = null ){
 
 function SetHeaders( response = null, crossResHeader_obj = {} ){
     Object.entries( Object.assign( crossResHeader, crossResHeader_obj ) )
-          .forEach( c => void ( response.setHeader( ...c ) ) );
+    .forEach( c => void ( response.setHeader( ...c ) ) );
 }
 
 function RemGZip( response = null ){
@@ -75,7 +75,7 @@ function RemGZip( response = null ){
 
     if( encoding_strC.includes( 'gzip' ) ){
         const encoding_arrC = encoding_strC.split( ',' )
-                                           .map( c => c.trim() );
+        .map( c => c.trim() );
 
         encoding_arrC.splice( encoding_arrC.indexOf( 'gzip' ), 1, );
         response.removeHeader( 'Content-Encoding' );

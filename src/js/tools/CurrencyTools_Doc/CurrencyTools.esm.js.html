@@ -133,7 +133,7 @@ function Init( _this, isSupportBrowser ){
     // 1、'.123'会转为'0.123'
     // @param len number，范围是0到20(包括0和20)，默认为6
     // @returns {Number} number
-    Number.prototype.ctoToFixed = function( len = 6 ){
+    Number.prototype.ctoToFixed = function ( len = 6 ){
         let padNum = num => {
             let dotPos = num.indexOf( '.' );
             if( dotPos === -1 ){
@@ -217,7 +217,7 @@ function Init( _this, isSupportBrowser ){
                     len = strfi.substr( dotPos + 1 ).length,
                     times = Math.pow( 10, len ),
                     intNum = Number( floatNum.toString()
-                                             .replace( '.', '' ) );
+                    .replace( '.', '' ) );
                 ret.times = times;
                 ret.num = intNum;
                 return ret;
@@ -279,14 +279,14 @@ function Init( _this, isSupportBrowser ){
              *
              * @returns {Number} number
              */
-            ctoAdd = function( a, b = 6, digits = 6 ){
+            ctoAdd = function ( a, b = 6, digits = 6 ){
                 if( this[ 'name' ] === 'CT' ){
                     return operation( a, b, digits, 'add' )
-                        .ctoToFixed( digits );
+                    .ctoToFixed( digits );
                 }
                 else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
                     return operation( this, a, b, 'add' )
-                        .ctoToFixed( b );
+                    .ctoToFixed( b );
                 }
             },
             /**
@@ -304,14 +304,14 @@ function Init( _this, isSupportBrowser ){
              *
              * @returns {Number} number
              */
-            ctoSub = function( a, b = 6, digits = 6 ){
+            ctoSub = function ( a, b = 6, digits = 6 ){
                 if( this[ 'name' ] === 'CT' ){
                     return operation( a, b, digits, 'subtract' )
-                        .ctoToFixed( digits );
+                    .ctoToFixed( digits );
                 }
                 else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
                     return operation( this, a, b, 'subtract' )
-                        .ctoToFixed( b );
+                    .ctoToFixed( b );
                 }
             },
             /**
@@ -329,14 +329,14 @@ function Init( _this, isSupportBrowser ){
              *
              * @returns {Number} number
              */
-            ctoMul = function( a, b = 6, digits = 6 ){
+            ctoMul = function ( a, b = 6, digits = 6 ){
                 if( this[ 'name' ] === 'CT' ){
                     return operation( a, b, digits, 'multiply' )
-                        .ctoToFixed( digits );
+                    .ctoToFixed( digits );
                 }
                 else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
                     return operation( this, a, b, 'multiply' )
-                        .ctoToFixed( b );
+                    .ctoToFixed( b );
                 }
             },
             /**
@@ -354,14 +354,14 @@ function Init( _this, isSupportBrowser ){
              *
              * @returns {Number} number
              */
-            ctoDiv = function( a, b = 6, digits = 6 ){
+            ctoDiv = function ( a, b = 6, digits = 6 ){
                 if( this[ 'name' ] === 'CT' ){
                     return operation( a, b, digits, 'divide' )
-                        .ctoToFixed( digits );
+                    .ctoToFixed( digits );
                 }
                 else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
                     return operation( this, a, b, 'divide' )
-                        .ctoToFixed( b );
+                    .ctoToFixed( b );
                 }
             },
             obj1 = {
@@ -384,11 +384,11 @@ function Init( _this, isSupportBrowser ){
 function IsHandle1( arg1, arg2 ){
     if( 'Element' === arg2 ){
         return this.dataT( arg1 )
-                   .includes( arg2 );
+        .includes( arg2 );
     }
 
     return this.dataT( arg1 )
-               .slice( 8, -1 ) === arg2;
+    .slice( 8, -1 ) === arg2;
 }
 
 function IsHandle2( arg, regStr ){
@@ -413,10 +413,10 @@ function IsHandle5( o, s, f ){
     let result = Object[ s ]( o ),
         prop;
     Reflect.ownKeys( o )
-           .forEach( currentValue => {
-               prop = o[ currentValue ];
-               ( this.isArray( prop ) || this.isObject( prop ) ) &amp;&amp; f( prop );
-           } );
+    .forEach( currentValue => {
+        prop = o[ currentValue ];
+        ( this.isArray( prop ) || this.isObject( prop ) ) &amp;&amp; f( prop );
+    } );
     return result;
 }
 
@@ -425,15 +425,15 @@ function IsHandle6( elem, classN, type ){
 
     return IsHandle10.call( this, elem, elemO => {
         this.remSpace( classN )
-            .split( ',' )
-            .forEach( currentValue => {
-                if( currentValue.length !== 0 &amp;&amp; ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                    document[ 'documentElement' ][ 'classList' ][ type ]( currentValue );
-                }
-                else if( currentValue.length !== 0 &amp;&amp; !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                    elemO.classList[ type ]( currentValue );
-                }
-            } );
+        .split( ',' )
+        .forEach( currentValue => {
+            if( currentValue.length !== 0 &amp;&amp; ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                document[ 'documentElement' ][ 'classList' ][ type ]( currentValue );
+            }
+            else if( currentValue.length !== 0 &amp;&amp; !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                elemO.classList[ type ]( currentValue );
+            }
+        } );
         if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
             return document.documentElement.classList;
         }
@@ -463,7 +463,7 @@ function IsHandle8( ar1, f, seN, rootE ){
             else if( this.isArray( seN ) &amp;&amp; seN.length !== 0 ){
                 let result = [];
                 this.dataRemRe( seN )
-                    .forEach( currentValue => void ( ( this.isString( currentValue ) &amp;&amp; this.trim( currentValue ).length !== 0 ) &amp;&amp; result.push( handle( currentValue, rootE ) ) ) );
+                .forEach( currentValue => void ( ( this.isString( currentValue ) &amp;&amp; this.trim( currentValue ).length !== 0 ) &amp;&amp; result.push( handle( currentValue, rootE ) ) ) );
                 if( result.length !== 0 ){
                     return result;
                 }
@@ -497,7 +497,7 @@ function IsHandle9( arg, f ){
     else if( this.isArray( arg ) &amp;&amp; arg.length !== 0 ){
         let result = [];
         this.dataRemRe( arg )
-            .forEach( currentValue => void ( ( this.isString( currentValue ) &amp;&amp; this.trim( currentValue ).length !== 0 ) &amp;&amp; result.push( handle( currentValue ) ) ) );
+        .forEach( currentValue => void ( ( this.isString( currentValue ) &amp;&amp; this.trim( currentValue ).length !== 0 ) &amp;&amp; result.push( handle( currentValue ) ) ) );
         if( result.length !== 0 ){
             return result;
         }
@@ -519,7 +519,7 @@ function IsHandle10( elem, fun ){
         handle1 = arg => {
             let result = [];
             Array.from( arg )
-                 .forEach( currentValue => void ( result.push( handle( currentValue ) ) ) );
+            .forEach( currentValue => void ( result.push( handle( currentValue ) ) ) );
             return result;
         },
         handle2 = elem => {
@@ -860,7 +860,7 @@ function IsHandle17( arr, selectorElems ){
     }
     let result = [];
     arr.forEach( currentValue => void ( Array.from( selectorElems )
-                                             .forEach( c => void ( currentValue === c &amp;&amp; result.push( currentValue ) ) ) ) );
+    .forEach( c => void ( currentValue === c &amp;&amp; result.push( currentValue ) ) ) ) );
     if( result.length === 0 ){
         return null;
     }
@@ -1239,7 +1239,7 @@ class CopyAPI{
         }
         else{
             const readText = () => clip_objC.readText()
-                                            .then( text => void ( fun( text ) ) );
+            .then( text => void ( fun( text ) ) );
 
             this.permissionsQuery( {
                 name: 'clipboard-read',
@@ -1318,10 +1318,10 @@ class CopyAPI{
                     },
                 } ),
                 read = () => clip_objC.read()
-                                      .then( data => void ( data.forEach( c => void ( c.getType( c.types[ 0 ] )
-                                                                                       .then( data4Blob => void ( fun( data4Blob, c.types[ 0 ] ) ) )
-                                                                                       .catch( events_objC.error ) ) ) ) )
-                                      .catch( events_objC.error );
+                .then( data => void ( data.forEach( c => void ( c.getType( c.types[ 0 ] )
+                .then( data4Blob => void ( fun( data4Blob, c.types[ 0 ] ) ) )
+                .catch( events_objC.error ) ) ) ) )
+                .catch( events_objC.error );
 
             this.permissionsQuery( {
                 name: 'clipboard-read',
@@ -1381,7 +1381,7 @@ class CopyAPI{
                     },
                 } ),
                 writeText = () => clip_objC.writeText( str )
-                                           .then( events_objC.success, events_objC.fail );
+                .then( events_objC.success, events_objC.fail );
 
             this.permissionsQuery( {
                 name: 'clipboard-write',
@@ -1446,7 +1446,7 @@ class CopyAPI{
                     },
                 } ),
                 write = () => clip_objC.write( data )
-                                       .then( events_objC.success, events_objC.fail );
+                .then( events_objC.success, events_objC.fail );
 
             this.permissionsQuery( {
                 name: 'clipboard-write',
@@ -1585,8 +1585,8 @@ class CryptoAPI{
             hashArray = Array.from( new Uint8Array( hashArrayBuffer ) ),
             // convert hashArray to hex string
             hashHex = hashArray.map( b => b.toString( 16 )
-                                           .padStart( 2, '0' ) )
-                               .join( '' );
+            .padStart( 2, '0' ) )
+            .join( '' );
 
         return hashHex;
     }
@@ -1947,11 +1947,11 @@ class ES6Handle{
         let arr4Obj = [];
         !this.isObject( obj ) &amp;&amp; GetError( '参数的数据类型必须是Object' );
         Object.entries( obj )
-              .forEach( ( c, i, ) => void ( arr4Obj.push( {
-                  key: c[ 0 ],
-                  value: c[ 1 ],
-                  index: i,
-              } ) ) );
+        .forEach( ( c, i, ) => void ( arr4Obj.push( {
+            key: c[ 0 ],
+            value: c[ 1 ],
+            index: i,
+        } ) ) );
         return arr4Obj;
     }
 
@@ -2013,11 +2013,11 @@ class FunHandle{
      *
      * @returns {function} function
      */
-    debounceFun( fun = function(){
+    debounceFun( fun = function (){
     }, wait = 250, immediate = false ){
         let preTime = 0,
             clearTime;
-        return function( ...rest ){
+        return function ( ...rest ){
             let nowTime = Date.now(),
                 timeOut = nowTime - preTime > wait;
             preTime = nowTime;
@@ -2049,8 +2049,8 @@ class FunHandle{
     } ){
         if( typeof globalThis.queueMicrotask !== 'function' ){
             Promise.resolve()
-                   .then( callback )
-                   .catch( e => void ( setTimeout( () => void ( throw new Error( e ) ) ) ) );
+            .then( callback )
+            .catch( e => void ( setTimeout( () => void ( throw new Error( e ) ) ) ) );
         }
         else{
             queueMicrotask( callback );
@@ -2070,7 +2070,7 @@ class FunHandle{
     }, _this = null ){
         let result;
 
-        return function( ...rest ){
+        return function ( ...rest ){
             if( fun ){
                 result = fun.apply( _this || this, rest );
 
@@ -2216,11 +2216,11 @@ class FunHandle{
      *
      * @returns {function} function
      */
-    throttleFun( fun = function(){
+    throttleFun( fun = function (){
     }, wait = 250, immediate = true ){
         let preTime = 0,
             clearTime;
-        return function( ...rest ){
+        return function ( ...rest ){
             let nowTime = Date.now(),
                 timeOut = nowTime - preTime > wait;
             preTime = nowTime;
@@ -3409,17 +3409,17 @@ class JS2Ajax{
 
             if( this.isFormData( opt_obj.sendData ) ){
                 Array.from( opt_obj.sendData.entries() )
-                     .forEach( ( [ key, value ] ) => void ( sendData[ key ] = value ) );
+                .forEach( ( [ key, value ] ) => void ( sendData[ key ] = value ) );
             }
             else{
                 sendData = opt_obj.sendData;
             }
 
             Object.entries( Object.assign( urlSea2Obj, sendData ) )
-                  .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ keyValue }&amp;` ) );
+            .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ keyValue }&amp;` ) );
 
             XHR.open( opt_obj.method, `${ newUrl }?${ searchStr.trim()
-                                                               .slice( 0, -1 ) }`, opt_obj.async, opt_obj.user, opt_obj.password );
+            .slice( 0, -1 ) }`, opt_obj.async, opt_obj.user, opt_obj.password );
         }
         else{
             XHR.open( opt_obj.method, url, opt_obj.async, opt_obj.user, opt_obj.password );
@@ -3606,70 +3606,70 @@ class JS2Ajax{
 
             if( this.isFormData( pra2_obj.body ) ){
                 Array.from( pra2_obj.body.entries() )
-                     .forEach( ( [ key, value ] ) => void ( body[ key ] = value ) );
+                .forEach( ( [ key, value ] ) => void ( body[ key ] = value ) );
             }
             else{
                 body = pra2_obj.body;
             }
 
             Object.entries( Object.assign( urlSea2Obj, body ) )
-                  .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ keyValue }&amp;` ) );
+            .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ keyValue }&amp;` ) );
 
             newInput = `${ newInput }?${ searchStr.trim()
-                                                  .slice( 0, -1 ) }`;
+            .slice( 0, -1 ) }`;
         }
 
         pra2_obj.method === 'GET' &amp;&amp; ( delete pra2_obj.body );
 
         return fetch( newInput, pra2_obj )
-            .then( response => {
-                pra1_obj.resolved( response.clone(), response.status );
-                let isSuccess = response &amp;&amp; response.ok &amp;&amp; response.status === 200;
-                if( isSuccess &amp;&amp; responseType_str === 'arrayBuffer' ){
-                    // arrayBuffer() ArrayBuffer
-                    response.clone()
-                            .arrayBuffer()
-                            .then( arrayBuffer => pra1_obj.success( arrayBuffer, response.clone() ) )
-                            .catch( pra1_obj.rejected );
-                }
-                else if( isSuccess &amp;&amp; responseType_str === 'blob' ){
-                    // blob() // Blob
-                    response.clone()
-                            .blob()
-                            .then( blob => pra1_obj.success( blob, response.clone() ) )
-                            .catch( pra1_obj.rejected );
-                }
-                else if( isSuccess &amp;&amp; responseType_str === 'formData' ){
-                    // formData() // FormData
-                    response.clone()
-                            .formData()
-                            .then( formData => pra1_obj.success( formData, response.clone() ) )
-                            .catch( pra1_obj.rejected );
-                }
-                else if( isSuccess &amp;&amp; responseType_str === 'json' ){
-                    // json() // JSON
-                    response.clone()
-                            .json()
-                            .then( json => pra1_obj.success( json, response.clone() ) )
-                            .catch( pra1_obj.rejected );
-                }
-                else if( isSuccess &amp;&amp; responseType_str === 'text' ){
-                    // text() // string
-                    response.clone()
-                            .text()
-                            .then( text => pra1_obj.success( text, response.clone() ) )
-                            .catch( pra1_obj.rejected );
-                }
-                else if( isSuccess &amp;&amp; !responseType_str ){
-                    let responseClone = response.clone();
-                    pra1_obj.success( responseClone, responseClone );
-                }
-                else if( !isSuccess ){
-                    pra1_obj.error( response.status, response.clone() );
-                }
-                return response.clone();
-            } )
-            .catch( pra1_obj.rejected );
+        .then( response => {
+            pra1_obj.resolved( response.clone(), response.status );
+            let isSuccess = response &amp;&amp; response.ok &amp;&amp; response.status === 200;
+            if( isSuccess &amp;&amp; responseType_str === 'arrayBuffer' ){
+                // arrayBuffer() ArrayBuffer
+                response.clone()
+                .arrayBuffer()
+                .then( arrayBuffer => pra1_obj.success( arrayBuffer, response.clone() ) )
+                .catch( pra1_obj.rejected );
+            }
+            else if( isSuccess &amp;&amp; responseType_str === 'blob' ){
+                // blob() // Blob
+                response.clone()
+                .blob()
+                .then( blob => pra1_obj.success( blob, response.clone() ) )
+                .catch( pra1_obj.rejected );
+            }
+            else if( isSuccess &amp;&amp; responseType_str === 'formData' ){
+                // formData() // FormData
+                response.clone()
+                .formData()
+                .then( formData => pra1_obj.success( formData, response.clone() ) )
+                .catch( pra1_obj.rejected );
+            }
+            else if( isSuccess &amp;&amp; responseType_str === 'json' ){
+                // json() // JSON
+                response.clone()
+                .json()
+                .then( json => pra1_obj.success( json, response.clone() ) )
+                .catch( pra1_obj.rejected );
+            }
+            else if( isSuccess &amp;&amp; responseType_str === 'text' ){
+                // text() // string
+                response.clone()
+                .text()
+                .then( text => pra1_obj.success( text, response.clone() ) )
+                .catch( pra1_obj.rejected );
+            }
+            else if( isSuccess &amp;&amp; !responseType_str ){
+                let responseClone = response.clone();
+                pra1_obj.success( responseClone, responseClone );
+            }
+            else if( !isSuccess ){
+                pra1_obj.error( response.status, response.clone() );
+            }
+            return response.clone();
+        } )
+        .catch( pra1_obj.rejected );
     }
 
     /**
@@ -3687,10 +3687,10 @@ class JS2Ajax{
                 allRHO = {},
                 arr;
             allRHArr.slice( 0, allRHArr.length - 1 )
-                    .forEach( value => {
-                        arr = value.split( ': ' );
-                        allRHO[ arr[ 0 ] ] = arr[ 1 ];
-                    } );
+            .forEach( value => {
+                arr = value.split( ': ' );
+                allRHO[ arr[ 0 ] ] = arr[ 1 ];
+            } );
             return allRHO;
         }
         else{
@@ -4468,23 +4468,23 @@ class JS2jQuery{
                             container: el,
                         };
                         Object.keys( props )
-                              .forEach( prop => {
-                                  initialFullValue = globalThis.getComputedStyle( el, null )
-                                                               .getPropertyValue( prop )
-                                                               .replace( ',', '.' );
-                                  initialValue = parseFloat( initialFullValue );
-                                  unit = initialFullValue.replace( initialValue, '' );
-                                  finalValue = parseFloat( props[ prop ] );
-                                  finalFullValue = props[ prop ] + unit;
-                                  elements[ index ][ prop ] = {
-                                      initialFullValue,
-                                      initialValue,
-                                      unit,
-                                      finalValue,
-                                      finalFullValue,
-                                      currentValue: initialValue,
-                                  };
-                              } );
+                        .forEach( prop => {
+                            initialFullValue = globalThis.getComputedStyle( el, null )
+                            .getPropertyValue( prop )
+                            .replace( ',', '.' );
+                            initialValue = parseFloat( initialFullValue );
+                            unit = initialFullValue.replace( initialValue, '' );
+                            finalValue = parseFloat( props[ prop ] );
+                            finalFullValue = props[ prop ] + unit;
+                            elements[ index ][ prop ] = {
+                                initialFullValue,
+                                initialValue,
+                                unit,
+                                finalValue,
+                                finalFullValue,
+                                currentValue: initialValue,
+                            };
+                        } );
                     } );
                     let startTime = null,
                         time,
@@ -4508,27 +4508,27 @@ class JS2jQuery{
                                 return;
                             }
                             Object.keys( props )
-                                  .forEach( prop => {
-                                      if( done || el.done ){
-                                          return;
-                                      }
-                                      progress = Math.max( Math.min( ( time - startTime ) / params.duration, 1 ), 0 );
-                                      easeProgress = a.easingProgress( params.easing, progress );
-                                      const { initialValue, finalValue, unit } = el[ prop ];
-                                      el[ prop ].currentValue = initialValue + ( easeProgress * ( finalValue - initialValue ) );
-                                      const currentValue = el[ prop ].currentValue;
-                                      if( ( finalValue > initialValue &amp;&amp; currentValue >= finalValue ) || ( finalValue &lt; initialValue &amp;&amp; currentValue &lt;= finalValue ) ){
-                                          el.container.style[ prop ] = finalValue + unit;
-                                          ++propsDone;
-                                          ( propsDone === Object.keys( props ).length ) &amp;&amp; ( el.done = true, ++elementsDone );
-                                          ( elementsDone === elements.length ) &amp;&amp; ( done = true );
-                                      }
-                                      if( done ){
-                                          a.done( params.complete );
-                                          return;
-                                      }
-                                      el.container.style[ prop ] = currentValue + unit;
-                                  } );
+                            .forEach( prop => {
+                                if( done || el.done ){
+                                    return;
+                                }
+                                progress = Math.max( Math.min( ( time - startTime ) / params.duration, 1 ), 0 );
+                                easeProgress = a.easingProgress( params.easing, progress );
+                                const { initialValue, finalValue, unit } = el[ prop ];
+                                el[ prop ].currentValue = initialValue + ( easeProgress * ( finalValue - initialValue ) );
+                                const currentValue = el[ prop ].currentValue;
+                                if( ( finalValue > initialValue &amp;&amp; currentValue >= finalValue ) || ( finalValue &lt; initialValue &amp;&amp; currentValue &lt;= finalValue ) ){
+                                    el.container.style[ prop ] = finalValue + unit;
+                                    ++propsDone;
+                                    ( propsDone === Object.keys( props ).length ) &amp;&amp; ( el.done = true, ++elementsDone );
+                                    ( elementsDone === elements.length ) &amp;&amp; ( done = true );
+                                }
+                                if( done ){
+                                    a.done( params.complete );
+                                    return;
+                                }
+                                el.container.style[ prop ] = currentValue + unit;
+                            } );
                         } );
                         if( done ){
                             return;
@@ -5160,7 +5160,7 @@ class JS2jQuery{
             : ( attrs = elemO.attributes );
             result[ 'length' ] = attrs.length;
             Array.from( attrs )
-                 .forEach( currentValue => void ( result[ currentValue[ 'name' ] ] = currentValue[ 'value' ] ) );
+            .forEach( currentValue => void ( result[ currentValue[ 'name' ] ] = currentValue[ 'value' ] ) );
             return result;
         } );
     }
@@ -5285,16 +5285,16 @@ class JS2jQuery{
             if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
                 return {
                     value: document.documentElement.style.getPropertyValue( this.remSpace( attrN ) )
-                                   .trim(),
+                    .trim(),
                     priority: document.documentElement.style.getPropertyPriority( this.remSpace( attrN ) )
-                                      .trim(),
+                    .trim(),
                 };
             }
             return {
                 value: elemO.style.getPropertyValue( this.remSpace( attrN ) )
-                            .trim(),
+                .trim(),
                 priority: elemO.style.getPropertyPriority( this.remSpace( attrN ) )
-                               .trim(),
+                .trim(),
             };
         } );
     }
@@ -5882,13 +5882,13 @@ class JS2jQuery{
                     }
                     else if( paraInitInit.isR &amp;&amp; len !== 0 ){
                         Array.from( cssStyleSheet.cssRules )
-                             .forEach( ( v, i, ) => {
-                                 if( name in v
-                                     ? v.name === this.trim( ruleN )
-                                     : v.selectorText === this.trim( ruleN ) ){
-                                     cssStyleSheet.deleteRule( i );
-                                 }
-                             } );
+                        .forEach( ( v, i, ) => {
+                            if( name in v
+                                ? v.name === this.trim( ruleN )
+                                : v.selectorText === this.trim( ruleN ) ){
+                                cssStyleSheet.deleteRule( i );
+                            }
+                        } );
                         cssStyleSheet.insertRule( dataStr, in1 );
                     }
                     else{
@@ -6487,7 +6487,7 @@ class JS2jQuery{
     serialize( elem ){
         let result_str = '';
         this.serializeArray( elem )
-            .forEach( c => void ( result_str += `${ encodeURIComponent( c.name ) }=${ encodeURIComponent( c.value ) }&amp;` ) );
+        .forEach( c => void ( result_str += `${ encodeURIComponent( c.name ) }=${ encodeURIComponent( c.value ) }&amp;` ) );
         return result_str.slice( 0, -1 );
     }
 
@@ -6546,43 +6546,43 @@ class JS2jQuery{
                 // elem_arrC的数据类型是HTMLFormControlsCollection，类数组
                 const elem_arrC = elem_obj.elements;
                 Array.from( elem_arrC )
-                     .forEach( c => {
-                         if( fun1( c, 'select' ) ){
-                             Array.from( c.selectedOptions )
-                                  .forEach( c1 => {
-                                      result_arr.push( {
-                                          name: this.trim( c.name ),
-                                          value: c1.value || c1.text
-                                      } );
-                                  } );
-                         }
-                         else if( fun1( c, 'textarea' ) ){
-                             result_arr.push( {
-                                 name: this.trim( c.name ),
-                                 value: c.value.replace( /\r?\n/g, '\r\n' )
-                             } );
-                         }
-                         else if( fun1( c, 'input' ) &amp;&amp; !c.disabled &amp;&amp; c.type !== 'file' &amp;&amp; c.type !== 'submit' &amp;&amp; c.type !== 'button' &amp;&amp; c.type !== 'image' &amp;&amp; c.type !== 'reset' ){
-                             if( c.type === 'radio' &amp;&amp; c.checked ){
-                                 result_arr.push( {
-                                     name: this.trim( c.name ),
-                                     value: c.value
-                                 } );
-                             }
-                             if( c.type === 'checkbox' &amp;&amp; c.checked ){
-                                 result_arr.push( {
-                                     name: this.trim( c.name ),
-                                     value: c.value
-                                 } );
-                             }
-                             if( c.type !== 'radio' &amp;&amp; c.type !== 'checkbox' ){
-                                 result_arr.push( {
-                                     name: this.trim( c.name ),
-                                     value: c.value
-                                 } );
-                             }
-                         }
-                     } );
+                .forEach( c => {
+                    if( fun1( c, 'select' ) ){
+                        Array.from( c.selectedOptions )
+                        .forEach( c1 => {
+                            result_arr.push( {
+                                name: this.trim( c.name ),
+                                value: c1.value || c1.text
+                            } );
+                        } );
+                    }
+                    else if( fun1( c, 'textarea' ) ){
+                        result_arr.push( {
+                            name: this.trim( c.name ),
+                            value: c.value.replace( /\r?\n/g, '\r\n' )
+                        } );
+                    }
+                    else if( fun1( c, 'input' ) &amp;&amp; !c.disabled &amp;&amp; c.type !== 'file' &amp;&amp; c.type !== 'submit' &amp;&amp; c.type !== 'button' &amp;&amp; c.type !== 'image' &amp;&amp; c.type !== 'reset' ){
+                        if( c.type === 'radio' &amp;&amp; c.checked ){
+                            result_arr.push( {
+                                name: this.trim( c.name ),
+                                value: c.value
+                            } );
+                        }
+                        if( c.type === 'checkbox' &amp;&amp; c.checked ){
+                            result_arr.push( {
+                                name: this.trim( c.name ),
+                                value: c.value
+                            } );
+                        }
+                        if( c.type !== 'radio' &amp;&amp; c.type !== 'checkbox' ){
+                            result_arr.push( {
+                                name: this.trim( c.name ),
+                                value: c.value
+                            } );
+                        }
+                    }
+                } );
             }
         } );
         return result_arr;
@@ -6971,8 +6971,8 @@ class JS2jQuery{
 
         return IsHandle10.call( this, elem, elemO => {
             this.trim( eType )
-                .split( /\s/g )
-                .forEach( currentValue => void ( elemO.addEventListener( currentValue, f, options || false ) ) );
+            .split( /\s/g )
+            .forEach( currentValue => void ( elemO.addEventListener( currentValue, f, options || false ) ) );
             return elemO;
         } );
     }
@@ -6997,8 +6997,8 @@ class JS2jQuery{
 
         return IsHandle10.call( this, elem, elemO => {
             this.trim( eType )
-                .split( /\s/g )
-                .forEach( currentValue => void ( elemO.removeEventListener( currentValue, f, options || false ) ) );
+            .split( /\s/g )
+            .forEach( currentValue => void ( elemO.removeEventListener( currentValue, f, options || false ) ) );
             return elemO;
         } );
     }
@@ -7029,10 +7029,10 @@ class ObjHandle{
     completeAssign( target = {}, ...sources ){
         if( this.isObject( target ) ){
             sources.forEach( source => void ( Object.defineProperties( target, Reflect.ownKeys( source )
-                                                                                      .reduce( ( descriptors, key ) => {
-                                                                                          descriptors[ key ] = Object.getOwnPropertyDescriptor( source, key );
-                                                                                          return descriptors;
-                                                                                      }, {} ) ) ) );
+            .reduce( ( descriptors, key ) => {
+                descriptors[ key ] = Object.getOwnPropertyDescriptor( source, key );
+                return descriptors;
+            }, {} ) ) ) );
             return target;
         }
     }
@@ -7672,7 +7672,7 @@ class OthersHandle{
     } ), f2 = ( () => {
     } ) ){
         let _this = this,
-            ImageLoad = function(){
+            ImageLoad = function (){
                 this.images = {};
                 this.imageUrls = [];
                 this.imagesLoaded = 0;
@@ -7720,7 +7720,7 @@ class OthersHandle{
         };
         let imageLoad = new ImageLoad;
         imageLoad.queueImage( imgA )
-                 .imageLoadingProgressCallback( f1, f2 );
+        .imageLoadingProgressCallback( f1, f2 );
     }
 
     /**
@@ -7776,7 +7776,7 @@ class OthersHandle{
             ( 'type' in c ) &amp;&amp; ( preloadElem.type = c.type );
             ( 'crossorigin' in c ) &amp;&amp; ( preloadElem.setAttribute( 'crossorigin', c.crossorigin ) );
             'attrs' in c &amp;&amp; ( Object.keys( c.attrs )
-                                    .forEach( c1 => void ( preloadElem.setAttribute( c1, c.attrs[ c1 ] ) ) ) );
+            .forEach( c1 => void ( preloadElem.setAttribute( c1, c.attrs[ c1 ] ) ) ) );
             document.head.appendChild( preloadElem );
         } );
         arr.forEach( c => {
@@ -7784,7 +7784,7 @@ class OthersHandle{
                 preloadScriptElem = document.createElement( 'script' );
                 preloadScriptElem.src = c.href;
                 'attrs' in c &amp;&amp; ( Object.keys( c.attrs )
-                                        .forEach( c1 => void ( preloadScriptElem.setAttribute( c1, c.attrs[ c1 ] ) ) ) );
+                .forEach( c1 => void ( preloadScriptElem.setAttribute( c1, c.attrs[ c1 ] ) ) ) );
                 document.body.appendChild( preloadScriptElem );
             }
         } );
@@ -7970,29 +7970,29 @@ class PermissionsAPI{
 
             try{
                 return permissions_objC.query( options )
-                                       .then( permissionStatus => {
-                                           const state_strC = permissionStatus.state;
+                .then( permissionStatus => {
+                    const state_strC = permissionStatus.state;
 
-                                           // 提示授权
-                                           if( state_strC === 'prompt' ){
-                                               events_objC.prompt();
-                                           }
-                                           // 已经授予
-                                           else if( state_strC === 'granted' ){
-                                               events_objC.granted();
-                                           }
-                                           // 拒绝授权
-                                           else if( state_strC === 'denied' ){
-                                               events_objC.denied();
-                                           }
+                    // 提示授权
+                    if( state_strC === 'prompt' ){
+                        events_objC.prompt();
+                    }
+                    // 已经授予
+                    else if( state_strC === 'granted' ){
+                        events_objC.granted();
+                    }
+                    // 拒绝授权
+                    else if( state_strC === 'denied' ){
+                        events_objC.denied();
+                    }
 
-                                           permissionStatus.onchange = function(){
-                                               events_objC.stateChange( this );
-                                           };
+                    permissionStatus.onchange = function (){
+                        events_objC.stateChange( this );
+                    };
 
-                                           return permissionStatus;
-                                       } )
-                                       .catch( events_objC.error );
+                    return permissionStatus;
+                } )
+                .catch( events_objC.error );
             }
             catch( e ){
                 events_objC.error( e );
@@ -8141,8 +8141,8 @@ class RegExpHandle{
         'use strict';
 
         return IsHandle7.call( this, data, a => String( a )
-            .replace( new RegExp( reg, 'g' ), repStr ), String( data )
-            .replace( new RegExp( reg, 'g' ), repStr ) );
+        .replace( new RegExp( reg, 'g' ), repStr ), String( data )
+        .replace( new RegExp( reg, 'g' ), repStr ) );
     }
 
     /**
@@ -8156,8 +8156,8 @@ class RegExpHandle{
         'use strict';
 
         return IsHandle7.call( this, arg, a => ( String( a )
-            .trim() ), String( arg )
-            .trim() );
+        .trim() ), String( arg )
+        .trim() );
     }
 
 }
@@ -8416,7 +8416,7 @@ class StringHandle{
      */
     strFL( str ){
         return str.slice( 0, 1 )
-                  .toLocaleLowerCase() + str.slice( 1 );
+        .toLocaleLowerCase() + str.slice( 1 );
     }
 
     /**
@@ -8428,7 +8428,7 @@ class StringHandle{
      */
     strFU( str ){
         return str.slice( 0, 1 )
-                  .toLocaleUpperCase() + str.slice( 1 );
+        .toLocaleUpperCase() + str.slice( 1 );
     }
 
     /**
@@ -8510,7 +8510,7 @@ class StringHandle{
             if( isS &amp;&amp; this.trim( str ).length !== 0 ){
                 let [ arr, arr1 ] = [
                     this.trim( str )
-                        .split( '8' ),
+                    .split( '8' ),
                     []
                 ];
                 arr.forEach( currentValue => void ( arr1.push( parseInt( '0' + currentValue, 8 ) - 520 ) ) );
@@ -8961,7 +8961,7 @@ class Upload4GraphQL{
                     index_num,
                     [
                         `${ i }.${ Array.from( Object.values( map ) )
-                                        .flat( Infinity )[ 0 ] }`,
+                        .flat( Infinity )[ 0 ] }`,
                     ],
                 ] );
 
@@ -8969,17 +8969,17 @@ class Upload4GraphQL{
             }
             else{
                 Array.from( Object.values( map ) )
-                     .flat( Infinity )
-                     .forEach( ( c1, i1, a1 ) => {
-                         mapAll_arr.push( [
-                             index_num,
-                             [
-                                 `${ i }.${ c1 }`,
-                             ],
-                         ] );
+                .flat( Infinity )
+                .forEach( ( c1, i1, a1 ) => {
+                    mapAll_arr.push( [
+                        index_num,
+                        [
+                            `${ i }.${ c1 }`,
+                        ],
+                    ] );
 
-                         ++index_num;
-                     } );
+                    ++index_num;
+                } );
             }
 
             let formData4KeyNames = Array.from( formData.keys() );
@@ -9091,7 +9091,7 @@ class UrlHandle{
         let searchStr = '';
 
         Object.entries( searchObj )
-              .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ this.strToUCode( keyValue ) }&amp;` ) );
+        .forEach( ( [ keyName, keyValue ] ) => void ( searchStr += `${ keyName }=${ this.strToUCode( keyValue ) }&amp;` ) );
 
         return searchStr.slice( 0, -1 );
     }
@@ -9210,17 +9210,17 @@ class UrlHandle{
             arr1;
         ( searchStr.length !== 0 &amp;&amp; searchStr[ 0 ] === '?' ) &amp;&amp; ( searchStr = searchStr.slice( 1, searchStr.length ) );
         searchStr.split( '#' )[ 0 ].split( '&amp;' )
-                                   .filter( item => item.length !== 0 )
-                                   .filter( item => {
-                                       arr1 = item.split( '=' )
-                                                  .filter( item => item.length !== 0 );
-                                       if( arr1.length === 1 ){
-                                           searchObj[ arr1[ 0 ] ] = '';
-                                       }
-                                       else if( arr1.length === 2 ){
-                                           searchObj[ arr1[ 0 ] ] = arr1[ 1 ];
-                                       }
-                                   } );
+        .filter( item => item.length !== 0 )
+        .filter( item => {
+            arr1 = item.split( '=' )
+            .filter( item => item.length !== 0 );
+            if( arr1.length === 1 ){
+                searchObj[ arr1[ 0 ] ] = '';
+            }
+            else if( arr1.length === 2 ){
+                searchObj[ arr1[ 0 ] ] = arr1[ 1 ];
+            }
+        } );
         return searchObj;
     }
 
@@ -9322,38 +9322,38 @@ class WASMTool{
                  importObject = {},
              } = {} ){
         return this.fetch( url, callBack, Object.assign( options, { responseType: 'arrayBuffer', } ) )
-                   .then( response => response.clone()
-                                              .arrayBuffer() )
-                   .then( bufferSource => WebAssembly.validate( bufferSource )
-                                          ? WebAssembly.instantiate( bufferSource, Object.assign( {
-                           global: {},
-                           env: {
-                               // 初始大小为100页（64 * 100 = 6400‬KiB、6.25MiB），最大大小为1024页（64 * 1024 = 65536‬‬‬KiB、64MiB）。
-                               memory: new WebAssembly.Memory( {
-                                   // WebAssembly Memory的初始大小，以WebAssembly pages为单位。
-                                   initial: 100,
-                                   // WebAssembly Memory的最大尺寸允许以WebAssembly pages为单位生长。
-                                   // 当存在时，最大参数充当引擎预留存储器的提示。
-                                   // 但是，引擎可能会忽略或限制此预订请求。
-                                   // 一般来说，大多数WebAssembly modules不需要设置最大值。
-                                   // 一个WebAssembly page的大小恒定为65536字节，即64KiB。
-                                   maximum: 1024,
-                               } ),
-                               table: new WebAssembly.Table( {
-                                   // WebAssembly表的初始元素数。
-                                   initial: 0,
-                                   // 表示要存储在表中的值类型的字符串。目前，它只能有一个值“anyfunc”（函数）。
-                                   element: 'anyfunc',
-                                   // 允许WebAssembly Table增长的元素的最大数目。
-                                   // maximum: 102400,
-                               } ),
-                           },
-                       }, importObject ) )
-                                          : undefined )
-                   .then( ( { module, instance, } = throw new Error( '这是一个无效的“wasm”模块！' ) ) => ( {
-                       module,
-                       instance,
-                   } ) );
+        .then( response => response.clone()
+        .arrayBuffer() )
+        .then( bufferSource => WebAssembly.validate( bufferSource )
+                               ? WebAssembly.instantiate( bufferSource, Object.assign( {
+                global: {},
+                env: {
+                    // 初始大小为100页（64 * 100 = 6400‬KiB、6.25MiB），最大大小为1024页（64 * 1024 = 65536‬‬‬KiB、64MiB）。
+                    memory: new WebAssembly.Memory( {
+                        // WebAssembly Memory的初始大小，以WebAssembly pages为单位。
+                        initial: 100,
+                        // WebAssembly Memory的最大尺寸允许以WebAssembly pages为单位生长。
+                        // 当存在时，最大参数充当引擎预留存储器的提示。
+                        // 但是，引擎可能会忽略或限制此预订请求。
+                        // 一般来说，大多数WebAssembly modules不需要设置最大值。
+                        // 一个WebAssembly page的大小恒定为65536字节，即64KiB。
+                        maximum: 1024,
+                    } ),
+                    table: new WebAssembly.Table( {
+                        // WebAssembly表的初始元素数。
+                        initial: 0,
+                        // 表示要存储在表中的值类型的字符串。目前，它只能有一个值“anyfunc”（函数）。
+                        element: 'anyfunc',
+                        // 允许WebAssembly Table增长的元素的最大数目。
+                        // maximum: 102400,
+                    } ),
+                },
+            }, importObject ) )
+                               : undefined )
+        .then( ( { module, instance, } = throw new Error( '这是一个无效的“wasm”模块！' ) ) => ( {
+            module,
+            instance,
+        } ) );
     }
 
 }
@@ -9427,14 +9427,14 @@ class WebService4Proxy{
                              // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, options )
-                                          .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) &amp;&amp; response &amp;&amp; response.ok &amp;&amp; response.status === 200 ){
-                                                  return response.clone()[ type ]();
-                                              }
-                                              else{
-                                                  return response;
-                                              }
-                                          } );
+                .then( response => {
+                    if( _this.type4ResponseData.includes( type ) &amp;&amp; response &amp;&amp; response.ok &amp;&amp; response.status === 200 ){
+                        return response.clone()[ type ]();
+                    }
+                    else{
+                        return response;
+                    }
+                } );
             },
             set( target, propKey, value, receiver ){
                 return Reflect.set( target, propKey, value, receiver );
@@ -9570,16 +9570,16 @@ class WebService4Proxy{
                              // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
-                                              method: 'POST',
-                                          } ) )
-                                          .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) &amp;&amp; response &amp;&amp; response.ok &amp;&amp; response.status === 200 ){
-                                                  return response.clone()[ type ]();
-                                              }
-                                              else{
-                                                  return response;
-                                              }
-                                          } );
+                    method: 'POST',
+                } ) )
+                .then( response => {
+                    if( _this.type4ResponseData.includes( type ) &amp;&amp; response &amp;&amp; response.ok &amp;&amp; response.status === 200 ){
+                        return response.clone()[ type ]();
+                    }
+                    else{
+                        return response;
+                    }
+                } );
             },
             set( target, propKey, value, receiver ){
                 return Reflect.set( target, propKey, value, receiver );
@@ -9620,16 +9620,16 @@ class WebService4Proxy{
                              // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
-                                              method: 'DELETE',
-                                          } ) )
-                                          .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) &amp;&amp; response &amp;&amp; response.ok &amp;&amp; response.status === 200 ){
-                                                  return response.clone()[ type ]();
-                                              }
-                                              else{
-                                                  return response;
-                                              }
-                                          } );
+                    method: 'DELETE',
+                } ) )
+                .then( response => {
+                    if( _this.type4ResponseData.includes( type ) &amp;&amp; response &amp;&amp; response.ok &amp;&amp; response.status === 200 ){
+                        return response.clone()[ type ]();
+                    }
+                    else{
+                        return response;
+                    }
+                } );
             },
             set( target, propKey, value, receiver ){
                 return Reflect.set( target, propKey, value, receiver );
@@ -9670,16 +9670,16 @@ class WebService4Proxy{
                              // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
-                                              method: 'PUT',
-                                          } ) )
-                                          .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) &amp;&amp; response &amp;&amp; response.ok &amp;&amp; response.status === 200 ){
-                                                  return response.clone()[ type ]();
-                                              }
-                                              else{
-                                                  return response;
-                                              }
-                                          } );
+                    method: 'PUT',
+                } ) )
+                .then( response => {
+                    if( _this.type4ResponseData.includes( type ) &amp;&amp; response &amp;&amp; response.ok &amp;&amp; response.status === 200 ){
+                        return response.clone()[ type ]();
+                    }
+                    else{
+                        return response;
+                    }
+                } );
             },
             set( target, propKey, value, receiver ){
                 return Reflect.set( target, propKey, value, receiver );
@@ -9718,16 +9718,16 @@ class WebService4Proxy{
                              // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
-                                              method: 'GET',
-                                          } ) )
-                                          .then( response => {
-                                              if( _this.type4ResponseData.includes( type ) &amp;&amp; response &amp;&amp; response.ok &amp;&amp; response.status === 200 ){
-                                                  return response.clone()[ type ]();
-                                              }
-                                              else{
-                                                  return response;
-                                              }
-                                          } );
+                    method: 'GET',
+                } ) )
+                .then( response => {
+                    if( _this.type4ResponseData.includes( type ) &amp;&amp; response &amp;&amp; response.ok &amp;&amp; response.status === 200 ){
+                        return response.clone()[ type ]();
+                    }
+                    else{
+                        return response;
+                    }
+                } );
             },
             set( target, propKey, value, receiver ){
                 return Reflect.set( target, propKey, value, receiver );
@@ -10234,7 +10234,7 @@ export default CT;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Mon Jul 20 2020 11:35:46 GMT+0800 (中国标准时间)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Sat Jul 25 2020 17:30:29 GMT+0800 (中国标准时间)
 </footer>
 
 <script> prettyPrint(); </script>

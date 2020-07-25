@@ -28,14 +28,14 @@ let isPro = process.argv[ 3 ] === 'production',
         let result_obj = {};
 
         Array.from( Object.entries( baseConfig.defineObj_fun( isPro ) ) )
-             .forEach( ( [ keyName, keyValue ], i, a ) => {
-                 if( keyName === 'isPro' ){
-                     result_obj[ keyName ] = keyValue;
-                 }
-                 else{
-                     result_obj[ keyName ] = str;
-                 }
-             } );
+        .forEach( ( [ keyName, keyValue ], i, a ) => {
+            if( keyName === 'isPro' ){
+                result_obj[ keyName ] = keyValue;
+            }
+            else{
+                result_obj[ keyName ] = str;
+            }
+        } );
 
         return result_obj;
     } )( '"/"' );

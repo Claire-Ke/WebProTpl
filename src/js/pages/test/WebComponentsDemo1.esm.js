@@ -254,7 +254,7 @@ let CT = new CTESM.CT(),
         add.onclick = () => {
             square = document.createElement( 'custom-square' );
             document.querySelector( 'article' )
-                    .appendChild( square );
+            .appendChild( square );
             square.setAttribute( 'l', '100' );
             square.setAttribute( 'c', 'red' );
 
@@ -270,7 +270,7 @@ let CT = new CTESM.CT(),
 
         remove.onclick = () => {
             document.querySelector( 'article' )
-                    .removeChild( square );
+            .removeChild( square );
 
             update.disabled = true;
             remove.disabled = true;
@@ -395,8 +395,8 @@ let CT = new CTESM.CT(),
             events: {
                 init: ( cusHTMLClassIns, shadowRoot ) => {
                     shadowRoot.appendChild( document.getElementById( 'MyTemplate1' )
-                                                    .content
-                                                    .cloneNode( true ) );
+                    .content
+                    .cloneNode( true ) );
 
                     console.dir( WebComponents.GRootN( shadowRoot ) );
                     console.dir( CT.gRootN( shadowRoot ) );

@@ -137,35 +137,35 @@ class ServiceWorker4MT{
         this.#onStateChange = pra_obj.onStateChange;
 
         this.swRegPromise = this.swContainer_ins.register( url_str, {
-                                    resolved_fun: pra_obj.resolved,
-                                    rejected_fun: pra_obj.rejected,
-                                    scope_str: pra_obj.scope,
-                                } )
-                                .then( swReg => {
-                                    let sw = null;
+            resolved_fun: pra_obj.resolved,
+            rejected_fun: pra_obj.rejected,
+            scope_str: pra_obj.scope,
+        } )
+        .then( swReg => {
+            let sw = null;
 
-                                    if( swReg.installing ){
-                                        sw = swReg.installing;
-                                    }
-                                    if( swReg.waiting ){
-                                        sw = swReg.waiting;
-                                    }
-                                    if( swReg.active ){
-                                        sw = swReg.active;
-                                    }
+            if( swReg.installing ){
+                sw = swReg.installing;
+            }
+            if( swReg.waiting ){
+                sw = swReg.waiting;
+            }
+            if( swReg.active ){
+                sw = swReg.active;
+            }
 
-                                    sw.onerror = this.#onError;
-                                    sw.onmessage = this.#onMessage;
-                                    sw.onstatechange = this.#onStateChange;
+            sw.onerror = this.#onError;
+            sw.onmessage = this.#onMessage;
+            sw.onstatechange = this.#onStateChange;
 
-                                    this.scriptURL = sw[ 'scriptURL' ];
-                                    this.state = sw[ 'state' ];
+            this.scriptURL = sw[ 'scriptURL' ];
+            this.state = sw[ 'state' ];
 
-                                    return {
-                                        sw,
-                                        swRegIns: new SWRegistration( swReg ),
-                                    };
-                                } );
+            return {
+                sw,
+                swRegIns: new SWRegistration( swReg ),
+            };
+        } );
     }
 
     /**
@@ -305,10 +305,10 @@ class SWContainer{
     gReady( resolved_fun = swReg => {
     } ){
         return this.swContainer_ins.ready.then( swReg => {
-                       resolved_fun( swReg );
-                       return swReg;
-                   } )
-                   .catch( error => void ( GetError( error.message ) ) );
+            resolved_fun( swReg );
+            return swReg;
+        } )
+        .catch( error => void ( GetError( error.message ) ) );
     }
 
     /**
@@ -333,11 +333,11 @@ class SWContainer{
             rejected_fun: error => void ( GetError( error.message ) ),
         }, arg_obj );
         return this.swContainer_ins.getRegistration( scope_str )
-                   .then( swReg => {
-                       pra_obj.resolved_fun( swReg );
-                       return swReg;
-                   } )
-                   .catch( pra_obj.rejected_fun );
+        .then( swReg => {
+            pra_obj.resolved_fun( swReg );
+            return swReg;
+        } )
+        .catch( pra_obj.rejected_fun );
     }
 
     /**
@@ -359,11 +359,11 @@ class SWContainer{
             rejected_fun: error => void ( GetError( error.message ) ),
         }, arg_obj );
         return this.swContainer_ins.getRegistrations()
-                   .then( swReg => {
-                       pra_obj.resolved_fun( swReg );
-                       return swReg;
-                   } )
-                   .catch( pra_obj.rejected_fun );
+        .then( swReg => {
+            pra_obj.resolved_fun( swReg );
+            return swReg;
+        } )
+        .catch( pra_obj.rejected_fun );
     }
 
     /**
@@ -431,13 +431,13 @@ class SWContainer{
             rejected_fun: error => void ( GetError( error.message ) ),
         }, arg_obj );
         return this.swContainer_ins.register( url_str, {
-                       scope: pra_obj.scope_str
-                   } )
-                   .then( swReg => {
-                       pra_obj.resolved_fun( swReg );
-                       return swReg;
-                   } )
-                   .catch( pra_obj.rejected_fun );
+            scope: pra_obj.scope_str
+        } )
+        .then( swReg => {
+            pra_obj.resolved_fun( swReg );
+            return swReg;
+        } )
+        .catch( pra_obj.rejected_fun );
     }
 
     /**
@@ -799,19 +799,19 @@ class SWRegistration{
         }, opt );
         if( tag ){
             return this.swReg.getNotifications( { tag: tag } )
-                       .then( notificationsList => {
-                           pra_obj.resolved( notificationsList );
-                           return notificationsList;
-                       } )
-                       .catch( pra_obj.rejected );
+            .then( notificationsList => {
+                pra_obj.resolved( notificationsList );
+                return notificationsList;
+            } )
+            .catch( pra_obj.rejected );
         }
         else{
             return this.swReg.getNotifications()
-                       .then( notificationsList => {
-                           pra_obj.resolved( notificationsList );
-                           return notificationsList;
-                       } )
-                       .catch( pra_obj.rejected );
+            .then( notificationsList => {
+                pra_obj.resolved( notificationsList );
+                return notificationsList;
+            } )
+            .catch( pra_obj.rejected );
         }
     }
 
@@ -887,49 +887,49 @@ class SWRegistration{
                 rejected: error => void ( GetError( error.message ) ),
             }, arg ),
             fun1 = () => this.swReg.showNotification( title, Object.assign( {
-                                 vibrate: [
-                                     200,
-                                     100,
-                                     200,
-                                     100,
-                                     200,
-                                     100,
-                                     200,
-                                 ],
-                                 lang: 'zh-CN',
-                                 dir: 'ltr',
-                                 renotify: 'false',
-                                 requireInteraction: 'true',
-                             }, options ) )
-                             .then( notificationEvent => {
-                                 pra_obj.resolved( notificationEvent );
-                                 return notificationEvent;
-                             } )
-                             .catch( pra_obj.rejected );
+                vibrate: [
+                    200,
+                    100,
+                    200,
+                    100,
+                    200,
+                    100,
+                    200,
+                ],
+                lang: 'zh-CN',
+                dir: 'ltr',
+                renotify: 'false',
+                requireInteraction: 'true',
+            }, options ) )
+            .then( notificationEvent => {
+                pra_obj.resolved( notificationEvent );
+                return notificationEvent;
+            } )
+            .catch( pra_obj.rejected );
         if( permission_str === 'granted' ){
             return fun1();
         }
         else if( permission_str === 'denied' ){
             return Notification.requestPermission()
-                               .then( result => {
-                                   if( result === 'granted' ){
-                                       return fun1();
-                                   }
-                                   else{
-                                       return 'denied';
-                                   }
-                               } );
+            .then( result => {
+                if( result === 'granted' ){
+                    return fun1();
+                }
+                else{
+                    return 'denied';
+                }
+            } );
         }
         else if( permission_str === 'default' ){
             return Notification.requestPermission()
-                               .then( result => {
-                                   if( result === 'granted' ){
-                                       return fun1();
-                                   }
-                                   else{
-                                       return 'denied';
-                                   }
-                               } );
+            .then( result => {
+                if( result === 'granted' ){
+                    return fun1();
+                }
+                else{
+                    return 'denied';
+                }
+            } );
         }
     }
 
@@ -953,11 +953,11 @@ class SWRegistration{
             rejected: error => void ( GetError( error.message ) ),
         }, opt );
         return this.swReg.unregister()
-                   .then( boolean => {
-                       pra_obj.resolved( boolean );
-                       return boolean;
-                   } )
-                   .catch( pra_obj.rejected );
+        .then( boolean => {
+            pra_obj.resolved( boolean );
+            return boolean;
+        } )
+        .catch( pra_obj.rejected );
     }
 
     /**
@@ -979,11 +979,11 @@ class SWRegistration{
             rejected: error => void ( GetError( error.message ) ),
         }, opt );
         return this.swReg.update()
-                   .then( swReg => {
-                       pra_obj.resolved( swReg );
-                       return swReg;
-                   } )
-                   .catch( pra_obj.rejected );
+        .then( swReg => {
+            pra_obj.resolved( swReg );
+            return swReg;
+        } )
+        .catch( pra_obj.rejected );
     }
 
     /**

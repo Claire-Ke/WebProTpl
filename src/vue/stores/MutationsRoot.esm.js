@@ -8,9 +8,7 @@
 
 'use strict';
 
-const MutationsRoot = {
-
-};
+const MutationsRoot = {};
 
 export {
     MutationsRoot,

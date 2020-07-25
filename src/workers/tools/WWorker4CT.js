@@ -76,10 +76,10 @@ class WWorker4CT{
      */
     constructor( _self, arg_obj ){
         let pra_obj = Object.assign( {
-                onMessage: event => {
-                },
-                onMessageError: event => void ( console.error( event.message ) ),
-            }, arg_obj );
+            onMessage: event => {
+            },
+            onMessageError: event => void ( console.error( event.message ) ),
+        }, arg_obj );
 
         this._self = _self;
         this.onMessageFun = pra_obj.onMessage;

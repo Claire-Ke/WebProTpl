@@ -33,7 +33,7 @@ const sriTool_funC = ( { isPro_boo, assets_obj, fileName_str } ) => {
             if( keyName_strC.includes( fileName_str ) ){
                 item = assets_obj[ keyName_strC ];
                 itemFileName_str = keyName_strC.toLowerCase()
-                                               .trim();
+                .trim();
                 isFileType_boo = itemFileName_str.endsWith( '.js' ) || itemFileName_str.endsWith( '.css' ) || itemFileName_str.endsWith( '.json' );
                 integrity_str = item.integrity;
                 isIntegrity_boo = isFileType_boo && integrity_str !== null && integrity_str !== undefined && integrity_str !== '';

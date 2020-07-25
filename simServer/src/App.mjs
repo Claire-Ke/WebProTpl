@@ -9,10 +9,10 @@
 'use strict';
 
 Promise.allSettled( [
-           import('./servers/ServerPort9999.esm.mjs'),
-           import('./servers/WebSocketPort9900.esm.mjs'),
-       ] )
-       .then( result => {
-           // console.dir( result );
-       } )
-       .catch( error => void ( console.error( error.message ) ) );
+    import('./servers/ServerPort9999.esm.mjs'),
+    import('./servers/WebSocketPort9900.esm.mjs'),
+] )
+.then( result => {
+    // console.dir( result );
+} )
+.catch( error => void ( console.error( error.message ) ) );

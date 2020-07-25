@@ -25,7 +25,7 @@ function StaticResources( server, request, response ){
     } = URLTool( request.url );
 
     const filePath_str = ToFilePath( config9999_obj.srPath + decodeURI( pathNameStr )
-        .slice( 3 + config9999_obj.serverName.trim().length + 'StaticResources'.length ) );
+    .slice( 3 + config9999_obj.serverName.trim().length + 'StaticResources'.length ) );
 
     if( ExistsFile( filePath_str ) ){
         new ResSRFile( server, request, response ).file4Path( filePath_str );

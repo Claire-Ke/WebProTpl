@@ -126,7 +126,7 @@ class ResSRFile{
                 'Content-Encoding': 'gzip',
             } );
             stream.pipe( CreGZip() )
-                  .pipe( _this.#response );
+            .pipe( _this.#response );
         }
         else{
             RemGZip( _this.#response );
@@ -153,9 +153,9 @@ class ResSRFile{
          要是设置了buffer.constants.MAX_LENGTH，不报错、也不执行，直接结束了，奇怪！！！
          */
         fs.createReadStream( img4Path_str, {
-              // highWaterMark: _this.#bufferSize_num,
-          } )
-          .pipe( _this.#response );
+            // highWaterMark: _this.#bufferSize_num,
+        } )
+        .pipe( _this.#response );
 
         _this.#response.statusCode = 200;
         _this.#response.statusMessage = 'OK';

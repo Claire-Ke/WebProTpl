@@ -99,11 +99,11 @@ function GetStr1( str1 = '' ){
 function IsDataT( data, type ){
     if( 'Element' === type ){
         return DataT( data )
-            .includes( type );
+        .includes( type );
     }
 
     let str1 = DataT( data )
-        .split( ' ' )[ 1 ];
+    .split( ' ' )[ 1 ];
 
     return str1.slice( 0, str1.length - 1 ) === type;
 }

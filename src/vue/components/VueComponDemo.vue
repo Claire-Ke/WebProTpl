@@ -8,7 +8,7 @@ IDE: WebStorm
 <!--
 关于样式的loader处理：
 1、
-.css、.scss、.styl、.stylus在.js中导入使用，或者是.vue中的<style lang = 'css' scoped></style>、<style lang = 'scss' scoped></style>、<style lang = 'styl' scoped></style>、<style lang = 'stylus' scoped></style>的使用方式！
+.css、.scss、.styl、.stylus、.pcss、.postcss在.js中导入使用，或者是.vue中的<style lang = 'css' scoped></style>、<style lang = 'scss' scoped></style>、<style lang = 'stylus' scoped></style>、<style lang = 'postcss' scoped></style>的使用方式！
 但是无法在.ejs中以link标签引入！也无法require导入！
 最后会被提取到一个.css文件中，最后把这个.css文件以link标签引入到页面中！
 
@@ -107,7 +107,7 @@ IDE: WebStorm
          * mounted不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用vm.$nextTick替换掉mounted。
          */
         mounted(){
-            this.$nextTick( function(){
+            this.$nextTick( function (){
                 let _this = this;
 
             } );
@@ -130,7 +130,7 @@ IDE: WebStorm
          * updated不会承诺所有的子组件也都一起被重绘。如果你希望等到整个视图都重绘完毕，可以用vm.$nextTick替换掉updated。
          */
         updated(){
-            this.$nextTick( function(){
+            this.$nextTick( function (){
                 let _this = this;
 
             } );

@@ -371,7 +371,6 @@
         "esModuleInterop": true,
         "preserveSymlinks": false,
         "allowUmdGlobalAccess": true,
-        "sourceRoot": "./test/",
         "mapRoot": "./test/",
         "inlineSourceMap": false,
         "inlineSources": false,

@@ -68,16 +68,16 @@ let SubresourceIntegrityPlugin = require( 'webpack-subresource-integrity' ),
     excludeChunks_fun = fileName_str => {
         let arr = [];
         Object.keys( pageRoutingManagement_obj )
-              .forEach( c => {
-                  if( c.trim() !== fileName_str.trim() ){
-                      arr.push( c );
-                  }
-              } );
+        .forEach( c => {
+            if( c.trim() !== fileName_str.trim() ){
+                arr.push( c );
+            }
+        } );
         return arr;
     };
 
 const str1 = proN_str.slice( 0, 1 )
-                     .toLocaleLowerCase(),
+    .toLocaleLowerCase(),
     str2 = proN_str.slice( 1 );
 // 如：proN_str--->production，对应dist文件夹下的production文件夹
 proN_str = str1 + str2;

@@ -8,9 +8,7 @@
 
 'use strict';
 
-const GettersRoot = {
-
-};
+const GettersRoot = {};
 
 export {
     GettersRoot,

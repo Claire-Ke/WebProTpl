@@ -149,9 +149,9 @@ let fs = require( 'fs' ),
         'module': 'ES2020',
         // [ 'lib.es6.d.ts', 'lib.es2015.d.ts' ]
         'lib': ( () => fs.readdirSync( path.join( __dirname, './node_modules/typescript/lib' ) )
-                         .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
-                                                    .isDirectory() )
-                         .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) ) )(),
+        .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
+        .isDirectory() )
+        .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) ) )(),
         // true时，可以在.ts中导入.js；但是，false时，这么干，会报错！
         'allowJs': false,
         // true时，当把.js文件导入到.ts文件中时，如果.js文件中有错，将报告错误，这相当于在项目中包含的所有JavaScript文件的顶部包含"// @ts-check"。
@@ -480,7 +480,6 @@ let fs = require( 'fs' ),
 
         // Source Maps Start
 
-        'sourceRoot': './test/',
         'mapRoot': './test/',
         // 设置后，TypeScript将在.js文件中嵌入源映射内容，而不是写出.js.map文件来提供源映射。尽管这会产生更大的JS文件，但在某些情况下，这是很方便的。
         // 例如，您可能希望在不允许提供.map文件的Web服务器上调试JS文件。
@@ -1578,7 +1577,7 @@ let fs = require( 'fs' ),
                         VendorsDir_JS: ( arr => {
                             return {
                                 test: new RegExp( `node_modules[\\\\/](?!${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
-                                                                               .join( '|' ) }).*\\.js$` ),
+                                .join( '|' ) }).*\\.js$` ),
                                 name: 'VendorsDir_JS',
                                 // 数值越高越先添加加载
                                 // priority: 1000,
@@ -1596,7 +1595,7 @@ let fs = require( 'fs' ),
                         VendorsToolsDir_JS: ( arr => {
                             return {
                                 test: new RegExp( `node_modules[\\\\/](${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
-                                                                             .join( '|' ) }).*\\.js$` ),
+                                .join( '|' ) }).*\\.js$` ),
                                 name: 'VendorsToolsDir_JS',
                                 // 数值越高越先添加加载
                                 // priority: 1000,
@@ -1764,9 +1763,9 @@ let fs = require( 'fs' ),
                     };
 
                 Object.entries( obj )
-                      .forEach( ( c, i, ) => {
-                          c[ 1 ].priority = start_num - i;
-                      } );
+                .forEach( ( c, i, ) => {
+                    c[ 1 ].priority = start_num - i;
+                } );
 
                 return obj;
             } )( 100000000 ) )
@@ -1775,7 +1774,7 @@ let fs = require( 'fs' ),
                         let arr1 = [ ...c ];
 
                         return `${ arr1.shift()
-                                       .toLocaleUpperCase() }${ arr1.join( '' ) }`.replace( new RegExp( '[^a-zA-Z0-9_@]', 'g' ), '' );
+                        .toLocaleUpperCase() }${ arr1.join( '' ) }`.replace( new RegExp( '[^a-zA-Z0-9_@]', 'g' ), '' );
                     },
                     styleType_arr = [
                         'css',
@@ -1833,25 +1832,25 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/components' ) )
-                              .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
-                                           .isDirectory();
-                              } )
-                              .filter( ( c, i, a ) => true )
-                              .forEach( ( c, i, a ) => {
-                                  arr.forEach( ( c1, i1, a1 ) => {
-                                      str1 = fun( c );
+                            .filter( ( c, i, a ) => {
+                                return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
+                                .isDirectory();
+                            } )
+                            .filter( ( c, i, a ) => true )
+                            .forEach( ( c, i, a ) => {
+                                arr.forEach( ( c1, i1, a1 ) => {
+                                    str1 = fun( c );
 
-                                      result_obj[ `Components_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
-                                          test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                          name: `Components_${ str1 }_${ c1.toLocaleUpperCase() }`,
-                                          // 数值越高越先添加加载
-                                          // priority: 1000,
-                                          enforce: true,
-                                          reuseExistingChunk: true
-                                      };
-                                  } );
-                              } );
+                                    result_obj[ `Components_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                        test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                        name: `Components_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                        // 数值越高越先添加加载
+                                        // priority: 1000,
+                                        enforce: true,
+                                        reuseExistingChunk: true
+                                    };
+                                } );
+                            } );
 
                             return result_obj;
                         } )( styleType_arr ),
@@ -1878,25 +1877,25 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/webComponents' ) )
-                              .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
-                                           .isDirectory();
-                              } )
-                              .filter( ( c, i, a ) => true )
-                              .forEach( ( c, i, a ) => {
-                                  arr.forEach( ( c1, i1, a1 ) => {
-                                      str1 = fun( c );
+                            .filter( ( c, i, a ) => {
+                                return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
+                                .isDirectory();
+                            } )
+                            .filter( ( c, i, a ) => true )
+                            .forEach( ( c, i, a ) => {
+                                arr.forEach( ( c1, i1, a1 ) => {
+                                    str1 = fun( c );
 
-                                      result_obj[ `WebComponents_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
-                                          test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                          name: `WebComponents_${ str1 }_${ c1.toLocaleUpperCase() }`,
-                                          // 数值越高越先添加加载
-                                          // priority: 1000,
-                                          enforce: true,
-                                          reuseExistingChunk: true
-                                      };
-                                  } );
-                              } );
+                                    result_obj[ `WebComponents_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                        test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                        name: `WebComponents_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                        // 数值越高越先添加加载
+                                        // priority: 1000,
+                                        enforce: true,
+                                        reuseExistingChunk: true
+                                    };
+                                } );
+                            } );
 
                             return result_obj;
                         } )( styleType_arr ),
@@ -1941,25 +1940,25 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/vue/components' ) )
-                              .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
-                                           .isDirectory();
-                              } )
-                              .filter( ( c, i, a ) => true )
-                              .forEach( ( c, i, a ) => {
-                                  arr.forEach( ( c1, i1, a1 ) => {
-                                      str1 = fun( c );
+                            .filter( ( c, i, a ) => {
+                                return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
+                                .isDirectory();
+                            } )
+                            .filter( ( c, i, a ) => true )
+                            .forEach( ( c, i, a ) => {
+                                arr.forEach( ( c1, i1, a1 ) => {
+                                    str1 = fun( c );
 
-                                      result_obj[ `VueComponents_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
-                                          test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                          name: `VueComponents_${ str1 }_${ c1.toLocaleUpperCase() }`,
-                                          // 数值越高越先添加加载
-                                          // priority: 1000,
-                                          enforce: true,
-                                          reuseExistingChunk: true
-                                      };
-                                  } );
-                              } );
+                                    result_obj[ `VueComponents_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                        test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                        name: `VueComponents_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                        // 数值越高越先添加加载
+                                        // priority: 1000,
+                                        enforce: true,
+                                        reuseExistingChunk: true
+                                    };
+                                } );
+                            } );
 
                             return result_obj;
                         } )( styleType_arr ),
@@ -1986,25 +1985,25 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/vue/styles' ) )
-                              .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/vue/styles/${ c }` ) )
-                                           .isDirectory();
-                              } )
-                              .filter( ( c, i, a ) => true )
-                              .forEach( ( c, i, a ) => {
-                                  arr.forEach( ( c1, i1, a1 ) => {
-                                      str1 = fun( c );
+                            .filter( ( c, i, a ) => {
+                                return fs.statSync( path.join( __dirname, `./src/vue/styles/${ c }` ) )
+                                .isDirectory();
+                            } )
+                            .filter( ( c, i, a ) => true )
+                            .forEach( ( c, i, a ) => {
+                                arr.forEach( ( c1, i1, a1 ) => {
+                                    str1 = fun( c );
 
-                                      result_obj[ `VueStyles_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
-                                          test: new RegExp( `src[\\\\/]vue[\\\\/]styles[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                          name: `VueStyles_${ str1 }_${ c1.toLocaleUpperCase() }`,
-                                          // 数值越高越先添加加载
-                                          // priority: 1000,
-                                          enforce: true,
-                                          reuseExistingChunk: true
-                                      };
-                                  } );
-                              } );
+                                    result_obj[ `VueStyles_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                        test: new RegExp( `src[\\\\/]vue[\\\\/]styles[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                        name: `VueStyles_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                        // 数值越高越先添加加载
+                                        // priority: 1000,
+                                        enforce: true,
+                                        reuseExistingChunk: true
+                                    };
+                                } );
+                            } );
 
                             return result_obj;
                         } )( styleType_arr ),
@@ -2032,23 +2031,23 @@ let fs = require( 'fs' ),
 
                             arr.forEach( ( c1, i1, a1 ) => {
                                 fs.readdirSync( path.join( __dirname, `./src/styles/${ c1 }/pages` ) )
-                                  .filter( ( c, i, a ) => {
-                                      return fs.statSync( path.join( __dirname, `./src/styles/${ c1 }/pages/${ c }` ) )
-                                               .isDirectory();
-                                  } )
-                                  .filter( ( c, i, a ) => true )
-                                  .forEach( ( c, i, a ) => {
-                                      str1 = fun( c );
+                                .filter( ( c, i, a ) => {
+                                    return fs.statSync( path.join( __dirname, `./src/styles/${ c1 }/pages/${ c }` ) )
+                                    .isDirectory();
+                                } )
+                                .filter( ( c, i, a ) => true )
+                                .forEach( ( c, i, a ) => {
+                                    str1 = fun( c );
 
-                                      result_obj[ `Pages_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
-                                          test: new RegExp( `src[\\\\/]styles[\\\\/]${ c1 }[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
-                                          name: `Pages_${ str1 }_${ c1.toLocaleUpperCase() }`,
-                                          // 数值越高越先添加加载
-                                          // priority: 1000,
-                                          enforce: true,
-                                          reuseExistingChunk: true
-                                      };
-                                  } );
+                                    result_obj[ `Pages_${ str1 }_${ c1.toLocaleUpperCase() }` ] = {
+                                        test: new RegExp( `src[\\\\/]styles[\\\\/]${ c1 }[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.${ c1 }$` ),
+                                        name: `Pages_${ str1 }_${ c1.toLocaleUpperCase() }`,
+                                        // 数值越高越先添加加载
+                                        // priority: 1000,
+                                        enforce: true,
+                                        reuseExistingChunk: true
+                                    };
+                                } );
                             } );
 
                             return result_obj;
@@ -2073,7 +2072,7 @@ let fs = require( 'fs' ),
                         VendorsDir_JS: ( arr => {
                             return {
                                 test: new RegExp( `node_modules[\\\\/](?!${ arr.map( ( c, i, a ) => c + '[\\\\/]' )
-                                                                               .join( '|' ) }).*\\.js$` ),
+                                .join( '|' ) }).*\\.js$` ),
                                 name: 'VendorsDir_JS',
                                 // 数值越高越先添加加载
                                 // priority: 1000,
@@ -2217,23 +2216,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/graphQL/api' ) )
-                              .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/graphQL/api/${ c }` ) )
-                                           .isDirectory();
-                              } )
-                              .filter( ( c, i, a ) => true )
-                              .forEach( ( c, i, a ) => {
-                                  str1 = fun( c );
+                            .filter( ( c, i, a ) => {
+                                return fs.statSync( path.join( __dirname, `./src/graphQL/api/${ c }` ) )
+                                .isDirectory();
+                            } )
+                            .filter( ( c, i, a ) => true )
+                            .forEach( ( c, i, a ) => {
+                                str1 = fun( c );
 
-                                  result_obj[ `GQLAPI_${ str1 }_JS` ] = {
-                                      test: new RegExp( `src[\\\\/]graphQL[\\\\/]api[\\\\/]${ c }[\\\\/].*\\.(graphql|gql)$` ),
-                                      name: `GQLAPI_${ str1 }_JS`,
-                                      // 数值越高越先添加加载
-                                      // priority: 1000,
-                                      enforce: true,
-                                      reuseExistingChunk: true
-                                  };
-                              } );
+                                result_obj[ `GQLAPI_${ str1 }_JS` ] = {
+                                    test: new RegExp( `src[\\\\/]graphQL[\\\\/]api[\\\\/]${ c }[\\\\/].*\\.(graphql|gql)$` ),
+                                    name: `GQLAPI_${ str1 }_JS`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
 
                             return result_obj;
                         } )(),
@@ -2252,23 +2251,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/components' ) )
-                              .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
-                                           .isDirectory();
-                              } )
-                              .filter( ( c, i, a ) => true )
-                              .forEach( ( c, i, a ) => {
-                                  str1 = fun( c );
+                            .filter( ( c, i, a ) => {
+                                return fs.statSync( path.join( __dirname, `./src/components/${ c }` ) )
+                                .isDirectory();
+                            } )
+                            .filter( ( c, i, a ) => true )
+                            .forEach( ( c, i, a ) => {
+                                str1 = fun( c );
 
-                                  result_obj[ `Components_${ str1 }_JS` ] = {
-                                      test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                      name: `Components_${ str1 }_JS`,
-                                      // 数值越高越先添加加载
-                                      // priority: 1000,
-                                      enforce: true,
-                                      reuseExistingChunk: true
-                                  };
-                              } );
+                                result_obj[ `Components_${ str1 }_JS` ] = {
+                                    test: new RegExp( `src[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                    name: `Components_${ str1 }_JS`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
 
                             return result_obj;
                         } )(),
@@ -2286,23 +2285,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/webComponents' ) )
-                              .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
-                                           .isDirectory();
-                              } )
-                              .filter( ( c, i, a ) => true )
-                              .forEach( ( c, i, a ) => {
-                                  str1 = fun( c );
+                            .filter( ( c, i, a ) => {
+                                return fs.statSync( path.join( __dirname, `./src/webComponents/${ c }` ) )
+                                .isDirectory();
+                            } )
+                            .filter( ( c, i, a ) => true )
+                            .forEach( ( c, i, a ) => {
+                                str1 = fun( c );
 
-                                  result_obj[ `WebComponents_${ str1 }_JS` ] = {
-                                      test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                      name: `WebComponents_${ str1 }_JS`,
-                                      // 数值越高越先添加加载
-                                      // priority: 1000,
-                                      enforce: true,
-                                      reuseExistingChunk: true
-                                  };
-                              } );
+                                result_obj[ `WebComponents_${ str1 }_JS` ] = {
+                                    test: new RegExp( `src[\\\\/]webComponents[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                    name: `WebComponents_${ str1 }_JS`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
 
                             return result_obj;
                         } )(),
@@ -2344,23 +2343,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/vue/components' ) )
-                              .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
-                                           .isDirectory();
-                              } )
-                              .filter( ( c, i, a ) => true )
-                              .forEach( ( c, i, a ) => {
-                                  str1 = fun( c );
+                            .filter( ( c, i, a ) => {
+                                return fs.statSync( path.join( __dirname, `./src/vue/components/${ c }` ) )
+                                .isDirectory();
+                            } )
+                            .filter( ( c, i, a ) => true )
+                            .forEach( ( c, i, a ) => {
+                                str1 = fun( c );
 
-                                  result_obj[ `VueComponents_${ str1 }_JS` ] = {
-                                      test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                      name: `VueComponents_${ str1 }_JS`,
-                                      // 数值越高越先添加加载
-                                      // priority: 1000,
-                                      enforce: true,
-                                      reuseExistingChunk: true
-                                  };
-                              } );
+                                result_obj[ `VueComponents_${ str1 }_JS` ] = {
+                                    test: new RegExp( `src[\\\\/]vue[\\\\/]components[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                    name: `VueComponents_${ str1 }_JS`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
 
                             return result_obj;
                         } )(),
@@ -2377,23 +2376,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/vue/models' ) )
-                              .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/vue/models/${ c }` ) )
-                                           .isDirectory();
-                              } )
-                              .filter( ( c, i, a ) => true )
-                              .forEach( ( c, i, a ) => {
-                                  str1 = fun( c );
+                            .filter( ( c, i, a ) => {
+                                return fs.statSync( path.join( __dirname, `./src/vue/models/${ c }` ) )
+                                .isDirectory();
+                            } )
+                            .filter( ( c, i, a ) => true )
+                            .forEach( ( c, i, a ) => {
+                                str1 = fun( c );
 
-                                  result_obj[ `VueModels_${ str1 }_JS` ] = {
-                                      test: new RegExp( `src[\\\\/]vue[\\\\/]models[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                      name: `VueModels_${ str1 }_JS`,
-                                      // 数值越高越先添加加载
-                                      // priority: 1000,
-                                      enforce: true,
-                                      reuseExistingChunk: true
-                                  };
-                              } );
+                                result_obj[ `VueModels_${ str1 }_JS` ] = {
+                                    test: new RegExp( `src[\\\\/]vue[\\\\/]models[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                    name: `VueModels_${ str1 }_JS`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
 
                             return result_obj;
                         } )(),
@@ -2411,23 +2410,23 @@ let fs = require( 'fs' ),
                                 str1;
 
                             fs.readdirSync( path.join( __dirname, './src/js/pages' ) )
-                              .filter( ( c, i, a ) => {
-                                  return fs.statSync( path.join( __dirname, `./src/js/pages/${ c }` ) )
-                                           .isDirectory();
-                              } )
-                              .filter( ( c, i, a ) => true )
-                              .forEach( ( c, i, a ) => {
-                                  str1 = fun( c );
+                            .filter( ( c, i, a ) => {
+                                return fs.statSync( path.join( __dirname, `./src/js/pages/${ c }` ) )
+                                .isDirectory();
+                            } )
+                            .filter( ( c, i, a ) => true )
+                            .forEach( ( c, i, a ) => {
+                                str1 = fun( c );
 
-                                  result_obj[ `Pages_${ str1 }_JS` ] = {
-                                      test: new RegExp( `src[\\\\/]js[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.js$` ),
-                                      name: `Pages_${ str1 }_JS`,
-                                      // 数值越高越先添加加载
-                                      // priority: 1000,
-                                      enforce: true,
-                                      reuseExistingChunk: true
-                                  };
-                              } );
+                                result_obj[ `Pages_${ str1 }_JS` ] = {
+                                    test: new RegExp( `src[\\\\/]js[\\\\/]pages[\\\\/]${ c }[\\\\/].*\\.js$` ),
+                                    name: `Pages_${ str1 }_JS`,
+                                    // 数值越高越先添加加载
+                                    // priority: 1000,
+                                    enforce: true,
+                                    reuseExistingChunk: true
+                                };
+                            } );
 
                             return result_obj;
                         } )(),
@@ -2451,9 +2450,9 @@ let fs = require( 'fs' ),
                     };
 
                 Object.entries( obj )
-                      .forEach( ( c, i, ) => {
-                          c[ 1 ].priority = start_num - i;
-                      } );
+                .forEach( ( c, i, ) => {
+                    c[ 1 ].priority = start_num - i;
+                } );
 
                 return obj;
             } )( 100000000 ) )
@@ -3185,8 +3184,10 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
                     path.resolve( __dirname, './src/styles/less/' ),
+                    path.resolve( __dirname, './src/styles/postcss/' ),
                     path.resolve( __dirname, './src/styles/sass/' ),
                     path.resolve( __dirname, './src/styles/scss/' ),
+                    path.resolve( __dirname, './src/styles/stylus/' ),
                     path.resolve( __dirname, './src/tplEJS/' ),
                     path.resolve( __dirname, './src/tplHTML/' ),
                     path.resolve( __dirname, './src/wasm/' ),
@@ -3261,7 +3262,9 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/static/' ),
                     path.resolve( __dirname, './src/styles/css/' ),
                     path.resolve( __dirname, './src/styles/less/' ),
+                    path.resolve( __dirname, './src/styles/postcss/' ),
                     path.resolve( __dirname, './src/styles/sass/' ),
+                    path.resolve( __dirname, './src/styles/stylus/' ),
                     path.resolve( __dirname, './src/tplEJS/' ),
                     path.resolve( __dirname, './src/tplHTML/' ),
                     path.resolve( __dirname, './src/wasm/' ),
@@ -3344,8 +3347,10 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
                     path.resolve( __dirname, './src/styles/css/' ),
+                    path.resolve( __dirname, './src/styles/postcss/' ),
                     path.resolve( __dirname, './src/styles/sass/' ),
                     path.resolve( __dirname, './src/styles/scss/' ),
+                    path.resolve( __dirname, './src/styles/stylus/' ),
                     path.resolve( __dirname, './src/tplEJS/' ),
                     path.resolve( __dirname, './src/tplHTML/' ),
                     path.resolve( __dirname, './src/wasm/' ),
@@ -3423,8 +3428,10 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
                     path.resolve( __dirname, './src/styles/css/' ),
+                    path.resolve( __dirname, './src/styles/postcss/' ),
                     path.resolve( __dirname, './src/styles/less/' ),
                     path.resolve( __dirname, './src/styles/scss/' ),
+                    path.resolve( __dirname, './src/styles/stylus/' ),
                     path.resolve( __dirname, './src/tplEJS/' ),
                     path.resolve( __dirname, './src/tplHTML/' ),
                     path.resolve( __dirname, './src/wasm/' ),
@@ -3479,8 +3486,63 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/static/' ),
                     path.resolve( __dirname, './src/styles/css/' ),
                     path.resolve( __dirname, './src/styles/less/' ),
+                    path.resolve( __dirname, './src/styles/postcss/' ),
                     path.resolve( __dirname, './src/styles/sass/' ),
                     path.resolve( __dirname, './src/styles/scss/' ),
+                    path.resolve( __dirname, './src/tplEJS/' ),
+                    path.resolve( __dirname, './src/tplHTML/' ),
+                    path.resolve( __dirname, './src/wasm/' ),
+                    path.resolve( __dirname, './src/workers/' ),
+                ],
+                sideEffects: true,
+            },
+            {
+                test: /\.(pcss|postcss)$/i,
+                use: [
+                    {
+                        loader: MiniCSSExtractPlugin.loader,
+                        options: obj,
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: true,
+                            import: true,
+                            importLoaders: 1,
+                            esModule: false,
+                        },
+                    },
+                    postCSSLoader_fun( isPro ),
+                ],
+                include: [
+                    path.resolve( __dirname, './node_modules/' ),
+                    path.resolve( __dirname, './src/components/' ),
+                    path.resolve( __dirname, './src/styles/postcss/' ),
+                    path.resolve( __dirname, './src/vue/' ),
+                    path.resolve( __dirname, './src/webComponents/' ),
+                ],
+                exclude: [
+                    path.resolve( __dirname, './assistTools/' ),
+                    path.resolve( __dirname, './backups/' ),
+                    path.resolve( __dirname, './bats/' ),
+                    path.resolve( __dirname, './configures/' ),
+                    path.resolve( __dirname, './dist/' ),
+                    path.resolve( __dirname, './notes/' ),
+                    path.resolve( __dirname, './simServer/' ),
+                    path.resolve( __dirname, './simServer4Deno/' ),
+                    path.resolve( __dirname, './test/' ),
+                    path.resolve( __dirname, './webpackRecords/' ),
+
+                    path.resolve( __dirname, './src/assets/' ),
+                    path.resolve( __dirname, './src/graphQL/' ),
+                    path.resolve( __dirname, './src/js/' ),
+                    path.resolve( __dirname, './src/pwa4Manifest/' ),
+                    path.resolve( __dirname, './src/static/' ),
+                    path.resolve( __dirname, './src/styles/css/' ),
+                    path.resolve( __dirname, './src/styles/less/' ),
+                    path.resolve( __dirname, './src/styles/sass/' ),
+                    path.resolve( __dirname, './src/styles/scss/' ),
+                    path.resolve( __dirname, './src/styles/stylus/' ),
                     path.resolve( __dirname, './src/tplEJS/' ),
                     path.resolve( __dirname, './src/tplHTML/' ),
                     path.resolve( __dirname, './src/wasm/' ),
@@ -4501,15 +4563,15 @@ let fs = require( 'fs' ),
         const nowDate = new Date( Date.now() ),
             year = nowDate.getFullYear(),
             month = String( nowDate.getMonth() + 1 )
-                .padStart( 2, '0' ),
+            .padStart( 2, '0' ),
             date = String( nowDate.getDate() )
-                .padStart( 2, '0' ),
+            .padStart( 2, '0' ),
             hours = String( nowDate.getHours() )
-                .padStart( 2, '0' ),
+            .padStart( 2, '0' ),
             minutes = String( nowDate.getMinutes() )
-                .padStart( 2, '0' ),
+            .padStart( 2, '0' ),
             seconds = String( nowDate.getSeconds() )
-                .padStart( 2, '0' ),
+            .padStart( 2, '0' ),
             day0 = Number( nowDate.getDay() ),
             day = day0 === 0
                   ? '日'

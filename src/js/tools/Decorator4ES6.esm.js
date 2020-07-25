@@ -117,11 +117,11 @@ function IsBoolean( arg ){
 function IsDataT( data, type ){
     if( 'Element' === type ){
         return DataT( data )
-            .includes( type );
+        .includes( type );
     }
 
     return DataT( data )
-        .slice( 8, -1 ) === type;
+    .slice( 8, -1 ) === type;
 }
 
 function IsDataView( arg ){
@@ -1142,7 +1142,7 @@ function MapType( target, name, descriptor ){
  * @returns {function} 装饰器函数
  */
 function Mixin2Class4Proto( ...list_obj ){
-    return function( target ){
+    return function ( target ){
         Object.assign( target.prototype, ...list_obj );
     };
 }
@@ -1158,7 +1158,7 @@ function Mixin2Class4Proto( ...list_obj ){
  * @returns {function} 装饰器函数
  */
 function Mixin2Class4Static( ...list_obj ){
-    return function( target ){
+    return function ( target ){
         Object.assign( target, ...list_obj );
     };
 }

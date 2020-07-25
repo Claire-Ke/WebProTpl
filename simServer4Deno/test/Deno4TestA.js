@@ -132,7 +132,7 @@ console.dir( 'Deno4TestA Start!' );
             wasmInstance = new WebAssembly.Instance( wasmModule );
 
         console.log( wasmInstance.exports.main()
-                                 .toString() );
+        .toString() );
     }
 }
 

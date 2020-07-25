@@ -159,12 +159,12 @@ class ServiceWorker4CT
         super();
 
         let pea_obj = Object.assign( {
-                onMessage: event => {
-                    console.log( 'onMessage Start' );
-                    console.dir( event );
-                    console.log( 'onMessage End' );
-                },
-            }, arg_obj );
+            onMessage: event => {
+                console.log( 'onMessage Start' );
+                console.dir( event );
+                console.log( 'onMessage End' );
+            },
+        }, arg_obj );
 
         this._self = _self;
         this.onMessageFun = pea_obj.onMessage;

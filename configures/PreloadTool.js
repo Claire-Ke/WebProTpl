@@ -166,21 +166,21 @@ function PreloadTool( { isPro_boo, preload_arr, assets_obj = {}, publicPath_str 
         as_str = '';
 
     Object.keys( assets_obj )
-          .forEach( c => {
-              Object.keys( as_obj )
-                    .forEach( c1 => void ( as_obj[ c1 ].forEach( c2 => void ( c.toLowerCase()
-                                                                               .trim()
-                                                                               .endsWith( c2 ) && ( as_str = c1 ) ) ) ) );
-              result_str += `<link rel = 'preload' href = '${ publicPath_str + c }' ${ as_str === 'noAS'
-                                                                                       ? ''
-                                                                                       : `as = '${ as_str }'` } type = '${ mime.getType( publicPath_str + c ) || 'application/octet-stream' }' ${ isPro_boo && ( c.toLowerCase()
-                                                                                                                                                                                                                  .trim()
-                                                                                                                                                                                                                  .endsWith( '.js' ) || c.toLowerCase()
-                                                                                                                                                                                                                                         .trim()
-                                                                                                                                                                                                                                         .endsWith( '.css' ) )
-                                                                                                                                                                                                  ? `integrity = '${ assets_obj[ c ][ 'integrity' ] }'`
-                                                                                                                                                                                                  : '' } crossorigin = 'anonymous' />`;
-          } );
+    .forEach( c => {
+        Object.keys( as_obj )
+        .forEach( c1 => void ( as_obj[ c1 ].forEach( c2 => void ( c.toLowerCase()
+        .trim()
+        .endsWith( c2 ) && ( as_str = c1 ) ) ) ) );
+        result_str += `<link rel = 'preload' href = '${ publicPath_str + c }' ${ as_str === 'noAS'
+                                                                                 ? ''
+                                                                                 : `as = '${ as_str }'` } type = '${ mime.getType( publicPath_str + c ) || 'application/octet-stream' }' ${ isPro_boo && ( c.toLowerCase()
+        .trim()
+        .endsWith( '.js' ) || c.toLowerCase()
+        .trim()
+        .endsWith( '.css' ) )
+                                                                                                                                                                                            ? `integrity = '${ assets_obj[ c ][ 'integrity' ] }'`
+                                                                                                                                                                                            : '' } crossorigin = 'anonymous' />`;
+    } );
 
     preload_arr.forEach( c => {
         let str1 = `<link rel = 'preload' href = '${ c.href }' ${ 'as' in c
@@ -193,7 +193,7 @@ function PreloadTool( { isPro_boo, preload_arr, assets_obj = {}, publicPath_str 
             str2 = `/>`;
 
         'attrs' in c && ( Object.keys( c.attrs )
-                                .forEach( c1 => void ( str1 += `${ c1 } = '${ c.attrs[ c1 ] }' ` ) ) );
+        .forEach( c1 => void ( str1 += `${ c1 } = '${ c.attrs[ c1 ] }' ` ) ) );
 
         result_str += str1 + str2;
     } );
@@ -204,7 +204,7 @@ function PreloadTool( { isPro_boo, preload_arr, assets_obj = {}, publicPath_str 
                 str2 = `></script>`;
 
             'attrs' in c && ( Object.keys( c.attrs )
-                                    .forEach( c1 => void ( str1 += ` ${ c1 } = '${ c.attrs[ c1 ] }' ` ) ) );
+            .forEach( c1 => void ( str1 += ` ${ c1 } = '${ c.attrs[ c1 ] }' ` ) ) );
 
             result_str += str1 + str2;
         }

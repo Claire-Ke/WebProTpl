@@ -25,7 +25,7 @@ function WebPro( server, request, response ){
     } = URLTool( request.url );
 
     const filePath_str = ToFilePath( config9999_obj.webProPath + decodeURI( pathNameStr )
-        .slice( 3 + config9999_obj.serverName.trim().length + 'WebPro'.length ) );
+    .slice( 3 + config9999_obj.serverName.trim().length + 'WebPro'.length ) );
 
     if( ExistsFile( filePath_str ) ){
         new ResSRFile( server, request, response ).file4Path( filePath_str );

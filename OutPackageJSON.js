@@ -22,7 +22,7 @@ let fs = require( 'fs' ),
     jsonFile_obj = {},
     version_str = '',
     isDir_fun = ( path_str = '' ) => fs.statSync( path_str )
-                                       .isDirectory(),
+    .isDirectory(),
     read_fun = ( filePath_str = '' ) => fs.readFileSync( filePath_str ),
     handle1_fun = ( dirName_arr = [], fun = item => {
     } ) => void ( dirName_arr.forEach( fun ) ),

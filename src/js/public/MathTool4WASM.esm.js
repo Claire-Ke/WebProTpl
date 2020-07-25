@@ -143,17 +143,17 @@ let CT = new CTESM.CT(),
  */
 function MathTool4WASM( url = MathTool4Url, importObject = {} ){
     return CT.getWASM( {
-                 url,
-                 importObject: Object.assign( importObject_objC, importObject ),
-             } )
-             .then( ( {
-                          module,
-                          instance,
-                      } ) => ( {
+        url,
+        importObject: Object.assign( importObject_objC, importObject ),
+    } )
+    .then( ( {
                  module,
                  instance,
-                 funs: instance.exports,
-             } ) );
+             } ) => ( {
+        module,
+        instance,
+        funs: instance.exports,
+    } ) );
 }
 
 export {
