@@ -3458,8 +3458,8 @@ let fs = require( 'fs' ),
                     path.resolve( __dirname, './src/pwa4Manifest/' ),
                     path.resolve( __dirname, './src/static/' ),
                     path.resolve( __dirname, './src/styles/css/' ),
-                    path.resolve( __dirname, './src/styles/postcss/' ),
                     path.resolve( __dirname, './src/styles/less/' ),
+                    path.resolve( __dirname, './src/styles/postcss/' ),
                     path.resolve( __dirname, './src/styles/scss/' ),
                     path.resolve( __dirname, './src/styles/stylus/' ),
                     path.resolve( __dirname, './src/tplEJS/' ),
@@ -3530,17 +3530,21 @@ let fs = require( 'fs' ),
                 test: /\.(pcss|postcss)$/i,
                 use: [
                     {
-                        loader: MiniCSSExtractPlugin.loader,
-                        options: obj,
+                        loader: 'style-loader',
+                        options: {
+                            injectType: 'styleTag',
+                            insert: 'head',
+                            esModule: false,
+                        }
                     },
                     {
                         loader: 'css-loader',
                         options: {
                             url: true,
                             import: true,
-                            importLoaders: 1,
+                            importLoaders: 2,
                             esModule: false,
-                        },
+                        }
                     },
                     postCSSLoader_fun( isPro ),
                 ],
