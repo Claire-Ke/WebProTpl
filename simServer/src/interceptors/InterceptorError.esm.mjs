@@ -13,7 +13,7 @@ import {
 } from '../configures/GlobalProp.esm.mjs';
 import ResSRFile from '../public/ResSRFile.esm.mjs';
 
-class InterceptorError{
+class InterceptorError {
 
     #server = null;
     #request = null;

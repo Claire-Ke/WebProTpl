@@ -11,7 +11,7 @@
 /**
  * 一个封装了ApplicationCache基本操作的类，过时了，建议不要用了，建议用Service Worker！
  */
-class AppCache{
+class AppCache {
 
     appCache_obj;
 
@@ -65,29 +65,31 @@ class AppCache{
         if( status_num === 0 ){
             return null;
         }
-        else if( status_num === 5 ){
-            return null;
+        else{
+            if( status_num === 5 ){
+                return null;
+            }
         }
 
         let pra_obj = Object.assign( {
-                                         isUpdate: false,
-                                         onChecking: event => {
-                                         },
-                                         onNoUpdate: event => {
-                                         },
-                                         onDownLoading: event => {
-                                         },
-                                         onProgress: event => {
-                                         },
-                                         onCached: event => {
-                                         },
-                                         onUpdateReady: event => {
-                                         },
-                                         onObsolete: event => {
-                                         },
-                                         onError: event => {
-                                         }
-                                     }, arg_obj );
+            isUpdate: false,
+            onChecking: event => {
+            },
+            onNoUpdate: event => {
+            },
+            onDownLoading: event => {
+            },
+            onProgress: event => {
+            },
+            onCached: event => {
+            },
+            onUpdateReady: event => {
+            },
+            onObsolete: event => {
+            },
+            onError: event => {
+            }
+        }, arg_obj );
         this.appCache_obj = window.applicationCache;
         this.#onChecking_fun = pra_obj.onChecking;
         this.#onNoUpdate_fun = pra_obj.onNoUpdate;

@@ -35,9 +35,9 @@ function GETFileContr( server, request, response ){
     switch( type ){
     case 'json':
         resContent = JSON.stringify( {
-                                         'type': 'json',
-                                         'info': '帝子降兮北渚，目渺渺兮愁予。'
-                                     } );
+            'type': 'json',
+            'info': '帝子降兮北渚，目渺渺兮愁予。'
+        } );
 
         SetHeaders( response, {
             'Content-Type': 'application/json',
@@ -49,11 +49,11 @@ function GETFileContr( server, request, response ){
         break;
     case 'json5':
         resContent = JSON.stringify( Object.assign( {
-                                                        type: 'json5',
-                                                        info: '路漫漫其修远兮，吾将上下而求索。',
-                                                    }, {
-                                                        __proto__: null,
-                                                    } ) );
+            type: 'json5',
+            info: '路漫漫其修远兮，吾将上下而求索。',
+        }, {
+            __proto__: null,
+        } ) );
 
         SetHeaders( response, {
             'Content-Type': 'application/json',
@@ -86,9 +86,9 @@ function GETFileContr( server, request, response ){
         break;
     default:
         resContent = JSON.stringify( {
-                                         'type': String( type ),
-                                         'info': 'type的值只能是“json”、“json5”、“img”、“zip”、“apps”、“xlsx”、“docx”。'
-                                     } );
+            'type': String( type ),
+            'info': 'type的值只能是“json”、“json5”、“img”、“zip”、“apps”、“xlsx”、“docx”。'
+        } );
 
         SetHeaders( response, {
             'Content-Type': 'application/json',

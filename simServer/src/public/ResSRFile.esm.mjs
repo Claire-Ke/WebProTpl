@@ -21,7 +21,7 @@ import {
     URLTool,
 } from '../tools/Tools.esm.mjs';
 
-class ResSRFile{
+class ResSRFile {
 
     #server = null;
     #request = null;
@@ -153,8 +153,8 @@ class ResSRFile{
          要是设置了buffer.constants.MAX_LENGTH，不报错、也不执行，直接结束了，奇怪！！！
          */
         fs.createReadStream( img4Path_str, {
-            // highWaterMark: _this.#bufferSize_num,
-        } )
+              // highWaterMark: _this.#bufferSize_num,
+          } )
           .pipe( _this.#response );
 
         _this.#response.statusCode = 200;

@@ -50,7 +50,7 @@ function Prompt( info ){
  * installing--->installed--->activating--->activated<br />
  * 特殊：redundant(当前的worker正在被其他worker替换)
  */
-class ServiceWorker4MT{
+class ServiceWorker4MT {
 
     /**
      * 字符串，返回作为ServiceWorkerRegistration的一部分定义的ServiceWorker序列化脚本URL。必须与注册ServiceWorker的文档位于同一原点。
@@ -119,16 +119,16 @@ class ServiceWorker4MT{
         }
 
         let pra_obj = Object.assign( {
-                                         onError: event => void ( GetError( event.message ) ),
-                                         onMessage: event => {
-                                         },
-                                         onStateChange: stateChangeEvent => {
-                                         },
-                                         rejected: error => void ( GetError( error.message ) ),
-                                         resolved: swReg => {
-                                         },
-                                         scope: '/',
-                                     }, opt_obj );
+            onError: event => void ( GetError( event.message ) ),
+            onMessage: event => {
+            },
+            onStateChange: stateChangeEvent => {
+            },
+            rejected: error => void ( GetError( error.message ) ),
+            resolved: swReg => {
+            },
+            scope: '/',
+        }, opt_obj );
 
         this.swContainer_ins = new SWContainer();
 
@@ -137,10 +137,10 @@ class ServiceWorker4MT{
         this.#onStateChange = pra_obj.onStateChange;
 
         this.swRegPromise = this.swContainer_ins.register( url_str, {
-            resolved_fun: pra_obj.resolved,
-            rejected_fun: pra_obj.rejected,
-            scope_str: pra_obj.scope,
-        } )
+                                    resolved_fun: pra_obj.resolved,
+                                    rejected_fun: pra_obj.rejected,
+                                    scope_str: pra_obj.scope,
+                                } )
                                 .then( swReg => {
                                     let sw = null;
 
@@ -235,7 +235,7 @@ class ServiceWorker4MT{
  * 最重要的是，它公开了用于注册服务工作者的ServiceWorkerContainer.Register()方法，<br />
  * 以及用于确定当前页是否受活动控制的ServiceWorkerContainer.Controller属性。
  */
-class SWContainer{
+class SWContainer {
 
     // 获取ServiceWorkerContainer的只读属性controller
     // 说明：
@@ -268,12 +268,12 @@ class SWContainer{
      */
     constructor( onEvent = {} ){
         let pra_obj = Object.assign( {
-                                         onControllerChange: event => {
-                                         },
-                                         onError: event => void ( GetError( event.message ) ),
-                                         onMessage: event => {
-                                         },
-                                     }, onEvent );
+            onControllerChange: event => {
+            },
+            onError: event => void ( GetError( event.message ) ),
+            onMessage: event => {
+            },
+        }, onEvent );
 
         this.controller = this.swContainer_ins.controller;
 
@@ -305,9 +305,9 @@ class SWContainer{
     gReady( resolved_fun = swReg => {
     } ){
         return this.swContainer_ins.ready.then( swReg => {
-            resolved_fun( swReg );
-            return swReg;
-        } )
+                       resolved_fun( swReg );
+                       return swReg;
+                   } )
                    .catch( error => void ( GetError( error.message ) ) );
     }
 
@@ -328,10 +328,10 @@ class SWContainer{
      */
     gRegister( scope_str = '/', arg_obj = {} ){
         let pra_obj = Object.assign( {
-                                         resolved_fun: swReg => {
-                                         },
-                                         rejected_fun: error => void ( GetError( error.message ) ),
-                                     }, arg_obj );
+            resolved_fun: swReg => {
+            },
+            rejected_fun: error => void ( GetError( error.message ) ),
+        }, arg_obj );
         return this.swContainer_ins.getRegistration( scope_str )
                    .then( swReg => {
                        pra_obj.resolved_fun( swReg );
@@ -354,10 +354,10 @@ class SWContainer{
      */
     gRegistrations( arg_obj = {} ){
         let pra_obj = Object.assign( {
-                                         resolved_fun: swReg => {
-                                         },
-                                         rejected_fun: error => void ( GetError( error.message ) ),
-                                     }, arg_obj );
+            resolved_fun: swReg => {
+            },
+            rejected_fun: error => void ( GetError( error.message ) ),
+        }, arg_obj );
         return this.swContainer_ins.getRegistrations()
                    .then( swReg => {
                        pra_obj.resolved_fun( swReg );
@@ -425,14 +425,14 @@ class SWContainer{
      */
     register( url_str, arg_obj = {} ){
         let pra_obj = Object.assign( {
-                                         scope_str: '/',
-                                         resolved_fun: swReg => {
-                                         },
-                                         rejected_fun: error => void ( GetError( error.message ) ),
-                                     }, arg_obj );
+            scope_str: '/',
+            resolved_fun: swReg => {
+            },
+            rejected_fun: error => void ( GetError( error.message ) ),
+        }, arg_obj );
         return this.swContainer_ins.register( url_str, {
-            scope: pra_obj.scope_str
-        } )
+                       scope: pra_obj.scope_str
+                   } )
                    .then( swReg => {
                        pra_obj.resolved_fun( swReg );
                        return swReg;
@@ -488,7 +488,7 @@ class SWContainer{
  * 哪怕是在Android SDK自带的最新的Android R系统的模拟器上的“最新的chrome浏览器”也不支持！<br />
  * 但是！PC设备上的浏览器却兼容的挺好的！
  */
-class SWorker4MT{
+class SWorker4MT {
     #port;
     #onError_fun;
     #portOnMessage_fun;
@@ -530,13 +530,13 @@ class SWorker4MT{
         }
 
         let pra_obj = Object.assign( {
-                                         url: '',
-                                         workerInsName: '',
-                                         onError: event => void ( GetError( event.message ) ),
-                                         portOnMessage: event => {
-                                         },
-                                         portOnMessageError: event => void ( GetError( event.message ) ),
-                                     }, arg_obj );
+            url: '',
+            workerInsName: '',
+            onError: event => void ( GetError( event.message ) ),
+            portOnMessage: event => {
+            },
+            portOnMessageError: event => void ( GetError( event.message ) ),
+        }, arg_obj );
 
         this.workerInsName_str = pra_obj.workerInsName;
         this.#onError_fun = pra_obj.onError;
@@ -544,10 +544,10 @@ class SWorker4MT{
         this.#portOnMessageError_fun = pra_obj.portOnMessageError;
 
         this[ this.workerInsName_str ] = new SharedWorker( pra_obj.url, Object.assign( {
-                                                                                           type: 'classic',
-                                                                                           credentials: 'omit',
-                                                                                           name: 'SharedWorker_' + Date.now(),
-                                                                                       }, opt_obj ).name );
+            type: 'classic',
+            credentials: 'omit',
+            name: 'SharedWorker_' + Date.now(),
+        }, opt_obj ).name );
         this.#port = this[ this.workerInsName_str ].port;
         this.#port.start();
 
@@ -649,7 +649,7 @@ class SWorker4MT{
  * ServiceWorker注册的生存期超过了ServiceWorkerRegistration对象的生存期，这些对象在其相应的ServiceWorker客户端的生存期内表示它们。<br />
  * 浏览器维护活动的ServiceWorkerRegistration对象的持久列表。
  */
-class SWRegistration{
+class SWRegistration {
 
     /**
      * 返回ServiceWorker对象，该对象的state属性的属性值是字符串"activating"或"activated"。此属性最初设置为null。<br />
@@ -793,10 +793,10 @@ class SWRegistration{
      */
     getNotifications( tag, opt = {} ){
         let pra_obj = Object.assign( {
-                                         resolved: notificationsList => {
-                                         },
-                                         rejected: error => void ( GetError( error.message ) ),
-                                     }, opt );
+            resolved: notificationsList => {
+            },
+            rejected: error => void ( GetError( error.message ) ),
+        }, opt );
         if( tag ){
             return this.swReg.getNotifications( { tag: tag } )
                        .then( notificationsList => {
@@ -882,25 +882,25 @@ class SWRegistration{
     showNotification( title = '', options = {}, arg = {} ){
         let permission_str = Notification.permission,
             pra_obj = Object.assign( {
-                                         resolved: notificationEvent => {
-                                         },
-                                         rejected: error => void ( GetError( error.message ) ),
-                                     }, arg ),
+                resolved: notificationEvent => {
+                },
+                rejected: error => void ( GetError( error.message ) ),
+            }, arg ),
             fun1 = () => this.swReg.showNotification( title, Object.assign( {
-                                                                                vibrate: [
-                                                                                    200,
-                                                                                    100,
-                                                                                    200,
-                                                                                    100,
-                                                                                    200,
-                                                                                    100,
-                                                                                    200,
-                                                                                ],
-                                                                                lang: 'zh-CN',
-                                                                                dir: 'ltr',
-                                                                                renotify: 'false',
-                                                                                requireInteraction: 'true',
-                                                                            }, options ) )
+                                 vibrate: [
+                                     200,
+                                     100,
+                                     200,
+                                     100,
+                                     200,
+                                     100,
+                                     200,
+                                 ],
+                                 lang: 'zh-CN',
+                                 dir: 'ltr',
+                                 renotify: 'false',
+                                 requireInteraction: 'true',
+                             }, options ) )
                              .then( notificationEvent => {
                                  pra_obj.resolved( notificationEvent );
                                  return notificationEvent;
@@ -909,27 +909,31 @@ class SWRegistration{
         if( permission_str === 'granted' ){
             return fun1();
         }
-        else if( permission_str === 'denied' ){
-            return Notification.requestPermission()
-                               .then( result => {
-                                   if( result === 'granted' ){
-                                       return fun1();
-                                   }
-                                   else{
-                                       return 'denied';
-                                   }
-                               } );
-        }
-        else if( permission_str === 'default' ){
-            return Notification.requestPermission()
-                               .then( result => {
-                                   if( result === 'granted' ){
-                                       return fun1();
-                                   }
-                                   else{
-                                       return 'denied';
-                                   }
-                               } );
+        else{
+            if( permission_str === 'denied' ){
+                return Notification.requestPermission()
+                                   .then( result => {
+                                       if( result === 'granted' ){
+                                           return fun1();
+                                       }
+                                       else{
+                                           return 'denied';
+                                       }
+                                   } );
+            }
+            else{
+                if( permission_str === 'default' ){
+                    return Notification.requestPermission()
+                                       .then( result => {
+                                           if( result === 'granted' ){
+                                               return fun1();
+                                           }
+                                           else{
+                                               return 'denied';
+                                           }
+                                       } );
+                }
+            }
         }
     }
 
@@ -948,10 +952,10 @@ class SWRegistration{
      */
     unregister( opt = {} ){
         let pra_obj = Object.assign( {
-                                         resolved: boolean => {
-                                         },
-                                         rejected: error => void ( GetError( error.message ) ),
-                                     }, opt );
+            resolved: boolean => {
+            },
+            rejected: error => void ( GetError( error.message ) ),
+        }, opt );
         return this.swReg.unregister()
                    .then( boolean => {
                        pra_obj.resolved( boolean );
@@ -974,10 +978,10 @@ class SWRegistration{
      */
     update( opt = {} ){
         let pra_obj = Object.assign( {
-                                         resolved: swReg => {
-                                         },
-                                         rejected: error => void ( GetError( error.message ) ),
-                                     }, opt );
+            resolved: swReg => {
+            },
+            rejected: error => void ( GetError( error.message ) ),
+        }, opt );
         return this.swReg.update()
                    .then( swReg => {
                        pra_obj.resolved( swReg );
@@ -1014,7 +1018,7 @@ class SWRegistration{
  * 继承<br />
  * Object
  */
-class WWorker4MT{
+class WWorker4MT {
     #onError_fun;
     #onMessage_fun;
     #onMessageError_fun;
@@ -1058,13 +1062,13 @@ class WWorker4MT{
         }
 
         let pra_obj = Object.assign( {
-                                         url: '',
-                                         workerInsName: '',
-                                         onError: event => void ( GetError( event.message ) ),
-                                         onMessage: event => {
-                                         },
-                                         onMessageError: event => void ( GetError( event.message ) ),
-                                     }, arg_obj );
+            url: '',
+            workerInsName: '',
+            onError: event => void ( GetError( event.message ) ),
+            onMessage: event => {
+            },
+            onMessageError: event => void ( GetError( event.message ) ),
+        }, arg_obj );
 
         this.workerInsName_str = pra_obj.workerInsName;
         this.#onError_fun = pra_obj.onError;
@@ -1072,10 +1076,10 @@ class WWorker4MT{
         this.#onMessageError_fun = pra_obj.onMessageError;
 
         this[ this.workerInsName_str ] = new Worker( pra_obj.url, Object.assign( {
-                                                                                     type: 'classic',
-                                                                                     credentials: 'omit',
-                                                                                     name: 'WebWorker_' + Date.now(),
-                                                                                 }, opt_obj ) );
+            type: 'classic',
+            credentials: 'omit',
+            name: 'WebWorker_' + Date.now(),
+        }, opt_obj ) );
 
         this[ this.workerInsName_str ].onerror = event => void ( this.#onError_fun( event ) );
         this[ this.workerInsName_str ].onmessage = event => void ( this.#onMessage_fun( event ) );

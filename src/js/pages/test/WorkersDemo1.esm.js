@@ -23,11 +23,11 @@ let CT = new CTESM.CT();
     if( false ){
         try{
             let webWorkerTestA_ins = new WWorker4MT( {
-                                                         workerInsName: 'webWorkerTestA_ins',
-                                                         url: WebWorkerTestA,
-                                                     }, {
-                                                         name: 'webWorkerTestA_ins2ChildThread',
-                                                     } );
+                workerInsName: 'webWorkerTestA_ins',
+                url: WebWorkerTestA,
+            }, {
+                name: 'webWorkerTestA_ins2ChildThread',
+            } );
 
             webWorkerTestA_ins.onMessage( event => {
                 console.log( 'HelloWorld--->Start' );
@@ -39,8 +39,8 @@ let CT = new CTESM.CT();
 
             function PostMessage(){
                 webWorkerTestA_ins.postMessage( {
-                                                    dataA: `HelloWorld：${ new Date() }`,
-                                                } );
+                    dataA: `HelloWorld：${ new Date() }`,
+                } );
             }
 
             CT.aCE( '.workerTestBtn1', event => {
@@ -61,11 +61,11 @@ let CT = new CTESM.CT();
     if( false ){
         try{
             let sharedWorkerTestA_ins = new SWorker4MT( {
-                                                            workerInsName: 'sharedWorkerTestA_ins',
-                                                            url: SharedWorkerTestA,
-                                                        }, {
-                                                            name: 'sharedWorkerTestA_ins2ChildThread',
-                                                        } );
+                workerInsName: 'sharedWorkerTestA_ins',
+                url: SharedWorkerTestA,
+            }, {
+                name: 'sharedWorkerTestA_ins2ChildThread',
+            } );
 
             sharedWorkerTestA_ins.portOnMessage( event => {
                 console.log( 'HelloWorld---portOnMessage--->Start' );
@@ -77,9 +77,9 @@ let CT = new CTESM.CT();
 
             function PortPostMessage(){
                 sharedWorkerTestA_ins.portPostMessage( {
-                                                           dataA: `HelloWorld：${ new Date() }`,
-                                                           numA: 1,
-                                                       } );
+                    dataA: `HelloWorld：${ new Date() }`,
+                    numA: 1,
+                } );
             }
 
             CT.aCE( '.workerTestBtn1', event => {

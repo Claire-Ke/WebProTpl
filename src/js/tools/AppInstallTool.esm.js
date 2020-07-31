@@ -40,7 +40,7 @@
  * 5、当前页面是在HTTPS协议下(serviceWorker需要的)<br />
  * 6、已向serviceWorker注册了fetch事件
  */
-class AppInstallEvent{
+class AppInstallEvent {
 
     #onAppInstalled;
     #accepted;
@@ -68,23 +68,23 @@ class AppInstallEvent{
      */
     constructor( arg_obj = {} ){
         let pra_obj = Object.assign( {
-                                         onAppInstalled: event => {
-                                             console.log( 'window.onappinstalled触发了！' );
-                                         },
-                                         onBeforeInstallPrompt: event => {
-                                             console.log( 'window.onbeforeinstallprompt触发了！' );
-                                         },
-                                         isPreventDefault: true,
-                                         accepted: userChoiceResult => {
-                                             console.log( '已经添加到主屏幕了！' );
-                                         },
-                                         dismissed: userChoiceResult => {
-                                             console.log( '还没添加到主屏幕！' );
-                                         },
-                                         rejected: error => {
-                                             console.error( error.message );
-                                         },
-                                     }, arg_obj );
+            onAppInstalled: event => {
+                console.log( 'window.onappinstalled触发了！' );
+            },
+            onBeforeInstallPrompt: event => {
+                console.log( 'window.onbeforeinstallprompt触发了！' );
+            },
+            isPreventDefault: true,
+            accepted: userChoiceResult => {
+                console.log( '已经添加到主屏幕了！' );
+            },
+            dismissed: userChoiceResult => {
+                console.log( '还没添加到主屏幕！' );
+            },
+            rejected: error => {
+                console.error( error.message );
+            },
+        }, arg_obj );
         this.#onAppInstalled = pra_obj.onAppInstalled;
         this.#accepted = pra_obj.accepted;
         this.#dismissed = pra_obj.dismissed;
@@ -94,18 +94,20 @@ class AppInstallEvent{
             this.beforeInstallPrompt_eve = event;
             pra_obj.onBeforeInstallPrompt( event );
             event[ 'userChoice' ].then( userChoiceResult => {
-                this.userChoiceResult_obj = userChoiceResult;
-                if( userChoiceResult === undefined || userChoiceResult[ 'outcome' ] === 'dismissed' ){
-                    this.#dismissed( userChoiceResult );
-                    this.beforeInstallPrompt_eve = event;
-                    this.userChoiceResult_obj = userChoiceResult;
-                }
-                else if( userChoiceResult[ 'outcome' ] === 'accepted' ){
-                    this.#accepted( userChoiceResult );
-                    this.beforeInstallPrompt_eve = undefined;
-                    this.userChoiceResult_obj = undefined;
-                }
-            } )
+                                     this.userChoiceResult_obj = userChoiceResult;
+                                     if( userChoiceResult === undefined || userChoiceResult[ 'outcome' ] === 'dismissed' ){
+                                         this.#dismissed( userChoiceResult );
+                                         this.beforeInstallPrompt_eve = event;
+                                         this.userChoiceResult_obj = userChoiceResult;
+                                     }
+                                     else{
+                                         if( userChoiceResult[ 'outcome' ] === 'accepted' ){
+                                             this.#accepted( userChoiceResult );
+                                             this.beforeInstallPrompt_eve = undefined;
+                                             this.userChoiceResult_obj = undefined;
+                                         }
+                                     }
+                                 } )
                                  .catch( pra_obj.rejected );
         };
     }

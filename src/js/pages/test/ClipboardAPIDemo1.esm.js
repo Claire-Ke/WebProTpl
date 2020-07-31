@@ -15,10 +15,10 @@ if( false ){
         CT.readText4Clip( text => {
             CT.iInsertB( '.helloWorld article', `<p class = 'css-reset' >${ text }</p><br />` );
         }, {
-                              error( error ){
-                                  console.error( error.message );
-                              },
-                          } );
+            error( error ){
+                console.error( error.message );
+            },
+        } );
     }, false );
 }
 

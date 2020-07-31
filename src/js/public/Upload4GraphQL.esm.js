@@ -121,12 +121,12 @@ function SingleFile( {
                          file4KeyName = throw new Error( 'file4KeyName参数必须！' ),
                      } = throw new Error( '参数必须！' ) ){
     return HandleA( {
-                        operationName,
-                        query,
-                        variables,
-                        file4KeyName,
-                        isSingleFile: true,
-                    } ).formData;
+        operationName,
+        query,
+        variables,
+        file4KeyName,
+        isSingleFile: true,
+    } ).formData;
 }
 
 /**
@@ -161,12 +161,12 @@ function MultipleFiles( {
                             file4KeyName = throw new Error( 'file4KeyName参数必须！' ),
                         } = throw new Error( '参数必须！' ) ){
     return HandleA( {
-                        operationName,
-                        query,
-                        variables,
-                        file4KeyName,
-                        isSingleFile: false,
-                    } ).formData;
+        operationName,
+        query,
+        variables,
+        file4KeyName,
+        isSingleFile: false,
+    } ).formData;
 }
 
 /**
@@ -210,23 +210,23 @@ function Batching( opeArr = throw new Error( '参数必须！' ) ){
             operations,
             map,
         } = HandleA( {
-                         operationName,
-                         query,
-                         variables,
-                         file4KeyName,
-                         isSingleFile,
-                     } );
+            operationName,
+            query,
+            variables,
+            file4KeyName,
+            isSingleFile,
+        } );
 
         operationsAll_arr.push( operations );
 
         if( isSingleFile ){
             mapAll_arr.push( [
-                                 index_num,
-                                 [
-                                     `${ i }.${ Array.from( Object.values( map ) )
-                                                     .flat( Infinity )[ 0 ] }`,
-                                 ],
-                             ] );
+                index_num,
+                [
+                    `${ i }.${ Array.from( Object.values( map ) )
+                                    .flat( Infinity )[ 0 ] }`,
+                ],
+            ] );
 
             ++index_num;
         }
@@ -235,11 +235,11 @@ function Batching( opeArr = throw new Error( '参数必须！' ) ){
                  .flat( Infinity )
                  .forEach( ( c1, i1, a1 ) => {
                      mapAll_arr.push( [
-                                          index_num,
-                                          [
-                                              `${ i }.${ c1 }`,
-                                          ],
-                                      ] );
+                         index_num,
+                         [
+                             `${ i }.${ c1 }`,
+                         ],
+                     ] );
 
                      ++index_num;
                  } );

@@ -18,8 +18,8 @@ if( 'serviceWorker' in navigator ){
              .then( async ServiceWorkerRegistration => {
                  if( ServiceWorkerRegistration.active ){
                      ServiceWorkerRegistration.active.postMessage( {
-                                                                       GetAllAssets: GetAllAssets.toString(),
-                                                                   } );
+                         GetAllAssets: GetAllAssets.toString(),
+                     } );
                  }
 
                  return ServiceWorkerRegistration;

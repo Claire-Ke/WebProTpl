@@ -20,8 +20,8 @@ let {
 // devURL4WWC devURL4Test devURL4Dev
 const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
     post4JSON = webService_ins.post( {
-                                         type: 'json',
-                                     } ),
+        type: 'json',
+    } ),
     requestOpt = {
         responseType: 'json',
         headers: {
@@ -55,12 +55,12 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
                                 console.dir( data4ResponseType );
                             },
                         }, {
-                                      method: 'POST',
-                                      responseType: 'json',
-                                      mode: 'cors',
-                                      credentials: 'omit',
-                                      body: formData,
-                                  } );
+                            method: 'POST',
+                            responseType: 'json',
+                            mode: 'cors',
+                            credentials: 'omit',
+                            body: formData,
+                        } );
                     }
                 },
             },
@@ -85,12 +85,12 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
                 } );
             },
         }, {
-                      // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                      responseType: 'arrayBuffer',
-                      method: 'GET',
-                      mode: 'cors',
-                      credentials: 'omit',
-                  } );
+            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+            responseType: 'arrayBuffer',
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'omit',
+        } );
     }
 }
 
@@ -106,12 +106,12 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
                 } ), '1.7z' );
             },
         }, {
-                      // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                      responseType: 'arrayBuffer',
-                      method: 'GET',
-                      mode: 'cors',
-                      credentials: 'omit',
-                  } );
+            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+            responseType: 'arrayBuffer',
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'omit',
+        } );
     }
 }
 
@@ -127,12 +127,12 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
                 } ), '1.exe' );
             },
         }, {
-                      // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                      responseType: 'arrayBuffer',
-                      method: 'GET',
-                      mode: 'cors',
-                      credentials: 'omit',
-                  } );
+            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+            responseType: 'arrayBuffer',
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'omit',
+        } );
     }
 }
 
@@ -148,12 +148,12 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
                 } ), '1.xlsx' );
             },
         }, {
-                      // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                      responseType: 'arrayBuffer',
-                      method: 'GET',
-                      mode: 'cors',
-                      credentials: 'omit',
-                  } );
+            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+            responseType: 'arrayBuffer',
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'omit',
+        } );
     }
 }
 
@@ -169,12 +169,12 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
                 } ), '1.doc' );
             },
         }, {
-                      // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
-                      responseType: 'arrayBuffer',
-                      method: 'GET',
-                      mode: 'cors',
-                      credentials: 'omit',
-                  } );
+            // 'arrayBuffer'、'blob'、'formData'、'json'、'text'
+            responseType: 'arrayBuffer',
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'omit',
+        } );
     }
 }
 
@@ -183,8 +183,8 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
     if( false ){
         CT.postAjax( 'http://localhost:9999/SimServer/POST', {
             sendData: JSON.stringify( {
-                                          type: 'json',
-                                      } ),
+                type: 'json',
+            } ),
             responseType: 'json',
             requestHeader: { 'Content-Type': 'application/json', },
             withCredentials: false,
@@ -197,8 +197,8 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
     if( false ){
         CT.deleteAjax( 'http://localhost:9999/SimServer/DELETE', {
             sendData: JSON.stringify( {
-                                          type: 'json',
-                                      } ),
+                type: 'json',
+            } ),
             responseType: 'json',
             requestHeader: { 'Content-Type': 'application/json', },
             withCredentials: false,
@@ -211,8 +211,8 @@ const webService_ins = new WebService4Proxy( CT, `${ devURL4Dev }` ),
     if( false ){
         CT.putAjax( 'http://localhost:9999/SimServer/PUT', {
             sendData: JSON.stringify( {
-                                          type: 'json',
-                                      } ),
+                type: 'json',
+            } ),
             responseType: 'json',
             requestHeader: { 'Content-Type': 'application/json', },
             withCredentials: false,

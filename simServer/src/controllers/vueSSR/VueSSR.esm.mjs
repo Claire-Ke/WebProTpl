@@ -27,19 +27,19 @@ function VueSSR( server, request, response ){
         },
         template = readFileSync( resolve( __dirname, './tplHTML/pages/Index.html' ), 'utf8' ),
         vueRenderer = VueServerRenderer.createRenderer( {
-                                                            template,
-                                                        } ),
+            template,
+        } ),
         app = new Vue( {
-                           data: {
-                               url: request.url,
-                           },
-                           template: `
-                               <div>
-                                   <h1>Vue SSR</h1>
-                                   <p>访问的URL是：{{ url }}</p>
-                               </div>
-                           `,
-                       } );
+            data: {
+                url: request.url,
+            },
+            template: `
+              <div>
+              <h1>Vue SSR</h1>
+              <p>访问的URL是：{{ url }}</p>
+              </div>
+            `,
+        } );
 
     vueRenderer.renderToString( app, context )
                .then( html => {

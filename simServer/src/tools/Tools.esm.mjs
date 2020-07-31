@@ -89,9 +89,9 @@ function RemGZip( response = null ){
 
 function CreGZip( opt = {} ){
     return zlib.createGzip( Object.assign( {
-                                               level: 5,
-                                               memLevel: 5,
-                                           }, opt ) );
+        level: 5,
+        memLevel: 5,
+    }, opt ) );
 }
 
 /**

@@ -9,15 +9,15 @@ IDE: WebStorm
        scoped
        src = 'vueStyDir/ExampleA.scss' />
 <template>
-    <div class = 'css-reset root'>
-        {{ textA }}
-    </div>
+  <div class = 'css-reset root'>
+    {{ textA }}
+  </div>
 </template>
 <script type = 'module'>
-    'use strict';
+'use strict';
 
-    export {
-        default,
-        default as ExampleA,
-    } from 'vueMDir/ExampleA.esm.js';
+export {
+  default,
+  default as ExampleA,
+} from 'vueMDir/ExampleA.esm.js';
 </script>

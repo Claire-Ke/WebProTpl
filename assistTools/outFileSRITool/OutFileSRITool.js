@@ -78,18 +78,18 @@ function GetPromiseIns( fileSrc_str = '', hash2Digest1_obj = { sha512: { hex: ''
                                                       .forEach( ( c1, i1, ) => void ( hash2Digest_obj[ hash2Digest4Keys_arr[ i ] ][ c1 ] = `${ hash2Digest4Keys_arr[ i ] }-${ hash_objArr[ i ][ i1 ].digest( c1 ) }` ) ) ) );
 
             resolve( [
-                         hash2Digest_obj,
-                         true,
-                     ] );
+                hash2Digest_obj,
+                true,
+            ] );
 
             console.log( '文件已关闭！！！' );
         } );
 
         readStream_obj.on( 'error', error => {
             resolve( [
-                         {},
-                         false,
-                     ] );
+                {},
+                false,
+            ] );
 
             console.error( error );
         } );
@@ -158,14 +158,14 @@ Go( fileName_arr, {
         base64: '',
     },
 } )
-.then( ( [ message_str, outSRI_obj, boo, ] ) => {
-    const endTime_num = ( Date.now() - startTime_num ) / 1000;
+    .then( ( [ message_str, outSRI_obj, boo, ] ) => {
+        const endTime_num = ( Date.now() - startTime_num ) / 1000;
 
-    boo && fs.writeFileSync( path.join( __dirname, './OutFileSRITool.json' ), JSON.stringify( outSRI_obj ) );
+        boo && fs.writeFileSync( path.join( __dirname, './OutFileSRITool.json' ), JSON.stringify( outSRI_obj ) );
 
-    console.log( `总共耗时${ endTime_num }秒、${ endTime_num / 60 }分钟！！！` );
+        console.log( `总共耗时${ endTime_num }秒、${ endTime_num / 60 }分钟！！！` );
 
-    console.log( message_str );
-}, error => {
-    console.error( error );
-} );
+        console.log( message_str );
+    }, error => {
+        console.error( error );
+    } );

@@ -11,45 +11,45 @@
 // 类
 {
     if( false ){
-        class PersonInfo{
+        class PersonInfo {
 
-            get firstName(): string{
+            get firstName(): string {
                 return this._firstName;
             }
 
-            set firstName( value: string ){
+            set firstName( value: string ) {
                 this._firstName = value;
             }
 
-            get middleInitial(): string{
+            get middleInitial(): string {
                 return this._middleInitial;
             }
 
-            set middleInitial( value: string ){
+            set middleInitial( value: string ) {
                 this._middleInitial = value;
             }
 
-            get lastName(): string{
+            get lastName(): string {
                 return this._lastName;
             }
 
-            set lastName( value: string ){
+            set lastName( value: string ) {
                 this._lastName = value;
             }
 
-            get age(): number | undefined{
+            get age(): number | undefined {
                 return this._age;
             }
 
-            set age( value: number | undefined ){
+            set age( value: number | undefined ) {
                 this._age = value;
             }
 
-            get sex(): string{
+            get sex(): string {
                 return this._sex;
             }
 
-            set sex( value: string ){
+            set sex( value: string ) {
                 this._sex = value;
             }
 
@@ -61,7 +61,7 @@
             private _age: number | undefined = 0;
             private _sex: string = '';
 
-            constructor( firstName: string, middleInitial: string, lastName: string, age: number, sex: string ){
+            constructor( firstName: string, middleInitial: string, lastName: string, age: number, sex: string ) {
                 this._firstName = firstName;
                 this._middleInitial = middleInitial;
                 this._lastName = lastName;
@@ -73,11 +73,11 @@
 
         }
 
-        interface Person{
+        interface Person {
             fullName: string;
         }
 
-        function GetUserInfo( person: Person ){
+        function GetUserInfo( person: Person ) {
             console.dir( person );
 
             return `${ person.fullName }，你好！欢迎使用TypeScript！！！`;
@@ -133,7 +133,7 @@
 // 枚举
 {
     if( false ){
-        const enum Color{
+        const enum Color {
             Green = '#00ff00',
             Blue = '#0000ff',
             Red = '#ff0000',
@@ -142,7 +142,7 @@
         let green: Color = Color.Green;
         console.log( green );
 
-        enum Color1{
+        enum Color1 {
             num1 = 5,
             num2 = 10,
             num3 = 15,
@@ -179,7 +179,7 @@
         // 应避免使用 Object ，而是使用非原始 object 类型
         let obj4Any: object = {
             name: '林沐风',
-            gName(){
+            gName() {
                 // @ts-expect-error
                 return this.name;
             },
@@ -234,7 +234,7 @@
 {
     if( false ){
 
-        function Fun1( str: string ): never{
+        function Fun1( str: string ): never {
             throw new Error( str );
         }
 
@@ -245,7 +245,7 @@
             console.error( e.message );
         }
 
-        function Fail1(){
+        function Fail1() {
             return new Error( 'Something failed' );
         }
 
@@ -318,7 +318,7 @@
         function Fun1( obj1: { name: string, age: number } = {
             name: '',
             age: 0
-        } ): object{
+        } ): object {
             return obj1;
         }
 
@@ -337,7 +337,7 @@
         function Fun2( { name = 'qwe', age = 12 }: type4Fun2 = {
             name: '',
             age: 0
-        } ): object{
+        } ): object {
             return {
                 name,
                 age
@@ -349,7 +349,7 @@
         function Fun3( [ a = 0, b = 1, ]: [ number, number ] = [
             2,
             3,
-        ] ): Array<number>{
+        ] ): Array<number> {
             return [
                 a,
                 b,
@@ -372,7 +372,7 @@
         function Fun1( { a: a1 = 0, b: b1 = 1, }: { a: number, b?: number, } = {
             a: -1,
             b: -2,
-        } ): object{
+        } ): object {
             return {
                 a1,
                 b1,
@@ -395,7 +395,7 @@
 
 {
     if( false ){
-        function Fun1( n: number ){
+        function Fun1( n: number ) {
             if( n > 5 ){
                 return n;
             }
@@ -427,11 +427,11 @@
 // 接口测试
 {
     if( false ){
-        interface LabeledValue{
+        interface LabeledValue {
             label: string;
         }
 
-        function printLabel( labeledObj: LabeledValue ){
+        function printLabel( labeledObj: LabeledValue ) {
             console.log( labeledObj.label );
         }
 

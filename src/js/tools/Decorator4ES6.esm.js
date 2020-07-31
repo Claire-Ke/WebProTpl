@@ -36,11 +36,13 @@ function Handle1( name, descriptor, type ){
         descriptor[ type ] = false;
         return descriptor;
     }
-    else if( 'get' in descriptor || 'set' in descriptor ){
-        GetError( '不能作用于get、set上！' );
-    }
     else{
-        GetError( `该属性(${ name })的描述对象不存在${ type }属性！` );
+        if( 'get' in descriptor || 'set' in descriptor ){
+            GetError( '不能作用于get、set上！' );
+        }
+        else{
+            GetError( `该属性(${ name })的描述对象不存在${ type }属性！` );
+        }
     }
 }
 
@@ -117,11 +119,11 @@ function IsBoolean( arg ){
 function IsDataT( data, type ){
     if( 'Element' === type ){
         return DataT( data )
-        .includes( type );
+            .includes( type );
     }
 
     return DataT( data )
-    .slice( 8, -1 ) === type;
+        .slice( 8, -1 ) === type;
 }
 
 function IsDataView( arg ){
@@ -140,14 +142,18 @@ function IsEmpty( arg ){
     if( IsString( arg ) || IsArray( arg ) ){
         return arg.length === 0;
     }
-    else if( IsObject( arg ) ){
-        return Object.keys( arg ).length === 0;
-    }
-    else if( IsFormData( arg ) ){
-        return Array.from( arg.keys() ).length === 0;
-    }
     else{
-        return false;
+        if( IsObject( arg ) ){
+            return Object.keys( arg ).length === 0;
+        }
+        else{
+            if( IsFormData( arg ) ){
+                return Array.from( arg.keys() ).length === 0;
+            }
+            else{
+                return false;
+            }
+        }
     }
 }
 
@@ -1442,20 +1448,30 @@ function Override( target, name, descriptor ){
     if( is1_booC && isHandle2_funC( target ) ){
         GetError( getStr1_funC( '实例' ) );
     }
-    else if( is2_booC && isHandle2_funC( target.prototype ) ){
-        GetError( getStr1_funC( '静态' ) );
-    }
-    else if( is1_booC && isHandle1_funC( target ) ){
-        GetError( getStr2_funC( '实例' ) );
-    }
-    else if( is2_booC && isHandle1_funC( target ) ){
-        GetError( getStr2_funC( '静态' ) );
-    }
-    else if( is1_booC && isHandle3_funC( target ) ){
-        GetError( getStr3_funC( '实例' ) );
-    }
-    else if( is2_booC && isHandle3_funC( target ) ){
-        GetError( getStr3_funC( '静态' ) );
+    else{
+        if( is2_booC && isHandle2_funC( target.prototype ) ){
+            GetError( getStr1_funC( '静态' ) );
+        }
+        else{
+            if( is1_booC && isHandle1_funC( target ) ){
+                GetError( getStr2_funC( '实例' ) );
+            }
+            else{
+                if( is2_booC && isHandle1_funC( target ) ){
+                    GetError( getStr2_funC( '静态' ) );
+                }
+                else{
+                    if( is1_booC && isHandle3_funC( target ) ){
+                        GetError( getStr3_funC( '实例' ) );
+                    }
+                    else{
+                        if( is2_booC && isHandle3_funC( target ) ){
+                            GetError( getStr3_funC( '静态' ) );
+                        }
+                    }
+                }
+            }
+        }
     }
 
     return descriptor;

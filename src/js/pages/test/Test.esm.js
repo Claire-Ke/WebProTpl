@@ -40,17 +40,17 @@ let CT = new CTESM.CT();
         let index = 0;
 
         CT.pollFun( () => {
-            let result = null;
+              let result = null;
 
-            if( ++index >= 10 ){
-                result = index;
-            }
-            else{
-                result = false;
-            }
+              if( ++index >= 10 ){
+                  result = index;
+              }
+              else{
+                  result = false;
+              }
 
-            return result;
-        }, 10000, 1000 )
+              return result;
+          }, 10000, 1000 )
           .then( resolve4Arg => {
               console.log( resolve4Arg );
           }, reject4Arg => {
@@ -1420,185 +1420,303 @@ ${ onceFun1( 'q', 'w' ) }
                 if( handle1( i ) ){
                     result_obj[ '甲子年' ].years.push( i );
                 }
-                else if( handle2( i ) ){
-                    result_obj[ '乙丑年' ].years.push( i );
-                }
-                else if( handle3( i ) ){
-                    result_obj[ '丙寅年' ].years.push( i );
-                }
-                else if( handle4( i ) ){
-                    result_obj[ '丁卯年' ].years.push( i );
-                }
-                else if( handle5( i ) ){
-                    result_obj[ '戊辰年' ].years.push( i );
-                }
-                else if( handle6( i ) ){
-                    result_obj[ '己巳年' ].years.push( i );
-                }
-                else if( handle7( i ) ){
-                    result_obj[ '庚午年' ].years.push( i );
-                }
-                else if( handle8( i ) ){
-                    result_obj[ '辛未年' ].years.push( i );
-                }
-                else if( handle9( i ) ){
-                    result_obj[ '壬申年' ].years.push( i );
-                }
-                else if( handle10( i ) ){
-                    result_obj[ '癸酉年' ].years.push( i );
-                }
-                else if( handle11( i ) ){
-                    result_obj[ '甲戌年' ].years.push( i );
-                }
-                else if( handle12( i ) ){
-                    result_obj[ '乙亥年' ].years.push( i );
-                }
-                else if( handle13( i ) ){
-                    result_obj[ '丙子年' ].years.push( i );
-                }
-                else if( handle14( i ) ){
-                    result_obj[ '丁丑年' ].years.push( i );
-                }
-                else if( handle15( i ) ){
-                    result_obj[ '戊寅年' ].years.push( i );
-                }
-                else if( handle16( i ) ){
-                    result_obj[ '己卯年' ].years.push( i );
-                }
-                else if( handle17( i ) ){
-                    result_obj[ '庚辰年' ].years.push( i );
-                }
-                else if( handle18( i ) ){
-                    result_obj[ '辛巳年' ].years.push( i );
-                }
-                else if( handle19( i ) ){
-                    result_obj[ '壬午年' ].years.push( i );
-                }
-                else if( handle20( i ) ){
-                    result_obj[ '癸未年' ].years.push( i );
-                }
-                else if( handle21( i ) ){
-                    result_obj[ '甲申年' ].years.push( i );
-                }
-                else if( handle22( i ) ){
-                    result_obj[ '乙酉年' ].years.push( i );
-                }
-                else if( handle23( i ) ){
-                    result_obj[ '丙戌年' ].years.push( i );
-                }
-                else if( handle24( i ) ){
-                    result_obj[ '丁亥年' ].years.push( i );
-                }
-                else if( handle25( i ) ){
-                    result_obj[ '戊子年' ].years.push( i );
-                }
-                else if( handle26( i ) ){
-                    result_obj[ '己丑年' ].years.push( i );
-                }
-                else if( handle27( i ) ){
-                    result_obj[ '庚寅年' ].years.push( i );
-                }
-                else if( handle28( i ) ){
-                    result_obj[ '辛卯年' ].years.push( i );
-                }
-                else if( handle29( i ) ){
-                    result_obj[ '壬辰年' ].years.push( i );
-                }
-                else if( handle30( i ) ){
-                    result_obj[ '癸巳年' ].years.push( i );
-                }
-                else if( handle31( i ) ){
-                    result_obj[ '甲午年' ].years.push( i );
-                }
-                else if( handle32( i ) ){
-                    result_obj[ '乙未年' ].years.push( i );
-                }
-                else if( handle33( i ) ){
-                    result_obj[ '丙申年' ].years.push( i );
-                }
-                else if( handle34( i ) ){
-                    result_obj[ '丁酉年' ].years.push( i );
-                }
-                else if( handle35( i ) ){
-                    result_obj[ '戊戌年' ].years.push( i );
-                }
-                else if( handle36( i ) ){
-                    result_obj[ '己亥年' ].years.push( i );
-                }
-                else if( handle37( i ) ){
-                    result_obj[ '庚子年' ].years.push( i );
-                }
-                else if( handle38( i ) ){
-                    result_obj[ '辛丑年' ].years.push( i );
-                }
-                else if( handle39( i ) ){
-                    result_obj[ '壬寅年' ].years.push( i );
-                }
-                else if( handle40( i ) ){
-                    result_obj[ '癸卯年' ].years.push( i );
-                }
-                else if( handle41( i ) ){
-                    result_obj[ '甲辰年' ].years.push( i );
-                }
-                else if( handle42( i ) ){
-                    result_obj[ '乙巳年' ].years.push( i );
-                }
-                else if( handle43( i ) ){
-                    result_obj[ '丙午年' ].years.push( i );
-                }
-                else if( handle44( i ) ){
-                    result_obj[ '丁未年' ].years.push( i );
-                }
-                else if( handle45( i ) ){
-                    result_obj[ '戊申年' ].years.push( i );
-                }
-                else if( handle46( i ) ){
-                    result_obj[ '己酉年' ].years.push( i );
-                }
-                else if( handle47( i ) ){
-                    result_obj[ '庚戌年' ].years.push( i );
-                }
-                else if( handle48( i ) ){
-                    result_obj[ '辛亥年' ].years.push( i );
-                }
-                else if( handle49( i ) ){
-                    result_obj[ '壬子年' ].years.push( i );
-                }
-                else if( handle50( i ) ){
-                    result_obj[ '癸丑年' ].years.push( i );
-                }
-                else if( handle51( i ) ){
-                    result_obj[ '甲寅年' ].years.push( i );
-                }
-                else if( handle52( i ) ){
-                    result_obj[ '乙卯年' ].years.push( i );
-                }
-                else if( handle53( i ) ){
-                    result_obj[ '丙辰年' ].years.push( i );
-                }
-                else if( handle54( i ) ){
-                    result_obj[ '丁巳年' ].years.push( i );
-                }
-                else if( handle55( i ) ){
-                    result_obj[ '戊午年' ].years.push( i );
-                }
-                else if( handle56( i ) ){
-                    result_obj[ '己未年' ].years.push( i );
-                }
-                else if( handle57( i ) ){
-                    result_obj[ '庚申年' ].years.push( i );
-                }
-                else if( handle58( i ) ){
-                    result_obj[ '辛酉年' ].years.push( i );
-                }
-                else if( handle59( i ) ){
-                    result_obj[ '壬戌年' ].years.push( i );
-                }
-                else if( handle60( i ) ){
-                    result_obj[ '癸亥年' ].years.push( i );
-                }
                 else{
-                    throw new Error( `${ i }，年份计算错误！！！` );
+                    if( handle2( i ) ){
+                        result_obj[ '乙丑年' ].years.push( i );
+                    }
+                    else{
+                        if( handle3( i ) ){
+                            result_obj[ '丙寅年' ].years.push( i );
+                        }
+                        else{
+                            if( handle4( i ) ){
+                                result_obj[ '丁卯年' ].years.push( i );
+                            }
+                            else{
+                                if( handle5( i ) ){
+                                    result_obj[ '戊辰年' ].years.push( i );
+                                }
+                                else{
+                                    if( handle6( i ) ){
+                                        result_obj[ '己巳年' ].years.push( i );
+                                    }
+                                    else{
+                                        if( handle7( i ) ){
+                                            result_obj[ '庚午年' ].years.push( i );
+                                        }
+                                        else{
+                                            if( handle8( i ) ){
+                                                result_obj[ '辛未年' ].years.push( i );
+                                            }
+                                            else{
+                                                if( handle9( i ) ){
+                                                    result_obj[ '壬申年' ].years.push( i );
+                                                }
+                                                else{
+                                                    if( handle10( i ) ){
+                                                        result_obj[ '癸酉年' ].years.push( i );
+                                                    }
+                                                    else{
+                                                        if( handle11( i ) ){
+                                                            result_obj[ '甲戌年' ].years.push( i );
+                                                        }
+                                                        else{
+                                                            if( handle12( i ) ){
+                                                                result_obj[ '乙亥年' ].years.push( i );
+                                                            }
+                                                            else{
+                                                                if( handle13( i ) ){
+                                                                    result_obj[ '丙子年' ].years.push( i );
+                                                                }
+                                                                else{
+                                                                    if( handle14( i ) ){
+                                                                        result_obj[ '丁丑年' ].years.push( i );
+                                                                    }
+                                                                    else{
+                                                                        if( handle15( i ) ){
+                                                                            result_obj[ '戊寅年' ].years.push( i );
+                                                                        }
+                                                                        else{
+                                                                            if( handle16( i ) ){
+                                                                                result_obj[ '己卯年' ].years.push( i );
+                                                                            }
+                                                                            else{
+                                                                                if( handle17( i ) ){
+                                                                                    result_obj[ '庚辰年' ].years.push( i );
+                                                                                }
+                                                                                else{
+                                                                                    if( handle18( i ) ){
+                                                                                        result_obj[ '辛巳年' ].years.push( i );
+                                                                                    }
+                                                                                    else{
+                                                                                        if( handle19( i ) ){
+                                                                                            result_obj[ '壬午年' ].years.push( i );
+                                                                                        }
+                                                                                        else{
+                                                                                            if( handle20( i ) ){
+                                                                                                result_obj[ '癸未年' ].years.push( i );
+                                                                                            }
+                                                                                            else{
+                                                                                                if( handle21( i ) ){
+                                                                                                    result_obj[ '甲申年' ].years.push( i );
+                                                                                                }
+                                                                                                else{
+                                                                                                    if( handle22( i ) ){
+                                                                                                        result_obj[ '乙酉年' ].years.push( i );
+                                                                                                    }
+                                                                                                    else{
+                                                                                                        if( handle23( i ) ){
+                                                                                                            result_obj[ '丙戌年' ].years.push( i );
+                                                                                                        }
+                                                                                                        else{
+                                                                                                            if( handle24( i ) ){
+                                                                                                                result_obj[ '丁亥年' ].years.push( i );
+                                                                                                            }
+                                                                                                            else{
+                                                                                                                if( handle25( i ) ){
+                                                                                                                    result_obj[ '戊子年' ].years.push( i );
+                                                                                                                }
+                                                                                                                else{
+                                                                                                                    if( handle26( i ) ){
+                                                                                                                        result_obj[ '己丑年' ].years.push( i );
+                                                                                                                    }
+                                                                                                                    else{
+                                                                                                                        if( handle27( i ) ){
+                                                                                                                            result_obj[ '庚寅年' ].years.push( i );
+                                                                                                                        }
+                                                                                                                        else{
+                                                                                                                            if( handle28( i ) ){
+                                                                                                                                result_obj[ '辛卯年' ].years.push( i );
+                                                                                                                            }
+                                                                                                                            else{
+                                                                                                                                if( handle29( i ) ){
+                                                                                                                                    result_obj[ '壬辰年' ].years.push( i );
+                                                                                                                                }
+                                                                                                                                else{
+                                                                                                                                    if( handle30( i ) ){
+                                                                                                                                        result_obj[ '癸巳年' ].years.push( i );
+                                                                                                                                    }
+                                                                                                                                    else{
+                                                                                                                                        if( handle31( i ) ){
+                                                                                                                                            result_obj[ '甲午年' ].years.push( i );
+                                                                                                                                        }
+                                                                                                                                        else{
+                                                                                                                                            if( handle32( i ) ){
+                                                                                                                                                result_obj[ '乙未年' ].years.push( i );
+                                                                                                                                            }
+                                                                                                                                            else{
+                                                                                                                                                if( handle33( i ) ){
+                                                                                                                                                    result_obj[ '丙申年' ].years.push( i );
+                                                                                                                                                }
+                                                                                                                                                else{
+                                                                                                                                                    if( handle34( i ) ){
+                                                                                                                                                        result_obj[ '丁酉年' ].years.push( i );
+                                                                                                                                                    }
+                                                                                                                                                    else{
+                                                                                                                                                        if( handle35( i ) ){
+                                                                                                                                                            result_obj[ '戊戌年' ].years.push( i );
+                                                                                                                                                        }
+                                                                                                                                                        else{
+                                                                                                                                                            if( handle36( i ) ){
+                                                                                                                                                                result_obj[ '己亥年' ].years.push( i );
+                                                                                                                                                            }
+                                                                                                                                                            else{
+                                                                                                                                                                if( handle37( i ) ){
+                                                                                                                                                                    result_obj[ '庚子年' ].years.push( i );
+                                                                                                                                                                }
+                                                                                                                                                                else{
+                                                                                                                                                                    if( handle38( i ) ){
+                                                                                                                                                                        result_obj[ '辛丑年' ].years.push( i );
+                                                                                                                                                                    }
+                                                                                                                                                                    else{
+                                                                                                                                                                        if( handle39( i ) ){
+                                                                                                                                                                            result_obj[ '壬寅年' ].years.push( i );
+                                                                                                                                                                        }
+                                                                                                                                                                        else{
+                                                                                                                                                                            if( handle40( i ) ){
+                                                                                                                                                                                result_obj[ '癸卯年' ].years.push( i );
+                                                                                                                                                                            }
+                                                                                                                                                                            else{
+                                                                                                                                                                                if( handle41( i ) ){
+                                                                                                                                                                                    result_obj[ '甲辰年' ].years.push( i );
+                                                                                                                                                                                }
+                                                                                                                                                                                else{
+                                                                                                                                                                                    if( handle42( i ) ){
+                                                                                                                                                                                        result_obj[ '乙巳年' ].years.push( i );
+                                                                                                                                                                                    }
+                                                                                                                                                                                    else{
+                                                                                                                                                                                        if( handle43( i ) ){
+                                                                                                                                                                                            result_obj[ '丙午年' ].years.push( i );
+                                                                                                                                                                                        }
+                                                                                                                                                                                        else{
+                                                                                                                                                                                            if( handle44( i ) ){
+                                                                                                                                                                                                result_obj[ '丁未年' ].years.push( i );
+                                                                                                                                                                                            }
+                                                                                                                                                                                            else{
+                                                                                                                                                                                                if( handle45( i ) ){
+                                                                                                                                                                                                    result_obj[ '戊申年' ].years.push( i );
+                                                                                                                                                                                                }
+                                                                                                                                                                                                else{
+                                                                                                                                                                                                    if( handle46( i ) ){
+                                                                                                                                                                                                        result_obj[ '己酉年' ].years.push( i );
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                    else{
+                                                                                                                                                                                                        if( handle47( i ) ){
+                                                                                                                                                                                                            result_obj[ '庚戌年' ].years.push( i );
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                        else{
+                                                                                                                                                                                                            if( handle48( i ) ){
+                                                                                                                                                                                                                result_obj[ '辛亥年' ].years.push( i );
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                            else{
+                                                                                                                                                                                                                if( handle49( i ) ){
+                                                                                                                                                                                                                    result_obj[ '壬子年' ].years.push( i );
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                                else{
+                                                                                                                                                                                                                    if( handle50( i ) ){
+                                                                                                                                                                                                                        result_obj[ '癸丑年' ].years.push( i );
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                    else{
+                                                                                                                                                                                                                        if( handle51( i ) ){
+                                                                                                                                                                                                                            result_obj[ '甲寅年' ].years.push( i );
+                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                        else{
+                                                                                                                                                                                                                            if( handle52( i ) ){
+                                                                                                                                                                                                                                result_obj[ '乙卯年' ].years.push( i );
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                            else{
+                                                                                                                                                                                                                                if( handle53( i ) ){
+                                                                                                                                                                                                                                    result_obj[ '丙辰年' ].years.push( i );
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                else{
+                                                                                                                                                                                                                                    if( handle54( i ) ){
+                                                                                                                                                                                                                                        result_obj[ '丁巳年' ].years.push( i );
+                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                    else{
+                                                                                                                                                                                                                                        if( handle55( i ) ){
+                                                                                                                                                                                                                                            result_obj[ '戊午年' ].years.push( i );
+                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                        else{
+                                                                                                                                                                                                                                            if( handle56( i ) ){
+                                                                                                                                                                                                                                                result_obj[ '己未年' ].years.push( i );
+                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                            else{
+                                                                                                                                                                                                                                                if( handle57( i ) ){
+                                                                                                                                                                                                                                                    result_obj[ '庚申年' ].years.push( i );
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                else{
+                                                                                                                                                                                                                                                    if( handle58( i ) ){
+                                                                                                                                                                                                                                                        result_obj[ '辛酉年' ].years.push( i );
+                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                    else{
+                                                                                                                                                                                                                                                        if( handle59( i ) ){
+                                                                                                                                                                                                                                                            result_obj[ '壬戌年' ].years.push( i );
+                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                        else{
+                                                                                                                                                                                                                                                            if( handle60( i ) ){
+                                                                                                                                                                                                                                                                result_obj[ '癸亥年' ].years.push( i );
+                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                            else{
+                                                                                                                                                                                                                                                                throw new Error( `${ i }，年份计算错误！！！` );
+                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                }
+                                                                                                                                                                                            }
+                                                                                                                                                                                        }
+                                                                                                                                                                                    }
+                                                                                                                                                                                }
+                                                                                                                                                                            }
+                                                                                                                                                                        }
+                                                                                                                                                                    }
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
@@ -1737,185 +1855,303 @@ ${ onceFun1( 'q', 'w' ) }
             if( handle1( year ) ){
                 return '甲子年';
             }
-            else if( handle2( year ) ){
-                return '乙丑年';
-            }
-            else if( handle3( year ) ){
-                return '丙寅年';
-            }
-            else if( handle4( year ) ){
-                return '丁卯年';
-            }
-            else if( handle5( year ) ){
-                return '戊辰年';
-            }
-            else if( handle6( year ) ){
-                return '己巳年';
-            }
-            else if( handle7( year ) ){
-                return '庚午年';
-            }
-            else if( handle8( year ) ){
-                return '辛未年';
-            }
-            else if( handle9( year ) ){
-                return '壬申年';
-            }
-            else if( handle10( year ) ){
-                return '癸酉年';
-            }
-            else if( handle11( year ) ){
-                return '甲戌年';
-            }
-            else if( handle12( year ) ){
-                return '乙亥年';
-            }
-            else if( handle13( year ) ){
-                return '丙子年';
-            }
-            else if( handle14( year ) ){
-                return '丁丑年';
-            }
-            else if( handle15( year ) ){
-                return '戊寅年';
-            }
-            else if( handle16( year ) ){
-                return '己卯年';
-            }
-            else if( handle17( year ) ){
-                return '庚辰年';
-            }
-            else if( handle18( year ) ){
-                return '辛巳年';
-            }
-            else if( handle19( year ) ){
-                return '壬午年';
-            }
-            else if( handle20( year ) ){
-                return '癸未年';
-            }
-            else if( handle21( year ) ){
-                return '甲申年';
-            }
-            else if( handle22( year ) ){
-                return '乙酉年';
-            }
-            else if( handle23( year ) ){
-                return '丙戌年';
-            }
-            else if( handle24( year ) ){
-                return '丁亥年';
-            }
-            else if( handle25( year ) ){
-                return '戊子年';
-            }
-            else if( handle26( year ) ){
-                return '己丑年';
-            }
-            else if( handle27( year ) ){
-                return '庚寅年';
-            }
-            else if( handle28( year ) ){
-                return '辛卯年';
-            }
-            else if( handle29( year ) ){
-                return '壬辰年';
-            }
-            else if( handle30( year ) ){
-                return '癸巳年';
-            }
-            else if( handle31( year ) ){
-                return '甲午年';
-            }
-            else if( handle32( year ) ){
-                return '乙未年';
-            }
-            else if( handle33( year ) ){
-                return '丙申年';
-            }
-            else if( handle34( year ) ){
-                return '丁酉年';
-            }
-            else if( handle35( year ) ){
-                return '戊戌年';
-            }
-            else if( handle36( year ) ){
-                return '己亥年';
-            }
-            else if( handle37( year ) ){
-                return '庚子年';
-            }
-            else if( handle38( year ) ){
-                return '辛丑年';
-            }
-            else if( handle39( year ) ){
-                return '壬寅年';
-            }
-            else if( handle40( year ) ){
-                return '癸卯年';
-            }
-            else if( handle41( year ) ){
-                return '甲辰年';
-            }
-            else if( handle42( year ) ){
-                return '乙巳年';
-            }
-            else if( handle43( year ) ){
-                return '丙午年';
-            }
-            else if( handle44( year ) ){
-                return '丁未年';
-            }
-            else if( handle45( year ) ){
-                return '戊申年';
-            }
-            else if( handle46( year ) ){
-                return '己酉年';
-            }
-            else if( handle47( year ) ){
-                return '庚戌年';
-            }
-            else if( handle48( year ) ){
-                return '辛亥年';
-            }
-            else if( handle49( year ) ){
-                return '壬子年';
-            }
-            else if( handle50( year ) ){
-                return '癸丑年';
-            }
-            else if( handle51( year ) ){
-                return '甲寅年';
-            }
-            else if( handle52( year ) ){
-                return '乙卯年';
-            }
-            else if( handle53( year ) ){
-                return '丙辰年';
-            }
-            else if( handle54( year ) ){
-                return '丁巳年';
-            }
-            else if( handle55( year ) ){
-                return '戊午年';
-            }
-            else if( handle56( year ) ){
-                return '己未年';
-            }
-            else if( handle57( year ) ){
-                return '庚申年';
-            }
-            else if( handle58( year ) ){
-                return '辛酉年';
-            }
-            else if( handle59( year ) ){
-                return '壬戌年';
-            }
-            else if( handle60( year ) ){
-                return '癸亥年';
-            }
             else{
-                throw new Error( `${ year }，年份计算错误！！！` );
+                if( handle2( year ) ){
+                    return '乙丑年';
+                }
+                else{
+                    if( handle3( year ) ){
+                        return '丙寅年';
+                    }
+                    else{
+                        if( handle4( year ) ){
+                            return '丁卯年';
+                        }
+                        else{
+                            if( handle5( year ) ){
+                                return '戊辰年';
+                            }
+                            else{
+                                if( handle6( year ) ){
+                                    return '己巳年';
+                                }
+                                else{
+                                    if( handle7( year ) ){
+                                        return '庚午年';
+                                    }
+                                    else{
+                                        if( handle8( year ) ){
+                                            return '辛未年';
+                                        }
+                                        else{
+                                            if( handle9( year ) ){
+                                                return '壬申年';
+                                            }
+                                            else{
+                                                if( handle10( year ) ){
+                                                    return '癸酉年';
+                                                }
+                                                else{
+                                                    if( handle11( year ) ){
+                                                        return '甲戌年';
+                                                    }
+                                                    else{
+                                                        if( handle12( year ) ){
+                                                            return '乙亥年';
+                                                        }
+                                                        else{
+                                                            if( handle13( year ) ){
+                                                                return '丙子年';
+                                                            }
+                                                            else{
+                                                                if( handle14( year ) ){
+                                                                    return '丁丑年';
+                                                                }
+                                                                else{
+                                                                    if( handle15( year ) ){
+                                                                        return '戊寅年';
+                                                                    }
+                                                                    else{
+                                                                        if( handle16( year ) ){
+                                                                            return '己卯年';
+                                                                        }
+                                                                        else{
+                                                                            if( handle17( year ) ){
+                                                                                return '庚辰年';
+                                                                            }
+                                                                            else{
+                                                                                if( handle18( year ) ){
+                                                                                    return '辛巳年';
+                                                                                }
+                                                                                else{
+                                                                                    if( handle19( year ) ){
+                                                                                        return '壬午年';
+                                                                                    }
+                                                                                    else{
+                                                                                        if( handle20( year ) ){
+                                                                                            return '癸未年';
+                                                                                        }
+                                                                                        else{
+                                                                                            if( handle21( year ) ){
+                                                                                                return '甲申年';
+                                                                                            }
+                                                                                            else{
+                                                                                                if( handle22( year ) ){
+                                                                                                    return '乙酉年';
+                                                                                                }
+                                                                                                else{
+                                                                                                    if( handle23( year ) ){
+                                                                                                        return '丙戌年';
+                                                                                                    }
+                                                                                                    else{
+                                                                                                        if( handle24( year ) ){
+                                                                                                            return '丁亥年';
+                                                                                                        }
+                                                                                                        else{
+                                                                                                            if( handle25( year ) ){
+                                                                                                                return '戊子年';
+                                                                                                            }
+                                                                                                            else{
+                                                                                                                if( handle26( year ) ){
+                                                                                                                    return '己丑年';
+                                                                                                                }
+                                                                                                                else{
+                                                                                                                    if( handle27( year ) ){
+                                                                                                                        return '庚寅年';
+                                                                                                                    }
+                                                                                                                    else{
+                                                                                                                        if( handle28( year ) ){
+                                                                                                                            return '辛卯年';
+                                                                                                                        }
+                                                                                                                        else{
+                                                                                                                            if( handle29( year ) ){
+                                                                                                                                return '壬辰年';
+                                                                                                                            }
+                                                                                                                            else{
+                                                                                                                                if( handle30( year ) ){
+                                                                                                                                    return '癸巳年';
+                                                                                                                                }
+                                                                                                                                else{
+                                                                                                                                    if( handle31( year ) ){
+                                                                                                                                        return '甲午年';
+                                                                                                                                    }
+                                                                                                                                    else{
+                                                                                                                                        if( handle32( year ) ){
+                                                                                                                                            return '乙未年';
+                                                                                                                                        }
+                                                                                                                                        else{
+                                                                                                                                            if( handle33( year ) ){
+                                                                                                                                                return '丙申年';
+                                                                                                                                            }
+                                                                                                                                            else{
+                                                                                                                                                if( handle34( year ) ){
+                                                                                                                                                    return '丁酉年';
+                                                                                                                                                }
+                                                                                                                                                else{
+                                                                                                                                                    if( handle35( year ) ){
+                                                                                                                                                        return '戊戌年';
+                                                                                                                                                    }
+                                                                                                                                                    else{
+                                                                                                                                                        if( handle36( year ) ){
+                                                                                                                                                            return '己亥年';
+                                                                                                                                                        }
+                                                                                                                                                        else{
+                                                                                                                                                            if( handle37( year ) ){
+                                                                                                                                                                return '庚子年';
+                                                                                                                                                            }
+                                                                                                                                                            else{
+                                                                                                                                                                if( handle38( year ) ){
+                                                                                                                                                                    return '辛丑年';
+                                                                                                                                                                }
+                                                                                                                                                                else{
+                                                                                                                                                                    if( handle39( year ) ){
+                                                                                                                                                                        return '壬寅年';
+                                                                                                                                                                    }
+                                                                                                                                                                    else{
+                                                                                                                                                                        if( handle40( year ) ){
+                                                                                                                                                                            return '癸卯年';
+                                                                                                                                                                        }
+                                                                                                                                                                        else{
+                                                                                                                                                                            if( handle41( year ) ){
+                                                                                                                                                                                return '甲辰年';
+                                                                                                                                                                            }
+                                                                                                                                                                            else{
+                                                                                                                                                                                if( handle42( year ) ){
+                                                                                                                                                                                    return '乙巳年';
+                                                                                                                                                                                }
+                                                                                                                                                                                else{
+                                                                                                                                                                                    if( handle43( year ) ){
+                                                                                                                                                                                        return '丙午年';
+                                                                                                                                                                                    }
+                                                                                                                                                                                    else{
+                                                                                                                                                                                        if( handle44( year ) ){
+                                                                                                                                                                                            return '丁未年';
+                                                                                                                                                                                        }
+                                                                                                                                                                                        else{
+                                                                                                                                                                                            if( handle45( year ) ){
+                                                                                                                                                                                                return '戊申年';
+                                                                                                                                                                                            }
+                                                                                                                                                                                            else{
+                                                                                                                                                                                                if( handle46( year ) ){
+                                                                                                                                                                                                    return '己酉年';
+                                                                                                                                                                                                }
+                                                                                                                                                                                                else{
+                                                                                                                                                                                                    if( handle47( year ) ){
+                                                                                                                                                                                                        return '庚戌年';
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                    else{
+                                                                                                                                                                                                        if( handle48( year ) ){
+                                                                                                                                                                                                            return '辛亥年';
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                        else{
+                                                                                                                                                                                                            if( handle49( year ) ){
+                                                                                                                                                                                                                return '壬子年';
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                            else{
+                                                                                                                                                                                                                if( handle50( year ) ){
+                                                                                                                                                                                                                    return '癸丑年';
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                                else{
+                                                                                                                                                                                                                    if( handle51( year ) ){
+                                                                                                                                                                                                                        return '甲寅年';
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                    else{
+                                                                                                                                                                                                                        if( handle52( year ) ){
+                                                                                                                                                                                                                            return '乙卯年';
+                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                        else{
+                                                                                                                                                                                                                            if( handle53( year ) ){
+                                                                                                                                                                                                                                return '丙辰年';
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                            else{
+                                                                                                                                                                                                                                if( handle54( year ) ){
+                                                                                                                                                                                                                                    return '丁巳年';
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                else{
+                                                                                                                                                                                                                                    if( handle55( year ) ){
+                                                                                                                                                                                                                                        return '戊午年';
+                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                    else{
+                                                                                                                                                                                                                                        if( handle56( year ) ){
+                                                                                                                                                                                                                                            return '己未年';
+                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                        else{
+                                                                                                                                                                                                                                            if( handle57( year ) ){
+                                                                                                                                                                                                                                                return '庚申年';
+                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                            else{
+                                                                                                                                                                                                                                                if( handle58( year ) ){
+                                                                                                                                                                                                                                                    return '辛酉年';
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                else{
+                                                                                                                                                                                                                                                    if( handle59( year ) ){
+                                                                                                                                                                                                                                                        return '壬戌年';
+                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                    else{
+                                                                                                                                                                                                                                                        if( handle60( year ) ){
+                                                                                                                                                                                                                                                            return '癸亥年';
+                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                        else{
+                                                                                                                                                                                                                                                            throw new Error( `${ year }，年份计算错误！！！` );
+                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                }
+                                                                                                                                                                                            }
+                                                                                                                                                                                        }
+                                                                                                                                                                                    }
+                                                                                                                                                                                }
+                                                                                                                                                                            }
+                                                                                                                                                                        }
+                                                                                                                                                                    }
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -1930,12 +2166,16 @@ ${ onceFun1( 'q', 'w' ) }
             if( index <= 1 ){
                 return BigInt( initial1 );
             }
-            else if( index === 2 ){
-                return BigInt( initial2 );
-            }
-            else if( index > 6991 ){
-                console.log( '项数别超过6991！！！' );
-                return Infinity;
+            else{
+                if( index === 2 ){
+                    return BigInt( initial2 );
+                }
+                else{
+                    if( index > 6991 ){
+                        console.log( '项数别超过6991！！！' );
+                        return Infinity;
+                    }
+                }
             }
 
             return Fibonacci( index - 1, BigInt( initial2 ), BigInt( initial1 ) + BigInt( initial2 ) );
@@ -1992,42 +2232,42 @@ ${ onceFun1( 'q', 'w' ) }
 }
 
 Promise.allSettled( [
-                        // 测试“WASM”
-                        // import('./WASMDemo1.esm.js'),
+           // 测试“WASM”
+           // import('./WASMDemo1.esm.js'),
 
-                        // 测试“Node服务器”
-                        // import('./AjaxDemo1.esm.js'),
+           // 测试“Node服务器”
+           // import('./AjaxDemo1.esm.js'),
 
-                        // Worker测试
-                        // import('./WorkersDemo1.esm.js'),
+           // Worker测试
+           // import('./WorkersDemo1.esm.js'),
 
-                        // Service Worker测试
-                        // import('./ServiceWorkerDemo1.esm.js'),
+           // Service Worker测试
+           // import('./ServiceWorkerDemo1.esm.js'),
 
-                        // Clipboard API测试
-                        // import('./ClipboardAPIDemo1.esm.js'),
+           // Clipboard API测试
+           // import('./ClipboardAPIDemo1.esm.js'),
 
-                        // ES6测试
-                        // import('./ES6Demo1.esm.js'),
+           // ES6测试
+           // import('./ES6Demo1.esm.js'),
 
-                        // 算法测试
-                        // import('./Algorithm.esm.js'),
+           // 算法测试
+           // import('./Algorithm.esm.js'),
 
-                        // 加密算法(crypto)测试
-                        // import('./CryptoDemo1.esm.js'),
+           // 加密算法(crypto)测试
+           // import('./CryptoDemo1.esm.js'),
 
-                        // Web Components测试
-                        // import('./WebComponentsDemo1.esm.js'),
+           // Web Components测试
+           // import('./WebComponentsDemo1.esm.js'),
 
-                        // TypeScript测试
-                        import('./TSDemo1.esm.ts'),
+           // TypeScript测试
+           import('./TSDemo1.esm.ts'),
 
-                        // WebSocket客户端类测试
-                        // import('./WebSocket4Client2DemoA.esm.js'),
+           // WebSocket客户端类测试
+           // import('./WebSocket4Client2DemoA.esm.js'),
 
-                        // 测试GraphQL接口
-                        import('./GraphQLTest.esm.js'),
-                    ] )
+           // 测试GraphQL接口
+           import('./GraphQLTest.esm.js'),
+       ] )
        .then( result => {
            // console.dir( result );
        } )

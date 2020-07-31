@@ -16,23 +16,23 @@ let CT = new CTESM.CT(),
         env: {
             // 初始大小为100页（64 * 100 = 6400‬KiB、6.25MiB），最大大小为1024页（64 * 1024 = 65536‬‬‬KiB、64MiB）。
             memory: new WebAssembly.Memory( {
-                                                // WebAssembly Memory的初始大小，以WebAssembly pages为单位。
-                                                initial: 100,
-                                                // WebAssembly Memory的最大尺寸允许以WebAssembly pages为单位生长。
-                                                // 当存在时，最大参数充当引擎预留存储器的提示。
-                                                // 但是，引擎可能会忽略或限制此预订请求。
-                                                // 一般来说，大多数WebAssembly modules不需要设置最大值。
-                                                // 一个WebAssembly page的大小恒定为65536字节，即64KiB。
-                                                maximum: 1024,
-                                            } ),
+                // WebAssembly Memory的初始大小，以WebAssembly pages为单位。
+                initial: 100,
+                // WebAssembly Memory的最大尺寸允许以WebAssembly pages为单位生长。
+                // 当存在时，最大参数充当引擎预留存储器的提示。
+                // 但是，引擎可能会忽略或限制此预订请求。
+                // 一般来说，大多数WebAssembly modules不需要设置最大值。
+                // 一个WebAssembly page的大小恒定为65536字节，即64KiB。
+                maximum: 1024,
+            } ),
             table: new WebAssembly.Table( {
-                                              // WebAssembly表的初始元素数。
-                                              initial: 0,
-                                              // 表示要存储在表中的值类型的字符串。目前，它只能有一个值“anyfunc”（函数）。
-                                              element: 'anyfunc',
-                                              // 允许WebAssembly Table增长的元素的最大数目。
-                                              // maximum: 102400,
-                                          } ),
+                // WebAssembly表的初始元素数。
+                initial: 0,
+                // 表示要存储在表中的值类型的字符串。目前，它只能有一个值“anyfunc”（函数）。
+                element: 'anyfunc',
+                // 允许WebAssembly Table增长的元素的最大数目。
+                // maximum: 102400,
+            } ),
 
             fmod( x, y ){
                 return x % y;
@@ -143,9 +143,9 @@ let CT = new CTESM.CT(),
  */
 function MathTool4WASM( url = MathTool4Url, importObject = {} ){
     return CT.getWASM( {
-                           url,
-                           importObject: Object.assign( importObject_objC, importObject ),
-                       } )
+                 url,
+                 importObject: Object.assign( importObject_objC, importObject ),
+             } )
              .then( ( {
                           module,
                           instance,

@@ -346,17 +346,17 @@ if( true ){
             components: {},
             directives: {},
             template: `
-                <p class = 'css-reset'>
-                    {{ text1 }}
-                    <br />
-                    inject0: {{ inject0 }}
-                    <br />
-                    inject1: {{ inject1 }}
-                    <br />
-                    inject2: {{ inject2 }}
-                    <br />
-                    titleAttrKeyValue: {{ titleAttrKeyValue }}
-                </p>`,
+              <p class = 'css-reset'>
+              {{ text1 }}
+              <br />
+              inject0: {{ inject0 }}
+              <br />
+              inject1: {{ inject1 }}
+              <br />
+              inject2: {{ inject2 }}
+              <br />
+              titleAttrKeyValue: {{ titleAttrKeyValue }}
+              </p>`,
             beforeCreate(){
             },
             created(){
@@ -469,39 +469,39 @@ if( true ){
             components: {},
             directives: {},
             template: `
-                <div class = 'css-reset'>
-                    <p class = 'css-reset'>storeCountA4Computed--->{{ storeCountA4Computed }}</p>
-                    <br />
-                    <p class = 'css-reset'>storeCountA4Computed2--->{{ storeCountA4Computed2 }}</p>
-                    <br />
-                    <p class = 'css-reset'>storeCountA4Computed3--->{{ storeCountA4Computed3 }}</p>
-                    <br />
-                    <p class = 'css-reset'>storeCountA4Computed4--->{{ storeCountA4Computed4 }}</p>
-                    <br />
-                    <p class = 'css-reset'>countAPlus100A--->{{ countAPlus100A }}</p>
-                    <br />
-                    <p class = 'css-reset'>countAPlus1000FunA--->{{ countAPlus1000FunA }}</p>
-                    <br />
-                    <p class = 'css-reset'>countAPlus100--->{{ countAPlus100 }}</p>
-                    <br />
-                    <p class = 'css-reset'>countAPlus1000Fun--->{{ countAPlus1000Fun( 10000 ) }}</p>
-                    <br />
-                    <p class = 'css-reset'>countAPlus1004My--->{{ countAPlus1004My }}</p>
-                    <br />
-                    <!--<p class = 'css-reset'>countA-&ndash;&gt;{{ countA }}</p>
-                    <br />-->
-                    <p class = 'css-reset'>storeCountA4Data--->{{ storeCountA4Data }}</p>
-                    <br />
-                    <button type = 'button'
-                            class = 'css-reset addStoreCountA flexBox flexC'
-                            @click = 'addStoreCountA'>+StoreCountA
-                    </button>
-                    <br />
-                    <button type = 'button'
-                            class = 'css-reset subStoreCountA flexBox flexC'
-                            @click = 'subStoreCountA'>-StoreCountA
-                    </button>
-                </div>`,
+              <div class = 'css-reset'>
+              <p class = 'css-reset'>storeCountA4Computed--->{{ storeCountA4Computed }}</p>
+              <br />
+              <p class = 'css-reset'>storeCountA4Computed2--->{{ storeCountA4Computed2 }}</p>
+              <br />
+              <p class = 'css-reset'>storeCountA4Computed3--->{{ storeCountA4Computed3 }}</p>
+              <br />
+              <p class = 'css-reset'>storeCountA4Computed4--->{{ storeCountA4Computed4 }}</p>
+              <br />
+              <p class = 'css-reset'>countAPlus100A--->{{ countAPlus100A }}</p>
+              <br />
+              <p class = 'css-reset'>countAPlus1000FunA--->{{ countAPlus1000FunA }}</p>
+              <br />
+              <p class = 'css-reset'>countAPlus100--->{{ countAPlus100 }}</p>
+              <br />
+              <p class = 'css-reset'>countAPlus1000Fun--->{{ countAPlus1000Fun( 10000 ) }}</p>
+              <br />
+              <p class = 'css-reset'>countAPlus1004My--->{{ countAPlus1004My }}</p>
+              <br />
+              <!--<p class = 'css-reset'>countA-&ndash;&gt;{{ countA }}</p>
+              <br />-->
+              <p class = 'css-reset'>storeCountA4Data--->{{ storeCountA4Data }}</p>
+              <br />
+              <button type = 'button'
+                      class = 'css-reset addStoreCountA flexBox flexC'
+                      @click = 'addStoreCountA'>+StoreCountA
+              </button>
+              <br />
+              <button type = 'button'
+                      class = 'css-reset subStoreCountA flexBox flexC'
+                      @click = 'subStoreCountA'>-StoreCountA
+              </button>
+              </div>`,
             beforeCreate(){
             }
         } ),
@@ -512,27 +512,27 @@ if( true ){
         } ){
             setTimeout( () => {
                 resolve( {
-                             data(){
-                                 return {
-                                     text1: 'This is a VueComponentB for Global!!!',
-                                 };
-                             },
-                             props: {},
-                             provide(){
-                                 let _this = this;
+                    data(){
+                        return {
+                            text1: 'This is a VueComponentB for Global!!!',
+                        };
+                    },
+                    props: {},
+                    provide(){
+                        let _this = this;
 
-                                 return {};
-                             },
-                             inject: {},
-                             computed: {},
-                             methods: {},
-                             watch: {},
-                             filters: {},
-                             components: {},
-                             directives: {},
-                             template: `
-                                 <p class = 'css-reset'>{{ text1 }}</p>`,
-                         } );
+                        return {};
+                    },
+                    inject: {},
+                    computed: {},
+                    methods: {},
+                    watch: {},
+                    filters: {},
+                    components: {},
+                    directives: {},
+                    template: `
+                      <p class = 'css-reset'>{{ text1 }}</p>`,
+                } );
             }, 4000 );
         } );
 }
@@ -977,46 +977,46 @@ let o1 = {
     },
 };
 let vue4Win = new Vue( {
-                           /*el: '#HelloWorld',
-                            data: {
-                            obj1: {
-                            name: 'obj1',
-                            value: {
-                            age: 12,
-                            },
-                            },
-                            arr1: [
-                            [[[{
-                            name: 'name0',
-                            value: {
-                            age: 20,
-                            },
-                            }]]],
-                            [[[{
-                            name: 'name1',
-                            value: {
-                            age: 21,
-                            },
-                            }]]],
-                            [[[{
-                            name: 'name2',
-                            value: {
-                            age: 22,
-                            },
-                            }]]],
-                            ],
-                            arr2: [
-                            1,
-                            [
-                            2,
-                            [
-                            3,
-                            [ 4, ],
-                            ],
-                            ],
-                            ],
-                            },*/
-                           ...o1,
-                       } );
+    /*el: '#HelloWorld',
+     data: {
+     obj1: {
+     name: 'obj1',
+     value: {
+     age: 12,
+     },
+     },
+     arr1: [
+     [[[{
+     name: 'name0',
+     value: {
+     age: 20,
+     },
+     }]]],
+     [[[{
+     name: 'name1',
+     value: {
+     age: 21,
+     },
+     }]]],
+     [[[{
+     name: 'name2',
+     value: {
+     age: 22,
+     },
+     }]]],
+     ],
+     arr2: [
+     1,
+     [
+     2,
+     [
+     3,
+     [ 4, ],
+     ],
+     ],
+     ],
+     },*/
+    ...o1,
+} );
 
 window.vue4Win = vue4Win;

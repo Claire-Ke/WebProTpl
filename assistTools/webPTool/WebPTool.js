@@ -153,7 +153,7 @@ function GoImg2WebP(){
                 let { image: { Orientation, }, } = await promise_ins( inFileSrc_str );
 
                 orientation_str = String( Orientation )
-                .valueOf();
+                    .valueOf();
 
                 switch( orientation_str ){
                 case '1':

@@ -73,25 +73,25 @@ function FileBtn( arg_obj = {} ){
     let CTO = this,
         id_str = arg_obj.id.slice( 1 ),
         para_obj = Object.assign( {
-                                      class: '',
-                                      name: id_str + 'Name',
-                                      labelText: {
-                                          type: '选择文件',
-                                          quantity: '(无)',
-                                      },
-                                      accept: '*',
-                                      multiple: false,
-                                      capture: false,
-                                      webkitdirectory: false,
-                                      onChange: {
-                                          event: ( event, files_arr ) => {
-                                              console.log( '上传文件发生变化 Start' );
-                                              console.dir( files_arr );
-                                              console.log( '上传文件发生变化 End' );
-                                          },
-                                          options: false,
-                                      }
-                                  }, arg_obj ),
+            class: '',
+            name: id_str + 'Name',
+            labelText: {
+                type: '选择文件',
+                quantity: '(无)',
+            },
+            accept: '*',
+            multiple: false,
+            capture: false,
+            webkitdirectory: false,
+            onChange: {
+                event: ( event, files_arr ) => {
+                    console.log( '上传文件发生变化 Start' );
+                    console.dir( files_arr );
+                    console.log( '上传文件发生变化 End' );
+                },
+                options: false,
+            }
+        }, arg_obj ),
         postfix_arr = [
             '-bgColor',
             '-fColor',
@@ -104,64 +104,72 @@ function FileBtn( arg_obj = {} ){
             'middleBlue-bsColor',
         ];
     let [ divElem, labelElem, spanElem_TypeText, spanElem_QuantityText, inputElem, ] = CTO.cElem( {
-                                                                                                      tagName: [
-                                                                                                          'div',
-                                                                                                          'label',
-                                                                                                          'span',
-                                                                                                          'span',
-                                                                                                          'input',
-                                                                                                      ],
-                                                                                                      fun: element => {
-                                                                                                          if( element.localName === 'div' ){
-                                                                                                              let is_boo,
-                                                                                                                  index_num;
-                                                                                                              CTO.sAttr( element, {
-                                                                                                                  'class': 'css-reset',
-                                                                                                              } );
-                                                                                                              CTO.aClassN( element, para_obj.class.split( ',' )
-                                                                                                                                            .filter( c => {
-                                                                                                                                                is_boo = CTO.trim( c ).length !== 0;
-                                                                                                                                                index_num = 0;
-                                                                                                                                                if( is_boo && c.includes( postfix_arr[ 0 ] ) ){
-                                                                                                                                                    defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 0 ] ) && ( index_num = i ) ) );
-                                                                                                                                                    defClass_arr.splice( index_num, 1 );
-                                                                                                                                                }
-                                                                                                                                                else if( is_boo && c.includes( postfix_arr[ 1 ] ) ){
-                                                                                                                                                    defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 1 ] ) && ( index_num = i ) ) );
-                                                                                                                                                    defClass_arr.splice( index_num, 1 );
-                                                                                                                                                }
-                                                                                                                                                else if( is_boo && c.includes( postfix_arr[ 2 ] ) ){
-                                                                                                                                                    defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 2 ] ) && ( index_num = i ) ) );
-                                                                                                                                                    defClass_arr.splice( index_num, 1 );
-                                                                                                                                                }
-                                                                                                                                                return is_boo;
-                                                                                                                                            } )
-                                                                                                                                            .concat( defClass_arr )
-                                                                                                                                            .join( ',' ) );
-                                                                                                          }
-                                                                                                          else if( element.localName === 'label' ){
-                                                                                                              CTO.sAttr( element, {
-                                                                                                                  'class': 'css-reset',
-                                                                                                                  for: 'fileBtn_' + id_str,
-                                                                                                              } );
-                                                                                                              CTO.aClassN( element, 'ofh,flexBox,flexC,flexDC,fileBtn-label' );
-                                                                                                          }
-                                                                                                          else if( element.localName === 'input' ){
-                                                                                                              let obj1 = {
-                                                                                                                  'class': 'css-reset css-reset-file',
-                                                                                                                  type: 'file',
-                                                                                                                  name: para_obj.name,
-                                                                                                                  id: 'fileBtn_' + id_str,
-                                                                                                                  hidden: 'hidden',
-                                                                                                                  accept: para_obj.accept,
-                                                                                                              };
-                                                                                                              para_obj.multiple && ( obj1[ 'multiple' ] = 'multiple' );
-                                                                                                              para_obj.capture && ( obj1[ 'capture' ] = para_obj.capture );
-                                                                                                              para_obj.webkitdirectory && ( obj1[ 'webkitdirectory' ] = 'webkitdirectory' );
-                                                                                                              CTO.sAttr( element, obj1 );
-                                                                                                          }
-                                                                                                      }
-                                                                                                  } );
+        tagName: [
+            'div',
+            'label',
+            'span',
+            'span',
+            'input',
+        ],
+        fun: element => {
+            if( element.localName === 'div' ){
+                let is_boo,
+                    index_num;
+                CTO.sAttr( element, {
+                    'class': 'css-reset',
+                } );
+                CTO.aClassN( element, para_obj.class.split( ',' )
+                                              .filter( c => {
+                                                  is_boo = CTO.trim( c ).length !== 0;
+                                                  index_num = 0;
+                                                  if( is_boo && c.includes( postfix_arr[ 0 ] ) ){
+                                                      defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 0 ] ) && ( index_num = i ) ) );
+                                                      defClass_arr.splice( index_num, 1 );
+                                                  }
+                                                  else{
+                                                      if( is_boo && c.includes( postfix_arr[ 1 ] ) ){
+                                                          defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 1 ] ) && ( index_num = i ) ) );
+                                                          defClass_arr.splice( index_num, 1 );
+                                                      }
+                                                      else{
+                                                          if( is_boo && c.includes( postfix_arr[ 2 ] ) ){
+                                                              defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 2 ] ) && ( index_num = i ) ) );
+                                                              defClass_arr.splice( index_num, 1 );
+                                                          }
+                                                      }
+                                                  }
+                                                  return is_boo;
+                                              } )
+                                              .concat( defClass_arr )
+                                              .join( ',' ) );
+            }
+            else{
+                if( element.localName === 'label' ){
+                    CTO.sAttr( element, {
+                        'class': 'css-reset',
+                        for: 'fileBtn_' + id_str,
+                    } );
+                    CTO.aClassN( element, 'ofh,flexBox,flexC,flexDC,fileBtn-label' );
+                }
+                else{
+                    if( element.localName === 'input' ){
+                        let obj1 = {
+                            'class': 'css-reset css-reset-file',
+                            type: 'file',
+                            name: para_obj.name,
+                            id: 'fileBtn_' + id_str,
+                            hidden: 'hidden',
+                            accept: para_obj.accept,
+                        };
+                        para_obj.multiple && ( obj1[ 'multiple' ] = 'multiple' );
+                        para_obj.capture && ( obj1[ 'capture' ] = para_obj.capture );
+                        para_obj.webkitdirectory && ( obj1[ 'webkitdirectory' ] = 'webkitdirectory' );
+                        CTO.sAttr( element, obj1 );
+                    }
+                }
+            }
+        }
+    } );
     CTO.sAttr( spanElem_TypeText, {
         'class': 'css-reset',
     } );
@@ -211,11 +219,11 @@ function FileBtn( arg_obj = {} ){
 function RefreshBtn( arg_obj = {} ){
     let CTO = this,
         para_obj = Object.assign( {
-                                      click: {
-                                          event: event => void ( window.location[ 'reload' ]() ),
-                                          options: false,
-                                      },
-                                  }, arg_obj ),
+            click: {
+                event: event => void ( window.location[ 'reload' ]() ),
+                options: false,
+            },
+        }, arg_obj ),
         refreshBtn_elem = CTO.gById( arg_obj[ 'id' ] ),
         event_fun = event => void ( para_obj.click.event( event ) );
     CTO.aClassN( refreshBtn_elem, 'refreshBtn' );
@@ -245,10 +253,10 @@ function RefreshBtn( arg_obj = {} ){
 function ReturnTopBtn( arg_obj = {} ){
     let CTO = this,
         para_obj = Object.assign( {
-                                      startFun: ( event, element ) => void ( console.log( '点击之后，滚动之前！！！' ) ),
-                                      endFun: element => void ( console.log( '滚动到顶部了！！！' ) ),
-                                      clickOptions: false,
-                                  }, arg_obj ),
+            startFun: ( event, element ) => void ( console.log( '点击之后，滚动之前！！！' ) ),
+            endFun: element => void ( console.log( '滚动到顶部了！！！' ) ),
+            clickOptions: false,
+        }, arg_obj ),
         returnTopBtn_elem = CTO.gById( arg_obj[ 'id' ] ),
         event_fun = event => {
             para_obj.startFun( event, event.currentTarget );

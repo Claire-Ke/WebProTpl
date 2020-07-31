@@ -63,8 +63,10 @@ function CAnimationFFun( id_num ){
     if( globalThis.cancelAnimationFrame ){
         return globalThis.cancelAnimationFrame( id_num );
     }
-    else if( globalThis.webkitCancelAnimationFrame ){
-        return globalThis.webkitCancelAnimationFrame( id_num );
+    else{
+        if( globalThis.webkitCancelAnimationFrame ){
+            return globalThis.webkitCancelAnimationFrame( id_num );
+        }
     }
     return globalThis.clearTimeout( id_num );
 }
@@ -210,22 +212,26 @@ function Init( _this, isSupportBrowser ){
                     if( t1 === t2 ){
                         result = n1 + n2;
                     }
-                    else if( t1 > t2 ){
-                        result = n1 + n2 * ( t1 / t2 );
-                    }
                     else{
-                        result = n1 * ( t2 / t1 ) + n2;
+                        if( t1 > t2 ){
+                            result = n1 + n2 * ( t1 / t2 );
+                        }
+                        else{
+                            result = n1 * ( t2 / t1 ) + n2;
+                        }
                     }
                     return result / max;
                 case 'subtract':
                     if( t1 === t2 ){
                         result = n1 - n2;
                     }
-                    else if( t1 > t2 ){
-                        result = n1 - n2 * ( t1 / t2 );
-                    }
                     else{
-                        result = n1 * ( t2 / t1 ) - n2;
+                        if( t1 > t2 ){
+                            result = n1 - n2 * ( t1 / t2 );
+                        }
+                        else{
+                            result = n1 * ( t2 / t1 ) - n2;
+                        }
                     }
                     return result / max;
                 case 'multiply':
@@ -254,11 +260,13 @@ function Init( _this, isSupportBrowser ){
             ctoAdd = function ( a, b = 6, digits = 6 ){
                 if( this[ 'name' ] === 'CT' ){
                     return operation( a, b, digits, 'add' )
-                    .ctoToFixed( digits );
+                        .ctoToFixed( digits );
                 }
-                else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
-                    return operation( this, a, b, 'add' )
-                    .ctoToFixed( b );
+                else{
+                    if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
+                        return operation( this, a, b, 'add' )
+                            .ctoToFixed( b );
+                    }
                 }
             },
             /**
@@ -279,11 +287,13 @@ function Init( _this, isSupportBrowser ){
             ctoSub = function ( a, b = 6, digits = 6 ){
                 if( this[ 'name' ] === 'CT' ){
                     return operation( a, b, digits, 'subtract' )
-                    .ctoToFixed( digits );
+                        .ctoToFixed( digits );
                 }
-                else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
-                    return operation( this, a, b, 'subtract' )
-                    .ctoToFixed( b );
+                else{
+                    if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
+                        return operation( this, a, b, 'subtract' )
+                            .ctoToFixed( b );
+                    }
                 }
             },
             /**
@@ -304,11 +314,13 @@ function Init( _this, isSupportBrowser ){
             ctoMul = function ( a, b = 6, digits = 6 ){
                 if( this[ 'name' ] === 'CT' ){
                     return operation( a, b, digits, 'multiply' )
-                    .ctoToFixed( digits );
+                        .ctoToFixed( digits );
                 }
-                else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
-                    return operation( this, a, b, 'multiply' )
-                    .ctoToFixed( b );
+                else{
+                    if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
+                        return operation( this, a, b, 'multiply' )
+                            .ctoToFixed( b );
+                    }
                 }
             },
             /**
@@ -329,11 +341,13 @@ function Init( _this, isSupportBrowser ){
             ctoDiv = function ( a, b = 6, digits = 6 ){
                 if( this[ 'name' ] === 'CT' ){
                     return operation( a, b, digits, 'divide' )
-                    .ctoToFixed( digits );
+                        .ctoToFixed( digits );
                 }
-                else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
-                    return operation( this, a, b, 'divide' )
-                    .ctoToFixed( b );
+                else{
+                    if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
+                        return operation( this, a, b, 'divide' )
+                            .ctoToFixed( b );
+                    }
                 }
             },
             obj1 = {
@@ -402,8 +416,10 @@ function IsHandle6( elem, classN, type ){
                 if( currentValue.length !== 0 && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
                     document[ 'documentElement' ][ 'classList' ][ type ]( currentValue );
                 }
-                else if( currentValue.length !== 0 && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                    elemO.classList[ type ]( currentValue );
+                else{
+                    if( currentValue.length !== 0 && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                        elemO.classList[ type ]( currentValue );
+                    }
                 }
             } );
         if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
@@ -420,8 +436,10 @@ function IsHandle7( arg1, f, arg2 ){
         arg1.forEach( currentValue => void ( result.push( f( currentValue ) ) ) );
         return result;
     }
-    else if( !isA ){
-        return arg2;
+    else{
+        if( !isA ){
+            return arg2;
+        }
     }
 }
 
@@ -432,12 +450,14 @@ function IsHandle8( ar1, f, seN, rootE ){
             if( this.isString( seN ) && this.trim( seN ).length !== 0 ){
                 return handle( seN, rootE );
             }
-            else if( this.isArray( seN ) && seN.length !== 0 ){
-                let result = [];
-                this.dataRemRe( seN )
-                    .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue, rootE ) ) ) );
-                if( result.length !== 0 ){
-                    return result;
+            else{
+                if( this.isArray( seN ) && seN.length !== 0 ){
+                    let result = [];
+                    this.dataRemRe( seN )
+                        .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue, rootE ) ) ) );
+                    if( result.length !== 0 ){
+                        return result;
+                    }
                 }
             }
         };
@@ -452,11 +472,15 @@ function IsHandle8( ar1, f, seN, rootE ){
                 return handle1( seN, rootO );
             }
         }
-        else if( this.isElement( rootP ) ){
-            return handle1( seN, rootP );
-        }
-        else if( this.isElemList( rootP ) && rootP.length !== 0 ){
-            return handle1( seN, rootP[ 0 ] );
+        else{
+            if( this.isElement( rootP ) ){
+                return handle1( seN, rootP );
+            }
+            else{
+                if( this.isElemList( rootP ) && rootP.length !== 0 ){
+                    return handle1( seN, rootP[ 0 ] );
+                }
+            }
         }
     }
 }
@@ -466,12 +490,14 @@ function IsHandle9( arg, f ){
     if( this.isString( arg ) && this.trim( arg ).length !== 0 ){
         return handle( arg );
     }
-    else if( this.isArray( arg ) && arg.length !== 0 ){
-        let result = [];
-        this.dataRemRe( arg )
-            .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue ) ) ) );
-        if( result.length !== 0 ){
-            return result;
+    else{
+        if( this.isArray( arg ) && arg.length !== 0 ){
+            let result = [];
+            this.dataRemRe( arg )
+                .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue ) ) ) );
+            if( result.length !== 0 ){
+                return result;
+            }
         }
     }
 }
@@ -498,23 +524,29 @@ function IsHandle10( elem, fun ){
             if( this.isString( elem ) && this.trim( elem ).length !== 0 ){
                 return handle1( this.gBySeAll( this.trim( elem ) ) );
             }
-            else if( this.isElement( elem ) ){
-                return [ handle( elem ) ];
-            }
-            else if( this.isElemList( elem ) && elem.length !== 0 ){
-                return handle1( elem );
-            }
             else{
-                return [ handle( elem ) ];
+                if( this.isElement( elem ) ){
+                    return [ handle( elem ) ];
+                }
+                else{
+                    if( this.isElemList( elem ) && elem.length !== 0 ){
+                        return handle1( elem );
+                    }
+                    else{
+                        return [ handle( elem ) ];
+                    }
+                }
             }
         };
     if( !this.isArray( elem ) ){
         return handle2( elem );
     }
-    else if( this.isArray( elem ) && elem.length !== 0 ){
-        let result = [];
-        elem.forEach( currentValue => void ( result.push( handle2( currentValue ) ) ) );
-        return result;
+    else{
+        if( this.isArray( elem ) && elem.length !== 0 ){
+            let result = [];
+            elem.forEach( currentValue => void ( result.push( handle2( currentValue ) ) ) );
+            return result;
+        }
     }
 }
 
@@ -556,14 +588,18 @@ function IsHandle13( elem, fun ){
             if( this.isString( arg ) && this.trim( arg ).length !== 0 ){
                 return handle( this.gBySe( this.trim( arg ) ) );
             }
-            else if( this.isElement( arg ) ){
-                return handle( arg );
-            }
-            else if( is && arg.length !== 0 ){
-                return handle( arg[ 0 ] );
-            }
             else{
-                return handle( arg );
+                if( this.isElement( arg ) ){
+                    return handle( arg );
+                }
+                else{
+                    if( is && arg.length !== 0 ){
+                        return handle( arg[ 0 ] );
+                    }
+                    else{
+                        return handle( arg );
+                    }
+                }
             }
         };
     if( this.isArray( elem ) && elem.length !== 0 ){
@@ -661,14 +697,16 @@ function IsHandle14( sT ){
                                             : JSON.stringify( v ) );
                 }
             }
-            else if( is && !isC ){
-                for( let key in
-                    jsonO ){
-                    n = this.trim( key );
-                    v = jsonO[ key ];
-                    !isKN( n ) && setD( n, this.isString( v )
-                                           ? v
-                                           : JSON.stringify( v ) );
+            else{
+                if( is && !isC ){
+                    for( let key in
+                        jsonO ){
+                        n = this.trim( key );
+                        v = jsonO[ key ];
+                        !isKN( n ) && setD( n, this.isString( v )
+                                               ? v
+                                               : JSON.stringify( v ) );
+                    }
                 }
             }
         },
@@ -701,14 +739,16 @@ function IsHandle14( sT ){
                                             : JSON.stringify( v ) );
                 }
             }
-            else if( is && !isC ){
-                for( let key in
-                    jsonO ){
-                    n = this.trim( key );
-                    v = jsonO[ key ];
-                    isKN( n ) && setD( n, this.isString( v )
-                                          ? v
-                                          : JSON.stringify( v ) );
+            else{
+                if( is && !isC ){
+                    for( let key in
+                        jsonO ){
+                        n = this.trim( key );
+                        v = jsonO[ key ];
+                        isKN( n ) && setD( n, this.isString( v )
+                                              ? v
+                                              : JSON.stringify( v ) );
+                    }
                 }
             }
         },
@@ -726,8 +766,10 @@ function IsHandle14( sT ){
             if( isS && !this.isNull( result ) ){
                 return result;
             }
-            else if( isS && this.isNull( result ) ){
-                return null;
+            else{
+                if( isS && this.isNull( result ) ){
+                    return null;
+                }
             }
         },
         /**
@@ -801,22 +843,30 @@ function IsHandle16( elem, data, type, text ){
             if( this.isElement( data ) ){
                 elemO[ type ]( data.cloneNode( true ) );
             }
-            else if( this.isElemList( data ) ){
-                let elemA = Array.from( data );
-                ( type === 'prepend' || type === 'after' ) && elemA.reverse();
-                elemA.forEach( currentValue => void ( elemO[ type ]( currentValue.cloneNode( true ) ) ) );
-            }
-            else if( this.isString( data ) && text ){
-                elemO.insertAdjacentText( where, data );
-            }
-            else if( this.isString( data ) && !text ){
-                elemO.insertAdjacentHTML( where, data );
-            }
-            else if( this.isFunction( data ) ){
-                elemO[ type ]( data.toString() );
-            }
             else{
-                elemO[ type ]( JSON.stringify( data ) );
+                if( this.isElemList( data ) ){
+                    let elemA = Array.from( data );
+                    ( type === 'prepend' || type === 'after' ) && elemA.reverse();
+                    elemA.forEach( currentValue => void ( elemO[ type ]( currentValue.cloneNode( true ) ) ) );
+                }
+                else{
+                    if( this.isString( data ) && text ){
+                        elemO.insertAdjacentText( where, data );
+                    }
+                    else{
+                        if( this.isString( data ) && !text ){
+                            elemO.insertAdjacentHTML( where, data );
+                        }
+                        else{
+                            if( this.isFunction( data ) ){
+                                elemO[ type ]( data.toString() );
+                            }
+                            else{
+                                elemO[ type ]( JSON.stringify( data ) );
+                            }
+                        }
+                    }
+                }
             }
         };
         this.isArray( data )
@@ -847,9 +897,11 @@ function IsHandle18( newURLStr, searchObj, stateData, type ){
     if( l1 === 1 && arr1[ 0 ] === '#' ){
         str1 = '#' + searchObj[ '#' ];
     }
-    else if( l1 >= 1 ){
-        str1 = '?';
-        arr1.forEach( ( c, i, a ) => void ( str1 += c + '=' + searchObj[ c ], i !== ( a.length - 1 ) && ( str1 += str2 ) ) );
+    else{
+        if( l1 >= 1 ){
+            str1 = '?';
+            arr1.forEach( ( c, i, a ) => void ( str1 += c + '=' + searchObj[ c ], i !== ( a.length - 1 ) && ( str1 += str2 ) ) );
+        }
     }
     globalThis.history[ type ]( stateData, '', newURLStr + str1 );
     return newURLStr + str1;
@@ -917,7 +969,7 @@ function IsHandle19( _this, elemO ){
 }
 
 function MixinHandle( ...mixin_classArr ){
-    class Mix{
+    class Mix {
         constructor(){
             for( let mixin_class of
                 mixin_classArr ){
@@ -952,8 +1004,10 @@ function RAnimationFFun( callback_fun ){
     if( globalThis.requestAnimationFrame ){
         return globalThis.requestAnimationFrame( callback_fun );
     }
-    else if( globalThis.webkitRequestAnimationFrame ){
-        return globalThis.webkitRequestAnimationFrame( callback_fun );
+    else{
+        if( globalThis.webkitRequestAnimationFrame ){
+            return globalThis.webkitRequestAnimationFrame( callback_fun );
+        }
     }
     return globalThis.setTimeout( callback_fun, 1000 / 60 );
 }
@@ -961,7 +1015,7 @@ function RAnimationFFun( callback_fun ){
 /**
  * Blob、dataURL、Canvas、Image的相互转换
  */
-class Canvas2Others{
+class Canvas2Others {
 
     /**
      * Blob对象转canvas对象，canvas对象会在回调函数的第一个参数里
@@ -1151,7 +1205,7 @@ class Canvas2Others{
 /**
  * 复制、剪切等操作的API方法，加入了“Clipboard API”
  */
-class CopyAPI{
+class CopyAPI {
 
     /**
      * 复制文本的方法，默认不传值的话是复制当前的URL。<br />
@@ -1206,32 +1260,34 @@ class CopyAPI{
         if( this.isUndefined( clip_objC ) ){
             GetError( '不支持“navigator.clipboard”！' );
         }
-        else if( this.isUndefined( clip_objC.readText ) ){
-            GetError( '不支持“navigator.clipboard.readText”！' );
-        }
         else{
-            const readText = () => clip_objC.readText()
-                                            .then( text => void ( fun( text ) ) );
+            if( this.isUndefined( clip_objC.readText ) ){
+                GetError( '不支持“navigator.clipboard.readText”！' );
+            }
+            else{
+                const readText = () => clip_objC.readText()
+                                                .then( text => void ( fun( text ) ) );
 
-            this.permissionsQuery( {
-                                       name: 'clipboard-read',
-                                   }, Object.assign( {}, {
-                denied(){
-                    GetError( '拒绝授权' );
-                },
-                stateChange( _this ){
-                },
-                error( e ){
-                    GetError( e.message );
-                },
-            }, events, {
-                                                         prompt(){
-                                                             readText();
-                                                         },
-                                                         granted(){
-                                                             readText();
-                                                         },
-                                                     } ) );
+                this.permissionsQuery( {
+                    name: 'clipboard-read',
+                }, Object.assign( {}, {
+                    denied(){
+                        GetError( '拒绝授权' );
+                    },
+                    stateChange( _this ){
+                    },
+                    error( e ){
+                        GetError( e.message );
+                    },
+                }, events, {
+                    prompt(){
+                        readText();
+                    },
+                    granted(){
+                        readText();
+                    },
+                } ) );
+            }
         }
     }
 
@@ -1268,36 +1324,38 @@ class CopyAPI{
         if( this.isUndefined( clip_objC ) ){
             GetError( '不支持“navigator.clipboard”！' );
         }
-        else if( this.isUndefined( clip_objC.read ) ){
-            GetError( '不支持“navigator.clipboard.read”！' );
-        }
         else{
-            const events_objC = Object.assign( {}, {
-                    denied(){
-                        GetError( '拒绝授权' );
-                    },
-                    stateChange( _this ){
-                    },
-                    error( e ){
-                        GetError( e.message );
-                    },
-                }, events, {
-                                                   prompt(){
-                                                       read();
-                                                   },
-                                                   granted(){
-                                                       read();
-                                                   },
-                                               } ),
-                read = () => clip_objC.read()
-                                      .then( data => void ( data.forEach( c => void ( c.getType( c.types[ 0 ] )
-                                                                                       .then( data4Blob => void ( fun( data4Blob, c.types[ 0 ] ) ) )
-                                                                                       .catch( events_objC.error ) ) ) ) )
-                                      .catch( events_objC.error );
+            if( this.isUndefined( clip_objC.read ) ){
+                GetError( '不支持“navigator.clipboard.read”！' );
+            }
+            else{
+                const events_objC = Object.assign( {}, {
+                        denied(){
+                            GetError( '拒绝授权' );
+                        },
+                        stateChange( _this ){
+                        },
+                        error( e ){
+                            GetError( e.message );
+                        },
+                    }, events, {
+                        prompt(){
+                            read();
+                        },
+                        granted(){
+                            read();
+                        },
+                    } ),
+                    read = () => clip_objC.read()
+                                          .then( data => void ( data.forEach( c => void ( c.getType( c.types[ 0 ] )
+                                                                                           .then( data4Blob => void ( fun( data4Blob, c.types[ 0 ] ) ) )
+                                                                                           .catch( events_objC.error ) ) ) ) )
+                                          .catch( events_objC.error );
 
-            this.permissionsQuery( {
-                                       name: 'clipboard-read',
-                                   }, events_objC );
+                this.permissionsQuery( {
+                    name: 'clipboard-read',
+                }, events_objC );
+            }
         }
     }
 
@@ -1326,38 +1384,40 @@ class CopyAPI{
         if( this.isUndefined( clip_objC ) ){
             GetError( '不支持“navigator.clipboard”！' );
         }
-        else if( this.isUndefined( clip_objC.writeText ) ){
-            GetError( '不支持“navigator.clipboard.writeText”！' );
-        }
         else{
-            const events_objC = Object.assign( {}, {
-                    success(){
-                    },
-                    fail(){
-                        GetError( '写入失败' );
-                    },
-                    denied(){
-                        GetError( '拒绝授权' );
-                    },
-                    stateChange( _this ){
-                    },
-                    error( e ){
-                        GetError( e.message );
-                    },
-                }, events, {
-                                                   prompt(){
-                                                       writeText();
-                                                   },
-                                                   granted(){
-                                                       writeText();
-                                                   },
-                                               } ),
-                writeText = () => clip_objC.writeText( str )
-                                           .then( events_objC.success, events_objC.fail );
+            if( this.isUndefined( clip_objC.writeText ) ){
+                GetError( '不支持“navigator.clipboard.writeText”！' );
+            }
+            else{
+                const events_objC = Object.assign( {}, {
+                        success(){
+                        },
+                        fail(){
+                            GetError( '写入失败' );
+                        },
+                        denied(){
+                            GetError( '拒绝授权' );
+                        },
+                        stateChange( _this ){
+                        },
+                        error( e ){
+                            GetError( e.message );
+                        },
+                    }, events, {
+                        prompt(){
+                            writeText();
+                        },
+                        granted(){
+                            writeText();
+                        },
+                    } ),
+                    writeText = () => clip_objC.writeText( str )
+                                               .then( events_objC.success, events_objC.fail );
 
-            this.permissionsQuery( {
-                                       name: 'clipboard-write',
-                                   }, events_objC );
+                this.permissionsQuery( {
+                    name: 'clipboard-write',
+                }, events_objC );
+            }
         }
     }
 
@@ -1391,38 +1451,40 @@ class CopyAPI{
         if( this.isUndefined( clip_objC ) ){
             GetError( '不支持“navigator.clipboard”！' );
         }
-        else if( this.isUndefined( clip_objC.write ) ){
-            GetError( '不支持“navigator.clipboard.write”！' );
-        }
         else{
-            const events_objC = Object.assign( {}, {
-                    success(){
-                    },
-                    fail(){
-                        GetError( '写入失败' );
-                    },
-                    denied(){
-                        GetError( '拒绝授权' );
-                    },
-                    stateChange( _this ){
-                    },
-                    error( e ){
-                        GetError( e.message );
-                    },
-                }, events, {
-                                                   prompt(){
-                                                       write();
-                                                   },
-                                                   granted(){
-                                                       write();
-                                                   },
-                                               } ),
-                write = () => clip_objC.write( data )
-                                       .then( events_objC.success, events_objC.fail );
+            if( this.isUndefined( clip_objC.write ) ){
+                GetError( '不支持“navigator.clipboard.write”！' );
+            }
+            else{
+                const events_objC = Object.assign( {}, {
+                        success(){
+                        },
+                        fail(){
+                            GetError( '写入失败' );
+                        },
+                        denied(){
+                            GetError( '拒绝授权' );
+                        },
+                        stateChange( _this ){
+                        },
+                        error( e ){
+                            GetError( e.message );
+                        },
+                    }, events, {
+                        prompt(){
+                            write();
+                        },
+                        granted(){
+                            write();
+                        },
+                    } ),
+                    write = () => clip_objC.write( data )
+                                           .then( events_objC.success, events_objC.fail );
 
-            this.permissionsQuery( {
-                                       name: 'clipboard-write',
-                                   }, events_objC );
+                this.permissionsQuery( {
+                    name: 'clipboard-write',
+                }, events_objC );
+            }
         }
     }
 
@@ -1431,7 +1493,7 @@ class CopyAPI{
 /**
  * 加密算法Crypto API
  */
-class CryptoAPI{
+class CryptoAPI {
 
     /**
      * 使用指定的哈希算法计算Blob类型数据的Hex(base16)编码的哈希值
@@ -1568,7 +1630,7 @@ class CryptoAPI{
 /**
  * 判断常用信息的格式
  */
-class DataFormat{
+class DataFormat {
 
     /**
      * 验证邮箱格式
@@ -1679,7 +1741,7 @@ class DataFormat{
 /**
  * 操作内置元素的对应class、自定义元素的对应class
  */
-class ElemClass{
+class ElemClass {
 
     /**
      * 根据内置元素名、自定义元素名(有效的自定义元素名的格式必须是：小写字母开头，并且一定得有连字符，然后可以由小写字母、数字、下划线、连字符组成)获取内置元素的对应class、自定义元素的对应class。<br />
@@ -1724,7 +1786,7 @@ class ElemClass{
 /**
  * 查找节点
  */
-class ElemQuery{
+class ElemQuery {
 
     /**
      * 根据class(类名字符串)查找节点，返回实时集合(HTMLCollection)。如果找不到匹配项，则返回undefined。<br />
@@ -1906,7 +1968,7 @@ class ElemQuery{
  *
  * 子类实例.__proto__.__proto__ === 子类.prototype.__proto__ === 父类实例.__proto__ === 父类.prototype
  */
-class ES6Handle{
+class ES6Handle {
 
     /**
      * 将对象的属性名和属性值转换为[ { key, value, index } ]
@@ -1920,10 +1982,10 @@ class ES6Handle{
         !this.isObject( obj ) && GetError( '参数的数据类型必须是Object' );
         Object.entries( obj )
               .forEach( ( c, i, ) => void ( arr4Obj.push( {
-                                                              key: c[ 0 ],
-                                                              value: c[ 1 ],
-                                                              index: i,
-                                                          } ) ) );
+                  key: c[ 0 ],
+                  value: c[ 1 ],
+                  index: i,
+              } ) ) );
         return arr4Obj;
     }
 
@@ -1970,7 +2032,7 @@ class ES6Handle{
 /**
  * 函数处理
  */
-class FunHandle{
+class FunHandle {
 
     /**
      * 防抖函数(每次触发的时间间隔都小于规定时间，那么相应的方法不会执行，否则，执行触发的是最后一次的状态)<br />
@@ -2086,12 +2148,14 @@ class FunHandle{
                     resolve( result );
                 }
                 // 如果条件不满足，但是没有超时，就等待“interval”毫秒后再继续检查一遍
-                else if( Number( new Date() ) <= endTime ){
-                    setTimeout( checkCondition, interval, resolve, reject );
-                }
-                // 如果条件不满足，且超时
                 else{
-                    reject( 'timed out for call function!!!' );
+                    if( Number( new Date() ) <= endTime ){
+                        setTimeout( checkCondition, interval, resolve, reject );
+                    }
+                    // 如果条件不满足，且超时
+                    else{
+                        reject( 'timed out for call function!!!' );
+                    }
                 }
             };
 
@@ -2136,13 +2200,13 @@ class FunHandle{
         let str1 = 'setInterval函数--->',
             str2 = '必须是布尔类型或是函数类型的数据！',
             paraObj = Object.assign( {
-                                         fun: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
-                                         },
-                                         howClear: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => false,
-                                         howStart: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => true,
-                                         otherFun: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
-                                         }
-                                     }, argObj ),
+                fun: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
+                },
+                howClear: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => false,
+                howStart: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => true,
+                otherFun: ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
+                }
+            }, argObj ),
             howClear = ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
             },
             howStart = ( funDataObj, clearDataObj, startDataObj, otherDataObj ) => {
@@ -2151,9 +2215,11 @@ class FunHandle{
             GetError( str1 + 'howClear' + str2 );
             return;
         }
-        else if( !( this.isBoolean( paraObj.howStart ) | this.isFunction( paraObj.howStart ) ) ){
-            GetError( str1 + 'howStart' + str2 );
-            return;
+        else{
+            if( !( this.isBoolean( paraObj.howStart ) | this.isFunction( paraObj.howStart ) ) ){
+                GetError( str1 + 'howStart' + str2 );
+                return;
+            }
         }
         this.isBoolean( paraObj.howClear ) && ( howClear = () => paraObj.howClear );
         this.isBoolean( paraObj.howStart ) && ( howStart = () => paraObj.howStart );
@@ -2164,13 +2230,15 @@ class FunHandle{
                 // 什么时候取消并清除掉定时器
                 clearInterval( timer );
             }
-            else if( howStart( funDataObj, clearDataObj, startDataObj, otherDataObj ) ){
-                // 什么时候执行指定的函数
-                paraObj.fun( funDataObj, clearDataObj, startDataObj, otherDataObj );
-            }
             else{
-                // 当不需要执行fun函数但又不需要取消并清除掉定时器时，执行的备选函数
-                paraObj.otherFun( funDataObj, clearDataObj, startDataObj, otherDataObj );
+                if( howStart( funDataObj, clearDataObj, startDataObj, otherDataObj ) ){
+                    // 什么时候执行指定的函数
+                    paraObj.fun( funDataObj, clearDataObj, startDataObj, otherDataObj );
+                }
+                else{
+                    // 当不需要执行fun函数但又不需要取消并清除掉定时器时，执行的备选函数
+                    paraObj.otherFun( funDataObj, clearDataObj, startDataObj, otherDataObj );
+                }
             }
         }, time );
     }
@@ -2207,7 +2275,7 @@ class FunHandle{
 /**
  * 输入事件的监听
  */
-class InputHandle{
+class InputHandle {
 
     /**
      * 监听'Enter键'
@@ -2400,7 +2468,7 @@ class InputHandle{
 /**
  * 判断数据类型
  */
-class IsDataType{
+class IsDataType {
 
     /**
      * 获取数据类型<br />
@@ -2648,14 +2716,18 @@ class IsDataType{
         if( this.isString( arg ) || this.isArray( arg ) ){
             return arg.length === 0;
         }
-        else if( this.isObject( arg ) ){
-            return Object.keys( arg ).length === 0;
-        }
-        else if( this.isFormData( arg ) ){
-            return Array.from( arg.keys() ).length === 0;
-        }
         else{
-            return false;
+            if( this.isObject( arg ) ){
+                return Object.keys( arg ).length === 0;
+            }
+            else{
+                if( this.isFormData( arg ) ){
+                    return Array.from( arg.keys() ).length === 0;
+                }
+                else{
+                    return false;
+                }
+            }
         }
     }
 
@@ -3174,7 +3246,7 @@ class IsDataType{
  * contentType: false,
  * processData: false,
  */
-class JS2Ajax{
+class JS2Ajax {
 
     /**
      * Ajax请求<br /><br />
@@ -3298,49 +3370,49 @@ class JS2Ajax{
      */
     ajax( url, paraObj = {} ){
         let opt_obj = Object.assign( {
-                                         sendData: null,
-                                         method: 'GET',
-                                         async: true,
-                                         user: null,
-                                         password: null,
-                                         overrideMimeType: null,
-                                         responseType: null,
-                                         setTimeOut: 0,
-                                         requestHeader: {},
-                                         withCredentials: true,
-                                         loadStart: ( event, xhr, response, status ) => {
-                                         },
-                                         readyStateChange: ( event, xhr, response, status ) => {
-                                         },
-                                         progress: ( event, xhr, response, status ) => {
-                                         },
-                                         timeout: ( event, xhr ) => {
-                                         },
-                                         load: ( event, xhr, response, status ) => {
-                                         },
-                                         error: ( event, xhr ) => GetError( xhr ),
-                                         abort: ( event, xhr ) => {
-                                         },
-                                         loadEnd: ( event, xhr, response, status ) => {
-                                         },
-                                         success: ( event, xhr, response ) => {
-                                         },
-                                         uploadEvent: {
-                                             loadStart: ( event, xhr ) => {
-                                             },
-                                             progress: ( event, xhr ) => {
-                                             },
-                                             timeout: ( event, xhr ) => {
-                                             },
-                                             load: ( event, xhr ) => {
-                                             },
-                                             error: ( event, xhr ) => GetError( xhr ),
-                                             abort: ( event, xhr ) => {
-                                             },
-                                             loadEnd: ( event, xhr ) => {
-                                             }
-                                         }
-                                     }, paraObj ),
+                sendData: null,
+                method: 'GET',
+                async: true,
+                user: null,
+                password: null,
+                overrideMimeType: null,
+                responseType: null,
+                setTimeOut: 0,
+                requestHeader: {},
+                withCredentials: true,
+                loadStart: ( event, xhr, response, status ) => {
+                },
+                readyStateChange: ( event, xhr, response, status ) => {
+                },
+                progress: ( event, xhr, response, status ) => {
+                },
+                timeout: ( event, xhr ) => {
+                },
+                load: ( event, xhr, response, status ) => {
+                },
+                error: ( event, xhr ) => GetError( xhr ),
+                abort: ( event, xhr ) => {
+                },
+                loadEnd: ( event, xhr, response, status ) => {
+                },
+                success: ( event, xhr, response ) => {
+                },
+                uploadEvent: {
+                    loadStart: ( event, xhr ) => {
+                    },
+                    progress: ( event, xhr ) => {
+                    },
+                    timeout: ( event, xhr ) => {
+                    },
+                    load: ( event, xhr ) => {
+                    },
+                    error: ( event, xhr ) => GetError( xhr ),
+                    abort: ( event, xhr ) => {
+                    },
+                    loadEnd: ( event, xhr ) => {
+                    }
+                }
+            }, paraObj ),
             XHR = new XMLHttpRequest();
 
         XHR.onloadstart = event => void ( opt_obj.loadStart( event, event.currentTarget, event.currentTarget[ 'response' ], event.currentTarget[ 'status' ] ) );
@@ -3545,22 +3617,22 @@ class JS2Ajax{
      */
     fetch( input, arg_obj = {}, opt_obj = {} ){
         let pra1_obj = Object.assign( {
-                                          resolved: ( response, status_num ) => {
-                                          },
-                                          rejected: event => void ( GetError( event.message ) ),
-                                          success: ( data4ResponseType, response ) => {
-                                          },
-                                          error: ( status_num, response ) => void ( GetError( response ) ),
-                                      }, arg_obj ),
+                resolved: ( response, status_num ) => {
+                },
+                rejected: event => void ( GetError( event.message ) ),
+                success: ( data4ResponseType, response ) => {
+                },
+                error: ( status_num, response ) => void ( GetError( response ) ),
+            }, arg_obj ),
             pra2_obj = Object.assign( {
-                                          method: 'GET',
-                                          mode: 'same-origin',
-                                          credentials: 'same-origin',
-                                          cache: 'default',
-                                          redirect: 'follow',
-                                          referrer: 'client',
-                                          referrerPolicy: 'no-referrer'
-                                      }, opt_obj ),
+                method: 'GET',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                cache: 'default',
+                redirect: 'follow',
+                referrer: 'client',
+                referrerPolicy: 'no-referrer'
+            }, opt_obj ),
             responseType_str = pra2_obj.responseType,
             newInput = input;
 
@@ -3594,54 +3666,66 @@ class JS2Ajax{
         pra2_obj.method === 'GET' && ( delete pra2_obj.body );
 
         return fetch( newInput, pra2_obj )
-        .then( response => {
-            pra1_obj.resolved( response.clone(), response.status );
-            let isSuccess = response && response.ok && response.status === 200;
-            if( isSuccess && responseType_str === 'arrayBuffer' ){
-                // arrayBuffer() ArrayBuffer
-                response.clone()
-                        .arrayBuffer()
-                        .then( arrayBuffer => pra1_obj.success( arrayBuffer, response.clone() ) )
-                        .catch( pra1_obj.rejected );
-            }
-            else if( isSuccess && responseType_str === 'blob' ){
-                // blob() // Blob
-                response.clone()
-                        .blob()
-                        .then( blob => pra1_obj.success( blob, response.clone() ) )
-                        .catch( pra1_obj.rejected );
-            }
-            else if( isSuccess && responseType_str === 'formData' ){
-                // formData() // FormData
-                response.clone()
-                        .formData()
-                        .then( formData => pra1_obj.success( formData, response.clone() ) )
-                        .catch( pra1_obj.rejected );
-            }
-            else if( isSuccess && responseType_str === 'json' ){
-                // json() // JSON
-                response.clone()
-                        .json()
-                        .then( json => pra1_obj.success( json, response.clone() ) )
-                        .catch( pra1_obj.rejected );
-            }
-            else if( isSuccess && responseType_str === 'text' ){
-                // text() // string
-                response.clone()
-                        .text()
-                        .then( text => pra1_obj.success( text, response.clone() ) )
-                        .catch( pra1_obj.rejected );
-            }
-            else if( isSuccess && !responseType_str ){
-                let responseClone = response.clone();
-                pra1_obj.success( responseClone, responseClone );
-            }
-            else if( !isSuccess ){
-                pra1_obj.error( response.status, response.clone() );
-            }
-            return response.clone();
-        } )
-        .catch( pra1_obj.rejected );
+            .then( response => {
+                pra1_obj.resolved( response.clone(), response.status );
+                let isSuccess = response && response.ok && response.status === 200;
+                if( isSuccess && responseType_str === 'arrayBuffer' ){
+                    // arrayBuffer() ArrayBuffer
+                    response.clone()
+                            .arrayBuffer()
+                            .then( arrayBuffer => pra1_obj.success( arrayBuffer, response.clone() ) )
+                            .catch( pra1_obj.rejected );
+                }
+                else{
+                    if( isSuccess && responseType_str === 'blob' ){
+                        // blob() // Blob
+                        response.clone()
+                                .blob()
+                                .then( blob => pra1_obj.success( blob, response.clone() ) )
+                                .catch( pra1_obj.rejected );
+                    }
+                    else{
+                        if( isSuccess && responseType_str === 'formData' ){
+                            // formData() // FormData
+                            response.clone()
+                                    .formData()
+                                    .then( formData => pra1_obj.success( formData, response.clone() ) )
+                                    .catch( pra1_obj.rejected );
+                        }
+                        else{
+                            if( isSuccess && responseType_str === 'json' ){
+                                // json() // JSON
+                                response.clone()
+                                        .json()
+                                        .then( json => pra1_obj.success( json, response.clone() ) )
+                                        .catch( pra1_obj.rejected );
+                            }
+                            else{
+                                if( isSuccess && responseType_str === 'text' ){
+                                    // text() // string
+                                    response.clone()
+                                            .text()
+                                            .then( text => pra1_obj.success( text, response.clone() ) )
+                                            .catch( pra1_obj.rejected );
+                                }
+                                else{
+                                    if( isSuccess && !responseType_str ){
+                                        let responseClone = response.clone();
+                                        pra1_obj.success( responseClone, responseClone );
+                                    }
+                                    else{
+                                        if( !isSuccess ){
+                                            pra1_obj.error( response.status, response.clone() );
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return response.clone();
+            } )
+            .catch( pra1_obj.rejected );
     }
 
     /**
@@ -4294,7 +4378,7 @@ class JS2Ajax{
 /**
  * 原生JS代替jQuery的部分节点操作
  */
-class JS2jQuery{
+class JS2jQuery {
 
     /**
      * 绑定click点击事件，当支持触屏事件时，会自动切换到tap事件，否则继续是click事件
@@ -4384,9 +4468,9 @@ class JS2jQuery{
             const a = {
                 props: Object.assign( {}, initialProps ),
                 params: Object.assign( {
-                                           duration: 300,
-                                           easing: 'linear',
-                                       }, initialParams ),
+                    duration: 300,
+                    easing: 'linear',
+                }, initialParams ),
                 elements: els,
                 animating: false,
                 que: [],
@@ -4423,9 +4507,9 @@ class JS2jQuery{
                 animate( props, params ){
                     if( a.animating ){
                         a.que.push( [
-                                        props,
-                                        params
-                                    ] );
+                            props,
+                            params
+                        ] );
                         return a;
                     }
                     const elements = [];
@@ -4668,12 +4752,12 @@ class JS2jQuery{
      */
     cElem( arg_obj = {} ){
         let pra_obj = Object.assign( {
-                                         data: '',
-                                         fun: elemO => {
-                                         },
-                                         isText: false,
-                                         is: null,
-                                     }, arg_obj );
+            data: '',
+            fun: elemO => {
+            },
+            isText: false,
+            is: null,
+        }, arg_obj );
 
         const isNull_booC = this.isNull( pra_obj.is );
 
@@ -4769,24 +4853,30 @@ class JS2jQuery{
                     console.warn( 'data函数--->ctoElemDataStoragew未定义' );
                     return undefined;
                 }
-                else if( this.remSpace( dataO ) in storage ){
-                    return storage[ this.remSpace( dataO ) ];
-                }
-                else if( !( this.remSpace( dataO ) in storage ) ){
-                    console.warn( 'data函数--->' + this.remSpace( dataO ) + '不在ctoElemDataStoragew中定义！' );
-                    return null;
+                else{
+                    if( this.remSpace( dataO ) in storage ){
+                        return storage[ this.remSpace( dataO ) ];
+                    }
+                    else{
+                        if( !( this.remSpace( dataO ) in storage ) ){
+                            console.warn( 'data函数--->' + this.remSpace( dataO ) + '不在ctoElemDataStoragew中定义！' );
+                            return null;
+                        }
+                    }
                 }
             } );
         }
-        else if( this.isObject( dataO ) ){
-            return IsHandle10.call( this, elem, elemO => {
-                !( 'ctoElemDataStorage' in elemO ) && ( elemO[ 'ctoElemDataStorage' ] = {} );
-                for( let key in
-                    dataO ){
-                    elemO[ 'ctoElemDataStorage' ][ this.remSpace( key ) ] = dataO[ key ];
-                }
-                return elemO;
-            } );
+        else{
+            if( this.isObject( dataO ) ){
+                return IsHandle10.call( this, elem, elemO => {
+                    !( 'ctoElemDataStorage' in elemO ) && ( elemO[ 'ctoElemDataStorage' ] = {} );
+                    for( let key in
+                        dataO ){
+                        elemO[ 'ctoElemDataStorage' ][ this.remSpace( key ) ] = dataO[ key ];
+                    }
+                    return elemO;
+                } );
+            }
         }
     }
 
@@ -4829,12 +4919,12 @@ class JS2jQuery{
      */
     fadeHide( elem, para = {} ){
         let argObj = Object.assign( {
-                                        opacity: 0,
-                                        time: 300,
-                                        easing: 'linear',
-                                        fun: element => {
-                                        }
-                                    }, para );
+            opacity: 0,
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            }
+        }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
@@ -4842,27 +4932,27 @@ class JS2jQuery{
                 this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
-                                  duration: argObj.time,
-                                  easing: argObj.easing,
-                                  complete: elementArr => {
-                                      this.sAttr( elementArr[ 0 ], {
-                                          style: 'display:none;',
-                                          fadeHide: 'fadeHide',
-                                      } );
-                                      this.rAttr( elementArr[ 0 ], [
-                                          'fadeShow',
-                                          'fadeTo',
-                                          'fadeToggle',
-                                          'hide',
-                                          'show',
-                                          'toggle',
-                                          'slideHide',
-                                          'slideShow',
-                                          'slideToggle',
-                                      ] );
-                                      argObj.fun( elementArr[ 0 ] );
-                                  },
-                              } );
+                    duration: argObj.time,
+                    easing: argObj.easing,
+                    complete: elementArr => {
+                        this.sAttr( elementArr[ 0 ], {
+                            style: 'display:none;',
+                            fadeHide: 'fadeHide',
+                        } );
+                        this.rAttr( elementArr[ 0 ], [
+                            'fadeShow',
+                            'fadeTo',
+                            'fadeToggle',
+                            'hide',
+                            'show',
+                            'toggle',
+                            'slideHide',
+                            'slideShow',
+                            'slideToggle',
+                        ] );
+                        argObj.fun( elementArr[ 0 ] );
+                    },
+                } );
             }
         } );
     }
@@ -4883,12 +4973,12 @@ class JS2jQuery{
      */
     fadeShow( elem, para = {} ){
         let argObj = Object.assign( {
-                                        opacity: 1,
-                                        time: 300,
-                                        easing: 'linear',
-                                        fun: element => {
-                                        },
-                                    }, para );
+            opacity: 1,
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) === 'none' ){
@@ -4898,53 +4988,55 @@ class JS2jQuery{
                 this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
-                                  duration: argObj.time,
-                                  easing: argObj.easing,
-                                  complete: elementArr => {
-                                      this.sAttr( elemO, {
-                                          style: '',
-                                          fadeShow: 'fadeShow',
-                                      } );
-                                      this.rAttr( elementArr[ 0 ], [
-                                          'fadeHide',
-                                          'fadeTo',
-                                          'fadeToggle',
-                                          'hide',
-                                          'show',
-                                          'toggle',
-                                          'slideHide',
-                                          'slideShow',
-                                          'slideToggle',
-                                      ] );
-                                      argObj.fun( elementArr[ 0 ] );
-                                  },
-                              } );
+                    duration: argObj.time,
+                    easing: argObj.easing,
+                    complete: elementArr => {
+                        this.sAttr( elemO, {
+                            style: '',
+                            fadeShow: 'fadeShow',
+                        } );
+                        this.rAttr( elementArr[ 0 ], [
+                            'fadeHide',
+                            'fadeTo',
+                            'fadeToggle',
+                            'hide',
+                            'show',
+                            'toggle',
+                            'slideHide',
+                            'slideShow',
+                            'slideToggle',
+                        ] );
+                        argObj.fun( elementArr[ 0 ] );
+                    },
+                } );
             }
-            else if( this.gStyle( elemO, 'display' ) !== 'none' && this.gAttr( elemO, 'fadeTo' )[ 0 ] === 'fadeTo' && this.pFloat( this.gAttr( elemO, 'data-opacity' )[ 0 ] ) !== 1 ){
-                this.animate( elemO, {
-                    opacity: argObj.opacity,
-                }, {
-                                  duration: argObj.time,
-                                  easing: argObj.easing,
-                                  complete: elementArr => {
-                                      this.sAttr( elemO, {
-                                          style: '',
-                                          fadeShow: 'fadeShow',
-                                      } );
-                                      this.rAttr( elementArr[ 0 ], [
-                                          'fadeHide',
-                                          'fadeTo',
-                                          'fadeToggle',
-                                          'hide',
-                                          'show',
-                                          'toggle',
-                                          'slideHide',
-                                          'slideShow',
-                                          'slideToggle',
-                                      ] );
-                                      argObj.fun( elementArr[ 0 ] );
-                                  },
-                              } );
+            else{
+                if( this.gStyle( elemO, 'display' ) !== 'none' && this.gAttr( elemO, 'fadeTo' )[ 0 ] === 'fadeTo' && this.pFloat( this.gAttr( elemO, 'data-opacity' )[ 0 ] ) !== 1 ){
+                    this.animate( elemO, {
+                        opacity: argObj.opacity,
+                    }, {
+                        duration: argObj.time,
+                        easing: argObj.easing,
+                        complete: elementArr => {
+                            this.sAttr( elemO, {
+                                style: '',
+                                fadeShow: 'fadeShow',
+                            } );
+                            this.rAttr( elementArr[ 0 ], [
+                                'fadeHide',
+                                'fadeTo',
+                                'fadeToggle',
+                                'hide',
+                                'show',
+                                'toggle',
+                                'slideHide',
+                                'slideShow',
+                                'slideToggle',
+                            ] );
+                            argObj.fun( elementArr[ 0 ] );
+                        },
+                    } );
+                }
             }
         } );
     }
@@ -4967,12 +5059,12 @@ class JS2jQuery{
      */
     fadeTo( elem, para = {} ){
         let argObj = Object.assign( {
-                                        opacity: 0.5,
-                                        time: 300,
-                                        easing: 'linear',
-                                        fun: element => {
-                                        },
-                                    }, para );
+            opacity: 0.5,
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) === 'none' ){
@@ -4982,53 +5074,55 @@ class JS2jQuery{
                 this.animate( elemO, {
                     opacity: argObj.opacity,
                 }, {
-                                  duration: argObj.time,
-                                  easing: argObj.easing,
-                                  complete: elementArr => {
-                                      this.sAttr( elemO, {
-                                          fadeTo: 'fadeTo',
-                                      } );
-                                      this.rAttr( elementArr[ 0 ], [
-                                          'fadeHide',
-                                          'fadeShow',
-                                          'fadeToggle',
-                                          'hide',
-                                          'show',
-                                          'toggle',
-                                          'slideHide',
-                                          'slideShow',
-                                          'slideToggle',
-                                      ] );
-                                      argObj.fun( elementArr[ 0 ] );
-                                  },
-                              } );
+                    duration: argObj.time,
+                    easing: argObj.easing,
+                    complete: elementArr => {
+                        this.sAttr( elemO, {
+                            fadeTo: 'fadeTo',
+                        } );
+                        this.rAttr( elementArr[ 0 ], [
+                            'fadeHide',
+                            'fadeShow',
+                            'fadeToggle',
+                            'hide',
+                            'show',
+                            'toggle',
+                            'slideHide',
+                            'slideShow',
+                            'slideToggle',
+                        ] );
+                        argObj.fun( elementArr[ 0 ] );
+                    },
+                } );
             }
-            else if( this.gStyle( elemO, 'display' ) !== 'none' ){
-                IsHandle19( this, elemO );
-                this.animate( elemO, {
-                    opacity: argObj.opacity,
-                }, {
-                                  duration: argObj.time,
-                                  easing: argObj.easing,
-                                  complete: elementArr => {
-                                      this.sAttr( elemO, {
-                                          'data-opacity': argObj.opacity,
-                                          fadeTo: 'fadeTo',
-                                      } );
-                                      this.rAttr( elementArr[ 0 ], [
-                                          'fadeHide',
-                                          'fadeShow',
-                                          'fadeToggle',
-                                          'hide',
-                                          'show',
-                                          'toggle',
-                                          'slideHide',
-                                          'slideShow',
-                                          'slideToggle',
-                                      ] );
-                                      argObj.fun( elementArr[ 0 ] );
-                                  },
-                              } );
+            else{
+                if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                    IsHandle19( this, elemO );
+                    this.animate( elemO, {
+                        opacity: argObj.opacity,
+                    }, {
+                        duration: argObj.time,
+                        easing: argObj.easing,
+                        complete: elementArr => {
+                            this.sAttr( elemO, {
+                                'data-opacity': argObj.opacity,
+                                fadeTo: 'fadeTo',
+                            } );
+                            this.rAttr( elementArr[ 0 ], [
+                                'fadeHide',
+                                'fadeShow',
+                                'fadeToggle',
+                                'hide',
+                                'show',
+                                'toggle',
+                                'slideHide',
+                                'slideShow',
+                                'slideToggle',
+                            ] );
+                            argObj.fun( elementArr[ 0 ] );
+                        },
+                    } );
+                }
             }
         } );
     }
@@ -5049,18 +5143,20 @@ class JS2jQuery{
      */
     fadeToggle( elem, para = {} ){
         let argObj = Object.assign( {
-                                        time: 300,
-                                        easing: 'linear',
-                                        fun: element => {
-                                        },
-                                    }, para );
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) === 'none' ){
                 this.fadeShow( elemO, argObj );
             }
-            else if( this.gStyle( elemO, 'display' ) !== 'none' ){
-                this.fadeHide( elemO, argObj );
+            else{
+                if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                    this.fadeHide( elemO, argObj );
+                }
             }
         } );
     }
@@ -5156,8 +5252,10 @@ class JS2jQuery{
             if( this.isWindow( elemO ) && this.isUndefined( selector ) ){
                 return document.children;
             }
-            else if( this.isWindow( elemO ) && !this.isUndefined( selector ) ){
-                return IsHandle17.call( this, Array.from( document.children ), document.querySelectorAll( selector ) );
+            else{
+                if( this.isWindow( elemO ) && !this.isUndefined( selector ) ){
+                    return IsHandle17.call( this, Array.from( document.children ), document.querySelectorAll( selector ) );
+                }
             }
             if( this.isUndefined( selector ) ){
                 return elemO.children;
@@ -5185,8 +5283,10 @@ class JS2jQuery{
             if( this.isWindow( elemO ) && this.isUndefined( selector ) ){
                 return document.getElementsByTagName( '*' );
             }
-            else if( this.isWindow( elemO ) && !this.isUndefined( selector ) ){
-                return IsHandle17.call( this, Array.from( document.getElementsByTagName( '*' ) ), document.querySelectorAll( selector ) );
+            else{
+                if( this.isWindow( elemO ) && !this.isUndefined( selector ) ){
+                    return IsHandle17.call( this, Array.from( document.getElementsByTagName( '*' ) ), document.querySelectorAll( selector ) );
+                }
             }
             if( this.isUndefined( selector ) ){
                 return elemO.getElementsByTagName( '*' );
@@ -5556,13 +5656,15 @@ class JS2jQuery{
             } ) ) ) );
             return result;
         }
-        else if( this.isString( styleN ) && this.trim( styleN ).length !== 0 ){
-            return IsHandle13.call( this, elem, elemO => {
-                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
-                    return document.defaultView.getComputedStyle( document.documentElement, pseudoElt )[ this.trim( styleN ) ];
-                }
-                return document.defaultView.getComputedStyle( elemO, pseudoElt )[ this.trim( styleN ) ];
-            } );
+        else{
+            if( this.isString( styleN ) && this.trim( styleN ).length !== 0 ){
+                return IsHandle13.call( this, elem, elemO => {
+                    if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                        return document.defaultView.getComputedStyle( document.documentElement, pseudoElt )[ this.trim( styleN ) ];
+                    }
+                    return document.defaultView.getComputedStyle( elemO, pseudoElt )[ this.trim( styleN ) ];
+                } );
+            }
         }
     }
 
@@ -5631,11 +5733,15 @@ class JS2jQuery{
                 console.warn( 'hasData函数--->ctoElemDataStoragew未定义！' );
                 return undefined;
             }
-            else if( this.remSpace( dataName ) in storage ){
-                return true;
-            }
-            else if( !( this.remSpace( dataName ) in storage ) ){
-                return false;
+            else{
+                if( this.remSpace( dataName ) in storage ){
+                    return true;
+                }
+                else{
+                    if( !( this.remSpace( dataName ) in storage ) ){
+                        return false;
+                    }
+                }
             }
         } );
     }
@@ -5657,21 +5763,25 @@ class JS2jQuery{
             if( this.isWindow( elemO ) ){
                 return elemO.innerHeight;
             }
-            else if( this.isDocument( elemO ) ){
-                let result1 = this.gStyle( elemO.documentElement, 'height' ),
-                    result2 = parseFloat( result1 );
+            else{
+                if( this.isDocument( elemO ) ){
+                    let result1 = this.gStyle( elemO.documentElement, 'height' ),
+                        result2 = parseFloat( result1 );
 
-                return this.isNaN( result2 )
-                       ? result1
-                       : result2;
-            }
-            else if( this.isElement( elemO ) ){
-                let result1 = this.gStyle( elemO, 'height' ),
-                    result2 = parseFloat( result1 );
+                    return this.isNaN( result2 )
+                           ? result1
+                           : result2;
+                }
+                else{
+                    if( this.isElement( elemO ) ){
+                        let result1 = this.gStyle( elemO, 'height' ),
+                            result2 = parseFloat( result1 );
 
-                return this.isNaN( result2 )
-                       ? result1
-                       : result2;
+                        return this.isNaN( result2 )
+                               ? result1
+                               : result2;
+                    }
+                }
             }
         } );
     }
@@ -5692,11 +5802,11 @@ class JS2jQuery{
      */
     hide( elem, para = {} ){
         let argObj = Object.assign( {
-                                        time: 0,
-                                        easing: 'linear',
-                                        fun: element => {
-                                        },
-                                    }, para );
+            time: 0,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
@@ -5714,27 +5824,27 @@ class JS2jQuery{
                     margin: 0,
                     'outline-width': 0,
                 }, {
-                                  duration: argObj.time,
-                                  easing: argObj.easing,
-                                  complete: elementArr => {
-                                      this.sAttr( elementArr[ 0 ], {
-                                          style: 'display:none;',
-                                          hide: 'hide',
-                                      } );
-                                      this.rAttr( elementArr[ 0 ], [
-                                          'fadeHide',
-                                          'fadeShow',
-                                          'fadeTo',
-                                          'fadeToggle',
-                                          'show',
-                                          'toggle',
-                                          'slideHide',
-                                          'slideShow',
-                                          'slideToggle',
-                                      ] );
-                                      argObj.fun( elementArr[ 0 ] );
-                                  },
-                              } );
+                    duration: argObj.time,
+                    easing: argObj.easing,
+                    complete: elementArr => {
+                        this.sAttr( elementArr[ 0 ], {
+                            style: 'display:none;',
+                            hide: 'hide',
+                        } );
+                        this.rAttr( elementArr[ 0 ], [
+                            'fadeHide',
+                            'fadeShow',
+                            'fadeTo',
+                            'fadeToggle',
+                            'show',
+                            'toggle',
+                            'slideHide',
+                            'slideShow',
+                            'slideToggle',
+                        ] );
+                        argObj.fun( elementArr[ 0 ] );
+                    },
+                } );
             }
         } );
     }
@@ -5838,10 +5948,10 @@ class JS2jQuery{
             let ruleN = keyName,
                 dataStr = cssRuleO[ keyName ],
                 paraInitInit = Object.assign( {
-                                                  cssStyleSheet: null,
-                                                  index: null,
-                                                  isR: false,
-                                              }, para ),
+                    cssStyleSheet: null,
+                    index: null,
+                    isR: false,
+                }, para ),
                 len = document.styleSheets.length,
                 is1 = this.isNull( paraInitInit.cssStyleSheet ) || this.isUndefined( paraInitInit.cssStyleSheet ),
                 handle = cssStyleSheet => {
@@ -5852,33 +5962,37 @@ class JS2jQuery{
                     if( paraInitInit.isR && len === 0 ){
                         cssStyleSheet.insertRule( dataStr, 0 );
                     }
-                    else if( paraInitInit.isR && len !== 0 ){
-                        Array.from( cssStyleSheet.cssRules )
-                             .forEach( ( v, i, ) => {
-                                 if( name in v
-                                     ? v.name === this.trim( ruleN )
-                                     : v.selectorText === this.trim( ruleN ) ){
-                                     cssStyleSheet.deleteRule( i );
-                                 }
-                             } );
-                        cssStyleSheet.insertRule( dataStr, in1 );
-                    }
                     else{
-                        cssStyleSheet.insertRule( dataStr, in1 );
+                        if( paraInitInit.isR && len !== 0 ){
+                            Array.from( cssStyleSheet.cssRules )
+                                 .forEach( ( v, i, ) => {
+                                     if( name in v
+                                         ? v.name === this.trim( ruleN )
+                                         : v.selectorText === this.trim( ruleN ) ){
+                                         cssStyleSheet.deleteRule( i );
+                                     }
+                                 } );
+                            cssStyleSheet.insertRule( dataStr, in1 );
+                        }
+                        else{
+                            cssStyleSheet.insertRule( dataStr, in1 );
+                        }
                     }
                 };
             if( is1 && len === 0 ){
                 this.iInsertA( document.head, this.cElem( {
-                                                              tagName: 'style',
-                                                              data: dataStr,
-                                                              isText: true,
-                                                          } ) );
-            }
-            else if( is1 && len !== 0 ){
-                handle( document.styleSheets[ 0 ] );
+                    tagName: 'style',
+                    data: dataStr,
+                    isText: true,
+                } ) );
             }
             else{
-                handle( paraInitInit.cssStyleSheet );
+                if( is1 && len !== 0 ){
+                    handle( document.styleSheets[ 0 ] );
+                }
+                else{
+                    handle( paraInitInit.cssStyleSheet );
+                }
             }
         }
     }
@@ -6058,11 +6172,15 @@ class JS2jQuery{
                     }
                 } );
             }
-            else if( !this.isArray( attrN ) && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                document.documentElement.removeAttribute( this.remSpace( attrN ) );
-            }
-            else if( !this.isArray( attrN ) && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                elemO.removeAttribute( this.remSpace( attrN ) );
+            else{
+                if( !this.isArray( attrN ) && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                    document.documentElement.removeAttribute( this.remSpace( attrN ) );
+                }
+                else{
+                    if( !this.isArray( attrN ) && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                        elemO.removeAttribute( this.remSpace( attrN ) );
+                    }
+                }
             }
             return elemO;
         } );
@@ -6139,11 +6257,15 @@ class JS2jQuery{
                     }
                 } );
             }
-            else if( !this.isArray( attrN ) && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                document.documentElement.style.removeProperty( this.remSpace( attrN ) );
-            }
-            else if( !this.isArray( attrN ) && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                elemO.style.removeProperty( this.remSpace( attrN ) );
+            else{
+                if( !this.isArray( attrN ) && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                    document.documentElement.style.removeProperty( this.remSpace( attrN ) );
+                }
+                else{
+                    if( !this.isArray( attrN ) && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                        elemO.style.removeProperty( this.remSpace( attrN ) );
+                    }
+                }
             }
             return elemO;
         } );
@@ -6186,10 +6308,12 @@ class JS2jQuery{
                 fn();
             }, false );
         }
-        else if( document.attachEvent ){
-            document.attachEvent( 'onreadystatechange', function this_Fn2( event ){
-                document.readyState === 'complete' && ( document.detachEvent( 'onreadystatechange', this_Fn2 ), fn() );
-            } );
+        else{
+            if( document.attachEvent ){
+                document.attachEvent( 'onreadystatechange', function this_Fn2( event ){
+                    document.readyState === 'complete' && ( document.detachEvent( 'onreadystatechange', this_Fn2 ), fn() );
+                } );
+            }
         }
     }
 
@@ -6214,12 +6338,16 @@ class JS2jQuery{
                 console.warn( 'removeData函数--->ctoElemDataStoragew未定义！' );
                 return undefined;
             }
-            else if( this.remSpace( dataName ) in storage ){
-                delete storage[ this.remSpace( dataName ) ];
-                return elemO;
-            }
-            else if( !( this.remSpace( dataName ) in storage ) ){
-                return elemO;
+            else{
+                if( this.remSpace( dataName ) in storage ){
+                    delete storage[ this.remSpace( dataName ) ];
+                    return elemO;
+                }
+                else{
+                    if( !( this.remSpace( dataName ) in storage ) ){
+                        return elemO;
+                    }
+                }
             }
         } );
     }
@@ -6523,35 +6651,39 @@ class JS2jQuery{
                              Array.from( c.selectedOptions )
                                   .forEach( c1 => {
                                       result_arr.push( {
-                                                           name: this.trim( c.name ),
-                                                           value: c1.value || c1.text
-                                                       } );
+                                          name: this.trim( c.name ),
+                                          value: c1.value || c1.text
+                                      } );
                                   } );
                          }
-                         else if( fun1( c, 'textarea' ) ){
-                             result_arr.push( {
-                                                  name: this.trim( c.name ),
-                                                  value: c.value.replace( /\r?\n/g, '\r\n' )
-                                              } );
-                         }
-                         else if( fun1( c, 'input' ) && !c.disabled && c.type !== 'file' && c.type !== 'submit' && c.type !== 'button' && c.type !== 'image' && c.type !== 'reset' ){
-                             if( c.type === 'radio' && c.checked ){
+                         else{
+                             if( fun1( c, 'textarea' ) ){
                                  result_arr.push( {
-                                                      name: this.trim( c.name ),
-                                                      value: c.value
-                                                  } );
+                                     name: this.trim( c.name ),
+                                     value: c.value.replace( /\r?\n/g, '\r\n' )
+                                 } );
                              }
-                             if( c.type === 'checkbox' && c.checked ){
-                                 result_arr.push( {
-                                                      name: this.trim( c.name ),
-                                                      value: c.value
-                                                  } );
-                             }
-                             if( c.type !== 'radio' && c.type !== 'checkbox' ){
-                                 result_arr.push( {
-                                                      name: this.trim( c.name ),
-                                                      value: c.value
-                                                  } );
+                             else{
+                                 if( fun1( c, 'input' ) && !c.disabled && c.type !== 'file' && c.type !== 'submit' && c.type !== 'button' && c.type !== 'image' && c.type !== 'reset' ){
+                                     if( c.type === 'radio' && c.checked ){
+                                         result_arr.push( {
+                                             name: this.trim( c.name ),
+                                             value: c.value
+                                         } );
+                                     }
+                                     if( c.type === 'checkbox' && c.checked ){
+                                         result_arr.push( {
+                                             name: this.trim( c.name ),
+                                             value: c.value
+                                         } );
+                                     }
+                                     if( c.type !== 'radio' && c.type !== 'checkbox' ){
+                                         result_arr.push( {
+                                             name: this.trim( c.name ),
+                                             value: c.value
+                                         } );
+                                     }
+                                 }
                              }
                          }
                      } );
@@ -6576,11 +6708,11 @@ class JS2jQuery{
      */
     show( elem, para = {} ){
         let argObj = Object.assign( {
-                                        time: 0,
-                                        easing: 'linear',
-                                        fun: element => {
-                                        },
-                                    }, para );
+            time: 0,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             let styleObj = this.data( elemO, 'style3Obj' )[ 0 ];
@@ -6631,11 +6763,11 @@ class JS2jQuery{
      */
     slideHide( elem, para = {} ){
         let argObj = Object.assign( {
-                                        time: 300,
-                                        easing: 'linear',
-                                        fun: element => {
-                                        },
-                                    }, para );
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
@@ -6650,27 +6782,27 @@ class JS2jQuery{
                     'margin-top': 0,
                     'margin-bottom': 0,
                 }, {
-                                  duration: argObj.time,
-                                  easing: argObj.easing,
-                                  complete: elementArr => {
-                                      this.sAttr( elementArr[ 0 ], {
-                                          style: 'display:none;',
-                                          slideHide: 'slideHide',
-                                      } );
-                                      this.rAttr( elementArr[ 0 ], [
-                                          'fadeHide',
-                                          'fadeShow',
-                                          'fadeTo',
-                                          'fadeToggle',
-                                          'hide',
-                                          'show',
-                                          'toggle',
-                                          'slideShow',
-                                          'slideToggle',
-                                      ] );
-                                      argObj.fun( elementArr[ 0 ] );
-                                  },
-                              } );
+                    duration: argObj.time,
+                    easing: argObj.easing,
+                    complete: elementArr => {
+                        this.sAttr( elementArr[ 0 ], {
+                            style: 'display:none;',
+                            slideHide: 'slideHide',
+                        } );
+                        this.rAttr( elementArr[ 0 ], [
+                            'fadeHide',
+                            'fadeShow',
+                            'fadeTo',
+                            'fadeToggle',
+                            'hide',
+                            'show',
+                            'toggle',
+                            'slideShow',
+                            'slideToggle',
+                        ] );
+                        argObj.fun( elementArr[ 0 ] );
+                    },
+                } );
             }
         } );
     }
@@ -6691,11 +6823,11 @@ class JS2jQuery{
      */
     slideShow( elem, para = {} ){
         let argObj = Object.assign( {
-                                        time: 300,
-                                        easing: 'linear',
-                                        fun: element => {
-                                        },
-                                    }, para );
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             let styleObj = this.data( elemO, 'style3Obj' )[ 0 ];
@@ -6752,18 +6884,20 @@ class JS2jQuery{
      */
     slideToggle( elem, para = {} ){
         let argObj = Object.assign( {
-                                        time: 300,
-                                        easing: 'linear',
-                                        fun: element => {
-                                        },
-                                    }, para );
+            time: 300,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
                 this.slideHide( elemO, argObj );
             }
-            else if( this.gStyle( elemO, 'display' ) === 'none' ){
-                this.slideShow( elemO, argObj );
+            else{
+                if( this.gStyle( elemO, 'display' ) === 'none' ){
+                    this.slideShow( elemO, argObj );
+                }
             }
         } );
     }
@@ -6837,18 +6971,20 @@ class JS2jQuery{
      */
     toggle( elem, para = {} ){
         let argObj = Object.assign( {
-                                        time: 0,
-                                        easing: 'linear',
-                                        fun: element => {
-                                        },
-                                    }, para );
+            time: 0,
+            easing: 'linear',
+            fun: element => {
+            },
+        }, para );
         ( this.isDocument( elem ) || this.isWindow( elem ) ) && ( elem = document.documentElement );
         IsHandle10.call( this, elem, elemO => {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
                 this.hide( elemO, argObj );
             }
-            else if( this.gStyle( elemO, 'display' ) === 'none' ){
-                this.show( elemO, argObj );
+            else{
+                if( this.gStyle( elemO, 'display' ) === 'none' ){
+                    this.show( elemO, argObj );
+                }
             }
         } );
     }
@@ -6899,21 +7035,25 @@ class JS2jQuery{
             if( this.isWindow( elemO ) ){
                 return elemO.innerWidth;
             }
-            else if( this.isDocument( elemO ) ){
-                let result1 = this.gStyle( elemO.documentElement, 'width' ),
-                    result2 = parseFloat( result1 );
+            else{
+                if( this.isDocument( elemO ) ){
+                    let result1 = this.gStyle( elemO.documentElement, 'width' ),
+                        result2 = parseFloat( result1 );
 
-                return this.isNaN( result2 )
-                       ? result1
-                       : result2;
-            }
-            else if( this.isElement( elemO ) ){
-                let result1 = this.gStyle( elemO, 'width' ),
-                    result2 = parseFloat( result1 );
+                    return this.isNaN( result2 )
+                           ? result1
+                           : result2;
+                }
+                else{
+                    if( this.isElement( elemO ) ){
+                        let result1 = this.gStyle( elemO, 'width' ),
+                            result2 = parseFloat( result1 );
 
-                return this.isNaN( result2 )
-                       ? result1
-                       : result2;
+                        return this.isNaN( result2 )
+                               ? result1
+                               : result2;
+                    }
+                }
             }
         } );
     }
@@ -6980,7 +7120,7 @@ class JS2jQuery{
 /**
  * 对象、数组处理
  */
-class ObjHandle{
+class ObjHandle {
 
     /**
      * 完整复制对象所有自身属性(非继承属性)的描述对象，然后合并到目标对象<br />
@@ -7036,16 +7176,20 @@ class ObjHandle{
         if( this.isString( arg[ 0 ] ) && this.remSpace( arg[ 0 ] ).length !== 0 ){
             return handle( this.remSpace( arg[ 0 ] ), a => a, this.remSpace( arg[ 0 ] ) );
         }
-        else if( isA && arg[ 0 ].length >= 1 ){
-            let [ result, set1 ] = [
-                [],
-                new Set( arg[ 0 ] )
-            ];
-            set1.forEach( value => void ( result.push( value ) ) );
-            return result;
-        }
-        else if( this.isNumber( arg[ 0 ] ) && !this.isNaN( arg[ 0 ] ) && this.isFinite( arg[ 0 ] ) ){
-            return handle( String( arg[ 0 ] ), a => Number( a ), arg[ 0 ] );
+        else{
+            if( isA && arg[ 0 ].length >= 1 ){
+                let [ result, set1 ] = [
+                    [],
+                    new Set( arg[ 0 ] )
+                ];
+                set1.forEach( value => void ( result.push( value ) ) );
+                return result;
+            }
+            else{
+                if( this.isNumber( arg[ 0 ] ) && !this.isNaN( arg[ 0 ] ) && this.isFinite( arg[ 0 ] ) ){
+                    return handle( String( arg[ 0 ] ), a => Number( a ), arg[ 0 ] );
+                }
+            }
         }
     }
 
@@ -7069,32 +7213,34 @@ class ObjHandle{
 
             return newArr;
         }
-        else if( this.isObject( obj ) ){
-            let val,
-                newObj = 'constructor' in obj
-                         ? new obj.constructor()
-                         : {};
-
-            for( let tmp of
-                Reflect.ownKeys( obj ) ){
-                val = obj[ tmp ];
-
-                if( typeof val !== 'object' ){
-                    Object.defineProperty( newObj, tmp, Object.getOwnPropertyDescriptor( obj, tmp ) );
-                }
-                else{
-                    newObj[ tmp ] = this.deepCopy( val );
-                }
-            }
-
-            let objPrototype = this.deppCopyPrototype( obj );
-
-            !this.isNull( objPrototype ) && ( Object.setPrototypeOf( newObj, objPrototype ) );
-
-            return newObj;
-        }
         else{
-            return obj;
+            if( this.isObject( obj ) ){
+                let val,
+                    newObj = 'constructor' in obj
+                             ? new obj.constructor()
+                             : {};
+
+                for( let tmp of
+                    Reflect.ownKeys( obj ) ){
+                    val = obj[ tmp ];
+
+                    if( typeof val !== 'object' ){
+                        Object.defineProperty( newObj, tmp, Object.getOwnPropertyDescriptor( obj, tmp ) );
+                    }
+                    else{
+                        newObj[ tmp ] = this.deepCopy( val );
+                    }
+                }
+
+                let objPrototype = this.deppCopyPrototype( obj );
+
+                !this.isNull( objPrototype ) && ( Object.setPrototypeOf( newObj, objPrototype ) );
+
+                return newObj;
+            }
+            else{
+                return obj;
+            }
         }
     }
 
@@ -7189,11 +7335,13 @@ class ObjHandle{
             if( this.isArray( currentValue ) && currentValue.length !== 0 ){
                 this.deepTraArr( initA, ...currentValue );
             }
-            else if( this.isElemList( currentValue ) && currentValue.length !== 0 ){
-                this.deepTraArr( initA, ...Array.from( currentValue ) );
-            }
             else{
-                initA.push( currentValue );
+                if( this.isElemList( currentValue ) && currentValue.length !== 0 ){
+                    this.deepTraArr( initA, ...Array.from( currentValue ) );
+                }
+                else{
+                    initA.push( currentValue );
+                }
             }
         } );
         return initA;
@@ -7283,11 +7431,11 @@ class ObjHandle{
                 isDeep && ( _this.isObject( result ) || _this.isArray( result ) ) && ( result = handle_fun( result ) );
 
                 return ( handle4Get( {
-                                         target,
-                                         key: propKey,
-                                         value: result,
-                                         receiver,
-                                     } ) ?? result );
+                    target,
+                    key: propKey,
+                    value: result,
+                    receiver,
+                } ) ?? result );
             },
 
             set( target, propKey, value, receiver ){
@@ -7295,12 +7443,12 @@ class ObjHandle{
                 setResult = Reflect.set( target, propKey, value, receiver );
 
                 return ( handle4Set( {
-                                         target,
-                                         key: propKey,
-                                         newValue: value,
-                                         oldValue,
-                                         receiver,
-                                     } ) ?? setResult );
+                    target,
+                    key: propKey,
+                    newValue: value,
+                    oldValue,
+                    receiver,
+                } ) ?? setResult );
             },
         } );
 
@@ -7343,7 +7491,7 @@ class ObjHandle{
 /**
  * 7788
  */
-class OthersHandle{
+class OthersHandle {
 
     /**
      * 获取设备信息以及浏览器信息<br />
@@ -7611,8 +7759,10 @@ class OthersHandle{
                 if( ( isWOriUn && sOri0 ) || ( !isWOriUn && wOri0 ) ){
                     sFun( event );
                 }
-                else if( ( isWOriUn && sOri90 ) || ( !isWOriUn && wOri90 ) ){
-                    hFun( event );
+                else{
+                    if( ( isWOriUn && sOri90 ) || ( !isWOriUn && wOri90 ) ){
+                        hFun( event );
+                    }
                 }
             };
         if( isWOriUn && isSOriUn ){
@@ -7873,7 +8023,7 @@ class OthersHandle{
 /**
  * Permissions API
  */
-class PermissionsAPI{
+class PermissionsAPI {
 
     /**
      * Permissions接口的Permissions.query()方法返回全局范围内用户权限的状态。
@@ -7921,53 +8071,59 @@ class PermissionsAPI{
         if( this.isUndefined( permissions_objC ) ){
             GetError( '不支持“navigator.permissions”！' );
         }
-        else if( this.isUndefined( permissions_objC.query ) ){
-            GetError( '不支持“navigator.permissions.query”！' );
-        }
         else{
-            const events_objC = Object.assign( {
-                                                   prompt(){
-                                                   },
-                                                   granted(){
-                                                   },
-                                                   denied(){
-                                                       GetError( '拒绝授权' );
-                                                   },
-                                                   stateChange( _this ){
-                                                   },
-                                                   error( e ){
-                                                       GetError( e.message );
-                                                   },
-                                               }, events );
-
-            try{
-                return permissions_objC.query( options )
-                                       .then( permissionStatus => {
-                                           const state_strC = permissionStatus.state;
-
-                                           // 提示授权
-                                           if( state_strC === 'prompt' ){
-                                               events_objC.prompt();
-                                           }
-                                           // 已经授予
-                                           else if( state_strC === 'granted' ){
-                                               events_objC.granted();
-                                           }
-                                           // 拒绝授权
-                                           else if( state_strC === 'denied' ){
-                                               events_objC.denied();
-                                           }
-
-                                           permissionStatus.onchange = function (){
-                                               events_objC.stateChange( this );
-                                           };
-
-                                           return permissionStatus;
-                                       } )
-                                       .catch( events_objC.error );
+            if( this.isUndefined( permissions_objC.query ) ){
+                GetError( '不支持“navigator.permissions.query”！' );
             }
-            catch( e ){
-                events_objC.error( e );
+            else{
+                const events_objC = Object.assign( {
+                    prompt(){
+                    },
+                    granted(){
+                    },
+                    denied(){
+                        GetError( '拒绝授权' );
+                    },
+                    stateChange( _this ){
+                    },
+                    error( e ){
+                        GetError( e.message );
+                    },
+                }, events );
+
+                try{
+                    return permissions_objC.query( options )
+                                           .then( permissionStatus => {
+                                               const state_strC = permissionStatus.state;
+
+                                               // 提示授权
+                                               if( state_strC === 'prompt' ){
+                                                   events_objC.prompt();
+                                               }
+                                               // 已经授予
+                                               else{
+                                                   if( state_strC === 'granted' ){
+                                                       events_objC.granted();
+                                                   }
+                                                   // 拒绝授权
+                                                   else{
+                                                       if( state_strC === 'denied' ){
+                                                           events_objC.denied();
+                                                       }
+                                                   }
+                                               }
+
+                                               permissionStatus.onchange = function (){
+                                                   events_objC.stateChange( this );
+                                               };
+
+                                               return permissionStatus;
+                                           } )
+                                           .catch( events_objC.error );
+                }
+                catch( e ){
+                    events_objC.error( e );
+                }
             }
         }
     }
@@ -7977,7 +8133,7 @@ class PermissionsAPI{
 /**
  * 正则表达式处理
  */
-class RegExpHandle{
+class RegExpHandle {
 
     /**
      * 移除A到Z以外的
@@ -8113,8 +8269,8 @@ class RegExpHandle{
         'use strict';
 
         return IsHandle7.call( this, data, a => String( a )
-        .replace( new RegExp( reg, 'g' ), repStr ), String( data )
-                               .replace( new RegExp( reg, 'g' ), repStr ) );
+            .replace( new RegExp( reg, 'g' ), repStr ), String( data )
+            .replace( new RegExp( reg, 'g' ), repStr ) );
     }
 
     /**
@@ -8128,8 +8284,8 @@ class RegExpHandle{
         'use strict';
 
         return IsHandle7.call( this, arg, a => ( String( a )
-        .trim() ), String( arg )
-                               .trim() );
+            .trim() ), String( arg )
+            .trim() );
     }
 
 }
@@ -8137,7 +8293,7 @@ class RegExpHandle{
 /**
  * 服务器发送事件(Server-Sent Event)客户端类
  */
-class SSE4Client{
+class SSE4Client {
 
     /**
      * SSE客户端实例
@@ -8334,7 +8490,7 @@ class SSE4Client{
 /**
  * 字符串处理
  */
-class StringHandle{
+class StringHandle {
 
     /**
      * Base64编码转字符串（解码）<br />
@@ -8453,19 +8609,25 @@ class StringHandle{
                 if( this.isString( currentValue ) && currentValue.length !== 0 ){
                     result.push( handle( currentValue ) );
                 }
-                else if( this.isArray( currentValue ) || this.isObject( currentValue ) ){
-                    result.push( handle( JSON.stringify( currentValue ) ) );
-                }
-                else if( this.isNumber( currentValue ) || this.isBoolean( currentValue ) || this.isNull( currentValue ) || this.isUndefined( currentValue ) ){
-                    result.push( handle( String( currentValue ) ) );
+                else{
+                    if( this.isArray( currentValue ) || this.isObject( currentValue ) ){
+                        result.push( handle( JSON.stringify( currentValue ) ) );
+                    }
+                    else{
+                        if( this.isNumber( currentValue ) || this.isBoolean( currentValue ) || this.isNull( currentValue ) || this.isUndefined( currentValue ) ){
+                            result.push( handle( String( currentValue ) ) );
+                        }
+                    }
                 }
             } );
             if( result.length !== 0 ){
                 return result;
             }
         }
-        else if( s.length !== 0 ){
-            return handle( s );
+        else{
+            if( s.length !== 0 ){
+                return handle( s );
+            }
         }
     }
 
@@ -8494,8 +8656,10 @@ class StringHandle{
             arg[ 0 ].forEach( currentValue => void ( result.push( handle( currentValue ) ) ) );
             return result;
         }
-        else if( this.isString( arg[ 0 ] ) ){
-            return handle( arg[ 0 ] );
+        else{
+            if( this.isString( arg[ 0 ] ) ){
+                return handle( arg[ 0 ] );
+            }
         }
     }
 
@@ -8504,7 +8668,7 @@ class StringHandle{
 /**
  * 自定义的各种Touch事件
  */
-class TouchEvent{
+class TouchEvent {
 
     /**
      * 判断是否是触摸屏<br />
@@ -8661,27 +8825,31 @@ class TouchEvent{
                                 touch = {};
                             }, 0 );
                         }
-                        else if( 'last' in touch && ( deltaX < 30 && deltaY < 30 ) ){
-                            tapTimeout = setTimeout( () => {
-                                let event = document.createEvent( 'HTMLEvents' );
-                                event.initEvent( 'tap', true, false );
-                                event.cancelTouch = cancelAll;
-                                touch.el && touch.el.dispatchEvent( event );
-                                if( touch.isDoubleTap ){
-                                    touch.el && this.triggerE( touch.el, 'doubleTap' );
+                        else{
+                            if( 'last' in touch && ( deltaX < 30 && deltaY < 30 ) ){
+                                tapTimeout = setTimeout( () => {
+                                    let event = document.createEvent( 'HTMLEvents' );
+                                    event.initEvent( 'tap', true, false );
+                                    event.cancelTouch = cancelAll;
+                                    touch.el && touch.el.dispatchEvent( event );
+                                    if( touch.isDoubleTap ){
+                                        touch.el && this.triggerE( touch.el, 'doubleTap' );
+                                        touch = {};
+                                    }
+                                    else{
+                                        touchTimeout = setTimeout( () => {
+                                            touchTimeout = null;
+                                            touch.el && this.triggerE( touch.el, 'singleTap' );
+                                            touch = {};
+                                        }, 250 );
+                                    }
+                                }, 0 );
+                            }
+                            else{
+                                if( 'last' in touch && !( deltaX < 30 && deltaY < 30 ) ){
                                     touch = {};
                                 }
-                                else{
-                                    touchTimeout = setTimeout( () => {
-                                        touchTimeout = null;
-                                        touch.el && this.triggerE( touch.el, 'singleTap' );
-                                        touch = {};
-                                    }, 250 );
-                                }
-                            }, 0 );
-                        }
-                        else if( 'last' in touch && !( deltaX < 30 && deltaY < 30 ) ){
-                            touch = {};
+                            }
                         }
                         deltaX = deltaY = 0;
                     }, { passive: false } )[ 0 ],
@@ -8708,7 +8876,7 @@ class TouchEvent{
 /**
  * 用于GraphQL的各种资源上传请求的工具类
  */
-class Upload4GraphQL{
+class Upload4GraphQL {
 
     #ctIns = null;
 
@@ -8830,12 +8998,12 @@ class Upload4GraphQL{
                     file4KeyName = throw new Error( 'file4KeyName参数必须！' ),
                 } = throw new Error( '参数必须！' ) ){
         return this.#handleA( {
-                                  operationName,
-                                  query,
-                                  variables,
-                                  file4KeyName,
-                                  isSingleFile: true,
-                              } ).formData;
+            operationName,
+            query,
+            variables,
+            file4KeyName,
+            isSingleFile: true,
+        } ).formData;
     }
 
     /**
@@ -8870,12 +9038,12 @@ class Upload4GraphQL{
                        file4KeyName = throw new Error( 'file4KeyName参数必须！' ),
                    } = throw new Error( '参数必须！' ) ){
         return this.#handleA( {
-                                  operationName,
-                                  query,
-                                  variables,
-                                  file4KeyName,
-                                  isSingleFile: false,
-                              } ).formData;
+            operationName,
+            query,
+            variables,
+            file4KeyName,
+            isSingleFile: false,
+        } ).formData;
     }
 
     /**
@@ -8919,23 +9087,23 @@ class Upload4GraphQL{
                 operations,
                 map,
             } = this.#handleA( {
-                                   operationName,
-                                   query,
-                                   variables,
-                                   file4KeyName,
-                                   isSingleFile,
-                               } );
+                operationName,
+                query,
+                variables,
+                file4KeyName,
+                isSingleFile,
+            } );
 
             operationsAll_arr.push( operations );
 
             if( isSingleFile ){
                 mapAll_arr.push( [
-                                     index_num,
-                                     [
-                                         `${ i }.${ Array.from( Object.values( map ) )
-                                                         .flat( Infinity )[ 0 ] }`,
-                                     ],
-                                 ] );
+                    index_num,
+                    [
+                        `${ i }.${ Array.from( Object.values( map ) )
+                                        .flat( Infinity )[ 0 ] }`,
+                    ],
+                ] );
 
                 ++index_num;
             }
@@ -8944,11 +9112,11 @@ class Upload4GraphQL{
                      .flat( Infinity )
                      .forEach( ( c1, i1, a1 ) => {
                          mapAll_arr.push( [
-                                              index_num,
-                                              [
-                                                  `${ i }.${ c1 }`,
-                                              ],
-                                          ] );
+                             index_num,
+                             [
+                                 `${ i }.${ c1 }`,
+                             ],
+                         ] );
 
                          ++index_num;
                      } );
@@ -8975,7 +9143,7 @@ class Upload4GraphQL{
 /**
  * url、history的操作
  */
-class UrlHandle{
+class UrlHandle {
 
     /*
      IE9(window.location)
@@ -9002,9 +9170,9 @@ class UrlHandle{
     cReturn( toDo_fun = ( event => {
     } ) ){
         let pushHistory = () => void ( globalThis.history.pushState( {
-                                                                         title: 'title',
-                                                                         url: '#'
-                                                                     }, 'title', '#' ) ),
+                title: 'title',
+                url: '#'
+            }, 'title', '#' ) ),
             bool = false;
         pushHistory();
         setTimeout( () => void ( bool = true ), 1 );
@@ -9131,10 +9299,10 @@ class UrlHandle{
      */
     urlPush( arg_obj = {} ){
         let pra_obj = Object.assign( {
-                                         newURLStr: globalThis.location.origin + globalThis.location.pathname,
-                                         searchObj: {},
-                                         stateData: null
-                                     }, arg_obj );
+            newURLStr: globalThis.location.origin + globalThis.location.pathname,
+            searchObj: {},
+            stateData: null
+        }, arg_obj );
         return IsHandle18( pra_obj.newURLStr, pra_obj.searchObj, pra_obj.stateData, 'pushState' );
     }
 
@@ -9163,10 +9331,10 @@ class UrlHandle{
      */
     urlReplace( arg_obj = {} ){
         let pra_obj = Object.assign( {
-                                         newURLStr: globalThis.location.origin + globalThis.location.pathname,
-                                         searchObj: {},
-                                         stateData: null
-                                     }, arg_obj );
+            newURLStr: globalThis.location.origin + globalThis.location.pathname,
+            searchObj: {},
+            stateData: null
+        }, arg_obj );
         return IsHandle18( pra_obj.newURLStr, pra_obj.searchObj, pra_obj.stateData, 'replaceState' );
     }
 
@@ -9189,8 +9357,10 @@ class UrlHandle{
                                        if( arr1.length === 1 ){
                                            searchObj[ arr1[ 0 ] ] = '';
                                        }
-                                       else if( arr1.length === 2 ){
-                                           searchObj[ arr1[ 0 ] ] = arr1[ 1 ];
+                                       else{
+                                           if( arr1.length === 2 ){
+                                               searchObj[ arr1[ 0 ] ] = arr1[ 1 ];
+                                           }
                                        }
                                    } );
         return searchObj;
@@ -9201,7 +9371,7 @@ class UrlHandle{
 /**
  * WASM工具
  */
-class WASMTool{
+class WASMTool {
 
     /**
      * 加载.wasm的函数方法(用“fetch”加载的)<br />
@@ -9298,29 +9468,29 @@ class WASMTool{
                                               .arrayBuffer() )
                    .then( bufferSource => WebAssembly.validate( bufferSource )
                                           ? WebAssembly.instantiate( bufferSource, Object.assign( {
-                                                                                                      global: {},
-                                                                                                      env: {
-                                                                                                          // 初始大小为100页（64 * 100 = 6400‬KiB、6.25MiB），最大大小为1024页（64 * 1024 = 65536‬‬‬KiB、64MiB）。
-                                                                                                          memory: new WebAssembly.Memory( {
-                                                                                                                                              // WebAssembly Memory的初始大小，以WebAssembly pages为单位。
-                                                                                                                                              initial: 100,
-                                                                                                                                              // WebAssembly Memory的最大尺寸允许以WebAssembly pages为单位生长。
-                                                                                                                                              // 当存在时，最大参数充当引擎预留存储器的提示。
-                                                                                                                                              // 但是，引擎可能会忽略或限制此预订请求。
-                                                                                                                                              // 一般来说，大多数WebAssembly modules不需要设置最大值。
-                                                                                                                                              // 一个WebAssembly page的大小恒定为65536字节，即64KiB。
-                                                                                                                                              maximum: 1024,
-                                                                                                                                          } ),
-                                                                                                          table: new WebAssembly.Table( {
-                                                                                                                                            // WebAssembly表的初始元素数。
-                                                                                                                                            initial: 0,
-                                                                                                                                            // 表示要存储在表中的值类型的字符串。目前，它只能有一个值“anyfunc”（函数）。
-                                                                                                                                            element: 'anyfunc',
-                                                                                                                                            // 允许WebAssembly Table增长的元素的最大数目。
-                                                                                                                                            // maximum: 102400,
-                                                                                                                                        } ),
-                                                                                                      },
-                                                                                                  }, importObject ) )
+                           global: {},
+                           env: {
+                               // 初始大小为100页（64 * 100 = 6400‬KiB、6.25MiB），最大大小为1024页（64 * 1024 = 65536‬‬‬KiB、64MiB）。
+                               memory: new WebAssembly.Memory( {
+                                   // WebAssembly Memory的初始大小，以WebAssembly pages为单位。
+                                   initial: 100,
+                                   // WebAssembly Memory的最大尺寸允许以WebAssembly pages为单位生长。
+                                   // 当存在时，最大参数充当引擎预留存储器的提示。
+                                   // 但是，引擎可能会忽略或限制此预订请求。
+                                   // 一般来说，大多数WebAssembly modules不需要设置最大值。
+                                   // 一个WebAssembly page的大小恒定为65536字节，即64KiB。
+                                   maximum: 1024,
+                               } ),
+                               table: new WebAssembly.Table( {
+                                   // WebAssembly表的初始元素数。
+                                   initial: 0,
+                                   // 表示要存储在表中的值类型的字符串。目前，它只能有一个值“anyfunc”（函数）。
+                                   element: 'anyfunc',
+                                   // 允许WebAssembly Table增长的元素的最大数目。
+                                   // maximum: 102400,
+                               } ),
+                           },
+                       }, importObject ) )
                                           : undefined )
                    .then( ( { module, instance, } = throw new Error( '这是一个无效的“wasm”模块！' ) ) => ( {
                        module,
@@ -9333,7 +9503,7 @@ class WASMTool{
 /**
  * 基于“Proxy”编写的“Web服务器客户端”
  */
-class WebService4Proxy{
+class WebService4Proxy {
 
     /**
      * 字符串，具体请求URL的公共头部分，如：http://192.168.1.2:9999/SimServer/，必须
@@ -9428,9 +9598,9 @@ class WebService4Proxy{
         'use strict';
 
         return this.create( {
-                                baseUrl,
-                                type: 'arrayBuffer',
-                            } );
+            baseUrl,
+            type: 'arrayBuffer',
+        } );
     }
 
     /**
@@ -9447,9 +9617,9 @@ class WebService4Proxy{
         'use strict';
 
         return this.create( {
-                                baseUrl,
-                                type: 'blob',
-                            } );
+            baseUrl,
+            type: 'blob',
+        } );
     }
 
     /**
@@ -9466,9 +9636,9 @@ class WebService4Proxy{
         'use strict';
 
         return this.create( {
-                                baseUrl,
-                                type: 'formData',
-                            } );
+            baseUrl,
+            type: 'formData',
+        } );
     }
 
     /**
@@ -9485,9 +9655,9 @@ class WebService4Proxy{
         'use strict';
 
         return this.create( {
-                                baseUrl,
-                                type: 'json',
-                            } );
+            baseUrl,
+            type: 'json',
+        } );
     }
 
     /**
@@ -9504,9 +9674,9 @@ class WebService4Proxy{
         'use strict';
 
         return this.create( {
-                                baseUrl,
-                                type: 'text',
-                            } );
+            baseUrl,
+            type: 'text',
+        } );
     }
 
     /**
@@ -9542,8 +9712,8 @@ class WebService4Proxy{
                              // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
-                    method: 'POST',
-                } ) )
+                                              method: 'POST',
+                                          } ) )
                                           .then( response => {
                                               if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
                                                   return response.clone()[ type ]();
@@ -9592,8 +9762,8 @@ class WebService4Proxy{
                              // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
-                    method: 'DELETE',
-                } ) )
+                                              method: 'DELETE',
+                                          } ) )
                                           .then( response => {
                                               if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
                                                   return response.clone()[ type ]();
@@ -9642,8 +9812,8 @@ class WebService4Proxy{
                              // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
-                    method: 'PUT',
-                } ) )
+                                              method: 'PUT',
+                                          } ) )
                                           .then( response => {
                                               if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
                                                   return response.clone()[ type ]();
@@ -9690,8 +9860,8 @@ class WebService4Proxy{
                              // 该参数的具体信息看CT的fetch()的第三个参数描述
                              options = {},
                          } = {} ) => _this.ctIns.fetch( `${ baseUrl }${ propKey }${ url }`, events, Object.assign( options, {
-                    method: 'GET',
-                } ) )
+                                              method: 'GET',
+                                          } ) )
                                           .then( response => {
                                               if( _this.type4ResponseData.includes( type ) && response && response.ok && response.status === 200 ){
                                                   return response.clone()[ type ]();
@@ -9712,7 +9882,7 @@ class WebService4Proxy{
 /**
  * WebSocket客户端类
  */
-class WebSocket4Client{
+class WebSocket4Client {
 
     /**
      * WebSocket客户端实例
@@ -9981,7 +10151,7 @@ const toolsClass_objC = {
  * 3、该工具支持在浏览器、Node、Deno等多种支持JS的宿主环境中使用！<br />
  */
 class CT
-    extends MixinHandle( ...mixin_classArrC ){
+    extends MixinHandle( ...mixin_classArrC ) {
 
     // 类实例属性 Start
 
@@ -10136,9 +10306,11 @@ class CT
                         document.addEventListener( 'readystatechange', handler, false );
                         globalThis.addEventListener( 'load', handler, false );
                     }
-                    else if( document.attachEvent ){
-                        document.attachEvent( 'onreadystatechange', handler );
-                        globalThis.attachEvent( 'onload', handler );
+                    else{
+                        if( document.attachEvent ){
+                            document.attachEvent( 'onreadystatechange', handler );
+                            globalThis.attachEvent( 'onload', handler );
+                        }
                     }
                     globalThis[ 'isOpenReadyS' ] = true;
                 }

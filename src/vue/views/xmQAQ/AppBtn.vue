@@ -9,19 +9,19 @@ IDE: WebStorm
        scoped
        src = 'vueStyDir/xmQAQ/AppBtn.scss' />
 <template>
-    <div class = 'css-reset ofh cP flexBox flexSBC flexDC root appBtn'
-         @tap = 'activity'>
-        <img class = 'css-reset'
-             :src = 'src'
-             :alt = 'alt' />
-        <label class = 'css-reset sLTextE'>{{ appName }}</label>
-    </div>
+  <div class = 'css-reset ofh cP flexBox flexSBC flexDC root appBtn'
+       @tap = 'activity'>
+    <img class = 'css-reset'
+         :src = 'src'
+         :alt = 'alt' />
+    <label class = 'css-reset sLTextE'>{{ appName }}</label>
+  </div>
 </template>
 <script type = 'module'>
-    'use strict';
+'use strict';
 
-    export {
-        default,
-        default as AppBtn,
-    } from 'vueMDir/xmQAQ/AppBtn.esm.js';
+export {
+  default,
+  default as AppBtn,
+} from 'vueMDir/xmQAQ/AppBtn.esm.js';
 </script>

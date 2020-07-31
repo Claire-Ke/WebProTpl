@@ -21,8 +21,8 @@ import WebSocket from 'ws';
 let i = 0;
 
 const wsServer = new WebSocket.Server( {
-                                           port: 9900,
-                                       } );
+    port: 9900,
+} );
 
 wsServer.on( 'connection', ws => {
 

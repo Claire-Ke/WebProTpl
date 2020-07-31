@@ -59,7 +59,7 @@
  *
  * 脚本可以按任何顺序下载，但将按将文件名传递到importScripts()的顺序执行。这是同步完成的；在加载和执行所有脚本之前，importScripts()不会返回。
  */
-class WWorker4CT{
+class WWorker4CT {
     _self;
     onMessageFun;
     onMessageErrorFun;
@@ -76,10 +76,10 @@ class WWorker4CT{
      */
     constructor( _self, arg_obj ){
         let pra_obj = Object.assign( {
-                                         onMessage: event => {
-                                         },
-                                         onMessageError: event => void ( console.error( event.message ) ),
-                                     }, arg_obj );
+            onMessage: event => {
+            },
+            onMessageError: event => void ( console.error( event.message ) ),
+        }, arg_obj );
 
         this._self = _self;
         this.onMessageFun = pra_obj.onMessage;

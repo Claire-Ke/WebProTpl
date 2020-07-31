@@ -43,16 +43,20 @@ async function Interceptor4Get( server, request, response ){
 
         StaticResources( server, request, response );
     }
-    else if( URL4RegExp1( 'WebPro', decodeURI( pathNameStr ) ) ){
-        const { WebPro } = await import('../controllers/WebPro.esm.mjs');
-
-        WebPro( server, request, response );
-    }
-    else if( pathNameStr in routers4Get_objC ){
-        import(routers4Get_objC[ pathNameStr ]).then( ( { default: defaultObj, } ) => void ( defaultObj( server, request, response ) ) );
-    }
     else{
-        new InterceptorError( server, request, response ).http404();
+        if( URL4RegExp1( 'WebPro', decodeURI( pathNameStr ) ) ){
+            const { WebPro } = await import('../controllers/WebPro.esm.mjs');
+
+            WebPro( server, request, response );
+        }
+        else{
+            if( pathNameStr in routers4Get_objC ){
+                import(routers4Get_objC[ pathNameStr ]).then( ( { default: defaultObj, } ) => void ( defaultObj( server, request, response ) ) );
+            }
+            else{
+                new InterceptorError( server, request, response ).http404();
+            }
+        }
     }
 }
 

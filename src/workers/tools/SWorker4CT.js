@@ -72,7 +72,7 @@ globalThis.importScripts( './tools/WWorker4CT.compiler.js' );
  * 脚本可以按任何顺序下载，但将按将文件名传递到importScripts()的顺序执行。这是同步完成的；在加载和执行所有脚本之前，importScripts()不会返回。
  */
 class SWorker4CT
-    extends WWorker4CT{
+    extends WWorker4CT {
     _self;
     port;
     onConnectFun;
@@ -116,12 +116,12 @@ class SWorker4CT
      */
     constructor( _self, arg_obj = {} ){
         let pra_obj = Object.assign( {
-                                         onConnect: ( port, onConnectEvent ) => {
-                                         },
-                                         portOnMessage: ( portEvent, port, onConnectEvent ) => {
-                                         },
-                                         portOnMessageError: ( portEvent, port, onConnectEvent ) => void ( console.error( portEvent.message ) ),
-                                     }, arg_obj );
+            onConnect: ( port, onConnectEvent ) => {
+            },
+            portOnMessage: ( portEvent, port, onConnectEvent ) => {
+            },
+            portOnMessageError: ( portEvent, port, onConnectEvent ) => void ( console.error( portEvent.message ) ),
+        }, arg_obj );
 
         super( _self, pra_obj );
 

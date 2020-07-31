@@ -128,9 +128,9 @@ function __generator( thisArg, body ){
     function verb( n ){
         return function ( v ){
             return step( [
-                             n,
-                             v
-                         ] );
+                n,
+                v
+            ] );
         };
     }
 
@@ -828,9 +828,9 @@ var _lineBreakAtIndex = function ( codePoints, classTypes, indicies, index, forb
     }
     // LB16 Do not break between closing punctuation and a nonstarter (lb=NS), even with intervening spaces.
     if( isAdjacentWithSpaceIgnored( [
-                                        CL,
-                                        CP
-                                    ], NS, currentIndex, classTypes ) ){
+        CL,
+        CP
+    ], NS, currentIndex, classTypes ) ){
         return BREAK_NOT_ALLOWED;
     }
     // LB17 Do not break within ‘——’, even with intervening spaces.
@@ -930,14 +930,16 @@ var _lineBreakAtIndex = function ( codePoints, classTypes, indicies, index, forb
             if( type === NU ){
                 return BREAK_NOT_ALLOWED;
             }
-            else if( [
-                SY,
-                IS
-            ].indexOf( type ) !== -1 ){
-                prevIndex--;
-            }
             else{
-                break;
+                if( [
+                    SY,
+                    IS
+                ].indexOf( type ) !== -1 ){
+                    prevIndex--;
+                }
+                else{
+                    break;
+                }
             }
         }
     }
@@ -957,14 +959,16 @@ var _lineBreakAtIndex = function ( codePoints, classTypes, indicies, index, forb
             if( type === NU ){
                 return BREAK_NOT_ALLOWED;
             }
-            else if( [
-                SY,
-                IS
-            ].indexOf( type ) !== -1 ){
-                prevIndex--;
-            }
             else{
-                break;
+                if( [
+                    SY,
+                    IS
+                ].indexOf( type ) !== -1 ){
+                    prevIndex--;
+                }
+                else{
+                    break;
+                }
             }
         }
     }
@@ -1259,11 +1263,15 @@ var isIdentifierStart = function ( c1, c2, c3 ){
     if( c1 === HYPHEN_MINUS ){
         return isNameStartCodePoint( c2 ) || isValidEscape( c2, c3 );
     }
-    else if( isNameStartCodePoint( c1 ) ){
-        return true;
-    }
-    else if( c1 === REVERSE_SOLIDUS && isValidEscape( c1, c2 ) ){
-        return true;
+    else{
+        if( isNameStartCodePoint( c1 ) ){
+            return true;
+        }
+        else{
+            if( c1 === REVERSE_SOLIDUS && isValidEscape( c1, c2 ) ){
+                return true;
+            }
+        }
     }
     return false;
 };
@@ -1629,12 +1637,14 @@ var Tokenizer = /** @class */ ( function (){
             this.consumeCodePoint();
             return this.consumeUrlToken();
         }
-        else if( this.peekCodePoint( 0 ) === LEFT_PARENTHESIS ){
-            this.consumeCodePoint();
-            return {
-                type: TokenType.FUNCTION_TOKEN,
-                value: value
-            };
+        else{
+            if( this.peekCodePoint( 0 ) === LEFT_PARENTHESIS ){
+                this.consumeCodePoint();
+                return {
+                    type: TokenType.FUNCTION_TOKEN,
+                    value: value
+                };
+            }
         }
         return {
             type: TokenType.IDENT_TOKEN,
@@ -1674,36 +1684,42 @@ var Tokenizer = /** @class */ ( function (){
                     value: fromCodePoint.apply( void 0, value )
                 };
             }
-            else if( isWhiteSpace( codePoint ) ){
-                this.consumeWhiteSpace();
-                if( this.peekCodePoint( 0 ) === EOF || this.peekCodePoint( 0 ) === RIGHT_PARENTHESIS ){
-                    this.consumeCodePoint();
-                    return {
-                        type: TokenType.URL_TOKEN,
-                        value: fromCodePoint.apply( void 0, value )
-                    };
-                }
-                this.consumeBadUrlRemnants();
-                return BAD_URL_TOKEN;
-            }
-            else if( codePoint === QUOTATION_MARK ||
-                codePoint === APOSTROPHE ||
-                codePoint === LEFT_PARENTHESIS ||
-                isNonPrintableCodePoint( codePoint ) ){
-                this.consumeBadUrlRemnants();
-                return BAD_URL_TOKEN;
-            }
-            else if( codePoint === REVERSE_SOLIDUS ){
-                if( isValidEscape( codePoint, this.peekCodePoint( 0 ) ) ){
-                    value.push( this.consumeEscapedCodePoint() );
-                }
-                else{
+            else{
+                if( isWhiteSpace( codePoint ) ){
+                    this.consumeWhiteSpace();
+                    if( this.peekCodePoint( 0 ) === EOF || this.peekCodePoint( 0 ) === RIGHT_PARENTHESIS ){
+                        this.consumeCodePoint();
+                        return {
+                            type: TokenType.URL_TOKEN,
+                            value: fromCodePoint.apply( void 0, value )
+                        };
+                    }
                     this.consumeBadUrlRemnants();
                     return BAD_URL_TOKEN;
                 }
-            }
-            else{
-                value.push( codePoint );
+                else{
+                    if( codePoint === QUOTATION_MARK ||
+                        codePoint === APOSTROPHE ||
+                        codePoint === LEFT_PARENTHESIS ||
+                        isNonPrintableCodePoint( codePoint ) ){
+                        this.consumeBadUrlRemnants();
+                        return BAD_URL_TOKEN;
+                    }
+                    else{
+                        if( codePoint === REVERSE_SOLIDUS ){
+                            if( isValidEscape( codePoint, this.peekCodePoint( 0 ) ) ){
+                                value.push( this.consumeEscapedCodePoint() );
+                            }
+                            else{
+                                this.consumeBadUrlRemnants();
+                                return BAD_URL_TOKEN;
+                            }
+                        }
+                        else{
+                            value.push( codePoint );
+                        }
+                    }
+                }
             }
         }
     };
@@ -1758,10 +1774,12 @@ var Tokenizer = /** @class */ ( function (){
                         i = -1;
                         this._value.shift();
                     }
-                    else if( isValidEscape( codePoint, next ) ){
-                        value += this.consumeStringSlice( i );
-                        value += fromCodePoint( this.consumeEscapedCodePoint() );
-                        i = -1;
+                    else{
+                        if( isValidEscape( codePoint, next ) ){
+                            value += this.consumeStringSlice( i );
+                            value += fromCodePoint( this.consumeEscapedCodePoint() );
+                            i = -1;
+                        }
                     }
                 }
             }
@@ -1861,12 +1879,14 @@ var Tokenizer = /** @class */ ( function (){
             if( isNameCodePoint( codePoint ) ){
                 result += fromCodePoint( codePoint );
             }
-            else if( isValidEscape( codePoint, this.peekCodePoint( 0 ) ) ){
-                result += fromCodePoint( this.consumeEscapedCodePoint() );
-            }
             else{
-                this.reconsumeCodePoint( codePoint );
-                return result;
+                if( isValidEscape( codePoint, this.peekCodePoint( 0 ) ) ){
+                    result += fromCodePoint( this.consumeEscapedCodePoint() );
+                }
+                else{
+                    this.reconsumeCodePoint( codePoint );
+                    return result;
+                }
             }
         }
     };
@@ -2115,11 +2135,11 @@ var isAngle = function ( value ){
 };
 var parseNamedSide = function ( tokens ){
     var sideOrCorner = tokens
-    .filter( isIdentToken )
-    .map( function ( ident ){
-        return ident.value;
-    } )
-    .join( ' ' );
+        .filter( isIdentToken )
+        .map( function ( ident ){
+            return ident.value;
+        } )
+        .join( ' ' );
     switch( sideOrCorner ){
     case 'to bottom right':
     case 'to right bottom':
@@ -2278,14 +2298,18 @@ function hue2rgb( t1, t2, hue ){
     if( hue < 1 / 6 ){
         return ( t2 - t1 ) * hue * 6 + t1;
     }
-    else if( hue < 1 / 2 ){
-        return t2;
-    }
-    else if( hue < 2 / 3 ){
-        return ( t2 - t1 ) * 6 * ( 2 / 3 - hue ) + t1;
-    }
     else{
-        return t1;
+        if( hue < 1 / 2 ){
+            return t2;
+        }
+        else{
+            if( hue < 2 / 3 ){
+                return ( t2 - t1 ) * 6 * ( 2 / 3 - hue ) + t1;
+            }
+            else{
+                return t1;
+            }
+        }
     }
 }
 
@@ -2576,18 +2600,20 @@ var processColorStops = function ( stops, lineLength ){
                 gapBegin = i;
             }
         }
-        else if( gapBegin !== null ){
-            var gapLength = i - gapBegin;
-            var beforeGap = processStops[ gapBegin - 1 ];
-            var gapValue = ( stop_2 - beforeGap ) / ( gapLength + 1 );
-            for(
-                var g = 1;
-                g <= gapLength;
-                g++
-            ){
-                processStops[ gapBegin + g - 1 ] = gapValue * g;
+        else{
+            if( gapBegin !== null ){
+                var gapLength = i - gapBegin;
+                var beforeGap = processStops[ gapBegin - 1 ];
+                var gapValue = ( stop_2 - beforeGap ) / ( gapLength + 1 );
+                for(
+                    var g = 1;
+                    g <= gapLength;
+                    g++
+                ){
+                    processStops[ gapBegin + g - 1 ] = gapValue * g;
+                }
+                gapBegin = null;
             }
-            gapBegin = null;
         }
     }
     return stops.map( function ( _a, i ){
@@ -2659,11 +2685,11 @@ var findCorner = function ( width, height, x, y, closest ){
         }
         return stat;
     }, {
-                               optimumDistance: closest
-                                                ? Infinity
-                                                : -Infinity,
-                               optimumCorner: null
-                           } ).optimumCorner;
+        optimumDistance: closest
+                         ? Infinity
+                         : -Infinity,
+        optimumCorner: null
+    } ).optimumCorner;
 };
 var calculateRadius = function ( gradient, x, y, width, height ){
     var rx = 0;
@@ -2675,9 +2701,11 @@ var calculateRadius = function ( gradient, x, y, width, height ){
         if( gradient.shape === CSSRadialShape.CIRCLE ){
             rx = ry = Math.min( Math.abs( x ), Math.abs( x - width ), Math.abs( y ), Math.abs( y - height ) );
         }
-        else if( gradient.shape === CSSRadialShape.ELLIPSE ){
-            rx = Math.min( Math.abs( x ), Math.abs( x - width ) );
-            ry = Math.min( Math.abs( y ), Math.abs( y - height ) );
+        else{
+            if( gradient.shape === CSSRadialShape.ELLIPSE ){
+                rx = Math.min( Math.abs( x ), Math.abs( x - width ) );
+                ry = Math.min( Math.abs( y ), Math.abs( y - height ) );
+            }
         }
         break;
     case CSSRadialExtent.CLOSEST_CORNER:
@@ -2686,14 +2714,16 @@ var calculateRadius = function ( gradient, x, y, width, height ){
         if( gradient.shape === CSSRadialShape.CIRCLE ){
             rx = ry = Math.min( distance( x, y ), distance( x, y - height ), distance( x - width, y ), distance( x - width, y - height ) );
         }
-        else if( gradient.shape === CSSRadialShape.ELLIPSE ){
-            // Compute the ratio ry/rx (which is to be the same as for "closest-side")
-            var c = Math.min( Math.abs( y ), Math.abs( y - height ) ) / Math.min( Math.abs( x ), Math.abs( x - width ) );
-            var _a = findCorner( width, height, x, y, true ),
-                cx = _a[ 0 ],
-                cy = _a[ 1 ];
-            rx = distance( cx - x, ( cy - y ) / c );
-            ry = c * rx;
+        else{
+            if( gradient.shape === CSSRadialShape.ELLIPSE ){
+                // Compute the ratio ry/rx (which is to be the same as for "closest-side")
+                var c = Math.min( Math.abs( y ), Math.abs( y - height ) ) / Math.min( Math.abs( x ), Math.abs( x - width ) );
+                var _a = findCorner( width, height, x, y, true ),
+                    cx = _a[ 0 ],
+                    cy = _a[ 1 ];
+                rx = distance( cx - x, ( cy - y ) / c );
+                ry = c * rx;
+            }
         }
         break;
     case CSSRadialExtent.FARTHEST_SIDE:
@@ -2701,9 +2731,11 @@ var calculateRadius = function ( gradient, x, y, width, height ){
         if( gradient.shape === CSSRadialShape.CIRCLE ){
             rx = ry = Math.max( Math.abs( x ), Math.abs( x - width ), Math.abs( y ), Math.abs( y - height ) );
         }
-        else if( gradient.shape === CSSRadialShape.ELLIPSE ){
-            rx = Math.max( Math.abs( x ), Math.abs( x - width ) );
-            ry = Math.max( Math.abs( y ), Math.abs( y - height ) );
+        else{
+            if( gradient.shape === CSSRadialShape.ELLIPSE ){
+                rx = Math.max( Math.abs( x ), Math.abs( x - width ) );
+                ry = Math.max( Math.abs( y ), Math.abs( y - height ) );
+            }
         }
         break;
     case CSSRadialExtent.FARTHEST_CORNER:
@@ -2712,14 +2744,16 @@ var calculateRadius = function ( gradient, x, y, width, height ){
         if( gradient.shape === CSSRadialShape.CIRCLE ){
             rx = ry = Math.max( distance( x, y ), distance( x, y - height ), distance( x - width, y ), distance( x - width, y - height ) );
         }
-        else if( gradient.shape === CSSRadialShape.ELLIPSE ){
-            // Compute the ratio ry/rx (which is to be the same as for "farthest-side")
-            var c = Math.max( Math.abs( y ), Math.abs( y - height ) ) / Math.max( Math.abs( x ), Math.abs( x - width ) );
-            var _b = findCorner( width, height, x, y, false ),
-                cx = _b[ 0 ],
-                cy = _b[ 1 ];
-            rx = distance( cx - x, ( cy - y ) / c );
-            ry = c * rx;
+        else{
+            if( gradient.shape === CSSRadialShape.ELLIPSE ){
+                // Compute the ratio ry/rx (which is to be the same as for "farthest-side")
+                var c = Math.max( Math.abs( y ), Math.abs( y - height ) ) / Math.max( Math.abs( x ), Math.abs( x - width ) );
+                var _b = findCorner( width, height, x, y, false ),
+                    cx = _b[ 0 ],
+                    cy = _b[ 1 ];
+                rx = distance( cx - x, ( cy - y ) / c );
+                ry = c * rx;
+            }
         }
         break;
     }
@@ -2739,21 +2773,23 @@ var linearGradient = function ( tokens ){
     var angle$1 = deg( 180 );
     var stops = [];
     parseFunctionArgs( tokens )
-    .forEach( function ( arg, i ){
-        if( i === 0 ){
-            var firstToken = arg[ 0 ];
-            if( firstToken.type === TokenType.IDENT_TOKEN && firstToken.value === 'to' ){
-                angle$1 = parseNamedSide( arg );
-                return;
+        .forEach( function ( arg, i ){
+            if( i === 0 ){
+                var firstToken = arg[ 0 ];
+                if( firstToken.type === TokenType.IDENT_TOKEN && firstToken.value === 'to' ){
+                    angle$1 = parseNamedSide( arg );
+                    return;
+                }
+                else{
+                    if( isAngle( firstToken ) ){
+                        angle$1 = angle.parse( firstToken );
+                        return;
+                    }
+                }
             }
-            else if( isAngle( firstToken ) ){
-                angle$1 = angle.parse( firstToken );
-                return;
-            }
-        }
-        var colorStop = parseColorStop( arg );
-        stops.push( colorStop );
-    } );
+            var colorStop = parseColorStop( arg );
+            stops.push( colorStop );
+        } );
     return {
         angle: angle$1,
         stops: stops,
@@ -2765,27 +2801,29 @@ var prefixLinearGradient = function ( tokens ){
     var angle$1 = deg( 180 );
     var stops = [];
     parseFunctionArgs( tokens )
-    .forEach( function ( arg, i ){
-        if( i === 0 ){
-            var firstToken = arg[ 0 ];
-            if( firstToken.type === TokenType.IDENT_TOKEN &&
-                [
-                    'top',
-                    'left',
-                    'right',
-                    'bottom'
-                ].indexOf( firstToken.value ) !== -1 ){
-                angle$1 = parseNamedSide( arg );
-                return;
+        .forEach( function ( arg, i ){
+            if( i === 0 ){
+                var firstToken = arg[ 0 ];
+                if( firstToken.type === TokenType.IDENT_TOKEN &&
+                    [
+                        'top',
+                        'left',
+                        'right',
+                        'bottom'
+                    ].indexOf( firstToken.value ) !== -1 ){
+                    angle$1 = parseNamedSide( arg );
+                    return;
+                }
+                else{
+                    if( isAngle( firstToken ) ){
+                        angle$1 = ( angle.parse( firstToken ) + deg( 270 ) ) % deg( 360 );
+                        return;
+                    }
+                }
             }
-            else if( isAngle( firstToken ) ){
-                angle$1 = ( angle.parse( firstToken ) + deg( 270 ) ) % deg( 360 );
-                return;
-            }
-        }
-        var colorStop = parseColorStop( arg );
-        stops.push( colorStop );
-    } );
+            var colorStop = parseColorStop( arg );
+            stops.push( colorStop );
+        } );
     return {
         angle: angle$1,
         stops: stops,
@@ -2857,27 +2895,27 @@ var testForeignObject = function ( document ){
     ctx.fillStyle = 'red';
     ctx.fillRect( 0, 0, size, size );
     return loadSerializedSVG( svg )
-    .then( function ( img ){
-        ctx.drawImage( img, 0, 0 );
-        var data = ctx.getImageData( 0, 0, size, size ).data;
-        ctx.fillStyle = 'red';
-        ctx.fillRect( 0, 0, size, size );
-        var node = document.createElement( 'div' );
-        node.style.backgroundImage = 'url(' + greenImageSrc + ')';
-        node.style.height = size + 'px';
-        // Firefox 55 does not render inline <img /> tags
-        return isGreenPixel( data )
-               ? loadSerializedSVG( createForeignObjectSVG( size, size, 0, 0, node ) )
-               : Promise.reject( false );
-    } )
-    .then( function ( img ){
-        ctx.drawImage( img, 0, 0 );
-        // Edge does not render background-images
-        return isGreenPixel( ctx.getImageData( 0, 0, size, size ).data );
-    } )
-    .catch( function (){
-        return false;
-    } );
+        .then( function ( img ){
+            ctx.drawImage( img, 0, 0 );
+            var data = ctx.getImageData( 0, 0, size, size ).data;
+            ctx.fillStyle = 'red';
+            ctx.fillRect( 0, 0, size, size );
+            var node = document.createElement( 'div' );
+            node.style.backgroundImage = 'url(' + greenImageSrc + ')';
+            node.style.height = size + 'px';
+            // Firefox 55 does not render inline <img /> tags
+            return isGreenPixel( data )
+                   ? loadSerializedSVG( createForeignObjectSVG( size, size, 0, 0, node ) )
+                   : Promise.reject( false );
+        } )
+        .then( function ( img ){
+            ctx.drawImage( img, 0, 0 );
+            // Edge does not render background-images
+            return isGreenPixel( ctx.getImageData( 0, 0, size, size ).data );
+        } )
+        .catch( function (){
+            return false;
+        } );
 };
 var createForeignObjectSVG = function ( width, height, x, y, node ){
     var xmlns = 'http://www.w3.org/2000/svg';
@@ -3265,40 +3303,44 @@ var webkitGradient = function ( tokens ){
     var size = CSSRadialExtent.FARTHEST_CORNER;
     var position = [];
     parseFunctionArgs( tokens )
-    .forEach( function ( arg, i ){
-        var firstToken = arg[ 0 ];
-        if( i === 0 ){
-            if( isIdentToken( firstToken ) && firstToken.value === 'linear' ){
-                type = CSSImageType.LINEAR_GRADIENT;
-                return;
+        .forEach( function ( arg, i ){
+            var firstToken = arg[ 0 ];
+            if( i === 0 ){
+                if( isIdentToken( firstToken ) && firstToken.value === 'linear' ){
+                    type = CSSImageType.LINEAR_GRADIENT;
+                    return;
+                }
+                else{
+                    if( isIdentToken( firstToken ) && firstToken.value === 'radial' ){
+                        type = CSSImageType.RADIAL_GRADIENT;
+                        return;
+                    }
+                }
             }
-            else if( isIdentToken( firstToken ) && firstToken.value === 'radial' ){
-                type = CSSImageType.RADIAL_GRADIENT;
-                return;
-            }
-        }
-        if( firstToken.type === TokenType.FUNCTION ){
-            if( firstToken.name === 'from' ){
-                var color$1 = color.parse( firstToken.values[ 0 ] );
-                stops.push( {
-                                stop: ZERO_LENGTH,
-                                color: color$1
-                            } );
-            }
-            else if( firstToken.name === 'to' ){
-                var color$1 = color.parse( firstToken.values[ 0 ] );
-                stops.push( {
-                                stop: HUNDRED_PERCENT,
-                                color: color$1
-                            } );
-            }
-            else if( firstToken.name === 'color-stop' ){
-                var values = firstToken.values.filter( nonFunctionArgSeparator );
-                if( values.length === 2 ){
-                    var color$1 = color.parse( values[ 1 ] );
-                    var stop_1 = values[ 0 ];
-                    if( isNumberToken( stop_1 ) ){
+            if( firstToken.type === TokenType.FUNCTION ){
+                if( firstToken.name === 'from' ){
+                    var color$1 = color.parse( firstToken.values[ 0 ] );
+                    stops.push( {
+                        stop: ZERO_LENGTH,
+                        color: color$1
+                    } );
+                }
+                else{
+                    if( firstToken.name === 'to' ){
+                        var color$1 = color.parse( firstToken.values[ 0 ] );
                         stops.push( {
+                            stop: HUNDRED_PERCENT,
+                            color: color$1
+                        } );
+                    }
+                    else{
+                        if( firstToken.name === 'color-stop' ){
+                            var values = firstToken.values.filter( nonFunctionArgSeparator );
+                            if( values.length === 2 ){
+                                var color$1 = color.parse( values[ 1 ] );
+                                var stop_1 = values[ 0 ];
+                                if( isNumberToken( stop_1 ) ){
+                                    stops.push( {
                                         stop: {
                                             type: TokenType.PERCENTAGE_TOKEN,
                                             number: stop_1.number * 100,
@@ -3306,11 +3348,13 @@ var webkitGradient = function ( tokens ){
                                         },
                                         color: color$1
                                     } );
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
-    } );
+        } );
     return type === CSSImageType.LINEAR_GRADIENT
            ? {
             angle: ( angle + deg( 180 ) ) % deg( 360 ),
@@ -3340,73 +3384,79 @@ var radialGradient = function ( tokens ){
     var stops = [];
     var position = [];
     parseFunctionArgs( tokens )
-    .forEach( function ( arg, i ){
-        var isColorStop = true;
-        if( i === 0 ){
-            var isAtPosition_1 = false;
-            isColorStop = arg.reduce( function ( acc, token ){
-                if( isAtPosition_1 ){
-                    if( isIdentToken( token ) ){
-                        switch( token.value ){
-                        case 'center':
-                            position.push( FIFTY_PERCENT );
-                            return acc;
-                        case 'top':
-                        case 'left':
-                            position.push( ZERO_LENGTH );
-                            return acc;
-                        case 'right':
-                        case 'bottom':
-                            position.push( HUNDRED_PERCENT );
-                            return acc;
+        .forEach( function ( arg, i ){
+            var isColorStop = true;
+            if( i === 0 ){
+                var isAtPosition_1 = false;
+                isColorStop = arg.reduce( function ( acc, token ){
+                    if( isAtPosition_1 ){
+                        if( isIdentToken( token ) ){
+                            switch( token.value ){
+                            case 'center':
+                                position.push( FIFTY_PERCENT );
+                                return acc;
+                            case 'top':
+                            case 'left':
+                                position.push( ZERO_LENGTH );
+                                return acc;
+                            case 'right':
+                            case 'bottom':
+                                position.push( HUNDRED_PERCENT );
+                                return acc;
+                            }
+                        }
+                        else{
+                            if( isLengthPercentage( token ) || isLength( token ) ){
+                                position.push( token );
+                            }
                         }
                     }
-                    else if( isLengthPercentage( token ) || isLength( token ) ){
-                        position.push( token );
+                    else{
+                        if( isIdentToken( token ) ){
+                            switch( token.value ){
+                            case CIRCLE:
+                                shape = CSSRadialShape.CIRCLE;
+                                return false;
+                            case ELLIPSE:
+                                shape = CSSRadialShape.ELLIPSE;
+                                return false;
+                            case 'at':
+                                isAtPosition_1 = true;
+                                return false;
+                            case CLOSEST_SIDE:
+                                size = CSSRadialExtent.CLOSEST_SIDE;
+                                return false;
+                            case COVER:
+                            case FARTHEST_SIDE:
+                                size = CSSRadialExtent.FARTHEST_SIDE;
+                                return false;
+                            case CONTAIN:
+                            case CLOSEST_CORNER:
+                                size = CSSRadialExtent.CLOSEST_CORNER;
+                                return false;
+                            case FARTHEST_CORNER:
+                                size = CSSRadialExtent.FARTHEST_CORNER;
+                                return false;
+                            }
+                        }
+                        else{
+                            if( isLength( token ) || isLengthPercentage( token ) ){
+                                if( !Array.isArray( size ) ){
+                                    size = [];
+                                }
+                                size.push( token );
+                                return false;
+                            }
+                        }
                     }
-                }
-                else if( isIdentToken( token ) ){
-                    switch( token.value ){
-                    case CIRCLE:
-                        shape = CSSRadialShape.CIRCLE;
-                        return false;
-                    case ELLIPSE:
-                        shape = CSSRadialShape.ELLIPSE;
-                        return false;
-                    case 'at':
-                        isAtPosition_1 = true;
-                        return false;
-                    case CLOSEST_SIDE:
-                        size = CSSRadialExtent.CLOSEST_SIDE;
-                        return false;
-                    case COVER:
-                    case FARTHEST_SIDE:
-                        size = CSSRadialExtent.FARTHEST_SIDE;
-                        return false;
-                    case CONTAIN:
-                    case CLOSEST_CORNER:
-                        size = CSSRadialExtent.CLOSEST_CORNER;
-                        return false;
-                    case FARTHEST_CORNER:
-                        size = CSSRadialExtent.FARTHEST_CORNER;
-                        return false;
-                    }
-                }
-                else if( isLength( token ) || isLengthPercentage( token ) ){
-                    if( !Array.isArray( size ) ){
-                        size = [];
-                    }
-                    size.push( token );
-                    return false;
-                }
-                return acc;
-            }, isColorStop );
-        }
-        if( isColorStop ){
-            var colorStop = parseColorStop( arg );
-            stops.push( colorStop );
-        }
-    } );
+                    return acc;
+                }, isColorStop );
+            }
+            if( isColorStop ){
+                var colorStop = parseColorStop( arg );
+                stops.push( colorStop );
+            }
+        } );
     return {
         size: size,
         shape: shape,
@@ -3422,73 +3472,79 @@ var prefixRadialGradient = function ( tokens ){
     var stops = [];
     var position = [];
     parseFunctionArgs( tokens )
-    .forEach( function ( arg, i ){
-        var isColorStop = true;
-        if( i === 0 ){
-            isColorStop = arg.reduce( function ( acc, token ){
-                if( isIdentToken( token ) ){
-                    switch( token.value ){
-                    case 'center':
-                        position.push( FIFTY_PERCENT );
-                        return false;
-                    case 'top':
-                    case 'left':
-                        position.push( ZERO_LENGTH );
-                        return false;
-                    case 'right':
-                    case 'bottom':
-                        position.push( HUNDRED_PERCENT );
-                        return false;
+        .forEach( function ( arg, i ){
+            var isColorStop = true;
+            if( i === 0 ){
+                isColorStop = arg.reduce( function ( acc, token ){
+                    if( isIdentToken( token ) ){
+                        switch( token.value ){
+                        case 'center':
+                            position.push( FIFTY_PERCENT );
+                            return false;
+                        case 'top':
+                        case 'left':
+                            position.push( ZERO_LENGTH );
+                            return false;
+                        case 'right':
+                        case 'bottom':
+                            position.push( HUNDRED_PERCENT );
+                            return false;
+                        }
                     }
-                }
-                else if( isLengthPercentage( token ) || isLength( token ) ){
-                    position.push( token );
-                    return false;
-                }
-                return acc;
-            }, isColorStop );
-        }
-        else if( i === 1 ){
-            isColorStop = arg.reduce( function ( acc, token ){
-                if( isIdentToken( token ) ){
-                    switch( token.value ){
-                    case CIRCLE:
-                        shape = CSSRadialShape.CIRCLE;
-                        return false;
-                    case ELLIPSE:
-                        shape = CSSRadialShape.ELLIPSE;
-                        return false;
-                    case CONTAIN:
-                    case CLOSEST_SIDE:
-                        size = CSSRadialExtent.CLOSEST_SIDE;
-                        return false;
-                    case FARTHEST_SIDE:
-                        size = CSSRadialExtent.FARTHEST_SIDE;
-                        return false;
-                    case CLOSEST_CORNER:
-                        size = CSSRadialExtent.CLOSEST_CORNER;
-                        return false;
-                    case COVER:
-                    case FARTHEST_CORNER:
-                        size = CSSRadialExtent.FARTHEST_CORNER;
-                        return false;
+                    else{
+                        if( isLengthPercentage( token ) || isLength( token ) ){
+                            position.push( token );
+                            return false;
+                        }
                     }
+                    return acc;
+                }, isColorStop );
+            }
+            else{
+                if( i === 1 ){
+                    isColorStop = arg.reduce( function ( acc, token ){
+                        if( isIdentToken( token ) ){
+                            switch( token.value ){
+                            case CIRCLE:
+                                shape = CSSRadialShape.CIRCLE;
+                                return false;
+                            case ELLIPSE:
+                                shape = CSSRadialShape.ELLIPSE;
+                                return false;
+                            case CONTAIN:
+                            case CLOSEST_SIDE:
+                                size = CSSRadialExtent.CLOSEST_SIDE;
+                                return false;
+                            case FARTHEST_SIDE:
+                                size = CSSRadialExtent.FARTHEST_SIDE;
+                                return false;
+                            case CLOSEST_CORNER:
+                                size = CSSRadialExtent.CLOSEST_CORNER;
+                                return false;
+                            case COVER:
+                            case FARTHEST_CORNER:
+                                size = CSSRadialExtent.FARTHEST_CORNER;
+                                return false;
+                            }
+                        }
+                        else{
+                            if( isLength( token ) || isLengthPercentage( token ) ){
+                                if( !Array.isArray( size ) ){
+                                    size = [];
+                                }
+                                size.push( token );
+                                return false;
+                            }
+                        }
+                        return acc;
+                    }, isColorStop );
                 }
-                else if( isLength( token ) || isLengthPercentage( token ) ){
-                    if( !Array.isArray( size ) ){
-                        size = [];
-                    }
-                    size.push( token );
-                    return false;
-                }
-                return acc;
-            }, isColorStop );
-        }
-        if( isColorStop ){
-            var colorStop = parseColorStop( arg );
-            stops.push( colorStop );
-        }
-    } );
+            }
+            if( isColorStop ){
+                var colorStop = parseColorStop( arg );
+                stops.push( colorStop );
+            }
+        } );
     return {
         size: size,
         shape: shape,
@@ -3577,8 +3633,8 @@ var backgroundImage = {
             return [];
         }
         return tokens.filter( function ( value ){
-            return nonFunctionArgSeparator( value ) && isSupportedImage( value );
-        } )
+                         return nonFunctionArgSeparator( value ) && isSupportedImage( value );
+                     } )
                      .map( image.parse );
     }
 };
@@ -3610,10 +3666,10 @@ var backgroundPosition = {
     prefix: false,
     parse: function ( tokens ){
         return parseFunctionArgs( tokens )
-        .map( function ( values ){
-            return values.filter( isLengthPercentage );
-        } )
-        .map( parseLengthPercentageTuple );
+            .map( function ( values ){
+                return values.filter( isLengthPercentage );
+            } )
+            .map( parseLengthPercentageTuple );
     }
 };
 
@@ -3631,15 +3687,15 @@ var backgroundRepeat = {
     type: PropertyDescriptorParsingType.LIST,
     parse: function ( tokens ){
         return parseFunctionArgs( tokens )
-        .map( function ( values ){
-            return values
-            .filter( isIdentToken )
-            .map( function ( token ){
-                return token.value;
+            .map( function ( values ){
+                return values
+                    .filter( isIdentToken )
+                    .map( function ( token ){
+                        return token.value;
+                    } )
+                    .join( ' ' );
             } )
-            .join( ' ' );
-        } )
-        .map( parseBackgroundRepeat );
+            .map( parseBackgroundRepeat );
     }
 };
 var parseBackgroundRepeat = function ( value ){
@@ -3671,9 +3727,9 @@ var backgroundSize = {
     type: PropertyDescriptorParsingType.LIST,
     parse: function ( tokens ){
         return parseFunctionArgs( tokens )
-        .map( function ( values ){
-            return values.filter( isBackgroundSizeInfoToken );
-        } );
+            .map( function ( values ){
+                return values.filter( isBackgroundSizeInfoToken );
+            } );
     }
 };
 var isBackgroundSizeInfoToken = function ( value ){
@@ -3918,11 +3974,15 @@ var computeLineHeight = function ( token, fontSize ){
     if( isIdentToken( token ) && token.value === 'normal' ){
         return 1.2 * fontSize;
     }
-    else if( token.type === TokenType.NUMBER_TOKEN ){
-        return fontSize * token.number;
-    }
-    else if( isLengthPercentage( token ) ){
-        return getAbsoluteValue( token, fontSize );
+    else{
+        if( token.type === TokenType.NUMBER_TOKEN ){
+            return fontSize * token.number;
+        }
+        else{
+            if( isLengthPercentage( token ) ){
+                return getAbsoluteValue( token, fontSize );
+            }
+        }
     }
     return fontSize;
 };
@@ -4279,38 +4339,40 @@ var textShadow = {
             return [];
         }
         return parseFunctionArgs( tokens )
-        .map( function ( values ){
-            var shadow = {
-                color: COLORS.TRANSPARENT,
-                offsetX: ZERO_LENGTH,
-                offsetY: ZERO_LENGTH,
-                blur: ZERO_LENGTH
-            };
-            var c = 0;
-            for(
-                var i = 0;
-                i < values.length;
-                i++
-            ){
-                var token = values[ i ];
-                if( isLength( token ) ){
-                    if( c === 0 ){
-                        shadow.offsetX = token;
-                    }
-                    else if( c === 1 ){
-                        shadow.offsetY = token;
+            .map( function ( values ){
+                var shadow = {
+                    color: COLORS.TRANSPARENT,
+                    offsetX: ZERO_LENGTH,
+                    offsetY: ZERO_LENGTH,
+                    blur: ZERO_LENGTH
+                };
+                var c = 0;
+                for(
+                    var i = 0;
+                    i < values.length;
+                    i++
+                ){
+                    var token = values[ i ];
+                    if( isLength( token ) ){
+                        if( c === 0 ){
+                            shadow.offsetX = token;
+                        }
+                        else{
+                            if( c === 1 ){
+                                shadow.offsetY = token;
+                            }
+                            else{
+                                shadow.blur = token;
+                            }
+                        }
+                        c++;
                     }
                     else{
-                        shadow.blur = token;
+                        shadow.color = color.parse( token );
                     }
-                    c++;
                 }
-                else{
-                    shadow.color = color.parse( token );
-                }
-            }
-            return shadow;
-        } );
+                return shadow;
+            } );
     }
 };
 
@@ -4360,8 +4422,8 @@ var transform = {
 };
 var matrix = function ( args ){
     var values = args.filter( function ( arg ){
-        return arg.type === TokenType.NUMBER_TOKEN;
-    } )
+                         return arg.type === TokenType.NUMBER_TOKEN;
+                     } )
                      .map( function ( arg ){
                          return arg.number;
                      } );
@@ -4372,8 +4434,8 @@ var matrix = function ( args ){
 // doesn't support 3D transforms at the moment
 var matrix3d = function ( args ){
     var values = args.filter( function ( arg ){
-        return arg.type === TokenType.NUMBER_TOKEN;
-    } )
+                         return arg.type === TokenType.NUMBER_TOKEN;
+                     } )
                      .map( function ( arg ){
                          return arg.number;
                      } );
@@ -4533,23 +4595,23 @@ var textDecorationLine = {
     type: PropertyDescriptorParsingType.LIST,
     parse: function ( tokens ){
         return tokens
-        .filter( isIdentToken )
-        .map( function ( token ){
-            switch( token.value ){
-            case 'underline':
-                return 1 /* UNDERLINE */;
-            case 'overline':
-                return 2 /* OVERLINE */;
-            case 'line-through':
-                return 3 /* LINE_THROUGH */;
-            case 'none':
-                return 4 /* BLINK */;
-            }
-            return 0 /* NONE */;
-        } )
-        .filter( function ( line ){
-            return line !== 0 /* NONE */;
-        } );
+            .filter( isIdentToken )
+            .map( function ( token ){
+                switch( token.value ){
+                case 'underline':
+                    return 1 /* UNDERLINE */;
+                case 'overline':
+                    return 2 /* OVERLINE */;
+                case 'line-through':
+                    return 3 /* LINE_THROUGH */;
+                case 'none':
+                    return 4 /* BLINK */;
+                }
+                return 0 /* NONE */;
+            } )
+            .filter( function ( line ){
+                return line !== 0 /* NONE */;
+            } );
     }
 };
 
@@ -4684,9 +4746,9 @@ var counterIncrement = {
                                 ? next.number
                                 : 1;
                 increments.push( {
-                                     counter: counter.value,
-                                     increment: increment
-                                 } );
+                    counter: counter.value,
+                    increment: increment
+                } );
             }
         }
         return increments;
@@ -4716,9 +4778,9 @@ var counterReset = {
                             ? next.number
                             : 0;
                 resets.push( {
-                                 counter: counter.value,
-                                 reset: reset
-                             } );
+                    counter: counter.value,
+                    reset: reset
+                } );
             }
         }
         return resets;
@@ -4751,9 +4813,9 @@ var quotes = {
             var open_1 = filtered[ i ].value;
             var close_1 = filtered[ i + 1 ].value;
             quotes.push( {
-                             open: open_1,
-                             close: close_1
-                         } );
+                open: open_1,
+                close: close_1
+            } );
         }
         return quotes;
     }
@@ -4781,46 +4843,52 @@ var boxShadow = {
             return [];
         }
         return parseFunctionArgs( tokens )
-        .map( function ( values ){
-            var shadow = {
-                color: 0x000000ff,
-                offsetX: ZERO_LENGTH,
-                offsetY: ZERO_LENGTH,
-                blur: ZERO_LENGTH,
-                spread: ZERO_LENGTH,
-                inset: false
-            };
-            var c = 0;
-            for(
-                var i = 0;
-                i < values.length;
-                i++
-            ){
-                var token = values[ i ];
-                if( isIdentWithValue( token, 'inset' ) ){
-                    shadow.inset = true;
-                }
-                else if( isLength( token ) ){
-                    if( c === 0 ){
-                        shadow.offsetX = token;
-                    }
-                    else if( c === 1 ){
-                        shadow.offsetY = token;
-                    }
-                    else if( c === 2 ){
-                        shadow.blur = token;
+            .map( function ( values ){
+                var shadow = {
+                    color: 0x000000ff,
+                    offsetX: ZERO_LENGTH,
+                    offsetY: ZERO_LENGTH,
+                    blur: ZERO_LENGTH,
+                    spread: ZERO_LENGTH,
+                    inset: false
+                };
+                var c = 0;
+                for(
+                    var i = 0;
+                    i < values.length;
+                    i++
+                ){
+                    var token = values[ i ];
+                    if( isIdentWithValue( token, 'inset' ) ){
+                        shadow.inset = true;
                     }
                     else{
-                        shadow.spread = token;
+                        if( isLength( token ) ){
+                            if( c === 0 ){
+                                shadow.offsetX = token;
+                            }
+                            else{
+                                if( c === 1 ){
+                                    shadow.offsetY = token;
+                                }
+                                else{
+                                    if( c === 2 ){
+                                        shadow.blur = token;
+                                    }
+                                    else{
+                                        shadow.spread = token;
+                                    }
+                                }
+                            }
+                            c++;
+                        }
+                        else{
+                            shadow.color = color.parse( token );
+                        }
                     }
-                    c++;
                 }
-                else{
-                    shadow.color = color.parse( token );
-                }
-            }
-            return shadow;
-        } );
+                return shadow;
+            } );
     }
 };
 
@@ -5018,8 +5086,10 @@ var parseTextBounds = function ( value, styles, node ){
                 node = replacementNode;
             }
         }
-        else if( !FEATURES.SUPPORT_RANGE_BOUNDS ){
-            node = node.splitText( text.length );
+        else{
+            if( !FEATURES.SUPPORT_RANGE_BOUNDS ){
+                node = node.splitText( text.length );
+            }
         }
         offset += text.length;
     } );
@@ -5055,9 +5125,9 @@ var getRangeBounds = function ( node, offset, length ){
 var breakText = function ( value, styles ){
     return styles.letterSpacing !== 0
            ? toCodePoints( value )
-           .map( function ( i ){
-               return fromCodePoint( i );
-           } )
+               .map( function ( i ){
+                   return fromCodePoint( i );
+               } )
            : breakWords( value, styles );
 };
 var breakWords = function ( str, styles ){
@@ -5196,8 +5266,10 @@ var reformatInputBounds = function ( bounds ){
     if( bounds.width > bounds.height ){
         return new Bounds( bounds.left + ( bounds.width - bounds.height ) / 2, bounds.top, bounds.height, bounds.height );
     }
-    else if( bounds.width < bounds.height ){
-        return new Bounds( bounds.left, bounds.top + ( bounds.height - bounds.width ) / 2, bounds.width, bounds.width );
+    else{
+        if( bounds.width < bounds.height ){
+            return new Bounds( bounds.left, bounds.top + ( bounds.height - bounds.width ) / 2, bounds.width, bounds.width );
+        }
     }
     return bounds;
 };
@@ -5293,7 +5365,7 @@ var IFrameElementContainer = /** @class */ ( function ( _super ){
                 // http://www.w3.org/TR/css3-background/#special-backgrounds
                 var documentBackgroundColor = iframe.contentWindow.document.documentElement
                                               ? parseColor( getComputedStyle( iframe.contentWindow.document.documentElement )
-                                                                .backgroundColor )
+                        .backgroundColor )
                                               : COLORS.TRANSPARENT;
                 var bodyBackgroundColor = iframe.contentWindow.document.body
                                           ? parseColor( getComputedStyle( iframe.contentWindow.document.body ).backgroundColor )
@@ -5329,21 +5401,25 @@ var parseNodeTree = function ( node, parent, root ){
         if( isTextNode( childNode ) && childNode.data.trim().length > 0 ){
             parent.textNodes.push( new TextContainer( childNode, parent.styles ) );
         }
-        else if( isElementNode( childNode ) ){
-            var container = createContainer( childNode );
-            if( container.styles.isVisible() ){
-                if( createsRealStackingContext( childNode, container, root ) ){
-                    container.flags |= 4 /* CREATES_REAL_STACKING_CONTEXT */;
-                }
-                else if( createsStackingContext( container.styles ) ){
-                    container.flags |= 2 /* CREATES_STACKING_CONTEXT */;
-                }
-                if( LIST_OWNERS.indexOf( childNode.tagName ) !== -1 ){
-                    container.flags |= 8 /* IS_LIST_OWNER */;
-                }
-                parent.elements.push( container );
-                if( !isTextareaElement( childNode ) && !isSVGElement( childNode ) && !isSelectElement( childNode ) ){
-                    parseNodeTree( childNode, container, root );
+        else{
+            if( isElementNode( childNode ) ){
+                var container = createContainer( childNode );
+                if( container.styles.isVisible() ){
+                    if( createsRealStackingContext( childNode, container, root ) ){
+                        container.flags |= 4 /* CREATES_REAL_STACKING_CONTEXT */;
+                    }
+                    else{
+                        if( createsStackingContext( container.styles ) ){
+                            container.flags |= 2 /* CREATES_STACKING_CONTEXT */;
+                        }
+                    }
+                    if( LIST_OWNERS.indexOf( childNode.tagName ) !== -1 ){
+                        container.flags |= 8 /* IS_LIST_OWNER */;
+                    }
+                    parent.elements.push( container );
+                    if( !isTextareaElement( childNode ) && !isSVGElement( childNode ) && !isSelectElement( childNode ) ){
+                        parseNodeTree( childNode, container, root );
+                    }
                 }
             }
         }
@@ -5831,17 +5907,21 @@ var createCJKCounter = function ( value, numbers, multipliers, negativeSign, suf
         if( coefficient === 0 && contains( flags, CJK_ZEROS ) && string !== '' ){
             string = numbers[ coefficient ] + string;
         }
-        else if( coefficient > 1 ||
-            ( coefficient === 1 && digit === 0 ) ||
-            ( coefficient === 1 && digit === 1 && contains( flags, CJK_TEN_COEFFICIENTS ) ) ||
-            ( coefficient === 1 && digit === 1 && contains( flags, CJK_TEN_HIGH_COEFFICIENTS ) && value > 100 ) ||
-            ( coefficient === 1 && digit > 1 && contains( flags, CJK_HUNDRED_COEFFICIENTS ) ) ){
-            string = numbers[ coefficient ] + ( digit > 0
-                                                ? multipliers[ digit - 1 ]
-                                                : '' ) + string;
-        }
-        else if( coefficient === 1 && digit > 0 ){
-            string = multipliers[ digit - 1 ] + string;
+        else{
+            if( coefficient > 1 ||
+                ( coefficient === 1 && digit === 0 ) ||
+                ( coefficient === 1 && digit === 1 && contains( flags, CJK_TEN_COEFFICIENTS ) ) ||
+                ( coefficient === 1 && digit === 1 && contains( flags, CJK_TEN_HIGH_COEFFICIENTS ) && value > 100 ) ||
+                ( coefficient === 1 && digit > 1 && contains( flags, CJK_HUNDRED_COEFFICIENTS ) ) ){
+                string = numbers[ coefficient ] + ( digit > 0
+                                                    ? multipliers[ digit - 1 ]
+                                                    : '' ) + string;
+            }
+            else{
+                if( coefficient === 1 && digit > 0 ){
+                    string = multipliers[ digit - 1 ] + string;
+                }
+            }
         }
         tmp = Math.floor( tmp / 10 );
     }
@@ -5882,7 +5962,7 @@ var createCounterText = function ( value, type, appendSuffix ){
         return createCounterStyleFromSymbols( value, '〇一二三四五六七八九', cjkSuffix );
     case LIST_STYLE_TYPE.LOWER_ROMAN:
         return createAdditiveCounter( value, 1, 3999, ROMAN_UPPER, LIST_STYLE_TYPE.DECIMAL, defaultSuffix )
-        .toLowerCase();
+            .toLowerCase();
     case LIST_STYLE_TYPE.UPPER_ROMAN:
         return createAdditiveCounter( value, 1, 3999, ROMAN_UPPER, LIST_STYLE_TYPE.DECIMAL, defaultSuffix );
     case LIST_STYLE_TYPE.LOWER_GREEK:
@@ -5898,7 +5978,7 @@ var createCounterText = function ( value, type, appendSuffix ){
         return createAdditiveCounter( value, 1, 9999, ARMENIAN, LIST_STYLE_TYPE.DECIMAL, defaultSuffix );
     case LIST_STYLE_TYPE.LOWER_ARMENIAN:
         return createAdditiveCounter( value, 1, 9999, ARMENIAN, LIST_STYLE_TYPE.DECIMAL, defaultSuffix )
-        .toLowerCase();
+            .toLowerCase();
     case LIST_STYLE_TYPE.BENGALI:
         return createCounterStyleFromRange( value, 2534, 2543, true, defaultSuffix );
     case LIST_STYLE_TYPE.CAMBODIAN:
@@ -5999,63 +6079,63 @@ var DocumentCloner = /** @class */ ( function (){
          if window url is about:blank, we can assign the url to current by writing onto the document
          */
         var iframeLoad = iframeLoader( iframe )
-        .then( function (){
-            return __awaiter( _this, void 0, void 0, function (){
-                var onclone;
-                return __generator( this, function ( _a ){
-                    switch( _a.label ){
-                    case 0:
-                        this.scrolledElements.forEach( restoreNodeScroll );
-                        if( cloneWindow ){
-                            cloneWindow.scrollTo( windowSize.left, windowSize.top );
-                            if( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) &&
-                                ( cloneWindow.scrollY !== windowSize.top || cloneWindow.scrollX !== windowSize.left ) ){
-                                documentClone.documentElement.style.top = -windowSize.top + 'px';
-                                documentClone.documentElement.style.left = -windowSize.left + 'px';
-                                documentClone.documentElement.style.position = 'absolute';
+            .then( function (){
+                return __awaiter( _this, void 0, void 0, function (){
+                    var onclone;
+                    return __generator( this, function ( _a ){
+                        switch( _a.label ){
+                        case 0:
+                            this.scrolledElements.forEach( restoreNodeScroll );
+                            if( cloneWindow ){
+                                cloneWindow.scrollTo( windowSize.left, windowSize.top );
+                                if( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) &&
+                                    ( cloneWindow.scrollY !== windowSize.top || cloneWindow.scrollX !== windowSize.left ) ){
+                                    documentClone.documentElement.style.top = -windowSize.top + 'px';
+                                    documentClone.documentElement.style.left = -windowSize.left + 'px';
+                                    documentClone.documentElement.style.position = 'absolute';
+                                }
                             }
-                        }
-                        onclone = this.options.onclone;
-                        if( typeof this.clonedReferenceElement === 'undefined' ){
+                            onclone = this.options.onclone;
+                            if( typeof this.clonedReferenceElement === 'undefined' ){
+                                return [
+                                    2 /*return*/,
+                                    Promise.reject( 'Error finding the ' + this.referenceElement.nodeName + ' in the cloned document' )
+                                ];
+                            }
+                            if( !( documentClone.fonts && documentClone.fonts.ready ) ){
+                                return [
+                                    3 /*break*/,
+                                    2
+                                ];
+                            }
+                            return [
+                                4 /*yield*/,
+                                documentClone.fonts.ready
+                            ];
+                        case 1:
+                            _a.sent();
+                            _a.label = 2;
+                        case 2:
+                            if( typeof onclone === 'function' ){
+                                return [
+                                    2 /*return*/,
+                                    Promise.resolve()
+                                           .then( function (){
+                                               return onclone( documentClone );
+                                           } )
+                                           .then( function (){
+                                               return iframe;
+                                           } )
+                                ];
+                            }
                             return [
                                 2 /*return*/,
-                                Promise.reject( 'Error finding the ' + this.referenceElement.nodeName + ' in the cloned document' )
+                                iframe
                             ];
                         }
-                        if( !( documentClone.fonts && documentClone.fonts.ready ) ){
-                            return [
-                                3 /*break*/,
-                                2
-                            ];
-                        }
-                        return [
-                            4 /*yield*/,
-                            documentClone.fonts.ready
-                        ];
-                    case 1:
-                        _a.sent();
-                        _a.label = 2;
-                    case 2:
-                        if( typeof onclone === 'function' ){
-                            return [
-                                2 /*return*/,
-                                Promise.resolve()
-                                       .then( function (){
-                                           return onclone( documentClone );
-                                       } )
-                                       .then( function (){
-                                           return iframe;
-                                       } )
-                            ];
-                        }
-                        return [
-                            2 /*return*/,
-                            iframe
-                        ];
-                    }
+                    } );
                 } );
             } );
-        } );
         documentClone.open();
         documentClone.write( serializeDoctype( document.doctype ) + '<html></html>' );
         // Chrome scrolls the parent document for some reason after the write to the cloned window???
@@ -6246,10 +6326,10 @@ var DocumentCloner = /** @class */ ( function (){
             //this.inlineAllImages(clone);
             if( node.scrollTop !== 0 || node.scrollLeft !== 0 ){
                 this.scrolledElements.push( [
-                                                clone,
-                                                node.scrollLeft,
-                                                node.scrollTop
-                                            ] );
+                    clone,
+                    node.scrollLeft,
+                    node.scrollTop
+                ] );
             }
             if( ( isTextareaElement( node ) || isSelectElement( node ) ) &&
                 ( isTextareaElement( clone ) || isSelectElement( clone ) ) ){
@@ -6277,64 +6357,74 @@ var DocumentCloner = /** @class */ ( function (){
             if( token.type === TokenType.STRING_TOKEN ){
                 anonymousReplacedElement.appendChild( document.createTextNode( token.value ) );
             }
-            else if( token.type === TokenType.URL_TOKEN ){
-                var img = document.createElement( 'img' );
-                img.src = token.value;
-                img.style.opacity = '1';
-                anonymousReplacedElement.appendChild( img );
-            }
-            else if( token.type === TokenType.FUNCTION ){
-                if( token.name === 'attr' ){
-                    var attr = token.values.filter( isIdentToken );
-                    if( attr.length ){
-                        anonymousReplacedElement.appendChild( document.createTextNode( node.getAttribute( attr[ 0 ].value ) || '' ) );
-                    }
+            else{
+                if( token.type === TokenType.URL_TOKEN ){
+                    var img = document.createElement( 'img' );
+                    img.src = token.value;
+                    img.style.opacity = '1';
+                    anonymousReplacedElement.appendChild( img );
                 }
-                else if( token.name === 'counter' ){
-                    var _a = token.values.filter( nonFunctionArgSeparator ),
-                        counter = _a[ 0 ],
-                        counterStyle = _a[ 1 ];
-                    if( counter && isIdentToken( counter ) ){
-                        var counterState = _this.counters.getCounterValue( counter.value );
-                        var counterType = counterStyle && isIdentToken( counterStyle )
-                                          ? listStyleType.parse( counterStyle.value )
-                                          : LIST_STYLE_TYPE.DECIMAL;
-                        anonymousReplacedElement.appendChild( document.createTextNode( createCounterText( counterState, counterType, false ) ) );
+                else{
+                    if( token.type === TokenType.FUNCTION ){
+                        if( token.name === 'attr' ){
+                            var attr = token.values.filter( isIdentToken );
+                            if( attr.length ){
+                                anonymousReplacedElement.appendChild( document.createTextNode( node.getAttribute( attr[ 0 ].value ) || '' ) );
+                            }
+                        }
+                        else{
+                            if( token.name === 'counter' ){
+                                var _a = token.values.filter( nonFunctionArgSeparator ),
+                                    counter = _a[ 0 ],
+                                    counterStyle = _a[ 1 ];
+                                if( counter && isIdentToken( counter ) ){
+                                    var counterState = _this.counters.getCounterValue( counter.value );
+                                    var counterType = counterStyle && isIdentToken( counterStyle )
+                                                      ? listStyleType.parse( counterStyle.value )
+                                                      : LIST_STYLE_TYPE.DECIMAL;
+                                    anonymousReplacedElement.appendChild( document.createTextNode( createCounterText( counterState, counterType, false ) ) );
+                                }
+                            }
+                            else{
+                                if( token.name === 'counters' ){
+                                    var _b = token.values.filter( nonFunctionArgSeparator ),
+                                        counter = _b[ 0 ],
+                                        delim = _b[ 1 ],
+                                        counterStyle = _b[ 2 ];
+                                    if( counter && isIdentToken( counter ) ){
+                                        var counterStates = _this.counters.getCounterValues( counter.value );
+                                        var counterType_1 = counterStyle && isIdentToken( counterStyle )
+                                                            ? listStyleType.parse( counterStyle.value )
+                                                            : LIST_STYLE_TYPE.DECIMAL;
+                                        var separator = delim && delim.type === TokenType.STRING_TOKEN
+                                                        ? delim.value
+                                                        : '';
+                                        var text = counterStates
+                                            .map( function ( value ){
+                                                return createCounterText( value, counterType_1, false );
+                                            } )
+                                            .join( separator );
+                                        anonymousReplacedElement.appendChild( document.createTextNode( text ) );
+                                    }
+                                }
+                            }
+                        }
                     }
-                }
-                else if( token.name === 'counters' ){
-                    var _b = token.values.filter( nonFunctionArgSeparator ),
-                        counter = _b[ 0 ],
-                        delim = _b[ 1 ],
-                        counterStyle = _b[ 2 ];
-                    if( counter && isIdentToken( counter ) ){
-                        var counterStates = _this.counters.getCounterValues( counter.value );
-                        var counterType_1 = counterStyle && isIdentToken( counterStyle )
-                                            ? listStyleType.parse( counterStyle.value )
-                                            : LIST_STYLE_TYPE.DECIMAL;
-                        var separator = delim && delim.type === TokenType.STRING_TOKEN
-                                        ? delim.value
-                                        : '';
-                        var text = counterStates
-                        .map( function ( value ){
-                            return createCounterText( value, counterType_1, false );
-                        } )
-                        .join( separator );
-                        anonymousReplacedElement.appendChild( document.createTextNode( text ) );
+                    else{
+                        if( token.type === TokenType.IDENT_TOKEN ){
+                            switch( token.value ){
+                            case 'open-quote':
+                                anonymousReplacedElement.appendChild( document.createTextNode( getQuote( declaration.quotes, _this.quoteDepth++, true ) ) );
+                                break;
+                            case 'close-quote':
+                                anonymousReplacedElement.appendChild( document.createTextNode( getQuote( declaration.quotes, --_this.quoteDepth, false ) ) );
+                                break;
+                            default:
+                                // safari doesn't parse string tokens correctly because of lack of quotes
+                                anonymousReplacedElement.appendChild( document.createTextNode( token.value ) );
+                            }
+                        }
                     }
-                }
-            }
-            else if( token.type === TokenType.IDENT_TOKEN ){
-                switch( token.value ){
-                case 'open-quote':
-                    anonymousReplacedElement.appendChild( document.createTextNode( getQuote( declaration.quotes, _this.quoteDepth++, true ) ) );
-                    break;
-                case 'close-quote':
-                    anonymousReplacedElement.appendChild( document.createTextNode( getQuote( declaration.quotes, --_this.quoteDepth, false ) ) );
-                    break;
-                default:
-                    // safari doesn't parse string tokens correctly because of lack of quotes
-                    anonymousReplacedElement.appendChild( document.createTextNode( token.value ) );
                 }
             }
         } );
@@ -6788,29 +6878,35 @@ var parseStackTree = function ( parent, stackingContext, realStackingContext, li
                             index_1 = i;
                             return false;
                         }
-                        else if( index_1 > 0 ){
-                            return true;
+                        else{
+                            if( index_1 > 0 ){
+                                return true;
+                            }
                         }
                         return false;
                     } );
                     parentStack.negativeZIndex.splice( index_1, 0, stack );
                 }
-                else if( order_1 > 0 ){
-                    var index_2 = 0;
-                    parentStack.positiveZIndex.some( function ( current, i ){
-                        if( order_1 > current.element.container.styles.zIndex.order ){
-                            index_2 = i + 1;
-                            return false;
-                        }
-                        else if( index_2 > 0 ){
-                            return true;
-                        }
-                        return false;
-                    } );
-                    parentStack.positiveZIndex.splice( index_2, 0, stack );
-                }
                 else{
-                    parentStack.zeroOrAutoZIndexOrTransformedOrOpacity.push( stack );
+                    if( order_1 > 0 ){
+                        var index_2 = 0;
+                        parentStack.positiveZIndex.some( function ( current, i ){
+                            if( order_1 > current.element.container.styles.zIndex.order ){
+                                index_2 = i + 1;
+                                return false;
+                            }
+                            else{
+                                if( index_2 > 0 ){
+                                    return true;
+                                }
+                            }
+                            return false;
+                        } );
+                        parentStack.positiveZIndex.splice( index_2, 0, stack );
+                    }
+                    else{
+                        parentStack.zeroOrAutoZIndexOrTransformedOrOpacity.push( stack );
+                    }
                 }
             }
             else{
@@ -7060,14 +7156,18 @@ var calculateBackgroundSize = function ( size, _a, bounds ){
         if( isLengthPercentage( first ) ){
             width_3 = getAbsoluteValue( first, bounds.width );
         }
-        else if( isLengthPercentage( second ) ){
-            height_3 = getAbsoluteValue( second, bounds.height );
+        else{
+            if( isLengthPercentage( second ) ){
+                height_3 = getAbsoluteValue( second, bounds.height );
+            }
         }
         if( isAuto( first ) ){
             width_3 = height_3 * intrinsicProportion;
         }
-        else if( !second || isAuto( second ) ){
-            height_3 = width_3 / intrinsicProportion;
+        else{
+            if( !second || isAuto( second ) ){
+                height_3 = width_3 / intrinsicProportion;
+            }
         }
         return [
             width_3,
@@ -7083,8 +7183,10 @@ var calculateBackgroundSize = function ( size, _a, bounds ){
     if( isLengthPercentage( first ) ){
         width = getAbsoluteValue( first, bounds.width );
     }
-    else if( second && isLengthPercentage( second ) ){
-        height = getAbsoluteValue( second, bounds.height );
+    else{
+        if( second && isLengthPercentage( second ) ){
+            height = getAbsoluteValue( second, bounds.height );
+        }
     }
     if( width !== null && ( !second || isAuto( second ) ) ){
         height =
@@ -7235,8 +7337,8 @@ var CanvasRenderer = /** @class */ ( function (){
             this.popEffect();
         }
         effects.filter( function ( effect ){
-            return contains( effect.target, target );
-        } )
+                   return contains( effect.target, target );
+               } )
                .forEach( function ( effect ){
                    return _this.applyEffect( effect );
                } );
@@ -7322,9 +7424,9 @@ var CanvasRenderer = /** @class */ ( function (){
         }
         else{
             var letters = toCodePoints( text.text )
-            .map( function ( i ){
-                return fromCodePoint( i );
-            } );
+                .map( function ( i ){
+                    return fromCodePoint( i );
+                } );
             letters.reduce( function ( left, letter ){
                 _this.ctx.fillText( letter, left, text.bounds.top + text.bounds.height );
                 return left + _this.ctx.measureText( letter ).width;
@@ -7369,15 +7471,15 @@ var CanvasRenderer = /** @class */ ( function (){
                     var textShadows = styles.textShadow;
                     if( textShadows.length && text.text.trim().length ){
                         textShadows
-                        .slice( 0 )
-                        .reverse()
-                        .forEach( function ( textShadow ){
-                            _this.ctx.shadowColor = asString( textShadow.color );
-                            _this.ctx.shadowOffsetX = textShadow.offsetX.number * _this.options.scale;
-                            _this.ctx.shadowOffsetY = textShadow.offsetY.number * _this.options.scale;
-                            _this.ctx.shadowBlur = textShadow.blur.number;
-                            _this.ctx.fillText( text.text, text.bounds.left, text.bounds.top + text.bounds.height );
-                        } );
+                            .slice( 0 )
+                            .reverse()
+                            .forEach( function ( textShadow ){
+                                _this.ctx.shadowColor = asString( textShadow.color );
+                                _this.ctx.shadowOffsetX = textShadow.offsetX.number * _this.options.scale;
+                                _this.ctx.shadowOffsetY = textShadow.offsetY.number * _this.options.scale;
+                                _this.ctx.shadowBlur = textShadow.blur.number;
+                                _this.ctx.fillText( text.text, text.bounds.left, text.bounds.top + text.bounds.height );
+                            } );
                         _this.ctx.shadowColor = '';
                         _this.ctx.shadowOffsetX = 0;
                         _this.ctx.shadowOffsetY = 0;
@@ -7487,10 +7589,10 @@ var CanvasRenderer = /** @class */ ( function (){
                     _b.label = 5;
                 case 5:
                     _b.trys.push( [
-                                      5,
-                                      7, ,
-                                      8
-                                  ] );
+                        5,
+                        7, ,
+                        8
+                    ] );
                     return [
                         4 /*yield*/,
                         this.options.cache.match( container.src )
@@ -7523,10 +7625,10 @@ var CanvasRenderer = /** @class */ ( function (){
                     _b.label = 9;
                 case 9:
                     _b.trys.push( [
-                                      9,
-                                      11, ,
-                                      12
-                                  ] );
+                        9,
+                        11, ,
+                        12
+                    ] );
                     return [
                         4 /*yield*/,
                         this.options.cache.match( container.svg )
@@ -7554,19 +7656,19 @@ var CanvasRenderer = /** @class */ ( function (){
                         ];
                     }
                     iframeRenderer = new CanvasRenderer( {
-                                                             id: this.options.id,
-                                                             scale: this.options.scale,
-                                                             backgroundColor: container.backgroundColor,
-                                                             x: 0,
-                                                             y: 0,
-                                                             scrollX: 0,
-                                                             scrollY: 0,
-                                                             width: container.width,
-                                                             height: container.height,
-                                                             cache: this.options.cache,
-                                                             windowWidth: container.width,
-                                                             windowHeight: container.height
-                                                         } );
+                        id: this.options.id,
+                        scale: this.options.scale,
+                        backgroundColor: container.backgroundColor,
+                        x: 0,
+                        y: 0,
+                        scrollX: 0,
+                        scrollY: 0,
+                        width: container.width,
+                        height: container.height,
+                        cache: this.options.cache,
+                        windowWidth: container.width,
+                        windowHeight: container.height
+                    } );
                     return [
                         4 /*yield*/,
                         iframeRenderer.render( container.tree )
@@ -7584,27 +7686,29 @@ var CanvasRenderer = /** @class */ ( function (){
                             if( container.checked ){
                                 this.ctx.save();
                                 this.path( [
-                                               new Vector( container.bounds.left + size * 0.39363, container.bounds.top + size * 0.79 ),
-                                               new Vector( container.bounds.left + size * 0.16, container.bounds.top + size * 0.5549 ),
-                                               new Vector( container.bounds.left + size * 0.27347, container.bounds.top + size * 0.44071 ),
-                                               new Vector( container.bounds.left + size * 0.39694, container.bounds.top + size * 0.5649 ),
-                                               new Vector( container.bounds.left + size * 0.72983, container.bounds.top + size * 0.23 ),
-                                               new Vector( container.bounds.left + size * 0.84, container.bounds.top + size * 0.34085 ),
-                                               new Vector( container.bounds.left + size * 0.39363, container.bounds.top + size * 0.79 )
-                                           ] );
+                                    new Vector( container.bounds.left + size * 0.39363, container.bounds.top + size * 0.79 ),
+                                    new Vector( container.bounds.left + size * 0.16, container.bounds.top + size * 0.5549 ),
+                                    new Vector( container.bounds.left + size * 0.27347, container.bounds.top + size * 0.44071 ),
+                                    new Vector( container.bounds.left + size * 0.39694, container.bounds.top + size * 0.5649 ),
+                                    new Vector( container.bounds.left + size * 0.72983, container.bounds.top + size * 0.23 ),
+                                    new Vector( container.bounds.left + size * 0.84, container.bounds.top + size * 0.34085 ),
+                                    new Vector( container.bounds.left + size * 0.39363, container.bounds.top + size * 0.79 )
+                                ] );
                                 this.ctx.fillStyle = asString( INPUT_COLOR );
                                 this.ctx.fill();
                                 this.ctx.restore();
                             }
                         }
-                        else if( container.type === RADIO ){
-                            if( container.checked ){
-                                this.ctx.save();
-                                this.ctx.beginPath();
-                                this.ctx.arc( container.bounds.left + size / 2, container.bounds.top + size / 2, size / 4, 0, Math.PI * 2, true );
-                                this.ctx.fillStyle = asString( INPUT_COLOR );
-                                this.ctx.fill();
-                                this.ctx.restore();
+                        else{
+                            if( container.type === RADIO ){
+                                if( container.checked ){
+                                    this.ctx.save();
+                                    this.ctx.beginPath();
+                                    this.ctx.arc( container.bounds.left + size / 2, container.bounds.top + size / 2, size / 4, 0, Math.PI * 2, true );
+                                    this.ctx.fillStyle = asString( INPUT_COLOR );
+                                    this.ctx.fill();
+                                    this.ctx.restore();
+                                }
                             }
                         }
                     }
@@ -7626,11 +7730,11 @@ var CanvasRenderer = /** @class */ ( function (){
                         textBounds = bounds.add( x, 0, 0, -bounds.height / 2 + 1 );
                         this.ctx.save();
                         this.path( [
-                                       new Vector( bounds.left, bounds.top ),
-                                       new Vector( bounds.left + bounds.width, bounds.top ),
-                                       new Vector( bounds.left + bounds.width, bounds.top + bounds.height ),
-                                       new Vector( bounds.left, bounds.top + bounds.height )
-                                   ] );
+                            new Vector( bounds.left, bounds.top ),
+                            new Vector( bounds.left + bounds.width, bounds.top ),
+                            new Vector( bounds.left + bounds.width, bounds.top + bounds.height ),
+                            new Vector( bounds.left, bounds.top + bounds.height )
+                        ] );
                         this.ctx.clip();
                         this.renderTextWithLetterSpacing( new TextBounds( container.value, textBounds ), styles.letterSpacing );
                         this.ctx.restore();
@@ -7661,10 +7765,10 @@ var CanvasRenderer = /** @class */ ( function (){
                     _b.label = 15;
                 case 15:
                     _b.trys.push( [
-                                      15,
-                                      17, ,
-                                      18
-                                  ] );
+                        15,
+                        17, ,
+                        18
+                    ] );
                     return [
                         4 /*yield*/,
                         this.options.cache.match( url )
@@ -8045,10 +8149,10 @@ var CanvasRenderer = /** @class */ ( function (){
                                 _f.label = 1;
                             case 1:
                                 _f.trys.push( [
-                                                  1,
-                                                  3, ,
-                                                  4
-                                              ] );
+                                    1,
+                                    3, ,
+                                    4
+                                ] );
                                 return [
                                     4 /*yield*/,
                                     this_1.options.cache.match( url )
@@ -8095,9 +8199,9 @@ var CanvasRenderer = /** @class */ ( function (){
                                     ctx = canvas.getContext( '2d' );
                                     gradient_1 = ctx.createLinearGradient( x0, y0, x1, y1 );
                                     processColorStops( backgroundImage.stops, lineLength )
-                                    .forEach( function ( colorStop ){
-                                        return gradient_1.addColorStop( colorStop.stop, asString( colorStop.color ) );
-                                    } );
+                                        .forEach( function ( colorStop ){
+                                            return gradient_1.addColorStop( colorStop.stop, asString( colorStop.color ) );
+                                        } );
                                     ctx.fillStyle = gradient_1;
                                     ctx.fillRect( 0, 0, width, height );
                                     if( width > 0 && height > 0 ){
@@ -8105,40 +8209,42 @@ var CanvasRenderer = /** @class */ ( function (){
                                         this_1.renderRepeat( path, pattern, x, y );
                                     }
                                 }
-                                else if( isRadialGradient( backgroundImage ) ){
-                                    _d = calculateBackgroundRendering( container, index, [
-                                        null,
-                                        null,
-                                        null
-                                    ] ), path = _d[ 0 ], left = _d[ 1 ], top_1 = _d[ 2 ], width = _d[ 3 ], height = _d[ 4 ];
-                                    position = backgroundImage.position.length === 0
-                                               ? [ FIFTY_PERCENT ]
-                                               : backgroundImage.position;
-                                    x = getAbsoluteValue( position[ 0 ], width );
-                                    y = getAbsoluteValue( position[ position.length - 1 ], height );
-                                    _e = calculateRadius( backgroundImage, x, y, width, height ), rx = _e[ 0 ], ry = _e[ 1 ];
-                                    if( rx > 0 && rx > 0 ){
-                                        radialGradient_1 = this_1.ctx.createRadialGradient( left + x, top_1 + y, 0, left + x, top_1 + y, rx );
-                                        processColorStops( backgroundImage.stops, rx * 2 )
-                                        .forEach( function ( colorStop ){
-                                            return radialGradient_1.addColorStop( colorStop.stop, asString( colorStop.color ) );
-                                        } );
-                                        this_1.path( path );
-                                        this_1.ctx.fillStyle = radialGradient_1;
-                                        if( rx !== ry ){
-                                            midX = container.bounds.left + 0.5 * container.bounds.width;
-                                            midY = container.bounds.top + 0.5 * container.bounds.height;
-                                            f = ry / rx;
-                                            invF = 1 / f;
-                                            this_1.ctx.save();
-                                            this_1.ctx.translate( midX, midY );
-                                            this_1.ctx.transform( 1, 0, 0, f, 0, 0 );
-                                            this_1.ctx.translate( -midX, -midY );
-                                            this_1.ctx.fillRect( left, invF * ( top_1 - midY ) + midY, width, height * invF );
-                                            this_1.ctx.restore();
-                                        }
-                                        else{
-                                            this_1.ctx.fill();
+                                else{
+                                    if( isRadialGradient( backgroundImage ) ){
+                                        _d = calculateBackgroundRendering( container, index, [
+                                            null,
+                                            null,
+                                            null
+                                        ] ), path = _d[ 0 ], left = _d[ 1 ], top_1 = _d[ 2 ], width = _d[ 3 ], height = _d[ 4 ];
+                                        position = backgroundImage.position.length === 0
+                                                   ? [ FIFTY_PERCENT ]
+                                                   : backgroundImage.position;
+                                        x = getAbsoluteValue( position[ 0 ], width );
+                                        y = getAbsoluteValue( position[ position.length - 1 ], height );
+                                        _e = calculateRadius( backgroundImage, x, y, width, height ), rx = _e[ 0 ], ry = _e[ 1 ];
+                                        if( rx > 0 && rx > 0 ){
+                                            radialGradient_1 = this_1.ctx.createRadialGradient( left + x, top_1 + y, 0, left + x, top_1 + y, rx );
+                                            processColorStops( backgroundImage.stops, rx * 2 )
+                                                .forEach( function ( colorStop ){
+                                                    return radialGradient_1.addColorStop( colorStop.stop, asString( colorStop.color ) );
+                                                } );
+                                            this_1.path( path );
+                                            this_1.ctx.fillStyle = radialGradient_1;
+                                            if( rx !== ry ){
+                                                midX = container.bounds.left + 0.5 * container.bounds.width;
+                                                midY = container.bounds.top + 0.5 * container.bounds.height;
+                                                f = ry / rx;
+                                                invF = 1 / f;
+                                                this_1.ctx.save();
+                                                this_1.ctx.translate( midX, midY );
+                                                this_1.ctx.transform( 1, 0, 0, f, 0, 0 );
+                                                this_1.ctx.translate( -midX, -midY );
+                                                this_1.ctx.fillRect( left, invF * ( top_1 - midY ) + midY, width, height * invF );
+                                                this_1.ctx.restore();
+                                            }
+                                            else{
+                                                this_1.ctx.fill();
+                                            }
                                         }
                                     }
                                 }
@@ -8357,11 +8463,15 @@ var isTextInputElement = function ( container ){
     if( container instanceof TextareaElementContainer ){
         return true;
     }
-    else if( container instanceof SelectElementContainer ){
-        return true;
-    }
-    else if( container instanceof InputElementContainer && container.type !== RADIO && container.type !== CHECKBOX ){
-        return true;
+    else{
+        if( container instanceof SelectElementContainer ){
+            return true;
+        }
+        else{
+            if( container instanceof InputElementContainer && container.type !== RADIO && container.type !== CHECKBOX ){
+                return true;
+            }
+        }
     }
     return false;
 };
@@ -8529,9 +8639,9 @@ var renderElement = function ( element, opts ){
                 options = __assign( {}, defaultOptions, resourceOptions, opts );
                 windowBounds = new Bounds( options.scrollX, options.scrollY, options.windowWidth, options.windowHeight );
                 Logger.create( {
-                                   id: instanceName,
-                                   enabled: options.logging
-                               } );
+                    id: instanceName,
+                    enabled: options.logging
+                } );
                 Logger.getInstance( instanceName )
                       .debug( 'Starting document clone' );
                 documentCloner = new DocumentCloner( element, {

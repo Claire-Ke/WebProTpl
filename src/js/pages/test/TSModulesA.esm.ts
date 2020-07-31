@@ -8,15 +8,15 @@
 
 'use strict';
 
-class TSModulesA{
+class TSModulesA {
 
     title: string = '我是.ts文件！！！我是.ts文件！！！';
 
-    constructor(){
+    constructor() {
 
     }
 
-    getName(): string{
+    getName(): string {
         return this.title;
     }
 

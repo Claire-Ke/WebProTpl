@@ -12,7 +12,7 @@
 // declare module 'jsPDir/test/JSModulesA.esm.js';
 // declare module 'JSModulesA.esm.js';
 
-declare class JSModulesA{
+declare class JSModulesA {
 
     title: string;
 
@@ -24,7 +24,7 @@ declare class JSModulesA{
 
 // 全局类型声明写法
 // 可用：import JSModulesA from 'jsPDir/test/JSModulesA.esm.js';
-declare module 'jsPDir/test/JSModulesA.esm.js'{
+declare module 'jsPDir/test/JSModulesA.esm.js' {
 
     export {
         JSModulesA,
@@ -37,7 +37,7 @@ declare module 'jsPDir/test/JSModulesA.esm.js'{
 // 全局类型声明写法
 // 可用：import JSModulesA from 'JSModulesA.esm.js';
 // 不可用：import JSModulesA from './JSModulesA.esm.js';
-declare module 'JSModulesA.esm.js'{
+declare module 'JSModulesA.esm.js' {
 
     export {
         JSModulesA,

@@ -99,11 +99,11 @@ function GetStr1( str1 = '' ){
 function IsDataT( data, type ){
     if( 'Element' === type ){
         return DataT( data )
-        .includes( type );
+            .includes( type );
     }
 
     let str1 = DataT( data )
-    .split( ' ' )[ 1 ];
+        .split( ' ' )[ 1 ];
 
     return str1.slice( 0, str1.length - 1 ) === type;
 }
@@ -112,7 +112,7 @@ function IsString( arg ){
     return IsDataT( arg, 'String' ) && ( typeof arg === 'string' );
 }
 
-class WebC{
+class WebC {
 
     /**
      * 自定义的元素类
@@ -275,37 +275,37 @@ class WebC{
         let _this = this;
 
         _this.optionObj = Object.assign( {
-                                             attach: {
-                                                 delegatesFocus: null,
-                                                 mode: 'open',
-                                             },
-                                             define: {
-                                                 extends: null,
-                                                 name: null,
-                                             },
-                                             enableExtends: true,
-                                             events: {
-                                                 init: ( cusHTMLClassIns, shadowRoot ) => {
-                                                 },
-                                                 connectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
-                                                 },
-                                                 disconnectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
-                                                 },
-                                                 adoptedCallback: ( cusHTMLClassIns, shadowRoot ) => {
-                                                 },
-                                                 attributeChangedCallback: ( cusHTMLClassIns, shadowRoot, [
-                                                     name,
-                                                     oldValue,
-                                                     newValue,
-                                                     arg4
-                                                 ] ) => {
-                                                 },
-                                             },
-                                             extends: HTMLElement,
-                                             isExtendsCusHTML: false,
-                                             isInit: true,
-                                             obsAttrs: [],
-                                         }, initOption );
+            attach: {
+                delegatesFocus: null,
+                mode: 'open',
+            },
+            define: {
+                extends: null,
+                name: null,
+            },
+            enableExtends: true,
+            events: {
+                init: ( cusHTMLClassIns, shadowRoot ) => {
+                },
+                connectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
+                },
+                disconnectedCallback: ( cusHTMLClassIns, shadowRoot ) => {
+                },
+                adoptedCallback: ( cusHTMLClassIns, shadowRoot ) => {
+                },
+                attributeChangedCallback: ( cusHTMLClassIns, shadowRoot, [
+                    name,
+                    oldValue,
+                    newValue,
+                    arg4
+                ] ) => {
+                },
+            },
+            extends: HTMLElement,
+            isExtendsCusHTML: false,
+            isInit: true,
+            obsAttrs: [],
+        }, initOption );
 
         _this.optionObj.enableExtends
         ? ( _this.optionObj.attach.mode = 'open' )
@@ -330,7 +330,7 @@ class WebC{
         _this.optionObj.extends === 'auto' && !_this.optionObj.isExtendsCusHTML && /^([a-z])[a-z0-9]{0,}$/g.test( _this.optionObj.define.extends ) && ( _this.optionObj.extends = document.createElement( _this.optionObj.define.extends ).constructor );
 
         _this.cusHTMLClass = class
-            extends _this.optionObj.extends{
+            extends _this.optionObj.extends {
 
             /**
              * 静态私有属性，监听哪些属性的更改，里面的成员都是属性名

@@ -142,7 +142,7 @@ globalThis.importScripts( './tools/WWorker4CT.compiler.js' );
  * 脚本可以按任何顺序下载，但将按将文件名传递到importScripts()的顺序执行。这是同步完成的；在加载和执行所有脚本之前，importScripts()不会返回。<br />
  */
 class ServiceWorker4CT
-    extends WWorker4CT{
+    extends WWorker4CT {
 
     _self;
     onMessageFun;
@@ -159,12 +159,12 @@ class ServiceWorker4CT
         super();
 
         let pea_obj = Object.assign( {
-                                         onMessage: event => {
-                                             console.log( 'onMessage Start' );
-                                             console.dir( event );
-                                             console.log( 'onMessage End' );
-                                         },
-                                     }, arg_obj );
+            onMessage: event => {
+                console.log( 'onMessage Start' );
+                console.dir( event );
+                console.log( 'onMessage End' );
+            },
+        }, arg_obj );
 
         this._self = _self;
         this.onMessageFun = pea_obj.onMessage;

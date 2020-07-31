@@ -8,7 +8,7 @@
 
 'use strict';
 
-class JSModulesA{
+class JSModulesA {
 
     title = '我是.js文件！！！我是.js文件！！！';
 
