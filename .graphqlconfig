@@ -39,15 +39,6 @@
                         },
                         "introspect": false
                     },
-                    "devURL4WWC": {
-                        "url": "http://192.168.1.75:8081/graphql",
-                        "headers": {
-                            "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4WWC",
-                            "Accept-Encoding": "gzip"
-                        },
-                        "introspect": false
-                    },
                     "devURL4HZJ": {
                         "url": "http://192.168.1.76:8080/graphql",
                         "headers": {
@@ -62,6 +53,24 @@
                         "headers": {
                             "Content-Type": "application/json",
                             "user-agent": "SN_ProA JS GraphQL for devURL4LDM",
+                            "Accept-Encoding": "gzip"
+                        },
+                        "introspect": false
+                    },
+                    "devURL4HD1": {
+                        "url": "http://192.168.1.147:8081/graphql",
+                        "headers": {
+                            "Content-Type": "application/json",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4HD1",
+                            "Accept-Encoding": "gzip"
+                        },
+                        "introspect": false
+                    },
+                    "devURL4HD2": {
+                        "url": "http://192.168.1.49:8099/graphql",
+                        "headers": {
+                            "Content-Type": "application/json",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4HD2",
                             "Accept-Encoding": "gzip"
                         },
                         "introspect": false

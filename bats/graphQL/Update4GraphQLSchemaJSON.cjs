@@ -65,9 +65,42 @@ if( true ){
                 'Content-Type': 'application/json',
             },
         },
-        option4WWC_objC = {
-            host: '192.168.1.75',
+        option4HZJ_objC = {
+            host: '192.168.1.76',
+            port: '8080',
+            path: '/graphql/schema.json',
+            method: 'GET',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        option4LDM_objC = {
+            host: '192.168.1.100',
             port: '8081',
+            path: '/graphql/schema.json',
+            method: 'GET',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        option4HD1_objC = {
+            host: '192.168.1.147',
+            port: '8081',
+            path: '/graphql/schema.json',
+            method: 'GET',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        option4HD2_objC = {
+            host: '192.168.1.49',
+            port: '8099',
             path: '/graphql/schema.json',
             method: 'GET',
             headers: {
@@ -169,9 +202,42 @@ if( false ){
                 'Content-Type': 'application/json',
             },
         },
-        option4WWC_objC = {
-            host: '192.168.1.75',
+        option4HZJ_objC = {
+            host: '192.168.1.76',
+            port: '8080',
+            path: '/graphql/',
+            method: 'POST',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        option4LDM_objC = {
+            host: '192.168.1.100',
             port: '8081',
+            path: '/graphql/',
+            method: 'POST',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        option4HD1_objC = {
+            host: '192.168.1.147',
+            port: '8081',
+            path: '/graphql/',
+            method: 'POST',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        option4HD2_objC = {
+            host: '192.168.1.49',
+            port: '8099',
             path: '/graphql/',
             method: 'POST',
             headers: {
