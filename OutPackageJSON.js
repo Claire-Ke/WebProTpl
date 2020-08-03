@@ -10,6 +10,8 @@
  * 动态扫描该项目的node_modules文件夹下的npm包的版本号，并更新它们
  */
 
+'use strict';
+
 let fs = require( 'fs' ),
     path = require( 'path' ),
     nodeModulesPath_str = path.join( __dirname, './node_modules' ),// G:\WebStormWS\WebProTpl\node_modules

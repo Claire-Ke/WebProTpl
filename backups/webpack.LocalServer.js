@@ -6,7 +6,9 @@
  * IDE: WebStorm
  */
 
-    // process.cwd()输出G:\\WebStormWS\\WebProTpl
+// process.cwd()输出G:\\WebStormWS\\WebProTpl
+
+'use strict';
 
 let webpackLocalServer_obj = require( './configures/GlobalProp.js' ).webpackLocalServer_obj,
     webProName_str = webpackLocalServer_obj.proName_str,

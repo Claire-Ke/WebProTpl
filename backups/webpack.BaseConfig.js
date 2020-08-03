@@ -6,7 +6,10 @@
  * IDE: WebStorm
  */
 
-    // process.cwd()输出G:\\WebStormWS\\WebProTpl
+// process.cwd()输出G:\\WebStormWS\\WebProTpl
+
+'use strict';
+
 let isPro = process.argv[ 3 ] === 'production',
     os = require( 'os' ),
     osLen = os.cpus().length,
@@ -67,23 +70,11 @@ let fs = require( 'fs' ),
     imageminMozjpeg = require( 'imagemin-mozjpeg' ),
     // 根据实际文件夹自动生成，但现在的typescript版本提示这些写法会报错
     compilerOptions4lib_arrC = [
-        'es5',
-        'es6',
-        'es2015',
-        'es7',
-        'es2016',
-        'es2017',
-        'es2018',
-        'es2019',
-        'es2020',
-        'esnext',
         'dom',
         'dom.iterable',
-        'webworker',
-        'webworker.importscripts',
-        'scripthost',
-        'es2015.core',
+        'es2015',
         'es2015.collection',
+        'es2015.core',
         'es2015.generator',
         'es2015.iterable',
         'es2015.promise',
@@ -91,32 +82,50 @@ let fs = require( 'fs' ),
         'es2015.reflect',
         'es2015.symbol',
         'es2015.symbol.wellknown',
+        'es2016',
         'es2016.array.include',
+        'es2016.full',
+        'es2017',
+        'es2017.full',
+        'es2017.intl',
         'es2017.object',
         'es2017.sharedmemory',
         'es2017.string',
-        'es2017.intl',
         'es2017.typedarrays',
+        'es2018',
         'es2018.asyncgenerator',
         'es2018.asynciterable',
+        'es2018.full',
         'es2018.intl',
         'es2018.promise',
         'es2018.regexp',
+        'es2019',
         'es2019.array',
+        'es2019.full',
         'es2019.object',
         'es2019.string',
         'es2019.symbol',
+        'es2020',
         'es2020.bigint',
+        'es2020.full',
         'es2020.promise',
         'es2020.string',
         'es2020.symbol.wellknown',
+        'es5',
+        'es6',
+        'es7',
+        'esnext',
         'esnext.array',
-        'esnext.symbol',
         'esnext.asynciterable',
-        'esnext.intl',
         'esnext.bigint',
+        'esnext.full',
+        'esnext.intl',
+        'esnext.promise',
         'esnext.string',
-        'esnext.promise'
+        'esnext.symbol',
+        'scripthost',
+        'webworker',
+        'webworker.importscripts',
     ],
     compilerOptions_obj = {
         // Project Options Start
@@ -129,11 +138,28 @@ let fs = require( 'fs' ),
         'target': 'ES2020',
         // CommonJS(default if target is ES3 or ES5)、ES6、ES2015、ES2020、None、UMD、AMD、System、ESNext
         'module': 'ES2020',
-        // [ 'lib.es6.d.ts', 'lib.es2015.d.ts' ]
-        'lib': ( () => fs.readdirSync( path.join( __dirname, './node_modules/typescript/lib' ) )
-                         .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
-                                                    .isDirectory() )
-                         .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) ) )(),
+        // 如(全是小写字母！！！)：[ 'es6', 'es2015' ]
+        'lib': ( () => Array.from( new Set( [
+                                'dom',
+                                'es2015',
+                                'es2016',
+                                'es2017',
+                                'es2018',
+                                'es2019',
+                                'es2020',
+                                'es5',
+                                'es6',
+                                'es7',
+                                'esnext',
+                                'scripthost',
+                                'webworker'
+                            ].concat( fs.readdirSync( path.join( __dirname, './node_modules/typescript/lib' ) )
+                                        .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
+                                                                   .isDirectory() )
+                                        .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) && c !== 'lib.d.ts' )
+                                        .map( ( c, i, a ) => c.slice( 4, -5 )
+                                                              .toLowerCase() ) ) ) )
+                            .sort() )(),
         // true时，可以在.ts中导入.js；但是，false时，这么干，会报错！
         'allowJs': false,
         // true时，当把.js文件导入到.ts文件中时，如果.js文件中有错，将报告错误，这相当于在项目中包含的所有JavaScript文件的顶部包含"// @ts-check"。

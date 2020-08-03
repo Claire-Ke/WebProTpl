@@ -6,7 +6,9 @@
  * IDE: WebStorm
  */
 
-    // process.cwd()输出G:\\WebStormWS\\WebProTpl
+// process.cwd()输出G:\\WebStormWS\\WebProTpl
+
+'use strict';
 
 let path = require( 'path' ),
     webpack = require( 'webpack' ),
