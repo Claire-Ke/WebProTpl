@@ -1,8 +1,8 @@
 /**
  * Project: WebProTpl
- * Author：12278
- * Email：2726893248@qq.com
- * CreateDate：2019-01-01 00:00:00
+ * Author: 12278
+ * Email: 2726893248@qq.com
+ * CreateDate: 2019-01-01 00:00:00
  * IDE: WebStorm
  */
 
@@ -126,47 +126,39 @@ function FileBtn( arg_obj = {} ){
                                                       defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 0 ] ) && ( index_num = i ) ) );
                                                       defClass_arr.splice( index_num, 1 );
                                                   }
-                                                  else{
-                                                      if( is_boo && c.includes( postfix_arr[ 1 ] ) ){
-                                                          defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 1 ] ) && ( index_num = i ) ) );
-                                                          defClass_arr.splice( index_num, 1 );
-                                                      }
-                                                      else{
-                                                          if( is_boo && c.includes( postfix_arr[ 2 ] ) ){
-                                                              defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 2 ] ) && ( index_num = i ) ) );
-                                                              defClass_arr.splice( index_num, 1 );
-                                                          }
-                                                      }
+                                                  else if( is_boo && c.includes( postfix_arr[ 1 ] ) ){
+                                                      defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 1 ] ) && ( index_num = i ) ) );
+                                                      defClass_arr.splice( index_num, 1 );
+                                                  }
+                                                  else if( is_boo && c.includes( postfix_arr[ 2 ] ) ){
+                                                      defClass_arr.forEach( ( c, i, ) => void ( c.includes( postfix_arr[ 2 ] ) && ( index_num = i ) ) );
+                                                      defClass_arr.splice( index_num, 1 );
                                                   }
                                                   return is_boo;
                                               } )
                                               .concat( defClass_arr )
                                               .join( ',' ) );
             }
-            else{
-                if( element.localName === 'label' ){
-                    CTO.sAttr( element, {
-                        'class': 'css-reset',
-                        for: 'fileBtn_' + id_str,
-                    } );
-                    CTO.aClassN( element, 'ofh,flexBox,flexC,flexDC,fileBtn-label' );
-                }
-                else{
-                    if( element.localName === 'input' ){
-                        let obj1 = {
-                            'class': 'css-reset css-reset-file',
-                            type: 'file',
-                            name: para_obj.name,
-                            id: 'fileBtn_' + id_str,
-                            hidden: 'hidden',
-                            accept: para_obj.accept,
-                        };
-                        para_obj.multiple && ( obj1[ 'multiple' ] = 'multiple' );
-                        para_obj.capture && ( obj1[ 'capture' ] = para_obj.capture );
-                        para_obj.webkitdirectory && ( obj1[ 'webkitdirectory' ] = 'webkitdirectory' );
-                        CTO.sAttr( element, obj1 );
-                    }
-                }
+            else if( element.localName === 'label' ){
+                CTO.sAttr( element, {
+                    'class': 'css-reset',
+                    for: 'fileBtn_' + id_str,
+                } );
+                CTO.aClassN( element, 'ofh,flexBox,flexC,flexDC,fileBtn-label' );
+            }
+            else if( element.localName === 'input' ){
+                let obj1 = {
+                    'class': 'css-reset css-reset-file',
+                    type: 'file',
+                    name: para_obj.name,
+                    id: 'fileBtn_' + id_str,
+                    hidden: 'hidden',
+                    accept: para_obj.accept,
+                };
+                para_obj.multiple && ( obj1[ 'multiple' ] = 'multiple' );
+                para_obj.capture && ( obj1[ 'capture' ] = para_obj.capture );
+                para_obj.webkitdirectory && ( obj1[ 'webkitdirectory' ] = 'webkitdirectory' );
+                CTO.sAttr( element, obj1 );
             }
         }
     } );

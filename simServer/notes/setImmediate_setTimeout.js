@@ -1,3 +1,13 @@
+/**
+ * Project: WebProTpl
+ * Author: 12278
+ * Email: 2726893248@qq.com
+ * CreateDate: 2019-01-01 00:00:00
+ * IDE: WebStorm
+ */
+
+'use strict';
+
 // NodeJS版本是13.1.0   npm 6.13.1
 // 都不设置间隔时间时(或为0、1、2)，setTimeout优先于setImmediate(在为2、3时出现不一样的顺序了)
 // setTimeout为1，setImmediate为0！！！setTimeout优先于setImmediate

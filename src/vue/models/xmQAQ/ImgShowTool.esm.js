@@ -1,8 +1,8 @@
 /**
  * Project: WebProTpl
- * Author：12278
- * Email：2726893248@qq.com
- * CreateDate：2019-01-01 00:00:00
+ * Author: 12278
+ * Email: 2726893248@qq.com
+ * CreateDate: 2019-01-01 00:00:00
  * IDE: WebStorm
  */
 
@@ -86,39 +86,33 @@ let ImgShowTool = {
                         _this: this,
                     } );
                 }
-                else{
-                    if( img_numC > 0 && imgInteger_num !== 0 && imgRemainder_num !== 0 ){
-                        --imgInteger_num;
-
-                        PreloadImg( {
-                            num: imgRemainder_num + 10,
-                            isStart: true,
-                            _this: this,
-                        } );
-                    }
-                    else{
-                        if( img_numC > 0 && imgInteger_num !== 0 && imgRemainder_num === 0 ){
-                            --imgInteger_num;
-
-                            PreloadImg( {
-                                num: 10,
-                                isStart: true,
-                                _this: this,
-                            } );
-                        }
-                    }
-                }
-            }
-            else{
-                if( this.state === 'next' && imgInteger_num !== 0 && this.index % 5 === 0 ){
+                else if( img_numC > 0 && imgInteger_num !== 0 && imgRemainder_num !== 0 ){
                     --imgInteger_num;
 
                     PreloadImg( {
-                        num: this.preloadImgCount + 10,
-                        isStart: false,
+                        num: imgRemainder_num + 10,
+                        isStart: true,
                         _this: this,
                     } );
                 }
+                else if( img_numC > 0 && imgInteger_num !== 0 && imgRemainder_num === 0 ){
+                    --imgInteger_num;
+
+                    PreloadImg( {
+                        num: 10,
+                        isStart: true,
+                        _this: this,
+                    } );
+                }
+            }
+            else if( this.state === 'next' && imgInteger_num !== 0 && this.index % 5 === 0 ){
+                --imgInteger_num;
+
+                PreloadImg( {
+                    num: this.preloadImgCount + 10,
+                    isStart: false,
+                    _this: this,
+                } );
             }
         },
         prevImg( event ){

@@ -1,8 +1,8 @@
 /**
  * Project: WebProTpl
- * Author：12278
- * Email：2726893248@qq.com
- * CreateDate：2019-01-01 00:00:00
+ * Author: 12278
+ * Email: 2726893248@qq.com
+ * CreateDate: 2019-01-01 00:00:00
  * IDE: WebStorm
  */
 
@@ -61,6 +61,131 @@ let proxyConfig_obj = require( './GlobalProp.js' ).proxyConfig_obj,
     };
 
 module.exports = {
+    // 开发服
+    '/devURL/*': {
+        pathRewrite: {
+            // rewrite path
+            // '^/old/api': '/new/api',
+            '^/devURL/': '/',
+
+            // remove path
+            // '^/remove/api': '',
+
+            // add base path
+            // '^/': '/basepath/',
+        },
+        /*
+         pathRewrite: ( path, req ) => {
+         return path.replace( '/api', '/base/api' );
+         },
+         */
+        /*
+         pathRewrite: async ( path, req ) => {
+         // const should_add_something = await httpRequestToDecideSomething( path );
+         // if( should_add_something ){
+         //     path += 'something';
+         // }
+         // return path;
+         },
+         */
+
+        target: 'http://127.0.0.1:8080',
+        changeOrigin,
+        router: {
+            [ devServerTarget_str ]: 'http://127.0.0.1:8080',
+        },
+
+        onProxyReq: ( proxyReq, req, res ) => {
+            console.log( 'Proxy------onProxyReq Start------' );
+            console.log( `客户端的请求URL--->${ req.url }` );
+            console.log( `客户端的请求方法--->${ req.method }` );
+            console.dir( req.headers );
+            console.log( 'Proxy------onProxyReq End------' );
+        },
+        onProxyRes: ( proxyRes, req, res ) => {
+            // console.log( 'Proxy------onProxyRes Start------' );
+            // console.log( 'Proxy------onProxyRes End------' );
+        },
+        onError: ( err, req, res ) => {
+            // console.error( 'Proxy------onError Start------' );
+            // console.error( 'Proxy------onError End------' );
+        },
+        onProxyReqWs: ( proxyReq, req, socket, options, head ) => {
+            // console.log( 'Proxy------onProxyReqWs Start------' );
+            // console.log( 'Proxy------onProxyReqWs End------' );
+        },
+        onOpen: proxySocket => {
+            // console.log( 'Proxy------onOpen Start------' );
+            // console.log( 'Proxy------onOpen End------' );
+        },
+        onClose: ( res, socket, head ) => {
+            // console.log( 'Proxy------onClose Start------' );
+            // console.log( 'Proxy------onClose End------' );
+        },
+    },
+    // 本地开发服
+    '/localURL/*': {
+        pathRewrite: {
+            // rewrite path
+            // '^/old/api': '/new/api',
+            '^/localURL/': '/',
+
+            // remove path
+            // '^/remove/api': '',
+
+            // add base path
+            // '^/': '/basepath/',
+        },
+        /*
+         pathRewrite: ( path, req ) => {
+         return path.replace( '/api', '/base/api' );
+         },
+         */
+        /*
+         pathRewrite: async ( path, req ) => {
+         // const should_add_something = await httpRequestToDecideSomething( path );
+         // if( should_add_something ){
+         //     path += 'something';
+         // }
+         // return path;
+         },
+         */
+
+        target: 'http://127.0.0.1:8080',
+        changeOrigin,
+        router: {
+            [ devServerTarget_str ]: 'http://127.0.0.1:8080',
+        },
+
+        onProxyReq: ( proxyReq, req, res ) => {
+            console.log( 'Proxy------onProxyReq Start------' );
+            console.log( `客户端的请求URL--->${ req.url }` );
+            console.log( `客户端的请求方法--->${ req.method }` );
+            console.dir( req.headers );
+            console.log( 'Proxy------onProxyReq End------' );
+        },
+        onProxyRes: ( proxyRes, req, res ) => {
+            // console.log( 'Proxy------onProxyRes Start------' );
+            // console.log( 'Proxy------onProxyRes End------' );
+        },
+        onError: ( err, req, res ) => {
+            // console.error( 'Proxy------onError Start------' );
+            // console.error( 'Proxy------onError End------' );
+        },
+        onProxyReqWs: ( proxyReq, req, socket, options, head ) => {
+            // console.log( 'Proxy------onProxyReqWs Start------' );
+            // console.log( 'Proxy------onProxyReqWs End------' );
+        },
+        onOpen: proxySocket => {
+            // console.log( 'Proxy------onOpen Start------' );
+            // console.log( 'Proxy------onOpen End------' );
+        },
+        onClose: ( res, socket, head ) => {
+            // console.log( 'Proxy------onClose Start------' );
+            // console.log( 'Proxy------onClose End------' );
+        },
+    },
+
     '/favicon.ico': {
         pathRewrite: {
             // rewrite path

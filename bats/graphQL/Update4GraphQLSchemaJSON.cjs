@@ -1,8 +1,8 @@
 /**
- * Project: sn-micro-front-web-project-template
- * Author：12278
- * Email：2726893248@qq.com
- * CreateDate：2019-01-01 00:00:00
+ * Project: WebProTpl
+ * Author: 12278
+ * Email: 2726893248@qq.com
+ * CreateDate: 2019-01-01 00:00:00
  * IDE: WebStorm
  */
 
@@ -87,6 +87,17 @@ if( true ){
                 'Content-Type': 'application/json',
             },
         },
+        option4DLG_objC = {
+            host: '192.168.1.47',
+            port: '8099',
+            path: '/graphql/schema.json',
+            method: 'GET',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
         option4HD1_objC = {
             host: '192.168.1.147',
             port: '8081',
@@ -124,10 +135,8 @@ if( true ){
                               if( statusCode !== 200 ){
                                   error = new Error( 'Request Failed.\n' + `Status Code: ${ statusCode }` );
                               }
-                              else{
-                                  if( !/^application\/json/.test( contentType ) ){
-                                      error = new Error( 'Invalid content-type.\n' + `Expected application/json but received ${ contentType }` );
-                                  }
+                              else if( !/^application\/json/.test( contentType ) ){
+                                  error = new Error( 'Invalid content-type.\n' + `Expected application/json but received ${ contentType }` );
                               }
 
                               if( error ){
@@ -224,6 +233,17 @@ if( false ){
                 'Content-Type': 'application/json',
             },
         },
+        option4DLG_objC = {
+            host: '192.168.1.47',
+            port: '8099',
+            path: '/graphql/',
+            method: 'POST',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
         option4HD1_objC = {
             host: '192.168.1.147',
             port: '8081',
@@ -262,10 +282,8 @@ if( false ){
                 if( statusCode !== 200 ){
                     error = new Error( 'Request Failed.\n' + `Status Code: ${ statusCode }` );
                 }
-                else{
-                    if( !/^application\/json/.test( contentType ) ){
-                        error = new Error( 'Invalid content-type.\n' + `Expected application/json but received ${ contentType }` );
-                    }
+                else if( !/^application\/json/.test( contentType ) ){
+                    error = new Error( 'Invalid content-type.\n' + `Expected application/json but received ${ contentType }` );
                 }
 
                 if( error ){

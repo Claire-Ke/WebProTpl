@@ -57,6 +57,15 @@
                         },
                         "introspect": false
                     },
+                    "devURL4DLG": {
+                        "url": "http://192.168.1.47:8099/graphql",
+                        "headers": {
+                            "Content-Type": "application/json",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4DLG",
+                            "Accept-Encoding": "gzip"
+                        },
+                        "introspect": false
+                    },
                     "devURL4HD1": {
                         "url": "http://192.168.1.147:8081/graphql",
                         "headers": {

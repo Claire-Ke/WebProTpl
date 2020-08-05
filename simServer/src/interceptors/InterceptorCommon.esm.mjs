@@ -1,8 +1,8 @@
 /**
  * Project: WebProTpl
- * Author：12278
- * Email：2726893248@qq.com
- * CreateDate：2019-01-01 00:00:00
+ * Author: 12278
+ * Email: 2726893248@qq.com
+ * CreateDate: 2019-01-01 00:00:00
  * IDE: WebStorm
  */
 
@@ -36,48 +36,32 @@ function InterceptorCommon( server, request, response ){
     if( pathNameStr === '/' ){
         new ResSRFile( server, request, response ).html4Path( config9999_obj.rootPath );
     }
+    else if( pathNameStr === '/favicon.ico' ){
+        new ResSRFile( server, request, response ).img4Path( config9999_obj.faviconPath );
+    }
+    else if( pathNameStr === '/apple-touch-icon.png' ){
+        new ResSRFile( server, request, response ).img4Path( config9999_obj.faviconPath );
+    }
+    else if( pathNameStr === '/apple-touch-icon-precomposed.png' ){
+        new ResSRFile( server, request, response ).img4Path( config9999_obj.faviconPath );
+    }
+    else if( request.method.toLowerCase() === 'post' ){
+        Interceptor4Post( server, request, response );
+    }
+    else if( request.method.toLowerCase() === 'delete' ){
+        Interceptor4Delete( server, request, response );
+    }
+    else if( request.method.toLowerCase() === 'put' ){
+        Interceptor4Put( server, request, response );
+    }
+    else if( request.method.toLowerCase() === 'get' ){
+        Interceptor4Get( server, request, response );
+    }
+    else if( request.method.toLowerCase() === 'options' ){
+        Interceptor4Options( server, request, response );
+    }
     else{
-        if( pathNameStr === '/favicon.ico' ){
-            new ResSRFile( server, request, response ).img4Path( config9999_obj.faviconPath );
-        }
-        else{
-            if( pathNameStr === '/apple-touch-icon.png' ){
-                new ResSRFile( server, request, response ).img4Path( config9999_obj.faviconPath );
-            }
-            else{
-                if( pathNameStr === '/apple-touch-icon-precomposed.png' ){
-                    new ResSRFile( server, request, response ).img4Path( config9999_obj.faviconPath );
-                }
-                else{
-                    if( request.method.toLowerCase() === 'post' ){
-                        Interceptor4Post( server, request, response );
-                    }
-                    else{
-                        if( request.method.toLowerCase() === 'delete' ){
-                            Interceptor4Delete( server, request, response );
-                        }
-                        else{
-                            if( request.method.toLowerCase() === 'put' ){
-                                Interceptor4Put( server, request, response );
-                            }
-                            else{
-                                if( request.method.toLowerCase() === 'get' ){
-                                    Interceptor4Get( server, request, response );
-                                }
-                                else{
-                                    if( request.method.toLowerCase() === 'options' ){
-                                        Interceptor4Options( server, request, response );
-                                    }
-                                    else{
-                                        new InterceptorError( server, request, response ).httpMethods();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        new InterceptorError( server, request, response ).httpMethods();
     }
 
 }

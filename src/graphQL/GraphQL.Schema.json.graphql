@@ -40,8 +40,6 @@ interface IBMS_IRegion {
     id: String!
     "名称"
     name: String!
-    "上级区域"
-    parent: IBMS_IRegion
     "标签"
     tags: [String]
 }
@@ -68,6 +66,7 @@ interface UA_IContact {
 interface UA_IDepartment {
     "部门下的雇员数量"
     employeeCount(exp: String): Int!
+    employeePaging(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_IEmployee]
     "显示部门雇员"
     employees(exp: String): [UA_IEmployee]
     "分页显示部门雇员"
@@ -137,6 +136,12 @@ interface UA_IPersonalAccount {
     identity(className: String!): UA_IIdentity
     "身份类型,exp表达式"
     identityTypes(exp: String): [UA_IdentityType]
+}
+
+"操作"
+type Action {
+    "名称"
+    name: String!
 }
 
 "上下文菜单"
@@ -450,6 +455,46 @@ type IBMS_UnCheckedAlarm implements IBMS_IAlarm {
     url: String!
 }
 
+"日志事件"
+type LogEvent {
+    "操作行为"
+    action: String
+    "日志事件分类"
+    category: String!
+    "说明"
+    description: String
+    "客体位置"
+    destAddr: String
+    "客体端口"
+    destPort: Int
+    "耗时"
+    elapsedTime: String!
+    "流水号"
+    id: String!
+    "操作名称"
+    name: String
+    "客体"
+    objects(id: String): Objects
+    "操作者"
+    operator: String
+    "参数"
+    param(id: String): Parameters
+    "资源"
+    resource: String
+    "主体"
+    subject(id: String): Subject
+    "主体所在位置"
+    subjectAddr: String!
+    "主体端口"
+    subjectPort: Int
+    "操作是否成功"
+    success: Boolean!
+    "系统分类"
+    sysCategory: String
+    "时间戳"
+    timestamps: String!
+}
+
 "个人账号"
 type MapEarnt {
     code: String
@@ -481,7 +526,7 @@ type Mutation {
     "添加地块标签    blockId:地块编号   blockTag:地块标签"
     ibms_region_addBlockTag(blockId: String!, blockTag: String): Boolean
     "添加楼宇分类    buildingId:楼宇编号    buildingCategoryId:楼宇分类编号"
-    ibms_region_addBuildingCategory(buildingCategoryId: String!, buildingId: String!): Boolean
+    ibms_region_addBuildingCategory(buildingCategoryId: [String!]!, buildingId: String!): Boolean
     "添加楼宇标签     buildingId:楼宇编号    buildingTag：楼宇标签"
     ibms_region_addBuildingTag(buildingId: String!, buildingTag: String): Boolean
     "添加楼层标签     floorId:楼层编号     floorTag:楼层标签"
@@ -501,7 +546,7 @@ type Mutation {
     "定义楼宇   buildingName:楼宇名称  buildingParentId:所属地块编号  buildingHeight:地面建筑高度  buildingUnderHeight:地下建筑高度  buildingTags:建筑标签  buildingCategoryIds:建筑分类编号"
     ibms_region_defineBuilding(buildingCategoryIds: [String]!, buildingHeight: String, buildingId: String, buildingName: String!, buildingParentId: String!, buildingTags: [String]!, buildingUnderHeight: String): Boolean
     "定义楼层   floorName:楼层名称  floorParentId:所属楼宇编号  floorHeight:层高  floorNumber:楼层号  floorTags:楼层标签   categoryIds:功能区分类编号"
-    ibms_region_defineFloor(categoryIds: [String]!, floorHeight: String, floorId: String, floorNumber: String!, floorParentId: String!, floorTags: [String]!): Boolean
+    ibms_region_defineFloor(categoryIds: [String]!, floorHeight: String, floorId: String, floorNumber: String!, floorParentId: String!, floorTags: [String]!): String
     "定义功能区     fuAreaId:功能区编号   fuAreaName:功能区名称   fuAreaParentId:所属楼层编号    categoryId:功能区分类编号   fuAreaTags:功能区标签"
     ibms_region_defineFunctionalArea(categoryId: String!, fuAreaId: String, fuAreaName: String!, fuAreaParentId: String!, fuAreaTags: [String]!): Boolean
     "定义园区   parkName:园区名称  parkArea:园区面积  parkTags:园区标签 "
@@ -561,7 +606,7 @@ type Mutation {
     "重置园区名称   parkId:园区编号   parkName:园区名称"
     ibms_region_resetParkName(parkId: String!, parkName: String!): Boolean
     "重置园区图片    parkId:园区编号   parkPicturePath：园区图片路径"
-    ibms_region_resetParkPicture(parkId: String!, parkPicturePath: String): Boolean
+    ibms_region_resetParkPicture(files: [Upload!]!, parkId: String!): Boolean
     "重置场所面积     placeId:场所编号     placeArea:场所面积"
     ibms_region_resetPlaceArea(placeArea: String!, placeId: String!): Boolean
     "重置场所名称   placeId:场所编号    placeName:场所名称"
@@ -796,8 +841,8 @@ type Mutation {
     """
     ua_resetMyName(name: String!): Void
     "重置我的密码"
-    ua_resetMyPassword(newPassword: String!, password: String!): Void
-    "强制修改"
+    ua_resetMyPassword(newPassword: String!, password: String!): String
+    "强制修改(重置雇员的密码)"
     ua_resetPasswordModify(id: String!, modify: Boolean!): Void
     "角色重置所属分类"
     ua_resetRoleCategory(categoryId: String!, roleId: String!): Void
@@ -839,6 +884,22 @@ type Mutation {
     ua_undefineRoleCategory(categoryId: String!): Void
 }
 
+"客体"
+type Objects {
+    "所属域"
+    domain: String!
+    "实例标示符"
+    instance: String!
+    "名称"
+    name: String!
+    "所属资源"
+    resource: String!
+}
+
+type Parameters {
+    param: String
+}
+
 "查询"
 type Query {
     "根据页面路径和子系统菜单编号获取对应的菜单(侧边栏和上下为菜单)"
@@ -858,12 +919,22 @@ type Query {
     ibms_alarm_getMisinformationByContent(alarmLevel: String, beginStamptime: String!, content: String, deviceCategory: String, endStamptime: String!, pageIndex: Int!, pageSize: Int!): IBMS_Page_Checked!
     "获取所有建筑分类"
     ibms_getArchitectureCategories(exp: String): [IBMS_Architecture_Category]!
-    "获取所有功能区分类"
+    """
+
+    获取所有功能区分类小类
+    exp: （name:名称    type: 功能区类型 INDOOR:封闭式    OPEN:开放式）
+    """
     ibms_getFunCategories(exp: String): [IBMS_FunctionalArea_Category]!
+    "根据功能区大类获取功能区小类   \tid：功能区大类id"
+    ibms_getFunctionalAreaCategoryByBuildingCategory(id: String): [IBMS_FunctionalArea_Category]!
     "根据编号查询区域"
     ibms_region_findById(regionId: String): IBMS_IRegion!
     "所有园区"
     ibms_region_getParks(exp: String): [IBMS_Park]!
+    "根据流水号获取日志事件"
+    logEvent_getLogEventById(id: String!): LogEvent
+    "分页查询所有日志事件"
+    logEvent_getlogEvents(endTime: String, pageIndex: Int!, pageSize: Int!, startTime: String): pageModel!
     "当前用户"
     ua_currentUser: UA_CurrentUser!
     "根据编号查找特定用户"
@@ -923,8 +994,20 @@ type Query {
     ua_getonlineAccountPaging(exp: String, name: String, pageIndex: Int!, pageSize: Int!, sorting: String): [UA_OnlineAccount]!
 }
 
+"主体"
+type Subject {
+    "应用程序域"
+    domain: String!
+    "标识符"
+    identifier: String!
+    "名称"
+    name: String!
+}
+
 "订阅"
-type Subscription
+type Subscription {
+    subscription: String!
+}
 
 "账号"
 type UA_Account implements UA_IAccount {
@@ -943,6 +1026,8 @@ type UA_AccountRoles {
     description: String
     "权限"
     permissionName: [UA_RolePermNames]
+    "角色分类Id"
+    roleCategoryId: String
     "角色分类名称"
     roleCategoryName: String
     "角色编号"
@@ -972,7 +1057,7 @@ type UA_ActionalResource {
 }
 
 "联系方式"
-type UA_Contact {
+type UA_Contact implements UA_IContact {
     "分类"
     category: String!
     "内容"
@@ -1041,18 +1126,19 @@ type UA_OnlineEmployee {
 }
 
 "运营组织的部门"
-type UA_OperationsDepartment {
+type UA_OperationsDepartment implements UA_IDepartment {
     "部门下的雇员数量"
     employeeCount(exp: String): Int!
     """
 
-    分页显示部门雇员
-    employeesPaging(exp: String,screah: String, sorting:String, pageNum: Int!, pageSize: Int!): [UA_OperationsEmployee]
     screah:电话或者姓名    sorting:通过"姓名","姓名拼音"和"入职日期"进行排序    pageNum:页码    pageSize:每页记录数
+    分页显示部门雇员
     """
-    employeePaging(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_OperationsEmployee]
+    employeePaging(pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_IEmployee]
     "部门雇员"
-    employees(exp: String): [UA_OperationsEmployee]
+    employees(exp: String): [UA_IEmployee]
+    "分页显示部门雇员"
+    employeesPaging(exp: String, pageNum: Int!, pageSize: Int!, screah: String, sorting: String): [UA_IEmployee]
     "全称"
     name: String!
     "所属组织机构"
@@ -1060,15 +1146,15 @@ type UA_OperationsDepartment {
     "直属下级部门数量"
     subordinateCount: Int!
     "直属下级部门"
-    subordinates: [UA_OperationsDepartment]!
+    subordinates: [UA_IDepartment]!
     "上级部门"
-    superior: UA_OperationsDepartment
+    superior: UA_IDepartment
     "父级id"
     superiorId: String
 }
 
 "运营组织的雇员"
-type UA_OperationsEmployee {
+type UA_OperationsEmployee implements UA_IEmployee {
     "持有的账号"
     account: UA_PersonalAccount
     "联系方式"
@@ -1098,11 +1184,11 @@ type UA_OperationsEmployee {
 }
 
 "运营组织"
-type UA_OperationsOrganization {
+type UA_OperationsOrganization implements UA_IOrganization {
     "部门数量,exp:表达式"
     departmentCount(exp: String): Int!
     "部门, exp:表达式"
-    departments(exp: String): [UA_OperationsDepartment]!
+    departments(exp: String): [UA_IDepartment]!
     "离职雇员数量"
     dismissionEmployeeCount: String
     "离职雇员    screah:电话或者姓名    sorting:通过\"姓名\",\"姓名拼音\"和\"入职日期\"进行排序    pageNum:页码    pageSize:每页记录数"
@@ -1279,7 +1365,7 @@ type UA_UEmployee {
 }
 
 type UA_UIAccount implements UA_IAccount {
-    "部门名称"
+    "部门名称【待删除问候】"
     departmentName: String
     "显示名称"
     displayName: String!
@@ -1289,6 +1375,11 @@ type UA_UIAccount implements UA_IAccount {
     id: String!
     "持有的登录令牌,exp表达式"
     loginTokens(exp: String): [UA_LoginToken]!
+}
+
+type pageModel {
+    data: [LogEvent]!
+    total: Int!
 }
 
 "信息级别"
@@ -1326,3 +1417,7 @@ enum Void {
     "无意义的返回值"
     TRUE
 }
+
+
+"A file part in a multipart request"
+scalar Upload

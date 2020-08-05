@@ -1,8 +1,8 @@
 /**
  * Project: WebProTpl
- * Author：12278
- * Email：2726893248@qq.com
- * CreateDate：2019-01-01 00:00:00
+ * Author: 12278
+ * Email: 2726893248@qq.com
+ * CreateDate: 2019-01-01 00:00:00
  * IDE: WebStorm
  */
 
@@ -43,20 +43,16 @@ async function Interceptor4Get( server, request, response ){
 
         StaticResources( server, request, response );
     }
-    else{
-        if( URL4RegExp1( 'WebPro', decodeURI( pathNameStr ) ) ){
-            const { WebPro } = await import('../controllers/WebPro.esm.mjs');
+    else if( URL4RegExp1( 'WebPro', decodeURI( pathNameStr ) ) ){
+        const { WebPro } = await import('../controllers/WebPro.esm.mjs');
 
-            WebPro( server, request, response );
-        }
-        else{
-            if( pathNameStr in routers4Get_objC ){
-                import(routers4Get_objC[ pathNameStr ]).then( ( { default: defaultObj, } ) => void ( defaultObj( server, request, response ) ) );
-            }
-            else{
-                new InterceptorError( server, request, response ).http404();
-            }
-        }
+        WebPro( server, request, response );
+    }
+    else if( pathNameStr in routers4Get_objC ){
+        import(routers4Get_objC[ pathNameStr ]).then( ( { default: defaultObj, } ) => void ( defaultObj( server, request, response ) ) );
+    }
+    else{
+        new InterceptorError( server, request, response ).http404();
     }
 }
 

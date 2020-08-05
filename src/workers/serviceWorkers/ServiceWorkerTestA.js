@@ -1,8 +1,8 @@
 /**
  * Project: WebProTpl
- * Author：12278
- * Email：2726893248@qq.com
- * CreateDate：2019-01-01 00:00:00
+ * Author: 12278
+ * Email: 2726893248@qq.com
+ * CreateDate: 2019-01-01 00:00:00
  * IDE: WebStorm
  */
 
@@ -59,17 +59,13 @@ function GetAllAssets(){
                                                        .includes( 'String' ) ){
                                                  CTAllAssets.push( item );
                                              }
-                                             else{
-                                                 if( Array.isArray( item ) ){
-                                                     CTAllAssets.push( ...item );
-                                                 }
-                                                 else{
-                                                     if( Object.prototype.toString.call( item )
-                                                               .includes( 'Object' ) ){
-                                                         CTAllAssets.push( ...( Object.values( item )
-                                                                                      .flat( Infinity ) ) );
-                                                     }
-                                                 }
+                                             else if( Array.isArray( item ) ){
+                                                 CTAllAssets.push( ...item );
+                                             }
+                                             else if( Object.prototype.toString.call( item )
+                                                            .includes( 'Object' ) ){
+                                                 CTAllAssets.push( ...( Object.values( item )
+                                                                              .flat( Infinity ) ) );
                                              }
                                          } );
 
