@@ -168,7 +168,7 @@ let fs = require( 'fs' ),
         // preserve: 在不更改JSX的情况下发出.jsx文件
         // react: 使用JSX发出.js文件已更改为等效的React.createElement调用
         // react-native: 在JSX不变的情况下发出.js文件
-        'jsx': 'preserve',
+        'jsx': 'react',
         // 为项目中的每个TypeScript或JavaScript文件生成.d.ts文件。这些.d.ts文件是描述模块外部API的类型定义文件。
         // 对于.d.ts文件，TypeScript之类的工具可以为未键入的代码提供智能感知和准确的类型。
         // PS: 在为JavaScript文件使用“.d.ts”文件时，可能需要使用“emitDeclarationOnly”或“outDir”来确保JavaScript文件不会被覆盖。
@@ -215,8 +215,6 @@ let fs = require( 'fs' ),
 
         // Module Resolution Start
 
-        // 不推荐使用，允许值：node(Node.js)、classic(TypeScript pre-1.6)
-        // 'moduleResolution': 'node',
         'baseUrl': './',
         // 就跟Webpack里的resolve.alias一样
         'paths': {
@@ -572,10 +570,6 @@ let fs = require( 'fs' ),
         // 您可以使用此标志来发现TypeScript在编译时花费的时间。这是一个用于了解代码库整体性能特征的工具。
         'extendedDiagnostics': true,
         // 属于“有助于调试的标志”！！！
-        // 此选项使您有机会让TypeScript在编译器运行期间发出v8 CPU配置文件。CPU配置文件可以提供对构建可能缓慢的原因的洞察。
-        // 可以在基于Chromium的浏览器（如Chrome浏览器或Edge Profiler）中的Chrome或Edge Developer中打开此文件。
-        'generateCpuProfile': './test/profile.cpuprofile',
-        // 属于“有助于调试的标志”！！！
         // 启用此选项后，TypeScript将避免重新检查/重新生成所有真正可能受影响的文件，并且只重新检查/重新生成已更改的文件以及直接导入它们的文件。
         // 这可以被认为是监视算法的“快速和松散”实现，它可以大大减少增量重建时间，但代价是必须偶尔运行完整的构建以获取所有编译器错误消息。
         'assumeChangesOnlyAffectDirectDependencies': true,
@@ -591,10 +585,13 @@ let fs = require( 'fs' ),
         // preserve 保留所有从不使用值或类型的导入语句。这可能导致保留导入/副作用。
         // error 这将保留所有导入（与preserve选项相同），但当值导入仅用作类型时将出错。如果希望确保没有意外导入值，但仍使副作用导入显式化，则这可能很有用。
         // 优先设置成“remove”，但是fork-ts-checker-webpack-plugin插件建议设置成“preserve”，如果TypeScript >= 2.8.0的话！！！
-        'importsNotUsedAsValues': 'preserve',
+        'importsNotUsedAsValues': 'remove',
         // 属于“有助于调试的标志”！！！
         // 编译JSX Elements时，更改.js文件中调用的函数。最常见的更改是使用“ h”或“ preact.h”，而不是默认的“ React.createElement”（如果使用preact）。
+        // 该属性不能和“reactNamespace”一起使用！
         'jsxFactory': 'React.createElement',
+        // 说是识别不到这个编译选项，因为TS 4.0才开始启动的
+        'jsxFragmentFactory': 'React.Fragment',
         // 属于“有助于调试的标志”！！！
         // 允许导入扩展名为“ .json”的模块，这是节点项目中的常见做法。这包括基于静态JSON形状为导入生成类型。
         'resolveJsonModule': true,
@@ -653,7 +650,7 @@ let fs = require( 'fs' ),
         // 在节点模块下搜索和加载JavaScript文件的最大依赖深度。
         // 此标志只能在启用allowJs时使用，如果要在节点模块中为所有JavaScript设置TypeScript推断类型，则使用此标志。
         // 理想情况下，该值应保持在0（默认值），并且应使用d.ts文件显式定义模块的形状。但是，在某些情况下，您可能希望以牺牲速度和潜在准确性为代价来启用此功能。
-        'maxNodeModuleJsDepth': 10000,
+        'maxNodeModuleJsDepth': 0,
         // 比较两个通用函数时，TypeScript将统一类型参数。
         'noStrictGenericChecks': false,
         // 此标志用作迁移到即将到来的类字段标准版本的一部分。TypeScript在TC39中被认可之前引入了类字段很多年。
@@ -676,18 +673,17 @@ let fs = require( 'fs' ),
 
         // 这些只存在于命令行的启动命令参数中(命令参数的使用，如：tsc --project ./tsconfig.json src/*.ts) Start
 
-        // --locale
-        'locale': 'zh-CN',
-        // --project、-p
-        'project': './tsconfig.json',
-        // --showConfig
-        'showConfig': false,
         // --watch、-w
         'watch': true,
-        // 这个参数没在“Compiler Options”中找到！！！奇怪了！！！当初哪里看到的呢！！！
-        // 'onlyRemoveTypeImports': true
 
         // 这些只存在于命令行的启动命令参数中 End
+
+        'listFilesOnly': false,
+        'moduleResolution': 'node',
+        'outDir': './test/',
+        'rootDir': './',
+        // 该属性不能和“jsxFactory”一起使用！
+        // 'reactNamespace': 'React',
     },
     // TerserPlugin = require( 'terser-webpack-plugin' ),
     browsers_arr = [
@@ -4821,6 +4817,7 @@ let fs = require( 'fs' ),
         issue: {
             include: undefined,
             exclude: undefined,
+            // 'all' or 'webpack'，定义要报告的问题范围。如果为“ webpack”，则仅报告与webpack编译相关的错误。否则报告所有错误（例如tsc和eslint命令）。
             scope: 'all',
         },
         // formatter: {},
@@ -4829,7 +4826,8 @@ let fs = require( 'fs' ),
             // 基础设施
             infrastructure: 'silent',
             // 问题
-            issues: 'console',
+            issues: 'silent',
+            devServer: true,
         },
     },
     ForkTsCheckerNotifierWebpackPlugin_obj = {
