@@ -4826,7 +4826,7 @@ let fs = require( 'fs' ),
             // 基础设施
             infrastructure: 'silent',
             // 问题
-            issues: 'silent',
+            issues: 'console',
             devServer: true,
         },
     },
