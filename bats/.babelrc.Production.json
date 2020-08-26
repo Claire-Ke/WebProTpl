@@ -14,11 +14,11 @@
                         "Edge >= 84",
                         "Opera >= 70",
                         "OperaMobile >= 70",
-                        "Chrome >= 84",
-                        "Android >= 84",
-                        "ChromeAndroid >= 84",
-                        "Firefox >= 79",
-                        "FirefoxAndroid >= 79"
+                        "Chrome >= 85",
+                        "Android >= 85",
+                        "ChromeAndroid >= 85",
+                        "Firefox >= 80",
+                        "FirefoxAndroid >= 80"
                     ]
                 }
             }
