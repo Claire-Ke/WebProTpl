@@ -63,10 +63,8 @@ function CAnimationFFun( id_num ){
     if( globalThis.cancelAnimationFrame ){
         return globalThis.cancelAnimationFrame( id_num );
     }
-    else{
-        if( globalThis.webkitCancelAnimationFrame ){
-            return globalThis.webkitCancelAnimationFrame( id_num );
-        }
+    else if( globalThis.webkitCancelAnimationFrame ){
+        return globalThis.webkitCancelAnimationFrame( id_num );
     }
     return globalThis.clearTimeout( id_num );
 }
@@ -212,26 +210,22 @@ function Init( _this, isSupportBrowser ){
                     if( t1 === t2 ){
                         result = n1 + n2;
                     }
+                    else if( t1 > t2 ){
+                        result = n1 + n2 * ( t1 / t2 );
+                    }
                     else{
-                        if( t1 > t2 ){
-                            result = n1 + n2 * ( t1 / t2 );
-                        }
-                        else{
-                            result = n1 * ( t2 / t1 ) + n2;
-                        }
+                        result = n1 * ( t2 / t1 ) + n2;
                     }
                     return result / max;
                 case 'subtract':
                     if( t1 === t2 ){
                         result = n1 - n2;
                     }
+                    else if( t1 > t2 ){
+                        result = n1 - n2 * ( t1 / t2 );
+                    }
                     else{
-                        if( t1 > t2 ){
-                            result = n1 - n2 * ( t1 / t2 );
-                        }
-                        else{
-                            result = n1 * ( t2 / t1 ) - n2;
-                        }
+                        result = n1 * ( t2 / t1 ) - n2;
                     }
                     return result / max;
                 case 'multiply':
@@ -262,11 +256,9 @@ function Init( _this, isSupportBrowser ){
                     return operation( a, b, digits, 'add' )
                         .ctoToFixed( digits );
                 }
-                else{
-                    if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
-                        return operation( this, a, b, 'add' )
-                            .ctoToFixed( b );
-                    }
+                else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
+                    return operation( this, a, b, 'add' )
+                        .ctoToFixed( b );
                 }
             },
             /**
@@ -289,11 +281,9 @@ function Init( _this, isSupportBrowser ){
                     return operation( a, b, digits, 'subtract' )
                         .ctoToFixed( digits );
                 }
-                else{
-                    if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
-                        return operation( this, a, b, 'subtract' )
-                            .ctoToFixed( b );
-                    }
+                else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
+                    return operation( this, a, b, 'subtract' )
+                        .ctoToFixed( b );
                 }
             },
             /**
@@ -316,11 +306,9 @@ function Init( _this, isSupportBrowser ){
                     return operation( a, b, digits, 'multiply' )
                         .ctoToFixed( digits );
                 }
-                else{
-                    if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
-                        return operation( this, a, b, 'multiply' )
-                            .ctoToFixed( b );
-                    }
+                else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
+                    return operation( this, a, b, 'multiply' )
+                        .ctoToFixed( b );
                 }
             },
             /**
@@ -343,11 +331,9 @@ function Init( _this, isSupportBrowser ){
                     return operation( a, b, digits, 'divide' )
                         .ctoToFixed( digits );
                 }
-                else{
-                    if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
-                        return operation( this, a, b, 'divide' )
-                            .ctoToFixed( b );
-                    }
+                else if( ( typeof this === 'number' ) || IsHandle1.call( _this, this, 'Number' ) ){
+                    return operation( this, a, b, 'divide' )
+                        .ctoToFixed( b );
                 }
             },
             obj1 = {
@@ -416,10 +402,8 @@ function IsHandle6( elem, classN, type ){
                 if( currentValue.length !== 0 && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
                     document[ 'documentElement' ][ 'classList' ][ type ]( currentValue );
                 }
-                else{
-                    if( currentValue.length !== 0 && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                        elemO.classList[ type ]( currentValue );
-                    }
+                else if( currentValue.length !== 0 && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                    elemO.classList[ type ]( currentValue );
                 }
             } );
         if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
@@ -436,10 +420,8 @@ function IsHandle7( arg1, f, arg2 ){
         arg1.forEach( currentValue => void ( result.push( f( currentValue ) ) ) );
         return result;
     }
-    else{
-        if( !isA ){
-            return arg2;
-        }
+    else if( !isA ){
+        return arg2;
     }
 }
 
@@ -450,14 +432,12 @@ function IsHandle8( ar1, f, seN, rootE ){
             if( this.isString( seN ) && this.trim( seN ).length !== 0 ){
                 return handle( seN, rootE );
             }
-            else{
-                if( this.isArray( seN ) && seN.length !== 0 ){
-                    let result = [];
-                    this.dataRemRe( seN )
-                        .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue, rootE ) ) ) );
-                    if( result.length !== 0 ){
-                        return result;
-                    }
+            else if( this.isArray( seN ) && seN.length !== 0 ){
+                let result = [];
+                this.dataRemRe( seN )
+                    .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue, rootE ) ) ) );
+                if( result.length !== 0 ){
+                    return result;
                 }
             }
         };
@@ -472,15 +452,11 @@ function IsHandle8( ar1, f, seN, rootE ){
                 return handle1( seN, rootO );
             }
         }
-        else{
-            if( this.isElement( rootP ) ){
-                return handle1( seN, rootP );
-            }
-            else{
-                if( this.isElemList( rootP ) && rootP.length !== 0 ){
-                    return handle1( seN, rootP[ 0 ] );
-                }
-            }
+        else if( this.isElement( rootP ) ){
+            return handle1( seN, rootP );
+        }
+        else if( this.isElemList( rootP ) && rootP.length !== 0 ){
+            return handle1( seN, rootP[ 0 ] );
         }
     }
 }
@@ -490,14 +466,12 @@ function IsHandle9( arg, f ){
     if( this.isString( arg ) && this.trim( arg ).length !== 0 ){
         return handle( arg );
     }
-    else{
-        if( this.isArray( arg ) && arg.length !== 0 ){
-            let result = [];
-            this.dataRemRe( arg )
-                .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue ) ) ) );
-            if( result.length !== 0 ){
-                return result;
-            }
+    else if( this.isArray( arg ) && arg.length !== 0 ){
+        let result = [];
+        this.dataRemRe( arg )
+            .forEach( currentValue => void ( ( this.isString( currentValue ) && this.trim( currentValue ).length !== 0 ) && result.push( handle( currentValue ) ) ) );
+        if( result.length !== 0 ){
+            return result;
         }
     }
 }
@@ -524,29 +498,23 @@ function IsHandle10( elem, fun ){
             if( this.isString( elem ) && this.trim( elem ).length !== 0 ){
                 return handle1( this.gBySeAll( this.trim( elem ) ) );
             }
+            else if( this.isElement( elem ) ){
+                return [ handle( elem ) ];
+            }
+            else if( this.isElemList( elem ) && elem.length !== 0 ){
+                return handle1( elem );
+            }
             else{
-                if( this.isElement( elem ) ){
-                    return [ handle( elem ) ];
-                }
-                else{
-                    if( this.isElemList( elem ) && elem.length !== 0 ){
-                        return handle1( elem );
-                    }
-                    else{
-                        return [ handle( elem ) ];
-                    }
-                }
+                return [ handle( elem ) ];
             }
         };
     if( !this.isArray( elem ) ){
         return handle2( elem );
     }
-    else{
-        if( this.isArray( elem ) && elem.length !== 0 ){
-            let result = [];
-            elem.forEach( currentValue => void ( result.push( handle2( currentValue ) ) ) );
-            return result;
-        }
+    else if( this.isArray( elem ) && elem.length !== 0 ){
+        let result = [];
+        elem.forEach( currentValue => void ( result.push( handle2( currentValue ) ) ) );
+        return result;
     }
 }
 
@@ -588,18 +556,14 @@ function IsHandle13( elem, fun ){
             if( this.isString( arg ) && this.trim( arg ).length !== 0 ){
                 return handle( this.gBySe( this.trim( arg ) ) );
             }
+            else if( this.isElement( arg ) ){
+                return handle( arg );
+            }
+            else if( is && arg.length !== 0 ){
+                return handle( arg[ 0 ] );
+            }
             else{
-                if( this.isElement( arg ) ){
-                    return handle( arg );
-                }
-                else{
-                    if( is && arg.length !== 0 ){
-                        return handle( arg[ 0 ] );
-                    }
-                    else{
-                        return handle( arg );
-                    }
-                }
+                return handle( arg );
             }
         };
     if( this.isArray( elem ) && elem.length !== 0 ){
@@ -697,16 +661,14 @@ function IsHandle14( sT ){
                                             : JSON.stringify( v ) );
                 }
             }
-            else{
-                if( is && !isC ){
-                    for( let key in
-                        jsonO ){
-                        n = this.trim( key );
-                        v = jsonO[ key ];
-                        !isKN( n ) && setD( n, this.isString( v )
-                                               ? v
-                                               : JSON.stringify( v ) );
-                    }
+            else if( is && !isC ){
+                for( let key in
+                    jsonO ){
+                    n = this.trim( key );
+                    v = jsonO[ key ];
+                    !isKN( n ) && setD( n, this.isString( v )
+                                           ? v
+                                           : JSON.stringify( v ) );
                 }
             }
         },
@@ -739,16 +701,14 @@ function IsHandle14( sT ){
                                             : JSON.stringify( v ) );
                 }
             }
-            else{
-                if( is && !isC ){
-                    for( let key in
-                        jsonO ){
-                        n = this.trim( key );
-                        v = jsonO[ key ];
-                        isKN( n ) && setD( n, this.isString( v )
-                                              ? v
-                                              : JSON.stringify( v ) );
-                    }
+            else if( is && !isC ){
+                for( let key in
+                    jsonO ){
+                    n = this.trim( key );
+                    v = jsonO[ key ];
+                    isKN( n ) && setD( n, this.isString( v )
+                                          ? v
+                                          : JSON.stringify( v ) );
                 }
             }
         },
@@ -766,10 +726,8 @@ function IsHandle14( sT ){
             if( isS && !this.isNull( result ) ){
                 return result;
             }
-            else{
-                if( isS && this.isNull( result ) ){
-                    return null;
-                }
+            else if( isS && this.isNull( result ) ){
+                return null;
             }
         },
         /**
@@ -843,30 +801,22 @@ function IsHandle16( elem, data, type, text ){
             if( this.isElement( data ) ){
                 elemO[ type ]( data.cloneNode( true ) );
             }
+            else if( this.isElemList( data ) ){
+                let elemA = Array.from( data );
+                ( type === 'prepend' || type === 'after' ) && elemA.reverse();
+                elemA.forEach( currentValue => void ( elemO[ type ]( currentValue.cloneNode( true ) ) ) );
+            }
+            else if( this.isString( data ) && text ){
+                elemO.insertAdjacentText( where, data );
+            }
+            else if( this.isString( data ) && !text ){
+                elemO.insertAdjacentHTML( where, data );
+            }
+            else if( this.isFunction( data ) ){
+                elemO[ type ]( data.toString() );
+            }
             else{
-                if( this.isElemList( data ) ){
-                    let elemA = Array.from( data );
-                    ( type === 'prepend' || type === 'after' ) && elemA.reverse();
-                    elemA.forEach( currentValue => void ( elemO[ type ]( currentValue.cloneNode( true ) ) ) );
-                }
-                else{
-                    if( this.isString( data ) && text ){
-                        elemO.insertAdjacentText( where, data );
-                    }
-                    else{
-                        if( this.isString( data ) && !text ){
-                            elemO.insertAdjacentHTML( where, data );
-                        }
-                        else{
-                            if( this.isFunction( data ) ){
-                                elemO[ type ]( data.toString() );
-                            }
-                            else{
-                                elemO[ type ]( JSON.stringify( data ) );
-                            }
-                        }
-                    }
-                }
+                elemO[ type ]( JSON.stringify( data ) );
             }
         };
         this.isArray( data )
@@ -897,11 +847,9 @@ function IsHandle18( newURLStr, searchObj, stateData, type ){
     if( l1 === 1 && arr1[ 0 ] === '#' ){
         str1 = '#' + searchObj[ '#' ];
     }
-    else{
-        if( l1 >= 1 ){
-            str1 = '?';
-            arr1.forEach( ( c, i, a ) => void ( str1 += c + '=' + searchObj[ c ], i !== ( a.length - 1 ) && ( str1 += str2 ) ) );
-        }
+    else if( l1 >= 1 ){
+        str1 = '?';
+        arr1.forEach( ( c, i, a ) => void ( str1 += c + '=' + searchObj[ c ], i !== ( a.length - 1 ) && ( str1 += str2 ) ) );
     }
     globalThis.history[ type ]( stateData, '', newURLStr + str1 );
     return newURLStr + str1;
@@ -1004,10 +952,8 @@ function RAnimationFFun( callback_fun ){
     if( globalThis.requestAnimationFrame ){
         return globalThis.requestAnimationFrame( callback_fun );
     }
-    else{
-        if( globalThis.webkitRequestAnimationFrame ){
-            return globalThis.webkitRequestAnimationFrame( callback_fun );
-        }
+    else if( globalThis.webkitRequestAnimationFrame ){
+        return globalThis.webkitRequestAnimationFrame( callback_fun );
     }
     return globalThis.setTimeout( callback_fun, 1000 / 60 );
 }
@@ -1260,34 +1206,32 @@ class CopyAPI {
         if( this.isUndefined( clip_objC ) ){
             GetError( '不支持“navigator.clipboard”！' );
         }
+        else if( this.isUndefined( clip_objC.readText ) ){
+            GetError( '不支持“navigator.clipboard.readText”！' );
+        }
         else{
-            if( this.isUndefined( clip_objC.readText ) ){
-                GetError( '不支持“navigator.clipboard.readText”！' );
-            }
-            else{
-                const readText = () => clip_objC.readText()
-                                                .then( text => void ( fun( text ) ) );
+            const readText = () => clip_objC.readText()
+                                            .then( text => void ( fun( text ) ) );
 
-                this.permissionsQuery( {
-                    name: 'clipboard-read',
-                }, Object.assign( {}, {
-                    denied(){
-                        GetError( '拒绝授权' );
-                    },
-                    stateChange( _this ){
-                    },
-                    error( e ){
-                        GetError( e.message );
-                    },
-                }, events, {
-                    prompt(){
-                        readText();
-                    },
-                    granted(){
-                        readText();
-                    },
-                } ) );
-            }
+            this.permissionsQuery( {
+                name: 'clipboard-read',
+            }, Object.assign( {}, {
+                denied(){
+                    GetError( '拒绝授权' );
+                },
+                stateChange( _this ){
+                },
+                error( e ){
+                    GetError( e.message );
+                },
+            }, events, {
+                prompt(){
+                    readText();
+                },
+                granted(){
+                    readText();
+                },
+            } ) );
         }
     }
 
@@ -1324,38 +1268,36 @@ class CopyAPI {
         if( this.isUndefined( clip_objC ) ){
             GetError( '不支持“navigator.clipboard”！' );
         }
+        else if( this.isUndefined( clip_objC.read ) ){
+            GetError( '不支持“navigator.clipboard.read”！' );
+        }
         else{
-            if( this.isUndefined( clip_objC.read ) ){
-                GetError( '不支持“navigator.clipboard.read”！' );
-            }
-            else{
-                const events_objC = Object.assign( {}, {
-                        denied(){
-                            GetError( '拒绝授权' );
-                        },
-                        stateChange( _this ){
-                        },
-                        error( e ){
-                            GetError( e.message );
-                        },
-                    }, events, {
-                        prompt(){
-                            read();
-                        },
-                        granted(){
-                            read();
-                        },
-                    } ),
-                    read = () => clip_objC.read()
-                                          .then( data => void ( data.forEach( c => void ( c.getType( c.types[ 0 ] )
-                                                                                           .then( data4Blob => void ( fun( data4Blob, c.types[ 0 ] ) ) )
-                                                                                           .catch( events_objC.error ) ) ) ) )
-                                          .catch( events_objC.error );
+            const events_objC = Object.assign( {}, {
+                    denied(){
+                        GetError( '拒绝授权' );
+                    },
+                    stateChange( _this ){
+                    },
+                    error( e ){
+                        GetError( e.message );
+                    },
+                }, events, {
+                    prompt(){
+                        read();
+                    },
+                    granted(){
+                        read();
+                    },
+                } ),
+                read = () => clip_objC.read()
+                                      .then( data => void ( data.forEach( c => void ( c.getType( c.types[ 0 ] )
+                                                                                       .then( data4Blob => void ( fun( data4Blob, c.types[ 0 ] ) ) )
+                                                                                       .catch( events_objC.error ) ) ) ) )
+                                      .catch( events_objC.error );
 
-                this.permissionsQuery( {
-                    name: 'clipboard-read',
-                }, events_objC );
-            }
+            this.permissionsQuery( {
+                name: 'clipboard-read',
+            }, events_objC );
         }
     }
 
@@ -1384,40 +1326,38 @@ class CopyAPI {
         if( this.isUndefined( clip_objC ) ){
             GetError( '不支持“navigator.clipboard”！' );
         }
+        else if( this.isUndefined( clip_objC.writeText ) ){
+            GetError( '不支持“navigator.clipboard.writeText”！' );
+        }
         else{
-            if( this.isUndefined( clip_objC.writeText ) ){
-                GetError( '不支持“navigator.clipboard.writeText”！' );
-            }
-            else{
-                const events_objC = Object.assign( {}, {
-                        success(){
-                        },
-                        fail(){
-                            GetError( '写入失败' );
-                        },
-                        denied(){
-                            GetError( '拒绝授权' );
-                        },
-                        stateChange( _this ){
-                        },
-                        error( e ){
-                            GetError( e.message );
-                        },
-                    }, events, {
-                        prompt(){
-                            writeText();
-                        },
-                        granted(){
-                            writeText();
-                        },
-                    } ),
-                    writeText = () => clip_objC.writeText( str )
-                                               .then( events_objC.success, events_objC.fail );
+            const events_objC = Object.assign( {}, {
+                    success(){
+                    },
+                    fail(){
+                        GetError( '写入失败' );
+                    },
+                    denied(){
+                        GetError( '拒绝授权' );
+                    },
+                    stateChange( _this ){
+                    },
+                    error( e ){
+                        GetError( e.message );
+                    },
+                }, events, {
+                    prompt(){
+                        writeText();
+                    },
+                    granted(){
+                        writeText();
+                    },
+                } ),
+                writeText = () => clip_objC.writeText( str )
+                                           .then( events_objC.success, events_objC.fail );
 
-                this.permissionsQuery( {
-                    name: 'clipboard-write',
-                }, events_objC );
-            }
+            this.permissionsQuery( {
+                name: 'clipboard-write',
+            }, events_objC );
         }
     }
 
@@ -1451,40 +1391,38 @@ class CopyAPI {
         if( this.isUndefined( clip_objC ) ){
             GetError( '不支持“navigator.clipboard”！' );
         }
+        else if( this.isUndefined( clip_objC.write ) ){
+            GetError( '不支持“navigator.clipboard.write”！' );
+        }
         else{
-            if( this.isUndefined( clip_objC.write ) ){
-                GetError( '不支持“navigator.clipboard.write”！' );
-            }
-            else{
-                const events_objC = Object.assign( {}, {
-                        success(){
-                        },
-                        fail(){
-                            GetError( '写入失败' );
-                        },
-                        denied(){
-                            GetError( '拒绝授权' );
-                        },
-                        stateChange( _this ){
-                        },
-                        error( e ){
-                            GetError( e.message );
-                        },
-                    }, events, {
-                        prompt(){
-                            write();
-                        },
-                        granted(){
-                            write();
-                        },
-                    } ),
-                    write = () => clip_objC.write( data )
-                                           .then( events_objC.success, events_objC.fail );
+            const events_objC = Object.assign( {}, {
+                    success(){
+                    },
+                    fail(){
+                        GetError( '写入失败' );
+                    },
+                    denied(){
+                        GetError( '拒绝授权' );
+                    },
+                    stateChange( _this ){
+                    },
+                    error( e ){
+                        GetError( e.message );
+                    },
+                }, events, {
+                    prompt(){
+                        write();
+                    },
+                    granted(){
+                        write();
+                    },
+                } ),
+                write = () => clip_objC.write( data )
+                                       .then( events_objC.success, events_objC.fail );
 
-                this.permissionsQuery( {
-                    name: 'clipboard-write',
-                }, events_objC );
-            }
+            this.permissionsQuery( {
+                name: 'clipboard-write',
+            }, events_objC );
         }
     }
 
@@ -2148,14 +2086,12 @@ class FunHandle {
                     resolve( result );
                 }
                 // 如果条件不满足，但是没有超时，就等待“interval”毫秒后再继续检查一遍
+                else if( Number( new Date() ) <= endTime ){
+                    setTimeout( checkCondition, interval, resolve, reject );
+                }
+                // 如果条件不满足，且超时
                 else{
-                    if( Number( new Date() ) <= endTime ){
-                        setTimeout( checkCondition, interval, resolve, reject );
-                    }
-                    // 如果条件不满足，且超时
-                    else{
-                        reject( 'timed out for call function!!!' );
-                    }
+                    reject( 'timed out for call function!!!' );
                 }
             };
 
@@ -2215,11 +2151,9 @@ class FunHandle {
             GetError( str1 + 'howClear' + str2 );
             return;
         }
-        else{
-            if( !( this.isBoolean( paraObj.howStart ) | this.isFunction( paraObj.howStart ) ) ){
-                GetError( str1 + 'howStart' + str2 );
-                return;
-            }
+        else if( !( this.isBoolean( paraObj.howStart ) | this.isFunction( paraObj.howStart ) ) ){
+            GetError( str1 + 'howStart' + str2 );
+            return;
         }
         this.isBoolean( paraObj.howClear ) && ( howClear = () => paraObj.howClear );
         this.isBoolean( paraObj.howStart ) && ( howStart = () => paraObj.howStart );
@@ -2230,15 +2164,13 @@ class FunHandle {
                 // 什么时候取消并清除掉定时器
                 clearInterval( timer );
             }
+            else if( howStart( funDataObj, clearDataObj, startDataObj, otherDataObj ) ){
+                // 什么时候执行指定的函数
+                paraObj.fun( funDataObj, clearDataObj, startDataObj, otherDataObj );
+            }
             else{
-                if( howStart( funDataObj, clearDataObj, startDataObj, otherDataObj ) ){
-                    // 什么时候执行指定的函数
-                    paraObj.fun( funDataObj, clearDataObj, startDataObj, otherDataObj );
-                }
-                else{
-                    // 当不需要执行fun函数但又不需要取消并清除掉定时器时，执行的备选函数
-                    paraObj.otherFun( funDataObj, clearDataObj, startDataObj, otherDataObj );
-                }
+                // 当不需要执行fun函数但又不需要取消并清除掉定时器时，执行的备选函数
+                paraObj.otherFun( funDataObj, clearDataObj, startDataObj, otherDataObj );
             }
         }, time );
     }
@@ -2716,18 +2648,14 @@ class IsDataType {
         if( this.isString( arg ) || this.isArray( arg ) ){
             return arg.length === 0;
         }
+        else if( this.isObject( arg ) ){
+            return Object.keys( arg ).length === 0;
+        }
+        else if( this.isFormData( arg ) ){
+            return Array.from( arg.keys() ).length === 0;
+        }
         else{
-            if( this.isObject( arg ) ){
-                return Object.keys( arg ).length === 0;
-            }
-            else{
-                if( this.isFormData( arg ) ){
-                    return Array.from( arg.keys() ).length === 0;
-                }
-                else{
-                    return false;
-                }
-            }
+            return false;
         }
     }
 
@@ -3676,52 +3604,40 @@ class JS2Ajax {
                             .then( arrayBuffer => pra1_obj.success( arrayBuffer, response.clone() ) )
                             .catch( pra1_obj.rejected );
                 }
-                else{
-                    if( isSuccess && responseType_str === 'blob' ){
-                        // blob() // Blob
-                        response.clone()
-                                .blob()
-                                .then( blob => pra1_obj.success( blob, response.clone() ) )
-                                .catch( pra1_obj.rejected );
-                    }
-                    else{
-                        if( isSuccess && responseType_str === 'formData' ){
-                            // formData() // FormData
-                            response.clone()
-                                    .formData()
-                                    .then( formData => pra1_obj.success( formData, response.clone() ) )
-                                    .catch( pra1_obj.rejected );
-                        }
-                        else{
-                            if( isSuccess && responseType_str === 'json' ){
-                                // json() // JSON
-                                response.clone()
-                                        .json()
-                                        .then( json => pra1_obj.success( json, response.clone() ) )
-                                        .catch( pra1_obj.rejected );
-                            }
-                            else{
-                                if( isSuccess && responseType_str === 'text' ){
-                                    // text() // string
-                                    response.clone()
-                                            .text()
-                                            .then( text => pra1_obj.success( text, response.clone() ) )
-                                            .catch( pra1_obj.rejected );
-                                }
-                                else{
-                                    if( isSuccess && !responseType_str ){
-                                        let responseClone = response.clone();
-                                        pra1_obj.success( responseClone, responseClone );
-                                    }
-                                    else{
-                                        if( !isSuccess ){
-                                            pra1_obj.error( response.status, response.clone() );
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                else if( isSuccess && responseType_str === 'blob' ){
+                    // blob() // Blob
+                    response.clone()
+                            .blob()
+                            .then( blob => pra1_obj.success( blob, response.clone() ) )
+                            .catch( pra1_obj.rejected );
+                }
+                else if( isSuccess && responseType_str === 'formData' ){
+                    // formData() // FormData
+                    response.clone()
+                            .formData()
+                            .then( formData => pra1_obj.success( formData, response.clone() ) )
+                            .catch( pra1_obj.rejected );
+                }
+                else if( isSuccess && responseType_str === 'json' ){
+                    // json() // JSON
+                    response.clone()
+                            .json()
+                            .then( json => pra1_obj.success( json, response.clone() ) )
+                            .catch( pra1_obj.rejected );
+                }
+                else if( isSuccess && responseType_str === 'text' ){
+                    // text() // string
+                    response.clone()
+                            .text()
+                            .then( text => pra1_obj.success( text, response.clone() ) )
+                            .catch( pra1_obj.rejected );
+                }
+                else if( isSuccess && !responseType_str ){
+                    let responseClone = response.clone();
+                    pra1_obj.success( responseClone, responseClone );
+                }
+                else if( !isSuccess ){
+                    pra1_obj.error( response.status, response.clone() );
                 }
                 return response.clone();
             } )
@@ -4853,30 +4769,24 @@ class JS2jQuery {
                     console.warn( 'data函数--->ctoElemDataStoragew未定义' );
                     return undefined;
                 }
-                else{
-                    if( this.remSpace( dataO ) in storage ){
-                        return storage[ this.remSpace( dataO ) ];
-                    }
-                    else{
-                        if( !( this.remSpace( dataO ) in storage ) ){
-                            console.warn( 'data函数--->' + this.remSpace( dataO ) + '不在ctoElemDataStoragew中定义！' );
-                            return null;
-                        }
-                    }
+                else if( this.remSpace( dataO ) in storage ){
+                    return storage[ this.remSpace( dataO ) ];
+                }
+                else if( !( this.remSpace( dataO ) in storage ) ){
+                    console.warn( 'data函数--->' + this.remSpace( dataO ) + '不在ctoElemDataStoragew中定义！' );
+                    return null;
                 }
             } );
         }
-        else{
-            if( this.isObject( dataO ) ){
-                return IsHandle10.call( this, elem, elemO => {
-                    !( 'ctoElemDataStorage' in elemO ) && ( elemO[ 'ctoElemDataStorage' ] = {} );
-                    for( let key in
-                        dataO ){
-                        elemO[ 'ctoElemDataStorage' ][ this.remSpace( key ) ] = dataO[ key ];
-                    }
-                    return elemO;
-                } );
-            }
+        else if( this.isObject( dataO ) ){
+            return IsHandle10.call( this, elem, elemO => {
+                !( 'ctoElemDataStorage' in elemO ) && ( elemO[ 'ctoElemDataStorage' ] = {} );
+                for( let key in
+                    dataO ){
+                    elemO[ 'ctoElemDataStorage' ][ this.remSpace( key ) ] = dataO[ key ];
+                }
+                return elemO;
+            } );
         }
     }
 
@@ -5010,33 +4920,31 @@ class JS2jQuery {
                     },
                 } );
             }
-            else{
-                if( this.gStyle( elemO, 'display' ) !== 'none' && this.gAttr( elemO, 'fadeTo' )[ 0 ] === 'fadeTo' && this.pFloat( this.gAttr( elemO, 'data-opacity' )[ 0 ] ) !== 1 ){
-                    this.animate( elemO, {
-                        opacity: argObj.opacity,
-                    }, {
-                        duration: argObj.time,
-                        easing: argObj.easing,
-                        complete: elementArr => {
-                            this.sAttr( elemO, {
-                                style: '',
-                                fadeShow: 'fadeShow',
-                            } );
-                            this.rAttr( elementArr[ 0 ], [
-                                'fadeHide',
-                                'fadeTo',
-                                'fadeToggle',
-                                'hide',
-                                'show',
-                                'toggle',
-                                'slideHide',
-                                'slideShow',
-                                'slideToggle',
-                            ] );
-                            argObj.fun( elementArr[ 0 ] );
-                        },
-                    } );
-                }
+            else if( this.gStyle( elemO, 'display' ) !== 'none' && this.gAttr( elemO, 'fadeTo' )[ 0 ] === 'fadeTo' && this.pFloat( this.gAttr( elemO, 'data-opacity' )[ 0 ] ) !== 1 ){
+                this.animate( elemO, {
+                    opacity: argObj.opacity,
+                }, {
+                    duration: argObj.time,
+                    easing: argObj.easing,
+                    complete: elementArr => {
+                        this.sAttr( elemO, {
+                            style: '',
+                            fadeShow: 'fadeShow',
+                        } );
+                        this.rAttr( elementArr[ 0 ], [
+                            'fadeHide',
+                            'fadeTo',
+                            'fadeToggle',
+                            'hide',
+                            'show',
+                            'toggle',
+                            'slideHide',
+                            'slideShow',
+                            'slideToggle',
+                        ] );
+                        argObj.fun( elementArr[ 0 ] );
+                    },
+                } );
             }
         } );
     }
@@ -5095,34 +5003,32 @@ class JS2jQuery {
                     },
                 } );
             }
-            else{
-                if( this.gStyle( elemO, 'display' ) !== 'none' ){
-                    IsHandle19( this, elemO );
-                    this.animate( elemO, {
-                        opacity: argObj.opacity,
-                    }, {
-                        duration: argObj.time,
-                        easing: argObj.easing,
-                        complete: elementArr => {
-                            this.sAttr( elemO, {
-                                'data-opacity': argObj.opacity,
-                                fadeTo: 'fadeTo',
-                            } );
-                            this.rAttr( elementArr[ 0 ], [
-                                'fadeHide',
-                                'fadeShow',
-                                'fadeToggle',
-                                'hide',
-                                'show',
-                                'toggle',
-                                'slideHide',
-                                'slideShow',
-                                'slideToggle',
-                            ] );
-                            argObj.fun( elementArr[ 0 ] );
-                        },
-                    } );
-                }
+            else if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                IsHandle19( this, elemO );
+                this.animate( elemO, {
+                    opacity: argObj.opacity,
+                }, {
+                    duration: argObj.time,
+                    easing: argObj.easing,
+                    complete: elementArr => {
+                        this.sAttr( elemO, {
+                            'data-opacity': argObj.opacity,
+                            fadeTo: 'fadeTo',
+                        } );
+                        this.rAttr( elementArr[ 0 ], [
+                            'fadeHide',
+                            'fadeShow',
+                            'fadeToggle',
+                            'hide',
+                            'show',
+                            'toggle',
+                            'slideHide',
+                            'slideShow',
+                            'slideToggle',
+                        ] );
+                        argObj.fun( elementArr[ 0 ] );
+                    },
+                } );
             }
         } );
     }
@@ -5153,10 +5059,8 @@ class JS2jQuery {
             if( this.gStyle( elemO, 'display' ) === 'none' ){
                 this.fadeShow( elemO, argObj );
             }
-            else{
-                if( this.gStyle( elemO, 'display' ) !== 'none' ){
-                    this.fadeHide( elemO, argObj );
-                }
+            else if( this.gStyle( elemO, 'display' ) !== 'none' ){
+                this.fadeHide( elemO, argObj );
             }
         } );
     }
@@ -5252,10 +5156,8 @@ class JS2jQuery {
             if( this.isWindow( elemO ) && this.isUndefined( selector ) ){
                 return document.children;
             }
-            else{
-                if( this.isWindow( elemO ) && !this.isUndefined( selector ) ){
-                    return IsHandle17.call( this, Array.from( document.children ), document.querySelectorAll( selector ) );
-                }
+            else if( this.isWindow( elemO ) && !this.isUndefined( selector ) ){
+                return IsHandle17.call( this, Array.from( document.children ), document.querySelectorAll( selector ) );
             }
             if( this.isUndefined( selector ) ){
                 return elemO.children;
@@ -5283,10 +5185,8 @@ class JS2jQuery {
             if( this.isWindow( elemO ) && this.isUndefined( selector ) ){
                 return document.getElementsByTagName( '*' );
             }
-            else{
-                if( this.isWindow( elemO ) && !this.isUndefined( selector ) ){
-                    return IsHandle17.call( this, Array.from( document.getElementsByTagName( '*' ) ), document.querySelectorAll( selector ) );
-                }
+            else if( this.isWindow( elemO ) && !this.isUndefined( selector ) ){
+                return IsHandle17.call( this, Array.from( document.getElementsByTagName( '*' ) ), document.querySelectorAll( selector ) );
             }
             if( this.isUndefined( selector ) ){
                 return elemO.getElementsByTagName( '*' );
@@ -5656,15 +5556,13 @@ class JS2jQuery {
             } ) ) ) );
             return result;
         }
-        else{
-            if( this.isString( styleN ) && this.trim( styleN ).length !== 0 ){
-                return IsHandle13.call( this, elem, elemO => {
-                    if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
-                        return document.defaultView.getComputedStyle( document.documentElement, pseudoElt )[ this.trim( styleN ) ];
-                    }
-                    return document.defaultView.getComputedStyle( elemO, pseudoElt )[ this.trim( styleN ) ];
-                } );
-            }
+        else if( this.isString( styleN ) && this.trim( styleN ).length !== 0 ){
+            return IsHandle13.call( this, elem, elemO => {
+                if( this.isDocument( elemO ) || this.isWindow( elemO ) ){
+                    return document.defaultView.getComputedStyle( document.documentElement, pseudoElt )[ this.trim( styleN ) ];
+                }
+                return document.defaultView.getComputedStyle( elemO, pseudoElt )[ this.trim( styleN ) ];
+            } );
         }
     }
 
@@ -5733,15 +5631,11 @@ class JS2jQuery {
                 console.warn( 'hasData函数--->ctoElemDataStoragew未定义！' );
                 return undefined;
             }
-            else{
-                if( this.remSpace( dataName ) in storage ){
-                    return true;
-                }
-                else{
-                    if( !( this.remSpace( dataName ) in storage ) ){
-                        return false;
-                    }
-                }
+            else if( this.remSpace( dataName ) in storage ){
+                return true;
+            }
+            else if( !( this.remSpace( dataName ) in storage ) ){
+                return false;
             }
         } );
     }
@@ -5763,25 +5657,21 @@ class JS2jQuery {
             if( this.isWindow( elemO ) ){
                 return elemO.innerHeight;
             }
-            else{
-                if( this.isDocument( elemO ) ){
-                    let result1 = this.gStyle( elemO.documentElement, 'height' ),
-                        result2 = parseFloat( result1 );
+            else if( this.isDocument( elemO ) ){
+                let result1 = this.gStyle( elemO.documentElement, 'height' ),
+                    result2 = parseFloat( result1 );
 
-                    return this.isNaN( result2 )
-                           ? result1
-                           : result2;
-                }
-                else{
-                    if( this.isElement( elemO ) ){
-                        let result1 = this.gStyle( elemO, 'height' ),
-                            result2 = parseFloat( result1 );
+                return this.isNaN( result2 )
+                       ? result1
+                       : result2;
+            }
+            else if( this.isElement( elemO ) ){
+                let result1 = this.gStyle( elemO, 'height' ),
+                    result2 = parseFloat( result1 );
 
-                        return this.isNaN( result2 )
-                               ? result1
-                               : result2;
-                    }
-                }
+                return this.isNaN( result2 )
+                       ? result1
+                       : result2;
             }
         } );
     }
@@ -5962,21 +5852,19 @@ class JS2jQuery {
                     if( paraInitInit.isR && len === 0 ){
                         cssStyleSheet.insertRule( dataStr, 0 );
                     }
+                    else if( paraInitInit.isR && len !== 0 ){
+                        Array.from( cssStyleSheet.cssRules )
+                             .forEach( ( v, i, ) => {
+                                 if( name in v
+                                     ? v.name === this.trim( ruleN )
+                                     : v.selectorText === this.trim( ruleN ) ){
+                                     cssStyleSheet.deleteRule( i );
+                                 }
+                             } );
+                        cssStyleSheet.insertRule( dataStr, in1 );
+                    }
                     else{
-                        if( paraInitInit.isR && len !== 0 ){
-                            Array.from( cssStyleSheet.cssRules )
-                                 .forEach( ( v, i, ) => {
-                                     if( name in v
-                                         ? v.name === this.trim( ruleN )
-                                         : v.selectorText === this.trim( ruleN ) ){
-                                         cssStyleSheet.deleteRule( i );
-                                     }
-                                 } );
-                            cssStyleSheet.insertRule( dataStr, in1 );
-                        }
-                        else{
-                            cssStyleSheet.insertRule( dataStr, in1 );
-                        }
+                        cssStyleSheet.insertRule( dataStr, in1 );
                     }
                 };
             if( is1 && len === 0 ){
@@ -5986,13 +5874,11 @@ class JS2jQuery {
                     isText: true,
                 } ) );
             }
+            else if( is1 && len !== 0 ){
+                handle( document.styleSheets[ 0 ] );
+            }
             else{
-                if( is1 && len !== 0 ){
-                    handle( document.styleSheets[ 0 ] );
-                }
-                else{
-                    handle( paraInitInit.cssStyleSheet );
-                }
+                handle( paraInitInit.cssStyleSheet );
             }
         }
     }
@@ -6172,15 +6058,11 @@ class JS2jQuery {
                     }
                 } );
             }
-            else{
-                if( !this.isArray( attrN ) && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                    document.documentElement.removeAttribute( this.remSpace( attrN ) );
-                }
-                else{
-                    if( !this.isArray( attrN ) && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                        elemO.removeAttribute( this.remSpace( attrN ) );
-                    }
-                }
+            else if( !this.isArray( attrN ) && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                document.documentElement.removeAttribute( this.remSpace( attrN ) );
+            }
+            else if( !this.isArray( attrN ) && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                elemO.removeAttribute( this.remSpace( attrN ) );
             }
             return elemO;
         } );
@@ -6257,15 +6139,11 @@ class JS2jQuery {
                     }
                 } );
             }
-            else{
-                if( !this.isArray( attrN ) && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                    document.documentElement.style.removeProperty( this.remSpace( attrN ) );
-                }
-                else{
-                    if( !this.isArray( attrN ) && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
-                        elemO.style.removeProperty( this.remSpace( attrN ) );
-                    }
-                }
+            else if( !this.isArray( attrN ) && ( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                document.documentElement.style.removeProperty( this.remSpace( attrN ) );
+            }
+            else if( !this.isArray( attrN ) && !( this.isDocument( elemO ) || this.isWindow( elemO ) ) ){
+                elemO.style.removeProperty( this.remSpace( attrN ) );
             }
             return elemO;
         } );
@@ -6308,12 +6186,10 @@ class JS2jQuery {
                 fn();
             }, false );
         }
-        else{
-            if( document.attachEvent ){
-                document.attachEvent( 'onreadystatechange', function this_Fn2( event ){
-                    document.readyState === 'complete' && ( document.detachEvent( 'onreadystatechange', this_Fn2 ), fn() );
-                } );
-            }
+        else if( document.attachEvent ){
+            document.attachEvent( 'onreadystatechange', function this_Fn2( event ){
+                document.readyState === 'complete' && ( document.detachEvent( 'onreadystatechange', this_Fn2 ), fn() );
+            } );
         }
     }
 
@@ -6338,16 +6214,12 @@ class JS2jQuery {
                 console.warn( 'removeData函数--->ctoElemDataStoragew未定义！' );
                 return undefined;
             }
-            else{
-                if( this.remSpace( dataName ) in storage ){
-                    delete storage[ this.remSpace( dataName ) ];
-                    return elemO;
-                }
-                else{
-                    if( !( this.remSpace( dataName ) in storage ) ){
-                        return elemO;
-                    }
-                }
+            else if( this.remSpace( dataName ) in storage ){
+                delete storage[ this.remSpace( dataName ) ];
+                return elemO;
+            }
+            else if( !( this.remSpace( dataName ) in storage ) ){
+                return elemO;
             }
         } );
     }
@@ -6656,34 +6528,30 @@ class JS2jQuery {
                                       } );
                                   } );
                          }
-                         else{
-                             if( fun1( c, 'textarea' ) ){
+                         else if( fun1( c, 'textarea' ) ){
+                             result_arr.push( {
+                                 name: this.trim( c.name ),
+                                 value: c.value.replace( /\r?\n/g, '\r\n' )
+                             } );
+                         }
+                         else if( fun1( c, 'input' ) && !c.disabled && c.type !== 'file' && c.type !== 'submit' && c.type !== 'button' && c.type !== 'image' && c.type !== 'reset' ){
+                             if( c.type === 'radio' && c.checked ){
                                  result_arr.push( {
                                      name: this.trim( c.name ),
-                                     value: c.value.replace( /\r?\n/g, '\r\n' )
+                                     value: c.value
                                  } );
                              }
-                             else{
-                                 if( fun1( c, 'input' ) && !c.disabled && c.type !== 'file' && c.type !== 'submit' && c.type !== 'button' && c.type !== 'image' && c.type !== 'reset' ){
-                                     if( c.type === 'radio' && c.checked ){
-                                         result_arr.push( {
-                                             name: this.trim( c.name ),
-                                             value: c.value
-                                         } );
-                                     }
-                                     if( c.type === 'checkbox' && c.checked ){
-                                         result_arr.push( {
-                                             name: this.trim( c.name ),
-                                             value: c.value
-                                         } );
-                                     }
-                                     if( c.type !== 'radio' && c.type !== 'checkbox' ){
-                                         result_arr.push( {
-                                             name: this.trim( c.name ),
-                                             value: c.value
-                                         } );
-                                     }
-                                 }
+                             if( c.type === 'checkbox' && c.checked ){
+                                 result_arr.push( {
+                                     name: this.trim( c.name ),
+                                     value: c.value
+                                 } );
+                             }
+                             if( c.type !== 'radio' && c.type !== 'checkbox' ){
+                                 result_arr.push( {
+                                     name: this.trim( c.name ),
+                                     value: c.value
+                                 } );
                              }
                          }
                      } );
@@ -6894,10 +6762,8 @@ class JS2jQuery {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
                 this.slideHide( elemO, argObj );
             }
-            else{
-                if( this.gStyle( elemO, 'display' ) === 'none' ){
-                    this.slideShow( elemO, argObj );
-                }
+            else if( this.gStyle( elemO, 'display' ) === 'none' ){
+                this.slideShow( elemO, argObj );
             }
         } );
     }
@@ -6981,10 +6847,8 @@ class JS2jQuery {
             if( this.gStyle( elemO, 'display' ) !== 'none' ){
                 this.hide( elemO, argObj );
             }
-            else{
-                if( this.gStyle( elemO, 'display' ) === 'none' ){
-                    this.show( elemO, argObj );
-                }
+            else if( this.gStyle( elemO, 'display' ) === 'none' ){
+                this.show( elemO, argObj );
             }
         } );
     }
@@ -7035,25 +6899,21 @@ class JS2jQuery {
             if( this.isWindow( elemO ) ){
                 return elemO.innerWidth;
             }
-            else{
-                if( this.isDocument( elemO ) ){
-                    let result1 = this.gStyle( elemO.documentElement, 'width' ),
-                        result2 = parseFloat( result1 );
+            else if( this.isDocument( elemO ) ){
+                let result1 = this.gStyle( elemO.documentElement, 'width' ),
+                    result2 = parseFloat( result1 );
 
-                    return this.isNaN( result2 )
-                           ? result1
-                           : result2;
-                }
-                else{
-                    if( this.isElement( elemO ) ){
-                        let result1 = this.gStyle( elemO, 'width' ),
-                            result2 = parseFloat( result1 );
+                return this.isNaN( result2 )
+                       ? result1
+                       : result2;
+            }
+            else if( this.isElement( elemO ) ){
+                let result1 = this.gStyle( elemO, 'width' ),
+                    result2 = parseFloat( result1 );
 
-                        return this.isNaN( result2 )
-                               ? result1
-                               : result2;
-                    }
-                }
+                return this.isNaN( result2 )
+                       ? result1
+                       : result2;
             }
         } );
     }
@@ -7176,20 +7036,16 @@ class ObjHandle {
         if( this.isString( arg[ 0 ] ) && this.remSpace( arg[ 0 ] ).length !== 0 ){
             return handle( this.remSpace( arg[ 0 ] ), a => a, this.remSpace( arg[ 0 ] ) );
         }
-        else{
-            if( isA && arg[ 0 ].length >= 1 ){
-                let [ result, set1 ] = [
-                    [],
-                    new Set( arg[ 0 ] )
-                ];
-                set1.forEach( value => void ( result.push( value ) ) );
-                return result;
-            }
-            else{
-                if( this.isNumber( arg[ 0 ] ) && !this.isNaN( arg[ 0 ] ) && this.isFinite( arg[ 0 ] ) ){
-                    return handle( String( arg[ 0 ] ), a => Number( a ), arg[ 0 ] );
-                }
-            }
+        else if( isA && arg[ 0 ].length >= 1 ){
+            let [ result, set1 ] = [
+                [],
+                new Set( arg[ 0 ] )
+            ];
+            set1.forEach( value => void ( result.push( value ) ) );
+            return result;
+        }
+        else if( this.isNumber( arg[ 0 ] ) && !this.isNaN( arg[ 0 ] ) && this.isFinite( arg[ 0 ] ) ){
+            return handle( String( arg[ 0 ] ), a => Number( a ), arg[ 0 ] );
         }
     }
 
@@ -7213,34 +7069,32 @@ class ObjHandle {
 
             return newArr;
         }
-        else{
-            if( this.isObject( obj ) ){
-                let val,
-                    newObj = 'constructor' in obj
-                             ? new obj.constructor()
-                             : {};
+        else if( this.isObject( obj ) ){
+            let val,
+                newObj = 'constructor' in obj
+                         ? new obj.constructor()
+                         : {};
 
-                for( let tmp of
-                    Reflect.ownKeys( obj ) ){
-                    val = obj[ tmp ];
+            for( let tmp of
+                Reflect.ownKeys( obj ) ){
+                val = obj[ tmp ];
 
-                    if( typeof val !== 'object' ){
-                        Object.defineProperty( newObj, tmp, Object.getOwnPropertyDescriptor( obj, tmp ) );
-                    }
-                    else{
-                        newObj[ tmp ] = this.deepCopy( val );
-                    }
+                if( typeof val !== 'object' ){
+                    Object.defineProperty( newObj, tmp, Object.getOwnPropertyDescriptor( obj, tmp ) );
                 }
-
-                let objPrototype = this.deppCopyPrototype( obj );
-
-                !this.isNull( objPrototype ) && ( Object.setPrototypeOf( newObj, objPrototype ) );
-
-                return newObj;
+                else{
+                    newObj[ tmp ] = this.deepCopy( val );
+                }
             }
-            else{
-                return obj;
-            }
+
+            let objPrototype = this.deppCopyPrototype( obj );
+
+            !this.isNull( objPrototype ) && ( Object.setPrototypeOf( newObj, objPrototype ) );
+
+            return newObj;
+        }
+        else{
+            return obj;
         }
     }
 
@@ -7335,13 +7189,11 @@ class ObjHandle {
             if( this.isArray( currentValue ) && currentValue.length !== 0 ){
                 this.deepTraArr( initA, ...currentValue );
             }
+            else if( this.isElemList( currentValue ) && currentValue.length !== 0 ){
+                this.deepTraArr( initA, ...Array.from( currentValue ) );
+            }
             else{
-                if( this.isElemList( currentValue ) && currentValue.length !== 0 ){
-                    this.deepTraArr( initA, ...Array.from( currentValue ) );
-                }
-                else{
-                    initA.push( currentValue );
-                }
+                initA.push( currentValue );
             }
         } );
         return initA;
@@ -7759,10 +7611,8 @@ class OthersHandle {
                 if( ( isWOriUn && sOri0 ) || ( !isWOriUn && wOri0 ) ){
                     sFun( event );
                 }
-                else{
-                    if( ( isWOriUn && sOri90 ) || ( !isWOriUn && wOri90 ) ){
-                        hFun( event );
-                    }
+                else if( ( isWOriUn && sOri90 ) || ( !isWOriUn && wOri90 ) ){
+                    hFun( event );
                 }
             };
         if( isWOriUn && isSOriUn ){
@@ -8071,59 +7921,53 @@ class PermissionsAPI {
         if( this.isUndefined( permissions_objC ) ){
             GetError( '不支持“navigator.permissions”！' );
         }
+        else if( this.isUndefined( permissions_objC.query ) ){
+            GetError( '不支持“navigator.permissions.query”！' );
+        }
         else{
-            if( this.isUndefined( permissions_objC.query ) ){
-                GetError( '不支持“navigator.permissions.query”！' );
+            const events_objC = Object.assign( {
+                prompt(){
+                },
+                granted(){
+                },
+                denied(){
+                    GetError( '拒绝授权' );
+                },
+                stateChange( _this ){
+                },
+                error( e ){
+                    GetError( e.message );
+                },
+            }, events );
+
+            try{
+                return permissions_objC.query( options )
+                                       .then( permissionStatus => {
+                                           const state_strC = permissionStatus.state;
+
+                                           // 提示授权
+                                           if( state_strC === 'prompt' ){
+                                               events_objC.prompt();
+                                           }
+                                           // 已经授予
+                                           else if( state_strC === 'granted' ){
+                                               events_objC.granted();
+                                           }
+                                           // 拒绝授权
+                                           else if( state_strC === 'denied' ){
+                                               events_objC.denied();
+                                           }
+
+                                           permissionStatus.onchange = function (){
+                                               events_objC.stateChange( this );
+                                           };
+
+                                           return permissionStatus;
+                                       } )
+                                       .catch( events_objC.error );
             }
-            else{
-                const events_objC = Object.assign( {
-                    prompt(){
-                    },
-                    granted(){
-                    },
-                    denied(){
-                        GetError( '拒绝授权' );
-                    },
-                    stateChange( _this ){
-                    },
-                    error( e ){
-                        GetError( e.message );
-                    },
-                }, events );
-
-                try{
-                    return permissions_objC.query( options )
-                                           .then( permissionStatus => {
-                                               const state_strC = permissionStatus.state;
-
-                                               // 提示授权
-                                               if( state_strC === 'prompt' ){
-                                                   events_objC.prompt();
-                                               }
-                                               // 已经授予
-                                               else{
-                                                   if( state_strC === 'granted' ){
-                                                       events_objC.granted();
-                                                   }
-                                                   // 拒绝授权
-                                                   else{
-                                                       if( state_strC === 'denied' ){
-                                                           events_objC.denied();
-                                                       }
-                                                   }
-                                               }
-
-                                               permissionStatus.onchange = function (){
-                                                   events_objC.stateChange( this );
-                                               };
-
-                                               return permissionStatus;
-                                           } )
-                                           .catch( events_objC.error );
-                }
-                catch( e ){
-                    events_objC.error( e );
-                }
+            catch( e ){
+                events_objC.error( e );
             }
         }
     }
@@ -8609,25 +8453,19 @@ class StringHandle {
                 if( this.isString( currentValue ) && currentValue.length !== 0 ){
                     result.push( handle( currentValue ) );
                 }
-                else{
-                    if( this.isArray( currentValue ) || this.isObject( currentValue ) ){
-                        result.push( handle( JSON.stringify( currentValue ) ) );
-                    }
-                    else{
-                        if( this.isNumber( currentValue ) || this.isBoolean( currentValue ) || this.isNull( currentValue ) || this.isUndefined( currentValue ) ){
-                            result.push( handle( String( currentValue ) ) );
-                        }
-                    }
+                else if( this.isArray( currentValue ) || this.isObject( currentValue ) ){
+                    result.push( handle( JSON.stringify( currentValue ) ) );
+                }
+                else if( this.isNumber( currentValue ) || this.isBoolean( currentValue ) || this.isNull( currentValue ) || this.isUndefined( currentValue ) ){
+                    result.push( handle( String( currentValue ) ) );
                 }
             } );
             if( result.length !== 0 ){
                 return result;
             }
         }
-        else{
-            if( s.length !== 0 ){
-                return handle( s );
-            }
+        else if( s.length !== 0 ){
+            return handle( s );
         }
     }
 
@@ -8656,10 +8494,8 @@ class StringHandle {
             arg[ 0 ].forEach( currentValue => void ( result.push( handle( currentValue ) ) ) );
             return result;
         }
-        else{
-            if( this.isString( arg[ 0 ] ) ){
-                return handle( arg[ 0 ] );
-            }
+        else if( this.isString( arg[ 0 ] ) ){
+            return handle( arg[ 0 ] );
         }
     }
 
@@ -8825,31 +8661,27 @@ class TouchEvent {
                                 touch = {};
                             }, 0 );
                         }
-                        else{
-                            if( 'last' in touch && ( deltaX < 30 && deltaY < 30 ) ){
-                                tapTimeout = setTimeout( () => {
-                                    let event = document.createEvent( 'HTMLEvents' );
-                                    event.initEvent( 'tap', true, false );
-                                    event.cancelTouch = cancelAll;
-                                    touch.el && touch.el.dispatchEvent( event );
-                                    if( touch.isDoubleTap ){
-                                        touch.el && this.triggerE( touch.el, 'doubleTap' );
-                                        touch = {};
-                                    }
-                                    else{
-                                        touchTimeout = setTimeout( () => {
-                                            touchTimeout = null;
-                                            touch.el && this.triggerE( touch.el, 'singleTap' );
-                                            touch = {};
-                                        }, 250 );
-                                    }
-                                }, 0 );
-                            }
-                            else{
-                                if( 'last' in touch && !( deltaX < 30 && deltaY < 30 ) ){
+                        else if( 'last' in touch && ( deltaX < 30 && deltaY < 30 ) ){
+                            tapTimeout = setTimeout( () => {
+                                let event = document.createEvent( 'HTMLEvents' );
+                                event.initEvent( 'tap', true, false );
+                                event.cancelTouch = cancelAll;
+                                touch.el && touch.el.dispatchEvent( event );
+                                if( touch.isDoubleTap ){
+                                    touch.el && this.triggerE( touch.el, 'doubleTap' );
                                     touch = {};
                                 }
-                            }
+                                else{
+                                    touchTimeout = setTimeout( () => {
+                                        touchTimeout = null;
+                                        touch.el && this.triggerE( touch.el, 'singleTap' );
+                                        touch = {};
+                                    }, 250 );
+                                }
+                            }, 0 );
+                        }
+                        else if( 'last' in touch && !( deltaX < 30 && deltaY < 30 ) ){
+                            touch = {};
                         }
                         deltaX = deltaY = 0;
                     }, { passive: false } )[ 0 ],
@@ -9357,10 +9189,8 @@ class UrlHandle {
                                        if( arr1.length === 1 ){
                                            searchObj[ arr1[ 0 ] ] = '';
                                        }
-                                       else{
-                                           if( arr1.length === 2 ){
-                                               searchObj[ arr1[ 0 ] ] = arr1[ 1 ];
-                                           }
+                                       else if( arr1.length === 2 ){
+                                           searchObj[ arr1[ 0 ] ] = arr1[ 1 ];
                                        }
                                    } );
         return searchObj;
@@ -10306,11 +10136,9 @@ class CT
                         document.addEventListener( 'readystatechange', handler, false );
                         globalThis.addEventListener( 'load', handler, false );
                     }
-                    else{
-                        if( document.attachEvent ){
-                            document.attachEvent( 'onreadystatechange', handler );
-                            globalThis.attachEvent( 'onload', handler );
-                        }
+                    else if( document.attachEvent ){
+                        document.attachEvent( 'onreadystatechange', handler );
+                        globalThis.attachEvent( 'onload', handler );
                     }
                     globalThis[ 'isOpenReadyS' ] = true;
                 }
