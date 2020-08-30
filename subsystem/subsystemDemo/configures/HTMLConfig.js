@@ -173,7 +173,7 @@ let htmlWebpackPluginA_arr = [
             metaLinkName_str: 'HelloWorld',
             // 配置meta、link的信息
             metaLinkData: {
-                keywords: 'HTML, CSS, JavaScript, WebAssembly, ECMAScript6, TypeScript, ESM, 函数式编程, Web Components, Webpack4, VueJS, NodeJS, Deno, EJS, SSE, Web Socket, FlexLayout, GridLayout, PWA, Web Worker, Shared Worker, Service Worker, IndexedDB, GraphQL, RESTful API',
+                keywords: 'HTML, CSS, JavaScript, WebAssembly, ECMAScript6, TypeScript, ESM, 函数式编程, Web Components, Webpack4, VueJS, NodeJS, Deno, EJS, SSE, Web Socket, FlexLayout, GridLayout, PWA, Web Worker, Shared Worker, Service Worker, IndexedDB, GraphQL, RESTful API, 微前端',
                 description: 'This is a WEB project template(2020).',
                 subject: 'This is a WEB project template(2020).',
                 appTitle: 'HelloWorld',

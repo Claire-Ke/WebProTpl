@@ -1,7 +1,7 @@
 {
     "name": "HelloWorld",
     "short_name": "HelloWorld",
-    "description": "This is a WEB project template(2020)。HTML，CSS，JavaScript，WebAssembly，ECMAScript6，TypeScript，ESM，函数式编程，Web Components，Webpack4，VueJS，NodeJS，Deno，EJS，SSE，Web Socket，FlexLayout，GridLayout，PWA，Web Worker，Shared Worker，Service Worker，IndexedDB，GraphQL，RESTful API。",
+    "description": "This is a WEB project template(2020)。HTML，CSS，JavaScript，WebAssembly，ECMAScript6，TypeScript，ESM，函数式编程，Web Components，Webpack4，VueJS，NodeJS，Deno，EJS，SSE，Web Socket，FlexLayout，GridLayout，PWA，Web Worker，Shared Worker，Service Worker，IndexedDB，GraphQL，RESTful API，微前端。",
     "scope": "/",
     "start_url": "../pages/HelloWorld.html",
     "display": "fullscreen",

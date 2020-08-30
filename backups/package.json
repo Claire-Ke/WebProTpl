@@ -27,7 +27,8 @@
         "Service Worker",
         "IndexedDB",
         "GraphQL",
-        "RESTful API"
+        "RESTful API",
+        "微前端"
     ],
     "homepage": "https://github.com/LP1994/WebProTpl/tree/master",
     "bugs": {
