@@ -61,12 +61,12 @@ let proxyConfig_obj = require( './GlobalProp.js' ).proxyConfig_obj,
     };
 
 module.exports = {
-    // 开发服
-    '/devURL/*': {
+    // 开发服(端口：8081) http://192.168.1.144:8081/graphql
+    '/devURL/graphql/*': {
         pathRewrite: {
             // rewrite path
             // '^/old/api': '/new/api',
-            '^/devURL/': '/',
+            '^/devURL/graphql/': '/graphql/',
 
             // remove path
             // '^/remove/api': '',
@@ -89,10 +89,10 @@ module.exports = {
          },
          */
 
-        target: 'http://127.0.0.1:8080',
+        target: 'http://192.168.1.144:8081',
         changeOrigin,
         router: {
-            [ devServerTarget_str ]: 'http://127.0.0.1:8080',
+            [ devServerTarget_str ]: 'http://192.168.1.144:8081',
         },
 
         onProxyReq: ( proxyReq, req, res ) => {
@@ -123,12 +123,12 @@ module.exports = {
             // console.log( 'Proxy------onClose End------' );
         },
     },
-    // 本地开发服
-    '/localURL/*': {
+    // 开发服(端口：8099) http://192.168.1.144:8099/graphql
+    '/devURL8099/graphql/*': {
         pathRewrite: {
             // rewrite path
             // '^/old/api': '/new/api',
-            '^/localURL/': '/',
+            '^/devURL8099/graphql/': '/graphql/',
 
             // remove path
             // '^/remove/api': '',
@@ -151,10 +151,382 @@ module.exports = {
          },
          */
 
-        target: 'http://127.0.0.1:8080',
+        target: 'http://192.168.1.144:8099',
         changeOrigin,
         router: {
-            [ devServerTarget_str ]: 'http://127.0.0.1:8080',
+            [ devServerTarget_str ]: 'http://192.168.1.144:8099',
+        },
+
+        onProxyReq: ( proxyReq, req, res ) => {
+            console.log( 'Proxy------onProxyReq Start------' );
+            console.log( `客户端的请求URL--->${ req.url }` );
+            console.log( `客户端的请求方法--->${ req.method }` );
+            console.dir( req.headers );
+            console.log( 'Proxy------onProxyReq End------' );
+        },
+        onProxyRes: ( proxyRes, req, res ) => {
+            // console.log( 'Proxy------onProxyRes Start------' );
+            // console.log( 'Proxy------onProxyRes End------' );
+        },
+        onError: ( err, req, res ) => {
+            // console.error( 'Proxy------onError Start------' );
+            // console.error( 'Proxy------onError End------' );
+        },
+        onProxyReqWs: ( proxyReq, req, socket, options, head ) => {
+            // console.log( 'Proxy------onProxyReqWs Start------' );
+            // console.log( 'Proxy------onProxyReqWs End------' );
+        },
+        onOpen: proxySocket => {
+            // console.log( 'Proxy------onOpen Start------' );
+            // console.log( 'Proxy------onOpen End------' );
+        },
+        onClose: ( res, socket, head ) => {
+            // console.log( 'Proxy------onClose Start------' );
+            // console.log( 'Proxy------onClose End------' );
+        },
+    },
+    // 开发服(连刘家敏的台式机无线，端口：8099) http://192.168.137.135:8099/graphql
+    '/devURL8099A/graphql/*': {
+        pathRewrite: {
+            // rewrite path
+            // '^/old/api': '/new/api',
+            '^/devURL8099A/graphql/': '/graphql/',
+
+            // remove path
+            // '^/remove/api': '',
+
+            // add base path
+            // '^/': '/basepath/',
+        },
+        /*
+         pathRewrite: ( path, req ) => {
+         return path.replace( '/api', '/base/api' );
+         },
+         */
+        /*
+         pathRewrite: async ( path, req ) => {
+         // const should_add_something = await httpRequestToDecideSomething( path );
+         // if( should_add_something ){
+         //     path += 'something';
+         // }
+         // return path;
+         },
+         */
+
+        target: 'http://192.168.137.135:8099',
+        changeOrigin,
+        router: {
+            [ devServerTarget_str ]: 'http://192.168.137.135:8099',
+        },
+
+        onProxyReq: ( proxyReq, req, res ) => {
+            console.log( 'Proxy------onProxyReq Start------' );
+            console.log( `客户端的请求URL--->${ req.url }` );
+            console.log( `客户端的请求方法--->${ req.method }` );
+            console.dir( req.headers );
+            console.log( 'Proxy------onProxyReq End------' );
+        },
+        onProxyRes: ( proxyRes, req, res ) => {
+            // console.log( 'Proxy------onProxyRes Start------' );
+            // console.log( 'Proxy------onProxyRes End------' );
+        },
+        onError: ( err, req, res ) => {
+            // console.error( 'Proxy------onError Start------' );
+            // console.error( 'Proxy------onError End------' );
+        },
+        onProxyReqWs: ( proxyReq, req, socket, options, head ) => {
+            // console.log( 'Proxy------onProxyReqWs Start------' );
+            // console.log( 'Proxy------onProxyReqWs End------' );
+        },
+        onOpen: proxySocket => {
+            // console.log( 'Proxy------onOpen Start------' );
+            // console.log( 'Proxy------onOpen End------' );
+        },
+        onClose: ( res, socket, head ) => {
+            // console.log( 'Proxy------onClose Start------' );
+            // console.log( 'Proxy------onClose End------' );
+        },
+    },
+    // 测试服 http://192.168.1.101:8080/graphql
+    '/testURL/graphql/*': {
+        pathRewrite: {
+            // rewrite path
+            // '^/old/api': '/new/api',
+            '^/testURL/graphql/': '/graphql/',
+
+            // remove path
+            // '^/remove/api': '',
+
+            // add base path
+            // '^/': '/basepath/',
+        },
+        /*
+         pathRewrite: ( path, req ) => {
+         return path.replace( '/api', '/base/api' );
+         },
+         */
+        /*
+         pathRewrite: async ( path, req ) => {
+         // const should_add_something = await httpRequestToDecideSomething( path );
+         // if( should_add_something ){
+         //     path += 'something';
+         // }
+         // return path;
+         },
+         */
+
+        target: 'http://192.168.1.101:8080',
+        changeOrigin,
+        router: {
+            [ devServerTarget_str ]: 'http://192.168.1.101:8080',
+        },
+
+        onProxyReq: ( proxyReq, req, res ) => {
+            console.log( 'Proxy------onProxyReq Start------' );
+            console.log( `客户端的请求URL--->${ req.url }` );
+            console.log( `客户端的请求方法--->${ req.method }` );
+            console.dir( req.headers );
+            console.log( 'Proxy------onProxyReq End------' );
+        },
+        onProxyRes: ( proxyRes, req, res ) => {
+            // console.log( 'Proxy------onProxyRes Start------' );
+            // console.log( 'Proxy------onProxyRes End------' );
+        },
+        onError: ( err, req, res ) => {
+            // console.error( 'Proxy------onError Start------' );
+            // console.error( 'Proxy------onError End------' );
+        },
+        onProxyReqWs: ( proxyReq, req, socket, options, head ) => {
+            // console.log( 'Proxy------onProxyReqWs Start------' );
+            // console.log( 'Proxy------onProxyReqWs End------' );
+        },
+        onOpen: proxySocket => {
+            // console.log( 'Proxy------onOpen Start------' );
+            // console.log( 'Proxy------onOpen End------' );
+        },
+        onClose: ( res, socket, head ) => {
+            // console.log( 'Proxy------onClose Start------' );
+            // console.log( 'Proxy------onClose End------' );
+        },
+    },
+    // 内网穿透 http://sn2020a.nat300.top/graphql
+    '/devURL2Natapp/graphql/*': {
+        pathRewrite: {
+            // rewrite path
+            // '^/old/api': '/new/api',
+            '^/devURL2Natapp/graphql/': '/graphql/',
+
+            // remove path
+            // '^/remove/api': '',
+
+            // add base path
+            // '^/': '/basepath/',
+        },
+        /*
+         pathRewrite: ( path, req ) => {
+         return path.replace( '/api', '/base/api' );
+         },
+         */
+        /*
+         pathRewrite: async ( path, req ) => {
+         // const should_add_something = await httpRequestToDecideSomething( path );
+         // if( should_add_something ){
+         //     path += 'something';
+         // }
+         // return path;
+         },
+         */
+
+        target: 'http://sn2020a.nat300.top',
+        changeOrigin,
+        router: {
+            [ devServerTarget_str ]: 'http://sn2020a.nat300.top',
+        },
+
+        onProxyReq: ( proxyReq, req, res ) => {
+            console.log( 'Proxy------onProxyReq Start------' );
+            console.log( `客户端的请求URL--->${ req.url }` );
+            console.log( `客户端的请求方法--->${ req.method }` );
+            console.dir( req.headers );
+            console.log( 'Proxy------onProxyReq End------' );
+        },
+        onProxyRes: ( proxyRes, req, res ) => {
+            // console.log( 'Proxy------onProxyRes Start------' );
+            // console.log( 'Proxy------onProxyRes End------' );
+        },
+        onError: ( err, req, res ) => {
+            // console.error( 'Proxy------onError Start------' );
+            // console.error( 'Proxy------onError End------' );
+        },
+        onProxyReqWs: ( proxyReq, req, socket, options, head ) => {
+            // console.log( 'Proxy------onProxyReqWs Start------' );
+            // console.log( 'Proxy------onProxyReqWs End------' );
+        },
+        onOpen: proxySocket => {
+            // console.log( 'Proxy------onOpen Start------' );
+            // console.log( 'Proxy------onOpen End------' );
+        },
+        onClose: ( res, socket, head ) => {
+            // console.log( 'Proxy------onClose Start------' );
+            // console.log( 'Proxy------onClose End------' );
+        },
+    },
+    // 邓龙光(连接开发机无线网络时的IP) http://192.168.137.77:8090/graphql
+    '/devURL4DLG1/graphql/*': {
+        pathRewrite: {
+            // rewrite path
+            // '^/old/api': '/new/api',
+            '^/devURL4DLG1/graphql/': '/graphql/',
+
+            // remove path
+            // '^/remove/api': '',
+
+            // add base path
+            // '^/': '/basepath/',
+        },
+        /*
+         pathRewrite: ( path, req ) => {
+         return path.replace( '/api', '/base/api' );
+         },
+         */
+        /*
+         pathRewrite: async ( path, req ) => {
+         // const should_add_something = await httpRequestToDecideSomething( path );
+         // if( should_add_something ){
+         //     path += 'something';
+         // }
+         // return path;
+         },
+         */
+
+        target: 'http://192.168.137.77:8090',
+        changeOrigin,
+        router: {
+            [ devServerTarget_str ]: 'http://192.168.137.77:8090',
+        },
+
+        onProxyReq: ( proxyReq, req, res ) => {
+            console.log( 'Proxy------onProxyReq Start------' );
+            console.log( `客户端的请求URL--->${ req.url }` );
+            console.log( `客户端的请求方法--->${ req.method }` );
+            console.dir( req.headers );
+            console.log( 'Proxy------onProxyReq End------' );
+        },
+        onProxyRes: ( proxyRes, req, res ) => {
+            // console.log( 'Proxy------onProxyRes Start------' );
+            // console.log( 'Proxy------onProxyRes End------' );
+        },
+        onError: ( err, req, res ) => {
+            // console.error( 'Proxy------onError Start------' );
+            // console.error( 'Proxy------onError End------' );
+        },
+        onProxyReqWs: ( proxyReq, req, socket, options, head ) => {
+            // console.log( 'Proxy------onProxyReqWs Start------' );
+            // console.log( 'Proxy------onProxyReqWs End------' );
+        },
+        onOpen: proxySocket => {
+            // console.log( 'Proxy------onOpen Start------' );
+            // console.log( 'Proxy------onOpen End------' );
+        },
+        onClose: ( res, socket, head ) => {
+            // console.log( 'Proxy------onClose Start------' );
+            // console.log( 'Proxy------onClose End------' );
+        },
+    },
+    // 梁鑫(连接开发机无线网络时的IP) http://192.168.137.217:8090/graphql
+    '/devURL4LX1/graphql/*': {
+        pathRewrite: {
+            // rewrite path
+            // '^/old/api': '/new/api',
+            '^/devURL4LX1/graphql/': '/graphql/',
+
+            // remove path
+            // '^/remove/api': '',
+
+            // add base path
+            // '^/': '/basepath/',
+        },
+        /*
+         pathRewrite: ( path, req ) => {
+         return path.replace( '/api', '/base/api' );
+         },
+         */
+        /*
+         pathRewrite: async ( path, req ) => {
+         // const should_add_something = await httpRequestToDecideSomething( path );
+         // if( should_add_something ){
+         //     path += 'something';
+         // }
+         // return path;
+         },
+         */
+
+        target: 'http://192.168.137.217:8090',
+        changeOrigin,
+        router: {
+            [ devServerTarget_str ]: 'http://192.168.137.217:8090',
+        },
+
+        onProxyReq: ( proxyReq, req, res ) => {
+            console.log( 'Proxy------onProxyReq Start------' );
+            console.log( `客户端的请求URL--->${ req.url }` );
+            console.log( `客户端的请求方法--->${ req.method }` );
+            console.dir( req.headers );
+            console.log( 'Proxy------onProxyReq End------' );
+        },
+        onProxyRes: ( proxyRes, req, res ) => {
+            // console.log( 'Proxy------onProxyRes Start------' );
+            // console.log( 'Proxy------onProxyRes End------' );
+        },
+        onError: ( err, req, res ) => {
+            // console.error( 'Proxy------onError Start------' );
+            // console.error( 'Proxy------onError End------' );
+        },
+        onProxyReqWs: ( proxyReq, req, socket, options, head ) => {
+            // console.log( 'Proxy------onProxyReqWs Start------' );
+            // console.log( 'Proxy------onProxyReqWs End------' );
+        },
+        onOpen: proxySocket => {
+            // console.log( 'Proxy------onOpen Start------' );
+            // console.log( 'Proxy------onOpen End------' );
+        },
+        onClose: ( res, socket, head ) => {
+            // console.log( 'Proxy------onClose Start------' );
+            // console.log( 'Proxy------onClose End------' );
+        },
+    },
+    // 戴海涛 http://192.168.1.147:8081/graphql
+    '/devURL4DHT/graphql/*': {
+        pathRewrite: {
+            // rewrite path
+            // '^/old/api': '/new/api',
+            '^/devURL4DHT/graphql/': '/graphql/',
+
+            // remove path
+            // '^/remove/api': '',
+
+            // add base path
+            // '^/': '/basepath/',
+        },
+        /*
+         pathRewrite: ( path, req ) => {
+         return path.replace( '/api', '/base/api' );
+         },
+         */
+        /*
+         pathRewrite: async ( path, req ) => {
+         // const should_add_something = await httpRequestToDecideSomething( path );
+         // if( should_add_something ){
+         //     path += 'something';
+         // }
+         // return path;
+         },
+         */
+
+        target: 'http://192.168.1.147:8081',
+        changeOrigin,
+        router: {
+            [ devServerTarget_str ]: 'http://192.168.1.147:8081',
         },
 
         onProxyReq: ( proxyReq, req, res ) => {

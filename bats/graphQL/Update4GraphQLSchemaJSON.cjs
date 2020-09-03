@@ -1,20 +1,20 @@
 /**
- * Project: WebProTpl
- * Author: 12278
- * Email: 2726893248@qq.com
- * CreateDate: 2019-01-01 00:00:00
+ * Project: sn-micro-front-web-project-template
+ * Author：12278
+ * Email：1227839175@qq.com
+ * CreateDate：2020-06-01 00:00:00
  * IDE: WebStorm
  */
 
 /**
  * 动态更新“GraphQL.Schema.json”。
  *
- * 开发：
+ * 开发服(端口：8081)：
  * http://192.168.1.144:8081/graphql/schema.json
- * 内网穿透的，指向开发的：
- * http://sn2020a.nat300.top/graphql/schema.json
- * 测试：
- * http://192.168.1.125:8080/graphql/schema.json
+ * 开发服(端口：8099)：
+ * http://192.168.1.144:8099/graphql/schema.json
+ * 测试服：
+ * http://192.168.1.101:8080/graphql/schema.json
  */
 
 'use strict';
@@ -32,7 +32,8 @@ const jsonPath_strC = path.join( __dirname, '../../src/graphQL/GraphQL.Schema.js
 
 // 获取"系统默认"的"GraphQL的Schema文档"
 if( true ){
-    const option4Dev_objC = {
+    // 开发服(端口：8081) http://192.168.1.144:8081/graphql/schema.json
+    const devURL = {
             host: '192.168.1.144',
             port: '8081',
             path: '/graphql/schema.json',
@@ -43,7 +44,44 @@ if( true ){
                 'Content-Type': 'application/json',
             },
         },
-        option4Dev2Natapp_objC = {
+        // 开发服(端口：8099) http://192.168.1.144:8099/graphql/schema.json
+        devURL8099 = {
+            host: '192.168.1.144',
+            port: '8099',
+            path: '/graphql/schema.json',
+            method: 'GET',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        // 开发服(连刘家敏的台式机无线，端口：8099) http://192.168.137.135:8099/graphql/schema.json
+        devURL8099A = {
+            host: '192.168.137.135',
+            port: '8099',
+            path: '/graphql/schema.json',
+            method: 'GET',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        // 测试服 http://192.168.1.101:8080/graphql/schema.json
+        testURL = {
+            host: '192.168.1.101',
+            port: '8080',
+            path: '/graphql/schema.json',
+            method: 'GET',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        // 内网穿透 http://sn2020a.nat300.top/graphql/schema.json
+        devURL2Natapp = {
             host: 'sn2020a.nat300.top',
             port: '80',
             path: '/graphql/schema.json',
@@ -54,9 +92,10 @@ if( true ){
                 'Content-Type': 'application/json',
             },
         },
-        option4Test_objC = {
-            host: '192.168.1.125',
-            port: '8080',
+        // 邓龙光(连接开发机无线网络时的IP) http://192.168.137.77:8090/graphql/schema.json
+        devURL4DLG1 = {
+            host: '192.168.137.77',
+            port: '8090',
             path: '/graphql/schema.json',
             method: 'GET',
             headers: {
@@ -65,9 +104,10 @@ if( true ){
                 'Content-Type': 'application/json',
             },
         },
-        option4HZJ_objC = {
-            host: '192.168.1.76',
-            port: '8080',
+        // 梁鑫(连接开发机无线网络时的IP) http://192.168.137.217:8090/graphql/schema.json
+        devURL4LX1 = {
+            host: '192.168.137.217',
+            port: '8090',
             path: '/graphql/schema.json',
             method: 'GET',
             headers: {
@@ -76,42 +116,10 @@ if( true ){
                 'Content-Type': 'application/json',
             },
         },
-        option4LDM_objC = {
-            host: '192.168.1.100',
-            port: '8081',
-            path: '/graphql/schema.json',
-            method: 'GET',
-            headers: {
-                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Content-Type': 'application/json',
-            },
-        },
-        option4DLG_objC = {
-            host: '192.168.1.47',
-            port: '8099',
-            path: '/graphql/schema.json',
-            method: 'GET',
-            headers: {
-                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Content-Type': 'application/json',
-            },
-        },
-        option4HD1_objC = {
+        // 戴海涛 http://192.168.1.147:8081/graphql/schema.json
+        devURL4DHT = {
             host: '192.168.1.147',
             port: '8081',
-            path: '/graphql/schema.json',
-            method: 'GET',
-            headers: {
-                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Content-Type': 'application/json',
-            },
-        },
-        option4HD2_objC = {
-            host: '192.168.1.49',
-            port: '8099',
             path: '/graphql/schema.json',
             method: 'GET',
             headers: {
@@ -169,7 +177,7 @@ if( true ){
     // option4Dev2Natapp_objC
     // option4Test_objC
     // option4WWC_objC
-    Update4GraphQLSchemaJSON( option4Dev2Natapp_objC )
+    Update4GraphQLSchemaJSON( devURL8099A )
         .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {
             __schema: {},
         }, result.data ) ) ) ) )
@@ -178,7 +186,8 @@ if( true ){
 
 // 获取"自己定义"的更加全面详细的"GraphQL的Schema文档"
 if( false ){
-    const option4Dev_objC = {
+    // 开发服(端口：8081) http://192.168.1.144:8081/graphql/
+    const devURL = {
             host: '192.168.1.144',
             port: '8081',
             path: '/graphql/',
@@ -189,7 +198,44 @@ if( false ){
                 'Content-Type': 'application/json',
             },
         },
-        option4Dev2Natapp_objC = {
+        // 开发服(端口：8099) http://192.168.1.144:8099/graphql/
+        devURL8099 = {
+            host: '192.168.1.144',
+            port: '8099',
+            path: '/graphql/',
+            method: 'POST',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        // 开发服(连刘家敏的台式机无线，端口：8099) http://192.168.137.135:8099/graphql/
+        devURL8099A = {
+            host: '192.168.137.135',
+            port: '8099',
+            path: '/graphql/',
+            method: 'POST',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        // 测试服 http://192.168.1.101:8080/graphql/
+        testURL = {
+            host: '192.168.1.101',
+            port: '8080',
+            path: '/graphql/',
+            method: 'POST',
+            headers: {
+                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+            },
+        },
+        // 内网穿透 http://sn2020a.nat300.top/graphql/
+        devURL2Natapp = {
             host: 'sn2020a.nat300.top',
             port: '80',
             path: '/graphql/',
@@ -200,9 +246,10 @@ if( false ){
                 'Content-Type': 'application/json',
             },
         },
-        option4Test_objC = {
-            host: '192.168.1.125',
-            port: '8080',
+        // 邓龙光(连接开发机无线网络时的IP) http://192.168.137.77:8090/graphql/
+        devURL4DLG1 = {
+            host: '192.168.137.77',
+            port: '8090',
             path: '/graphql/',
             method: 'POST',
             headers: {
@@ -211,9 +258,10 @@ if( false ){
                 'Content-Type': 'application/json',
             },
         },
-        option4HZJ_objC = {
-            host: '192.168.1.76',
-            port: '8080',
+        // 梁鑫(连接开发机无线网络时的IP) http://192.168.137.217:8090/graphql/
+        devURL4LX1 = {
+            host: '192.168.137.217',
+            port: '8090',
             path: '/graphql/',
             method: 'POST',
             headers: {
@@ -222,42 +270,10 @@ if( false ){
                 'Content-Type': 'application/json',
             },
         },
-        option4LDM_objC = {
-            host: '192.168.1.100',
-            port: '8081',
-            path: '/graphql/',
-            method: 'POST',
-            headers: {
-                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Content-Type': 'application/json',
-            },
-        },
-        option4DLG_objC = {
-            host: '192.168.1.47',
-            port: '8099',
-            path: '/graphql/',
-            method: 'POST',
-            headers: {
-                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Content-Type': 'application/json',
-            },
-        },
-        option4HD1_objC = {
+        // 戴海涛 http://192.168.1.147:8081/graphql/
+        devURL4DHT = {
             host: '192.168.1.147',
             port: '8081',
-            path: '/graphql/',
-            method: 'POST',
-            headers: {
-                'User-Agent': 'My NodeJS for Update4GraphQLSchemaJSON',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'Content-Type': 'application/json',
-            },
-        },
-        option4HD2_objC = {
-            host: '192.168.1.49',
-            port: '8099',
             path: '/graphql/',
             method: 'POST',
             headers: {
@@ -322,7 +338,7 @@ if( false ){
     // option4Dev2Natapp_objC
     // option4Test_objC
     // option4WWC_objC
-    Update4GraphQLSchemaJSON( option4Dev2Natapp_objC )
+    Update4GraphQLSchemaJSON( devURL2Natapp )
         .then( result => void ( fs.writeFileSync( jsonPath_strC, JSON.stringify( Object.assign( {
             __schema: {},
         }, result.data ) ) ) ) )

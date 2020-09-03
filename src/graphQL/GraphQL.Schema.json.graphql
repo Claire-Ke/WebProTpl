@@ -6,6 +6,12 @@ schema {
     subscription: Subscription
 }
 
+"设备事件"
+interface IBMS_Device_IEvent {
+    "设备编号"
+    deviceId: String!
+}
+
 "警报"
 interface IBMS_IAlarm {
     "警报级别"
@@ -14,6 +20,8 @@ interface IBMS_IAlarm {
     alarmType: String
     "设备分类"
     deviceCategory: String!
+    "设备摘要"
+    deviceDigest: String
     "设备编号"
     deviceId: String!
     "设备名称"
@@ -40,6 +48,13 @@ interface IBMS_IRegion {
     id: String!
     "名称"
     name: String!
+    """
+
+    上级区域
+    parent: IBMS_IRegion
+    园区设备地图：地图类型（平面图：floorPlan，立体图：stereogram）
+    """
+    regionMap(mapType: String!): IBMS_regionMap
     "标签"
     tags: [String]
 }
@@ -238,6 +253,8 @@ type IBMS_Block implements IBMS_IRegion {
     placeCount(exp: String): Int!
     "场所"
     places(exp: String): [IBMS_Place]!
+    "园区设备地图：地图类型（平面图：floorPlan，立体图：stereogram）"
+    regionMap(mapType: String!): IBMS_regionMap
     "标签"
     tags: [String]
 }
@@ -264,6 +281,8 @@ type IBMS_Building implements IBMS_IRegion {
     name: String!
     "所属地块"
     parent: IBMS_Block
+    "园区设备地图：地图类型（平面图：floorPlan，立体图：stereogram）"
+    regionMap(mapType: String!): IBMS_regionMap
     "标签"
     tags: [String]
     "地下高度"
@@ -282,6 +301,8 @@ type IBMS_CheckedAlarm implements IBMS_IAlarm {
     checkedAlarmTime: String!
     "设备分类"
     deviceCategory: String!
+    "设备摘要"
+    deviceDigest: String
     "故障设备编号"
     deviceId: String!
     "故障设备名称"
@@ -312,8 +333,123 @@ type IBMS_CheckedAlarm implements IBMS_IAlarm {
     url: String!
 }
 
+"设备当前值"
+type IBMS_DEVICE_CURRENT_STATUS {
+    "名称"
+    name: String!
+    "单位"
+    unit: String
+    "值"
+    value: String!
+}
+
+"设备"
+type IBMS_Device {
+    "警报"
+    alarm: Boolean!
+    "当前值"
+    currentStatus(exp: String): [IBMS_DEVICE_CURRENT_STATUS]!
+    "设备定义摘要"
+    defintion: IBMS_DeviceDefinition!
+    "特性(exp: 表达式)"
+    features(exp: String): [IBMS_Feature]!
+    "安装区域 (需要核对一下,区域graphql的模型)"
+    functionalArea: IBMS_FunctionalArea!
+    "健康状况"
+    health: IBMS_Device_Health!
+    "设备编号"
+    id: String!
+    "是否处于维修状态, true表示处于维修中"
+    maintain: Boolean
+    "在线/离线"
+    online: Boolean
+    "设备子系统名称"
+    subsystemName: String!
+}
+
+"设备定义"
+type IBMS_DeviceDefinition {
+    "分类"
+    category: String
+    "设备详情页面"
+    deviceDetailPage: String
+    "设备图标"
+    deviceIcon: String
+    "设备工况页面"
+    deviceWorkingConditionPage: String
+    "摘要: 使用设备厂家全名和设备型号计算的md5值"
+    digest: String
+    "厂家"
+    manufacturer: IBMS_Manufacturer!
+    "型号"
+    model: String!
+    "规格\t\t【缺少规格】"
+    specification: [IBMS_Device_Specification]
+}
+
+type IBMS_DeviceEvent implements IBMS_Device_IEvent {
+    "设备编号"
+    deviceId: String!
+}
+
+"设备子系统"
+type IBMS_DeviceSubsystem {
+    "说明"
+    description: String!
+    "设备定义, exp:表达式"
+    deviceDefinition(exp: String): [IBMS_DeviceDefinition]!
+    "设备, exp:表达式"
+    devices(exp: String): [IBMS_Device]!
+    "logo"
+    logo: String
+    "名称"
+    name: String!
+}
+
+"设备统计/预警总数"
+type IBMS_Device_Count {
+    "预警数"
+    alarmCount: Int
+    "连接数"
+    connectionCount: Int!
+    "总数"
+    deviceCount: Int!
+    "故障数"
+    faultsCount: Int!
+    "离线数"
+    offlineCount: Int!
+    "在线数\t"
+    onlineCount: Int!
+}
+
+"设备规格, 例如 name=额定电流, value=16A"
+type IBMS_Device_Specification {
+    "名称"
+    name: String!
+    "规格值"
+    value: String!
+}
+
+"特性"
+type IBMS_Feature {
+    "类名"
+    className: String!
+    "说明"
+    description: String!
+    "类型, true表示是事件特性，false表示是服务特性"
+    isEvent: Boolean!
+    "是否支持"
+    supports: Boolean!
+}
+
 "楼层"
 type IBMS_Floor implements IBMS_IRegion {
+    "（所有功能区）已安装设备对应的设备定义"
+    deviceDefinition(exp: String): [IBMS_DeviceDefinition]
+    "在楼层（所有功能区）有设备安装的设备子系统"
+    deviceSubsystem(exp: String): [IBMS_DeviceSubsystem]
+    "安装在楼层的所有设备"
+    devices(exp: String): [IBMS_Device]
     "功能区数量"
     functionalAreaCount: Int
     "区域内功能区"
@@ -328,6 +464,8 @@ type IBMS_Floor implements IBMS_IRegion {
     number: Int!
     "所属楼宇"
     parent: IBMS_Building
+    "园区设备地图：地图类型（平面图：floorPlan，立体图：stereogram）"
+    regionMap(mapType: String!): IBMS_regionMap
     "标签"
     tags: [String]
 }
@@ -336,10 +474,18 @@ type IBMS_Floor implements IBMS_IRegion {
 type IBMS_FunctionalArea {
     "分类"
     category: IBMS_FunctionalArea_Category
+    "已安装设备对应的设备定义"
+    deviceDefinition(exp: String): [IBMS_DeviceDefinition]
+    "在功能区所有设备的设备子系统"
+    deviceSubsystem(exp: String): [IBMS_DeviceSubsystem]
+    "安装在功能区的所有设备"
+    devices(exp: String): [IBMS_Device]
     "编号"
     id: String!
     "名称"
     name: String!
+    "园区设备地图：地图类型（平面图：floorPlan，立体图：stereogram）"
+    regionMap(mapType: String!): IBMS_regionMap
     "标签"
     tags: [String]
 }
@@ -352,6 +498,14 @@ type IBMS_FunctionalArea_Category {
     id: String!
     "名称"
     name: String!
+}
+
+"设备生产厂家"
+type IBMS_Manufacturer {
+    "全称"
+    name: String!
+    "简称"
+    shortName: String
 }
 
 "条件查询已复核警报数量及数据"
@@ -390,6 +544,8 @@ type IBMS_Park implements IBMS_IRegion {
     name: String!
     "上级区域 (园区没有上级)"
     parent: IBMS_IRegion
+    "园区设备地图：地图类型（平面图：floorPlan，立体图：stereogram）"
+    regionMap(mapType: String!): IBMS_regionMap
     "标签"
     tags: [String]
 }
@@ -410,6 +566,8 @@ type IBMS_Place implements IBMS_IRegion {
     placeFunAreaCount: Int
     "场所功能区"
     placeFunAreas(exp: String, pageIndex: Int!, pageSize: Int!): [IBMS_FunctionalArea]!
+    "园区设备地图：地图类型（平面图：floorPlan，立体图：stereogram）"
+    regionMap(mapType: String!): IBMS_regionMap
     "标签"
     tags: [String]
 }
@@ -423,6 +581,16 @@ type IBMS_SimilarAlarmTotal {
     misinformationTotal: String
 }
 
+"温度发生变化事件"
+type IBMS_TemperatureChangedEvent implements IBMS_Device_IEvent {
+    "设备编号"
+    deviceId: String!
+    "发生时间（时间戳）"
+    timestamp: String
+    "温度值"
+    value: Float
+}
+
 "未复核警报"
 type IBMS_UnCheckedAlarm implements IBMS_IAlarm {
     "警报级别"
@@ -431,6 +599,8 @@ type IBMS_UnCheckedAlarm implements IBMS_IAlarm {
     alarmType: String
     "设备分类"
     deviceCategory: String!
+    "设备摘要"
+    deviceDigest: String
     "故障设备编号"
     deviceId: String!
     "故障设备名称"
@@ -455,6 +625,54 @@ type IBMS_UnCheckedAlarm implements IBMS_IAlarm {
     url: String!
 }
 
+"风量值改变事件"
+type IBMS_WindChangedEvent implements IBMS_Device_IEvent {
+    "设备编号"
+    deviceId: String!
+    "发生时间（时间戳）"
+    timestamp: Long
+    "风量值"
+    value: Float
+}
+
+"风量控制已重置事件"
+type IBMS_WindSettedEvent implements IBMS_Device_IEvent {
+    "设备编号"
+    deviceId: String!
+    "风量值"
+    value: Float
+}
+
+"园区设备地图："
+type IBMS_regionMap {
+    "地图类型"
+    mapType: String!
+    "地图Url"
+    mapUrl: String!
+    "园区Id"
+    regionId: String!
+    "园区设备地图：地图类型（平面图：floorPlan，立体图：stereogram）"
+    regionMapDeviceCoord(mapType: String!): [IBMS_regionMapDeviceCoords]
+}
+
+"园区地图点位"
+type IBMS_regionMapDeviceCoords {
+    "点位描述"
+    description: String
+    "点位编号"
+    en_name: String
+    "点位名称"
+    name: String
+    "园区地图id"
+    regionMapId: String
+    " X坐标"
+    x_coords: String
+    " y坐标"
+    y_coords: String
+    " z坐标"
+    z_coords: String
+}
+
 "日志事件"
 type LogEvent {
     "操作行为"
@@ -474,15 +692,15 @@ type LogEvent {
     "操作名称"
     name: String
     "客体"
-    objects(id: String): Objects
+    objects(id: String!): Objects
     "操作者"
     operator: String
     "参数"
-    param(id: String): Parameters
+    param(id: String!): String!
     "资源"
     resource: String
     "主体"
-    subject(id: String): Subject
+    subject(id: String!): Subject
     "主体所在位置"
     subjectAddr: String!
     "主体端口"
@@ -503,42 +721,44 @@ type MapEarnt {
 
 "更新"
 type Mutation {
-    """
-
-    添加警报     alarmId:警报编号   url:警报事件的链接地址    title: alarmStamptime:报警时间戳   deviceId:设备编号   deviceName:设备名称
-    devieceFacturerName:设备厂家名称   deviceCategory:设备分类   functionalId:设备所在功能区编号
-    message:警报消息   alarmLevel:警报级别   accountId:发起警报的用户编号
-    """
-    ibms_alarm_addAlarm(accountId: String!, alarmId: String!, alarmLevel: String!, alarmStamptime: String!, deviceCategory: String!, deviceId: String!, deviceName: String!, devieceFacturerName: String!, functionalId: String!, message: String!, title: String!, url: String!): Boolean
-    """
-
-    添加子系统触发警报    alarmId:警报编号   url:警报事件的链接地址    title: alarmStamptime:报警时间戳   deviceId:设备编号   deviceName:设备名称
-    devieceFacturerName:设备厂家名称   deviceCategory:设备分类   functionalId:设备所在功能区编号
-    message:警报消息   alarmLevel:警报级别
-    """
-    ibms_alarm_addSubsystemAlarm(alarmId: String!, alarmLevel: String!, alarmStamptime: String!, deviceCategory: String!, deviceId: String!, deviceName: String!, devieceFacturerName: String!, functionalId: String!, message: String!, title: String!, url: String!): Boolean
+    "添加警报       accountId:发起警报的用户编号"
+    ibms_alarm_addAlarm(accountId: String!, params: AL_addAlarmDatas!): Boolean
+    "添加子系统触发警报    "
+    ibms_alarm_addSubsystemAlarm(params: AL_addAlarmDatas!): Boolean
     "重置警报级别     alarmId:警报编号    alarmLevel:警报级别"
     ibms_alarm_resetAlarmLevel(alarmId: String!, alarmLevel: String!): Boolean
     "设备误报     alarmId:警报编号    misinformationMessage:误报消息"
     ibms_alarm_reviewAlarm(alarmId: String!, misinformationMessage: String!): Boolean
     "设备故障现场处理      alarmId:警报编号    misinformationMessage:故障处理"
     ibms_alarm_siteTreatment(alarmId: String!, misinformationMessage: String!): Boolean
+    "添加地块地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_addBlockMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "添加地块标签    blockId:地块编号   blockTag:地块标签"
     ibms_region_addBlockTag(blockId: String!, blockTag: String): Boolean
     "添加楼宇分类    buildingId:楼宇编号    buildingCategoryId:楼宇分类编号"
     ibms_region_addBuildingCategory(buildingCategoryId: [String!]!, buildingId: String!): Boolean
+    "添加楼宇地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_addBuildingMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "添加楼宇标签     buildingId:楼宇编号    buildingTag：楼宇标签"
     ibms_region_addBuildingTag(buildingId: String!, buildingTag: String): Boolean
+    "添加楼层地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_addFloorMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "添加楼层标签     floorId:楼层编号     floorTag:楼层标签"
     ibms_region_addFloorTag(floorId: String!, floorTag: String): Boolean
-    "添加功能区分类"
+    "添加楼层分类"
     ibms_region_addFuCategory(categoryId: String, floorId: String!): Boolean
+    "添加功能区地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_addFunAreaMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "添加功能区标签    fuAreaId:功能区编号    fuAreaTag:功能区标签"
     ibms_region_addFunAreaTag(fuAreaId: String!, fuAreaTag: String!): Boolean
+    "添加园区地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_addParkMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "添加园区标签    parkId:园区编号   parkTag:园区标签"
     ibms_region_addParkTag(parkId: String!, parkTag: String): Boolean
     "添加场所分类     placeId:场所编号     placeCategoryId: 场所分类编号"
     ibms_region_addPlaceCategory(placeCategoryId: String!, placeId: String!): Boolean
+    "添加场所地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_addPlaceMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "添加场所标签    placeId:场所编号     placeTag:场所标签"
     ibms_region_addPlaceTag(placeId: String!, placeTag: String!): Boolean
     "定义地块   blockName:地块名称  blockParentId:所属园区编号  blockArea:地块面积  blockTags:地块标签"
@@ -553,32 +773,48 @@ type Mutation {
     ibms_region_definePark(parkArea: String, parkId: String, parkName: String!, parkTags: [String]): Boolean
     "定义场所   placeName:场所名称  placeParentId:所属地块编号  placeArea:场所面积  placeTags:场所标签  placeCategoryIds:场所分类编号"
     ibms_region_definePlace(placeArea: String, placeCategoryIds: [String!], placeId: String, placeName: String!, placeParentId: String!, placeTags: [String]!): Boolean
+    "移除地块地图  regionId:园区编号  mapType:地图类型"
+    ibms_region_removeBlockMap(mapType: String!, regionId: String!): Boolean
     "移除地块标签     blockId:地块编号   blockTag:地块标签"
     ibms_region_removeBlockTag(blockId: String!, blockTag: String): Boolean
     "移除楼宇分类    buildingId:楼宇编号    buildingCategoryId:楼宇分类编号"
     ibms_region_removeBuildingCategory(buildingCategoryId: String!, buildingId: String!): Boolean
+    "移除楼宇地图  regionId:园区编号  mapType:地图类型"
+    ibms_region_removeBuildingMap(mapType: String!, regionId: String!): Boolean
     "移除楼宇标签     buildingId:楼宇编号    buildingTag：楼宇标签"
     ibms_region_removeBuildingTag(buildingId: String!, buildingTag: String): Boolean
+    "移除楼层地图  regionId:园区编号  mapType:地图类型"
+    ibms_region_removeFloorMap(mapType: String!, regionId: String!): Boolean
     "移除楼层标签      floorId:楼层编号     floorTag:楼层标签"
     ibms_region_removeFloorTag(floorId: String!, floorTag: String): Boolean
-    "移除功能区分类"
+    "移除楼层分类"
     ibms_region_removeFuCategory(categoryId: String, floorId: String!): Boolean
+    "移除功能区地图  regionId:园区编号  mapType:地图类型"
+    ibms_region_removeFunAreaMap(mapType: String!, regionId: String!): Boolean
     "移除功能区标签    fuAreaId:功能区编号    fuAreaTag:功能区标签"
     ibms_region_removeFunAreaTag(fuAreaId: String!, fuAreaTag: String!): Boolean
+    "移除园区地图  regionId:园区编号  mapType:地图类型"
+    ibms_region_removeParkMap(mapType: String!, regionId: String!): Boolean
     "移除园区标签    parkId:园区编号   parkTag:园区标签"
     ibms_region_removeParkTag(parkId: String!, parkTag: String): Boolean
     "移除场所分类     placeId:场所编号     placeCategoryId：场所分类编号"
     ibms_region_removePlaceCategory(placeCategoryId: String!, placeId: String!): Boolean
+    "移除场所地图  regionId:园区编号  mapType:地图类型"
+    ibms_region_removePlaceMap(mapType: String!, regionId: String!): Boolean
     "移除场所标签     placeId:场所编号     placeTag:场所标签"
     ibms_region_removePlaceTag(placeId: String!, placeTag: String!): Boolean
     "重置地块面积    blockId:地块编号    blockArea:地块面积"
     ibms_region_resetBlockArea(blockArea: String!, blockId: String!): Boolean
+    "重置地块地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_resetBlockMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "重置地块名称   blockId:地块编号   blockName:地块名称   "
     ibms_region_resetBlockName(blockId: String!, blockName: String!): Boolean
     "重置地块所属园区    blockId:地块编号    blockParentId:园区编号"
     ibms_region_resetBlockParent(blockId: String!, blockParentId: String!): Boolean
     "重置楼宇地面高度    buildingId:楼宇编号    buildingHeight:地面建筑高度"
     ibms_region_resetBuildingHeight(buildingHeight: String!, buildingId: String!): Boolean
+    "重置楼宇地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_resetBuildingMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "重置楼宇名称   buildingId:楼宇编号    buildingName:楼宇名称"
     ibms_region_resetBuildingName(buildingId: String!, buildingName: String!): Boolean
     "重置楼宇所属地块   buildingId:楼宇编号     buildingParentId:所属地块编号"
@@ -587,6 +823,8 @@ type Mutation {
     ibms_region_resetBuildingUnderHeight(buildingId: String!, buildingUnderHeight: String!): Boolean
     "重置楼层层高      floorId:楼层编号      floorHeight:层高"
     ibms_region_resetFloorHeight(floorHeight: String!, floorId: String!): Boolean
+    "重置楼层地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_resetFloorMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "重置楼层名称  floorId:楼层编号    floorName:楼层名称"
     ibms_region_resetFloorName(floorId: String!, floorName: String!): Boolean
     "重置楼层号         floorId:楼层编号     floorCount:楼层号"
@@ -595,6 +833,8 @@ type Mutation {
     ibms_region_resetFloorParent(floorId: String!, floorParentId: String!): Boolean
     "重置功能区分类    fuAreaId:功能区编号    categoryId:功能区分类编号"
     ibms_region_resetFunAreaCategory(categoryId: String!, fuAreaId: String!): Boolean
+    "重置功能区地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_resetFunAreaMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "重置功能区名称    fuAreaId:功能区编号    fuAreaName:功能区名称"
     ibms_region_resetFunAreaName(fuAreaId: String!, fuAreaName: String!): Boolean
     "重置功能区所属楼层     fuAreaId:功能区编号    fuAreaParentId:所属楼层编号"
@@ -603,12 +843,16 @@ type Mutation {
     ibms_region_resetParkArea(parkArea: String, parkId: String!): Boolean
     "重置园区简介   parkId:园区编号   introduction:园区简介"
     ibms_region_resetParkIntroduction(introduction: String!, parkId: String!): Boolean
+    "重置园区地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_resetParkMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "重置园区名称   parkId:园区编号   parkName:园区名称"
     ibms_region_resetParkName(parkId: String!, parkName: String!): Boolean
     "重置园区图片    parkId:园区编号   parkPicturePath：园区图片路径"
     ibms_region_resetParkPicture(files: [Upload!]!, parkId: String!): Boolean
     "重置场所面积     placeId:场所编号     placeArea:场所面积"
     ibms_region_resetPlaceArea(placeArea: String!, placeId: String!): Boolean
+    "重置场所地图  regionId:园区编号  mapType:地图类型  mapUrl:地图Url"
+    ibms_region_resetPlaceMap(mapType: String!, mapUrl: String!, regionId: String!): Boolean
     "重置场所名称   placeId:场所编号    placeName:场所名称"
     ibms_region_resetPlaceName(placeId: String!, placeName: String!): Boolean
     "重置场所所属地块     placeId:场所编号    placeParentId:所属地块编号"
@@ -882,16 +1126,66 @@ type Mutation {
     ua_undefineRole(roleId: String!): Void
     "取消角色分类定义"
     ua_undefineRoleCategory(categoryId: String!): Void
+    """
+
+    【记录人】###########################################
+    记录人-创建工单流程
+    """
+    wo_rt_createWordOrder(params: WO_ProcessData!): WO_WorkOrderSteps
+    "经办人-退回\t\t  \t\t\t"
+    wo_rt_processor_back(params: WO_idMessageData!): WO_WorkOrderSteps
+    "经办人-领取工单\t\t  \t\t\tid:工单流程主表ID"
+    wo_rt_processor_receive(id: String!): WO_WorkOrderSteps
+    "经办人-重置备注信息\t  \t\t\tid:工单流程主表ID\tremarks:备注信息 "
+    wo_rt_processor_resetRemarks(id: String!, remarks: String!): WO_WorkOrderSteps
+    "经办人-修改修复状态\t  \t\t\tid:工单流程主表ID\trepairStatus:修复状态\t\tmessage:维修报告"
+    wo_rt_processor_resetRepairStatus(params: WO_idRepairStatusData!): WO_WorkOrderSteps
+    "经办人-移交结核  \t\t\t\t"
+    wo_rt_processor_review(params: WO_idMessageData!): WO_WorkOrderSteps
+    """
+
+    【经办人】###########################################
+    经办人-班组组长派发给组员            id:工单流程主表ID    employeeId:组员的雇员ID
+    """
+    wo_rt_processor_sendToMembers(employeeId: String!, id: String!): WO_WorkOrderSteps
+    "经办人-移交转办 \t\t\t\t\t"
+    wo_rt_processor_transfer(params: WO_typeObjectIdData!): WO_WorkOrderSteps
+    "记录人-归档结项  \t\t\t\t"
+    wo_rt_recorder_archive(params: WO_idMessageData!): WO_WorkOrderSteps
+    "记录人-退回（退回给经办人）  \t\t"
+    wo_rt_recorder_back(params: WO_idMessageData!): WO_WorkOrderSteps
+    "记录人-复制                                                        id:工单流程主表ID"
+    wo_rt_recorder_copy(id: String!): WO_WorkOrderSteps
+    "记录人-撤销工单\t\t\t\tid:工单流程主表ID"
+    wo_rt_recorder_revoked(id: String!): WO_WorkOrderSteps
+    "记录人-提交工单（移交审批）  \t\t\tsendId:派单人账号的雇员id\t\t"
+    wo_rt_recorder_submit(params: WO_idMessageData!, sendId: String!): WO_WorkOrderSteps
+    "记录人-重置工单信息"
+    wo_rt_resetWordOrder(id: String!, params: WO_ProcessData!): WO_WorkOrderSteps
+    "派单人-退回\t  \t\t\t\t"
+    wo_rt_send_back(params: WO_idMessageData!): WO_WorkOrderSteps
+    "派单人-回收（已派单给班组，单班组无人领单时可回收）  \t\tid:工单流程主表ID"
+    wo_rt_send_recycling(id: String!): WO_WorkOrderSteps
+    """
+
+    【派单人】###########################################
+    派单人-重置备注信息                id:工单流程主表ID    remarks:备注信息
+    """
+    wo_rt_send_resetRemarks(id: String!, remarks: String!): WO_WorkOrderSteps
+    "派单人-派单（派单给班组）  \t\t\tid:工单流程主表ID\temployeeGroupsId:班组id"
+    wo_rt_send_sendWorkOrder(employeeGroupsId: String!, id: String!): WO_WorkOrderSteps
+    "派单人-移交转办\t \t\t\t\t\tuserId:被移交人账号的雇员id\t"
+    wo_rt_send_transfer(params: WO_idMessageData!, userId: String!): WO_WorkOrderSteps
 }
 
 "客体"
 type Objects {
     "所属域"
-    domain: String!
+    domain: String
     "实例标示符"
     instance: String!
     "名称"
-    name: String!
+    name: String
     "所属资源"
     resource: String!
 }
@@ -907,16 +1201,30 @@ type Query {
     """
 
     注意,警报级别分为  NORMAL 一般  , PRIORITY 优先处理 , IMMEDIATELY 紧急状态(需要立刻处理) 三个级别
-    全文检索查询未复核警报         pageIndex:当前页数   pageSize:每页记录数   beginStamptime:开始时间   endStamptime:结束时间
-    deviceCategory:设备类型    alarmLevel:警报级别     content:搜索文字
+    全文检索查询未复核警报
     """
-    ibms_alarm_getAlarmByContent(alarmLevel: String, beginStamptime: String!, content: String, deviceCategory: String, endStamptime: String!, pageIndex: Int!, pageSize: Int!): IBMS_Page_Unchecked!
+    ibms_alarm_getAlarmByContent(params: AL_alarmContentData!): IBMS_Page_Unchecked!
+    "全文检索查询已复核警报      "
+    ibms_alarm_getMisinformationByContent(params: AL_alarmContentData!): IBMS_Page_Checked!
+    "列出设备子系统, exp:表达式"
+    ibms_deviceSubsystem_list(exp: String): [IBMS_DeviceSubsystem]!
     """
 
-    全文检索查询已复核警报         pageIndex:当前页数   pageSize:每页记录数   beginStamptime:开始时间   endStamptime:结束时间
-    deviceCategory:设备类型    alarmLevel:警报级别     content:搜索文字
+    查找满足条件的单个设备, exp:表达式
+    ibms_device_findByExp(exp: String!): IBMS_Device
+    设备统计/预警总数
     """
-    ibms_alarm_getMisinformationByContent(alarmLevel: String, beginStamptime: String!, content: String, deviceCategory: String, endStamptime: String!, pageIndex: Int!, pageSize: Int!): IBMS_Page_Checked!
+    ibms_device_count(regionId: String!): IBMS_Device_Count
+    "查找设备, deviceId： 设备编号"
+    ibms_device_findById(deviceId: String!): IBMS_Device
+    "列出设备, exp:表达式"
+    ibms_device_list(exp: String): [IBMS_Device]!
+    "按摘要查找设备定义, digest:摘要"
+    ibms_devicedefinition_findByDigest(digest: String!): IBMS_DeviceDefinition
+    "列示设备定义"
+    ibms_devicedefinition_list(exp: String): [IBMS_DeviceDefinition]!
+    "按名称查找设备子系统. name: 设备子系统名称"
+    ibms_devicesubsystem_findByName(name: String!): IBMS_DeviceSubsystem
     "获取所有建筑分类"
     ibms_getArchitectureCategories(exp: String): [IBMS_Architecture_Category]!
     """
@@ -934,7 +1242,7 @@ type Query {
     "根据流水号获取日志事件"
     logEvent_getLogEventById(id: String!): LogEvent
     "分页查询所有日志事件"
-    logEvent_getlogEvents(endTime: String, pageIndex: Int!, pageSize: Int!, startTime: String): pageModel!
+    logEvent_getlogEvents(category: String, endTime: String, exp: String, operator: String, pageIndex: Int!, pageSize: Int!, startTime: String): pageModel!
     "当前用户"
     ua_currentUser: UA_CurrentUser!
     "根据编号查找特定用户"
@@ -992,6 +1300,30 @@ type Query {
     在线用户列表
     """
     ua_getonlineAccountPaging(exp: String, name: String, pageIndex: Int!, pageSize: Int!, sorting: String): [UA_OnlineAccount]!
+    """
+
+    ############################
+    简单查询-已办工单列表
+    """
+    wo_rt_completeWorkOrders(params: WO_pageIdData!): WO_WorkOrdersList
+    "根据编号查询工单\t\t【id:工单编号】"
+    wo_rt_findById(id: String!): WO_WorkOrders
+    "根据雇员名称获取雇员"
+    wo_rt_getEmployeesByName(name: String!): [UA_OperationsEmployee]
+    "查询所有的移交人（班组的人+派单人+记录人）  \t【type: 查询类型 (SEND:派人单，GROUPS:班组)】"
+    wo_rt_getTransferPeopleList(type: String!): [WO_TransferPeopleList]
+    "获取可以创建的工单类型"
+    wo_rt_getWorkOrderType: [String]
+    """
+
+    ###########################
+    简单查询-代办工单列表
+    """
+    wo_rt_pendingWorkOrders(params: WO_pageIdData!): WO_WorkOrdersList
+    "高级查询-已办工单列表\t\t"
+    wo_rt_senior_completeWorkOrders(params: WO_pendingWorkerData!): WO_WorkOrdersList
+    "高级查询-代办工单列表\t\t"
+    wo_rt_senior_pendingWorkOrders(params: WO_pendingWorkerData!): WO_WorkOrdersList
 }
 
 "主体"
@@ -1006,6 +1338,8 @@ type Subject {
 
 "订阅"
 type Subscription {
+    "订阅设备事件, functionalAreaId：功能区编号"
+    ibms_onDeviceEvent(functionalAreaId: String!): IBMS_Device_IEvent
     subscription: String!
 }
 
@@ -1377,6 +1711,132 @@ type UA_UIAccount implements UA_IAccount {
     loginTokens(exp: String): [UA_LoginToken]!
 }
 
+"工单可以进行的下一步操作中的map"
+type WO_ActionMessage {
+    "动作Id"
+    actionId: String
+    "图标名称"
+    iconName: String
+    "名称"
+    name: String
+}
+
+"工单流转信息"
+type WO_Circulation {
+    "意见"
+    message: String
+    "接收人"
+    receive_caller: String
+    "时间"
+    time: String
+    "移交人"
+    transfer_caller: String
+}
+
+"故障源"
+type WO_FailureSource {
+    "设备编号"
+    deviceId: String
+    "设备名称"
+    deviceName: String
+    "所在区域"
+    location: IBMS_FunctionalArea
+}
+
+"维修报告"
+type WO_MaintenanceReport {
+    "修复报告信息"
+    message: String
+    "修复状态"
+    repairStatus: String
+}
+
+"移交意见"
+type WO_TransferMessage {
+    "归档结项"
+    archive: String
+    "结项意见"
+    review: String
+    "转办意见"
+    transfer: String
+}
+
+"所有的移交人（班组的人+派单人+记录人）"
+type WO_TransferPeopleList {
+    "雇员编号ID"
+    employeeId: String
+    "雇员名称"
+    name: String
+}
+
+"工单流转（工单可以进行的下一步操作）"
+type WO_WorkOrderSteps {
+    "可操作的动作"
+    action: [WO_ActionMessage]
+    "工单编号"
+    id: String
+    "工单当前所在的步骤Id"
+    stepId: Int
+}
+
+"工单"
+type WO_WorkOrders {
+    "故障地点"
+    address: String
+    "工单流转（工单可以进行的下一步操作）"
+    canDoAction: WO_WorkOrderSteps
+    "流转信息"
+    circulation: [WO_Circulation]
+    "当前环节的名称"
+    currentStepName: String
+    "当前班组"
+    currentTeam: String
+    "当前处理人"
+    currentUser: UA_OperationsEmployee
+    "说明（描述）"
+    description: String
+    "故障等级(级别)"
+    failureRanking: String
+    "故障源：包括位置，设备编号和设备名称。"
+    failureSource: WO_FailureSource
+    "编号"
+    id: String!
+    "上一次处理的工单ID"
+    lastDealWith: String
+    "维修报告:包含修复状态，修复报告"
+    maintenanceReport: WO_MaintenanceReport
+    "工单类型"
+    name: String!
+    "记录人"
+    register: UA_OperationsEmployee
+    "记录时间(创建时间)"
+    registerDateTime: String
+    "备注"
+    remarks: String
+    "修复状态"
+    repairStatus: String
+    "派单时间"
+    sendDateTime: String
+    "标题（事项）"
+    title: String!
+    "移交意见"
+    transfer: WO_TransferMessage
+    "最近一次移交人"
+    transferEmployee: UA_OperationsEmployee
+    "最近一次的移交时间(时间)"
+    transferTime: String
+    "由预警核查后产生的工单，对应的预警事件流水号编号"
+    warnEventSerialNo: String
+}
+
+"工单列表"
+type WO_WorkOrdersList {
+    "工单数据"
+    data: [WO_WorkOrders]
+    "总数"
+    total: Long
+}
+
 type pageModel {
     data: [LogEvent]!
     total: Int!
@@ -1400,6 +1860,18 @@ enum CM_SpanShape {
     RECTANGLE
 }
 
+"设备健康状况"
+enum IBMS_Device_Health {
+    "正常"
+    NORMAL
+    "局部故障"
+    PARTIAL
+    "不可用，表示设备无法使用"
+    UNAVAILABLE
+    "未知, 设备未连接情况下，可能的返回值"
+    UNKNOWN
+}
+
 "登录令牌域"
 enum UA_LoginDomain {
     "邮箱"
@@ -1418,6 +1890,152 @@ enum Void {
     TRUE
 }
 
+"定义addAlarm和addSubsystemAlarm参数对象"
+input AL_addAlarmDatas {
+    "警报编号"
+    alarmId: String!
+    "警报级别          "
+    alarmLevel: String!
+    "设备编号"
+    alarmStamptime: String!
+    "警报类型"
+    alarmType: String!
+    "设备分类     "
+    deviceCategory: String!
+    "设备摘要"
+    deviceDigest: String
+    "设备编号   "
+    deviceId: String!
+    "设备名称   "
+    deviceName: String!
+    "设备厂家名称    "
+    devieceFacturerName: String!
+    "设备所在功能区编号      "
+    functionalId: String!
+    "警报消息       "
+    message: String!
+    "报警时间戳"
+    title: String!
+    "警报事件的链接地址"
+    url: String!
+}
+
+"定义alarmByContent和MisinformationByContent参数对象"
+input AL_alarmContentData {
+    "报警级别"
+    alarmLevel: String
+    "开始时间"
+    beginStamptime: String!
+    "搜索文字"
+    content: String
+    "设备类型"
+    deviceCategory: String
+    "结束时间"
+    endStamptime: String!
+    "当前页数"
+    pageIndex: Int!
+    "每页记录数 "
+    pageSize: Int!
+}
+
+"定义工单流程对象"
+input WO_ProcessData {
+    "位置  "
+    address: String
+    "描述 "
+    description: String
+    "设备摘要"
+    deviceDigest: String
+    "设备id "
+    deviceId: String
+    "设备名称"
+    deviceName: String
+    "故障等级（包含：NORMAL:一般, PRIORITY:优先处理, IMMEDIATELY:立刻需要处理-紧急状态, URGENT:加急（物业工单时使用））"
+    failureRanking: String
+    "设备所在功能区的编号id "
+    functionalId: String
+    "备注"
+    remarks: String
+    "工单标题 "
+    title: String
+    "工单类型 （包含：设备工单\t物业工单）"
+    workOrderType: String!
+}
+
+"定义id和message对象"
+input WO_idMessageData {
+    "工单流程主表ID"
+    id: String!
+    "意见/信息"
+    message: String!
+}
+
+"定义id和message和repairStatus对象"
+input WO_idRepairStatusData {
+    "工单流程主表ID"
+    id: String!
+    "意见/信息"
+    message: String!
+    "修复状态(SUCCESS:成功修复;\tPRELIMINARY:初步修复;\tBEYOND:无法修复)"
+    repairStatus: String!
+}
+
+"定义id,pageIndex和pageSize对象"
+input WO_pageIdData {
+    "事项（标题）、描述"
+    content: String
+    "当前页数  "
+    pageIndex: Int!
+    "每页记录数   "
+    pageSize: Int!
+}
+
+"定义代办列表参数对象"
+input WO_pendingWorkerData {
+    "位置"
+    address: String
+    "开始时间 （时间戳）"
+    beginStamptime: String
+    "事项（标题）、描述"
+    content: String
+    "结束时间 （时间戳）"
+    endStamptime: String
+    "级别"
+    failureRanking: String
+    "设备所在功能区编号"
+    functionalId: String
+    "工单类型"
+    name: String
+    "移交人ID"
+    owner: String
+    "当前页数   "
+    pageIndex: Int!
+    "每页记录数   "
+    pageSize: Int!
+}
+
+"测试-定义一个输入对象"
+input WO_testData {
+    id: Int
+    msg: String
+    name: String!
+}
+
+"定义ID,type,objectId和message对象"
+input WO_typeObjectIdData {
+    "工单流程主表ID"
+    id: String!
+    "意见/信息"
+    message: String!
+    "移交对象类型的编号id"
+    objectId: String!
+    "移交对象类型(1,班组； 2,经办人)"
+    type: Int!
+}
+
+
+"Long type"
+scalar Long
 
 "A file part in a multipart request"
 scalar Upload

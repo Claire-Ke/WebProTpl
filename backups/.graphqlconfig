@@ -12,137 +12,74 @@
             ],
             "extensions": {
                 "endpoints": {
-                    "devURL4Dev": {
+                    "devURL": {
                         "url": "http://192.168.1.144:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev",
+                            "user-agent": "SN_ProA JS GraphQL for devURL",
                             "Accept-Encoding": "gzip"
                         },
                         "introspect": false
                     },
-                    "devURL4Dev2Natapp": {
-                        "url": "http://sn2020a.nat300.top/graphql",
-                        "headers": {
-                            "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev2Natapp",
-                            "Accept-Encoding": "gzip"
-                        },
-                        "introspect": false
-                    },
-                    "devURL4Test": {
-                        "url": "http://192.168.1.125:8080/graphql",
-                        "headers": {
-                            "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4Test",
-                            "Accept-Encoding": "gzip"
-                        },
-                        "introspect": false
-                    },
-                    "devURL4HZJ": {
-                        "url": "http://192.168.1.76:8080/graphql",
-                        "headers": {
-                            "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4HZJ",
-                            "Accept-Encoding": "gzip"
-                        },
-                        "introspect": false
-                    },
-                    "devURL4LDM": {
-                        "url": "http://192.168.1.100:8081/graphql",
-                        "headers": {
-                            "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4LDM",
-                            "Accept-Encoding": "gzip"
-                        },
-                        "introspect": false
-                    },
-                    "devURL4DLG": {
-                        "url": "http://192.168.1.47:8099/graphql",
-                        "headers": {
-                            "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4DLG",
-                            "Accept-Encoding": "gzip"
-                        },
-                        "introspect": false
-                    },
-                    "devURL4HD1": {
-                        "url": "http://192.168.1.147:8081/graphql",
-                        "headers": {
-                            "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4HD1",
-                            "Accept-Encoding": "gzip"
-                        },
-                        "introspect": false
-                    },
-                    "devURL4HD2": {
-                        "url": "http://192.168.1.49:8099/graphql",
-                        "headers": {
-                            "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4HD2",
-                            "Accept-Encoding": "gzip"
-                        },
-                        "introspect": false
-                    },
-                    "devURL4Dev8099": {
+                    "devURL8099": {
                         "url": "http://192.168.1.144:8099/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev8099",
+                            "user-agent": "SN_ProA JS GraphQL for devURL8099",
                             "Accept-Encoding": "gzip"
                         },
                         "introspect": false
                     },
-                    "devURL4Dev4AuditLog8081": {
-                        "url": "http://192.168.1.144:8081/logevent/graphql",
+                    "devURL8099A": {
+                        "url": "http://192.168.137.135:8099/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev4AuditLog8081",
+                            "user-agent": "SN_ProA JS GraphQL for devURL8099A",
                             "Accept-Encoding": "gzip"
                         },
                         "introspect": false
                     },
-                    "devURL4Dev2Natapp4AuditLog8081": {
-                        "url": "http://sn2020a.nat300.top/logevent/graphql",
+                    "testURL": {
+                        "url": "http://192.168.1.101:8080/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev2Natapp4AuditLog8081",
+                            "user-agent": "SN_ProA JS GraphQL for testURL",
                             "Accept-Encoding": "gzip"
                         },
                         "introspect": false
                     },
-                    "devURL4Dev4Park8081": {
-                        "url": "http://192.168.1.144:8081/ibms/graphql",
+                    "devURL2Natapp": {
+                        "url": "http://sn2020a.nat300.top/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev4Park8081",
+                            "user-agent": "SN_ProA JS GraphQL for devURL2Natapp",
                             "Accept-Encoding": "gzip"
                         },
                         "introspect": false
                     },
-                    "devURL4Dev2Natapp4Park8081": {
-                        "url": "http://sn2020a.nat300.top/ibms/graphql",
+                    "devURL4DLG1": {
+                        "url": "http://192.168.137.77:8090/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev2Natapp4Park8081",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4DLG1",
                             "Accept-Encoding": "gzip"
                         },
                         "introspect": false
                     },
-                    "devURL4Dev4IBMS8081": {
-                        "url": "http://192.168.1.144:8081/ibms/graphql",
+                    "devURL4LX1": {
+                        "url": "http://192.168.137.217:8090/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev4IBMS8081",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4LX1",
                             "Accept-Encoding": "gzip"
                         },
                         "introspect": false
                     },
-                    "devURL4Dev2Natapp4IBMS8081": {
-                        "url": "http://sn2020a.nat300.top/ibms/graphql",
+                    "devURL4DHT": {
+                        "url": "http://192.168.1.147:8081/graphql",
                         "headers": {
                             "Content-Type": "application/json",
-                            "user-agent": "SN_ProA JS GraphQL for devURL4Dev2Natapp4IBMS8081",
+                            "user-agent": "SN_ProA JS GraphQL for devURL4DHT",
                             "Accept-Encoding": "gzip"
                         },
                         "introspect": false

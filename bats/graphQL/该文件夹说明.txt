@@ -1,8 +1,1 @@
 graphQL文件夹下都是用于动态更新“GraphQL.Schema.json”的bat命令！
-
-PS:
-1、
-有3个版本，自己根据需要修改.cjs里头的配置参数，根据需要自己选取用哪个：
-开发: option4Dev_objC(默认的)、
-内网穿透的，指向开发的: option4Dev2Natapp_objC、
-测试: option4Test_objC

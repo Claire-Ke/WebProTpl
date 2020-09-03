@@ -1406,10 +1406,25 @@ let fs = require( 'fs' ),
     // 如果定义的值是字符串值，得单引号内部嵌套双引号，如：'"例子"'，否则没法真正输出这个字符串
     defineObj_fun = isPro => ( {
         isPro,
-        devURL: '"/devURL/"',
         localURL: '"/localURL/"',
-        testURL: '"/"',
-        proURL: '"/"',
+        proURL: '"/proURL/"',
+
+        // 开发服(端口：8081) http://192.168.1.144:8081/graphql
+        devURL: '"/devURL/"',
+        // 开发服(端口：8099) http://192.168.1.144:8099/graphql
+        devURL8099: '"/devURL8099/"',
+        // 开发服(连刘家敏的台式机无线，端口：8099) http://192.168.137.135:8099/graphql
+        devURL8099A: '"/devURL8099A/"',
+        // 测试服 http://192.168.1.101:8080/graphql
+        testURL: '"/testURL/"',
+        // 内网穿透 http://sn2020a.nat300.top/graphql
+        devURL2Natapp: '"/devURL2Natapp/"',
+        // 邓龙光(连接开发机无线网络时的IP) http://192.168.137.77:8090/graphql
+        devURL4DLG1: '"/devURL4DLG1/"',
+        // 梁鑫(连接开发机无线网络时的IP) http://192.168.137.217:8090/graphql
+        devURL4LX1: '"/devURL4LX1/"',
+        // 戴海涛 http://192.168.1.147:8081/graphql
+        devURL4DHT: '"/devURL4DHT/"',
     } ),
     splitChunks_obj = {
         chunks: 'all',
