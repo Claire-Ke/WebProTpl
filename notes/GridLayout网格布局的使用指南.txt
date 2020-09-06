@@ -4,8 +4,18 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-columns: repeat(auto-fill, 100px);
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: minmax(100px, 1fr);
+  grid-template-columns: fit-content(40%);
+  grid-template-columns: repeat(3, 200px);
+  grid-template-columns: subgrid;
+  grid-template-columns: 200px repeat(auto-fill, 100px) 300px;
+  grid-template-columns: minmax(100px, max-content) repeat(auto-fill, 200px) 20%;
+  grid-template-columns: [linename1] 100px [linename2] repeat(auto-fit, [linename3 linename4] 300px) 100px;
   grid-template-rows: repeat(3, 1fr);
-
+  
+  PS:
+max-content:是一个关键字，代表占据网格轨迹的网格项目的最大最大内容贡献。
+min-content:是一个关键字，代表占据网格轨迹的网格项目中最大的最小内容贡献。
 
 
   隐式定义列、行
@@ -39,7 +49,8 @@
   grid-row-gap: 10px;
   row-gap: 10px;
   简写 行距、列距
-  grid-gap: 10px;
+  gap: 10px;
+  兼容式写法：grid-gap: 10px;
 
 
 

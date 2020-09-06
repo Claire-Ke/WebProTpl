@@ -29,9 +29,9 @@ let options_obj = htmlWebpackPlugin.options,
 <html class = 'css-reset fullS usN ofh xmQAQ'
       lang = 'zh-CN' <%= isOpen_boo
                          ? `manifest='${ publicPath_str + path1_str }'`
-                         : `` ;%> >
+                         : `` %> >
 <head>
-    <%= metaLink( data_obj.metaLinkData ) ;%>
+    <%= metaLink( data_obj.metaLinkData ) %>
     <%= isPro && data_obj.preloadTool_obj.open_boo
         ? preloadTool_fun( {
                 isPro_boo: isPro,
@@ -39,46 +39,46 @@ let options_obj = htmlWebpackPlugin.options,
                 assets_obj,
                 publicPath_str
             } )
-        : `` ;%>
+        : `` %>
     <% if( data_obj.startAppleTSI_boo ){ %>
         <% for( const item of
                 require( 'configDir/StartAppleTSI_Arr.js' ).startAppleTSI_arr ){ %>
             <link rel = 'apple-touch-startup-image'
-                  type = '<%= item.type ;%>'
-                  sizes = '<%= item.attrs.sizes ;%>'
-                  media = '<%= item.attrs.media ;%>'
-                  href = '<%= item.href ;%>'
-                  crossorigin = '<%= item.crossorigin ;%>' />
+                  type = '<%= item.type %>'
+                  sizes = '<%= item.attrs.sizes %>'
+                  media = '<%= item.attrs.media %>'
+                  href = '<%= item.href %>'
+                  crossorigin = '<%= item.crossorigin %>' />
         <% } %>
     <% } %>
-    <%= data_obj.dynamicREM_str ;%>
+    <%= data_obj.dynamicREM_str %>
     <%= data_obj.outAssets_obj.open_boo
         ? outAssets_fun( {
                 publicPath_str,
                 assets_arr: Object.keys( assets_obj ),
                 other_arr: data_obj.outAssets_obj.other_arr
             } )
-        : `` ;%>
-    <title><%= options_obj.title ;%></title>
+        : `` %>
+    <title><%= options_obj.title %></title>
     <link rel = 'manifest'
           type = 'application/manifest+json'
-          href = '<%= manifest ;%>' <%= sriTool_fun( {
+          href = '<%= manifest %>' <%= sriTool_fun( {
         isPro_boo: isPro,
         assets_obj,
         fileName_str: 'XMQAQ.manifest'
-    } ) ;%> />
+    } ) %> />
     <link rel = 'stylesheet'
-          href = '<%= require( 'lessBDir/Basic.less' ) ;%>' <%= sriTool_fun( {
+          href = '<%= require( 'lessBDir/Basic.less' ) %>' <%= sriTool_fun( {
         isPro_boo: isPro,
         assets_obj,
         fileName_str: 'Basic'
-    } ) ;%> />
+    } ) %> />
     <link rel = 'stylesheet'
-          href = '<%= require( 'lessBDir/XSA.less' ) ;%>' <%= sriTool_fun( {
+          href = '<%= require( 'lessBDir/XSA.less' ) %>' <%= sriTool_fun( {
         isPro_boo: isPro,
         assets_obj,
         fileName_str: 'XSA'
-    } ) ;%> />
+    } ) %> />
 </head>
 <body class = 'css-reset fullS usN ofh'>
 <!--LocalRoll节点说明：局部滚动容器，用于避免全局滚动下出现的滚动穿透BUG！！！-->
@@ -110,6 +110,6 @@ let options_obj = htmlWebpackPlugin.options,
         </main>
     </div>
 </div>
-<!--<%= data_obj.weinreDevTool_str ;%>-->
+<!--<%= data_obj.weinreDevTool_str %>-->
 </body>
 </html>
