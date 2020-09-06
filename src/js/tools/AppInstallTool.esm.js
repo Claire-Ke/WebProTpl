@@ -100,12 +100,10 @@ class AppInstallEvent {
                                          this.beforeInstallPrompt_eve = event;
                                          this.userChoiceResult_obj = userChoiceResult;
                                      }
-                                     else{
-                                         if( userChoiceResult[ 'outcome' ] === 'accepted' ){
-                                             this.#accepted( userChoiceResult );
-                                             this.beforeInstallPrompt_eve = undefined;
-                                             this.userChoiceResult_obj = undefined;
-                                         }
+                                     else if( userChoiceResult[ 'outcome' ] === 'accepted' ){
+                                         this.#accepted( userChoiceResult );
+                                         this.beforeInstallPrompt_eve = undefined;
+                                         this.userChoiceResult_obj = undefined;
                                      }
                                  } )
                                  .catch( pra_obj.rejected );

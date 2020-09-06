@@ -909,31 +909,27 @@ class SWRegistration {
         if( permission_str === 'granted' ){
             return fun1();
         }
-        else{
-            if( permission_str === 'denied' ){
-                return Notification.requestPermission()
-                                   .then( result => {
-                                       if( result === 'granted' ){
-                                           return fun1();
-                                       }
-                                       else{
-                                           return 'denied';
-                                       }
-                                   } );
-            }
-            else{
-                if( permission_str === 'default' ){
-                    return Notification.requestPermission()
-                                       .then( result => {
-                                           if( result === 'granted' ){
-                                               return fun1();
-                                           }
-                                           else{
-                                               return 'denied';
-                                           }
-                                       } );
-                }
-            }
+        else if( permission_str === 'denied' ){
+            return Notification.requestPermission()
+                               .then( result => {
+                                   if( result === 'granted' ){
+                                       return fun1();
+                                   }
+                                   else{
+                                       return 'denied';
+                                   }
+                               } );
+        }
+        else if( permission_str === 'default' ){
+            return Notification.requestPermission()
+                               .then( result => {
+                                   if( result === 'granted' ){
+                                       return fun1();
+                                   }
+                                   else{
+                                       return 'denied';
+                                   }
+                               } );
         }
     }
 

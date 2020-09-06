@@ -65,10 +65,8 @@ class AppCache {
         if( status_num === 0 ){
             return null;
         }
-        else{
-            if( status_num === 5 ){
-                return null;
-            }
+        else if( status_num === 5 ){
+            return null;
         }
 
         let pra_obj = Object.assign( {
