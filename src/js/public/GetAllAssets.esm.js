@@ -41,17 +41,13 @@ async function GetAllAssets( url = '../others/ProjectAssets.json', option = {} )
                                                        .includes( 'String' ) ){
                                                  CTAllAssets.push( item );
                                              }
-                                             else{
-                                                 if( Array.isArray( item ) ){
-                                                     CTAllAssets.push( ...item );
-                                                 }
-                                                 else{
-                                                     if( Object.prototype.toString.call( item )
-                                                               .includes( 'Object' ) ){
-                                                         CTAllAssets.push( ...( Object.values( item )
-                                                                                      .flat( Infinity ) ) );
-                                                     }
-                                                 }
+                                             else if( Array.isArray( item ) ){
+                                                 CTAllAssets.push( ...item );
+                                             }
+                                             else if( Object.prototype.toString.call( item )
+                                                            .includes( 'Object' ) ){
+                                                 CTAllAssets.push( ...( Object.values( item )
+                                                                              .flat( Infinity ) ) );
                                              }
                                          } );
 
