@@ -68,7 +68,7 @@ let fs = require( 'fs' ),
     path = require( 'path' ),
     imageminWebp = require( 'imagemin-webp' ),
     imageminMozjpeg = require( 'imagemin-mozjpeg' ),
-    // 根据实际文件夹自动生成，但现在的typescript版本提示这些写法会报错
+    // 直到20200908，只支持的列表如下！！！
     compilerOptions4lib_arrC = [
         'dom',
         'dom.iterable',
@@ -84,9 +84,7 @@ let fs = require( 'fs' ),
         'es2015.symbol.wellknown',
         'es2016',
         'es2016.array.include',
-        'es2016.full',
         'es2017',
-        'es2017.full',
         'es2017.intl',
         'es2017.object',
         'es2017.sharedmemory',
@@ -95,19 +93,17 @@ let fs = require( 'fs' ),
         'es2018',
         'es2018.asyncgenerator',
         'es2018.asynciterable',
-        'es2018.full',
         'es2018.intl',
         'es2018.promise',
         'es2018.regexp',
         'es2019',
         'es2019.array',
-        'es2019.full',
         'es2019.object',
         'es2019.string',
         'es2019.symbol',
         'es2020',
         'es2020.bigint',
-        'es2020.full',
+        'es2020.intl',
         'es2020.promise',
         'es2020.string',
         'es2020.symbol.wellknown',
@@ -118,14 +114,13 @@ let fs = require( 'fs' ),
         'esnext.array',
         'esnext.asynciterable',
         'esnext.bigint',
-        'esnext.full',
         'esnext.intl',
         'esnext.promise',
         'esnext.string',
         'esnext.symbol',
         'scripthost',
         'webworker',
-        'webworker.importscripts',
+        'webworker.importscripts'
     ],
     compilerOptions_obj = {
         // Project Options Start
@@ -139,27 +134,8 @@ let fs = require( 'fs' ),
         // CommonJS(default if target is ES3 or ES5)、ES6、ES2015、ES2020、None、UMD、AMD、System、ESNext
         'module': 'ES2020',
         // 如(全是小写字母！！！)：[ 'es6', 'es2015' ]
-        'lib': ( () => Array.from( new Set( [
-                                'dom',
-                                'es2015',
-                                'es2016',
-                                'es2017',
-                                'es2018',
-                                'es2019',
-                                'es2020',
-                                'es5',
-                                'es6',
-                                'es7',
-                                'esnext',
-                                'scripthost',
-                                'webworker'
-                            ].concat( fs.readdirSync( path.join( __dirname, './node_modules/typescript/lib' ) )
-                                        .filter( ( c, i, a ) => !fs.statSync( path.join( __dirname, `./node_modules/typescript/lib/${ c }` ) )
-                                                                   .isDirectory() )
-                                        .filter( ( c, i, a ) => c.startsWith( 'lib.' ) && c.endsWith( '.d.ts' ) && c !== 'lib.d.ts' )
-                                        .map( ( c, i, a ) => c.slice( 4, -5 )
-                                                              .toLowerCase() ) ) ) )
-                            .sort() )(),
+        // 直到20200908，只支持的列表如下！！！
+        'lib': compilerOptions4lib_arrC,
         // true时，可以在.ts中导入.js；但是，false时，这么干，会报错！
         'allowJs': false,
         // true时，当把.js文件导入到.ts文件中时，如果.js文件中有错，将报告错误，这相当于在项目中包含的所有JavaScript文件的顶部包含"// @ts-check"。
@@ -589,9 +565,9 @@ let fs = require( 'fs' ),
         // 属于“有助于调试的标志”！！！
         // 编译JSX Elements时，更改.js文件中调用的函数。最常见的更改是使用“ h”或“ preact.h”，而不是默认的“ React.createElement”（如果使用preact）。
         // 该属性不能和“reactNamespace”一起使用！
-        'jsxFactory': 'React.createElement',
+        'jsxFactory': 'h',
         // 说是识别不到这个编译选项，因为TS 4.0才开始启动的
-        'jsxFragmentFactory': 'React.Fragment',
+        'jsxFragmentFactory': 'Fragment',
         // 属于“有助于调试的标志”！！！
         // 允许导入扩展名为“ .json”的模块，这是节点项目中的常见做法。这包括基于静态JSON形状为导入生成类型。
         'resolveJsonModule': true,
@@ -632,6 +608,8 @@ let fs = require( 'fs' ),
         'declarationDir': './test/',
         // 跳过默认库声明文件的类型检查。
         'skipLibCheck': true,
+        // 改用如上选项，本选项算是弃用了。
+        // 'skipDefaultLibCheck': true,
         // 设置为false可禁用有关未使用标签的警告。 标签在JavaScript中很少见，通常表示尝试编写对象文字：
         // false，会启用无法访问到的代码的错误检查；true，表示关闭这种检查。
         'allowUnusedLabels': false,
@@ -684,6 +662,7 @@ let fs = require( 'fs' ),
         'rootDir': './',
         // 该属性不能和“jsxFactory”一起使用！
         // 'reactNamespace': 'React',
+        'disableReferencedProjectLoad': false,
     },
     // TerserPlugin = require( 'terser-webpack-plugin' ),
     browsers_arr = [
@@ -758,187 +737,231 @@ let fs = require( 'fs' ),
     postCSSLoader_fun = isPro => ( {
         loader: 'postcss-loader',
         options: {
-            // 当使用{Function} / require（复杂选项）时，webpack在选项中需要标识符（ident）。
-            // ident可以自由命名，只要它是唯一的即可。建议命名（标识：“ postcss”）
-            ident: 'postcss',
-            plugins: loader => {
-                let arr = [
-                    require( 'postcss-import' )(),
-                    require( 'postcss-preset-env' )( {
-                        // 没有任何配置选项，PostCSS Preset Env启用第2阶段功能并支持所有浏览器。
-                        // 阶段可以是0（实验）到4（稳定），也可以是false。将stage设置为false将禁用每个polyfill。仅当您打算专门使用功能选项时，这样做才有用。
-                        stage: 0,
-                        // features选项通过ID启用或禁用特定的polyfill。将true传递给特定功能部件ID将启用其polyfill，而将false传递将禁用它。
-                        // 将对象关联到特定功能部件ID将同时启用和配置它。
-                        // 没有通过功能明确启用或禁用的任何polyfill由stage选项确定。
-                        features: {
-                            'custom-properties': {
-                                preserve: true,
-                            },
-                            // CSS嵌套规则
-                            'nesting-rules': true,
-                            'any-link-pseudo-class': {
-                                preserve: true,
-                            },
-                            // 设置没有值的输入的样式:
-                            // input:blank、input[blank]
-                            // <input value="" blank>、<input value="This element has a value">
-                            'blank-pseudo-class': {
-                                preserve: true,
-                            },
-                            'break-properties': true,
-                            // 不区分大小写的属性，true会启用转换: [data-attr-key = "a" i]--->[data-attr-key = "a" i],[data-attr-key = "A" i]
-                            'case-insensitive-attributes': true,
-                            'color-functional-notation': {
-                                preserve: true,
-                            },
-                            'color-mod-function': {
-                                // 有效值：throw、warn、ignore
-                                unresolved: 'throw',
-                            },
-                            'custom-media-queries': {
-                                preserve: true,
-                            },
-                            'custom-selectors': {
-                                preserve: true,
-                            },
-                            'dir-pseudo-class': {
-                                preserve: true,
-                            },
-                            'double-position-gradients': {
-                                preserve: true,
-                            },
-                            // 'environment-variables': {},
-                            'focus-visible-pseudo-class': {
-                                preserve: true,
-                            },
-                            'focus-within-pseudo-class': {
-                                preserve: true,
-                            },
-                            // PostCSS插件，可将W3C CSS(font variant properties)转换为更兼容的CSS（font-feature-settings）
-                            'font-variant-property': true,
-                            'gap-properties': {
-                                preserve: true,
-                            },
-                            'gray-function': {
-                                preserve: true,
-                            },
-                            'has-pseudo-class': {
-                                preserve: true,
-                            },
-                            'hexadecimal-alpha-notation': {
-                                preserve: true,
-                            },
-                            'image-set-function': {
-                                preserve: true,
-                                // 有效值：warn、throw、ignore
-                                onvalid: 'throw',
-                            },
-                            'lab-function': {
-                                preserve: true,
-                            },
-                            'logical-properties-and-values': {
-                                preserve: true,
-                            },
-                            // PostCSS插件将 :matches() W3C CSS伪类转换为更兼容的CSS（更简单的选择器）
-                            'matches-pseudo-class': {
-                                // 允许您在生成的选择器之间引入换行符。
-                                lineBreak: false,
-                            },
-                            // 编写简单而优美的媒体查询！
-                            'media-query-ranges': true,
-                            'not-pseudo-class': true,
-                            'overflow-property': {
-                                preserve: true,
-                            },
-                            // PostCSS插件，可将自动换行替换为自动换行。可以选择保留两个声明
-                            'overflow-wrap-property': {
-                                // 有效值：copy、replace
-                                method: 'copy',
-                            },
-                            'place-properties': {
-                                preserve: true,
-                            },
-                            'prefers-color-scheme-query': {
-                                preserve: true,
-                            },
-                            // PostCSS插件可将 rebeccapurple color 转换为rgb()
-                            'rebeccapurple-color': {
-                                preserve: true,
-                            },
-                            // 'system-ui-font-family': true,
-                        },
-                        browsers: browsers_arr,
-                        autoprefixer: {
-                            // 如果CSS未压缩，Autoprefixer是否要使用视觉级联，true使用。
-                            cascade: true,
-                            // Autoprefixer是否要添加前缀，true添加。
-                            add: true,
-                            // Autoprefixer是否要删除过时的前缀，false不删除。
-                            remove: false,
-                            // Autoprefixer是否要为"@supports"参数添加前缀，true添加。
-                            supports: true,
-                            // Autoprefixer是否要为flexbox属性添加前缀，true添加。
-                            // 字符串值"no-2009"，则Autoprefixer只会为最终版本和IE 10版本的规范添加前缀。
-                            flexbox: true,
-                            // 有效值：false、"autoplace"、"no-autoplace"，Autoprefixer是否应为Grid Layout属性添加IE 10-11前缀？
-                            // false: 防止Autoprefixer输出CSS网格转换。
-                            // "autoplace": 启用Autoprefixer网格转换并包括自动放置支持。您还可以在CSS中使用/* autoprefixer grid: autoplace */。
-                            // "no-autoplace": 启用Autoprefixer网格转换，但不包括自动放置支持。您还可以在CSS中使用/* autoprefixer grid: no-autoplace */。
-                            // 不推荐使用true这个布尔值。
-                            grid: 'autoplace',
-                            overrideBrowserslist: browsers_arr,
-                            // 不要在Browserslist配置中的未知浏览器版本上引发错误。
-                            ignoreUnknownVersions: false,
-                        },
-                    } ),
-                    require( 'postcss-calc' )( {
-                        precision: 6,
-                        preserve: true,
-                        // 当calc()不减少为单个值时添加警告。
-                        warnWhenCannotResolve: false,
-                        mediaQueries: true,
-                        selectors: true,
-                    } ),
-                    // 必须在postcss-simple-vars和postcss-nested之前设置此插件。
-                    require( 'postcss-mixins' )( {
-                        // 无声，删除未知的mixin，不要抛出错误。默认为false。
-                        silent: false,
-                    } ),
-                    require( 'postcss-easings' )( /*{
-                     // easings: {},
-                     }*/ ),
-                    require( 'postcss-color-hwb' )(),
-                    require( 'postcss-color-function' )( {
-                        preserveCustomProps: true,
-                    } ),
-                    require( 'postcss-size' )(),
-                    require( 'postcss-brand-colors' )(),
-                ];
+            execute: false,
+            sourceMap: false,
+            postcssOptions: {
+                // 加了值为“sugarss”的会导致语法错误，因为“sugarss”是一种缩进语法！！！sugarss是基于缩进的语法，例如Sass或Stylus。
+                // parser: require( 'sugarss' ),
+                // stringifier: require( 'sugarss' ),
+                syntax: require( 'postcss-syntax' )( {
+                    /*
+                     rules: [
+                     {
+                     test: /\.(?:[sx]?html?|[sx]ht|vue|ux|php)$/i,
+                     extract: 'html',
+                     },
+                     {
+                     test: /\.(?:markdown|md)$/i,
+                     extract: 'markdown',
+                     },
+                     {
+                     test: /\.(?:[cm]?[jt]sx?|es\d*|pac)$/i,
+                     extract: 'jsx',
+                     },
+                     ],
+                     */
 
-                !isPro && ( arr.push( require( 'postcss-browser-reporter' )( {
-                    selector: 'html::before',
-                    styles: {
-                        display: 'block',
-                        position: 'fixed',
-                        top: 0,
-                        right: 0,
-                        bottom: 0,
-                        left: 0,
-                        'z-index': 202020202020,
-                        content: '',
-                        width: '100%',
-                        height: '100%',
-                        'background-color': 'red',
-                        color: 'white',
-                        'font-size': '14px',
-                        overflow: 'hidden',
-                        'white-space': 'pre-wrap',
-                    },
-                } ) ) );
-                isPro && ( arr.push( require( 'cssnano' )() ) );
+                    css: require( 'postcss-safe-parser' ),
+                    sass: require( 'postcss-sass' ),
+                    scss: require( 'postcss-scss' ),
+                    less: require( 'postcss-less' ),
+                } ),
 
-                return arr;
+                // 当使用{Function} / require（复杂选项）时，webpack在选项中需要标识符（ident）。
+                // ident可以自由命名，只要它是唯一的即可。建议命名（标识：“ postcss”）
+                ident: 'postcss',
+                plugins: ( () => {
+                    let arr = [
+                        'postcss-import',
+                        [
+                            'postcss-preset-env',
+                            {
+                                // 没有任何配置选项，PostCSS Preset Env启用第2阶段功能并支持所有浏览器。
+                                // 阶段可以是0（实验）到4（稳定），也可以是false。将stage设置为false将禁用每个polyfill。仅当您打算专门使用功能选项时，这样做才有用。
+                                stage: 0,
+                                // features选项通过ID启用或禁用特定的polyfill。将true传递给特定功能部件ID将启用其polyfill，而将false传递将禁用它。
+                                // 将对象关联到特定功能部件ID将同时启用和配置它。
+                                // 没有通过功能明确启用或禁用的任何polyfill由stage选项确定。
+                                features: {
+                                    'custom-properties': {
+                                        preserve: true,
+                                    },
+                                    // CSS嵌套规则
+                                    'nesting-rules': true,
+                                    'any-link-pseudo-class': {
+                                        preserve: true,
+                                    },
+                                    // 设置没有值的输入的样式:
+                                    // input:blank、input[blank]
+                                    // <input value="" blank>、<input value="This element has a value">
+                                    'blank-pseudo-class': {
+                                        preserve: true,
+                                    },
+                                    'break-properties': true,
+                                    // 不区分大小写的属性，true会启用转换: [data-attr-key = "a" i]--->[data-attr-key = "a" i],[data-attr-key = "A" i]
+                                    'case-insensitive-attributes': true,
+                                    'color-functional-notation': {
+                                        preserve: true,
+                                    },
+                                    'color-mod-function': {
+                                        // 有效值：throw、warn、ignore
+                                        unresolved: 'throw',
+                                    },
+                                    'custom-media-queries': {
+                                        preserve: true,
+                                    },
+                                    'custom-selectors': {
+                                        preserve: true,
+                                    },
+                                    'dir-pseudo-class': {
+                                        preserve: true,
+                                    },
+                                    'double-position-gradients': {
+                                        preserve: true,
+                                    },
+                                    // 'environment-variables': {},
+                                    'focus-visible-pseudo-class': {
+                                        preserve: true,
+                                    },
+                                    'focus-within-pseudo-class': {
+                                        preserve: true,
+                                    },
+                                    // PostCSS插件，可将W3C CSS(font variant properties)转换为更兼容的CSS（font-feature-settings）
+                                    'font-variant-property': true,
+                                    'gap-properties': {
+                                        preserve: true,
+                                    },
+                                    'gray-function': {
+                                        preserve: true,
+                                    },
+                                    'has-pseudo-class': {
+                                        preserve: true,
+                                    },
+                                    'hexadecimal-alpha-notation': {
+                                        preserve: true,
+                                    },
+                                    'image-set-function': {
+                                        preserve: true,
+                                        // 有效值：warn、throw、ignore
+                                        onvalid: 'throw',
+                                    },
+                                    'lab-function': {
+                                        preserve: true,
+                                    },
+                                    'logical-properties-and-values': {
+                                        preserve: true,
+                                    },
+                                    // PostCSS插件将 :matches() W3C CSS伪类转换为更兼容的CSS（更简单的选择器）
+                                    'matches-pseudo-class': {
+                                        // 允许您在生成的选择器之间引入换行符。
+                                        lineBreak: false,
+                                    },
+                                    // 编写简单而优美的媒体查询！
+                                    'media-query-ranges': true,
+                                    'not-pseudo-class': true,
+                                    'overflow-property': {
+                                        preserve: true,
+                                    },
+                                    // PostCSS插件，可将自动换行替换为自动换行。可以选择保留两个声明
+                                    'overflow-wrap-property': {
+                                        // 有效值：copy、replace
+                                        method: 'copy',
+                                    },
+                                    'place-properties': {
+                                        preserve: true,
+                                    },
+                                    'prefers-color-scheme-query': {
+                                        preserve: true,
+                                    },
+                                    // PostCSS插件可将 rebeccapurple color 转换为rgb()
+                                    'rebeccapurple-color': {
+                                        preserve: true,
+                                    },
+                                    // 'system-ui-font-family': true,
+                                },
+                                browsers: browsers_arr,
+                                autoprefixer: {
+                                    // 如果CSS未压缩，Autoprefixer是否要使用视觉级联，true使用。
+                                    cascade: true,
+                                    // Autoprefixer是否要添加前缀，true添加。
+                                    add: true,
+                                    // Autoprefixer是否要删除过时的前缀，false不删除。
+                                    remove: false,
+                                    // Autoprefixer是否要为"@supports"参数添加前缀，true添加。
+                                    supports: true,
+                                    // Autoprefixer是否要为flexbox属性添加前缀，true添加。
+                                    // 字符串值"no-2009"，则Autoprefixer只会为最终版本和IE 10版本的规范添加前缀。
+                                    flexbox: true,
+                                    // 有效值：false、"autoplace"、"no-autoplace"，Autoprefixer是否应为Grid Layout属性添加IE 10-11前缀？
+                                    // false: 防止Autoprefixer输出CSS网格转换。
+                                    // "autoplace": 启用Autoprefixer网格转换并包括自动放置支持。您还可以在CSS中使用/* autoprefixer grid: autoplace */。
+                                    // "no-autoplace": 启用Autoprefixer网格转换，但不包括自动放置支持。您还可以在CSS中使用/* autoprefixer grid: no-autoplace */。
+                                    // 不推荐使用true这个布尔值。
+                                    grid: 'autoplace',
+                                    overrideBrowserslist: browsers_arr,
+                                    // 不要在Browserslist配置中的未知浏览器版本上引发错误。
+                                    ignoreUnknownVersions: false,
+                                },
+                            }
+                        ],
+                        [
+                            'postcss-calc',
+                            {
+                                precision: 6,
+                                preserve: true,
+                                // 当calc()不减少为单个值时添加警告。
+                                warnWhenCannotResolve: false,
+                                mediaQueries: true,
+                                selectors: true,
+                            },
+                        ],
+                        // 必须在postcss-simple-vars和postcss-nested之前设置此插件。
+                        [
+                            'postcss-mixins',
+                            {
+                                // 无声，删除未知的mixin，不要抛出错误。默认为false。
+                                silent: false,
+                            },
+                        ],
+                        'postcss-easings',
+                        'postcss-color-hwb',
+                        [
+                            'postcss-color-function',
+                            {
+                                preserveCustomProps: true,
+                            },
+                        ],
+                        'postcss-size',
+                        'postcss-brand-colors',
+                    ];
+
+                    !isPro && ( arr.push( [
+                        'postcss-browser-reporter',
+                        {
+                            selector: 'html::before',
+                            styles: {
+                                display: 'block !important',
+                                position: 'fixed !important',
+                                top: '0 !important',
+                                right: '0 !important',
+                                bottom: '0 !important',
+                                left: '0 !important',
+                                'z-index': '202020202020 !important',
+                                content: '',
+                                width: '100% !important',
+                                height: '100% !important',
+                                'background-color': 'red !important',
+                                color: 'white !important',
+                                'font-size': '14px !important',
+                                overflow: 'hidden !important',
+                                'white-space': 'pre-wrap !important',
+                            },
+                        },
+                    ] ) );
+                    isPro && ( arr.push( 'cssnano' ) );
+
+                    return arr;
+                } )(),
             },
         },
     } ),

@@ -63,6 +63,7 @@
             "es2019.symbol",
             "es2020",
             "es2020.bigint",
+            "es2020.intl",
             "es2020.promise",
             "es2020.string",
             "es2020.symbol.wellknown",
@@ -404,7 +405,7 @@
         "assumeChangesOnlyAffectDirectDependencies": true,
         "emitDeclarationOnly": false,
         "importsNotUsedAsValues": "remove",
-        "jsxFactory": "React.createElement",
+        "jsxFactory": "h",
         "emitBOM": false,
         "newLine": "crlf",
         "noLib": false,
@@ -435,6 +436,7 @@
         "resolveJsonModule": true,
         "outDir": "./test/",
         "rootDir": "./",
-        "jsxFragmentFactory": "React.Fragment"
+        "jsxFragmentFactory": "Fragment",
+        "disableReferencedProjectLoad": false
     }
 }
